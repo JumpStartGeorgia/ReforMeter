@@ -11,7 +11,7 @@ Rails.application.routes.draw do
                  sessions: 'users/sessions',
                  unlocks: 'users/unlocks'
                },
-               :path_names => {:sign_in => 'login', :sign_out => 'logout'},
+               path_names: {sign_in: 'login', sign_out: 'logout'},
                constraints: { format: :html }
 
     match '/admin', :to => 'admin#index', :as => :admin, :via => :get

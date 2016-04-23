@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   # Email already required by devise
   validates :role, presence: true
 
-
   # requested_role may be the name of one role (a string)
   # or an array of possible roles
   def is?(requested_role)

@@ -30,11 +30,10 @@ class Admin::PageContentsController < ApplicationController
 
     respond_to do |format|
       if @page_content.save
-        format.html { redirect_to admin_page_content_path(@page_content), notice: 'Page content was successfully created.' }
-        format.json { render :show, status: :created, location: @page_content }
+        format.html { redirect_to [:admin,@page_content], notice: t('shared.msgs.success_created',
+                            obj: t('activerecord.models.page_content', count: 1))}
       else
         format.html { render :new }
-        format.json { render json: @page_content.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,11 +43,10 @@ class Admin::PageContentsController < ApplicationController
   def update
     respond_to do |format|
       if @page_content.update(page_content_params)
-        format.html { redirect_to admin_page_content_path(@page_content), notice: 'Page content was successfully updated.' }
-        format.json { render :show, status: :ok, location: @page_content }
+        format.html { redirect_to [:admin,@page_content], notice: t('shared.msgs.success_updated',
+                            obj: t('activerecord.models.page_content', count: 1))}
       else
         format.html { render :edit }
-        format.json { render json: @page_content.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,8 +56,8 @@ class Admin::PageContentsController < ApplicationController
   def destroy
     @page_content.destroy
     respond_to do |format|
-      format.html { redirect_to admin_page_contents_url, notice: 'Page content was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to admin_page_contents_url, notice: t('shared.msgs.success_destroyed',
+                              obj: t('activerecord.models.page_content', count: 1))}
     end
   end
 
