@@ -105,6 +105,10 @@ group :development do
 
   # make dev environment faster
   gem 'rails-dev-boost', '~> 0.3.0'  
+  gem 'rb-inotify', '~> 0.9.7'
+
+  # show model attributes (table fields) in model
+  gem 'annotate', '~> 2.7'
 end
 
 group :test do
@@ -159,3 +163,10 @@ end
 
 #####################################################################
 ########################## Project Gems #############################
+
+# create permalinks
+gem 'friendly_id', '~> 5.1'
+
+# create slugs with utf8 text
+gem 'babosa', '~> 1.0', '>= 1.0.2'
+

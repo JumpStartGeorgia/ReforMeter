@@ -11,7 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420110830) do
+ActiveRecord::Schema.define(version: 20160424202129) do
+
+  create_table "expert_survey_translations", force: :cascade do |t|
+    t.integer  "expert_survey_id", limit: 4,     null: false
+    t.string   "locale",           limit: 255,   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.text     "summary",          limit: 65535
+    t.text     "details",          limit: 65535
+  end
+
+  add_index "expert_survey_translations", ["expert_survey_id"], name: "index_expert_survey_translations_on_expert_survey_id", using: :btree
+  add_index "expert_survey_translations", ["locale"], name: "index_expert_survey_translations_on_locale", using: :btree
+
+  create_table "expert_surveys", force: :cascade do |t|
+    t.integer  "quarter_id",      limit: 4,                         null: false
+    t.decimal  "overall_score",             precision: 5, scale: 2, null: false
+    t.decimal  "category1_score",           precision: 5, scale: 2, null: false
+    t.decimal  "category2_score",           precision: 5, scale: 2, null: false
+    t.decimal  "category3_score",           precision: 5, scale: 2, null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+  end
+
+  add_index "expert_surveys", ["quarter_id"], name: "index_expert_surveys_on_quarter_id", using: :btree
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",   limit: 4,   null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope",          limit: 255
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "page_content_translations", force: :cascade do |t|
     t.integer  "page_content_id", limit: 4,     null: false
@@ -30,6 +67,55 @@ ActiveRecord::Schema.define(version: 20160420110830) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "quarter_translations", force: :cascade do |t|
+    t.integer  "quarter_id",   limit: 4,   null: false
+    t.string   "locale",       limit: 255, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "summary_good", limit: 255
+    t.string   "summary_bad",  limit: 255
+  end
+
+  add_index "quarter_translations", ["locale"], name: "index_quarter_translations_on_locale", using: :btree
+  add_index "quarter_translations", ["quarter_id"], name: "index_quarter_translations_on_quarter_id", using: :btree
+
+  create_table "quarters", force: :cascade do |t|
+    t.integer  "quarter",    limit: 1,                   null: false
+    t.integer  "year",       limit: 2,                   null: false
+    t.boolean  "is_public",              default: false
+    t.string   "slug",       limit: 255,                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "quarters", ["slug"], name: "index_quarters_on_slug", unique: true, using: :btree
+  add_index "quarters", ["year", "quarter"], name: "index_quarters_on_year_and_quarter", unique: true, using: :btree
+
+  create_table "reform_translations", force: :cascade do |t|
+    t.integer  "reform_id",   limit: 4,     null: false
+    t.string   "locale",      limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "name",        limit: 255
+    t.string   "summary",     limit: 255
+    t.text     "methodology", limit: 65535
+  end
+
+  add_index "reform_translations", ["locale"], name: "index_reform_translations_on_locale", using: :btree
+  add_index "reform_translations", ["reform_id"], name: "index_reform_translations_on_reform_id", using: :btree
+
+  create_table "reforms", force: :cascade do |t|
+    t.boolean  "is_active",                default: true
+    t.boolean  "is_highlight",             default: true
+    t.string   "slug",         limit: 255,                null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "reforms", ["is_active"], name: "index_reforms_on_is_active", using: :btree
+  add_index "reforms", ["is_highlight"], name: "index_reforms_on_is_highlight", using: :btree
+  add_index "reforms", ["slug"], name: "index_reforms_on_slug", unique: true, using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 255
