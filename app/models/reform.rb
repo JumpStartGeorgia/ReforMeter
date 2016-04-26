@@ -19,7 +19,7 @@ class Reform < ActiveRecord::Base
 
   #######################
   ## RELATIONSHIPS
-
+  has_many :reform_surveys, dependent: :destroy
 
   #######################
   ## VALIDATIONS

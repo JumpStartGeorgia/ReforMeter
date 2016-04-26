@@ -23,6 +23,7 @@ class ExpertSurvey < ActiveRecord::Base
   ## RELATIONSHIPS
 
   belongs_to :quarter
+  has_and_belongs_to_many :experts
 
   #######################
   ## VALIDATIONS

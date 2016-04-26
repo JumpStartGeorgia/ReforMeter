@@ -21,6 +21,7 @@ class Quarter < ActiveRecord::Base
   #######################
   ## RELATIONSHIPS
   has_one :expert_survey, dependent: :destroy
+  has_many :reform_surveys, dependent: :destroy
 
   #######################
   ## VALIDATIONS
@@ -55,5 +56,6 @@ class Quarter < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :published, -> { where(is_public: true) }
+  scope :recent, -> {order(slug: :desc)}
 
 end

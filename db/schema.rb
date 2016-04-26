@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424202129) do
+ActiveRecord::Schema.define(version: 20160426190139) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -36,6 +36,31 @@ ActiveRecord::Schema.define(version: 20160424202129) do
   end
 
   add_index "expert_surveys", ["quarter_id"], name: "index_expert_surveys_on_quarter_id", using: :btree
+
+  create_table "expert_surveys_experts", id: false, force: :cascade do |t|
+    t.integer "expert_id",        limit: 4, null: false
+    t.integer "expert_survey_id", limit: 4, null: false
+  end
+
+  create_table "expert_translations", force: :cascade do |t|
+    t.integer  "expert_id",  limit: 4,     null: false
+    t.string   "locale",     limit: 255,   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "name",       limit: 255
+    t.text     "bio",        limit: 65535
+  end
+
+  add_index "expert_translations", ["expert_id"], name: "index_expert_translations_on_expert_id", using: :btree
+  add_index "expert_translations", ["locale"], name: "index_expert_translations_on_locale", using: :btree
+
+  create_table "experts", force: :cascade do |t|
+    t.boolean  "is_active",  default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "experts", ["is_active"], name: "index_experts_on_is_active", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
@@ -91,6 +116,38 @@ ActiveRecord::Schema.define(version: 20160424202129) do
 
   add_index "quarters", ["slug"], name: "index_quarters_on_slug", unique: true, using: :btree
   add_index "quarters", ["year", "quarter"], name: "index_quarters_on_year_and_quarter", unique: true, using: :btree
+
+  create_table "reform_survey_translations", force: :cascade do |t|
+    t.integer  "reform_survey_id",    limit: 4,     null: false
+    t.string   "locale",              limit: 255,   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.text     "summary",             limit: 65535
+    t.text     "government_summary",  limit: 65535
+    t.text     "stakeholder_summary", limit: 65535
+  end
+
+  add_index "reform_survey_translations", ["locale"], name: "index_reform_survey_translations_on_locale", using: :btree
+  add_index "reform_survey_translations", ["reform_survey_id"], name: "index_reform_survey_translations_on_reform_survey_id", using: :btree
+
+  create_table "reform_surveys", force: :cascade do |t|
+    t.integer  "quarter_id",                  limit: 4,                         null: false
+    t.integer  "reform_id",                   limit: 4,                         null: false
+    t.decimal  "government_overall_score",              precision: 5, scale: 2, null: false
+    t.decimal  "government_category1_score",            precision: 5, scale: 2, null: false
+    t.decimal  "government_category2_score",            precision: 5, scale: 2, null: false
+    t.decimal  "government_category3_score",            precision: 5, scale: 2, null: false
+    t.decimal  "government_category4_score",            precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_overall_score",             precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category1_score",           precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category2_score",           precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category3_score",           precision: 5, scale: 2, null: false
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+  end
+
+  add_index "reform_surveys", ["quarter_id"], name: "index_reform_surveys_on_quarter_id", using: :btree
+  add_index "reform_surveys", ["reform_id"], name: "index_reform_surveys_on_reform_id", using: :btree
 
   create_table "reform_translations", force: :cascade do |t|
     t.integer  "reform_id",   limit: 4,     null: false
