@@ -24,6 +24,7 @@ class ExpertSurvey < ActiveRecord::Base
 
   belongs_to :quarter
   has_and_belongs_to_many :experts
+  accepts_nested_attributes_for :experts, reject_if: :all_blank
 
   #######################
   ## VALIDATIONS

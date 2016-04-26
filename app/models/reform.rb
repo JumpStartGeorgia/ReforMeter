@@ -14,7 +14,7 @@ class Reform < ActiveRecord::Base
   #######################
   ## TRANSLATIONS
 
-  translates :name, :summary, :methodology, :fallbacks_for_empty_translations => true
+  translates :name, :summary, :methodology, :slug, :fallbacks_for_empty_translations => true
   globalize_accessors
 
   #######################
@@ -24,19 +24,19 @@ class Reform < ActiveRecord::Base
   #######################
   ## VALIDATIONS
 
-  validates :name, :summary, :slug, presence: :true
+  validates :name, :summary, presence: :true
   validates_uniqueness_of :name
-  validates_uniqueness_of :slug
 
   #######################
   ## SLUG DEFINITION (friendly_id)
 
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :history]
+  friendly_id :name, use: [:globalize, :history, :slugged]
 
   # for genereate friendly_id
   def should_generate_new_friendly_id?
-    name? || super
+#    name_changed? || super
+    super
   end
 
   # for locale sensitive transliteration with friendly_id

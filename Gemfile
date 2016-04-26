@@ -167,6 +167,9 @@ end
 # create permalinks
 gem 'friendly_id', '~> 5.1'
 
+# create permalinks with globalize
+gem 'friendly_id-globalize', '~> 1.0.0.alpha2'
+
 # create slugs with utf8 text
 gem 'babosa', '~> 1.0', '>= 1.0.2'
 

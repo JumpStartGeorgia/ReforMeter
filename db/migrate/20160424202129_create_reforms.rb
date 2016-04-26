@@ -3,7 +3,7 @@ class CreateReforms < ActiveRecord::Migration
     create_table :reforms do |t|
       t.boolean :is_active, default: true
       t.boolean :is_highlight, default: true
-      t.string :slug, null: false
+      t.string :slug#, null: false
 
       t.timestamps null: false
     end
@@ -12,7 +12,9 @@ class CreateReforms < ActiveRecord::Migration
     add_index :reforms, :is_highlight
     add_index :reforms, :slug, unique: true
 
-    Reform.create_translation_table! name: :string, summary: :string, methodology: :text
+    Reform.create_translation_table! name: :string, summary: :string, methodology: :text, slug: :string
+    add_index :reform_translations, :name
+    add_index :reform_translations, :slug
   end
 
   def down

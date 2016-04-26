@@ -157,15 +157,18 @@ ActiveRecord::Schema.define(version: 20160426190139) do
     t.string   "name",        limit: 255
     t.string   "summary",     limit: 255
     t.text     "methodology", limit: 65535
+    t.string   "slug",        limit: 255
   end
 
   add_index "reform_translations", ["locale"], name: "index_reform_translations_on_locale", using: :btree
+  add_index "reform_translations", ["name"], name: "index_reform_translations_on_name", using: :btree
   add_index "reform_translations", ["reform_id"], name: "index_reform_translations_on_reform_id", using: :btree
+  add_index "reform_translations", ["slug"], name: "index_reform_translations_on_slug", using: :btree
 
   create_table "reforms", force: :cascade do |t|
     t.boolean  "is_active",                default: true
     t.boolean  "is_highlight",             default: true
-    t.string   "slug",         limit: 255,                null: false
+    t.string   "slug",         limit: 255
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end

@@ -23,12 +23,17 @@ class Quarter < ActiveRecord::Base
   has_one :expert_survey, dependent: :destroy
   has_many :reform_surveys, dependent: :destroy
 
+  accepts_nested_attributes_for :expert_survey, reject_if: :all_blank
+  accepts_nested_attributes_for :reform_surveys, reject_if: :all_blank
+  
   #######################
   ## VALIDATIONS
 
   validates :quarter, :year, :slug, presence: :true
   validates_uniqueness_of :year, scope: :quarter
   validates_uniqueness_of :slug
+  validates_inclusion_of :quarter, in: 1..4
+  validates_inclusion_of :year, in: 2015..2115
 
   #######################
   ## SLUG DEFINITION (friendly_id)
