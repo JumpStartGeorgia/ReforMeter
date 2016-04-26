@@ -1,5 +1,37 @@
 # ISET's ReforMeter
 
+## The Technologies
+ReforMeter uses the following technologies:
+
+- Ruby: 2.3
+- Rails: 4.2.6
+- Authentication: Devise 3.5.6
+- Authorization: CanCanCan 1.10.1
+- Model/Data Translations: Globalize 5.0
+- Responsive Design: Twitter Bootstrap Rails 3.2.0
+- Error Emails: Exception Notification 4.1
+- Database: MySQL (mysql2 0.3.18)
+- Deploy: Mina 0.3.8
+- Rails Server: Puma 3.4.0
+- HTML Server: Nginx
+
+
+## Getting Started
+
+### Requirements
+The following software/apps should be installed in order to use the application:
+* git
+* rbenv
+* Ruby 2.x
+* nginx - for staging/production server
+
+### Setting up dev box
+Run the following from the command line:
+1. git clone git@github.com:JumpStartGeorgia/ReforMeter.git
+2. bundle install
+3. rake db:create
+4. rake db:seed load_test_data=true   (this loads test data into the tables)
+5. create .env file from .env.example and fill in the variable values
 
 
 ## Using Mina
