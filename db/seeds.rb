@@ -7,6 +7,81 @@ roles.each do |role|
   Role.find_or_create_by(name: role)
 end
 
+# load page content records with placeholder text
+# home page about
+PageContent.find_or_create_by(name: 'home_page_about') do |pc|
+    puts 'creating page content for home page about'
+    pc.title = 'What are Reforms?'
+    pc.content = 'I have no idea.'
+end
+# expert methodology
+PageContent.find_or_create_by(name: 'methodology_expert') do |pc|
+    puts 'creating page content for methodology expert'
+    pc.title = 'Expert Survey Methodology'
+    pc.content = 'TBD ...'
+end
+# government methodology
+PageContent.find_or_create_by(name: 'methodology_government') do |pc|
+    puts 'creating page content for methodology government'
+    pc.title = 'Government Survey Methodology'
+    pc.content = 'TBD ...'
+end
+# stakeholder methodolgy
+PageContent.find_or_create_by(name: 'methodology_stakeholder') do |pc|
+    puts 'creating page content for methodology stakeholder'
+    pc.title = 'Stakeholder Survey Methodology'
+    pc.content = 'TBD ...'
+end
+# about text
+PageContent.find_or_create_by(name: 'about_text') do |pc|
+    puts 'creating page content for about text'
+    pc.title = 'About ReforMeter'
+    pc.content = 'TBD ...'
+end
+# reform text
+PageContent.find_or_create_by(name: 'reform_text') do |pc|
+    puts 'creating page content for reform text'
+    pc.title = 'What are Reforms?'
+    pc.content = 'TBD ...'
+end
+# expert text
+PageContent.find_or_create_by(name: 'expert_text') do |pc|
+    puts 'creating page content for expert text'
+    pc.title = 'Experts'
+    pc.content = 'TBD ...'
+end
+# download text
+PageContent.find_or_create_by(name: 'download_text') do |pc|
+    puts 'creating page content for download text'
+    pc.title = 'Download Data & Reports'
+    pc.content = 'TBD ...'
+end
+# download expert text
+PageContent.find_or_create_by(name: 'download_expert_text') do |pc|
+    puts 'creating page content for download expert text'
+    pc.title = 'Experts'
+    pc.content = 'TBD ...'
+end
+# download reform text
+PageContent.find_or_create_by(name: 'download_reform_text') do |pc|
+    puts 'creating page content for download reform text'
+    pc.title = 'Reforms'
+    pc.content = 'TBD ...'
+end
+# download ext ind text
+PageContent.find_or_create_by(name: 'download_external_indicator_text') do |pc|
+    puts 'creating page content for download external indicators text'
+    pc.title = 'External Indicators'
+    pc.content = 'TBD ...'
+end
+# download reports text
+PageContent.find_or_create_by(name: 'download_report_text') do |pc|
+    puts 'creating page content for download report text'
+    pc.title = 'Quarterly Reports'
+    pc.content = 'TBD ...'
+end
+
+
 
 # if the env variable of load_test_data exists, load the data
 if ENV['load_test_data'].present?

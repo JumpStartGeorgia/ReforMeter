@@ -2,7 +2,10 @@
 ka:
   application:
     navbar_header:
-      about: "პროექტის შესახებ"
+      experts: Experts
+      reforms: Reforms
+      about: About
+      download_data_and_reports: Download Data & Reports
       account:
         edit_profile: პროფილის შეცვლა
         logout: გასვლა

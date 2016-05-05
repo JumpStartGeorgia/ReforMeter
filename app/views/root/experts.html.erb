@@ -1,0 +1,7 @@
+<% page_title t('.title') %>
+
+<% if @expert_text %>
+  <div>
+    <%= simple_format_no_tags(@expert_text.content) %>
+  </div>
+<% end %>

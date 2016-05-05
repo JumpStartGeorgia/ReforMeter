@@ -2,7 +2,10 @@
 en:
   application:
     navbar_header:
-      about: About Project
+      experts: Experts
+      reforms: Reforms
+      about: About
+      download_data_and_reports: Download Data & Reports
       account:
         edit_profile: Edit Profile
         logout: Logout

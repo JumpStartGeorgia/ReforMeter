@@ -3,3 +3,9 @@ en:
   root:
     about:
       title: About
+    reforms:
+      title: Reforms
+    experts:
+      title: Experts
+    download_data_and_reports:
+      title: Download Data & Reports

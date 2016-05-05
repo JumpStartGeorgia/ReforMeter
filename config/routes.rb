@@ -20,8 +20,17 @@ Rails.application.routes.draw do
       resources :page_contents, constraints: { format: :html }
     end
 
-    root 'root#index'
     get '/about' => 'root#about'
+    get '/download_data_and_reports' => 'root#download_data_and_reports'
+    get '/reforms' => 'root#reforms'
+    get '/reforms/:id' => 'root#reform_show'
+    get '/experts' => 'root#experts'
+    get '/experts/:id' => 'root#expert_show'
+
+
+
+
+    root 'root#index'
 
     # handles /en/fake/path/whatever
     get '*path', to: redirect("/#{I18n.default_locale}")

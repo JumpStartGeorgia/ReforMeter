@@ -1,0 +1,35 @@
+<% page_title t('.title') %>
+
+<% if @download_text %>
+  <div>
+    <%= simple_format_no_tags(@download_text.content) %>
+  </div>
+<% end %>
+
+<% if @download_expert_text %>
+  <div>
+    <h2><%= @download_expert_text.title %></h2>
+    <%= simple_format_no_tags(@download_expert_text.content) %>
+  </div>
+<% end %>
+
+<% if @download_reform_text %>
+  <div>
+    <h2><%= @download_reform_text.title %></h2>
+    <%= simple_format_no_tags(@download_reform_text.content) %>
+  </div>
+<% end %>
+
+<% if @download_external_indicator_text %>
+  <div>
+    <h2><%= @download_external_indicator_text.title %></h2>
+    <%= simple_format_no_tags(@download_external_indicator_text.content) %>
+  </div>
+<% end %>
+
+<% if @download_report_text %>
+  <div>
+    <h2><%= @download_report_text.title %></h2>
+    <%= simple_format_no_tags(@download_report_text.content) %>
+  </div>
+<% end %>

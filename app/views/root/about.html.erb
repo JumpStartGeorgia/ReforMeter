@@ -1,1 +1,30 @@
 <% page_title t('.title') %>
+
+<% if @about_text %>
+  <div>
+    <%= simple_format_no_tags(@about_text.content) %>
+  </div>
+<% end %>
+
+<h2><%= t('.header.methodology') %></h2>
+
+<% if @methodology_expert %>
+  <div>
+    <h3><%= @methodology_expert.title %></h3>
+    <%= simple_format_no_tags(@methodology_expert.content) %>
+  </div>
+<% end %>
+
+<% if @methodology_government %>
+  <div>
+    <h3><%= @methodology_government.title %></h3>
+    <%= simple_format_no_tags(@methodology_government.content) %>
+  </div>
+<% end %>
+
+<% if @methodology_stakeholder %>
+  <div>
+    <h3><%= @methodology_stakeholder.title %></h3>
+    <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+  </div>
+<% end %>
