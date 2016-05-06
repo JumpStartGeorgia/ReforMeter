@@ -23,9 +23,9 @@ Rails.application.routes.draw do
     get '/about' => 'root#about'
     get '/download_data_and_reports' => 'root#download_data_and_reports'
     get '/reforms' => 'root#reforms'
-    get '/reforms/:id' => 'root#reform_show'
+    get '/reforms/:id' => 'root#reform_show', as: :reform_show
     get '/experts' => 'root#experts'
-    get '/experts/:id' => 'root#expert_show'
+    get '/experts/:id' => 'root#expert_show', as: :expert_show
 
 
 

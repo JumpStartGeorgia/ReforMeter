@@ -7,5 +7,23 @@ en:
       title: Reforms
     experts:
       title: Experts
+      header:
+        chart: Chart of Expert History
+        methodoogy: Methodology
+        table: Table of Expert History
+      table_header:
+        time: Time Period
+        overall: Overall Score
+        summary: Summary
+      no_data: Sorry, but at this time there is no expert data on record.
+    expert_show:
+      title: According to the Experts for %{time}
+      header:
+        chart: Expert History
+        methodoogy: Methodology
+        findings: Expert Findings
+        experts: The Experts
+      no_details: No expert findings are on record.
+      no_experts: No experts are on record.
     download_data_and_reports:
       title: Download Data & Reports

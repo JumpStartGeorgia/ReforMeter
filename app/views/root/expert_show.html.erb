@@ -1,1 +1,93 @@
-<% page_title t('.title') %>
+<% page_title t('.title', time: @quarter.time_period) %>
+
+<% if @active_quarters %>
+  <div class="dropdown">
+    <%= t('shared.common.change_time') %>:
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <%= @quarter.time_period %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <% @active_quarters.each do |active_quarter| %>
+        <li><%= link_to active_quarter[0], expert_show_path(active_quarter[1]) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<% if @quarter.expert_survey.summary %>
+  <div>
+    <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+  </div>
+<% end %>
+
+<ul>
+  <li><%= t('shared.categories.overall') %>: <%= @quarter.expert_survey.overall_score %></li>
+  <li><%= t('shared.categories.performance') %>: <%= @quarter.expert_survey.category1_score %></li>
+  <li><%= t('shared.categories.goals') %>: <%= @quarter.expert_survey.category2_score %></li>
+  <li><%= t('shared.categories.progress') %>: <%= @quarter.expert_survey.category3_score %></li>
+</ul>
+
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab"><%= t('.header.chart') %></a></li>
+    <li role="presentation"><a href="#methodology" aria-controls="methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="chart">
+      insert chart here
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="methodology">
+      <% if @methodology_expert %>
+        <div>
+          <%= simple_format_no_tags(@methodology_expert.content) %>
+        </div>
+      <% else %>
+        <p>
+         <%= t('.no_methodology') %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#findings" aria-controls="findings" role="tab" data-toggle="tab"><%= t('.header.findings') %></a></li>
+    <li role="presentation"><a href="#experts" aria-controls="experts" role="tab" data-toggle="tab"><%= t('.header.experts') %></a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="findings">
+      <% if @quarter.expert_survey.details %>
+        <div>
+          <%= simple_format_no_tags(@quarter.expert_survey.details) %>
+        </div>
+      <% else %>
+        <p>
+          <%= t('.no_details') %>
+        </p>
+      <% end %>
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="experts">
+      <% if @quarter.expert_survey.experts %>
+        <% @quarter.expert_survey.experts.each do |expert| %>
+          <div>
+            <h4><%= expert.name %></h4>
+            <% if expert.bio %>
+              <%= simple_format_no_tags(expert.bio) %>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>
+         <%= t('.no_experts') %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

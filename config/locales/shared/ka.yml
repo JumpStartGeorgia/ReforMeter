@@ -23,6 +23,7 @@ ka:
         slogan: JumpStart Georgia - ჩვენ გაწვდით ინფორმაციას მონაცემებით და დიზაინით
       name: ReforMeter
       description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
+      change_time: Change Time Period
     links:
       page_contents: Edit Page Text
       admin: Admin Section
@@ -44,3 +45,8 @@ ka:
     prompts:
       confirm: Are you sure?
       forgot_password: Forgot your password?
+    categories:
+      overall: Overall
+      performance: Performance
+      goals: Goals
+      progress: Progress

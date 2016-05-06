@@ -44,7 +44,8 @@ class Quarter < ActiveRecord::Base
   # the slug should be: year-quarter
   def slug_candidates
     [
-      [:year, :quarter]
+      [:time_period],
+      [:quarter, :year]
     ]
   end
 
@@ -62,5 +63,17 @@ class Quarter < ActiveRecord::Base
   ## SCOPES
   scope :published, -> { where(is_public: true) }
   scope :recent, -> {order(slug: :desc)}
+  scope :with_expert_survey, -> {includes(expert_survey: [:translations] )}
+
+  # get an array of the active quarters in format: [time period, slug]
+  def self.active_quarters_array
+    published.recent.map{|x| [x.time_period, x.slug]}
+  end
+
+  #######################
+  ## METHODS
+  def time_period
+    "Q#{self.quarter} #{self.year}"
+  end
 
 end
