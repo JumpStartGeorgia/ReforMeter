@@ -56,12 +56,31 @@ class RootController < ApplicationController
 
   def reforms
     @reform_text = PageContent.find_by(name: 'reform_text')
-
-
+    @quarters = Quarter.published.recent
+    @reforms = Reform.active.sorted
+    @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
   end
 
   def reform_show
+    begin
+      @quarter = Quarter.published.with_expert_survey.friendly.find(params[:quarter_id])
+      @reform = Reform.active.friendly.find(params[:reform_id])
+      @reform_survey = ReformSurvey.for_reform(@reform.id).in_quarter(@quarter.id).first if @quarter && @reform
 
+      if @reform.nil? || @quarter.nil? || @reform_survey.nil?
+        redirect_to reforms_path,
+                alert: t('shared.msgs.does_not_exist')
+      end
+
+      @active_reforms = Reform.active_reforms_array
+      @active_quarters = Quarter.active_quarters_array
+      @methodology_government = PageContent.find_by(name: 'methodology_government')
+      @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
+      
+    rescue ActiveRecord::RecordNotFound  => e
+      redirect_to experts_path,
+                alert: t('shared.msgs.does_not_exist')
+    end    
   end
 
   def experts
@@ -74,13 +93,14 @@ class RootController < ApplicationController
   def expert_show
     begin
       @quarter = Quarter.published.with_expert_survey.friendly.find(params[:id])
-      @active_quarters = Quarter.active_quarters_array
-      @methodology_expert = PageContent.find_by(name: 'methodology_expert')
 
       if @quarter.nil?
         redirect_to experts_path,
                 alert: t('shared.msgs.does_not_exist')
       end
+
+      @active_quarters = Quarter.active_quarters_array
+      @methodology_expert = PageContent.find_by(name: 'methodology_expert')
       
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to experts_path,

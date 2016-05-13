@@ -1,1 +1,124 @@
-<% page_title t('.title') %>
+<% page_title t('.title', name: @reform.name, time: @quarter.time_period) %>
+
+<% if @active_reforms %>
+  <div class="dropdown">
+    <%= t('shared.common.change_reform') %>:
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <%= @reform.name %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <% @active_reforms.each do |active_reform| %>
+        <li><%= link_to active_reform[0], reform_show_path(reform_id: active_reform[1], quarter_id: @quarter.slug) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @active_quarters %>
+  <div class="dropdown">
+    <%= t('shared.common.change_time') %>:
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <%= @quarter.time_period %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <% @active_quarters.each do |active_quarter| %>
+        <li><%= link_to active_quarter[0], reform_show_path(reform_id: @reform.slug, quarter_id: active_quarter[1]) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @reform_survey.summary %>
+  <div>
+    <%= simple_format_no_tags(@reform_survey.summary) %>
+  </div>
+<% end %>
+
+
+<h2><%= t('.header.government_summary') %></h2>
+<% if @reform_survey.government_summary %>
+  <div>
+    <%= simple_format_no_tags(@reform_survey.government_summary) %>
+  </div>
+<% end %>
+
+<ul>
+  <li><%= t('shared.categories.overall') %>: <%= @reform_survey.government_overall_score %></li>
+  <li><%= t('shared.categories.initial_setup') %>: <%= @reform_survey.government_category1_score %></li>
+  <li><%= t('shared.categories.capacity_building') %>: <%= @reform_survey.government_category2_score %></li>
+  <li><%= t('shared.categories.infastructure_budgeting') %>: <%= @reform_survey.government_category3_score %></li>
+  <li><%= t('shared.categories.legislation_regulation') %>: <%= @reform_survey.government_category4_score %></li>
+</ul>
+
+
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#government_history" aria-controls="government_history" role="tab" data-toggle="tab"><%= t('.header.government_history') %></a></li>
+    <li role="presentation"><a href="#government_methodology" aria-controls="government_methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="government_history">
+      insert chart here
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="government_methodology">
+      <% if @methodology_government %>
+        <div>
+          <%= simple_format_no_tags(@methodology_government.content) %>
+        </div>
+      <% else %>
+        <p>
+         <%= t('.no_methodology') %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<h2><%= t('.header.stakeholder_summary') %></h2>
+<% if @reform_survey.stakeholder_summary %>
+  <div>
+    <%= simple_format_no_tags(@reform_survey.stakeholder_summary) %>
+  </div>
+<% end %>
+
+<ul>
+  <li><%= t('shared.categories.overall') %>: <%= @reform_survey.stakeholder_overall_score %></li>
+  <li><%= t('shared.categories.performance') %>: <%= @reform_survey.stakeholder_category1_score %></li>
+  <li><%= t('shared.categories.goals') %>: <%= @reform_survey.stakeholder_category2_score %></li>
+  <li><%= t('shared.categories.progress') %>: <%= @reform_survey.stakeholder_category3_score %></li>
+</ul>
+
+
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#stakeholder_history" aria-controls="stakeholder_history" role="tab" data-toggle="tab"><%= t('.header.stakeholder_history') %></a></li>
+    <li role="presentation"><a href="#stakeholder_methodology" aria-controls="stakeholder_methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="stakeholder_history">
+      insert chart here
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="stakeholder_methodology">
+      <% if @methodology_stakeholder %>
+        <div>
+          <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+        </div>
+      <% else %>
+        <p>
+         <%= t('.no_methodology') %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+

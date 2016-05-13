@@ -24,6 +24,8 @@ en:
       name: ReforMeter
       description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
       change_time: Change Time Period
+      change_reform: Change Reform
+      all: All
     links:
       page_contents: Edit Page Text
       admin: Admin Section
@@ -50,3 +52,7 @@ en:
       performance: Performance
       goals: Goals
       progress: Progress
+      initial_setup: Initial Setup
+      capacity_building: Capacity Building
+      infastructure_budgeting: Infastructure & Budgeting
+      legislation_regulation: Legislation & Regulations

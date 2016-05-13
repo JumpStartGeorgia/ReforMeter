@@ -5,6 +5,24 @@ en:
       title: About
     reforms:
       title: Reforms
+      header:
+        table: Reforms by Time Period
+      table_header:
+        time: Time Period
+        reform: Reform
+        government: Government
+        stakeholder: Stakeholder
+        summary: Summary
+    reform_show:
+      title: "Reform: %{name} for %{time}"
+      no_data: Sorry, but at this time there is no expert data on record.
+      no_methodology: No methodology is on record.
+      header:
+        government_summary: According to the Government
+        government_history: Government History
+        methodoogy: Methodology
+        stakeholder_summary: According to the Stakeholders
+        stakeholder_history: Stakeholder History
     experts:
       title: Experts
       header:
@@ -25,6 +43,7 @@ en:
         experts: The Experts
       no_details: No expert findings are on record.
       no_experts: No experts are on record.
+      no_methodology: No methodology is on record.
     download_data_and_reports:
       title: Download Data & Reports
       download: Download

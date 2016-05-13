@@ -46,4 +46,14 @@ class ReformSurvey < ActiveRecord::Base
     where(reform_id: reform_id)
   end
 
+  # get all surveys that are in the provided quarter id
+  def self.in_quarter(quarter_id)
+    in_quarters(quarter_id)
+  end
+
+  # get all surveys that are in the provided list of quarter ids
+  def self.in_quarters(quarter_ids)
+    where(quarter_id: quarter_ids).order(:quarter_id, :reform_id)
+  end
+
 end

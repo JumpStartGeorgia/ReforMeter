@@ -50,4 +50,10 @@ class Reform < ActiveRecord::Base
   scope :highlight, -> { where(is_highlight: true) }
   scope :sorted, -> { with_translations.order(:name) }
 
+  # get an array of the active reforms in format: [name, slug]
+  def self.active_reforms_array
+    active.sorted.map{|x| [x.name, x.slug]}
+  end
+
+
 end
