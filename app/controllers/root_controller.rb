@@ -2,6 +2,8 @@
 class RootController < ApplicationController
   def index
     @home_page_about = PageContent.find_by(name: 'home_page_about')
+
+    @quarter = Quarter.latest
   end
 
   def about

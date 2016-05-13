@@ -1,8 +1,52 @@
-<% page_title t 'shared.common.name' %>
-
 <% if @home_page_about %>
   <div>
     <h2><%= @home_page_about.title %></h2>
     <%= simple_format_no_tags(@home_page_about.content) %>
   </div>
 <% end %>
+
+<% if @quarter %>
+  <div>
+    <h2><%= t('.header.standing', time: @quarter.time_period) %></h2>
+    <ul>
+      <li><%= simple_format_no_tags(@quarter.summary_good) %></li>
+      <li><%= simple_format_no_tags(@quarter.summary_bad) %></li>
+    </ul>
+
+    <div>
+      <% link_to t('.report_link'), '#' %>
+    </div>
+
+    <div>
+      <%= @quarter.expert_survey.overall_score %>
+    </div>
+  </div>
+
+  <div>
+
+    <h2><%= t('.header.experts') %></h2>
+
+    <div>insert chart here</div>
+
+    <% if @quarter.expert_survey.summary %>
+      <div>
+        <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+      </div>
+    <% end %>
+
+  </div>
+
+
+  <div>
+
+    <h2><%= t('.header.government') %></h2>
+
+    <div>insert chart here</div>
+
+
+  </div>
+
+<% end %>
+
+<h2><%= t('.header.external_indicators') %></h2>
+

@@ -65,6 +65,11 @@ class Quarter < ActiveRecord::Base
   scope :recent, -> {order(slug: :desc)}
   scope :with_expert_survey, -> {includes(expert_survey: [:translations] )}
 
+  # get the latest quarter
+  def self.latest
+    published.recent.first
+  end
+
   # get an array of the active quarters in format: [time period, slug]
   def self.active_quarters_array
     published.recent.map{|x| [x.time_period, x.slug]}
