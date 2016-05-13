@@ -39,4 +39,11 @@ class ReformSurvey < ActiveRecord::Base
             :stakeholder_overall_score, :stakeholder_category1_score, :stakeholder_category2_score, :stakeholder_category3_score, 
             presence: :true
 
+  #######################
+  ## SCOPES
+  
+  def self.for_reform(reform_id)
+    where(reform_id: reform_id)
+  end
+
 end

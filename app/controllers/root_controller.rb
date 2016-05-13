@@ -17,6 +17,41 @@ class RootController < ApplicationController
     @download_reform_text = PageContent.find_by(name: 'download_reform_text')
     @download_external_indicator_text = PageContent.find_by(name: 'download_external_indicator_text')
     @download_report_text = PageContent.find_by(name: 'download_report_text')
+
+    @reforms = Reform.active.sorted
+    @quarters = Quarter.published.recent
+
+    # if there is a download request, process it
+    if request.post? && params[:type].present?
+      data,filename = nil
+      is_csv = false
+      case params[:type]
+        when 'expert'
+          data = Quarter.to_csv('expert')  
+          filename = 'ReforMeter_Expert_Data'
+          is_csv = true
+        when 'reform'
+          reform = Reform.friendly.find(params[:reform_id])
+          if reform
+            data = Quarter.to_csv('reform', reform.id)  
+            filename = "ReforMeter_#{reform.name}_Reform_Data"
+            is_csv = true
+          else
+
+          end
+        when 'external_indicator'
+          is_csv = true
+        when 'report'
+      end
+
+      # send the file
+      if is_csv
+        send_data data, filename: clean_filename("#{filename}-#{I18n.l(Time.now, :format => :file)}") + ".csv"
+      else
+
+      end
+
+    end
   end
 
   def reforms

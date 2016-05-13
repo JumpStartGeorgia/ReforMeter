@@ -17,6 +17,16 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }.merge options
   end
 
+
+  ##############################################
+  # helpers
+
+  def clean_filename(filename)
+    filename.strip.to_slug.transliterate.to_s.gsub(' ', '_').gsub(/[\\ \/ \: \* \? \" \< \> \| \, \. ]/,'')
+  end
+
+
+
   ##############################################
   # Authorization #
 

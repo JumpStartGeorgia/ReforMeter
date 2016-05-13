@@ -48,5 +48,6 @@ class Reform < ActiveRecord::Base
   ## SCOPES
   scope :active, -> { where(is_active: true) }
   scope :highlight, -> { where(is_highlight: true) }
+  scope :sorted, -> { with_translations.order(:name) }
 
 end
