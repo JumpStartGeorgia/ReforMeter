@@ -173,3 +173,8 @@ gem 'friendly_id-globalize', '~> 1.0.0.alpha2'
 # create slugs with utf8 text
 gem 'babosa', '~> 1.0', '>= 1.0.2'
 
+# managing file attachments
+gem 'paperclip', '~> 4.3', '>= 4.3.6'
+
+# managing file attachments in translations
+gem 'paperclip-globalize3', '~> 2.2'

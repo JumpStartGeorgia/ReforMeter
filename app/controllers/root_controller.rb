@@ -44,15 +44,21 @@ class RootController < ApplicationController
         when 'external_indicator'
           is_csv = true
         when 'report'
+          # just need the url to the file
+          quarter = @quarters.select{|x| x.slug == params[:quarter]}.first
+          data = quarter.report.path if quarter
       end
 
       # send the file
-      if is_csv
-        send_data data, filename: clean_filename("#{filename}-#{I18n.l(Time.now, :format => :file)}") + ".csv"
-      else
-
+      if data
+        if is_csv
+          send_data data, filename: clean_filename("#{filename}-#{I18n.l(Time.now, :format => :file)}") + ".csv"
+        else
+          ext = File.extname(data)
+          filename = File.basename(data, ext)
+          send_file data, filename: clean_filename("#{filename}-#{I18n.l(Time.now, :format => :file)}") + ext
+        end
       end
-
     end
   end
 

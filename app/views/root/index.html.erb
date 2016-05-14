@@ -14,7 +14,7 @@
     </ul>
 
     <div>
-      <% link_to t('.report_link'), '#' %>
+      <%= link_to t('.report_link'), download_data_and_reports_path(type: 'report', quarter: @quarter.slug), method: :post %>
     </div>
 
     <div>

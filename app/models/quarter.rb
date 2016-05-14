@@ -12,10 +12,18 @@
 #
 
 class Quarter < ActiveRecord::Base
+
+  #######################
+  ## ATTACHED FILE
+  has_attached_file :report,
+                    :url => "/system/quarterly_reports/:quarter_slug/:basename_:locale.:extension",
+                    :use_timestamp => false
+
   #######################
   ## TRANSLATIONS
 
-  translates :summary_good, :summary_bad, :fallbacks_for_empty_translations => true
+  translates :summary_good, :summary_bad, 
+    :report_file_name, :report_file_size, :report_content_type, :report_updated_at, :fallbacks_for_empty_translations => true
   globalize_accessors
 
   #######################
@@ -34,6 +42,8 @@ class Quarter < ActiveRecord::Base
   validates_uniqueness_of :slug
   validates_inclusion_of :quarter, in: 1..4
   validates_inclusion_of :year, in: 2015..2115
+
+  validates_attachment_content_type :report, :content_type => 'application/pdf'
 
   #######################
   ## SLUG DEFINITION (friendly_id)

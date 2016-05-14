@@ -34,6 +34,9 @@ Run the following from the command line:
 5. create .env file from .env.example and fill in the variable values
 
 
+bundle exec annotate --exclude fixtures
+
+
 ## Using Mina
 
 ### Setup

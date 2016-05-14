@@ -3,18 +3,15 @@
 function activate_download_events() {
   
   $('a.reform').on('click', function(){
-    console.log('reform clicked');    
-    console.log(this);
     $(this).attr('href', $(this).attr('href') + '&reform_id=' + $('select.reform').val());
-    console.log('href = ' + $(this).attr('href'));
   });
 
   $('a.external_indicator').on('click', function(){
-    $(this).attr('href') = $(this).attr('href') + '&external_indicator_id=' + $('select.external_indicator').val();
+    $(this).attr('href', $(this).attr('href') + '&external_indicator_id=' + $('select.external_indicator').val());
   });
 
   $('a.report').on('click', function(){
-    $(this).attr('href') = $(this).attr('href') + '&quarter=' + $('select.report').val();
+    $(this).attr('href', $(this).attr('href') + '&quarter=' + $('select.report').val());
   });
 
 }
