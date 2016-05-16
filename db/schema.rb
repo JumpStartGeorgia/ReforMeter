@@ -88,10 +88,12 @@ ActiveRecord::Schema.define(version: 20160514071250) do
   add_index "page_content_translations", ["page_content_id"], name: "index_page_content_translations_on_page_content_id", using: :btree
 
   create_table "page_contents", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "page_contents", ["name"], name: "index_page_contents_on_name", using: :btree
 
   create_table "quarter_translations", force: :cascade do |t|
     t.integer  "quarter_id",          limit: 4,   null: false
