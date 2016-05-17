@@ -1,0 +1,5 @@
+@mixin center-and-limit-content-width() {
+  max-width: $max-width-of-content;
+  margin-left: auto;
+  margin-right: auto;
+}

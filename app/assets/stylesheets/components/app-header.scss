@@ -7,6 +7,8 @@
   background-color: purple;
   padding: 0 40px;
   box-sizing: border-box;
+
+  @include center-and-limit-content-width();
 }
 
   .app-header-logo {
@@ -37,7 +39,7 @@
     }
 
   .app-header-navigation {
-    
+
   }
 
   .app-header-navigation.is-hidden-on-mobile {
