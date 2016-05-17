@@ -1,11 +1,15 @@
 <main class='main-content'>
-  <div class="container">
-    <%= bootstrap_flash %>
 
-    <% if content_for? :page_title %>
-      <h1 class='primary-header'><%= yield(:page_title) %></h1>
-    <% end %>
+  <%= bootstrap_flash %>
 
+  <% if content_for? :page_title %>
+    <h1 class='main-content-header'>
+      <%= yield(:page_title) %>
+    </h1>
+  <% end %>
+
+  <div class='main-content-body'>
     <%= yield %>
   </div>
+
 </main>

@@ -1,5 +1,16 @@
 .main-content {
   background-color: white;
+  box-sizing: border-box;
 
   @include center-and-limit-content-width();
 }
+
+  .main-content-header {
+    margin: 0;
+    padding: 30px $padding-main-content;
+    border-bottom: 3px solid gray;
+  }
+
+  .main-content-body {
+    padding: 0 $padding-main-content;
+  }
