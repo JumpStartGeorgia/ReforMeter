@@ -165,6 +165,9 @@ end
 #####################################################################
 ########################## Project Gems #############################
 
+# View helper for inlining SVG images
+gem 'inline_svg', '~> 0.7.0'
+
 # create permalinks
 gem 'friendly_id', '~> 5.1'
 
