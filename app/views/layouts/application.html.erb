@@ -2,11 +2,18 @@
 <html html="<%= I18n.locale %>">
   <%= render partial: 'application/head' %>
   <body class="all-content <%= controller_name %> <%= action_name %>">
-
     <%= render partial: 'application/loading_indicator' %>
-    <%= render partial: 'application/navbar_header' %>
-    <%= render partial: 'application/main' %>
-    <%= render partial: 'application/footer' %>
+
+    <div class='main-footer-container'>
+
+      <div>
+        <%= render partial: 'application/navbar_header' %>
+        <%= render partial: 'application/main' %>
+      </div>
+
+      <%= render partial: 'application/footer' %>
+      
+    </div>
 
     <% if Rails.env.production? %>
       <%= render partial: 'application/google_analytics' %>
