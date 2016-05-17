@@ -4,10 +4,10 @@
   justify-content: space-between;
   align-items: center;
   height: 150px;
-  background-color: purple;
   padding: 0 40px;
   box-sizing: border-box;
   color: white;
+  font-size: 1.6rem;
 
   @include center-and-limit-content-width();
 }

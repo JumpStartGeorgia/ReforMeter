@@ -7,12 +7,16 @@
     <div class='main-footer-container'>
 
       <div>
-        <%= render partial: 'application/navbar_header' %>
+
+        <div class='top-image-container'>
+          <%= render partial: 'application/navbar_header' %>
+        </div>
+
         <%= render partial: 'application/main' %>
       </div>
 
       <%= render partial: 'application/footer' %>
-      
+
     </div>
 
     <% if Rails.env.production? %>
