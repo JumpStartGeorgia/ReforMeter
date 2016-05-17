@@ -1,0 +1,49 @@
+.app-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 150px;
+  background-color: purple;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+  .app-header-logo {
+
+  }
+
+  .app-header-nav-button {
+    height: 30px;
+    border: 0;
+    background-color: inherit;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+
+    @media (min-width: $width-show-navigation) {
+      display: none;
+    }
+  }
+
+    .app-header-nav-button-icon-bar {
+      display: block;
+      width: 23px;
+      height: 1px;
+      padding: 3px 0;
+      border-radius: 1px;
+      background-color: white;
+      background-clip: content-box;
+    }
+
+  .app-header-navigation {
+    
+  }
+
+  .app-header-navigation.is-hidden-on-mobile {
+    display: none;
+
+    @media (min-width: $width-show-navigation) {
+      display: initial;
+    }
+  }

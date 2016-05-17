@@ -1,4 +1,50 @@
-<div class="navbar navbar-default navbar-static-top">
+<header class='app-header'>
+
+  <div class='app-header-logo'>
+    ReforMeter
+  </div>
+
+  <button class='app-header-nav-button js-toggle-navigation'>
+    <span class='app-header-nav-button-icon-bar'></span>
+    <span class='app-header-nav-button-icon-bar'></span>
+    <span class='app-header-nav-button-icon-bar'></span>
+  </button>
+
+  <ul class='app-header-navigation js-act-as-navigation is-hidden-on-mobile'>
+
+    <li>
+      <%= link_to t('.experts'), experts_path  %>
+    </li>
+
+    <li>
+      <%= link_to t('.reforms'), reforms_path  %>
+    </li>
+
+    <li>
+      Reports
+    </li>
+
+    <li>
+      <%= link_to t('.about'), about_path  %>
+    </li>
+
+    <li>
+      <%= link_to t('.download_data_and_reports'), download_data_and_reports_path  %>
+    </li>
+
+    <li>
+      Contact
+    </li>
+
+    <li la='ka'>
+      ქართული
+    </li>
+
+  </ul>
+
+</header>
+
+<!-- <div class="navbar navbar-default navbar-static-top">
   <div class="container">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
       <span class="icon-bar"></span>
@@ -64,4 +110,4 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
