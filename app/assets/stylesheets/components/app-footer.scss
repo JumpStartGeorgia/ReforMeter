@@ -3,6 +3,9 @@
   background-color: #f8f8f8;
   color: #4f4f4f;
 
+  padding: 0 $padding-main-content;
+  box-sizing: border-box;
+
   display: flex;
   justify-content: space-between;
   max-width: $max-width-of-content;
