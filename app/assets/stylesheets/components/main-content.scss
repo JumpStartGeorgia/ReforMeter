@@ -4,14 +4,20 @@
   border-bottom: 3px solid $color-grey-background;
 
   @include center-and-limit-content-width();
+
+  @media (min-width: $width-move-main-into-top-image) {
+    margin-top: -1 * $height-content-heading;
+  }
 }
 
   .main-content-header {
+    height: $height-content-heading;
+    box-sizing: border-box;
     margin: 0;
     padding: 30px $padding-main-content;
-    border-bottom: 3px solid $color-grey-background;
   }
 
   .main-content-body {
+    border-top: 3px solid $color-grey-background;
     padding: 20px $padding-main-content;
   }

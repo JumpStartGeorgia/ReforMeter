@@ -1,3 +1,8 @@
 .top-image-container {
   background-color: purple;
+  height: 150px;
+
+  @media (min-width: $width-move-main-into-top-image) {
+    height: 130px + $height-content-heading;
+  }
 }
