@@ -7,13 +7,18 @@
   background-color: purple;
   padding: 0 40px;
   box-sizing: border-box;
+  color: white;
 
   @include center-and-limit-content-width();
 }
 
-  .app-header-logo {
+  .app-header-brand {
 
   }
+
+    .app-header-brand-subtext {
+      margin: 0;
+    }
 
   .app-header-nav-button {
     height: 30px;

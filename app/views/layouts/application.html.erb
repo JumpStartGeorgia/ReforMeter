@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html html="<%= I18n.locale %>">
   <%= render partial: 'application/head' %>
-  <body class="<%= controller_name %> <%= action_name %>">
+  <body class="all-content <%= controller_name %> <%= action_name %>">
+
     <%= render partial: 'application/loading_indicator' %>
     <%= render partial: 'application/navbar_header' %>
     <%= render partial: 'application/main' %>

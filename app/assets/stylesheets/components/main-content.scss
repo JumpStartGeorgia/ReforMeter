@@ -1,0 +1,5 @@
+.main-content {
+  background-color: white;
+
+  @include center-and-limit-content-width();
+}
