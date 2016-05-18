@@ -18,6 +18,7 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 
 @import 'variables';
 @import 'mixins';
+@import 'utilities';
 @import 'media-queries';
 // @import 'bootstrap_and_overrides';
 @import 'formtastic_overrides';
@@ -33,6 +34,8 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 @import 'components/all-content';
 @import 'components/app-footer';
 @import 'components/app-header';
+@import 'components/downloadBox';
+@import 'components/downloadBoxes-container';
 @import 'components/language_switcher';
 @import 'components/loading_indicator';
 @import 'components/main-content';
