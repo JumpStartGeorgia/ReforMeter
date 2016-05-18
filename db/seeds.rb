@@ -66,25 +66,25 @@ end
 PageContent.find_or_create_by(name: 'download_expert_text') do |pc|
     puts 'creating page content for download expert text'
     pc.title = 'Experts'
-    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
+    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
 end
 # download reform text
 PageContent.find_or_create_by(name: 'download_reform_text') do |pc|
     puts 'creating page content for download reform text'
     pc.title = 'Reforms'
-    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
+    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
 end
 # download ext ind text
 PageContent.find_or_create_by(name: 'download_external_indicator_text') do |pc|
     puts 'creating page content for download external indicators text'
     pc.title = 'External Indicators'
-    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
+    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
 end
 # download reports text
 PageContent.find_or_create_by(name: 'download_report_text') do |pc|
     puts 'creating page content for download report text'
     pc.title = 'Quarterly Reports'
-    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
+    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
 end
 
 
@@ -145,7 +145,7 @@ if ENV['load_test_data'].present?
       score_indexes = index == 0 ? [0,1,2] : index == 1  ? [1,2,0] : [2,1,0]
       # do not create value for 3rd reform in q2
       if index != 2
-        q2.reform_surveys.create(reform_id: id, 
+        q2.reform_surveys.create(reform_id: id,
                 government_overall_score: reform_survey_scores[score_indexes[index]][0],government_category1_score: reform_survey_scores[score_indexes[index]][1],
                 government_category2_score: reform_survey_scores[score_indexes[index]][2],government_category3_score: reform_survey_scores[score_indexes[index]][3],
                 government_category4_score: reform_survey_scores[score_indexes[index]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[index]][5],
@@ -153,14 +153,14 @@ if ENV['load_test_data'].present?
                 stakeholder_category3_score: reform_survey_scores[score_indexes[index]][8],
                 summary: 'this is a summary', government_summary: 'this is a government summary', stakeholder_summary: 'this is a stakeholder summary')
       end
-      q3.reform_surveys.create(reform_id: id, 
+      q3.reform_surveys.create(reform_id: id,
               government_overall_score: reform_survey_scores[score_indexes[index]][0],government_category1_score: reform_survey_scores[score_indexes[index]][1],
               government_category2_score: reform_survey_scores[score_indexes[index]][2],government_category3_score: reform_survey_scores[score_indexes[index]][3],
               government_category4_score: reform_survey_scores[score_indexes[index]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[index]][5],
               stakeholder_category1_score: reform_survey_scores[score_indexes[index]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[index]][7],
               stakeholder_category3_score: reform_survey_scores[score_indexes[index]][8],
               summary: 'this is a summary', government_summary: 'this is a government summary', stakeholder_summary: 'this is a stakeholder summary')
-      q4.reform_surveys.create(reform_id: id, 
+      q4.reform_surveys.create(reform_id: id,
               government_overall_score: reform_survey_scores[score_indexes[index]][0],government_category1_score: reform_survey_scores[score_indexes[index]][1],
               government_category2_score: reform_survey_scores[score_indexes[index]][2],government_category3_score: reform_survey_scores[score_indexes[index]][3],
               government_category4_score: reform_survey_scores[score_indexes[index]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[index]][5],
