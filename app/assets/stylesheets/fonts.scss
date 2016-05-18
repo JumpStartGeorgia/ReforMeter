@@ -1,5 +1,11 @@
 @font-face {
   font-family: 'AbsaraSans';
   src: url('AbsaraSans-Light.otf') format('opentype');
-  font-weight: lighter;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'AbsaraSans';
+  src: url('AbsaraSansTF-Bold') format('opentype');
+  font-weight: 600;
 }
