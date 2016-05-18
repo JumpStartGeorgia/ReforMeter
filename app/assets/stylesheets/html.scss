@@ -1,4 +1,11 @@
 html {
-  font-family: 'AbsaraSans', sans-serif;
   font-size: 10px;
+}
+
+:lang(en) {
+  font-family: 'AbsaraSans', sans-serif;
+}
+
+:lang(ka) {
+  font-family: 'DejaVu Neue', sans-serif;
 }
