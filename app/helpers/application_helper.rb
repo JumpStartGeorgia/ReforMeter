@@ -30,4 +30,19 @@ module ApplicationHelper
     #   text.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />') # 1 newline   -> br
     text.html_safe
   end
+
+
+  # value = -1 -> down arrow
+  # value =  0 -> flat arrow
+  # value =  1 -> up arrow
+  def generate_change_icon(change_value)
+    case change_value
+      when -1
+        return image_tag('arrow_down.svg', title: t('shared.change_status.down'))
+      when 0
+        return image_tag('arrow_flat.svg', title: t('shared.change_status.flat'))
+      when 1
+        return image_tag('arrow_up.svg', title: t('shared.change_status.up'))
+    end
+  end
 end

@@ -63,9 +63,11 @@
                 </td>
                 <td>
                   <%= survey.government_overall_score %>
+                  <%= generate_change_icon(survey.government_overall_change) %>
                 </td>
                 <td>
                   <%= survey.stakeholder_overall_score %>
+                  <%= generate_change_icon(survey.stakeholder_overall_change) %>
                 </td>
                 <td>
                   <%= strip_tags_nbsp(quarter.expert_survey.summary) %>

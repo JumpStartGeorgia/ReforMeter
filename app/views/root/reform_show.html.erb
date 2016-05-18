@@ -45,11 +45,26 @@
 <% end %>
 
 <ul>
-  <li><%= t('shared.categories.overall') %>: <%= @reform_survey.government_overall_score %></li>
-  <li><%= t('shared.categories.initial_setup') %>: <%= @reform_survey.government_category1_score %></li>
-  <li><%= t('shared.categories.capacity_building') %>: <%= @reform_survey.government_category2_score %></li>
-  <li><%= t('shared.categories.infastructure_budgeting') %>: <%= @reform_survey.government_category3_score %></li>
-  <li><%= t('shared.categories.legislation_regulation') %>: <%= @reform_survey.government_category4_score %></li>
+  <li>
+    <%= t('shared.categories.overall') %>:
+    <%= @reform_survey.government_overall_score %> <%= generate_change_icon(@reform_survey.government_overall_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.initial_setup') %>:
+    <%= @reform_survey.government_category1_score %> <%= generate_change_icon(@reform_survey.government_category1_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.capacity_building') %>:
+    <%= @reform_survey.government_category2_score %> <%= generate_change_icon(@reform_survey.government_category2_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.infastructure_budgeting') %>:
+    <%= @reform_survey.government_category3_score %> <%= generate_change_icon(@reform_survey.government_category3_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.legislation_regulation') %>:
+    <%= @reform_survey.government_category4_score %> <%= generate_change_icon(@reform_survey.government_category4_change) %>
+  </li>
 </ul>
 
 
@@ -62,7 +77,7 @@
     <div role="tabpanel" class="tab-pane active" id="government_history">
       insert chart here
     </div>
-    
+
     <div role="tabpanel" class="tab-pane" id="government_methodology">
       <% if @methodology_government %>
         <div>
@@ -89,10 +104,22 @@
 <% end %>
 
 <ul>
-  <li><%= t('shared.categories.overall') %>: <%= @reform_survey.stakeholder_overall_score %></li>
-  <li><%= t('shared.categories.performance') %>: <%= @reform_survey.stakeholder_category1_score %></li>
-  <li><%= t('shared.categories.goals') %>: <%= @reform_survey.stakeholder_category2_score %></li>
-  <li><%= t('shared.categories.progress') %>: <%= @reform_survey.stakeholder_category3_score %></li>
+  <li>
+    <%= t('shared.categories.overall') %>:
+    <%= @reform_survey.stakeholder_overall_score %> <%= generate_change_icon(@reform_survey.stakeholder_overall_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.performance') %>:
+    <%= @reform_survey.stakeholder_category1_score %> <%= generate_change_icon(@reform_survey.stakeholder_category1_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.goals') %>:
+    <%= @reform_survey.stakeholder_category2_score %> <%= generate_change_icon(@reform_survey.stakeholder_category2_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.progress') %>:
+    <%= @reform_survey.stakeholder_category3_score %> <%= generate_change_icon(@reform_survey.stakeholder_category3_change) %>
+  </li>
 </ul>
 
 
@@ -105,7 +132,7 @@
     <div role="tabpanel" class="tab-pane active" id="stakeholder_history">
       insert chart here
     </div>
-    
+
     <div role="tabpanel" class="tab-pane" id="stakeholder_methodology">
       <% if @methodology_stakeholder %>
         <div>

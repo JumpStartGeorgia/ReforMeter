@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514071250) do
+ActiveRecord::Schema.define(version: 20160518060402) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -26,13 +26,17 @@ ActiveRecord::Schema.define(version: 20160514071250) do
   add_index "expert_survey_translations", ["locale"], name: "index_expert_survey_translations_on_locale", using: :btree
 
   create_table "expert_surveys", force: :cascade do |t|
-    t.integer  "quarter_id",      limit: 4,                         null: false
-    t.decimal  "overall_score",             precision: 5, scale: 2, null: false
-    t.decimal  "category1_score",           precision: 5, scale: 2, null: false
-    t.decimal  "category2_score",           precision: 5, scale: 2, null: false
-    t.decimal  "category3_score",           precision: 5, scale: 2, null: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.integer  "quarter_id",       limit: 4,                         null: false
+    t.decimal  "overall_score",              precision: 5, scale: 2, null: false
+    t.decimal  "category1_score",            precision: 5, scale: 2, null: false
+    t.decimal  "category2_score",            precision: 5, scale: 2, null: false
+    t.decimal  "category3_score",            precision: 5, scale: 2, null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.integer  "overall_change",   limit: 4
+    t.integer  "category1_change", limit: 4
+    t.integer  "category2_change", limit: 4
+    t.integer  "category3_change", limit: 4
   end
 
   add_index "expert_surveys", ["quarter_id"], name: "index_expert_surveys_on_quarter_id", using: :btree
@@ -135,19 +139,28 @@ ActiveRecord::Schema.define(version: 20160514071250) do
   add_index "reform_survey_translations", ["reform_survey_id"], name: "index_reform_survey_translations_on_reform_survey_id", using: :btree
 
   create_table "reform_surveys", force: :cascade do |t|
-    t.integer  "quarter_id",                  limit: 4,                         null: false
-    t.integer  "reform_id",                   limit: 4,                         null: false
-    t.decimal  "government_overall_score",              precision: 5, scale: 2, null: false
-    t.decimal  "government_category1_score",            precision: 5, scale: 2, null: false
-    t.decimal  "government_category2_score",            precision: 5, scale: 2, null: false
-    t.decimal  "government_category3_score",            precision: 5, scale: 2, null: false
-    t.decimal  "government_category4_score",            precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_overall_score",             precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category1_score",           precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category2_score",           precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category3_score",           precision: 5, scale: 2, null: false
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.integer  "quarter_id",                   limit: 4,                         null: false
+    t.integer  "reform_id",                    limit: 4,                         null: false
+    t.decimal  "government_overall_score",               precision: 5, scale: 2, null: false
+    t.decimal  "government_category1_score",             precision: 5, scale: 2, null: false
+    t.decimal  "government_category2_score",             precision: 5, scale: 2, null: false
+    t.decimal  "government_category3_score",             precision: 5, scale: 2, null: false
+    t.decimal  "government_category4_score",             precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_overall_score",              precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category1_score",            precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category2_score",            precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category3_score",            precision: 5, scale: 2, null: false
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
+    t.integer  "government_overall_change",    limit: 4
+    t.integer  "government_category1_change",  limit: 4
+    t.integer  "government_category2_change",  limit: 4
+    t.integer  "government_category3_change",  limit: 4
+    t.integer  "government_category4_change",  limit: 4
+    t.integer  "stakeholder_overall_change",   limit: 4
+    t.integer  "stakeholder_category1_change", limit: 4
+    t.integer  "stakeholder_category2_change", limit: 4
+    t.integer  "stakeholder_category3_change", limit: 4
   end
 
   add_index "reform_surveys", ["quarter_id"], name: "index_reform_surveys_on_quarter_id", using: :btree
