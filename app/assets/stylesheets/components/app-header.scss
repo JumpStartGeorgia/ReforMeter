@@ -18,11 +18,12 @@
 }
 
   .app-header-brand {
-
+    text-decoration: none;
   }
 
     .app-header-brand-subtext {
       margin: 0;
+      color: white;
     }
 
   .app-header-nav-button {
@@ -60,7 +61,16 @@
 
     .app-header-navigation-item {
       list-style-type: none;
+
+      &:hover {
+        border-bottom: 1px solid white;
+      }
     }
+
+      .app-header-navigation-item-link {
+        color: white;
+        text-decoration: none;
+      }
 
   .app-header-navigation.is-hidden-on-mobile {
     @media (max-width: $width-show-navigation + 1) {
