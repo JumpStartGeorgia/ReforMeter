@@ -1,12 +1,12 @@
 <% page_title t('.title') %>
 
 <% if @download_text %>
-  <div>
+  <div class='downloadPage-description'>
     <%= simple_format_no_tags(@download_text.content) %>
   </div>
 <% end %>
 
-<section class='downloadBoxes-container'>
+<section class='downloadPage-downloadBoxes-container'>
 
   <h2 class='u-hide-visually'>
     Download Options

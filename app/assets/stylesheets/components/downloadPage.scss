@@ -1,0 +1,14 @@
+.downloadPage-description {
+  margin: 30px 0;
+}
+
+.downloadPage-downloadBoxes-container {
+  margin: 30px 0 5px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+  @media (min-width: $max-width-of-content) {
+    justify-content: space-between;
+  }
+}
