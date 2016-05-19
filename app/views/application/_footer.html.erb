@@ -6,12 +6,13 @@
     </a>
   </p>
 
-  <p>
-    Made by
-    <%= link_to image_tag('jumpstart-logo.png'),
-                'http://jumpstart.ge',
-                target: '_blank',
-                title: t('shared.common.jumpstart.slogan') %>
+  <p class='app-footer-jumpstart'>
+    Made by <%=
+      link_to image_tag('jumpstart-logo.png',
+                        class: 'app-footer-jumpstart-logo'),
+              'http://jumpstart.ge',
+              target: '_blank',
+              title: t('shared.common.jumpstart.slogan') %>
   </p>
 
 </footer>
