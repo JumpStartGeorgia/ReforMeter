@@ -19,7 +19,7 @@
         <%= @download_expert_text.title %>
       </h2>
 
-      <div>
+      <div class='downloadBox-description'>
         <%= simple_format_no_tags(@download_expert_text.content) %>
       </div>
 
@@ -35,21 +35,33 @@
   <% if @download_reform_text %>
 
     <section class='downloadBox'>
-      <div>
-        <h2><%= @download_reform_text.title %></h2>
+
+      <h2 class='downloadBox-heading'>
+        <%= @download_reform_text.title %>
+      </h2>
+
+      <div class='downloadBox-description'>
         <%= simple_format_no_tags(@download_reform_text.content) %>
       </div>
-      <div>
-        <select class="reform">
-          <option value="" default selected><%= t('.choose') %></option>
-          <% @reforms.each do |reform| %>
-            <option value="<%= reform.slug %>"><%= reform.name %></option>
-          <% end %>
-        </select>
-      </div>
-      <div>
-        <%= link_to t('.download'), params.merge(type: 'reform'), method: :post, class: 'reform' %>
-      </div>
+
+      <select class="downloadBox-select reform">
+        <option value="" default selected>
+          <%= t('.choose') %>
+        </option>
+
+        <% @reforms.each do |reform| %>
+          <option value="<%= reform.slug %>">
+            <%= reform.name %>
+          </option>
+        <% end %>
+      </select>
+
+      <button class='downloadBox-button'>
+        Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
+                    params.merge(type: 'expert'),
+                    method: :post %>
+      </button>
+
     </section>
 
   <% end %>
@@ -58,18 +70,26 @@
 
     <section class='downloadBox'>
 
-      <div>
-        <h2><%= @download_external_indicator_text.title %></h2>
+      <h2 class='downloadBox-heading'>
+        <%= @download_external_indicator_text.title %>
+      </h2>
+
+      <div class='downloadBox-description'>
         <%= simple_format_no_tags(@download_external_indicator_text.content) %>
       </div>
-      <div>
-        <select class="external_indicator">
-          <option value="" default selected><%= t('.choose') %></option>
-        </select>
-      </div>
-      <div>
-        <%= link_to t('.download'), params.merge(type: 'external_indicator'), method: :post, class: 'external_indicator' %>
-      </div>
+
+      <select class="downloadBox-select external_indicator">
+        <option value="" default selected>
+          <%= t('.choose') %>
+        </option>
+      </select>
+
+      <button class='downloadBox-button'>
+        Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
+                             params.merge(type: 'external_indicator'),
+                             method: :post,
+                             class: 'external_indicator' %>
+      </button>
 
     </section>
 
@@ -79,21 +99,32 @@
 
     <section class='downloadBox'>
 
-      <div>
-        <h2><%= @download_report_text.title %></h2>
+      <h2 class='downloadBox-heading'>
+        <%= @download_report_text.title %>
+      </h2>
+
+      <div class='downloadBox-description'>
         <%= simple_format_no_tags(@download_report_text.content) %>
       </div>
-      <div>
-        <select class="report">
-          <option value="" default selected><%= t('.choose') %></option>
-          <% @quarters.each do |quarter| %>
-            <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
-          <% end %>
-        </select>
-      </div>
-      <div>
-        <%= link_to t('.download'), params.merge(type: 'report'), method: :post, class: 'report' %>
-      </div>
+
+      <select class="downloadBox-select report">
+
+        <option value="" default selected>
+          <%= t('.choose') %>
+        </option>
+
+        <% @quarters.each do |quarter| %>
+          <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
+        <% end %>
+
+      </select>
+
+      <button class='downloadBox-button mod-pdf'>
+        Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_pdf.svg"),
+                             params.merge(type: 'report'),
+                             method: :post,
+                             class: 'report' %>
+      </button>
 
     </section>
 

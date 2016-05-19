@@ -6,20 +6,53 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 20px 30px;
+  padding: 0 30px;
   margin-bottom: 20px;
 }
 
   .downloadBox-heading {
-    margin: 0;
+    margin: 20px 0 0;
   }
 
+  .downloadBox-description {
+    margin: 0;
+    text-align: center;
+  }
+
+  .downloadBox-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background-color: #ADB4D1;
+    color: white;
+    padding: 5px 13px;
+    margin-bottom: 20px;
+  }
+
+    .downloadBox-select option::after {
+      content: '▼';
+    }
+
+    .downloadBox-select-caret {
+      font-size: 0.5em;
+    }
+
   .downloadBox-button {
+    border: none;
     font-size: 2.5rem;
-    background-color: blue;
-    border-radius: 2px;
+    background-color: #00AEEF;
+    border-radius: 3px;
     color: white;
     fill: white;
     padding: 10px 20px;
-    vertical-align: middle;
+    margin-bottom: 20px;
+  }
+
+    .downloadBox-button svg {
+      vertical-align: middle;
+    }
+
+  .downloadBox-button.mod-pdf {
+    background-color: #EF4136;
   }
