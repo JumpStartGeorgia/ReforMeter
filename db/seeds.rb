@@ -89,6 +89,22 @@ end
 
 
 
+if ENV['delete_reform_colors'].present?
+  puts 'DELETING REFORM COLORS'
+  ReformColor.destroy_all
+end
+
+# load reform colors
+colors = %w{#4dc1bb #2bb673 #e0689e #7668dd #8dabd8 #6ab1d8 #9fd66b #d6c654 #fbb040 #db9f4f #d86a50 #e84646 #5dcec8 #b464bf}
+rc_colors = []
+colors.each do |color|
+  rc_colors << ReformColor.find_or_create_by(hex: color) do |rc|
+    puts 'creating reform color: ' + color
+    rc.hex = color
+  end
+end
+
+
 # if the env variable of load_test_data exists, load the data
 if ENV['load_test_data'].present?
   puts 'LOADING TEST DATA'
@@ -101,9 +117,9 @@ if ENV['load_test_data'].present?
 
     # create reform
     puts 'creating test reform'
-    reform1 = Reform.create(name: 'Test Reform 1', summary: '<p>This is a brief summary about test reform 1.</p>')
-    reform2 = Reform.create(name: 'Test Reform 2', summary: '<p>This is a brief summary about test reform 2.</p>')
-    reform3 = Reform.create(name: 'Reform 3', summary: '<p>This is a brief summary about test reform 3.</p>')
+    reform1 = Reform.create(name: 'Test Reform 1', summary: '<p>This is a brief summary about test reform 1.</p>', reform_color_id: rc_colors.sample.id)
+    reform2 = Reform.create(name: 'Another Test Reform 2', summary: '<p>This is a brief summary about test reform 2.</p>', reform_color_id: rc_colors.sample.id)
+    reform3 = Reform.create(name: 'Reform 3', summary: '<p>This is a brief summary about test reform 3.</p>', reform_color_id: rc_colors.sample.id)
 
     # create experts
     puts 'creating experts'

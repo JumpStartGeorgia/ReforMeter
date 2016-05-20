@@ -59,6 +59,7 @@
                   <%= link_to quarter.time_period, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
                 </td>
                 <td>
+                  <span style="display: inline-block; width: 10px; background-color: rgb(<%= "#{reform.color.r}, #{reform.color.g}, #{reform.color.b}" %>">&nbsp;</span>
                   <%= link_to reform.name, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
                 </td>
                 <td>

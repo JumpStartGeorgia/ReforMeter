@@ -20,11 +20,12 @@ class Reform < ActiveRecord::Base
   #######################
   ## RELATIONSHIPS
   has_many :reform_surveys, dependent: :destroy
+  belongs_to :color, foreign_key: 'reform_color_id', class_name: 'ReformColor'
 
   #######################
   ## VALIDATIONS
 
-  validates :name, :summary, presence: :true
+  validates :name, :summary, :reform_color_id, presence: :true
   validates_uniqueness_of :name
 
   #######################
@@ -49,6 +50,7 @@ class Reform < ActiveRecord::Base
   scope :active, -> { where(is_active: true) }
   scope :highlight, -> { where(is_highlight: true) }
   scope :sorted, -> { with_translations.order(:name) }
+  scope :with_color, -> {includes(:color )}
 
   # get an array of the active reforms in format: [name, slug]
   def self.active_reforms_array

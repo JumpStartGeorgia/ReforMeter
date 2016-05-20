@@ -30,6 +30,8 @@
   </div>
 <% end %>
 
+<div style="color: #fff; background-color: rgb(<%= "#{@reform.color.r}, #{@reform.color.g}, #{@reform.color.b}" %>">temporary - just showing color</div>
+
 <% if @reform_survey.summary %>
   <div>
     <%= simple_format_no_tags(@reform_survey.summary) %>

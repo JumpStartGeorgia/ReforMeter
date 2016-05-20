@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518060402) do
+ActiveRecord::Schema.define(version: 20160520100611) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -125,6 +125,15 @@ ActiveRecord::Schema.define(version: 20160518060402) do
   add_index "quarters", ["slug"], name: "index_quarters_on_slug", unique: true, using: :btree
   add_index "quarters", ["year", "quarter"], name: "index_quarters_on_year_and_quarter", unique: true, using: :btree
 
+  create_table "reform_colors", force: :cascade do |t|
+    t.string   "hex",        limit: 255
+    t.integer  "r",          limit: 2
+    t.integer  "g",          limit: 2
+    t.integer  "b",          limit: 2
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "reform_survey_translations", force: :cascade do |t|
     t.integer  "reform_survey_id",    limit: 4,     null: false
     t.string   "locale",              limit: 255,   null: false
@@ -183,15 +192,17 @@ ActiveRecord::Schema.define(version: 20160518060402) do
   add_index "reform_translations", ["slug"], name: "index_reform_translations_on_slug", using: :btree
 
   create_table "reforms", force: :cascade do |t|
-    t.boolean  "is_active",                default: true
-    t.boolean  "is_highlight",             default: true
-    t.string   "slug",         limit: 255
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.boolean  "is_active",                   default: true
+    t.boolean  "is_highlight",                default: true
+    t.string   "slug",            limit: 255
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "reform_color_id", limit: 4
   end
 
   add_index "reforms", ["is_active"], name: "index_reforms_on_is_active", using: :btree
   add_index "reforms", ["is_highlight"], name: "index_reforms_on_is_highlight", using: :btree
+  add_index "reforms", ["reform_color_id"], name: "index_reforms_on_reform_color_id", using: :btree
   add_index "reforms", ["slug"], name: "index_reforms_on_slug", unique: true, using: :btree
 
   create_table "roles", force: :cascade do |t|
