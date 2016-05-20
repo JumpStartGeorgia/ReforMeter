@@ -6,136 +6,140 @@
   </div>
 <% end %>
 
-<section class='downloadPage-downloadBoxes-container'>
+<section>
 
   <h2 class='u-hide-visually'>
     Download Options
   </h2>
 
-  <% if @download_expert_text %>
-    <section class='downloadBox'>
+  <ul class='downloadPage-downloadBoxes-container'>
 
-      <h2 class='downloadBox-heading'>
-        <%= @download_expert_text.title %>
-      </h2>
+    <% if @download_expert_text %>
+      <li class='downloadBox'>
 
-      <div class='downloadBox-description'>
-        <%= simple_format_no_tags(@download_expert_text.content) %>
-      </div>
+        <h2 class='downloadBox-heading'>
+          <%= @download_expert_text.title %>
+        </h2>
 
-      <div class='downloadBox-button'>
-        Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
-                    params.merge(type: 'expert'),
-                    method: :post %>
-      </div>
+        <div class='downloadBox-description'>
+          <%= simple_format_no_tags(@download_expert_text.content) %>
+        </div>
 
-    </section>
-  <% end %>
+        <div class='downloadBox-button'>
+          Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
+                      params.merge(type: 'expert'),
+                      method: :post %>
+        </div>
 
-  <% if @download_reform_text %>
+      </li>
+    <% end %>
 
-    <section class='downloadBox'>
+    <% if @download_reform_text %>
 
-      <h2 class='downloadBox-heading'>
-        <%= @download_reform_text.title %>
-      </h2>
+      <li class='downloadBox'>
 
-      <div class='downloadBox-description'>
-        <%= simple_format_no_tags(@download_reform_text.content) %>
-      </div>
+        <h2 class='downloadBox-heading'>
+          <%= @download_reform_text.title %>
+        </h2>
 
-      <div class='downloadBox-selectContainer'>
-        <select class="js-become-select2 reform">
+        <div class='downloadBox-description'>
+          <%= simple_format_no_tags(@download_reform_text.content) %>
+        </div>
 
-          <option value="" default selected>
-            <%= t('.choose') %>
-          </option>
+        <div class='downloadBox-selectContainer'>
+          <select class="js-become-select2 reform">
 
-          <% @reforms.each do |reform| %>
-            <option value="<%= reform.slug %>">
-              <%= reform.name %>
+            <option value="" default selected>
+              <%= t('.choose') %>
             </option>
-          <% end %>
 
-        </select>
-      </div>
+            <% @reforms.each do |reform| %>
+              <option value="<%= reform.slug %>">
+                <%= reform.name %>
+              </option>
+            <% end %>
 
-      <button class='downloadBox-button'>
-        Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
-                    params.merge(type: 'expert'),
-                    method: :post %>
-      </button>
+          </select>
+        </div>
 
-    </section>
+        <button class='downloadBox-button'>
+          Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
+                      params.merge(type: 'expert'),
+                      method: :post %>
+        </button>
 
-  <% end %>
+      </li>
 
-  <% if @download_external_indicator_text %>
+    <% end %>
 
-    <section class='downloadBox'>
+    <% if @download_external_indicator_text %>
 
-      <h2 class='downloadBox-heading'>
-        <%= @download_external_indicator_text.title %>
-      </h2>
+      <li class='downloadBox'>
 
-      <div class='downloadBox-description'>
-        <%= simple_format_no_tags(@download_external_indicator_text.content) %>
-      </div>
+        <h2 class='downloadBox-heading'>
+          <%= @download_external_indicator_text.title %>
+        </h2>
 
-      <div class='downloadBox-selectContainer'>
-        <select class="external_indicator js-become-select2">
-          <option value="" default selected>
-            <%= t('.choose') %>
-          </option>
-        </select>
-      </div>
+        <div class='downloadBox-description'>
+          <%= simple_format_no_tags(@download_external_indicator_text.content) %>
+        </div>
 
-      <button class='downloadBox-button'>
-        Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
-                             params.merge(type: 'external_indicator'),
-                             method: :post,
-                             class: 'external_indicator' %>
-      </button>
+        <div class='downloadBox-selectContainer'>
+          <select class="external_indicator js-become-select2">
+            <option value="" default selected>
+              <%= t('.choose') %>
+            </option>
+          </select>
+        </div>
 
-    </section>
+        <button class='downloadBox-button'>
+          Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
+                               params.merge(type: 'external_indicator'),
+                               method: :post,
+                               class: 'external_indicator' %>
+        </button>
 
-  <% end %>
+      </li>
 
-  <% if @download_report_text %>
+    <% end %>
 
-    <section class='downloadBox'>
+    <% if @download_report_text %>
 
-      <h2 class='downloadBox-heading'>
-        <%= @download_report_text.title %>
-      </h2>
+      <li class='downloadBox'>
 
-      <div class='downloadBox-description'>
-        <%= simple_format_no_tags(@download_report_text.content) %>
-      </div>
+        <h2 class='downloadBox-heading'>
+          <%= @download_report_text.title %>
+        </h2>
 
-      <div class='downloadBox-selectContainer'>
-        <select class="report js-become-select2">
+        <div class='downloadBox-description'>
+          <%= simple_format_no_tags(@download_report_text.content) %>
+        </div>
 
-          <option value="" default selected>
-            <%= t('.choose') %>
-          </option>
+        <div class='downloadBox-selectContainer'>
+          <select class="report js-become-select2">
 
-          <% @quarters.each do |quarter| %>
-            <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
-          <% end %>
+            <option value="" default selected>
+              <%= t('.choose') %>
+            </option>
 
-        </select>
-      </div>
+            <% @quarters.each do |quarter| %>
+              <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
+            <% end %>
 
-      <button class='downloadBox-button mod-pdf'>
-        Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_pdf.svg"),
-                             params.merge(type: 'report'),
-                             method: :post,
-                             class: 'report' %>
-      </button>
+          </select>
+        </div>
 
-    </section>
+        <button class='downloadBox-button mod-pdf'>
+          Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_pdf.svg"),
+                               params.merge(type: 'report'),
+                               method: :post,
+                               class: 'report' %>
+        </button>
 
-  <% end %>
+      </li>
+
+    <% end %>
+
+  </ul>
 
 </section>
