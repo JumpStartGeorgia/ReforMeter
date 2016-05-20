@@ -3,7 +3,3 @@ function setup_navigation_menu() {
     $('.js-act-as-navigation').toggleClass('is-hidden-on-mobile');
   });
 }
-
-$(document).ready(function() {
-  setup_navigation_menu();
-});
