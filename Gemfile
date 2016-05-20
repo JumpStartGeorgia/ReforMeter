@@ -182,3 +182,6 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 
 # managing file attachments in translations
 gem 'paperclip-globalize3', '~> 2.2'
+
+# Improved select dropdown
+gem 'select2-rails', '~> 4.0', '>= 4.0.1.1'
