@@ -19,24 +19,9 @@
     text-align: center;
   }
 
-  .downloadBox-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    background-color: #ADB4D1;
-    color: white;
-    padding: 5px 13px;
+  .downloadBox-selectContainer {
     margin-bottom: 20px;
   }
-
-    .downloadBox-select option::after {
-      content: '▼';
-    }
-
-    .downloadBox-select-caret {
-      font-size: 0.5em;
-    }
 
   .downloadBox-button {
     border: none;

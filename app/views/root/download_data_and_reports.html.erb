@@ -44,17 +44,21 @@
         <%= simple_format_no_tags(@download_reform_text.content) %>
       </div>
 
-      <select class="downloadBox-select js-become-select2 reform">
-        <option value="" default selected>
-          <%= t('.choose') %>
-        </option>
+      <div class='downloadBox-selectContainer'>
+        <select class="js-become-select2 reform">
 
-        <% @reforms.each do |reform| %>
-          <option value="<%= reform.slug %>">
-            <%= reform.name %>
+          <option value="" default selected>
+            <%= t('.choose') %>
           </option>
-        <% end %>
-      </select>
+
+          <% @reforms.each do |reform| %>
+            <option value="<%= reform.slug %>">
+              <%= reform.name %>
+            </option>
+          <% end %>
+
+        </select>
+      </div>
 
       <button class='downloadBox-button'>
         Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
@@ -78,11 +82,13 @@
         <%= simple_format_no_tags(@download_external_indicator_text.content) %>
       </div>
 
-      <select class="downloadBox-select external_indicator">
-        <option value="" default selected>
-          <%= t('.choose') %>
-        </option>
-      </select>
+      <div class='downloadBox-selectContainer'>
+        <select class="external_indicator js-become-select2">
+          <option value="" default selected>
+            <%= t('.choose') %>
+          </option>
+        </select>
+      </div>
 
       <button class='downloadBox-button'>
         Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
@@ -107,17 +113,19 @@
         <%= simple_format_no_tags(@download_report_text.content) %>
       </div>
 
-      <select class="downloadBox-select report">
+      <div class='downloadBox-selectContainer'>
+        <select class="report js-become-select2">
 
-        <option value="" default selected>
-          <%= t('.choose') %>
-        </option>
+          <option value="" default selected>
+            <%= t('.choose') %>
+          </option>
 
-        <% @quarters.each do |quarter| %>
-          <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
-        <% end %>
+          <% @quarters.each do |quarter| %>
+            <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
+          <% end %>
 
-      </select>
+        </select>
+      </div>
 
       <button class='downloadBox-button mod-pdf'>
         Download <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_pdf.svg"),
