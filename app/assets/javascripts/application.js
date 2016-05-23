@@ -36,6 +36,8 @@
 //= require twitter/bootstrap/carousel
 //= require twitter/bootstrap/affix
 //= require select2
+//= require highcharts
+//= require highcharts/highcharts-more
 
 //= require_tree .
 

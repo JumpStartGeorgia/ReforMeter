@@ -188,3 +188,6 @@ gem 'select2-rails', '~> 4.0', '>= 4.0.1.1'
 
 # Automatically adds CSS prefixes where necessary
 gem 'autoprefixer-rails', '~> 6.3', '>= 6.3.6'
+
+# Super cool charts!
+gem 'highcharts-rails', '~> 4.2', '>= 4.2.3'
