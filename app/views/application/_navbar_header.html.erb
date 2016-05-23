@@ -55,7 +55,7 @@
 
           <li lang='<%= locale %>' class='appHeader-nav-list-item mod-language'>
             <%= link_to t("shared.locale.long.#{locale}"),
-                        url_for(locale: locale),
+                        url_for(locale: locale.to_s),
                         class: 'appHeader-nav-list-item-link' %>
           </li>
 
