@@ -3,14 +3,14 @@
 <% if @active_quarters %>
 
   <%= t('shared.common.change_time') %>:
-  <select class='js-become-select2'>
+  <select class='js-become-select2 js-change-time-period'>
 
     <% @active_quarters.each do |active_quarter| %>
       <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
         <%= active_quarter[0] %>
       </option>
     <% end %>
-    
+
   </select>
 
 <% end %>
