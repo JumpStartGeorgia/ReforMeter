@@ -1,33 +1,35 @@
 <% page_title t('.title', name: @reform.name, time: @quarter.time_period) %>
 
 <% if @active_reforms %>
-  <div class="dropdown">
-    <%= t('shared.common.change_reform') %>:
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= @reform.name %>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <% @active_reforms.each do |active_reform| %>
-        <li><%= link_to active_reform[0], reform_show_path(reform_id: active_reform[1], quarter_id: @quarter.slug) %></li>
-      <% end %>
-    </ul>
-  </div>
+
+  <%= t('shared.common.change_reform') %>:
+
+  <select class='js-become-select2'>
+
+    <% @active_reforms.each do |active_reform| %>
+      <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>>
+        <%= active_reform[0] %>
+      </option>
+    <% end %>
+
+  </select>
+
 <% end %>
 
 <% if @active_quarters %>
-  <div class="dropdown">
-    <%= t('shared.common.change_time') %>:
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= @quarter.time_period %>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <% @active_quarters.each do |active_quarter| %>
-        <li><%= link_to active_quarter[0], reform_show_path(reform_id: @reform.slug, quarter_id: active_quarter[1]) %></li>
-      <% end %>
-    </ul>
-  </div>
+
+  <%= t('shared.common.change_time') %>:
+
+  <select class='js-become-select2'>
+
+    <% @active_quarters.each do |active_quarter| %>
+      <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
+        <%= active_quarter[0] %>
+      </option>
+    <% end %>
+
+  </select>
+
 <% end %>
 
 <% if @reform_survey.summary %>
@@ -62,7 +64,7 @@
     <div role="tabpanel" class="tab-pane active" id="government_history">
       insert chart here
     </div>
-    
+
     <div role="tabpanel" class="tab-pane" id="government_methodology">
       <% if @methodology_government %>
         <div>
@@ -105,7 +107,7 @@
     <div role="tabpanel" class="tab-pane active" id="stakeholder_history">
       insert chart here
     </div>
-    
+
     <div role="tabpanel" class="tab-pane" id="stakeholder_methodology">
       <% if @methodology_stakeholder %>
         <div>
@@ -119,6 +121,3 @@
     </div>
   </div>
 </div>
-
-
-
