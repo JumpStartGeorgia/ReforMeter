@@ -1,5 +1,4 @@
-$(function () {
-
+function setupExpertPage() {
   $('.js-become-expert-overall-chart').highcharts(Highcharts.merge({
 
     chart: {
@@ -114,7 +113,7 @@ $(function () {
 
     series: [{
       name: 'Sustainability',
-      data: [5],
+      data: [gon.expert_overall_score],
       dataLabels: {
     		borderWidth: 0,
         y: 45,
@@ -133,4 +132,4 @@ $(function () {
       }
     }]
   }));
-});
+}

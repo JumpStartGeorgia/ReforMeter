@@ -110,6 +110,8 @@ class RootController < ApplicationController
       @active_quarters = Quarter.active_quarters_array
       @methodology_expert = PageContent.find_by(name: 'methodology_expert')
 
+      gon.expert_overall_score = @quarter.expert_survey.overall_score.to_i
+
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to experts_path,
                 alert: t('shared.msgs.does_not_exist')

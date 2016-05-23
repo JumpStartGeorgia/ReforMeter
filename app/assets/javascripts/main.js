@@ -3,7 +3,8 @@ $(document).ready(function() {
   setupSelect2();
   setupExpertTimePeriodSelect();
   makeReformPageChangeable();
-  
+  setupExpertPage();
+
   if ($("body").hasClass("root download_data_and_reports")) {
     activate_download_events();
   }
