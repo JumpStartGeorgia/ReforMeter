@@ -34,14 +34,14 @@ class ReformSurvey < ActiveRecord::Base
   #######################
   ## VALIDATIONS
 
-  validates :quarter_id, :reform_id, 
-            :government_overall_score, :government_category1_score, :government_category2_score, :government_category3_score, :government_category4_score, 
-            :stakeholder_overall_score, :stakeholder_category1_score, :stakeholder_category2_score, :stakeholder_category3_score, 
+  validates :quarter_id, :reform_id,
+            :government_overall_score, :government_category1_score, :government_category2_score, :government_category3_score, :government_category4_score,
+            :stakeholder_overall_score, :stakeholder_category1_score, :stakeholder_category2_score, :stakeholder_category3_score,
             presence: :true
 
   #######################
   ## SCOPES
-  
+
   def self.for_reform(reform_id)
     where(reform_id: reform_id)
   end
@@ -56,4 +56,27 @@ class ReformSurvey < ActiveRecord::Base
     where(quarter_id: quarter_ids).order(:quarter_id, :reform_id)
   end
 
+
+  #######################
+  ## METHODS
+
+  # compute the chagne value for government scores
+  # scores are percents
+  # < 0 -> -1
+  # == 0 -> 0
+  # > 0 -> 1
+  def compute_government_change(previous_score, new_score)
+    difference = new_score - previous_score
+    return difference < 0 ? -1 : difference > 0 ? 1 : 0
+  end
+
+  # compute the chagne value for government scores
+  # scores are numbers from 0 to 10
+  # < -0.2 -> -1
+  # -0.2 .. 0.2 -> 0
+  # > 0.2 -> 1
+  def compute_stakeholder_change(previous_score, new_score)
+    difference = new_score - previous_score
+    return difference < -0.2 ? -1 : difference > 0.2 ? 1 : 0
+  end
 end

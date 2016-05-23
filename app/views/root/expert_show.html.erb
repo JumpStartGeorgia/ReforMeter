@@ -22,10 +22,22 @@
 <% end %>
 
 <ul>
-  <li><%= t('shared.categories.overall') %>: <%= @quarter.expert_survey.overall_score %></li>
-  <li><%= t('shared.categories.performance') %>: <%= @quarter.expert_survey.category1_score %></li>
-  <li><%= t('shared.categories.goals') %>: <%= @quarter.expert_survey.category2_score %></li>
-  <li><%= t('shared.categories.progress') %>: <%= @quarter.expert_survey.category3_score %></li>
+  <li>
+      <%= t('shared.categories.overall') %>:
+      <%= @quarter.expert_survey.overall_score %> <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.performance') %>:
+    <%= @quarter.expert_survey.category1_score %> <%= generate_change_icon(@quarter.expert_survey.category1_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.goals') %>:
+    <%= @quarter.expert_survey.category2_score %> <%= generate_change_icon(@quarter.expert_survey.category2_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.progress') %>:
+    <%= @quarter.expert_survey.category3_score %> <%= generate_change_icon(@quarter.expert_survey.category3_change) %>
+  </li>
 </ul>
 
 <div>

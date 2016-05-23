@@ -17,7 +17,7 @@
       <div role="tabpanel" class="tab-pane active" id="chart">
         insert chart here
       </div>
-      
+
       <div role="tabpanel" class="tab-pane" id="methodology">
         <% if @methodology_expert %>
           <div>
@@ -53,6 +53,7 @@
           </td>
           <td>
             <%= quarter.expert_survey.overall_score %>
+            <%= generate_change_icon(quarter.expert_survey.overall_change) %>
           </td>
           <td>
             <%= strip_tags_nbsp(quarter.expert_survey.summary) %>

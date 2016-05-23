@@ -89,6 +89,22 @@ end
 
 
 
+if ENV['delete_reform_colors'].present?
+  puts 'DELETING REFORM COLORS'
+  ReformColor.destroy_all
+end
+
+# load reform colors
+colors = %w{#4dc1bb #2bb673 #e0689e #7668dd #8dabd8 #6ab1d8 #9fd66b #d6c654 #fbb040 #db9f4f #d86a50 #e84646 #5dcec8 #b464bf}
+rc_colors = []
+colors.each do |color|
+  rc_colors << ReformColor.find_or_create_by(hex: color) do |rc|
+    puts 'creating reform color: ' + color
+    rc.hex = color
+  end
+end
+
+
 # if the env variable of load_test_data exists, load the data
 if ENV['load_test_data'].present?
   puts 'LOADING TEST DATA'
@@ -101,9 +117,9 @@ if ENV['load_test_data'].present?
 
     # create reform
     puts 'creating test reform'
-    reform1 = Reform.create(name: 'Test Reform 1', summary: '<p>This is a brief summary about test reform 1.</p>')
-    reform2 = Reform.create(name: 'Test Reform 2', summary: '<p>This is a brief summary about test reform 2.</p>')
-    reform3 = Reform.create(name: 'Reform 3', summary: '<p>This is a brief summary about test reform 3.</p>')
+    reform1 = Reform.create(name: 'Test Reform 1', summary: '<p>This is a brief summary about test reform 1.</p>', reform_color_id: rc_colors.sample.id)
+    reform2 = Reform.create(name: 'Another Test Reform 2', summary: '<p>This is a brief summary about test reform 2.</p>', reform_color_id: rc_colors.sample.id)
+    reform3 = Reform.create(name: 'Reform 3', summary: '<p>This is a brief summary about test reform 3.</p>', reform_color_id: rc_colors.sample.id)
 
     # create experts
     puts 'creating experts'
@@ -125,11 +141,15 @@ if ENV['load_test_data'].present?
     es.experts << exp1
     es.experts << exp2
 
-    es = q3.create_expert_survey(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5, summary: '<p>sit amet, te duo probo timeam</p>', details: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Ferri commune voluptatibus ne sed. </p><p>Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam.</p>')
+    es = q3.create_expert_survey(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
+                                overall_change: -1, category1_change: 0, category2_change: -1, category3_change: -1,
+                                summary: '<p>sit amet, te duo probo timeam</p>', details: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Ferri commune voluptatibus ne sed. </p><p>Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam.</p>')
     es.experts << exp2
     es.experts << exp3
 
-    es = q4.create_expert_survey(overall_score: 6.82, category1_score: 6.5, category2_score: 8.3, category3_score: 5.5, summary: '<p>this is a summary</p>', details: 'Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. </p><p>Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
+    es = q4.create_expert_survey(overall_score: 6.82, category1_score: 6.5, category2_score: 8.3, category3_score: 5.5,
+                                overall_change: 1, category1_change: 1, category2_change: 1, category3_change: 1,
+                                summary: '<p>this is a summary</p>', details: 'Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. </p><p>Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
     es.experts << exp1
     es.experts << exp3
 
@@ -140,33 +160,59 @@ if ENV['load_test_data'].present?
       [65, 72, 38, 63, 80, 5.36, 5.8, 6, 4.5],
       [66.9, 73, 41, 65, 82, 6.82, 6.5, 8.3, 5.5],
     ]
+
     (0..2).each do |index|
       id = index == 0 ? reform1.id : index == 1  ? reform2.id : reform3.id
       score_indexes = index == 0 ? [0,1,2] : index == 1  ? [1,2,0] : [2,1,0]
+      rs2, rs3, rs4 = nil
       # do not create value for 3rd reform in q2
       if index != 2
-        q2.reform_surveys.create(reform_id: id,
-                government_overall_score: reform_survey_scores[score_indexes[index]][0],government_category1_score: reform_survey_scores[score_indexes[index]][1],
-                government_category2_score: reform_survey_scores[score_indexes[index]][2],government_category3_score: reform_survey_scores[score_indexes[index]][3],
-                government_category4_score: reform_survey_scores[score_indexes[index]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[index]][5],
-                stakeholder_category1_score: reform_survey_scores[score_indexes[index]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[index]][7],
-                stakeholder_category3_score: reform_survey_scores[score_indexes[index]][8],
+        rs2 = q2.reform_surveys.create(reform_id: id,
+                government_overall_score: reform_survey_scores[score_indexes[0]][0],government_category1_score: reform_survey_scores[score_indexes[0]][1],
+                government_category2_score: reform_survey_scores[score_indexes[0]][2],government_category3_score: reform_survey_scores[score_indexes[0]][3],
+                government_category4_score: reform_survey_scores[score_indexes[0]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[0]][5],
+                stakeholder_category1_score: reform_survey_scores[score_indexes[0]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[0]][7],
+                stakeholder_category3_score: reform_survey_scores[score_indexes[0]][8],
                 summary: 'this is a summary', government_summary: 'this is a government summary', stakeholder_summary: 'this is a stakeholder summary')
       end
-      q3.reform_surveys.create(reform_id: id,
-              government_overall_score: reform_survey_scores[score_indexes[index]][0],government_category1_score: reform_survey_scores[score_indexes[index]][1],
-              government_category2_score: reform_survey_scores[score_indexes[index]][2],government_category3_score: reform_survey_scores[score_indexes[index]][3],
-              government_category4_score: reform_survey_scores[score_indexes[index]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[index]][5],
-              stakeholder_category1_score: reform_survey_scores[score_indexes[index]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[index]][7],
-              stakeholder_category3_score: reform_survey_scores[score_indexes[index]][8],
+      rs3 = q3.reform_surveys.create(reform_id: id,
+              government_overall_score: reform_survey_scores[score_indexes[1]][0],government_category1_score: reform_survey_scores[score_indexes[1]][1],
+              government_category2_score: reform_survey_scores[score_indexes[1]][2],government_category3_score: reform_survey_scores[score_indexes[1]][3],
+              government_category4_score: reform_survey_scores[score_indexes[1]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[1]][5],
+              stakeholder_category1_score: reform_survey_scores[score_indexes[1]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[1]][7],
+              stakeholder_category3_score: reform_survey_scores[score_indexes[1]][8],
               summary: 'this is a summary', government_summary: 'this is a government summary', stakeholder_summary: 'this is a stakeholder summary')
-      q4.reform_surveys.create(reform_id: id,
-              government_overall_score: reform_survey_scores[score_indexes[index]][0],government_category1_score: reform_survey_scores[score_indexes[index]][1],
-              government_category2_score: reform_survey_scores[score_indexes[index]][2],government_category3_score: reform_survey_scores[score_indexes[index]][3],
-              government_category4_score: reform_survey_scores[score_indexes[index]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[index]][5],
-              stakeholder_category1_score: reform_survey_scores[score_indexes[index]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[index]][7],
-              stakeholder_category3_score: reform_survey_scores[score_indexes[index]][8],
+      if rs2
+        rs3.government_overall_change = rs3.compute_government_change(rs2.government_overall_score, rs3.government_overall_score)
+        rs3.government_category1_change = rs3.compute_government_change(rs2.government_category1_score, rs3.government_category1_score)
+        rs3.government_category2_change = rs3.compute_government_change(rs2.government_category2_score, rs3.government_category2_score)
+        rs3.government_category3_change = rs3.compute_government_change(rs2.government_category3_score, rs3.government_category3_score)
+        rs3.government_category4_change = rs3.compute_government_change(rs2.government_category4_score, rs3.government_category4_score)
+        rs3.stakeholder_overall_change = rs3.compute_stakeholder_change(rs2.stakeholder_overall_score, rs3.stakeholder_overall_score)
+        rs3.stakeholder_category1_change = rs3.compute_stakeholder_change(rs2.stakeholder_category1_score, rs3.stakeholder_category1_score)
+        rs3.stakeholder_category2_change = rs3.compute_stakeholder_change(rs2.stakeholder_category2_score, rs3.stakeholder_category2_score)
+        rs3.stakeholder_category3_change = rs3.compute_stakeholder_change(rs2.stakeholder_category3_score, rs3.stakeholder_category3_score)
+        rs3.save
+
+      end
+      rs4 = q4.reform_surveys.create(reform_id: id,
+              government_overall_score: reform_survey_scores[score_indexes[2]][0],government_category1_score: reform_survey_scores[score_indexes[2]][1],
+              government_category2_score: reform_survey_scores[score_indexes[2]][2],government_category3_score: reform_survey_scores[score_indexes[2]][3],
+              government_category4_score: reform_survey_scores[score_indexes[2]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[2]][5],
+              stakeholder_category1_score: reform_survey_scores[score_indexes[2]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[2]][7],
+              stakeholder_category3_score: reform_survey_scores[score_indexes[2]][8],
               summary: 'this is a summary', government_summary: 'this is a government summary', stakeholder_summary: 'this is a stakeholder summary')
+
+      rs4.government_overall_change = rs4.compute_government_change(rs3.government_overall_score, rs4.government_overall_score)
+      rs4.government_category1_change = rs4.compute_government_change(rs3.government_category1_score, rs4.government_category1_score)
+      rs4.government_category2_change = rs4.compute_government_change(rs3.government_category2_score, rs4.government_category2_score)
+      rs4.government_category3_change = rs4.compute_government_change(rs3.government_category3_score, rs4.government_category3_score)
+      rs4.government_category4_change = rs4.compute_government_change(rs3.government_category4_score, rs4.government_category4_score)
+      rs4.stakeholder_overall_change = rs4.compute_stakeholder_change(rs3.stakeholder_overall_score, rs4.stakeholder_overall_score)
+      rs4.stakeholder_category1_change = rs4.compute_stakeholder_change(rs3.stakeholder_category1_score, rs4.stakeholder_category1_score)
+      rs4.stakeholder_category2_change = rs4.compute_stakeholder_change(rs3.stakeholder_category2_score, rs4.stakeholder_category2_score)
+      rs4.stakeholder_category3_change = rs4.compute_stakeholder_change(rs3.stakeholder_category3_score, rs4.stakeholder_category3_score)
+      rs4.save
 
     end
     puts 'LOADING TEST DATA DONE'

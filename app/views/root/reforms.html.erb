@@ -59,13 +59,16 @@
                   <%= link_to quarter.time_period, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
                 </td>
                 <td>
+                  <span style="display: inline-block; width: 10px; background-color: rgb(<%= "#{reform.color.r}, #{reform.color.g}, #{reform.color.b}" %>">&nbsp;</span>
                   <%= link_to reform.name, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
                 </td>
                 <td>
                   <%= survey.government_overall_score %>
+                  <%= generate_change_icon(survey.government_overall_change) %>
                 </td>
                 <td>
                   <%= survey.stakeholder_overall_score %>
+                  <%= generate_change_icon(survey.stakeholder_overall_change) %>
                 </td>
                 <td>
                   <%= strip_tags_nbsp(quarter.expert_survey.summary) %>

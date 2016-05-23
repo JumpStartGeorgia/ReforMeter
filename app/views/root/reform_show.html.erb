@@ -38,6 +38,8 @@
   </button>
 <% end %>
 
+<div style="color: #fff; background-color: rgb(<%= "#{@reform.color.r}, #{@reform.color.g}, #{@reform.color.b}" %>">temporary - just showing color</div>
+
 <% if @reform_survey.summary %>
   <div>
     <%= simple_format_no_tags(@reform_survey.summary) %>
@@ -53,11 +55,26 @@
 <% end %>
 
 <ul>
-  <li><%= t('shared.categories.overall') %>: <%= @reform_survey.government_overall_score %></li>
-  <li><%= t('shared.categories.initial_setup') %>: <%= @reform_survey.government_category1_score %></li>
-  <li><%= t('shared.categories.capacity_building') %>: <%= @reform_survey.government_category2_score %></li>
-  <li><%= t('shared.categories.infastructure_budgeting') %>: <%= @reform_survey.government_category3_score %></li>
-  <li><%= t('shared.categories.legislation_regulation') %>: <%= @reform_survey.government_category4_score %></li>
+  <li>
+    <%= t('shared.categories.overall') %>:
+    <%= @reform_survey.government_overall_score %> <%= generate_change_icon(@reform_survey.government_overall_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.initial_setup') %>:
+    <%= @reform_survey.government_category1_score %> <%= generate_change_icon(@reform_survey.government_category1_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.capacity_building') %>:
+    <%= @reform_survey.government_category2_score %> <%= generate_change_icon(@reform_survey.government_category2_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.infastructure_budgeting') %>:
+    <%= @reform_survey.government_category3_score %> <%= generate_change_icon(@reform_survey.government_category3_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.legislation_regulation') %>:
+    <%= @reform_survey.government_category4_score %> <%= generate_change_icon(@reform_survey.government_category4_change) %>
+  </li>
 </ul>
 
 
@@ -97,10 +114,22 @@
 <% end %>
 
 <ul>
-  <li><%= t('shared.categories.overall') %>: <%= @reform_survey.stakeholder_overall_score %></li>
-  <li><%= t('shared.categories.performance') %>: <%= @reform_survey.stakeholder_category1_score %></li>
-  <li><%= t('shared.categories.goals') %>: <%= @reform_survey.stakeholder_category2_score %></li>
-  <li><%= t('shared.categories.progress') %>: <%= @reform_survey.stakeholder_category3_score %></li>
+  <li>
+    <%= t('shared.categories.overall') %>:
+    <%= @reform_survey.stakeholder_overall_score %> <%= generate_change_icon(@reform_survey.stakeholder_overall_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.performance') %>:
+    <%= @reform_survey.stakeholder_category1_score %> <%= generate_change_icon(@reform_survey.stakeholder_category1_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.goals') %>:
+    <%= @reform_survey.stakeholder_category2_score %> <%= generate_change_icon(@reform_survey.stakeholder_category2_change) %>
+  </li>
+  <li>
+    <%= t('shared.categories.progress') %>:
+    <%= @reform_survey.stakeholder_category3_score %> <%= generate_change_icon(@reform_survey.stakeholder_category3_change) %>
+  </li>
 </ul>
 
 
