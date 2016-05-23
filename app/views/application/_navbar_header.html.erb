@@ -4,7 +4,7 @@
     <%= inline_svg("#{Rails.root}/app/assets/images/logo_reformeter_eng.svg") %>
 
     <p class='appHeader-brand-subtext'>
-      Georgian Reform Progress - Tracking System
+      <%= t('shared.common.sub_title') %>
     </p>
 
   </a>
@@ -44,16 +44,24 @@
       </li>
 
       <li class='appHeader-nav-list-item'>
-        <%= link_to 'Contact',
+        <%= link_to t('.contact'),
                     '#',
                     class: 'appHeader-nav-list-item-link' %>
       </li>
 
-      <li lang='ka' class='appHeader-nav-list-item mod-language'>
-        <%= link_to 'ქართული',
-                    '#',
-                    class: 'appHeader-nav-list-item-link' %>
-      </li>
+      <% I18n.available_locales.each do |locale| %>
+
+        <% unless I18n.locale == locale %>
+
+          <li lang='<%= locale %>' class='appHeader-nav-list-item mod-language'>
+            <%= link_to t("shared.locale.long.#{locale}"),
+                        url_for(locale: locale),
+                        class: 'appHeader-nav-list-item-link' %>
+          </li>
+
+        <% end %>
+
+      <% end %>
 
     </ul>
 
