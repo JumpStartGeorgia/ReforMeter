@@ -2,17 +2,18 @@
 
   <p>
     <a href='http://iset-pi.ge/index.php/en/' target='_blank'>
-      Copyright &copy; <%= Time.now.year %>, International School of Economics at TSU
+      <%= t('.iset_copyright', year: Time.now.year) %>
     </a>
   </p>
 
   <p class='appFooter-jumpstart'>
-    Made by <%=
-      link_to image_tag('jumpstart-logo.png',
-                        class: 'appFooter-jumpstart-logo'),
-              'http://jumpstart.ge',
-              target: '_blank',
-              title: t('shared.common.jumpstart.slogan') %>
+    <%= t('.made_by_jumpstart',
+          jumpstart: (link_to (image_tag('jumpstart-logo.png',
+                                       class: 'appFooter-jumpstart-logo')),
+                              'http://jumpstart.ge',
+                              target: '_blank',
+                              title: t('shared.common.jumpstart.slogan'))
+        ).html_safe %>
   </p>
 
 </footer>

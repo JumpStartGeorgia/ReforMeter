@@ -12,3 +12,6 @@ en:
         logout: Logout
       link1: 'link #1'
       link2: 'link #2'
+    footer:
+      iset_copyright: Copyright © %{year}, International School of Economics at TSU
+      made_by_jumpstart: Made by %{jumpstart}
