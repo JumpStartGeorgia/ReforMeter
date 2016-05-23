@@ -1,18 +1,18 @@
 <% page_title t('.title', time: @quarter.time_period) %>
 
 <% if @active_quarters %>
-  <div class="dropdown">
-    <%= t('shared.common.change_time') %>:
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= @quarter.time_period %>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <% @active_quarters.each do |active_quarter| %>
-        <li><%= link_to active_quarter[0], expert_show_path(active_quarter[1]) %></li>
-      <% end %>
-    </ul>
-  </div>
+
+  <%= t('shared.common.change_time') %>:
+  <select class='js-become-select2'>
+
+    <% @active_quarters.each do |active_quarter| %>
+      <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
+        <%= active_quarter[0] %>
+      </option>
+    <% end %>
+    
+  </select>
+
 <% end %>
 
 
@@ -38,7 +38,7 @@
     <div role="tabpanel" class="tab-pane active" id="chart">
       insert chart here
     </div>
-    
+
     <div role="tabpanel" class="tab-pane" id="methodology">
       <% if @methodology_expert %>
         <div>
@@ -71,7 +71,7 @@
         </p>
       <% end %>
     </div>
-    
+
     <div role="tabpanel" class="tab-pane" id="experts">
       <% if @quarter.expert_survey.experts %>
         <% @quarter.expert_survey.experts.each do |expert| %>
