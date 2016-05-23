@@ -1,62 +1,62 @@
-<header class='app-header'>
+<header class='appHeader'>
 
-  <a class='app-header-brand' href='<%= root_path %>'>
+  <a class='appHeader-brand' href='<%= root_path %>'>
     <%= inline_svg("#{Rails.root}/app/assets/images/logo_reformeter_eng.svg") %>
 
-    <p class='app-header-brand-subtext'>
+    <p class='appHeader-brand-subtext'>
       Georgian Reform Progress - Tracking System
     </p>
 
   </a>
 
-  <div class='app-header-nav'>
+  <nav class='appHeader-nav'>
 
-    <button class='app-header-nav-button js-toggle-navigation'>
-      <span class='app-header-nav-button-icon-bar'></span>
-      <span class='app-header-nav-button-icon-bar'></span>
-      <span class='app-header-nav-button-icon-bar'></span>
+    <button class='appHeader-nav-button js-toggle-navigation'>
+      <span class='appHeader-nav-button-iconBar'></span>
+      <span class='appHeader-nav-button-iconBar'></span>
+      <span class='appHeader-nav-button-iconBar'></span>
     </button>
 
-    <ul class='app-header-nav-list js-act-as-navigation is-hidden-on-mobile'>
+    <ul class='appHeader-nav-list js-act-as-navigation is-hidden-on-mobile'>
 
-      <li class='app-header-nav-list-item'>
+      <li class='appHeader-nav-list-item'>
         <%= link_to t('.experts'),
                     experts_path,
-                    class: 'app-header-nav-list-item-link' %>
+                    class: 'appHeader-nav-list-item-link' %>
       </li>
 
-      <li class='app-header-nav-list-item'>
+      <li class='appHeader-nav-list-item'>
         <%= link_to t('.reforms'),
                     reforms_path,
-                    class: 'app-header-nav-list-item-link' %>
+                    class: 'appHeader-nav-list-item-link' %>
       </li>
 
-      <li class='app-header-nav-list-item'>
+      <li class='appHeader-nav-list-item'>
         <%= link_to t('.about'),
                     about_path,
-                    class: 'app-header-nav-list-item-link' %>
+                    class: 'appHeader-nav-list-item-link' %>
       </li>
 
-      <li class='app-header-nav-list-item'>
+      <li class='appHeader-nav-list-item'>
         <%= link_to t('.download_data_and_reports'),
                     download_data_and_reports_path,
-                    class: 'app-header-nav-list-item-link' %>
+                    class: 'appHeader-nav-list-item-link' %>
       </li>
 
-      <li class='app-header-nav-list-item'>
+      <li class='appHeader-nav-list-item'>
         <%= link_to 'Contact',
                     '#',
-                    class: 'app-header-nav-list-item-link' %>
+                    class: 'appHeader-nav-list-item-link' %>
       </li>
 
-      <li lang='ka' class='app-header-nav-list-item mod-language'>
+      <li lang='ka' class='appHeader-nav-list-item mod-language'>
         <%= link_to 'ქართული',
                     '#',
-                    class: 'app-header-nav-list-item-link' %>
+                    class: 'appHeader-nav-list-item-link' %>
       </li>
 
     </ul>
 
-  </div>
+  </nav>
 
 </header>

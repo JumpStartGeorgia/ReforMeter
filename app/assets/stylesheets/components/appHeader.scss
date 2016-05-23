@@ -1,10 +1,10 @@
-.app-header {
+.appHeader {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding: 0 $padding-main-content;
+  padding: 0 $padding-mainContent;
   box-sizing: border-box;
   color: white;
   font-weight: 200;
@@ -17,20 +17,20 @@
   }
 }
 
-  .app-header-brand {
+  .appHeader-brand {
     text-decoration: none;
   }
 
-    .app-header-brand-subtext {
+    .appHeader-brand-subtext {
       margin: 0;
       color: white;
     }
 
-  .app-header-nav {
+  .appHeader-nav {
     position: relative;
   }
 
-    .app-header-nav-button {
+    .appHeader-nav-button {
       height: 30px;
       border: 0;
       padding: 0;
@@ -44,7 +44,7 @@
       }
     }
 
-      .app-header-nav-button-icon-bar {
+      .appHeader-nav-button-iconBar {
         display: block;
         width: 26px;
         height: 3px;
@@ -54,15 +54,15 @@
         background-clip: content-box;
       }
 
-      .app-header-nav-button-icon-bar:first-child {
+      .appHeader-nav-button-iconBar:first-child {
         padding-top: 0;
       }
 
-      .app-header-nav-button-icon-bar:last-child {
+      .appHeader-nav-button-iconBar:last-child {
         padding-bottom: 0;
       }
 
-    .app-header-nav-list {
+    .appHeader-nav-list {
       position: absolute;
       background-color: white;
       right: 0;
@@ -82,7 +82,7 @@
       }
     }
 
-      .app-header-nav-list-item {
+      .appHeader-nav-list-item {
         list-style-type: none;
         padding: 10px 0;
 
@@ -93,7 +93,7 @@
         }
       }
 
-        .app-header-nav-list-item-link {
+        .appHeader-nav-list-item-link {
           color: inherit;
           text-decoration: none;
 
@@ -103,7 +103,7 @@
           }
         }
 
-      .app-header-nav-list-item.mod-language {
+      .appHeader-nav-list-item.mod-language {
         padding-top: 35px;
 
         @media (min-width: $width-show-navigation) {
@@ -115,14 +115,14 @@
           }
         }
 
-        .app-header-nav-list-item-link {
+        .appHeader-nav-list-item-link {
           @media (min-width: $width-show-navigation) {
             margin-left: 10px;
           }
         }
       }
 
-    .app-header-nav-list.is-hidden-on-mobile {
+    .appHeader-nav-list.is-hidden-on-mobile {
       @media (max-width: $width-show-navigation + 1) {
         display: none;
       }
