@@ -94,6 +94,9 @@
         <% @quarter.expert_survey.experts.each do |expert| %>
           <div>
             <h4><%= expert.name %></h4>
+            <div>
+              <%= image_tag expert.avatar.url('50x50') %>
+            </div>
             <% if expert.bio %>
               <%= simple_format_no_tags(expert.bio) %>
             <% end %>
