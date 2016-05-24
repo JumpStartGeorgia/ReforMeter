@@ -175,7 +175,7 @@ class Quarter < ActiveRecord::Base
     default_options = {type: 'government', overall_score_only: false, is_published: true}
     options = options.reverse_merge(default_options)
 
-    hash = {type: nil, categories: [], series: []}
+    hash = {type: nil, color: {r: 0, g: 0, b: 0}, categories: [], series: []}
     quarters = oldest
     quarters = quarters.published if options[:is_published]
 
@@ -195,6 +195,10 @@ class Quarter < ActiveRecord::Base
 
       # load the x-axis labels (categories)
       hash[:categories] = quarters.map{|x| x.time_period}
+
+      # get the reform color
+      reform = Reform.find_by(id: reform_id)
+      hash[:color] = reform.color.to_hash if reform
 
       # get the data
       if options[:type] == 'stakeholder'

@@ -22,4 +22,19 @@ class ReformColor < ActiveRecord::Base
       self.b = colors[2].hex
     end
   end
+
+
+  #######################
+  ## METHODS
+
+  # get rgb colors in hash format
+  def to_hash
+    return {
+      hex: self.hex,
+      r: self.r,
+      g: self.g,
+      b: self.b
+    }
+  end
+
 end
