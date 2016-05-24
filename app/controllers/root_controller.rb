@@ -77,6 +77,11 @@ class RootController < ApplicationController
     @quarters = Quarter.published.recent
     @reforms = Reform.active.sorted.with_color
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
+
+    reform_survey_data = []
+    @reforms.each do |reform|
+      reform_survey_data << Quarter.reform_survey_data_for_charting(reform.id, overall_score_only: true)
+    end
   end
 
   def reform_show
@@ -112,6 +117,10 @@ class RootController < ApplicationController
     @methodology_expert = PageContent.find_by(name: 'methodology_expert')
 
     @quarters = Quarter.published.recent.with_expert_survey
+
+    # get the expert survey data for charting
+    survey_data = Quarter.expert_survey_data_for_charting
+
   end
 
   def expert_show
