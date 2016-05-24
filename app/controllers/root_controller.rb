@@ -131,10 +131,12 @@ class RootController < ApplicationController
 
       gon.charts = {
         overall: {
+          title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,
           icon: view_context.generate_change_icon(@quarter.expert_survey.overall_change)
         },
         performance: {
+          title: I18n.t('shared.categories.performance'),
           score: @quarter.expert_survey.category1_score.to_f,
           icon: view_context.generate_change_icon(@quarter.expert_survey.category1_change)
         },
