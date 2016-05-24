@@ -71,12 +71,12 @@ function setupExpertPage() {
 
     series: [{
       name: 'Overall',
-      data: [gon.expert_overall_score],
+      data: [gon.charts.performance.score],
       dataLabels: {
         borderWidth: 0,
         y: 70,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + gon.expert_overall_change_icon + '</div>'
+        format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + gon.charts.overall.icon + '</div>'
       }
     }]
 
@@ -125,12 +125,12 @@ function setupExpertPage() {
 
     series: [{
       name: 'Performance',
-      data: [gon.expert_performance_score],
+      data: [gon.charts.performance.score],
       dataLabels: {
         borderWidth: 0,
         y: 45,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.expert_performance_change_icon + '</div>'
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.performance.icon + '</div>'
       }
     }]
 
