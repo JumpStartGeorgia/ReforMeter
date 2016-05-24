@@ -1,82 +1,10 @@
 function setupExpertPage() {
-  var meter_gauge = {
-
-    chart: {
-      type: 'gauge'
-    },
+  overall_meter_gauge = {
 
     title: {
       text: 'Overall',
       y: 15
     },
-
-    pane: {
-      center: ['50%', '65%'],
-      startAngle: -90,
-      endAngle: 90,
-
-      background: {
-        backgroundColor: '#EEE',
-        innerRadius: '60%',
-        outerRadius: '100%',
-        shape: 'arc'
-      }
-
-    },
-
-    plotOptions: {
-      solidgauge: {
-        dataLabels: {
-          y: 5,
-          borderWidth: 0,
-          useHTML: true
-        }
-      }
-    },
-
-    tooltip: {
-      enabled: false
-    },
-
-    yAxis: {
-      lineWidth: 0,
-      minorTickInterval: null,
-      tickPixelInterval: 400,
-      tickWidth: 0,
-      labels: {
-        y: 16
-      },
-      min: 0,
-      max: 10
-    },
-
-    credits: {
-      enabled: false
-    },
-
-    series: [{
-      name: 'Overall',
-      data: [gon.expert_overall_score],
-      dataLabels: {
-    		borderWidth: 0,
-        y: 70,
-        useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + gon.expert_overall_change_icon + '</div>'
-      },
-      pivot: {
-      	backgroundColor: 'white'
-      },
-      dial: {
-      	baseWidth: 20,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        baseLength: 0,
-        radius: '60%',
-        rearLength: '10%'
-      }
-    }]
-  };
-
-  overall_meter_gauge = {
 
     pane: {
       size: '200'
@@ -139,10 +67,27 @@ function setupExpertPage() {
           }
         }
       ]
-    }
+    },
+
+    series: [{
+      name: 'Overall',
+      data: [gon.expert_overall_score],
+      dataLabels: {
+        borderWidth: 0,
+        y: 70,
+        useHTML: true,
+        format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + gon.expert_overall_change_icon + '</div>'
+      }
+    }]
+
   };
 
   performance_meter_gauge = {
+
+    title: {
+      text: 'Performance',
+      y: 15
+    },
 
     pane: {
       size: '100'
@@ -176,11 +121,23 @@ function setupExpertPage() {
           outerRadius: '100%'
         }
       ]
-    }
+    },
+
+    series: [{
+      name: 'Performance',
+      data: [gon.expert_performance_score],
+      dataLabels: {
+        borderWidth: 0,
+        y: 45,
+        useHTML: true,
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.expert_performance_change_icon + '</div>'
+      }
+    }]
+
   };
 
-  $('.js-become-expert-overall-chart').highcharts(Highcharts.merge(meter_gauge, overall_meter_gauge));
+  $('.js-become-expert-overall-chart').highcharts(Highcharts.merge(highchartsMeterGauge(), overall_meter_gauge));
 
-  $('.js-become-performance-overall-chart').highcharts(Highcharts.merge(meter_gauge, performance_meter_gauge));
+  $('.js-become-performance-overall-chart').highcharts(Highcharts.merge(highchartsMeterGauge(), performance_meter_gauge));
 
 }

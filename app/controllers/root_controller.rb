@@ -117,6 +117,9 @@ class RootController < ApplicationController
       gon.expert_overall_score = @quarter.expert_survey.overall_score.to_f
       gon.expert_overall_change_icon = view_context.generate_change_icon(@quarter.expert_survey.overall_change)
 
+      gon.expert_performance_score = @quarter.expert_survey.category1_score.to_f
+      gon.expert_performance_change_icon = view_context.generate_change_icon(@quarter.expert_survey.category1_change)
+
     rescue ActiveRecord::RecordNotFound => e
       redirect_to experts_path,
                 alert: t('shared.msgs.does_not_exist')
