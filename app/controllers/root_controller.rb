@@ -138,9 +138,20 @@ class RootController < ApplicationController
       # get the expert survey data for charting
       survey_data = Quarter.expert_survey_data_for_charting
 
-      # set the chart data into gon variables
-      gon.expert_overall_score = @quarter.expert_survey.overall_score.to_f
-      gon.expert_overall_change_icon = view_context.generate_change_icon(@quarter.expert_survey.overall_change)
+      gon.charts = {
+        overall: {
+          score: @quarter.expert_survey.overall_score.to_f,
+          icon: view_context.generate_change_icon(@quarter.expert_survey.overall_change)
+        },
+        performance: {
+          score: @quarter.expert_survey.category1_score.to_f,
+          icon: view_context.generate_change_icon(@quarter.expert_survey.category1_change)
+        },
+        goals: {
+          score: @quarter.expert_survey.category2_score.to_f,
+          icon: view_context.generate_change_icon(@quarter.expert_survey.category2_change)
+        }
+      }
 
     rescue ActiveRecord::RecordNotFound => e
       redirect_to experts_path,

@@ -21,13 +21,16 @@
   </div>
 <% end %>
 
-<div class='js-become-expert-overall-chart' style="width: 250px; height: 220px;"></div>
-<div class='js-become-performance-overall-chart' style="width: 250px; height: 220px;"></div>
+<section class='meterGaugesContainer'>
+  <div class='js-become-expert-overall-chart' style="width: 250px; height: 220px;"></div>
+  <div class='js-become-performance-overall-chart' style="width: 125px; height: 220px;"></div>
+  <div class='js-become-goals-overall-chart' style="width: 125px; height: 220px;"></div>
+</section>
 
 <ul>
   <li>
-      <%= t('shared.categories.overall') %>:
-      <%= @quarter.expert_survey.overall_score %> <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
+    <%= t('shared.categories.overall') %>:
+    <%= @quarter.expert_survey.overall_score %> <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
   </li>
   <li>
     <%= t('shared.categories.performance') %>:
