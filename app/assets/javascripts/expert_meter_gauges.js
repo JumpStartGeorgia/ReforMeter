@@ -1,6 +1,4 @@
-function setupExpertPage() {
-  createExpertOverallMeterGauge();
-
+function createPerformanceMeterGauge() {
   var performance_meter_gauge = {
 
     title: {
@@ -21,6 +19,11 @@ function setupExpertPage() {
 
   };
 
+  $('.js-become-performance-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), performance_meter_gauge));
+
+}
+
+function createGoalsMeterGauge() {
   var goals_meter_gauge = {
 
     title: {
@@ -41,8 +44,11 @@ function setupExpertPage() {
 
   };
 
-  $('.js-become-performance-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), performance_meter_gauge));
-
   $('.js-become-goals-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), goals_meter_gauge));
+}
 
+function setupExpertPage() {
+  createExpertOverallMeterGauge();
+  createPerformanceMeterGauge();
+  createGoalsMeterGauge();
 }
