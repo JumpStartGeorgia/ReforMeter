@@ -1,114 +1,130 @@
-<% page_title t('.title', time: @quarter.time_period) %>
+<div class='contentSection mod-overlap-top-image'>
 
-<% if @active_quarters %>
+  <h1 class='contentSection-header'>
+    <%= t('.title', time: @quarter.time_period) %>
+  </h1>
 
-  <%= t('shared.common.change_time') %>:
-  <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= experts_path %>'>
+  <div class='contentSection-body'>
 
-    <% @active_quarters.each do |active_quarter| %>
-      <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
-        <%= active_quarter[0] %>
-      </option>
+    <% if @active_quarters %>
+
+      <%= t('shared.common.change_time') %>:
+      <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= experts_path %>'>
+
+        <% @active_quarters.each do |active_quarter| %>
+          <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
+            <%= active_quarter[0] %>
+          </option>
+        <% end %>
+
+      </select>
+
     <% end %>
 
-  </select>
+    <% if @quarter.expert_survey.summary %>
+      <div>
+        <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+      </div>
+    <% end %>
 
-<% end %>
+    <section class='meterGaugesContainer'>
+      <div class='js-become-expert-overall-chart' style="width: 250px; height: 220px;"></div>
+      <div class='js-become-expert-performance-chart' style="width: 125px; height: 220px;"></div>
+      <div class='js-become-expert-goals-chart' style="width: 125px; height: 220px;"></div>
+      <div class='js-become-expert-progress-chart' style="width: 125px; height: 220px;"></div>
+    </section>
 
-<% if @quarter.expert_survey.summary %>
-  <div>
-    <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
-  </div>
-<% end %>
+    <ul>
+      <li>
+        <%= t('shared.categories.overall') %>:
+        <%= @quarter.expert_survey.overall_score %> <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
+      </li>
+      <li>
+        <%= t('shared.categories.performance') %>:
+        <%= @quarter.expert_survey.category1_score %> <%= generate_change_icon(@quarter.expert_survey.category1_change) %>
+      </li>
+      <li>
+        <%= t('shared.categories.goals') %>:
+        <%= @quarter.expert_survey.category2_score %> <%= generate_change_icon(@quarter.expert_survey.category2_change) %>
+      </li>
+      <li>
+        <%= t('shared.categories.progress') %>:
+        <%= @quarter.expert_survey.category3_score %> <%= generate_change_icon(@quarter.expert_survey.category3_change) %>
+      </li>
+    </ul>
 
-<section class='meterGaugesContainer'>
-  <div class='js-become-expert-overall-chart' style="width: 250px; height: 220px;"></div>
-  <div class='js-become-expert-performance-chart' style="width: 125px; height: 220px;"></div>
-  <div class='js-become-expert-goals-chart' style="width: 125px; height: 220px;"></div>
-  <div class='js-become-expert-progress-chart' style="width: 125px; height: 220px;"></div>
-</section>
-
-<ul>
-  <li>
-    <%= t('shared.categories.overall') %>:
-    <%= @quarter.expert_survey.overall_score %> <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
-  </li>
-  <li>
-    <%= t('shared.categories.performance') %>:
-    <%= @quarter.expert_survey.category1_score %> <%= generate_change_icon(@quarter.expert_survey.category1_change) %>
-  </li>
-  <li>
-    <%= t('shared.categories.goals') %>:
-    <%= @quarter.expert_survey.category2_score %> <%= generate_change_icon(@quarter.expert_survey.category2_change) %>
-  </li>
-  <li>
-    <%= t('shared.categories.progress') %>:
-    <%= @quarter.expert_survey.category3_score %> <%= generate_change_icon(@quarter.expert_survey.category3_change) %>
-  </li>
-</ul>
-
-<div>
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab"><%= t('.header.chart') %></a></li>
-    <li role="presentation"><a href="#methodology" aria-controls="methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
-  </ul>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="chart">
-      insert chart here
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="methodology">
-      <% if @methodology_expert %>
-        <div>
-          <%= simple_format_no_tags(@methodology_expert.content) %>
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab"><%= t('.header.chart') %></a></li>
+        <li role="presentation"><a href="#methodology" aria-controls="methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="chart">
+          insert chart here
         </div>
-      <% else %>
-        <p>
-         <%= t('.no_methodology') %>
-        </p>
-      <% end %>
+
+        <div role="tabpanel" class="tab-pane" id="methodology">
+          <% if @methodology_expert %>
+            <div>
+              <%= simple_format_no_tags(@methodology_expert.content) %>
+            </div>
+          <% else %>
+            <p>
+             <%= t('.no_methodology') %>
+            </p>
+          <% end %>
+        </div>
+      </div>
     </div>
+
   </div>
+
 </div>
 
+<div class='contentSection'>
 
-<div>
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#findings" aria-controls="findings" role="tab" data-toggle="tab"><%= t('.header.findings') %></a></li>
-    <li role="presentation"><a href="#experts" aria-controls="experts" role="tab" data-toggle="tab"><%= t('.header.experts') %></a></li>
-  </ul>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="findings">
-      <% if @quarter.expert_survey.details %>
-        <div>
-          <%= simple_format_no_tags(@quarter.expert_survey.details) %>
-        </div>
-      <% else %>
-        <p>
-          <%= t('.no_details') %>
-        </p>
-      <% end %>
-    </div>
+  <div class='contentSection-header'>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#findings" aria-controls="findings" role="tab" data-toggle="tab"><%= t('.header.findings') %></a></li>
+      <li role="presentation"><a href="#experts" aria-controls="experts" role="tab" data-toggle="tab"><%= t('.header.experts') %></a></li>
+    </ul>
+  </div>
 
-    <div role="tabpanel" class="tab-pane" id="experts">
-      <% if @quarter.expert_survey.experts %>
-        <% @quarter.expert_survey.experts.each do |expert| %>
+  <div class='contentSection-body'>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="findings">
+        <% if @quarter.expert_survey.details %>
           <div>
-            <h4><%= expert.name %></h4>
-            <div>
-              <%= image_tag expert.avatar.url('50x50') %>
-            </div>
-            <% if expert.bio %>
-              <%= simple_format_no_tags(expert.bio) %>
-            <% end %>
+            <%= simple_format_no_tags(@quarter.expert_survey.details) %>
           </div>
+        <% else %>
+          <p>
+            <%= t('.no_details') %>
+          </p>
         <% end %>
-      <% else %>
-        <p>
-         <%= t('.no_experts') %>
-        </p>
-      <% end %>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="experts">
+        <% if @quarter.expert_survey.experts %>
+          <% @quarter.expert_survey.experts.each do |expert| %>
+            <div>
+              <h4><%= expert.name %></h4>
+              <div>
+                <%= image_tag expert.avatar.url('50x50') %>
+              </div>
+              <% if expert.bio %>
+                <%= simple_format_no_tags(expert.bio) %>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>
+           <%= t('.no_experts') %>
+          </p>
+        <% end %>
+      </div>
     </div>
+
   </div>
 
 </div>
