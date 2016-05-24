@@ -137,6 +137,10 @@ class RootController < ApplicationController
         performance: {
           score: @quarter.expert_survey.category1_score.to_f,
           icon: view_context.generate_change_icon(@quarter.expert_survey.category1_change)
+        },
+        goals: {
+          score: @quarter.expert_survey.category2_score.to_f,
+          icon: view_context.generate_change_icon(@quarter.expert_survey.category2_change)
         }
       }
 

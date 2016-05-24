@@ -1,45 +1,11 @@
 function setupExpertPage() {
   createExpertOverallMeterGauge();
 
-  performance_meter_gauge = {
+  var performance_meter_gauge = {
 
     title: {
       text: 'Performance',
       y: 15
-    },
-
-    pane: {
-      size: '100'
-    },
-
-    yAxis: {
-      plotBands: [
-        {
-          borderWidth: 2,
-          borderColor: 'white',
-          from: 0,
-          to: 3.3,
-          color: '#5AD7F9',
-          innerRadius: '40%',
-          outerRadius: '100%'
-        },{
-        	borderWidth: 2,
-          borderColor: 'white',
-          from: 3.3,
-          to: 6.6,
-          color: '#2DB9EA',
-          innerRadius: '40%',
-          outerRadius: '100%'
-        },{
-        	borderWidth: 2,
-          borderColor: 'white',
-          from: 6.6,
-          to: 10,
-          color: '#1599D6',
-          innerRadius: '40%',
-          outerRadius: '100%'
-        }
-      ]
     },
 
     series: [{
@@ -55,8 +21,28 @@ function setupExpertPage() {
 
   };
 
+  var goals_meter_gauge = {
 
+    title: {
+      text: 'Goals',
+      y: 15
+    },
 
-  $('.js-become-performance-overall-chart').highcharts(Highcharts.merge(highchartsMeterGauge(), performance_meter_gauge));
+    series: [{
+      name: 'Goals',
+      data: [gon.charts.goals.score],
+      dataLabels: {
+        borderWidth: 0,
+        y: 45,
+        useHTML: true,
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.goals.icon + '</div>'
+      }
+    }]
+
+  };
+
+  $('.js-become-performance-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), performance_meter_gauge));
+
+  $('.js-become-goals-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), goals_meter_gauge));
 
 }
