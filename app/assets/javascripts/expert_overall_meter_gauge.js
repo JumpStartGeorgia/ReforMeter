@@ -1,8 +1,9 @@
 function createExpertOverallMeterGauge() {
-  overall_meter_gauge = {
+  var chart_data = gon.charts.overall;
+  var overall_meter_gauge = {
 
     title: {
-      text: 'Overall',
+      text: chart_data.title,
       y: 15
     },
 
@@ -70,13 +71,23 @@ function createExpertOverallMeterGauge() {
     },
 
     series: [{
-      name: 'Overall',
-      data: [gon.charts.performance.score],
+      name: chart_data.title,
+      data: [chart_data.score],
       dataLabels: {
         borderWidth: 0,
         y: 70,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + gon.charts.overall.icon + '</div>'
+        format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + chart_data.icon + '</div>'
+      },
+      pivot: {
+        backgroundColor: 'white'
+      },
+      dial: {
+        baseWidth: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        baseLength: 0,
+        radius: '60%',
+        rearLength: '10%'
       }
     }]
 

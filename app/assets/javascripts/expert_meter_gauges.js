@@ -1,54 +1,118 @@
 function createPerformanceMeterGauge() {
-  var performance_meter_gauge = {
+  var chart_data = gon.charts.performance;
+  var $chart = $('.js-become-expert-performance-chart');
+  var customOptions = {
 
     title: {
-      text: 'Performance',
+      text: chart_data.title,
       y: 15
     },
 
     series: [{
-      name: 'Performance',
-      data: [gon.charts.performance.score],
+      name: chart_data.title,
+      data: [chart_data.score],
       dataLabels: {
         borderWidth: 0,
         y: 45,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.performance.icon + '</div>'
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  chart_data.icon + '</div>'
+      },
+      pivot: {
+        backgroundColor: 'white'
+      },
+      dial: {
+        baseWidth: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        baseLength: 0,
+        radius: '60%',
+        rearLength: '10%'
       }
     }]
 
   };
 
-  $('.js-become-performance-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), performance_meter_gauge));
-
+  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                    customOptions));
 }
 
 function createGoalsMeterGauge() {
-  var goals_meter_gauge = {
+  var chart_data = gon.charts.goals;
+  var $chart = $('.js-become-expert-goals-chart');
+  var customOptions = {
 
     title: {
-      text: 'Goals',
+      text: chart_data.title,
       y: 15
     },
 
     series: [{
-      name: 'Goals',
-      data: [gon.charts.goals.score],
+      name: chart_data.title,
+      data: [chart_data.score],
       dataLabels: {
         borderWidth: 0,
         y: 45,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.goals.icon + '</div>'
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  chart_data.icon + '</div>'
+      },
+      pivot: {
+        backgroundColor: 'white'
+      },
+      dial: {
+        baseWidth: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        baseLength: 0,
+        radius: '60%',
+        rearLength: '10%'
       }
     }]
 
   };
 
-  $('.js-become-goals-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), goals_meter_gauge));
+  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                    customOptions));
 }
+
+function createProgressMeterGauge() {
+  var chart_data = gon.charts.progress;
+  var $chart = $('.js-become-expert-progress-chart');
+  var customOptions = {
+
+    title: {
+      text: chart_data.title,
+      y: 15
+    },
+
+    series: [{
+      name: chart_data.title,
+      data: [chart_data.score],
+      dataLabels: {
+        borderWidth: 0,
+        y: 45,
+        useHTML: true,
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  chart_data.icon + '</div>'
+      },
+      pivot: {
+        backgroundColor: 'white'
+      },
+      dial: {
+        baseWidth: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        baseLength: 0,
+        radius: '60%',
+        rearLength: '10%'
+      }
+    }]
+
+  };
+
+  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                    customOptions));
+}
+
 
 function setupExpertPage() {
   createExpertOverallMeterGauge();
   createPerformanceMeterGauge();
   createGoalsMeterGauge();
+  createProgressMeterGauge();
 }

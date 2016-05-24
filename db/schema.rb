@@ -70,30 +70,6 @@ ActiveRecord::Schema.define(version: 20160524100407) do
 
   add_index "experts", ["is_active"], name: "index_experts_on_is_active", using: :btree
 
-  create_table "external_indicator_translations", force: :cascade do |t|
-    t.integer  "external_indicator_id", limit: 4,     null: false
-    t.string   "locale",                limit: 255,   null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "title",                 limit: 255
-    t.text     "description",           limit: 65535
-    t.text     "data",                  limit: 65535
-  end
-
-  add_index "external_indicator_translations", ["external_indicator_id"], name: "index_external_indicator_translations_on_external_indicator_id", using: :btree
-  add_index "external_indicator_translations", ["locale"], name: "index_external_indicator_translations_on_locale", using: :btree
-
-  create_table "external_indicators", force: :cascade do |t|
-    t.integer  "indicator_type",    limit: 1
-    t.integer  "chart_type",        limit: 1
-    t.integer  "scale_type",        limit: 1
-    t.integer  "min",               limit: 2
-    t.integer  "max",               limit: 2
-    t.boolean  "show_on_home_page",           default: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-  end
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
     t.integer  "sluggable_id",   limit: 4,   null: false
@@ -147,10 +123,12 @@ ActiveRecord::Schema.define(version: 20160524100407) do
   add_index "page_content_translations", ["page_content_id"], name: "index_page_content_translations_on_page_content_id", using: :btree
 
   create_table "page_contents", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "page_contents", ["name"], name: "index_page_contents_on_name", using: :btree
 
   create_table "quarter_translations", force: :cascade do |t|
     t.integer  "quarter_id",          limit: 4,   null: false

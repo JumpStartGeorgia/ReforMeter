@@ -3,13 +3,23 @@
   <%= bootstrap_flash %>
 
   <% if content_for? :page_title %>
-    <h1 class='mainContent-header'>
-      <%= yield(:page_title) %>
-    </h1>
-  <% end %>
 
-  <div class='mainContent-body'>
+    <div class='contentSection mod-overlap-top-image'>
+
+      <h1 class='contentSection-header'>
+        <%= yield(:page_title) %>
+      </h1>
+
+      <div class='contentSection-body'>
+        <%= yield %>
+      </div>
+
+    </div>
+
+  <% else %>
+
     <%= yield %>
-  </div>
+
+  <% end %>
 
 </main>
