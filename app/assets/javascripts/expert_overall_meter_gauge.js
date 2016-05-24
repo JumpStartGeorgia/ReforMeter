@@ -77,6 +77,16 @@ function createExpertOverallMeterGauge() {
         y: 70,
         useHTML: true,
         format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + gon.charts.overall.icon + '</div>'
+      },
+      pivot: {
+        backgroundColor: 'white'
+      },
+      dial: {
+        baseWidth: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        baseLength: 0,
+        radius: '60%',
+        rearLength: '10%'
       }
     }]
 

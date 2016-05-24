@@ -47,20 +47,7 @@ function highchartsMeterGauge() {
 
     credits: {
       enabled: false
-    },
-
-    series: [{
-      pivot: {
-      	backgroundColor: 'white'
-      },
-      dial: {
-      	baseWidth: 20,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        baseLength: 0,
-        radius: '60%',
-        rearLength: '10%'
-      }
-    }]
+    }
   };
 }
 

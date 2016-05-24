@@ -1,5 +1,6 @@
 function createPerformanceMeterGauge() {
-  var performance_meter_gauge = {
+  var $chart = $('.js-become-performance-overall-chart');
+  var customOptions = {
 
     title: {
       text: 'Performance',
@@ -14,17 +15,28 @@ function createPerformanceMeterGauge() {
         y: 45,
         useHTML: true,
         format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.performance.icon + '</div>'
+      },
+      pivot: {
+        backgroundColor: 'white'
+      },
+      dial: {
+        baseWidth: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        baseLength: 0,
+        radius: '60%',
+        rearLength: '10%'
       }
     }]
 
   };
 
-  $('.js-become-performance-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), performance_meter_gauge));
-
+  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                    customOptions));
 }
 
 function createGoalsMeterGauge() {
-  var goals_meter_gauge = {
+  var $chart = $('.js-become-goals-overall-chart');
+  var customOptions = {
 
     title: {
       text: 'Goals',
@@ -39,16 +51,65 @@ function createGoalsMeterGauge() {
         y: 45,
         useHTML: true,
         format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.goals.icon + '</div>'
+      },
+      pivot: {
+        backgroundColor: 'white'
+      },
+      dial: {
+        baseWidth: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        baseLength: 0,
+        radius: '60%',
+        rearLength: '10%'
       }
     }]
 
   };
 
-  $('.js-become-goals-overall-chart').highcharts(Highcharts.merge(highchartsSmallMeterGauge(), goals_meter_gauge));
+  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                    customOptions));
 }
+
+function createProgressMeterGauge() {
+  var $chart = $('.js-become-expert-progress-chart');
+  var customOptions = {
+
+    title: {
+      text: 'Progress',
+      y: 15
+    },
+
+    series: [{
+      name: 'Progress',
+      data: [gon.charts.progress.score],
+      dataLabels: {
+        borderWidth: 0,
+        y: 45,
+        useHTML: true,
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.progress.icon + '</div>'
+      },
+      pivot: {
+        backgroundColor: 'white'
+      },
+      dial: {
+        baseWidth: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        baseLength: 0,
+        radius: '60%',
+        rearLength: '10%'
+      }
+    }]
+
+  };
+
+  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                    customOptions));
+}
+
 
 function setupExpertPage() {
   createExpertOverallMeterGauge();
   createPerformanceMeterGauge();
   createGoalsMeterGauge();
+  createProgressMeterGauge();
 }

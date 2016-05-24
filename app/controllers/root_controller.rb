@@ -141,6 +141,10 @@ class RootController < ApplicationController
         goals: {
           score: @quarter.expert_survey.category2_score.to_f,
           icon: view_context.generate_change_icon(@quarter.expert_survey.category2_change)
+        },
+        progress: {
+          score: @quarter.expert_survey.category3_score.to_f,
+          icon: view_context.generate_change_icon(@quarter.expert_survey.category3_change)
         }
       }
 
