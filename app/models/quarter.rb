@@ -30,6 +30,7 @@ class Quarter < ActiveRecord::Base
   ## RELATIONSHIPS
   has_one :expert_survey, dependent: :destroy
   has_many :reform_surveys, dependent: :destroy
+  has_many :news, dependent: :destroy
 
   accepts_nested_attributes_for :expert_survey, reject_if: :all_blank
   accepts_nested_attributes_for :reform_surveys, reject_if: :all_blank

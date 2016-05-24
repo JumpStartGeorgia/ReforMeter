@@ -215,6 +215,23 @@ if ENV['load_test_data'].present?
       rs4.save
 
     end
+
+
+    # create news
+    puts 'creating news'
+    path = "#{Rails.root}/db/test_image_files/"
+    News.create(quarter_id: q4.id, title: 'This is expert news', content: '<p>this is expert news for Q4 2015</p>', url: 'http://google.ge')
+    News.create(quarter_id: q4.id, reform_id: reform3.id, title: 'This is reform news', content: "<p>this is #{reform3.name} reform news for Q4 2015</p>", url: 'http://google.ge')
+    News.create(quarter_id: q4.id, reform_id: reform3.id, title: 'This is more reform news', content: '<p>this is additional expert news for Q4 2015 with image!</p>', url: 'http://google.ge', image: File.new(path + '1.jpg'))
+    News.create(quarter_id: q4.id, reform_id: reform2.id, title: 'This is reform news', content: "<p>this is #{reform3.name} reform news for Q4 2015</p>", url: 'http://google.ge')
+    News.create(quarter_id: q4.id, reform_id: reform2.id, title: 'This is more reform news', content: '<p>this is additional expert news for Q4 2015 with image!</p>', url: 'http://google.ge', image: File.new(path + '1.jpg'))
+    News.create(quarter_id: q3.id, title: 'This is expert news', content: '<p>this is expert news for Q3 2015</p>', url: 'http://google.ge', image: File.new(path + '2.jpg'))
+    News.create(quarter_id: q3.id, title: 'This is more expert news', content: '<p>this is more expert news for Q3 2015</p>', url: 'http://google.ge', image: File.new(path + '3.jpg'))
+    News.create(quarter_id: q3.id, reform_id: reform2.id, title: 'This is reform news', content: "<p>this is #{reform3.name} reform news for Q4 2015</p>", url: 'http://google.ge', image: File.new(path + '4.jpg'))
+    News.create(quarter_id: q3.id, reform_id: reform1.id, title: 'This is reform news', content: "<p>this is #{reform3.name} reform news for Q4 2015</p>", url: 'http://google.ge')
+
+
+
     puts 'LOADING TEST DATA DONE'
   end
 end

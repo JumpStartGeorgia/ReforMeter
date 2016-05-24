@@ -99,6 +99,8 @@ class RootController < ApplicationController
       @active_quarters = Quarter.active_quarters_array
       @methodology_government = PageContent.find_by(name: 'methodology_government')
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
+      @news = News.by_reform_quarter(@quarter.id, @reform.id)
+      logger.debug "======= reform id #{@reform.id}; quarter id = #{@quarter.id}, news length = #{@news.length}"
 
       # get the reform survey data for charting
       survey_data = {
@@ -134,6 +136,7 @@ class RootController < ApplicationController
 
       @active_quarters = Quarter.active_quarters_array
       @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+      @news = News.by_expert_quarter(@quarter.id)
 
       # get the expert survey data for charting
       survey_data = Quarter.expert_survey_data_for_charting
