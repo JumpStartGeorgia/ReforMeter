@@ -104,7 +104,7 @@ class Quarter < ActiveRecord::Base
       CSV.generate do |csv|
         csv << header
 
-        published.recent.with_expert_survey.each do |q|
+        published.recent.each do |q|
           survey = surveys.select{|x| x.quarter_id == q.id}.first
           if survey
             csv << [
@@ -133,10 +133,16 @@ class Quarter < ActiveRecord::Base
   # get the expert survey data for all quarters
   # formatted in hash/json format
   # format: {categories: [x-axis labels], series: [{name: 'name', data: []}]}
-  def self.expert_survey_data_for_charting(is_published=true)
+  # options:
+  # - overall_score_only - indicates whether just the overall score should be returned or overall and all category scores (default false)
+  # - is_published - indicates if just the published quarters should be returned (default true)
+  def self.expert_survey_data_for_charting(options={})
+    default_options = {overall_score_only: false, is_published: true}
+    options = options.reverse_merge(default_options)
+
     hash = {categories: [], series: []}
     quarters = oldest
-    quarters = quarters.published if is_published
+    quarters = quarters.published if options[:is_published]
 
     if quarters.present?
       # load the x-axis labels (categories)
@@ -145,12 +151,80 @@ class Quarter < ActiveRecord::Base
       # get the data
       # overall
       hash[:series] << {name: I18n.t('shared.categories.overall'), data: quarters.map{|x| x.expert_survey.overall_score.to_f}}
-      # category 1
-      hash[:series] << {name: I18n.t('shared.categories.performance'), data: quarters.map{|x| x.expert_survey.category1_score.to_f}}
-      # category 2
-      hash[:series] << {name: I18n.t('shared.categories.goals'), data: quarters.map{|x| x.expert_survey.category2_score.to_f}}
-      # category 3
-      hash[:series] << {name: I18n.t('shared.categories.progress'), data: quarters.map{|x| x.expert_survey.category3_score.to_f}}
+      if !options[:overall_score_only]
+        # category 1
+        hash[:series] << {name: I18n.t('shared.categories.performance'), data: quarters.map{|x| x.expert_survey.category1_score.to_f}}
+        # category 2
+        hash[:series] << {name: I18n.t('shared.categories.goals'), data: quarters.map{|x| x.expert_survey.category2_score.to_f}}
+        # category 3
+        hash[:series] << {name: I18n.t('shared.categories.progress'), data: quarters.map{|x| x.expert_survey.category3_score.to_f}}
+      end
+    end
+
+    return hash
+  end
+
+  # get the reform survey data for all quarters
+  # formatted in hash/json format
+  # format: {categories: [x-axis labels], series: [{name: 'name', data: []}]}
+  # options:
+  # - type: indicate if want government or stakeholder data (default government)
+  # - overall_score_only - indicates whether just the overall score should be returned or overall and all category scores (default false)
+  # - is_published - indicates if just the published quarters should be returned (default true)
+  def self.reform_survey_data_for_charting(reform_id, options={})
+    default_options = {type: 'government', overall_score_only: false, is_published: true}
+    options = options.reverse_merge(default_options)
+
+    hash = {type: nil, categories: [], series: []}
+    quarters = oldest
+    quarters = quarters.published if options[:is_published]
+
+    # get all of the survey results for this reform
+    surveys = ReformSurvey.for_reform(reform_id)
+
+    if quarters.present? && surveys.present?
+      # make sure survey data is in correct quarter order
+      temp = []
+      quarters.each do |q|
+        s = surveys.select{|x| x.quarter_id == q.id}.first
+        if s.present?
+          temp << s
+        end
+      end
+      surveys = temp
+
+      # load the x-axis labels (categories)
+      hash[:categories] = quarters.map{|x| x.time_period}
+
+      # get the data
+      if options[:type] == 'stakeholder'
+        hash[:type] = options[:type]
+        # overall
+        hash[:series] << {name: I18n.t('shared.categories.overall'), data: surveys.map{|x| x.stakeholder_overall_score.to_f}}
+        if !options[:overall_score_only]
+          # category 1
+          hash[:series] << {name: I18n.t('shared.categories.performance'), data: surveys.map{|x| x.stakeholder_category1_score.to_f}}
+          # category 2
+          hash[:series] << {name: I18n.t('shared.categories.goals'), data: surveys.map{|x| x.stakeholder_category2_score.to_f}}
+          # category 3
+          hash[:series] << {name: I18n.t('shared.categories.progress'), data: surveys.map{|x| x.stakeholder_category3_score.to_f}}
+        end
+      else #government
+        hash[:type] = 'government'
+
+        # overall
+        hash[:series] << {name: I18n.t('shared.categories.overall'), data: surveys.map{|x| x.government_overall_score.to_f}}
+        if !options[:overall_score_only]
+          # category 1
+          hash[:series] << {name: I18n.t('shared.categories.initial_setup'), data: surveys.map{|x| x.government_category1_score.to_f}}
+          # category 2
+          hash[:series] << {name: I18n.t('shared.categories.capacity_building'), data: surveys.map{|x| x.government_category2_score.to_f}}
+          # category 3
+          hash[:series] << {name: I18n.t('shared.categories.infastructure_budgeting'), data: surveys.map{|x| x.government_category3_score.to_f}}
+          # category 4
+          hash[:series] << {name: I18n.t('shared.categories.legislation_regulation'), data: surveys.map{|x| x.government_category4_score.to_f}}
+        end
+      end
     end
 
     return hash
