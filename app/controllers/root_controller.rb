@@ -110,8 +110,11 @@ class RootController < ApplicationController
       @active_quarters = Quarter.active_quarters_array
       @methodology_expert = PageContent.find_by(name: 'methodology_expert')
 
-      gon.expert_overall_score = @quarter.expert_survey.overall_score.to_f
+      # get the expert survey data for charting
+      survey_data = Quarter.expert_survey_data_for_charting
 
+      # set the chart data into gon variables
+      gon.expert_overall_score = @quarter.expert_survey.overall_score.to_f
       gon.expert_overall_change_icon = view_context.generate_change_icon(@quarter.expert_survey.overall_change)
 
     rescue ActiveRecord::RecordNotFound => e
