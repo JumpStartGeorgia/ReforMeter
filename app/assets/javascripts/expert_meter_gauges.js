@@ -1,5 +1,5 @@
 function createPerformanceMeterGauge() {
-  var $chart = $('.js-become-performance-overall-chart');
+  var $chart = $('.js-become-expert-performance-chart');
   var customOptions = {
 
     title: {
@@ -35,7 +35,7 @@ function createPerformanceMeterGauge() {
 }
 
 function createGoalsMeterGauge() {
-  var $chart = $('.js-become-goals-overall-chart');
+  var $chart = $('.js-become-expert-goals-chart');
   var customOptions = {
 
     title: {
