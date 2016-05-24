@@ -4,6 +4,16 @@ class RootController < ApplicationController
     @home_page_about = PageContent.find_by(name: 'home_page_about')
 
     @quarter = Quarter.latest
+    @reforms = Reform.active.sorted.highlight
+
+    # get the survey data for charting
+    expert_survey_data = Quarter.expert_survey_data_for_charting(overall_score_only: true)
+
+    reform_survey_data = []
+    @reforms.each do |reform|
+      reform_survey_data << Quarter.reform_survey_data_for_charting(reform.id, overall_score_only: true)
+    end
+
   end
 
   def about
@@ -84,6 +94,12 @@ class RootController < ApplicationController
       @active_quarters = Quarter.active_quarters_array
       @methodology_government = PageContent.find_by(name: 'methodology_government')
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
+
+      # get the reform survey data for charting
+      survey_data = {
+        government: Quarter.reform_survey_data_for_charting(@reform.id),
+        stakeholder: Quarter.reform_survey_data_for_charting(@reform.id, type: 'stakeholder')
+      }
 
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to experts_path,

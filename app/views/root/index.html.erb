@@ -42,7 +42,11 @@
 
     <h2><%= t('.header.government') %></h2>
 
-    <div>insert chart here</div>
+    <% @reforms.each do |reform| %>
+      <div data-id="<%= reform.slug %>">
+        <%= reform.name %>
+      </div>
+    <% end %>
 
 
   </div>
