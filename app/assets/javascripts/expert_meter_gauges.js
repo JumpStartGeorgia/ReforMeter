@@ -1,20 +1,21 @@
 function createPerformanceMeterGauge() {
+  var chart_data = gon.charts.performance;
   var $chart = $('.js-become-expert-performance-chart');
   var customOptions = {
 
     title: {
-      text: 'Performance',
+      text: chart_data.title,
       y: 15
     },
 
     series: [{
-      name: 'Performance',
-      data: [gon.charts.performance.score],
+      name: chart_data.title,
+      data: [chart_data.score],
       dataLabels: {
         borderWidth: 0,
         y: 45,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.performance.icon + '</div>'
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  chart_data.icon + '</div>'
       },
       pivot: {
         backgroundColor: 'white'
@@ -35,22 +36,23 @@ function createPerformanceMeterGauge() {
 }
 
 function createGoalsMeterGauge() {
+  var chart_data = gon.charts.goals;
   var $chart = $('.js-become-expert-goals-chart');
   var customOptions = {
 
     title: {
-      text: 'Goals',
+      text: chart_data.title,
       y: 15
     },
 
     series: [{
-      name: 'Goals',
-      data: [gon.charts.goals.score],
+      name: chart_data.title,
+      data: [chart_data.score],
       dataLabels: {
         borderWidth: 0,
         y: 45,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.goals.icon + '</div>'
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  chart_data.icon + '</div>'
       },
       pivot: {
         backgroundColor: 'white'
@@ -71,22 +73,23 @@ function createGoalsMeterGauge() {
 }
 
 function createProgressMeterGauge() {
+  var chart_data = gon.charts.progress;
   var $chart = $('.js-become-expert-progress-chart');
   var customOptions = {
 
     title: {
-      text: 'Progress',
+      text: chart_data.title,
       y: 15
     },
 
     series: [{
-      name: 'Progress',
-      data: [gon.charts.progress.score],
+      name: chart_data.title,
+      data: [chart_data.score],
       dataLabels: {
         borderWidth: 0,
         y: 45,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  gon.charts.progress.icon + '</div>'
+        format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  chart_data.icon + '</div>'
       },
       pivot: {
         backgroundColor: 'white'
