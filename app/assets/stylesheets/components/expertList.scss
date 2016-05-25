@@ -1,4 +1,4 @@
-$expert-image-size: 50px;
+$expert-image-size: 100px;
 
 .expertList {
   padding: 0;
@@ -7,13 +7,16 @@ $expert-image-size: 50px;
   .expertList-item {
     list-style-type: none;
     position: relative;
-    padding-left: $expert-image-size;
+    padding-left: $expert-image-size + 10px;
+    min-height: $expert-image-size;
+    margin: 10px 0;
   }
 
     .expertList-item-heading {
       color: #000;
       font-weight: 400;
       font-size: 2rem;
+      margin: 10px 0 10px;
     }
 
     .expertList-item-image {

@@ -14,14 +14,10 @@ class Expert < ActiveRecord::Base
   has_attached_file :avatar,
                     :url => "/system/expert_avatar/:id/:style/:basename.:extension",
                     :styles => {
-                        :'168x168' => {:geometry => "168x168#"},
-                        :'50x50' => {:geometry => "50x50#"},
-                        :'40x40' => {:geometry => "40x40#"}
+                        :'100x100' => {:geometry => "100x100#"}
                     },
                     :convert_options => {
-                      :'168x168' => '-quality 85',
-                      :'50x50' => '-quality 85',
-                      :'40x40' => '-quality 85'
+                      :'100x100' => '-quality 85'
                     },
                     :default_url => "/assets/missing/expert_avatar/:style/default_user.png"
 
