@@ -1,0 +1,22 @@
+$expert-image-size: 50px;
+
+.expertList {
+  padding: 0;
+}
+
+  .expertList-item {
+    list-style-type: none;
+    position: relative;
+    padding-left: $expert-image-size;
+  }
+
+    .expertList-item-heading {
+      color: #000;
+      font-weight: 400;
+    }
+
+    .expertList-item-image {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }

@@ -2,7 +2,7 @@
 
   <header class='contentSection-header'>
 
-    <h1 class='contentSection-header-heading'>
+    <h1 class='heading'>
       <%= t('.title', time: @quarter.time_period) %>
     </h1>
 
@@ -120,18 +120,32 @@
       </div>
 
       <div class='tabContent-panel js-act-as-tab-content-panel' id='experts'>
+        <h3 class='heading'>
+          The Experts
+        </h3>
+
         <% if @quarter.expert_survey.experts %>
-          <% @quarter.expert_survey.experts.each do |expert| %>
-            <div>
-              <h4><%= expert.name %></h4>
-              <div>
-                <%= image_tag expert.avatar.url('50x50') %>
-              </div>
-              <% if expert.bio %>
-                <%= simple_format_no_tags(expert.bio) %>
-              <% end %>
-            </div>
-          <% end %>
+          <ul class='expertList'>
+            <% @quarter.expert_survey.experts.each do |expert| %>
+
+              <li class='expertList-item'>
+
+                <h4 class='expertList-item-heading'>
+                  <%= expert.name %>
+                </h4>
+
+                <%= image_tag(expert.avatar.url('50x50'),
+                              class: 'expertList-item-image') %>
+
+                <% if expert.bio %>
+                  <%= simple_format_no_tags(expert.bio) %>
+                <% end %>
+
+              </li>
+
+            <% end %>
+          </ul>
+
         <% else %>
           <p>
            <%= t('.no_experts') %>
