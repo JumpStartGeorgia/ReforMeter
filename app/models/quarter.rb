@@ -133,7 +133,7 @@ class Quarter < ActiveRecord::Base
 
   # get the expert survey data for all quarters
   # formatted in hash/json format
-  # format: {categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
+  # format: {title, subtitle, min, max, categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
   # options:
   # - overall_score_only - indicates whether just the overall score should be returned or overall and all category scores (default false)
   # - is_published - indicates if just the published quarters should be returned (default true)
@@ -167,7 +167,7 @@ class Quarter < ActiveRecord::Base
 
   # get the reform survey data for all quarters
   # formatted in hash/json format
-  # format: {categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
+  # format: {type, title, subtitle, color, min, max, categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
   # options:
   # - type: indicate if want government or stakeholder data (default government)
   # - overall_score_only - indicates whether just the overall score should be returned or overall and all category scores (default false)
