@@ -26,14 +26,14 @@ ka:
       no_methodology: No methodology is on record.
       header:
         government_summary: According to the Government
-        government_history: Government History
+        government_history: Government Response History
         methodoogy: Methodology
         stakeholder_summary: According to the Stakeholders
-        stakeholder_history: Stakeholder History
+        stakeholder_history: Stakeholder Response History
     experts:
       title: Experts
       header:
-        chart: Chart of Expert History
+        chart: Expert Response History
         methodoogy: Methodology
         table: Table of Expert History
       table_header:

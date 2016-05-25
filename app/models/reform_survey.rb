@@ -2,20 +2,29 @@
 #
 # Table name: reform_surveys
 #
-#  id                          :integer          not null, primary key
-#  quarter_id                  :integer          not null
-#  reform_id                   :integer          not null
-#  government_overall_score    :decimal(5, 2)    not null
-#  government_category1_score  :decimal(5, 2)    not null
-#  government_category2_score  :decimal(5, 2)    not null
-#  government_category3_score  :decimal(5, 2)    not null
-#  government_category4_score  :decimal(5, 2)    not null
-#  stakeholder_overall_score   :decimal(5, 2)    not null
-#  stakeholder_category1_score :decimal(5, 2)    not null
-#  stakeholder_category2_score :decimal(5, 2)    not null
-#  stakeholder_category3_score :decimal(5, 2)    not null
-#  created_at                  :datetime         not null
-#  updated_at                  :datetime         not null
+#  id                           :integer          not null, primary key
+#  quarter_id                   :integer          not null
+#  reform_id                    :integer          not null
+#  government_overall_score     :decimal(5, 2)    not null
+#  government_category1_score   :decimal(5, 2)    not null
+#  government_category2_score   :decimal(5, 2)    not null
+#  government_category3_score   :decimal(5, 2)    not null
+#  government_category4_score   :decimal(5, 2)    not null
+#  stakeholder_overall_score    :decimal(5, 2)    not null
+#  stakeholder_category1_score  :decimal(5, 2)    not null
+#  stakeholder_category2_score  :decimal(5, 2)    not null
+#  stakeholder_category3_score  :decimal(5, 2)    not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  government_overall_change    :integer
+#  government_category1_change  :integer
+#  government_category2_change  :integer
+#  government_category3_change  :integer
+#  government_category4_change  :integer
+#  stakeholder_overall_change   :integer
+#  stakeholder_category1_change :integer
+#  stakeholder_category2_change :integer
+#  stakeholder_category3_change :integer
 #
 
 class ReformSurvey < ActiveRecord::Base

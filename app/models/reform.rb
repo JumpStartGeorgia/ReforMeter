@@ -2,12 +2,13 @@
 #
 # Table name: reforms
 #
-#  id           :integer          not null, primary key
-#  is_active    :boolean          default(TRUE)
-#  is_highlight :boolean          default(TRUE)
-#  slug         :string(255)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id              :integer          not null, primary key
+#  is_active       :boolean          default(TRUE)
+#  is_highlight    :boolean          default(TRUE)
+#  slug            :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  reform_color_id :integer
 #
 
 class Reform < ActiveRecord::Base
