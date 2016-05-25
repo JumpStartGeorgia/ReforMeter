@@ -1,0 +1,14 @@
+.select2 {
+}
+
+  .select2 .select2-selection {
+    background-color: #ADB4D1;
+  }
+
+    .select2 .select2-selection .select2-selection__rendered {
+      color: white;
+    }
+
+  .select2.select2-container--open {
+    min-width: 100px;
+  }

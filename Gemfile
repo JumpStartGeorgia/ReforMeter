@@ -73,7 +73,7 @@ gem 'exception_notification', '~> 4.1', '>= 4.1.4'
 gem 'globalize', '~> 5.0', '>= 5.0.1'
 
 # makes translation forms easier
-gem 'globalize-accessors', '~> 0.2.1' 
+gem 'globalize-accessors', '~> 0.2.1'
 
 # send variables to javascript
 gem 'gon', '~> 6.0', '>= 6.0.1'
@@ -104,8 +104,9 @@ group :development do
   gem 'locales_export_import', '~> 0.4.2'
 
   # make dev environment faster
-  gem 'rails-dev-boost', '~> 0.3.0'  
-  gem 'rb-inotify', '~> 0.9.7'
+  gem 'rails-dev-boost', '~> 0.3.0'
+  gem 'rb-fsevent', '>= 0.9.1' # needed for mac
+  # gem 'rb-inotify', '~> 0.9.7' # needed for linux
 
   # show model attributes (table fields) in model
   gem 'annotate', '~> 2.7'
@@ -164,6 +165,9 @@ end
 #####################################################################
 ########################## Project Gems #############################
 
+# View helper for inlining SVG images
+gem 'inline_svg', '~> 0.7.0'
+
 # create permalinks
 gem 'friendly_id', '~> 5.1'
 
@@ -178,3 +182,9 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 
 # managing file attachments in translations
 gem 'paperclip-globalize3', '~> 2.2'
+
+# Improved select dropdown
+gem 'select2-rails', '~> 4.0', '>= 4.0.1.1'
+
+# Automatically adds CSS prefixes where necessary
+gem 'autoprefixer-rails', '~> 6.3', '>= 6.3.6'

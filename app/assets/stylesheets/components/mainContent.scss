@@ -1,0 +1,35 @@
+.mainContent {
+  background-color: white;
+  box-sizing: border-box;
+  border-bottom: 3px solid $color-grey-background;
+
+  @include center-and-limit-content-width();
+
+  @media (min-width: $width-move-main-into-top-image) {
+    margin-top: -1 * $height-content-heading;
+  }
+}
+
+  .mainContent-header {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 22px $padding-mainContent;
+    font-weight: 600;
+    font-size: 2.6rem;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    @media (min-width: $width-move-main-into-top-image) {
+      padding-top: 0;
+      padding-bottom: 0;
+      height: $height-content-heading;
+    }
+  }
+
+  .mainContent-body {
+    border-top: 3px solid $color-grey-background;
+    padding: 0 $padding-mainContent;
+    color: #66666d;
+  }

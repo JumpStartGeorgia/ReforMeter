@@ -1,33 +1,41 @@
 <% page_title t('.title', name: @reform.name, time: @quarter.time_period) %>
 
 <% if @active_reforms %>
-  <div class="dropdown">
-    <%= t('shared.common.change_reform') %>:
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= @reform.name %>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <% @active_reforms.each do |active_reform| %>
-        <li><%= link_to active_reform[0], reform_show_path(reform_id: active_reform[1], quarter_id: @quarter.slug) %></li>
-      <% end %>
-    </ul>
-  </div>
+
+  <%= t('shared.common.change_reform') %>:
+
+  <select class='js-become-select2 js-reform-page-reform-select'>
+
+    <% @active_reforms.each do |active_reform| %>
+      <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>>
+        <%= active_reform[0] %>
+      </option>
+    <% end %>
+
+  </select>
+
 <% end %>
 
 <% if @active_quarters %>
-  <div class="dropdown">
-    <%= t('shared.common.change_time') %>:
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= @quarter.time_period %>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <% @active_quarters.each do |active_quarter| %>
-        <li><%= link_to active_quarter[0], reform_show_path(reform_id: @reform.slug, quarter_id: active_quarter[1]) %></li>
-      <% end %>
-    </ul>
-  </div>
+
+  <%= t('shared.common.change_time') %>:
+
+  <select class='js-become-select2 js-reform-page-quarter-select'>
+
+    <% @active_quarters.each do |active_quarter| %>
+      <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
+        <%= active_quarter[0] %>
+      </option>
+    <% end %>
+
+  </select>
+
+<% end %>
+
+<% if @active_reforms.present? || @active_quarters.present? %>
+  <button style='border: 1px solid' class='js-load-new-reform-page' data-new-url-base='<%= reforms_path %>'>
+    <%= t('shared.actions.load') %>
+  </button>
 <% end %>
 
 <div style="color: #fff; background-color: rgb(<%= "#{@reform.color.r}, #{@reform.color.g}, #{@reform.color.b}" %>">temporary - just showing color</div>
@@ -148,8 +156,6 @@
     </div>
   </div>
 </div>
-
-
 
 <% if @external_indicators.present? %>
   <h2><%= t('.header.external_indicators') %></h2>

@@ -7,6 +7,7 @@ en:
       edit: Edit
       log_in: Log in
       view: View
+      load: Load
       with_obj:
         cancel: Cancel %{obj}
         create: Create %{obj}
@@ -22,6 +23,7 @@ en:
       jumpstart:
         slogan: JumpStart Georgia - Informing Communities with Data and Design
       name: ReforMeter
+      sub_title: Georgian Reform Progress - Tracking System
       description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
       change_time: Change Time Period
       change_reform: Change Reform

@@ -1,7 +1,19 @@
-<footer class='app-footer'>
-  <p class='app-footer-left'>&copy; <%= Time.now.year %></p>
-  <%= link_to image_tag('jumpstart-logo.png', class: 'app-footer-right'),
-              'http://jumpstart.ge',
-              target: '_blank',
-              title: t('shared.common.jumpstart.slogan') %>
+<footer class='appFooter'>
+
+  <p>
+    <a href='http://iset-pi.ge/index.php/en/' target='_blank'>
+      <%= t('.iset_copyright', year: Time.now.year) %>
+    </a>
+  </p>
+
+  <p class='appFooter-jumpstart'>
+    <%= t('.made_by_jumpstart',
+          jumpstart: (link_to (image_tag('jumpstart-logo.png',
+                                       class: 'appFooter-jumpstart-logo')),
+                              'http://jumpstart.ge',
+                              target: '_blank',
+                              title: t('shared.common.jumpstart.slogan'))
+        ).html_safe %>
+  </p>
+
 </footer>

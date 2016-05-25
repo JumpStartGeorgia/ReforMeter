@@ -8,25 +8,40 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 /*
  *= require formtastic
  *= require formtastic-bootstrap
+ *= require select2
  */
 
 @charset 'UTF-8';
 
+@import 'normalize';
+
+@import 'fonts';
+
 @import 'variables';
+@import 'mixins';
+@import 'utilities';
 @import 'media-queries';
-@import 'bootstrap_and_overrides';
+// @import 'bootstrap_and_overrides';
 @import 'formtastic_overrides';
 
 // Font awesome icons
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+@import 'html';
+
 // Components
 @import 'components/actions';
-@import 'components/app-footer';
-@import 'components/language_switcher';
-@import 'components/loading_indicator';
-@import 'components/primary_header';
+@import 'components/allContent';
+@import 'components/appFooter';
+@import 'components/appHeader';
+@import 'components/downloadBox';
+@import 'components/downloadPage';
+@import 'components/loadingIndicator';
+@import 'components/mainContent';
+@import 'components/mainFooterContainer';
+@import 'components/select2';
+@import 'components/topImageContainer';
 @import 'components/translated_inputs';
 
 .actions-container {
@@ -34,4 +49,3 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
   padding: 10px;
   margin: 20px 0px;
 }
-
