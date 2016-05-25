@@ -14,6 +14,15 @@ class RootController < ApplicationController
       reform_survey_data << Quarter.reform_survey_data_for_charting(reform.id, overall_score_only: true)
     end
 
+    # get external indicators for home page
+    @external_indicators = ExternalIndicator.published.for_home_page.sorted
+    if @external_indicators.present?
+      ext_ind_chart_data = []
+      @external_indicators.each do |ei|
+        ext_ind_chart_data << ei.format_for_charting
+      end
+    end
+
   end
 
   def about
@@ -107,6 +116,15 @@ class RootController < ApplicationController
         government: Quarter.reform_survey_data_for_charting(@reform.id),
         stakeholder: Quarter.reform_survey_data_for_charting(@reform.id, type: 'stakeholder')
       }
+
+      # get external indicators for this reform
+      @external_indicators = @reform.external_indicators.published.sorted
+      if @external_indicators.present?
+        ext_ind_chart_data = []
+        @external_indicators.each do |ei|
+          ext_ind_chart_data << ei.format_for_charting
+        end
+      end
 
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to experts_path,

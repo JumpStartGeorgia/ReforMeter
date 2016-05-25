@@ -23,6 +23,7 @@ class Reform < ActiveRecord::Base
   has_many :reform_surveys, dependent: :destroy
   belongs_to :color, foreign_key: 'reform_color_id', class_name: 'ReformColor'
   has_many :news, dependent: :destroy
+  has_and_belongs_to_many :external_indicators
 
   #######################
   ## VALIDATIONS

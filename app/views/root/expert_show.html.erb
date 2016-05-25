@@ -41,16 +41,29 @@
     </section>
 
     <div>
-      <ul class="nav nav-tabs" role="tabList">
-        <li role="presentation" class="active"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab"><%= t('.header.chart') %></a></li>
-        <li role="presentation"><a href="#methodology" aria-controls="methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
+      <ul class='tabList mod-with-separator js-act-as-tab-list'>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
+            <%= t('.header.chart') %>
+          </button>
+        </li>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
+            <%= t('.header.methodology') %>
+          </button>
+        </li>
+
       </ul>
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="chart">
+
+      <div class="tabContent js-act-as-tab-content">
+
+        <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='chart'>
           insert chart here
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="methodology">
+        <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>
           <% if @methodology_expert %>
             <div>
               <%= simple_format_no_tags(@methodology_expert.content) %>
@@ -61,7 +74,9 @@
             </p>
           <% end %>
         </div>
+
       </div>
+
     </div>
 
   </div>
@@ -71,7 +86,7 @@
 <div class='contentSection'>
 
   <header class='contentSection-header mod-no-padding'>
-    <ul class='tabList js-act-as-tab-list'>
+    <ul class='tabList mod-header js-act-as-tab-list'>
 
       <li class='tabList-item'>
         <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='findings'>
