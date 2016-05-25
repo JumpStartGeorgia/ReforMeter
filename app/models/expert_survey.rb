@@ -2,14 +2,18 @@
 #
 # Table name: expert_surveys
 #
-#  id              :integer          not null, primary key
-#  quarter_id      :integer          not null
-#  overall_score   :decimal(5, 2)    not null
-#  category1_score :decimal(5, 2)    not null
-#  category2_score :decimal(5, 2)    not null
-#  category3_score :decimal(5, 2)    not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id               :integer          not null, primary key
+#  quarter_id       :integer          not null
+#  overall_score    :decimal(5, 2)    not null
+#  category1_score  :decimal(5, 2)    not null
+#  category2_score  :decimal(5, 2)    not null
+#  category3_score  :decimal(5, 2)    not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  overall_change   :integer
+#  category1_change :integer
+#  category2_change :integer
+#  category3_change :integer
 #
 
 class ExpertSurvey < ActiveRecord::Base

@@ -2,12 +2,13 @@
 #
 # Table name: reforms
 #
-#  id           :integer          not null, primary key
-#  is_active    :boolean          default(TRUE)
-#  is_highlight :boolean          default(TRUE)
-#  slug         :string(255)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id              :integer          not null, primary key
+#  is_active       :boolean          default(TRUE)
+#  is_highlight    :boolean          default(TRUE)
+#  slug            :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  reform_color_id :integer
 #
 
 class Reform < ActiveRecord::Base
@@ -22,6 +23,7 @@ class Reform < ActiveRecord::Base
   has_many :reform_surveys, dependent: :destroy
   belongs_to :color, foreign_key: 'reform_color_id', class_name: 'ReformColor'
   has_many :news, dependent: :destroy
+  has_and_belongs_to_many :external_indicators
 
   #######################
   ## VALIDATIONS
