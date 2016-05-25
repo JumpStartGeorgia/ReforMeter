@@ -4,6 +4,16 @@ class RootController < ApplicationController
     @home_page_about = PageContent.find_by(name: 'home_page_about')
 
     @quarter = Quarter.latest
+
+    # get external indicators for home page
+    @external_indicators = ExternalIndicator.published.for_home_page.sorted
+    if @external_indicators.present?
+      ext_ind_chart_data = []
+      @external_indicators.each do |ei|
+        ext_ind_chart_data << ei.format_for_charting
+      end
+    end
+
   end
 
   def about
@@ -84,6 +94,15 @@ class RootController < ApplicationController
       @active_quarters = Quarter.active_quarters_array
       @methodology_government = PageContent.find_by(name: 'methodology_government')
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
+
+      # get external indicators for this reform
+      @external_indicators = @reform.external_indicators.published.sorted
+      if @external_indicators.present?
+        ext_ind_chart_data = []
+        @external_indicators.each do |ei|
+          ext_ind_chart_data << ei.format_for_charting
+        end
+      end
 
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to experts_path,

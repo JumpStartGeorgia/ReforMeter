@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: reform_colors
+#
+#  id         :integer          not null, primary key
+#  hex        :string(255)
+#  r          :integer
+#  g          :integer
+#  b          :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class ReformColor < ActiveRecord::Base
   #######################
   ## RELATIONSHIPS

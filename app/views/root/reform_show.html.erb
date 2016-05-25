@@ -151,3 +151,13 @@
 
 
 
+<% if @external_indicators.present? %>
+  <h2><%= t('.header.external_indicators') %></h2>
+
+  <% @external_indicators.each do |ext_ind| %>
+    <h3><%= ext_ind.title %></h3>
+    <h4><%= ext_ind.subtitle %></h4>
+    <div>insert chart here </div>
+  <% end %>
+
+<% end %>
