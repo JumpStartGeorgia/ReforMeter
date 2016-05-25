@@ -40,25 +40,6 @@
       <div class='js-become-expert-progress-chart' style="width: 125px; height: 220px;"></div>
     </section>
 
-    <ul>
-      <li>
-        <%= t('shared.categories.overall') %>:
-        <%= @quarter.expert_survey.overall_score %> <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
-      </li>
-      <li>
-        <%= t('shared.categories.performance') %>:
-        <%= @quarter.expert_survey.category1_score %> <%= generate_change_icon(@quarter.expert_survey.category1_change) %>
-      </li>
-      <li>
-        <%= t('shared.categories.goals') %>:
-        <%= @quarter.expert_survey.category2_score %> <%= generate_change_icon(@quarter.expert_survey.category2_change) %>
-      </li>
-      <li>
-        <%= t('shared.categories.progress') %>:
-        <%= @quarter.expert_survey.category3_score %> <%= generate_change_icon(@quarter.expert_survey.category3_change) %>
-      </li>
-    </ul>
-
     <div>
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab"><%= t('.header.chart') %></a></li>
@@ -89,12 +70,12 @@
 
 <div class='contentSection'>
 
-  <div class='contentSection-header'>
+  <header class='contentSection-header'>
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#findings" aria-controls="findings" role="tab" data-toggle="tab"><%= t('.header.findings') %></a></li>
       <li role="presentation"><a href="#experts" aria-controls="experts" role="tab" data-toggle="tab"><%= t('.header.experts') %></a></li>
     </ul>
-  </div>
+  </header>
 
   <div class='contentSection-body'>
     <div class="tab-content">
