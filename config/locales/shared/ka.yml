@@ -60,3 +60,10 @@ ka:
       down: The value has gone down since last quarter
       flat: The value has not changed since last quarter
       up: The value has gone up since last quarter
+    chart_titles:
+      expert:
+        title: 'Expert Response History'
+      reform:
+        title: 'Reform: %{name}'
+        subtitle_government: 'Government Response History'
+        subtitle_stakeholder: 'Stakeholder Response History'
