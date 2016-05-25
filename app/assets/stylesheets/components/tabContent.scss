@@ -1,0 +1,11 @@
+.tabContent {
+
+}
+
+  .tabContent-panel {
+    display: none;
+  }
+
+  .tabContent-panel.is-selected {
+    display: initial;
+  }

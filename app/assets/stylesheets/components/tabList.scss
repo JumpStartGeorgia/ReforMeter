@@ -1,0 +1,25 @@
+.tabList {
+  padding: 0;
+  margin: 0;
+  background-color: #EDEDED;
+  width: 100%;
+}
+
+  .tabList-item {
+    list-style-type: none;
+    display: inline-block;
+  }
+
+    .tabList-item-button {
+      padding: 22px $padding-main-content;
+      box-sizing: border-box;
+      border: 0;
+      background: none;
+      width: inherit;
+      height: inherit;
+      display: block;
+    }
+
+    .tabList-item-button.is-selected {
+      background-color: #FFF;
+    }

@@ -4,6 +4,7 @@ $(document).ready(function() {
   setupExpertTimePeriodSelect();
   makeReformPageChangeable();
   setupExpertPage();
+  setupTabs();
 
   if ($("body").hasClass("root download_data_and_reports")) {
     activate_download_events();
