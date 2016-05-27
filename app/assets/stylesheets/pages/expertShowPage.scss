@@ -24,6 +24,12 @@ $news-move-to-side: 700px;
     flex-flow: row wrap;
   }
 
+    .expertShowPage-summaryGaugesContainer-gauges-small {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+
 .expertShowPage-findingsSidebarContainer {
   display: flex;
   flex-direction: column;
