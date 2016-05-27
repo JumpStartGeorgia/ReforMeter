@@ -88,6 +88,13 @@
           <option value="" default selected>
             <%= t('.choose') %>
           </option>
+
+          <% @external_indicators.each do |ext_ind| %>
+            <option value="<%= ext_ind.id %>">
+              <%= ext_ind.title %>
+            </option>
+          <% end %>
+
         </select>
       </div>
 
