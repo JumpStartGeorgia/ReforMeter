@@ -37,7 +37,6 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 @import 'components/appHeader';
 @import 'components/contentSection';
 @import 'components/downloadBox';
-@import 'components/downloadPage';
 @import 'components/expertList';
 @import 'components/heading';
 @import 'components/loadingIndicator';
@@ -50,6 +49,7 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 @import 'components/topImageContainer';
 @import 'components/translated_inputs';
 
+@import 'pages/downloadPage';
 @import 'pages/expertShowPage';
 
 .actions-container {
