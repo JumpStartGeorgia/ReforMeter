@@ -167,7 +167,7 @@ class Quarter < ActiveRecord::Base
 
   # get the reform survey data for all quarters
   # formatted in hash/json format
-  # format: {type, title, subtitle, color, min, max, categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
+  # format: {type, reform, title, subtitle, color, min, max, categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
   # options:
   # - type: indicate if want government or stakeholder data (default government)
   # - overall_score_only - indicates whether just the overall score should be returned or overall and all category scores (default false)
@@ -176,7 +176,7 @@ class Quarter < ActiveRecord::Base
     default_options = {type: 'government', overall_score_only: false, is_published: true}
     options = options.reverse_merge(default_options)
 
-    hash = {type: nil, title: nil, subtitle: nil, color: {r: 0, g: 0, b: 0}, min: nil, max: nil, categories: [], series: []}
+    hash = {type: nil, reform: nil, title: nil, subtitle: nil, color: {r: 0, g: 0, b: 0}, min: nil, max: nil, categories: [], series: []}
     quarters = oldest
     quarters = quarters.published if options[:is_published]
 
@@ -196,7 +196,10 @@ class Quarter < ActiveRecord::Base
       end
       surveys = temp
 
-      # set the titlte
+      # set the reform name
+      hash[:reform] = reform.name
+
+      # set the title
       hash[:title] = I18n.t('shared.chart_titles.reform.title', name: reform.name)
 
       # load the x-axis labels (categories)
