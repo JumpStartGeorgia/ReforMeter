@@ -1,4 +1,5 @@
 $gauges-min-width: 685px;
+$news-move-to-side: 700px;
 
 .expertShowPage-summaryGaugesContainer {
   display: flex;
@@ -21,4 +22,20 @@ $gauges-min-width: 685px;
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;
+  }
+
+.expertShowPage-findingsSidebarContainer {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $news-move-to-side) {
+    flex-direction: row;
+  }
+}
+
+  .expertShowPage-findingsSidebarContainer-sidebar {
+    @media (min-width: $news-move-to-side) {
+      margin-left: 20px;
+      min-width: 35%;
+    }
   }

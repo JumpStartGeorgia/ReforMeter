@@ -90,91 +90,134 @@ page_title t('.title', time: @quarter.time_period)
 
 </div>
 
-<div class='contentSection'>
+<div class='expertShowPage-findingsSidebarContainer'>
 
-  <header class='contentSection-header mod-no-padding'>
-    <ul class='tabList mod-header js-act-as-tab-list'>
+  <div class='contentSection'>
 
-      <li class='tabList-item'>
-        <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='findings'>
-          <%= t('.header.findings') %>
-        </button>
-      </li>
+    <header class='contentSection-header mod-no-padding'>
+      <ul class='tabList mod-header js-act-as-tab-list'>
 
-      <li class='tabList-item'>
-        <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='experts'>
-          <%= t('.header.experts') %>
-        </button>
-      </li>
+        <li class='tabList-item'>
+          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='findings'>
+            <%= t('.header.findings') %>
+          </button>
+        </li>
 
-    </ul>
-  </header>
+        <li class='tabList-item'>
+          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='experts'>
+            <%= t('.header.experts') %>
+          </button>
+        </li>
 
-  <div class='contentSection-body'>
+      </ul>
+    </header>
 
-    <div class="tabContent js-act-as-tab-content">
+    <div class='contentSection-body'>
 
-      <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='findings'>
-        <% if @quarter.expert_survey.details %>
-          <div>
-            <%= simple_format_no_tags(@quarter.expert_survey.details) %>
-          </div>
-        <% else %>
-          <p>
-            <%= t('.no_details') %>
-          </p>
-        <% end %>
-      </div>
+      <div class="tabContent js-act-as-tab-content">
 
-      <div class='tabContent-panel js-act-as-tab-content-panel' id='experts'>
-        <h3 class='heading'>
-          The Experts
-        </h3>
+        <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='findings'>
+          <% if @quarter.expert_survey.details %>
+            <div>
+              <%= simple_format_no_tags(@quarter.expert_survey.details) %>
+            </div>
+          <% else %>
+            <p>
+              <%= t('.no_details') %>
+            </p>
+          <% end %>
+        </div>
 
-        <% if @quarter.expert_survey.experts %>
-          <ul class='expertList'>
-            <% @quarter.expert_survey.experts.each do |expert| %>
+        <div class='tabContent-panel js-act-as-tab-content-panel' id='experts'>
+          <h3 class='heading mod-vertical-margin'>
+            The Experts
+          </h3>
 
-              <li class='expertList-item'>
+          <% if @quarter.expert_survey.experts %>
+            <ul class='expertList'>
+              <% @quarter.expert_survey.experts.each do |expert| %>
 
-                <h4 class='expertList-item-heading'>
-                  <%= expert.name %>
-                </h4>
+                <li class='expertList-item'>
 
-                <%= image_tag(expert.avatar.url('100x100'),
-                              class: 'expertList-item-image') %>
+                  <h4 class='expertList-item-heading'>
+                    <%= expert.name %>
+                  </h4>
 
-                <% if expert.bio %>
-                  <%= simple_format_no_tags(expert.bio) %>
-                <% end %>
+                  <%= image_tag(expert.avatar.url('100x100'),
+                                class: 'expertList-item-image') %>
 
-              </li>
+                  <% if expert.bio %>
+                    <%= simple_format_no_tags(expert.bio) %>
+                  <% end %>
 
-            <% end %>
-          </ul>
+                </li>
 
-        <% else %>
-          <p>
-           <%= t('.no_experts') %>
-          </p>
-        <% end %>
+              <% end %>
+            </ul>
+
+          <% else %>
+            <p>
+             <%= t('.no_experts') %>
+            </p>
+          <% end %>
+        </div>
+
       </div>
 
     </div>
-
   </div>
-</div>
 
-<% if @news.present? %>
-  <div>
-    <% @news.each do |news| %>
-      <div>
-        <% if news.image.exists? %>
-          <%= image_tag news.image.url('360x200') %>
+  <% if @news.present? %>
+    <div class='expertShowPage-findingsSidebarContainer-sidebar'>
+      <aside>
+        <h2 class='u-hide-visually'>
+          Expert News
+        </h2>
+
+        <% @news.each do |news| %>
+          <% if news.image.exists? %>
+            <div class='contentSection'>
+              <%= image_tag(
+                    news.image.url('360x200'),
+                    class: 'responsiveImage') %>
+
+              <div class='contentSection-header'>
+
+                <h3 class='heading'>
+                  <%= link_to news.title,
+                              news.url,
+                              target: :blank %>
+                </h3>
+
+              </div>
+
+              <div class='contentSection-body mod-no-top-border'>
+                <%= simple_format_no_tags(news.content) %>
+              </div>
+
+            </div>
+          <% else %>
+            <div class='contentSection'>
+
+              <header class='contentSection-header'>
+                <h3 class='heading'>
+                  <%= link_to news.title,
+                              news.url,
+                              target: :blank %>
+                </h3>
+              </header>
+
+              <div class='contentSection-body'>
+                <%= simple_format_no_tags(news.content) %>
+              </div>
+
+            </div>
+          <% end %>
+
         <% end %>
-        <h3><%= link_to news.title, news.url, target: :blank %></h3>
-        <div><%= simple_format_no_tags(news.content) %></div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+
+      </aside>
+    </div>
+  <% end %>
+
+</div>
