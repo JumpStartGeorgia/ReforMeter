@@ -1,0 +1,24 @@
+$gauges-min-width: 685px;
+
+.expertShowPage-summaryGaugesContainer {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $max-width-of-content) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+  .expertShowPage-summaryGaugesContainer-summary {
+    @media (min-width: $max-width-of-content) {
+      width: $max-width-of-content - $gauges-min-width;
+    }
+  }
+
+  .expertShowPage-summaryGaugesContainer-gauges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+  }

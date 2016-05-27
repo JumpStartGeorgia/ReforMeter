@@ -32,18 +32,20 @@ page_title t('.title', time: @quarter.time_period)
 
   <div class='contentSection-body'>
 
-    <% if @quarter.expert_survey.summary %>
-      <div>
-        <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
-      </div>
-    <% end %>
+    <div class='expertShowPage-summaryGaugesContainer'>
+      <% if @quarter.expert_survey.summary %>
+        <div class='expertShowPage-summaryGaugesContainer-summary'>
+          <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+        </div>
+      <% end %>
 
-    <section class='meterGaugesContainer'>
-      <div class='js-become-expert-overall-chart' style="width: 250px; height: 220px;"></div>
-      <div class='js-become-expert-performance-chart' style="width: 125px; height: 220px;"></div>
-      <div class='js-become-expert-goals-chart' style="width: 125px; height: 220px;"></div>
-      <div class='js-become-expert-progress-chart' style="width: 125px; height: 220px;"></div>
-    </section>
+      <section class='expertShowPage-summaryGaugesContainer-gauges'>
+        <div class='js-become-expert-overall-chart' style="width: 250px; height: 220px;"></div>
+        <div class='js-become-expert-performance-chart' style="width: 125px; height: 220px;"></div>
+        <div class='js-become-expert-goals-chart' style="width: 125px; height: 220px;"></div>
+        <div class='js-become-expert-progress-chart' style="width: 125px; height: 220px;"></div>
+      </section>
+    </div>
 
     <div>
       <ul class='tabList mod-with-separator js-act-as-tab-list'>

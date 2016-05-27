@@ -43,12 +43,13 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 @import 'components/loadingIndicator';
 @import 'components/mainContent';
 @import 'components/mainFooterContainer';
-@import 'components/meterGaugesContainer';
 @import 'components/select2';
 @import 'components/tabList';
 @import 'components/tabContent';
 @import 'components/topImageContainer';
 @import 'components/translated_inputs';
+
+@import 'pages/expertShowPage';
 
 .actions-container {
   background-color: #f9f9f9;
