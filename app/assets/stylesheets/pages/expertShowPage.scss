@@ -40,7 +40,12 @@ $news-move-to-side: 700px;
 }
 
   .expertShowPage-findingsSidebarContainer-sidebar {
+    max-width: 360px;
+    margin: 0 auto;
+
     @media (min-width: $news-move-to-side) {
+      max-width: initial;
+      margin: initial;
       margin-left: 20px;
       min-width: 35%;
     }
