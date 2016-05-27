@@ -20,7 +20,7 @@
       </div>
 
       <div class='downloadBox-button'>
-        <%= t('.download') %> <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
+        <%= t('.download') %> <%= link_to inline_svg("download_xls.svg"),
                     params.merge(type: 'expert'),
                     method: :post %>
       </div>
@@ -57,7 +57,7 @@
       </div>
 
       <button class='downloadBox-button'>
-        <%= t('.download') %> <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
+        <%= t('.download') %> <%= link_to inline_svg("download_xls.svg"),
                     params.merge(type: 'expert'),
                     method: :post %>
       </button>
@@ -87,7 +87,7 @@
       </div>
 
       <button class='downloadBox-button'>
-        <%= t('.download') %> <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_xls.svg"),
+        <%= t('.download') %> <%= link_to inline_svg("download_xls.svg"),
                              params.merge(type: 'external_indicator'),
                              method: :post,
                              class: 'external_indicator' %>
@@ -124,7 +124,7 @@
       </div>
 
       <button class='downloadBox-button mod-pdf'>
-        <%= t('.download') %> <%= link_to inline_svg("#{Rails.root}/app/assets/images/download_pdf.svg"),
+        <%= t('.download') %> <%= link_to inline_svg("download_pdf.svg"),
                              params.merge(type: 'report'),
                              method: :post,
                              class: 'report' %>
