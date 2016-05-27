@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 
+require 'csv'
 class Quarter < ActiveRecord::Base
 
   #######################
@@ -22,7 +23,7 @@ class Quarter < ActiveRecord::Base
   #######################
   ## TRANSLATIONS
 
-  translates :summary_good, :summary_bad, 
+  translates :summary_good, :summary_bad,
     :report_file_name, :report_file_size, :report_content_type, :report_updated_at, :fallbacks_for_empty_translations => true
   globalize_accessors
 
@@ -33,7 +34,7 @@ class Quarter < ActiveRecord::Base
 
   accepts_nested_attributes_for :expert_survey, reject_if: :all_blank
   accepts_nested_attributes_for :reform_surveys, reject_if: :all_blank
-  
+
   #######################
   ## VALIDATIONS
 
@@ -87,7 +88,7 @@ class Quarter < ActiveRecord::Base
 
   #######################
   ## METHODS
-  
+
   # formal name of quarter: Q# 2016
   def time_period
     "Q#{self.quarter} #{self.year}"
@@ -100,7 +101,7 @@ class Quarter < ActiveRecord::Base
       reform_id = reform.id
     end
   end
-  
+
   # you must set the reform first before calling this
   def self.reform_survey
     reform_surveys.where(reform_id: reform_id).first
@@ -108,7 +109,7 @@ class Quarter < ActiveRecord::Base
 
 
   # expert columns: quarter, year, time period, overall, cat1, cat2, cat3
-  # reform columns: quarter, year, time period, govt overall, govt cat1, govt cat2, govt cat3, govt cat4, stakeholder cat1, stakeholder cat2, stakeholder cat3 
+  # reform columns: quarter, year, time period, govt overall, govt cat1, govt cat2, govt cat3, govt cat4, stakeholder cat1, stakeholder cat2, stakeholder cat3
   def self.to_csv(type='expert', reform_id=nil)
     if type == 'reform' && reform_id.present?
       # get all of the survey results for this reform
@@ -123,13 +124,13 @@ class Quarter < ActiveRecord::Base
           survey = surveys.select{|x| x.quarter_id == q.id}.first
           if survey
             csv << [
-                    q.quarter, q.year, q.time_period, 
+                    q.quarter, q.year, q.time_period,
                     survey.government_overall_score, survey.government_category1_score, survey.government_category2_score, survey.government_category3_score, survey.government_category4_score,
-                    survey.stakeholder_overall_score, survey.stakeholder_category1_score, survey.stakeholder_category2_score, survey.stakeholder_category3_score 
+                    survey.stakeholder_overall_score, survey.stakeholder_category1_score, survey.stakeholder_category2_score, survey.stakeholder_category3_score
                   ]
           end
         end
-      end          
+      end
 
     else
 
@@ -140,7 +141,7 @@ class Quarter < ActiveRecord::Base
         published.recent.with_expert_survey.each do |q|
           csv << [q.quarter, q.year, q.time_period, q.expert_survey.overall_score, q.expert_survey.category1_score, q.expert_survey.category2_score, q.expert_survey.category3_score]
         end
-      end          
+      end
     end
   end
 end

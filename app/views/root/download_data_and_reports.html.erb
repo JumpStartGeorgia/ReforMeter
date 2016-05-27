@@ -20,9 +20,11 @@
       </div>
 
       <div class='downloadBox-button'>
-        <%= t('.download') %> <%= link_to inline_svg("download_xls.svg"),
-                    params.merge(type: 'expert'),
-                    method: :post %>
+        <%= link_to params.merge(type: 'expert'),
+                    method: :post do %>
+          <%= t('.download') %>
+          <%= inline_svg("download_xls.svg") %>
+        <% end %>
       </div>
 
     </li>
@@ -56,11 +58,14 @@
         </select>
       </div>
 
-      <button class='downloadBox-button'>
-        <%= t('.download') %> <%= link_to inline_svg("download_xls.svg"),
-                    params.merge(type: 'expert'),
-                    method: :post %>
-      </button>
+      <div class='downloadBox-button'>
+        <%= link_to params.merge(type: 'reform'),
+                    method: :post,
+               class: 'js-reform' do %>
+          <%= t('.download') %>
+          <%= inline_svg("download_xls.svg") %>
+        <% end %>
+      </div>
 
     </li>
 
@@ -86,12 +91,14 @@
         </select>
       </div>
 
-      <button class='downloadBox-button'>
-        <%= t('.download') %> <%= link_to inline_svg("download_xls.svg"),
-                             params.merge(type: 'external_indicator'),
-                             method: :post,
-                             class: 'external_indicator' %>
-      </button>
+      <div class='downloadBox-button'>
+        <%= link_to params.merge(type: 'external_indicator'),
+               method: :post,
+               class: 'js-external_indicator'  do %>
+          <%= t('.download') %>
+          <%= inline_svg("download_xls.svg") %>
+        <% end %>
+      </div>
 
     </li>
 
@@ -123,12 +130,14 @@
         </select>
       </div>
 
-      <button class='downloadBox-button mod-pdf'>
-        <%= t('.download') %> <%= link_to inline_svg("download_pdf.svg"),
-                             params.merge(type: 'report'),
-                             method: :post,
-                             class: 'report' %>
-      </button>
+      <div class='downloadBox-button mod-pdf'>
+        <%= link_to params.merge(type: 'report'),
+                   method: :post,
+                   class: 'js-report' do %>
+          <%= t('.download') %>
+          <%= inline_svg("download_pdf.svg") %>
+        <% end %>
+      </div>
 
     </li>
 
