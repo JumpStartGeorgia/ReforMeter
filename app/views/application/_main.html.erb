@@ -2,7 +2,7 @@
 
   <%= bootstrap_flash %>
 
-  <% if content_for? :page_title %>
+  <% if content_for?(:page_title) && (@do_not_use_default_page_layout.nil? || !@do_not_use_default_page_layout) %>
 
     <div class='contentSection mod-overlap-top-image'>
 
