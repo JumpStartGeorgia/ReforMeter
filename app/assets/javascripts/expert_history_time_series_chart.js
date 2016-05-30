@@ -23,6 +23,9 @@ function expertHistoryTimeSeriesChart() {
           zoomType: 'x',
           type: 'line'
         },
+        title: {
+          text: null
+        },
         colors: ['#000'],
         xAxis: {
           type: 'datetime',
@@ -30,7 +33,8 @@ function expertHistoryTimeSeriesChart() {
           crosshair: {
             color: 'black',
             dashStyle: 'solid',
-            width: 1
+            width: 1,
+            zIndex: 99
           },
           tickmarkPlacement: 'on'
         },
@@ -54,8 +58,8 @@ function expertHistoryTimeSeriesChart() {
                 y2: 1
               },
               stops: [
-                [0, Highcharts.getOptions().colors[0]],
-                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                [0, chartColors()[0]],
+                [1, chartColors()[1]]
               ]
             },
             marker: {

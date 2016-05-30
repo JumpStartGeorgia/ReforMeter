@@ -1,3 +1,7 @@
+function chartColors() {
+  return ['#1599D6', '#2DB9EA', '#5AD7F9']
+}
+
 function highchartsMeterGauge() {
   return {
 
@@ -64,7 +68,7 @@ function highchartsSmallMeterGauge() {
           borderColor: 'white',
           from: 0,
           to: 3.3,
-          color: '#5AD7F9',
+          color: chartColors()[2],
           innerRadius: '40%',
           outerRadius: '100%'
         },{
@@ -72,7 +76,7 @@ function highchartsSmallMeterGauge() {
           borderColor: 'white',
           from: 3.3,
           to: 6.6,
-          color: '#2DB9EA',
+          color: chartColors()[1],
           innerRadius: '40%',
           outerRadius: '100%'
         },{
@@ -80,7 +84,7 @@ function highchartsSmallMeterGauge() {
           borderColor: 'white',
           from: 6.6,
           to: 10,
-          color: '#1599D6',
+          color: chartColors()[0],
           innerRadius: '40%',
           outerRadius: '100%'
         }
