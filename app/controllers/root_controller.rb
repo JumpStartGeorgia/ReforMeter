@@ -157,7 +157,7 @@ class RootController < ApplicationController
       @news = News.by_expert_quarter(@quarter.id)
 
       # get the expert survey data for charting
-      survey_data = Quarter.expert_survey_data_for_charting
+      gon.survey_data = Quarter.expert_survey_data_for_charting
 
       gon.charts = {
         overall: {

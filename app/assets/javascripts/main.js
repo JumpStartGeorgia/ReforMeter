@@ -5,6 +5,7 @@ $(document).ready(function() {
   makeReformPageChangeable();
   setupExpertPage();
   setupTabs();
+  expertHistoryTimeSeriesChart().create();
 
   if ($("body").hasClass("root download_data_and_reports")) {
     activate_download_events();

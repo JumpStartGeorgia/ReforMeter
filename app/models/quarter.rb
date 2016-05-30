@@ -151,14 +151,29 @@ class Quarter < ActiveRecord::Base
 
       # get the data
       # overall
-      hash[:series] << {name: I18n.t('shared.categories.overall'), data: quarters.map{|x| {y: x.expert_survey.overall_score.to_f, change: x.expert_survey.overall_change}}}
+      hash[:series] << {
+        name: I18n.t('shared.categories.overall'),
+        type: 'area',
+        data: quarters.map{|x| {y: x.expert_survey.overall_score.to_f, change: x.expert_survey.overall_change}}}
       if !options[:overall_score_only]
         # category 1
-        hash[:series] << {name: I18n.t('shared.categories.performance'), data: quarters.map{|x| {y: x.expert_survey.category1_score.to_f, change: x.expert_survey.category1_change}}}
+        hash[:series] << {
+          name: I18n.t('shared.categories.performance'),
+          dashStyle: 'longDash',
+          data: quarters.map{|x| {y: x.expert_survey.category1_score.to_f, change: x.expert_survey.category1_change}}
+        }
         # category 2
-        hash[:series] << {name: I18n.t('shared.categories.goals'), data: quarters.map{|x| {y: x.expert_survey.category2_score.to_f, change: x.expert_survey.category2_change}}}
+        hash[:series] << {
+          name: I18n.t('shared.categories.goals'),
+          dashStyle: 'shortDash',
+          data: quarters.map{|x| {y: x.expert_survey.category2_score.to_f, change: x.expert_survey.category2_change}}
+        }
         # category 3
-        hash[:series] << {name: I18n.t('shared.categories.progress'), data: quarters.map{|x| {y: x.expert_survey.category3_score.to_f, change: x.expert_survey.category3_change}}}
+        hash[:series] << {
+          name: I18n.t('shared.categories.progress'),
+          dashStyle: 'dot',
+          data: quarters.map{|x| {y: x.expert_survey.category3_score.to_f, change: x.expert_survey.category3_change}}
+        }
       end
     end
 
