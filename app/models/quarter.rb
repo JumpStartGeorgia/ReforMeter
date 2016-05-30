@@ -153,8 +153,9 @@ class Quarter < ActiveRecord::Base
       # overall
       hash[:series] << {
         name: I18n.t('shared.categories.overall'),
-        type: 'area',
+        type: 'areaspline',
         data: quarters.map{|x| {y: x.expert_survey.overall_score.to_f, change: x.expert_survey.overall_change}}}
+
       if !options[:overall_score_only]
         # category 1
         hash[:series] << {

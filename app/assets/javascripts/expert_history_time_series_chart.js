@@ -21,7 +21,7 @@ function expertHistoryTimeSeriesChart() {
       $('.js-become-experts-time-series-chart').highcharts({
         chart: {
           zoomType: 'x',
-          type: 'line'
+          type: 'spline'
         },
         title: {
           text: null
@@ -46,10 +46,13 @@ function expertHistoryTimeSeriesChart() {
           title: {
             text: 'Rating'
           },
-          gridLineDashStyle: 'dot'
+          tickInterval: 1,
+          gridLineDashStyle: 'dot',
+          min: 0,
+          max: 10
         },
         plotOptions: {
-          area: {
+          areaspline: {
             fillColor: {
               linearGradient: {
                 x1: 0,
@@ -59,14 +62,14 @@ function expertHistoryTimeSeriesChart() {
               },
               stops: [
                 [0, chartColors()[0]],
-                [1, chartColors()[1]]
+                [1, chartColors()[2]]
               ]
             },
             marker: {
               enabled: false
             }
           },
-          line: {
+          spline: {
             marker: {
               enabled: false
             }
