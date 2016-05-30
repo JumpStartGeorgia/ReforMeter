@@ -1,4 +1,5 @@
-function createPerformanceMeterGauge() {
+function performanceMeterGauge() {
+  var chart = {};
   var chart_data = gon.charts.performance;
   var $chart = $('.js-become-expert-performance-chart');
   var customOptions = {
@@ -28,14 +29,18 @@ function createPerformanceMeterGauge() {
         rearLength: '10%'
       }
     }]
-
   };
 
-  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
-                    customOptions));
+  chart.create = function() {
+    $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                      customOptions));
+  }
+
+  return chart;
 }
 
-function createGoalsMeterGauge() {
+function goalsMeterGauge() {
+  var chart = {};
   var chart_data = gon.charts.goals;
   var $chart = $('.js-become-expert-goals-chart');
   var customOptions = {
@@ -68,11 +73,16 @@ function createGoalsMeterGauge() {
 
   };
 
-  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
-                    customOptions));
+  chart.create = function() {
+    $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                      customOptions));
+  }
+
+  return chart;
 }
 
-function createProgressMeterGauge() {
+function progressMeterGauge() {
+  var chart = {};
   var chart_data = gon.charts.progress;
   var $chart = $('.js-become-expert-progress-chart');
   var customOptions = {
@@ -102,16 +112,23 @@ function createProgressMeterGauge() {
         rearLength: '10%'
       }
     }]
-
   };
 
-  $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
-                    customOptions));
+  chart.create = function() {
+    $chart.highcharts(Highcharts.merge(highchartsSmallMeterGauge(),
+                      customOptions));
+  };
+
+  return chart;
 }
 
 function setupExpertPage() {
-  expertOverallMeterGauge().create();
-  createPerformanceMeterGauge();
-  createGoalsMeterGauge();
-  createProgressMeterGauge();
+  [
+    expertOverallMeterGauge(),
+    performanceMeterGauge(),
+    goalsMeterGauge(),
+    progressMeterGauge()
+  ].forEach(function(item) {
+    item.create();
+  });
 }

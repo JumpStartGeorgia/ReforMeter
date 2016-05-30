@@ -1,4 +1,5 @@
 function expertOverallMeterGauge() {
+  var chart = {};
   var $chart = $('.js-become-expert-overall-chart');
 
   function chart_data() {
@@ -101,12 +102,12 @@ function expertOverallMeterGauge() {
     };
   }
 
-  return {
-    create: function() {
-      if ($chart.length === 0 || !chart_data()) {
-        return null;
-      }
-      $chart.highcharts(Highcharts.merge(highchartsMeterGauge(), options()));
+  chart.create = function() {
+    if ($chart.length === 0 || !chart_data()) {
+      return null;
     }
-  }
+    $chart.highcharts(Highcharts.merge(highchartsMeterGauge(), options()));
+  };
+
+  return chart;
 }
