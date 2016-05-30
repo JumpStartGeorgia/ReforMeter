@@ -139,8 +139,7 @@ class RootController < ApplicationController
     @quarters = Quarter.published.recent.with_expert_survey
 
     # get the expert survey data for charting
-    survey_data = Quarter.expert_survey_data_for_charting
-
+    gon.survey_data = Quarter.expert_survey_data_for_charting(overall_score_only: true)
   end
 
   def expert_show

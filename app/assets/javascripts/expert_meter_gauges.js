@@ -110,7 +110,7 @@ function createProgressMeterGauge() {
 }
 
 function setupExpertPage() {
-  createExpertOverallMeterGauge();
+  expertOverallMeterGauge().create();
   createPerformanceMeterGauge();
   createGoalsMeterGauge();
   createProgressMeterGauge();
