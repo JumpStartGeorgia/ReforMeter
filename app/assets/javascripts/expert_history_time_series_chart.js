@@ -1,4 +1,21 @@
 function expertHistoryTimeSeriesChart() {
+  function pointFormatter() {
+    function in_paragraph(content) {
+      return '<p style="margin: 5px 0;">' + content + '</p>';
+    }
+
+    var point = '<b>' + this.y + '</b> ';
+
+    var icon = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + change_icon(this.change) + '</span>';
+    var name = '<span style="color: #66666d;">' + this.series.name + '</span>';
+
+    if (this.change) {
+      return in_paragraph(point + icon + name);
+    } else {
+      return in_paragraph(point + name);
+    }
+  }
+
   var expertHistoryTimeSeries = {
     create: function() {
       $('.js-become-experts-time-series-chart').highcharts({
@@ -10,7 +27,16 @@ function expertHistoryTimeSeriesChart() {
         xAxis: {
           type: 'datetime',
           categories: gon.survey_data.categories,
+          crosshair: {
+            color: 'black',
+            dashStyle: 'solid',
+            width: 1
+          },
           tickmarkPlacement: 'on'
+        },
+        legend: {
+          align: 'right',
+          symbolWidth: 40
         },
         yAxis: {
           title: {
@@ -31,10 +57,26 @@ function expertHistoryTimeSeriesChart() {
                 [0, Highcharts.getOptions().colors[0]],
                 [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
               ]
+            },
+            marker: {
+              enabled: false
+            }
+          },
+          line: {
+            marker: {
+              enabled: false
             }
           }
         },
-        series: gon.survey_data.series
+        series: gon.survey_data.series,
+        tooltip: {
+          backgroundColor: 'white',
+          borderWidth: 0,
+          headerFormat: '<b>{point.key}</b><br/>',
+          pointFormatter: pointFormatter,
+          shared: true,
+          useHTML: true
+        }
       });
     }
   }

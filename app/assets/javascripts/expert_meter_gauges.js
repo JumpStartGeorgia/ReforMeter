@@ -109,7 +109,6 @@ function createProgressMeterGauge() {
                     customOptions));
 }
 
-
 function setupExpertPage() {
   createExpertOverallMeterGauge();
   createPerformanceMeterGauge();

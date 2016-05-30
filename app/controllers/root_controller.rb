@@ -159,6 +159,8 @@ class RootController < ApplicationController
       # get the expert survey data for charting
       gon.survey_data = Quarter.expert_survey_data_for_charting
 
+      gon.change_icons = view_context.change_icons
+
       gon.charts = {
         overall: {
           title: I18n.t('shared.categories.overall'),
