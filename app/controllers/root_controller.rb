@@ -139,7 +139,9 @@ class RootController < ApplicationController
     @quarters = Quarter.published.recent.with_expert_survey
 
     # get the expert survey data for charting
-    gon.survey_data = Quarter.expert_survey_data_for_charting(overall_score_only: true)
+    gon.charts = {
+      survey_data: Quarter.expert_survey_data_for_charting(overall_score_only: true)
+    }
   end
 
   def expert_show
@@ -155,12 +157,10 @@ class RootController < ApplicationController
       @methodology_expert = PageContent.find_by(name: 'methodology_expert')
       @news = News.by_expert_quarter(@quarter.id)
 
-      # get the expert survey data for charting
-      gon.survey_data = Quarter.expert_survey_data_for_charting
-
       gon.change_icons = view_context.change_icons
 
       gon.charts = {
+        survey_data: Quarter.expert_survey_data_for_charting,
         overall: {
           title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,

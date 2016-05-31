@@ -29,7 +29,7 @@ function expertHistoryTimeSeriesChart() {
         colors: ['#000'],
         xAxis: {
           type: 'datetime',
-          categories: gon.survey_data.categories,
+          categories: gon.charts.survey_data.categories,
           crosshair: {
             color: 'black',
             dashStyle: 'solid',
@@ -75,7 +75,7 @@ function expertHistoryTimeSeriesChart() {
             }
           }
         },
-        series: gon.survey_data.series,
+        series: gon.charts.survey_data.series,
         tooltip: {
           backgroundColor: 'white',
           borderWidth: 0,
