@@ -2,7 +2,7 @@ function bigMeterGauge(chart_data) {
   var chart = {};
   var $chart = $('.js-become-big-meter-gauge');
 
-  function options() {
+  function customOptions() {
     return {
 
       title: {
@@ -99,7 +99,7 @@ function bigMeterGauge(chart_data) {
 
   chart.create = function() {
     if (chart_data && ($chart.length > 0)) {
-      $chart.highcharts(Highcharts.merge(highchartsMeterGauge(), options()));
+      $chart.highcharts(Highcharts.merge(highchartsMeterGauge(), customOptions()));
     }
   };
 
