@@ -1,88 +1,136 @@
-<% page_title t('.title') %>
+<%
+page_title t('.title')
+@do_not_use_default_page_layout = true
+%>
 
-<% if @expert_text %>
-  <div>
-    <%= simple_format_no_tags(@expert_text.content) %>
+<div class='contentSection mod-overlap-top-image'>
+
+  <header class='contentSection-header'>
+
+    <h1 class='heading'>
+      <%= yield(:page_title) %>
+    </h1>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+    <% if @expert_text %>
+      <div>
+        <%= simple_format_no_tags(@expert_text.content) %>
+      </div>
+    <% end %>
+
+    <% if @quarters.present? %>
+
+      <div>
+        <ul class='tabList mod-with-separator js-act-as-tab-list'>
+
+          <li class='tabList-item'>
+            <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
+              <%= t('.header.chart') %>
+            </button>
+          </li>
+
+          <li class='tabList-item'>
+            <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
+              <%= t('.header.methodology') %>
+            </button>
+          </li>
+
+        </ul>
+
+        <div class="tabContent js-act-as-tab-content">
+
+          <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='chart'>
+            <div class='js-become-experts-time-series-chart'></div>
+          </div>
+
+          <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>
+            <% if @methodology_expert %>
+              <div>
+                <%= simple_format_no_tags(@methodology_expert.content) %>
+              </div>
+            <% else %>
+              <p>
+               <%= t('.no_methodology') %>
+              </p>
+            <% end %>
+          </div>
+
+        </div>
+
+      </div>
+
+    <% else %>
+
+      <p class="alert alert-warning">
+        <%= t('.no_data') %>
+      </p>
+
+    <% end %>
+
   </div>
-<% end %>
+
+</div>
 
 <% if @quarters.present? %>
 
-  <div>
-    <ul class='tabList mod-with-separator js-act-as-tab-list'>
+  <div class='contentSection'>
 
-      <li class='tabList-item'>
-        <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
-          <%= t('.header.chart') %>
-        </button>
-      </li>
+    <header class='contentSection-header'>
 
-      <li class='tabList-item'>
-        <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
-          <%= t('.header.methodology') %>
-        </button>
-      </li>
+      <h2 class='heading'>
+        <%= t('.header.table') %>
+      </h2>
 
-    </ul>
+    </header>
 
-    <div class="tabContent js-act-as-tab-content">
+    <div class='contentSection-body'>
 
-      <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='chart'>
-        <div class='js-become-experts-time-series-chart'></div>
-      </div>
+      <table class='table table-striped table-hover table-nonfluid'>
+        <thead>
+          <tr>
 
-      <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>
-        <% if @methodology_expert %>
-          <div>
-            <%= simple_format_no_tags(@methodology_expert.content) %>
-          </div>
-        <% else %>
-          <p>
-           <%= t('.no_methodology') %>
-          </p>
-        <% end %>
-      </div>
+            <th>
+              <%= t('.table_header.time') %>
+            </th>
+
+            <th>
+              <%= t('.table_header.overall') %>
+            </th>
+
+            <th>
+              <%= t('.table_header.summary') %>
+            </th>
+            
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @quarters.each do |quarter| %>
+            <tr>
+
+              <td>
+                <%= link_to quarter.time_period,
+                            expert_show_path(quarter.slug) %>
+              </td>
+
+              <td>
+                <div class='js-become-small-meter-gauge' data-type='<%= quarter.slug %>'></div>
+              </td>
+
+              <td>
+                <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
+              </td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
     </div>
 
   </div>
-
-
-  <h2><%= t('.header.table') %></h2>
-
-  <table class='table table-striped table-hover table-nonfluid'>
-    <thead>
-      <tr>
-        <th><%= t('.table_header.time') %></th>
-        <th><%= t('.table_header.overall') %></th>
-        <th><%= t('.table_header.summary') %></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @quarters.each do |quarter| %>
-        <tr>
-          <td>
-            <%= link_to quarter.time_period, expert_show_path(quarter.slug) %>
-          </td>
-          <td>
-            <div class='js-become-small-meter-gauge' data-type='<%= quarter.slug %>' style="width: 125px; height: 220px;"></div>
-
-            <%= quarter.expert_survey.overall_score %>
-            <%= generate_change_icon(quarter.expert_survey.overall_change) %>
-          </td>
-          <td>
-            <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-<% else %>
-
-  <p class="alert alert-warning">
-    <%= t('.no_data') %>
-  </p>
 
 <% end %>
