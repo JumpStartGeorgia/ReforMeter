@@ -3,7 +3,7 @@ $(document).ready(function() {
   setupSelect2();
   setupExpertTimePeriodSelect();
   makeReformPageChangeable();
-  setupExpertPage();
+  setupCharts();
   setupTabs();
   expertHistoryTimeSeriesChart().create();
 

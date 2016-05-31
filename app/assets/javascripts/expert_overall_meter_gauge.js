@@ -1,17 +1,12 @@
-function expertOverallMeterGauge() {
+function bigMeterGauge(chart_data) {
   var chart = {};
-  var $chart = $('.js-become-expert-overall-chart');
-
-  function chart_data() {
-    if (!gon.charts) { return null }
-    return gon.charts.overall;
-  }
+  var $chart = $('.js-become-big-meter-gauge');
 
   function options() {
     return {
 
       title: {
-        text: chart_data().title,
+        text: chart_data.title,
         y: 15
       },
 
@@ -79,13 +74,13 @@ function expertOverallMeterGauge() {
       },
 
       series: [{
-        name: chart_data().title,
-        data: [chart_data().score],
+        name: chart_data.title,
+        data: [chart_data.score],
         dataLabels: {
           borderWidth: 0,
           y: 70,
           useHTML: true,
-          format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + chart_data().icon + '</div>'
+          format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + chart_data.icon + '</div>'
         },
         pivot: {
           backgroundColor: 'white'
@@ -103,10 +98,9 @@ function expertOverallMeterGauge() {
   }
 
   chart.create = function() {
-    if ($chart.length === 0 || !chart_data()) {
-      return null;
+    if (chart_data && ($chart.length > 0)) {
+      $chart.highcharts(Highcharts.merge(highchartsMeterGauge(), options()));
     }
-    $chart.highcharts(Highcharts.merge(highchartsMeterGauge(), options()));
   };
 
   return chart;

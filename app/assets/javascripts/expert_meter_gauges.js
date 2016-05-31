@@ -64,20 +64,24 @@ function smallMeterGauge(chart_data, dataType) {
   };
 
   chart.create = function() {
-    $chart.highcharts(Highcharts.merge(highchartsMeterGauge(),
-                      customOptions));
+    if (chart_data && ($chart.length > 0)) {
+      $chart.highcharts(Highcharts.merge(highchartsMeterGauge(),
+                        customOptions));
+    }
   }
 
   return chart;
 }
 
-function setupExpertPage() {
-  [
-    expertOverallMeterGauge(),
-    smallMeterGauge(gon.charts.performance, 'performance'),
-    smallMeterGauge(gon.charts.goals, 'goals'),
-    smallMeterGauge(gon.charts.progress, 'progress')
-  ].forEach(function(item) {
-    item.create();
-  });
+function setupCharts() {
+  if (gon.charts) {
+    [
+      bigMeterGauge(gon.charts.overall),
+      smallMeterGauge(gon.charts.performance, 'performance'),
+      smallMeterGauge(gon.charts.goals, 'goals'),
+      smallMeterGauge(gon.charts.progress, 'progress')
+    ].forEach(function(item) {
+      item.create();
+    });
+  }
 }
