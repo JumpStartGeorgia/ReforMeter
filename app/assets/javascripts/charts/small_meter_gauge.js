@@ -59,8 +59,7 @@ function smallMeterGauge(chart_data, dataType) {
             if (chart_data.icon) {
               return inDiv(score + chart_data.icon);
             } else {
-              return inDiv(score);              
-
+              return inDiv(score);
             }
           }
         },
