@@ -10,7 +10,7 @@ $charts-table-border: solid 3px $color-grey-background;
     border-bottom: $charts-table-border;
   }
 
-  .chartsTable-body .chartsTable-row:not(:last-child) .chartsTable-cell {
+  .chartsTable-body .chartsTable-row:last-child .chartsTable-cell {
     border-bottom: 0;
   }
 
