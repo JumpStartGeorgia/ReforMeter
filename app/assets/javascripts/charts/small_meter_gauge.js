@@ -35,7 +35,7 @@ function smallMeterGauge(chart_data, dataType) {
       },
 
       chart: {
-        height: '100',
+        height: '125',
         width: '100'
       },
 
