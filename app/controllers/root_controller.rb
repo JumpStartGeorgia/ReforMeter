@@ -138,10 +138,21 @@ class RootController < ApplicationController
 
     @quarters = Quarter.published.recent.with_expert_survey
 
+    quarter_charts = []
     # get the expert survey data for charting
     gon.charts = {
-      survey_data: Quarter.expert_survey_data_for_charting(overall_score_only: true)
+      survey_data: Quarter.expert_survey_data_for_charting(overall_score_only: true),
+      quarters: quarter_charts
     }
+
+    @quarters.each do |quarter|
+      quarter_charts << {
+        slug: quarter.slug,
+        title: nil,
+        score: quarter.expert_survey.overall_score.to_f,
+        icon: view_context.generate_change_icon(quarter.expert_survey.overall_change)
+      }
+    end
   end
 
   def expert_show

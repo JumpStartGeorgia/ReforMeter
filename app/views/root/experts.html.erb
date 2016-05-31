@@ -66,6 +66,8 @@
             <%= link_to quarter.time_period, expert_show_path(quarter.slug) %>
           </td>
           <td>
+            <div class='js-become-small-meter-gauge' data-type='<%= quarter.slug %>' style="width: 125px; height: 220px;"></div>
+
             <%= quarter.expert_survey.overall_score %>
             <%= generate_change_icon(quarter.expert_survey.overall_change) %>
           </td>
