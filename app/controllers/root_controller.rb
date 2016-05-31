@@ -32,6 +32,9 @@ class RootController < ApplicationController
     @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
   end
 
+  def contact
+  end
+
   def download_data_and_reports
     @download_text = PageContent.find_by(name: 'download_text')
     @download_expert_text = PageContent.find_by(name: 'download_expert_text')
@@ -41,6 +44,7 @@ class RootController < ApplicationController
 
     @reforms = Reform.active.sorted
     @quarters = Quarter.published.recent
+    @external_indicators = ExternalIndicator.published.sorted
 
     # if there is a download request, process it
     if request.post? && params[:type].present?
@@ -61,7 +65,12 @@ class RootController < ApplicationController
 
           end
         when 'external_indicator'
-          is_csv = true
+          ext_ind = ExternalIndicator.find_by(id: params[:external_indicator_id])
+          if ext_ind
+            data = ExternalIndicator.to_csv(ext_ind.id)
+            filename = "ReforMeter_#{ext_ind.title}_External_Indicator_Data"
+            is_csv = true
+          end
         when 'report'
           # just need the url to the file
           quarter = @quarters.select{|x| x.slug == params[:quarter]}.first

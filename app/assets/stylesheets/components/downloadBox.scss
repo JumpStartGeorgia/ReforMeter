@@ -30,12 +30,15 @@
     font-size: 2.5rem;
     background-color: #00AEEF;
     border-radius: 3px;
-    color: white;
     fill: white;
     padding: 10px 20px;
     margin-bottom: 20px;
   }
 
+    .downloadBox-button a {
+      color: white;
+      text-decoration: none;
+    }
     .downloadBox-button svg {
       vertical-align: middle;
     }

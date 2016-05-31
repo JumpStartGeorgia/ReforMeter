@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 
+require 'csv'
 class Quarter < ActiveRecord::Base
 
   #######################
@@ -85,6 +86,22 @@ class Quarter < ActiveRecord::Base
   # get an array of the active quarters in format: [time period, slug]
   def self.active_quarters_array
     published.recent.map{|x| [x.time_period, x.slug]}
+  end
+
+  #######################
+  ## METHODS
+
+  # formal name of quarter: Q# 2016
+  def time_period
+    "Q#{self.quarter} #{self.year}"
+  end
+
+
+  def set_reform(reform_slug)
+    reform = Reform.friendly.find(reform_slug)
+    if reform
+      reform_id = reform.id
+    end
   end
 
   # you must set the reform first before calling this

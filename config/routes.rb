@@ -20,12 +20,13 @@ Rails.application.routes.draw do
       resources :page_contents, constraints: { format: :html }
     end
 
+    get '/contact' => 'root#contact'
     get '/about' => 'root#about'
     get '/download_data_and_reports' => 'root#download_data_and_reports'
     post '/download_data_and_reports' => 'root#download_data_and_reports'
     get '/reforms' => 'root#reforms'
     # if there is no time period then send back to reforms page with reform as query string
-    get '/reforms/:reform_id', to: redirect('/%{locale}/reforms?reform=%{reform_id}') 
+    get '/reforms/:reform_id', to: redirect('/%{locale}/reforms?reform=%{reform_id}')
     get '/reforms/:reform_id/:quarter_id' => 'root#reform_show', as: :reform_show
     get '/experts' => 'root#experts'
     get '/experts/:id' => 'root#expert_show', as: :expert_show
