@@ -16,7 +16,7 @@ $charts-table-border: solid 3px $color-grey-background;
 
   .chartsTable-cell {
     min-width: 100px;
-    padding-right: 20px;
+    padding: 10px;
   }
 
   .chartsTable-cell:not(:last-child) {
@@ -31,7 +31,6 @@ $charts-table-border: solid 3px $color-grey-background;
   }
 
   .chartsTable-cell.mod-first-column {
-    padding-right: 0;
     padding-left: $padding-main-content;
   }
 
