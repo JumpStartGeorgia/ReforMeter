@@ -50,7 +50,19 @@ function smallMeterGauge(chart_data, dataType) {
           borderWidth: 0,
           y: 45,
           useHTML: true,
-          format: '<div style="text-align:center;"><span style="font-size:20px;color:black;">{y:.2f}</span>' +  chart_data.icon + '</div>'
+          formatter: function() {
+            function inDiv(content) {
+              return '<div style="text-align:center;">' + content + '</div>';
+            }
+            var score = '<span style="font-size:20px;color:black;">' + this.y + '</span>';
+
+            if (chart_data.icon) {
+              return inDiv(score + chart_data.icon);
+            } else {
+              return inDiv(score);              
+
+            }
+          }
         },
         pivot: {
           backgroundColor: 'white'
