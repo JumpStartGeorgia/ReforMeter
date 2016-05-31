@@ -34,6 +34,11 @@ function smallMeterGauge(chart_data, dataType) {
         ]
       },
 
+      chart: {
+        height: '100',
+        width: '100'
+      },
+
       pane: {
         size: '100'
       },

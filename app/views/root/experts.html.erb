@@ -86,41 +86,41 @@ page_title t('.title')
 
     </header>
 
-    <div class='contentSection-body'>
+    <div class='contentSection-body mod-no-padding'>
 
-      <table class='table table-striped table-hover table-nonfluid'>
+      <table class='chartsTable'>
         <thead>
-          <tr>
+          <tr class='chartsTable-row'>
 
-            <th>
+            <th class='chartsTable-cell mod-head mod-first-column'>
               <%= t('.table_header.time') %>
             </th>
 
-            <th>
+            <th class='chartsTable-cell mod-head'>
               <%= t('.table_header.overall') %>
             </th>
 
-            <th>
+            <th class='chartsTable-cell mod-head'>
               <%= t('.table_header.summary') %>
             </th>
-            
+
           </tr>
         </thead>
 
-        <tbody>
+        <tbody class='chartsTable-body'>
           <% @quarters.each do |quarter| %>
-            <tr>
+            <tr class='chartsTable-row'>
 
-              <td>
+              <td class='chartsTable-cell mod-first-column'>
                 <%= link_to quarter.time_period,
                             expert_show_path(quarter.slug) %>
               </td>
 
-              <td>
+              <td class='chartsTable-cell'>
                 <div class='js-become-small-meter-gauge' data-type='<%= quarter.slug %>'></div>
               </td>
 
-              <td>
+              <td class='chartsTable-cell'>
                 <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
               </td>
 

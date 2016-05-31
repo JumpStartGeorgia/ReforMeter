@@ -1,0 +1,41 @@
+$charts-table-border: solid 3px $color-grey-background;
+
+.chartsTable {
+  text-align: left;
+}
+
+  // Cannot give bottom border to row, so workaround is to target cells of
+  // in all rows except the last
+  .chartsTable-row .chartsTable-cell {
+    border-bottom: $charts-table-border;
+  }
+
+  .chartsTable-body .chartsTable-row:not(:last-child) .chartsTable-cell {
+    border-bottom: 0;
+  }
+
+  .chartsTable-cell {
+    min-width: 100px;
+    padding-right: 20px;
+  }
+
+  .chartsTable-cell:not(:last-child) {
+    border-right: $charts-table-border;
+  }
+
+  .chartsTable-cell.mod-head {
+    height: 100%;
+    font-weight: 600;
+    color: black;
+    padding: 10px;
+  }
+
+  .chartsTable-cell.mod-first-column {
+    padding-right: 0;
+    padding-left: $padding-main-content;
+  }
+
+  .highcharts-container {
+    width: 100%;
+    height: 100%;
+  }

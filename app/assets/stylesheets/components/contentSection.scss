@@ -33,6 +33,10 @@
     border-top: none;
   }
 
+  .contentSection-body.mod-no-padding {
+    padding: 0;
+  }
+
 .contentSection.mod-overlap-top-image {
   @media (min-width: $width-move-main-into-top-image) {
     margin-top: -1 * $height-content-heading;
