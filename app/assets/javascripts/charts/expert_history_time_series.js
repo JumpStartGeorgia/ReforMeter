@@ -5,12 +5,18 @@ function expertHistoryTimeSeries() {
     }
 
     var point = '<b>' + this.y + '</b> ';
-
-    var icon = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + change_icon(this.change) + '</span>';
     var name = '<span style="color: #66666d;">' + this.series.name + '</span>';
 
     if (this.change) {
-      return in_paragraph(point + icon + name);
+      var icon = change_icon(this.change);
+
+      if (!icon) {
+        throw new Error('Change icons not available');
+      }
+
+      var iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
+
+      return in_paragraph(point + iconInSpan + name);
     } else {
       return in_paragraph(point + name);
     }
