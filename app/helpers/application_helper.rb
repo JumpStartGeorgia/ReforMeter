@@ -45,8 +45,8 @@ module ApplicationHelper
   private
 
   CHANGE_ICONS = {
-    '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), style: 'max-width: 100%; max-height: 100%;'),
-    '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), style: 'max-width: 100%; max-height: 100%;'),
-    '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), style: 'max-width: 100%; max-height: 100%;')
+    '-1': ActionController::Base.helpers.image_tag(ActionController::Base.helpers.image_path('arrow_down.svg'), title: I18n.t('shared.change_status.down'), style: 'max-width: 100%; max-height: 100%;'),
+    '0': ActionController::Base.helpers.image_tag(ActionController::Base.helpers.image_path('arrow_flat.svg'), title: I18n.t('shared.change_status.flat'), style: 'max-width: 100%; max-height: 100%;'),
+    '1': ActionController::Base.helpers.image_tag(ActionController::Base.helpers.image_path('arrow_up.svg'), title: I18n.t('shared.change_status.up'), style: 'max-width: 100%; max-height: 100%;')
   }
 end
