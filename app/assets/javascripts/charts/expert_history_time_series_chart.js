@@ -1,4 +1,4 @@
-function expertHistoryTimeSeriesChart() {
+function expertHistoryTimeSeries() {
   function pointFormatter() {
     function in_paragraph(content) {
       return '<p style="margin: 5px 0;">' + content + '</p>';
