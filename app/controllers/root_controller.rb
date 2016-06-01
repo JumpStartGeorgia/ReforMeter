@@ -182,29 +182,35 @@ class RootController < ApplicationController
 
       gon.change_icons = view_context.change_icons
 
-      gon.charts = {
-        survey_data: Quarter.expert_survey_data_for_charting,
-        overall: {
+    
+
+      gon.charts = [
+        Quarter.expert_survey_data_for_charting, {
+          chartType: 'big-meter-gauge',
+          id: 'overall',
           title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,
           icon: view_context.generate_change_icon(@quarter.expert_survey.overall_change)
-        },
-        performance: {
+        }, {
+          chartType: 'small-meter-gauge',
+          id: 'performance',
           title: I18n.t('shared.categories.performance'),
           score: @quarter.expert_survey.category1_score.to_f,
           icon: view_context.generate_change_icon(@quarter.expert_survey.category1_change)
-        },
-        goals: {
+        }, {
+          chartType: 'small-meter-gauge',
+          id: 'goals',
           title: I18n.t('shared.categories.goals'),
           score: @quarter.expert_survey.category2_score.to_f,
           icon: view_context.generate_change_icon(@quarter.expert_survey.category2_change)
-        },
-        progress: {
+        }, {
+          chartType: 'small-meter-gauge',
+          id: 'progress',
           title: I18n.t('shared.categories.progress'),
           score: @quarter.expert_survey.category3_score.to_f,
           icon: view_context.generate_change_icon(@quarter.expert_survey.category3_change)
         }
-      }
+      ]
 
     rescue ActiveRecord::RecordNotFound => e
       redirect_to experts_path,

@@ -1,4 +1,4 @@
-function expertHistoryTimeSeries() {
+function expertHistoryTimeSeries(chartData) {
   function pointFormatter() {
     function in_paragraph(content) {
       return '<p style="margin: 5px 0;">' + content + '</p>';
@@ -35,7 +35,7 @@ function expertHistoryTimeSeries() {
         colors: ['#000'],
         xAxis: {
           type: 'datetime',
-          categories: gon.charts.survey_data.categories,
+          categories: chartData.categories,
           crosshair: {
             color: 'black',
             dashStyle: 'solid',
@@ -81,7 +81,7 @@ function expertHistoryTimeSeries() {
             }
           }
         },
-        series: gon.charts.survey_data.series,
+        series: chartData.series,
         tooltip: {
           backgroundColor: 'white',
           borderWidth: 0,

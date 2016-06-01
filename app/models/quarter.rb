@@ -158,7 +158,16 @@ class Quarter < ActiveRecord::Base
     default_options = {overall_score_only: false, is_published: true}
     options = options.reverse_merge(default_options)
 
-    hash = {title: I18n.t('shared.chart_titles.expert.title'), subtitle: nil, min: 0, max: 10, categories: [], series: []}
+    hash = {
+      title: I18n.t('shared.chart_titles.expert.title'),
+      chartType: 'expert-history-time-series',
+      subtitle: nil,
+      min: 0,
+      max: 10,
+      categories: [],
+      series: []
+    }
+
     quarters = oldest
     quarters = quarters.published if options[:is_published]
 
