@@ -149,22 +149,20 @@ class RootController < ApplicationController
 
     gon.change_icons = view_context.change_icons
 
-    quarter_charts = []
+    gon.charts = [
+      Quarter.expert_survey_data_for_charting(overall_score_only: true)
+    ]
 
     @quarters.each do |quarter|
-      quarter_charts << {
-        slug: quarter.slug,
+      gon.charts << {
+        id: quarter.slug,
+        chartType: 'small-meter-gauge',
         title: nil,
         score: quarter.expert_survey.overall_score.to_f,
         icon: view_context.generate_change_icon(quarter.expert_survey.overall_change)
       }
     end
 
-    # get the expert survey data for charting
-    gon.charts = {
-      survey_data: Quarter.expert_survey_data_for_charting(overall_score_only: true),
-      quarters: quarter_charts
-    }
   end
 
   def expert_show
@@ -182,7 +180,7 @@ class RootController < ApplicationController
 
       gon.change_icons = view_context.change_icons
 
-    
+
 
       gon.charts = [
         Quarter.expert_survey_data_for_charting, {
