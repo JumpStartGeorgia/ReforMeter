@@ -1,0 +1,48 @@
+<aside>
+  <h2 class='u-hide-visually'>
+    Expert News
+  </h2>
+
+  <% @news.each do |news| %>
+    <% if news.image.exists? %>
+      <div class='contentSection'>
+        <%= image_tag(
+              news.image.url('360x200'),
+              class: 'responsiveImage') %>
+
+        <div class='contentSection-header'>
+
+          <h3 class='heading'>
+            <%= link_to news.title,
+                        news.url,
+                        target: :blank %>
+          </h3>
+
+        </div>
+
+        <div class='contentSection-body mod-no-top-border'>
+          <%= simple_format_no_tags(news.content) %>
+        </div>
+
+      </div>
+    <% else %>
+      <div class='contentSection'>
+
+        <header class='contentSection-header'>
+          <h3 class='heading'>
+            <%= link_to news.title,
+                        news.url,
+                        target: :blank %>
+          </h3>
+        </header>
+
+        <div class='contentSection-body'>
+          <%= simple_format_no_tags(news.content) %>
+        </div>
+
+      </div>
+    <% end %>
+
+  <% end %>
+
+</aside>

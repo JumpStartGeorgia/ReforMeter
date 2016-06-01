@@ -1,5 +1,4 @@
 $gauges-min-width: 685px;
-$news-move-to-side: 700px;
 
 .expertShowPage-summaryGaugesContainer {
   display: flex;
@@ -29,24 +28,3 @@ $news-move-to-side: 700px;
       flex-flow: row wrap;
       justify-content: center;
     }
-
-.expertShowPage-findingsSidebarContainer {
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: $news-move-to-side) {
-    flex-direction: row;
-  }
-}
-
-  .expertShowPage-findingsSidebarContainer-sidebar {
-    max-width: 360px;
-    margin: 0 auto;
-
-    @media (min-width: $news-move-to-side) {
-      max-width: initial;
-      margin: initial;
-      margin-left: 20px;
-      min-width: 35%;
-    }
-  }

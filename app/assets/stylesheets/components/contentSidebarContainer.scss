@@ -1,0 +1,22 @@
+$sidebar-move-to-side: 700px;
+
+.contentSidebarContainer {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $sidebar-move-to-side) {
+    flex-direction: row;
+  }
+}
+
+  .contentSidebarContainer-sidebar {
+    max-width: 360px;
+    margin: 0 auto;
+
+    @media (min-width: $sidebar-move-to-side) {
+      max-width: initial;
+      margin: initial;
+      margin-left: 20px;
+      min-width: 35%;
+    }
+  }

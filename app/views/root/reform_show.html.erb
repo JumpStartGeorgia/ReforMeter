@@ -125,110 +125,108 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
 
 </div>
 
-<div class='contentSection'>
+<div class='contentSidebarContainer'>
 
-  <header class='contentSection-header'>
+  <div>
 
-    <h2 class='heading'>
-      <%= t('.header.stakeholder_summary') %>
-    </h2>
+    <div class='contentSection'>
 
-  </header>
+      <header class='contentSection-header'>
 
-  <div class='contentSection-body'>
+        <h2 class='heading'>
+          <%= t('.header.stakeholder_summary') %>
+        </h2>
 
-    <% if @reform_survey.stakeholder_summary %>
-      <div>
-        <%= simple_format_no_tags(@reform_survey.stakeholder_summary) %>
-      </div>
-    <% end %>
+      </header>
 
-    <ul>
-      <li>
-        <%= t('shared.categories.overall') %>:
-        <%= @reform_survey.stakeholder_overall_score %> <%= generate_change_icon(@reform_survey.stakeholder_overall_change) %>
-      </li>
-      <li>
-        <%= t('shared.categories.performance') %>:
-        <%= @reform_survey.stakeholder_category1_score %> <%= generate_change_icon(@reform_survey.stakeholder_category1_change) %>
-      </li>
-      <li>
-        <%= t('shared.categories.goals') %>:
-        <%= @reform_survey.stakeholder_category2_score %> <%= generate_change_icon(@reform_survey.stakeholder_category2_change) %>
-      </li>
-      <li>
-        <%= t('shared.categories.progress') %>:
-        <%= @reform_survey.stakeholder_category3_score %> <%= generate_change_icon(@reform_survey.stakeholder_category3_change) %>
-      </li>
-    </ul>
+      <div class='contentSection-body'>
+
+        <% if @reform_survey.stakeholder_summary %>
+          <div>
+            <%= simple_format_no_tags(@reform_survey.stakeholder_summary) %>
+          </div>
+        <% end %>
+
+        <ul>
+          <li>
+            <%= t('shared.categories.overall') %>:
+            <%= @reform_survey.stakeholder_overall_score %> <%= generate_change_icon(@reform_survey.stakeholder_overall_change) %>
+          </li>
+          <li>
+            <%= t('shared.categories.performance') %>:
+            <%= @reform_survey.stakeholder_category1_score %> <%= generate_change_icon(@reform_survey.stakeholder_category1_change) %>
+          </li>
+          <li>
+            <%= t('shared.categories.goals') %>:
+            <%= @reform_survey.stakeholder_category2_score %> <%= generate_change_icon(@reform_survey.stakeholder_category2_change) %>
+          </li>
+          <li>
+            <%= t('shared.categories.progress') %>:
+            <%= @reform_survey.stakeholder_category3_score %> <%= generate_change_icon(@reform_survey.stakeholder_category3_change) %>
+          </li>
+        </ul>
 
 
-    <div>
-      <ul class="nav nav-tabs" role="tabList">
-        <li role="presentation" class="active"><a href="#stakeholder_history" aria-controls="stakeholder_history" role="tab" data-toggle="tab"><%= t('.header.stakeholder_history') %></a></li>
-        <li role="presentation"><a href="#stakeholder_methodology" aria-controls="stakeholder_methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
-      </ul>
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="stakeholder_history">
-          insert chart here
-        </div>
-
-        <div role="tabpanel" class="tab-pane" id="stakeholder_methodology">
-          <% if @methodology_stakeholder %>
-            <div>
-              <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+        <div>
+          <ul class="nav nav-tabs" role="tabList">
+            <li role="presentation" class="active"><a href="#stakeholder_history" aria-controls="stakeholder_history" role="tab" data-toggle="tab"><%= t('.header.stakeholder_history') %></a></li>
+            <li role="presentation"><a href="#stakeholder_methodology" aria-controls="stakeholder_methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="stakeholder_history">
+              insert chart here
             </div>
-          <% else %>
-            <p>
-             <%= t('.no_methodology') %>
-            </p>
-          <% end %>
+
+            <div role="tabpanel" class="tab-pane" id="stakeholder_methodology">
+              <% if @methodology_stakeholder %>
+                <div>
+                  <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+                </div>
+              <% else %>
+                <p>
+                 <%= t('.no_methodology') %>
+                </p>
+              <% end %>
+            </div>
+          </div>
         </div>
+
       </div>
+
     </div>
 
+    <% if @external_indicators.present? %>
+
+      <div class='contentSection'>
+
+        <header class='contentSection-header'>
+
+          <h2 class='heading'>
+            <%= t('.header.external_indicators') %>
+          </h2>
+
+        </header>
+
+        <div class='contentSection-body'>
+
+          <% @external_indicators.each do |ext_ind| %>
+            <h3><%= ext_ind.title %></h3>
+            <h4><%= ext_ind.subtitle %></h4>
+            <div>insert chart here </div>
+          <% end %>
+
+        </div>
+
+      </div>
+
+    <% end %>
+
   </div>
+
+  <% if @news.present? %>
+    <div class='contentSidebarContainer-sidebar'>
+      <%= render partial: 'shared/news' %>
+    </div>
+  <% end %>
 
 </div>
-
-<% if @external_indicators.present? %>
-
-  <div class='contentSection'>
-
-    <header class='contentSection-header'>
-
-      <h2 class='heading'>
-        <%= t('.header.external_indicators') %>
-      </h2>
-
-    </header>
-
-    <div class='contentSection-body'>
-
-      <% @external_indicators.each do |ext_ind| %>
-        <h3><%= ext_ind.title %></h3>
-        <h4><%= ext_ind.subtitle %></h4>
-        <div>insert chart here </div>
-      <% end %>
-
-    </div>
-
-  </div>
-
-<% end %>
-
-<% if @news.present? %>
-
-  <div class='contentSection'>
-    <% @news.each do |news| %>
-      <div>
-        <% if news.image.exists? %>
-          <%= image_tag news.image.url('360x200') %>
-        <% end %>
-        <h3><%= link_to news.title, news.url, target: :blank %></h3>
-        <div><%= simple_format_no_tags(news.content) %></div>
-      </div>
-    <% end %>
-  </div>
-
-<% end %>
