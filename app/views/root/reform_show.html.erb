@@ -65,13 +65,19 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
       </div>
     <% end %>
 
+    <section>
 
-    <h2><%= t('.header.government_summary') %></h2>
-    <% if @reform_survey.government_summary %>
-      <div>
-        <%= simple_format_no_tags(@reform_survey.government_summary) %>
-      </div>
-    <% end %>
+      <h2 class='heading mod-vertical-margin'>
+        <%= t('.header.government_summary') %>
+      </h2>
+
+      <% if @reform_survey.government_summary %>
+        <div>
+          <%= simple_format_no_tags(@reform_survey.government_summary) %>
+        </div>
+      <% end %>
+
+    </section>
 
     <ul>
       <li>
@@ -96,18 +102,31 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
       </li>
     </ul>
 
-
     <div>
-      <ul class="nav nav-tabs" role="tabList">
-        <li role="presentation" class="active"><a href="#government_history" aria-controls="government_history" role="tab" data-toggle="tab"><%= t('.header.government_history') %></a></li>
-        <li role="presentation"><a href="#government_methodology" aria-controls="government_methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
+
+      <ul class='tabList mod-with-separator js-act-as-tab-list'>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_history_chart'>
+            <%= t('.header.government_history') %>
+          </button>
+        </li>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_methodology'>
+            <%= t('.header.methodology') %>
+          </button>
+        </li>
+
       </ul>
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="government_history">
+
+      <div class="tabContent js-act-as-tab-content">
+
+        <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='government_history_chart'>
           insert chart here
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="government_methodology">
+        <div class='tabContent-panel js-act-as-tab-content-panel' id='government_methodology'>
           <% if @methodology_government %>
             <div>
               <%= simple_format_no_tags(@methodology_government.content) %>
@@ -118,6 +137,7 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
             </p>
           <% end %>
         </div>
+
       </div>
     </div>
 
@@ -127,7 +147,7 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
 
 <div class='contentSidebarContainer'>
 
-  <div>
+  <div class='contentSidebarContainer-content'>
 
     <div class='contentSection'>
 
@@ -166,18 +186,31 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
           </li>
         </ul>
 
+        <section>
 
-        <div>
-          <ul class="nav nav-tabs" role="tabList">
-            <li role="presentation" class="active"><a href="#stakeholder_history" aria-controls="stakeholder_history" role="tab" data-toggle="tab"><%= t('.header.stakeholder_history') %></a></li>
-            <li role="presentation"><a href="#stakeholder_methodology" aria-controls="stakeholder_methodology" role="tab" data-toggle="tab"><%= t('.header.methodology') %></a></li>
+          <ul class='tabList mod-with-separator js-act-as-tab-list'>
+
+            <li class='tabList-item'>
+              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
+                <%= t('.header.stakeholder_history') %>
+              </button>
+            </li>
+
+            <li class='tabList-item'>
+              <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_methodology'>
+                <%= t('.header.methodology') %>
+              </button>
+            </li>
+
           </ul>
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="stakeholder_history">
+
+          <div class="tabContent js-act-as-tab-content">
+
+            <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='stakeholder_history_chart'>
               insert chart here
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="stakeholder_methodology">
+            <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholder_methodology'>
               <% if @methodology_stakeholder %>
                 <div>
                   <%= simple_format_no_tags(@methodology_stakeholder.content) %>
@@ -188,8 +221,10 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
                 </p>
               <% end %>
             </div>
+
           </div>
-        </div>
+
+        </section>
 
       </div>
 
