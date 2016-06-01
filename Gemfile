@@ -162,6 +162,11 @@ group :development, :test do
   gem 'rubocop', '~> 0.35.0'
 end
 
+group :staging, :production do
+  # automatically redirect asset request without digest to latest digested version
+  gem 'sprockets-redirect', '~> 1.0'
+end
+
 #####################################################################
 ########################## Project Gems #############################
 
