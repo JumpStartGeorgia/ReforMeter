@@ -10,10 +10,6 @@ function expertHistoryTimeSeriesOptions(chartData) {
     if (this.change) {
       var icon = change_icon(this.change);
 
-      if (!icon) {
-        throw new Error('Change icons not available');
-      }
-
       var iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
 
       return in_paragraph(point + iconInSpan + name);

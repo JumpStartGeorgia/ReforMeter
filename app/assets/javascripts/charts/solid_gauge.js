@@ -58,7 +58,12 @@ function highchartsBigSolidGaugeOptions(chartData) {
         borderWidth: 0,
         y: 45,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:25px;color:black;">{y}%</span><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/><path d="M0 0h24v24H0z" fill="none"/></svg></div>'
+        formatter: function() {
+          var icon = change_icon(chartData.change);
+          var iconInSpan = '<span style="width: 25px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
+
+          return '<div style="text-align:center;"><span style="font-size:25px;color:black;">' + this.y + '%</span>' + iconInSpan + '</div>';
+        }
       },
       tooltip: {
         valueSuffix: '%'
@@ -127,7 +132,12 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         borderWidth: 0,
         y: 45,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:15px;color:black;">{y}%</span><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/><path d="M0 0h24v24H0z" fill="none"/></svg></div>'
+        formatter: function() {
+          var icon = change_icon(chartData.change);
+          var iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
+
+          return '<div style="text-align:center;"><span style="font-size:14px;color:black;">' + this.y + '%</span>' + iconInSpan + '</div>';
+        }
       },
       tooltip: {
       	valueSuffix: '%'
