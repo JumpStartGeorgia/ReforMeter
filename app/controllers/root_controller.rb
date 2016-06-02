@@ -124,7 +124,6 @@ class RootController < ApplicationController
 
       gon.charts = [
         Quarter.reform_survey_data_for_charting(@reform.id, type: 'government', id: 'reform-government-history'),
-        Quarter.reform_survey_data_for_charting(@reform.id, type: 'stakeholder', id: 'reform-stakeholder-history'),
         {
           id: 'reform-government-overall',
           title: I18n.t('shared.categories.overall'),
@@ -150,6 +149,28 @@ class RootController < ApplicationController
           title: I18n.t('shared.categories.legislation_regulation'),
           score: @reform_survey.government_category4_score.to_f,
           change: @reform_survey.government_category4_change
+        },
+        Quarter.reform_survey_data_for_charting(@reform.id, type: 'stakeholder', id: 'reform-stakeholder-history'),
+        {
+          id: 'reform-stakeholder-overall',
+          title: t('shared.categories.overall'),
+          score: @reform_survey.stakeholder_overall_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.stakeholder_overall_change)
+        }, {
+          id: 'reform-stakeholder-performance',
+          title: t('shared.categories.performance'),
+          score: @reform_survey.stakeholder_category1_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.stakeholder_category1_change)
+        }, {
+          id: 'reform-stakeholder-goals',
+          title: t('shared.categories.goals'),
+          score: @reform_survey.stakeholder_category2_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.stakeholder_category2_change)
+        }, {
+          id: 'reform-stakeholder-progress',
+          title: t('shared.categories.progress'),
+          score: @reform_survey.stakeholder_category3_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.stakeholder_category3_change)
         }
       ]
 

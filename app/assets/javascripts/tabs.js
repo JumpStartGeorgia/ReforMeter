@@ -19,7 +19,7 @@ function setupTabs() {
 
     unselectSiblingTabListButtons($selectedTabListButton);
     unselectSiblingTabContentPanels($selectedTabContentPanel);
-    
+
     $selectedTabListButton.addClass('is-selected');
     $selectedTabContentPanel.addClass('is-selected');
   });

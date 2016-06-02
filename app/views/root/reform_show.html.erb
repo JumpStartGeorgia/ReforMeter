@@ -162,24 +162,21 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
           </div>
         <% end %>
 
-        <ul>
-          <li>
-            <%= t('shared.categories.overall') %>:
-            <%= @reform_survey.stakeholder_overall_score %> <%= generate_change_icon(@reform_survey.stakeholder_overall_change) %>
-          </li>
-          <li>
-            <%= t('shared.categories.performance') %>:
-            <%= @reform_survey.stakeholder_category1_score %> <%= generate_change_icon(@reform_survey.stakeholder_category1_change) %>
-          </li>
-          <li>
-            <%= t('shared.categories.goals') %>:
-            <%= @reform_survey.stakeholder_category2_score %> <%= generate_change_icon(@reform_survey.stakeholder_category2_change) %>
-          </li>
-          <li>
-            <%= t('shared.categories.progress') %>:
-            <%= @reform_survey.stakeholder_category3_score %> <%= generate_change_icon(@reform_survey.stakeholder_category3_change) %>
-          </li>
-        </ul>
+        <section class='gaugesContainer-gauges'>
+
+          <div class='js-become-highchart' data-chart-type='big-meter-gauge' data-id='reform-stakeholder-overall' style="width: 250px; height: 220px;"></div>
+
+          <div class='gaugesContainer-gauges-small'>
+
+            <div class='js-become-highchart' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-performance' style="width: 125px; height: 220px;"></div>
+
+            <div class='js-become-highchart' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-goals' style="width: 125px; height: 220px;"></div>
+
+            <div class='js-become-highchart' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-progress' style="width: 125px; height: 220px;"></div>
+
+          </div>
+
+        </section>
 
         <section>
 
@@ -202,7 +199,7 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
           <div class="tabContent js-act-as-tab-content">
 
             <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='stakeholder_history_chart'>
-              insert chart here
+              <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='reform-stakeholder-history'></div>
             </div>
 
             <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholder_methodology'>
