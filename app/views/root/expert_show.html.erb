@@ -42,15 +42,15 @@ page_title t('.title', time: @quarter.time_period)
 
       <section class='expertShowPage-summaryGaugesContainer-gauges'>
 
-        <div class='js-become-big-meter-gauge' style="width: 250px; height: 220px;"></div>
+        <div class='js-become-highchart' data-chart-type='big-meter-gauge' data-id='overall' style="width: 250px; height: 220px;"></div>
 
         <div class='expertShowPage-summaryGaugesContainer-gauges-small'>
 
-          <div class='js-become-small-meter-gauge' data-type='performance' style="width: 125px; height: 220px;"></div>
+          <div class='js-become-highchart' data-chart-type='small-meter-gauge' data-id='performance' style="width: 125px; height: 220px;"></div>
 
-          <div class='js-become-small-meter-gauge' data-type='goals' style="width: 125px; height: 220px;"></div>
+          <div class='js-become-highchart' data-chart-type='small-meter-gauge' data-id='goals' style="width: 125px; height: 220px;"></div>
 
-          <div class='js-become-small-meter-gauge' data-type='progress' style="width: 125px; height: 220px;"></div>
+          <div class='js-become-highchart' data-chart-type='small-meter-gauge' data-id='progress' style="width: 125px; height: 220px;"></div>
 
         </div>
 
@@ -77,7 +77,7 @@ page_title t('.title', time: @quarter.time_period)
       <div class="tabContent js-act-as-tab-content">
 
         <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='chart'>
-          <div class='js-become-experts-time-series-chart'></div>
+          <div class='js-become-highchart' data-chart-type='history-time-series' data-id='expert-history'></div>
         </div>
 
         <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>

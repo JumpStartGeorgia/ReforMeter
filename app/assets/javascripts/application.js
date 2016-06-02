@@ -38,6 +38,7 @@
 //= require select2
 //= require highcharts
 //= require highcharts/highcharts-more
+//= require highcharts/modules/solid-gauge
 
 //= require_tree .
 

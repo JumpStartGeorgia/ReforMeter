@@ -160,7 +160,7 @@ class Quarter < ActiveRecord::Base
 
     hash = {
       title: I18n.t('shared.chart_titles.expert.title'),
-      chartType: 'expert-history-time-series',
+      id: 'expert-history',
       subtitle: nil,
       min: 0,
       max: 10,

@@ -1,25 +1,22 @@
-function createChart(chartData) {
-  var chartType = chartData.chartType;
-  var chart;
+function setupHighchart($container) {
+  var highchart = {}
+  var chartType = $container.data('chart-type');
 
-  if (chartType === 'small-meter-gauge') {
-    var chart = smallMeterGauge(chartData, chartData.id);
-  } else if (chartType === 'big-meter-gauge') {
-    var chart = bigMeterGauge(chartData, chartData.id);
-  } else if (chartType === 'expert-history-time-series') {
-    var chart = expertHistoryTimeSeries(chartData);
-  } else {
-    throw new Error('Correct chart type not provided');
+  function chartData() {
+    return gon.charts.filter(function(chartData) {
+      return chartData.id === $container.data('id');
+    })[0];
   }
 
-  chart.create();
+  highchart.create = function() {
+    $container.highcharts(Highcharts.merge(highchartsOptions(chartType, chartData())));
+  };
+
+  return highchart;
 }
 
 function setupCharts() {
-  if (gon.charts) {
-    for (var i = 0; i < gon.charts.length; i++) {
-      var chartData = gon.charts[i];
-      createChart(chartData);
-    }
-  }
+  $('.js-become-highchart').each(function() {
+    setupHighchart($(this)).create();;
+  });
 }

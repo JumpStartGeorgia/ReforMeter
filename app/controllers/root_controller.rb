@@ -126,6 +126,16 @@ class RootController < ApplicationController
         stakeholder: Quarter.reform_survey_data_for_charting(@reform.id, type: 'stakeholder')
       }
 
+      gon.charts = [
+        {
+          id: 'reform-government-overall',
+          chartType: 'big-solid-gauge',
+          title: I18n.t('shared.categories.overall'),
+          score: @reform_survey.government_overall_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.government_overall_change)
+        }
+      ]
+
       # get external indicators for this reform
       @external_indicators = @reform.external_indicators.published.sorted
       if @external_indicators.present?
