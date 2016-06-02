@@ -120,15 +120,11 @@ class RootController < ApplicationController
       @news = News.by_reform_quarter(@quarter.id, @reform.id)
       logger.debug "======= reform id #{@reform.id}; quarter id = #{@quarter.id}, news length = #{@news.length}"
 
-      # get the reform survey data for charting
-      survey_data = {
-        government: Quarter.reform_survey_data_for_charting(@reform.id),
-        stakeholder: Quarter.reform_survey_data_for_charting(@reform.id, type: 'stakeholder')
-      }
-
       gon.change_icons = view_context.change_icons
 
       gon.charts = [
+        Quarter.reform_survey_data_for_charting(@reform.id, type: 'government', id: 'reform-government-history'),
+        Quarter.reform_survey_data_for_charting(@reform.id, type: 'stakeholder', id: 'reform-stakeholder-history'),
         {
           id: 'reform-government-overall',
           title: I18n.t('shared.categories.overall'),

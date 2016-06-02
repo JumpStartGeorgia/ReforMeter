@@ -1,4 +1,4 @@
-function expertHistoryTimeSeriesOptions(chartData) {
+function historyTimeSeriesOptions(chartData) {
   function pointFormatter() {
     function in_paragraph(content) {
       return '<p style="margin: 5px 0;">' + content + '</p>';
@@ -47,9 +47,7 @@ function expertHistoryTimeSeriesOptions(chartData) {
         text: 'Rating'
       },
       tickInterval: 1,
-      gridLineDashStyle: 'dot',
-      min: 0,
-      max: 10
+      gridLineDashStyle: 'dot'
     },
     plotOptions: {
       areaspline: {
@@ -85,4 +83,32 @@ function expertHistoryTimeSeriesOptions(chartData) {
       useHTML: true
     }
   };
+}
+
+function ratingHistoryTimeSeriesOptions(chartData) {
+  var options = {
+    yAxis: {
+      min: 0,
+      max: 10
+    }
+  };
+
+  return Highcharts.merge(
+    historyTimeSeriesOptions(chartData),
+    options
+  );
+}
+
+function percentageHistoryTimeSeriesOptions(chartData) {
+  var options = {
+    yAxis: {
+      min: 0,
+      max: 100
+    }
+  };
+
+  return Highcharts.merge(
+    historyTimeSeriesOptions(chartData),
+    options
+  );
 }

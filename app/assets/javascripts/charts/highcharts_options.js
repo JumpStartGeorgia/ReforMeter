@@ -5,8 +5,12 @@ function chartColors() {
 function highchartsOptions(chartType, chartData) {
   switch (chartType) {
 
-    case 'history-time-series': {
-      return expertHistoryTimeSeriesOptions(chartData);
+    case 'rating-history-time-series': {
+      return ratingHistoryTimeSeriesOptions(chartData);
+    }
+
+    case 'percentage-history-time-series': {
+      return percentageHistoryTimeSeriesOptions(chartData);
     }
 
     case 'small-meter-gauge': {
