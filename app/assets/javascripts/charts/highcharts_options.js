@@ -24,8 +24,11 @@ function highchartsOptions(chartType, chartData) {
     }
 
     case 'big-solid-gauge': {
-      return highchartsSolidGaugeOptions(chartData);
+      return highchartsBigSolidGaugeOptions(chartData);
     }
-    
+
+    case 'small-solid-gauge': {
+      return highchartsSmallSolidGaugeOptions(chartData);
+    }
   }
 }

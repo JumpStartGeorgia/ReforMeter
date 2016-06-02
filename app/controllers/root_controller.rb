@@ -129,10 +129,29 @@ class RootController < ApplicationController
       gon.charts = [
         {
           id: 'reform-government-overall',
-          chartType: 'big-solid-gauge',
           title: I18n.t('shared.categories.overall'),
           score: @reform_survey.government_overall_score.to_f,
           icon: view_context.generate_change_icon(@reform_survey.government_overall_change)
+        }, {
+          id: 'reform-government-institutional-setup',
+          title: I18n.t('shared.categories.initial_setup'),
+          score: @reform_survey.government_category1_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.government_category1_change)
+        }, {
+          id: 'reform-government-capacity-building',
+          title: I18n.t('shared.categories.capacity_building'),
+          score: @reform_survey.government_category2_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.government_category2_change)
+        }, {
+          id: 'reform-government-infrastructure-budgeting',
+          title: I18n.t('shared.categories.infastructure_budgeting'),
+          score: @reform_survey.government_category3_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.government_category3_change)
+        }, {
+          id: 'reform-government-legislation-regulations',
+          title: I18n.t('shared.categories.legislation_regulation'),
+          score: @reform_survey.government_category4_score.to_f,
+          icon: view_context.generate_change_icon(@reform_survey.government_category4_change)
         }
       ]
 

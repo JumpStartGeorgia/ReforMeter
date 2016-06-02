@@ -79,28 +79,13 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
 
       <div class="js-become-highchart gauge mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall' style="width: 300px; height: 250px;"></div>
 
-      <ul>
-        <li>
-          <%= t('shared.categories.overall') %>:
-          <%= @reform_survey.government_overall_score %> <%= generate_change_icon(@reform_survey.government_overall_change) %>
-        </li>
-        <li>
-          <%= t('shared.categories.initial_setup') %>:
-          <%= @reform_survey.government_category1_score %> <%= generate_change_icon(@reform_survey.government_category1_change) %>
-        </li>
-        <li>
-          <%= t('shared.categories.capacity_building') %>:
-          <%= @reform_survey.government_category2_score %> <%= generate_change_icon(@reform_survey.government_category2_change) %>
-        </li>
-        <li>
-          <%= t('shared.categories.infastructure_budgeting') %>:
-          <%= @reform_survey.government_category3_score %> <%= generate_change_icon(@reform_survey.government_category3_change) %>
-        </li>
-        <li>
-          <%= t('shared.categories.legislation_regulation') %>:
-          <%= @reform_survey.government_category4_score %> <%= generate_change_icon(@reform_survey.government_category4_change) %>
-        </li>
-      </ul>
+      <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup' style="width: 300px; height: 250px;"></div>
+
+      <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building' style="width: 300px; height: 250px;"></div>
+
+      <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting' style="width: 300px; height: 250px;"></div>
+
+      <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations' style="width: 300px; height: 250px;"></div>
 
     </section>
 
