@@ -1,0 +1,28 @@
+.solidGauge.mod-white-border .highcharts-series-group .highcharts-series-0 path {
+  stroke: white;
+  stroke-width: 2;
+}
+
+.solidGauge.mod-small-dot-border .highcharts-series-group .highcharts-series-0 path {
+  stroke: black;
+  stroke-width: 2;
+  stroke-dasharray: 1,6;
+}
+
+.solidGauge.mod-small-dash-border .highcharts-series-group .highcharts-series-0 path {
+  stroke: black;
+  stroke-width: 2;
+  stroke-dasharray: 7,6;
+}
+
+.solidGauge.mod-medium-dash-border .highcharts-series-group .highcharts-series-0 path {
+  stroke: black;
+  stroke-width: 2;
+  stroke-dasharray: 16,6;
+}
+
+.solidGauge.mod-long-dash-border .highcharts-series-group .highcharts-series-0 path {
+  stroke: black;
+  stroke-width: 2;
+  stroke-dasharray: 28,10;
+}
