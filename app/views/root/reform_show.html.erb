@@ -77,15 +77,23 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
         </div>
       <% end %>
 
-      <div class="js-become-highchart gauge mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall' style="width: 300px; height: 250px;"></div>
+      <section class='gaugesContainer-gauges'>
 
-      <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup' style="width: 300px; height: 250px;"></div>
+        <div class="js-become-highchart gauge mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall' style="width: 300px; height: 250px;"></div>
 
-      <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building' style="width: 300px; height: 250px;"></div>
+        <div class='gaugesContainer-gauges-small'>
 
-      <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting' style="width: 300px; height: 250px;"></div>
+          <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup' style="width: 125px; height: 220px;"></div>
 
-      <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations' style="width: 300px; height: 250px;"></div>
+          <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building' style="width: 125px; height: 220px;"></div>
+
+          <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting' style="width: 125px; height: 220px;"></div>
+
+          <div class="js-become-highchart gauge mod-white-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations' style="width: 125px; height: 220px;"></div>
+
+        </div>
+
+      </section>
 
     </section>
 

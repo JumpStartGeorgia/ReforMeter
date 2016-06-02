@@ -1,0 +1,12 @@
+.gaugesContainer-gauges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+  .gaugesContainer-gauges-small {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }

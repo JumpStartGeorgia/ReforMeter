@@ -15,16 +15,3 @@ $gauges-min-width: 685px;
       width: $max-width-of-content - $gauges-min-width;
     }
   }
-
-  .expertShowPage-summaryGaugesContainer-gauges {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: row wrap;
-  }
-
-    .expertShowPage-summaryGaugesContainer-gauges-small {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-    }
