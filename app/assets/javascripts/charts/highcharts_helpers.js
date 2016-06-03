@@ -3,10 +3,6 @@ function change_icon(change_number) {
     throw new Error('Change icons not available');
   }
 
-  if (change_number === '0') {
-    debugger;
-  }
-
   return gon.change_icons[change_number]
 }
 
@@ -44,11 +40,12 @@ function highchartsGaugeLabel(chartData, point, fontSize, unit) {
   }
   var score = '<span style="font-size:' + fontSize + 'px;color:black;">' + point.y + unit + '</span>';
 
-  if (chartData.change !== undefined) {
-    var icon = change_icon(chartData.change);
-
-    return inDiv(score + icon);
-  } else {
+  if (chartData.change === null) {
     return inDiv(score);
+  } else {
+    var icon = change_icon(chartData.change);
+    var iconInSpan = '<span style="width: ' + fontSize + 'px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
+
+    return inDiv(score + iconInSpan);
   }
 }

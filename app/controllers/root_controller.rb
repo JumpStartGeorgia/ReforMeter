@@ -173,25 +173,25 @@ class RootController < ApplicationController
           color: government_time_series[:color],
           title: t('shared.categories.overall'),
           score: @reform_survey.stakeholder_overall_score.to_f,
-          icon: view_context.generate_change_icon(@reform_survey.stakeholder_overall_change)
+          change: @reform_survey.stakeholder_overall_change
         }, {
           id: 'reform-stakeholder-performance',
           color: government_time_series[:color],
           title: t('shared.categories.performance'),
           score: @reform_survey.stakeholder_category1_score.to_f,
-          icon: view_context.generate_change_icon(@reform_survey.stakeholder_category1_change)
+          change: @reform_survey.stakeholder_category1_change
         }, {
           id: 'reform-stakeholder-goals',
           color: government_time_series[:color],
           title: t('shared.categories.goals'),
           score: @reform_survey.stakeholder_category2_score.to_f,
-          icon: view_context.generate_change_icon(@reform_survey.stakeholder_category2_change)
+          change: @reform_survey.stakeholder_category2_change
         }, {
           id: 'reform-stakeholder-progress',
           color: government_time_series[:color],
           title: t('shared.categories.progress'),
           score: @reform_survey.stakeholder_category3_score.to_f,
-          icon: view_context.generate_change_icon(@reform_survey.stakeholder_category3_change)
+          change: @reform_survey.stakeholder_category3_change
         }
       ]
 
@@ -228,7 +228,7 @@ class RootController < ApplicationController
         chartType: 'small-meter-gauge',
         title: nil,
         score: quarter.expert_survey.overall_score.to_f,
-        icon: view_context.generate_change_icon(quarter.expert_survey.overall_change)
+        change: quarter.expert_survey.overall_change
       }
     end
 
@@ -249,33 +249,31 @@ class RootController < ApplicationController
 
       gon.change_icons = view_context.change_icons
 
-
-
       gon.charts = [
         Quarter.expert_survey_data_for_charting, {
           chartType: 'big-meter-gauge',
           id: 'overall',
           title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,
-          icon: view_context.generate_change_icon(@quarter.expert_survey.overall_change)
+          change: @quarter.expert_survey.overall_change
         }, {
           chartType: 'small-meter-gauge',
           id: 'performance',
           title: I18n.t('shared.categories.performance'),
           score: @quarter.expert_survey.category1_score.to_f,
-          icon: view_context.generate_change_icon(@quarter.expert_survey.category1_change)
+          change: @quarter.expert_survey.category1_change
         }, {
           chartType: 'small-meter-gauge',
           id: 'goals',
           title: I18n.t('shared.categories.goals'),
           score: @quarter.expert_survey.category2_score.to_f,
-          icon: view_context.generate_change_icon(@quarter.expert_survey.category2_change)
+          change: @quarter.expert_survey.category2_change
         }, {
           chartType: 'small-meter-gauge',
           id: 'progress',
           title: I18n.t('shared.categories.progress'),
           score: @quarter.expert_survey.category3_score.to_f,
-          icon: view_context.generate_change_icon(@quarter.expert_survey.category3_change)
+          change: @quarter.expert_survey.category3_change
         }
       ]
 
