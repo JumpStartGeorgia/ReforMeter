@@ -107,16 +107,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          function inDiv(content) {
-            return '<div style="text-align:center;">' + content + '</div>';
-          }
-          var score = '<span style="font-size:20px;color:black;">' + this.y + '</span>';
-
-          if (chartData.icon) {
-            return inDiv(score + chartData.icon);
-          } else {
-            return inDiv(score);
-          }
+          return highchartsGaugeLabel(chartData, this, '20');
         }
       },
       pivot: {
@@ -212,7 +203,9 @@ function highchartsBigMeterGaugeOptions(chartData) {
         borderWidth: 0,
         y: 70,
         useHTML: true,
-        format: '<div style="text-align:center;"><span style="font-size:35px;color:black;">{y:.2f}</span>' + chartData.icon + '</div>'
+        formatter: function() {
+          return highchartsGaugeLabel(chartData, this, '35');
+        }
       },
       pivot: {
         backgroundColor: 'white'

@@ -23,3 +23,16 @@ function outputHighchartsColorString(color, opacity) {
 
   return 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + opacity + ')';
 }
+
+function highchartsGaugeLabel(chartData, point, fontSize) {
+  function inDiv(content) {
+    return '<div style="text-align:center;">' + content + '</div>';
+  }
+  var score = '<span style="font-size:' + fontSize + 'px;color:black;">' + point.y + '</span>';
+
+  if (chartData.icon) {
+    return inDiv(score + chartData.icon);
+  } else {
+    return inDiv(score);
+  }
+}
