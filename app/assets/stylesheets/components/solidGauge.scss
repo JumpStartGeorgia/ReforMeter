@@ -1,3 +1,13 @@
+.solidGauge.mod-small {
+  height: 175px;
+  width: 125px;
+}
+
+.solidGauge.mod-big {
+  width: 225px;
+  height: 200px;
+}
+
 .solidGauge.mod-white-border .highcharts-series-group .highcharts-series-0 path {
   stroke: white;
   stroke-width: 2;
