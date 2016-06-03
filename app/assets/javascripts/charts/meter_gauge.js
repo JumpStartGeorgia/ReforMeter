@@ -85,11 +85,6 @@ function highchartsSmallMeterGaugeOptions(chartData) {
       ]
     },
 
-    chart: {
-      height: '125',
-      width: '100'
-    },
-
     pane: {
       size: '100'
     },
