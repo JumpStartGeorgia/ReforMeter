@@ -52,6 +52,8 @@ function highchartsMeterGaugeOptions(chartData) {
 }
 
 function highchartsSmallMeterGaugeOptions(chartData) {
+  var color = chartData.color;
+
   return {
     yAxis: {
       plotBands: [
@@ -60,7 +62,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 0,
           to: 3.3,
-          color: defaultChartColors()[2],
+          color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%'
         },{
@@ -68,7 +70,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 3.3,
           to: 6.6,
-          color: defaultChartColors()[1],
+          color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
           outerRadius: '100%'
         },{
@@ -76,7 +78,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 6.6,
           to: 10,
-          color: defaultChartColors()[0],
+          color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
           outerRadius: '100%'
         }
@@ -132,6 +134,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
 }
 
 function highchartsBigMeterGaugeOptions(chartData) {
+  var color = chartData.color;
+
   return {
     title: {
       text: chartData.title,
@@ -149,7 +153,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 0,
           to: 3.3,
-          color: '#5AD7F9',
+          color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
           label: {
@@ -167,7 +171,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 3.3,
           to: 6.6,
-          color: '#2DB9EA',
+          color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
           outerRadius: '100%',
           label: {
@@ -184,7 +188,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 6.6,
           to: 10,
-          color: '#1599D6',
+          color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
           outerRadius: '100%',
           label: {

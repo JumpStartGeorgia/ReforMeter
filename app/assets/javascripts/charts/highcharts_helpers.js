@@ -3,8 +3,23 @@ function defaultChartColors() {
 }
 
 function outputHighchartsColorString(color, opacity) {
-  if (!opacity) {
-    opacity = '1';
+  if (!color) {
+    switch (opacity) {
+
+      case '.6': {
+        return defaultChartColors()[2];
+      }
+
+      case '.8': {
+        return defaultChartColors()[1];
+      }
+
+      case '1': {
+        return defaultChartColors()[0];
+      }
+
+    }
   }
+
   return 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + opacity + ')';
 }

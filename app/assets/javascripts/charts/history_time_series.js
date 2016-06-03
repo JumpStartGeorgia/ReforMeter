@@ -25,7 +25,7 @@ function historyTimeSeriesOptions(chartData) {
     if (chartData.color) {
       var color = chartData.color;
       bottomColor = outputHighchartsColorString(chartData.color, '.6');
-      topColor = outputHighchartsColorString(chartData.color);
+      topColor = outputHighchartsColorString(chartData.color, '1');
     } else {
       bottomColor = defaultChartColors()[2];
       topColor = defaultChartColors()[0];

@@ -41,7 +41,7 @@ function highchartsBigSolidGaugeOptions(chartData) {
         y: 16
       },
       stops: [
-        [0, '#7668DD']
+        [0, outputHighchartsColorString(chartData.color, '1')]
       ]
     },
 
