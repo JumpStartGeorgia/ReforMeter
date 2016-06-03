@@ -18,6 +18,25 @@ function historyTimeSeriesOptions(chartData) {
     }
   }
 
+  function areasplineFillColors() {
+    var topColor;
+    var bottomColor;
+
+    if (chartData.color) {
+      var color = chartData.color;
+      bottomColor = outputHighchartsColorString(chartData.color, '.6');
+      topColor = outputHighchartsColorString(chartData.color);
+    } else {
+      bottomColor = defaultChartColors()[2];
+      topColor = defaultChartColors()[0];
+    }
+
+    return [
+      [0, topColor],
+      [1, bottomColor]
+    ];
+  }
+
   return {
     chart: {
       zoomType: 'x',
@@ -58,10 +77,7 @@ function historyTimeSeriesOptions(chartData) {
             x2: 0,
             y2: 1
           },
-          stops: [
-            [0, chartColors()[0]],
-            [1, chartColors()[2]]
-          ]
+          stops: areasplineFillColors()
         },
         marker: {
           enabled: false

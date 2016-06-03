@@ -60,7 +60,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 0,
           to: 3.3,
-          color: chartColors()[2],
+          color: defaultChartColors()[2],
           innerRadius: '40%',
           outerRadius: '100%'
         },{
@@ -68,7 +68,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 3.3,
           to: 6.6,
-          color: chartColors()[1],
+          color: defaultChartColors()[1],
           innerRadius: '40%',
           outerRadius: '100%'
         },{
@@ -76,7 +76,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           borderColor: 'white',
           from: 6.6,
           to: 10,
-          color: chartColors()[0],
+          color: defaultChartColors()[0],
           innerRadius: '40%',
           outerRadius: '100%'
         }

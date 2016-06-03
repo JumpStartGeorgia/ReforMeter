@@ -1,7 +1,3 @@
-function chartColors() {
-  return ['#1599D6', '#2DB9EA', '#5AD7F9']
-}
-
 function highchartsOptions(chartType, chartData) {
   switch (chartType) {
 
