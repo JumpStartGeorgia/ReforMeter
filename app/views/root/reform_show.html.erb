@@ -69,29 +69,33 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
         <%= t('.header.government_summary') %>
       </h2>
 
-      <% if @reform_survey.government_summary %>
-        <div>
-          <%= simple_format_no_tags(@reform_survey.government_summary) %>
-        </div>
-      <% end %>
+      <div class='summaryGaugesContainer mod-five-gauges'>
 
-      <section class='gaugesContainer'>
+        <% if @reform_survey.government_summary %>
+          <div class='summaryGaugesContainer-summary'>
+            <%= simple_format_no_tags(@reform_survey.government_summary) %>
+          </div>
+        <% end %>
 
-        <div class="gaugesContainer-big js-become-highchart solidGauge mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall'></div>
+        <section class='gaugesContainer'>
 
-        <div class='gaugesContainer-small'>
+          <div class="gaugesContainer-big js-become-highchart solidGauge mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall'></div>
 
-          <div class="gaugesContainer-small-item js-become-highchart solidGauge mod-small-dot-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup'></div>
+          <div class='gaugesContainer-small'>
 
-          <div class="gaugesContainer-small-item js-become-highchart solidGauge mod-small-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building'></div>
+            <div class="gaugesContainer-small-item js-become-highchart solidGauge mod-small-dot-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup'></div>
 
-          <div class="gaugesContainer-small-item js-become-highchart solidGauge mod-medium-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting'></div>
+            <div class="gaugesContainer-small-item js-become-highchart solidGauge mod-small-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building'></div>
 
-          <div class="gaugesContainer-small-item js-become-highchart solidGauge mod-long-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations'></div>
+            <div class="gaugesContainer-small-item js-become-highchart solidGauge mod-medium-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting'></div>
 
-        </div>
+            <div class="gaugesContainer-small-item js-become-highchart solidGauge mod-long-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations'></div>
 
-      </section>
+          </div>
+
+        </section>
+
+      </div>
 
     </section>
 

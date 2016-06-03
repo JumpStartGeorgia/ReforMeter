@@ -33,9 +33,10 @@ page_title t('.title', time: @quarter.time_period)
 
   <div class='contentSection-body'>
 
-    <div class='expertShowPage-summaryGaugesContainer'>
+    <div class='summaryGaugesContainer'>
+
       <% if @quarter.expert_survey.summary %>
-        <div class='expertShowPage-summaryGaugesContainer-summary'>
+        <div class='summaryGaugesContainer-summary'>
           <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
         </div>
       <% end %>

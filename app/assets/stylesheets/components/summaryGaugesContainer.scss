@@ -1,0 +1,26 @@
+$four-gauges-min-width: 685px;
+$five-gauges-min-width: 785px;
+
+.summaryGaugesContainer {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $max-width-of-content) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+  .summaryGaugesContainer-summary {
+    @media (min-width: $max-width-of-content) {
+      width: $max-width-of-content - $four-gauges-min-width;
+    }
+  }
+
+.summaryGaugesContainer.mod-five-gauges {
+  .summaryGaugesContainer-summary {
+    @media (min-width: $max-width-of-content) {
+      width: $max-width-of-content - $five-gauges-min-width;
+    }
+  }
+}
