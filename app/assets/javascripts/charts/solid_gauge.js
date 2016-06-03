@@ -59,10 +59,7 @@ function highchartsBigSolidGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          var icon = change_icon(chartData.change);
-          var iconInSpan = '<span style="width: 25px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
-
-          return '<div style="text-align:center;"><span style="font-size:25px;color:black;">' + this.y + '%</span>' + iconInSpan + '</div>';
+          return highchartsGaugeLabel(chartData, this, '35', '%');
         }
       },
       tooltip: {
@@ -133,10 +130,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          var icon = change_icon(chartData.change);
-          var iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
-
-          return '<div style="text-align:center;"><span style="font-size:14px;color:black;">' + this.y + '%</span>' + iconInSpan + '</div>';
+          return highchartsGaugeLabel(chartData, this, '14', '%');
         }
       },
       tooltip: {
