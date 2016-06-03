@@ -1,12 +1,22 @@
-.gaugesContainer-gauges {
+.gaugesContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: row wrap;
 }
 
-  .gaugesContainer-gauges-small {
+  .gaugesContainer-big {
+    width: 225px;
+    height: 200px;
+  }
+
+  .gaugesContainer-small {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
   }
+
+    .gaugesContainer-small-item {
+      height: 175px;
+      width: 125px;
+    }

@@ -11,7 +11,7 @@ function highchartsBigSolidGaugeOptions(chartData) {
 
     pane: {
       center: ['50%', '80%'],
-      size: '120%',
+      size: '200',
       startAngle: -90,
       endAngle: 90,
       background: {
@@ -77,12 +77,12 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
 		title: {
     	text: chartData.title,
-      y: 40
+      verticalAlign: 'top',
     },
 
     pane: {
       center: ['50%', '80%'],
-      size: '80%',
+      size: '100',
       startAngle: -90,
       endAngle: 90,
       background: {
