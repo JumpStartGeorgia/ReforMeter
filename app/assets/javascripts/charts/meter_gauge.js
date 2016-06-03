@@ -11,8 +11,8 @@ function highchartsMeterGaugeOptions(chartData) {
       endAngle: 90,
 
       background: {
-        backgroundColor: '#EEE',
-        innerRadius: '60%',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        innerRadius: '40%',
         outerRadius: '100%',
         shape: 'arc'
       }
