@@ -207,6 +207,66 @@ class Quarter < ActiveRecord::Base
     return hash
   end
 
+
+  # get the reform survey data for all quarters for all reforms
+  # formatted in hash/json format
+  # format: {type, title, subtitle, min, max, categories: [x-axis labels], series: [{name: 'name', color: rgb(), data: [ {y, change} ] } ] }
+  # options:
+  # - type: indicate if want government or stakeholder data (default government)
+  # - is_published - indicates if just the published quarters should be returned (default true)
+  def self.all_reform_survey_data_for_charting(options={})
+    default_options = {type: 'government', is_published: true, overall_score_only: true}
+    options = options.reverse_merge(default_options)
+
+    hash = {
+      type: nil,
+      title: nil,
+      subtitle: nil,
+      min: nil, max: nil, categories: [], series: []
+    }
+    # quarters = oldest
+    # quarters = quarters.published if options[:is_published]
+
+    # # get all of the survey results for this reform
+    # surveys = ReformSurvey.for_reform(reform_id)
+
+    reforms = Reform.active
+
+    # get data for all reforms
+    data = []
+    if reforms.present?
+      reforms.each do |reform|
+        data << reform_survey_data_for_charting(reform.id, options)
+      end
+    end
+
+##########
+## TODO - this is a hack - make it correct
+## make sure data matches to correct quarter
+##########
+
+    # put together in desired format
+    hash[:title] = I18n.t('shared.chart_titles.reform.all_title')
+    hash[:min] = data.first[:min]
+    hash[:max] = data.first[:max]
+    hash[:categories] = data.first[:categories]
+
+    if options[:type] == 'stakeholder'
+      hash[:type] = options[:type]
+      hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_stakeholder')
+    else # government
+      hash[:type] = 'government'
+      hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_government')
+    end
+
+    data.each do |reform|
+      hash[:series] << {name: reform[:reform], color: reform[:color], data: reform[:series].map{|x| x[:data]}.flatten}
+    end
+
+    return hash
+
+  end
+
   # get the reform survey data for all quarters
   # formatted in hash/json format
   # format: {type, reform, title, subtitle, color, min, max, categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
@@ -231,7 +291,7 @@ class Quarter < ActiveRecord::Base
     # get all of the survey results for this reform
     surveys = ReformSurvey.for_reform(reform_id)
 
-    reform = Reform.find_by(id: reform_id)
+    reform = Reform.active.find_by(id: reform_id)
 
     if quarters.present? && surveys.present? && reform.present?
       # make sure survey data is in correct quarter order
