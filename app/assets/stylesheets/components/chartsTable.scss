@@ -35,12 +35,16 @@ $charts-table-border: solid 3px $color-grey-background;
   }
 
     .chartsTable-cell.mod-important-text {
-      font-size: 2.0rem;
+      font-size: 1.8rem;
     }
 
     .chartsTable-cell-link {
       text-decoration: none;
       color: inherit;
+
+      &:hover {
+        color: #1599D6;
+      }
     }
 
   .highcharts-container {
