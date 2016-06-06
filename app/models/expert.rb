@@ -23,7 +23,7 @@ class Expert < ActiveRecord::Base
                     :convert_options => {
                       :'100x100' => '-quality 85'
                     },
-                    :default_url => "/assets/missing/expert_avatar/:style/default_user.png"
+                    :default_url => "missing/expert_avatar/:style/default_user.png"
 
 
   #######################
