@@ -140,7 +140,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '14', '%');
+          return highchartsGaugeLabel(chartData, this, '20', '%');
         }
       },
       tooltip: {
