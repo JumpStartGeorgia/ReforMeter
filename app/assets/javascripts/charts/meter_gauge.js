@@ -82,7 +82,10 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           innerRadius: '40%',
           outerRadius: '100%'
         }
-      ]
+      ],
+      labels: {
+        enabled: false
+      }
     },
 
     pane: {
