@@ -123,7 +123,7 @@ class RootController < ApplicationController
 
         gon.charts << {
           id: "reform-stakeholder-#{quarter.slug}-#{reform.slug}",
-          # color: government_time_series[:color],
+          color: reform.color.to_hash,
           title: nil,
           score: survey.stakeholder_overall_score.to_f,
           change: survey.stakeholder_overall_change
