@@ -138,10 +138,13 @@ function percentageHistoryTimeSeriesOptions(chartData) {
 function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
   var options = {
     yAxis: {
-      min: 0,
-      max: 100,
-      minorTickInterval: 'auto',
-      tickInterval: 50
+      title: {
+        text: 'Percentage'
+      }
+      // min: 0,
+      // max: 100,
+      // minorTickInterval: 'auto',
+      // tickInterval: 50
     }
   };
 
