@@ -109,10 +109,11 @@ function highchartsSmallMeterGaugeOptions(chartData) {
         }
       },
       pivot: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        radius: 4
       },
       dial: {
-        baseWidth: 20,
+        baseWidth: 15,
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
         baseLength: 0,
         radius: '60%',
