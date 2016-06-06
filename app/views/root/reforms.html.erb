@@ -139,8 +139,11 @@ page_title t('.title')
             <% if surveys.present? %>
 
               <% surveys.each do |survey| %>
+
                 <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
+
                 <% if reform %>
+
                   <tr>
 
                     <td>
@@ -165,7 +168,7 @@ page_title t('.title')
                     <td>
                       <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
                     </td>
-                    
+
                   </tr>
 
                 <% end %>
