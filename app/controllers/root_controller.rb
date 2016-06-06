@@ -100,6 +100,36 @@ class RootController < ApplicationController
     @reforms.each do |reform|
       reform_survey_data << Quarter.reform_survey_data_for_charting(reform.id, overall_score_only: true)
     end
+
+    gon.change_icons = view_context.change_icons
+
+    gon.charts = []
+
+    @quarters.each do |quarter|
+      surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id}
+
+      surveys.each do |survey|
+        reform = @reforms.select{|x| x.id == survey.reform_id}.first
+
+        next unless reform
+
+        gon.charts << {
+          id: "reform-government-#{quarter.slug}-#{reform.slug}",
+          # color: government_time_series[:color],
+          title: nil,
+          score: survey.government_overall_score.to_f,
+          change: survey.government_overall_change
+        }
+
+        gon.charts << {
+          id: "reform-stakeholder-#{quarter.slug}-#{reform.slug}",
+          # color: government_time_series[:color],
+          title: nil,
+          score: survey.stakeholder_overall_score.to_f,
+          change: survey.stakeholder_overall_change
+        }
+      end
+    end
   end
 
   def reform_show
