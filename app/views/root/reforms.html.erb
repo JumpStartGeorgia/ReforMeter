@@ -1,91 +1,193 @@
-<% page_title t('.title') %>
+<%
+page_title t('.title')
+@do_not_use_default_page_layout = true
+%>
 
-<% if @reforms %>
-  <label for="reform"><%= t('shared.common.change_reform') %>:</label>
-  <select class="reform js-become-select2" id="reform">
-    <% selected = params[:reform].nil? ? 'selected': '' %>
-    <option <%= selected %>><%= t('shared.common.all') %></option>
-    <% @reforms.each do |reform| %>
-      <% selected = params[:reform].present? && params[:reform] == reform.slug ? 'selected': '' %>
-      <option <%= selected %> value="<%= reform.slug %>"><%= reform.name %></option>
-    <% end %>
-  </select>
-<% end %>
+<div class='contentSection mod-overlap-top-image'>
 
-<% if @quarters %>
-  <label for="quarter"><%= t('shared.common.change_time') %>:</label>
-  <select class="quarter js-become-select2" id="quarter">
-    <option selected><%= t('shared.common.all') %></option>
-    <% @quarters.each do |quarter| %>
-      <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
-    <% end %>
-  </select>
-<% end %>
+  <header class='contentSection-header'>
 
+    <h1 class='heading'>
+      <%= yield(:page_title) %>
+    </h1>
 
-<% if @reform_text %>
-  <div>
-    <%= simple_format_no_tags(@reform_text.content) %>
-  </div>
-<% end %>
+    <div>
 
-<% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
-  <div>
-    insert chart here
-  </div>
+      <% if @reforms %>
 
-  <h2><%= t('.header.table') %></h2>
+        <label for="reform">
+          <%= t('shared.common.change_reform') %>:
+        </label>
 
-  <table class='table table-striped table-hover table-nonfluid'>
-    <thead>
-      <tr>
-        <th><%= t('.table_header.time') %></th>
-        <th><%= t('.table_header.reform') %></th>
-        <th><%= t('.table_header.government') %></th>
-        <th><%= t('.table_header.stakeholder') %></th>
-        <th><%= t('.table_header.summary') %></th>
-      </tr>
-    </thead>
+        <select class="reform js-become-select2" id="reform">
 
-    <tbody>
-      <% @quarters.each do |quarter| %>
-        <% surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id} %>
-        <% if surveys.present? %>
-          <% surveys.each do |survey| %>
-            <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
-            <% if reform %>
-              <tr>
-                <td>
-                  <%= link_to quarter.time_period, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
-                </td>
-                <td>
-                  <span style="display: inline-block; width: 10px; background-color: rgb(<%= "#{reform.color.r}, #{reform.color.g}, #{reform.color.b}" %>">&nbsp;</span>
-                  <%= link_to reform.name, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
-                </td>
-                <td>
-                  <%= survey.government_overall_score %>
-                  <%= generate_change_icon(survey.government_overall_change) %>
-                </td>
-                <td>
-                  <%= survey.stakeholder_overall_score %>
-                  <%= generate_change_icon(survey.stakeholder_overall_change) %>
-                </td>
-                <td>
-                  <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
-                </td>
-              </tr>
-            <% end %>
+          <% selected = params[:reform].nil? ? 'selected': '' %>
+          <option <%= selected %>>
+            <%= t('shared.common.all') %>
+          </option>
+
+          <% @reforms.each do |reform| %>
+
+            <% selected = params[:reform].present? && params[:reform] == reform.slug ? 'selected': '' %>
+
+            <option <%= selected %> value="<%= reform.slug %>">
+              <%= reform.name %>
+            </option>
+
           <% end %>
-        <% end %>
+
+        </select>
+
       <% end %>
-    </tbody>
-  </table>
 
+      <% if @quarters %>
 
-<% else %>
+        <label for="quarter">
+          <%= t('shared.common.change_time') %>:
+        </label>
 
-  <p class="alert alert-warning">
-    <%= t('.no_data') %>
-  </p>
+        <select class="quarter js-become-select2" id="quarter">
 
-<% end %>
+          <option selected><%= t('shared.common.all') %></option>
+
+          <% @quarters.each do |quarter| %>
+
+            <option value="<%= quarter.slug %>">
+              <%= quarter.time_period %>
+            </option>
+
+          <% end %>
+
+        </select>
+
+      <% end %>
+
+    </div>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+    <% if @reform_text %>
+      <div>
+        <%= simple_format_no_tags(@reform_text.content) %>
+      </div>
+    <% end %>
+
+    <% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
+
+      <div>
+        insert chart here
+      </div>
+
+    <% end %>
+
+  </div>
+
+</div>
+
+<div class='contentSection'>
+
+  <header class='contentSection-header'>
+
+    <h2>
+      <%= t('.header.table') %>
+    </h2>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+    <% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
+
+      <table class='table table-striped table-hover table-nonfluid'>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              <%= t('.table_header.time') %>
+            </th>
+
+            <th>
+              <%= t('.table_header.reform') %>
+            </th>
+
+            <th>
+              <%= t('.table_header.government') %>
+            </th>
+
+            <th>
+              <%= t('.table_header.stakeholder') %>
+            </th>
+
+            <th>
+              <%= t('.table_header.summary') %>
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <% @quarters.each do |quarter| %>
+
+            <% surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id} %>
+
+            <% if surveys.present? %>
+
+              <% surveys.each do |survey| %>
+                <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
+                <% if reform %>
+                  <tr>
+
+                    <td>
+                      <%= link_to quarter.time_period, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
+                    </td>
+
+                    <td>
+                      <span style="display: inline-block; width: 10px; background-color: rgb(<%= "#{reform.color.r}, #{reform.color.g}, #{reform.color.b}" %>">&nbsp;</span>
+                      <%= link_to reform.name, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
+                    </td>
+
+                    <td>
+                      <%= survey.government_overall_score %>
+                      <%= generate_change_icon(survey.government_overall_change) %>
+                    </td>
+
+                    <td>
+                      <%= survey.stakeholder_overall_score %>
+                      <%= generate_change_icon(survey.stakeholder_overall_change) %>
+                    </td>
+
+                    <td>
+                      <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
+                    </td>
+                    
+                  </tr>
+
+                <% end %>
+
+              <% end %>
+
+            <% end %>
+
+          <% end %>
+
+        </tbody>
+
+      </table>
+
+    <% else %>
+
+      <p class="alert alert-warning">
+        <%= t('.no_data') %>
+      </p>
+
+    <% end %>
+
+  </div>
+
+</div>
