@@ -248,7 +248,6 @@ class RootController < ApplicationController
     @quarters.each do |quarter|
       gon.charts << {
         id: quarter.slug,
-        chartType: 'small-meter-gauge',
         title: nil,
         score: quarter.expert_survey.overall_score.to_f,
         change: quarter.expert_survey.overall_change
@@ -274,25 +273,21 @@ class RootController < ApplicationController
 
       gon.charts = [
         Quarter.expert_survey_data_for_charting, {
-          chartType: 'big-meter-gauge',
           id: 'overall',
           title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,
           change: @quarter.expert_survey.overall_change
         }, {
-          chartType: 'small-meter-gauge',
           id: 'performance',
           title: I18n.t('shared.categories.performance'),
           score: @quarter.expert_survey.category1_score.to_f,
           change: @quarter.expert_survey.category1_change
         }, {
-          chartType: 'small-meter-gauge',
           id: 'goals',
           title: I18n.t('shared.categories.goals'),
           score: @quarter.expert_survey.category2_score.to_f,
           change: @quarter.expert_survey.category2_change
         }, {
-          chartType: 'small-meter-gauge',
           id: 'progress',
           title: I18n.t('shared.categories.progress'),
           score: @quarter.expert_survey.category3_score.to_f,
