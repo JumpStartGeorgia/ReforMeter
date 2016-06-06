@@ -102,6 +102,8 @@ class RootController < ApplicationController
       Quarter.all_reform_survey_data_for_charting(id: 'reforms-history-series')
     ]
 
+    gon.chart_download_icon = ActionController::Base.helpers.image_path('download.svg')
+
     @quarters.each do |quarter|
       surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id}
 
