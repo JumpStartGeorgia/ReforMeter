@@ -62,11 +62,11 @@ function historyTimeSeriesOptions(chartData) {
       symbolWidth: 40
     },
     yAxis: {
+      minorGridLineDashStyle: 'dot',
+      gridLineDashStyle: 'dot',
       title: {
-        text: 'Rating'
-      },
-      tickInterval: 1,
-      gridLineDashStyle: 'dot'
+        text: null
+      }
     },
     plotOptions: {
       areaspline: {
@@ -105,7 +105,11 @@ function ratingHistoryTimeSeriesOptions(chartData) {
   var options = {
     yAxis: {
       min: 0,
-      max: 10
+      max: 10,
+      tickInterval: 1,
+      title: {
+        text: 'Rating'
+      }
     }
   };
 
@@ -119,7 +123,9 @@ function percentageHistoryTimeSeriesOptions(chartData) {
   var options = {
     yAxis: {
       min: 0,
-      max: 100
+      max: 100,
+      minorTickInterval: 'auto',
+      tickInterval: 50
     }
   };
 
@@ -133,7 +139,9 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
   var options = {
     yAxis: {
       min: 0,
-      max: 100
+      max: 100,
+      minorTickInterval: 'auto',
+      tickInterval: 50
     }
   };
 
