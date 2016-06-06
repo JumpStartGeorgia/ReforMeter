@@ -96,13 +96,12 @@ class RootController < ApplicationController
     @reforms = Reform.active.sorted.with_color
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
 
+    gon.chart_download_icon = highchart_download_icon
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
       Quarter.all_reform_survey_data_for_charting(id: 'reforms-history-series')
     ]
-
-    gon.chart_download_icon = ActionController::Base.helpers.image_path('download.svg')
 
     @quarters.each do |quarter|
       surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id}
@@ -149,6 +148,7 @@ class RootController < ApplicationController
       @news = News.by_reform_quarter(@quarter.id, @reform.id)
       logger.debug "======= reform id #{@reform.id}; quarter id = #{@quarter.id}, news length = #{@news.length}"
 
+      gon.chart_download_icon = highchart_download_icon
       gon.change_icons = view_context.change_icons
 
       government_time_series = Quarter.reform_survey_data_for_charting(
@@ -241,6 +241,7 @@ class RootController < ApplicationController
 
     @quarters = Quarter.published.recent.with_expert_survey
 
+    gon.chart_download_icon = highchart_download_icon
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
@@ -271,6 +272,7 @@ class RootController < ApplicationController
       @methodology_expert = PageContent.find_by(name: 'methodology_expert')
       @news = News.by_expert_quarter(@quarter.id)
 
+      gon.chart_download_icon = highchart_download_icon
       gon.change_icons = view_context.change_icons
 
       gon.charts = [
@@ -301,6 +303,12 @@ class RootController < ApplicationController
       redirect_to experts_path,
                 alert: t('shared.msgs.does_not_exist')
     end
+  end
+
+  private
+
+  def highchart_download_icon
+    ActionController::Base.helpers.image_path('download.svg')
   end
 
 end

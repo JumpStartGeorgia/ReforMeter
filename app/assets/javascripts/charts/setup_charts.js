@@ -1,3 +1,15 @@
+function setupDefaultOptions() {
+  Highcharts.setOptions({
+    exporting: {
+      buttons: {
+        contextButton: {
+          symbol: highchartDownloadIcon()
+        }
+      }
+    }
+  });
+}
+
 function setupHighchart($container) {
   var highchart = {}
   var chartType = $container.data('chart-type');
@@ -16,6 +28,8 @@ function setupHighchart($container) {
 }
 
 function setupCharts() {
+  setupDefaultOptions();
+
   $('.js-become-highchart').each(function() {
     setupHighchart($(this)).create();;
   });
