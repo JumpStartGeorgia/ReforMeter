@@ -144,13 +144,20 @@ page_title t('.title')
 
                   <tr class='chartsTable-row'>
 
-                    <td class='chartsTable-cell mod-first-column'>
-                      <%= link_to quarter.time_period, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
+                    <td class='chartsTable-cell mod-first-column mod-important-text'>
+                      <%= link_to(quarter.time_period,
+                                  reform_show_path(
+                                    reform_id: reform.slug,
+                                    quarter_id: quarter.slug),
+                                  class: 'chartsTable-cell-link') %>
                     </td>
 
-                    <td class='chartsTable-cell'>
-                      <span style="display: inline-block; width: 10px; background-color: rgb(<%= "#{reform.color.r}, #{reform.color.g}, #{reform.color.b}" %>">&nbsp;</span>
-                      <%= link_to reform.name, reform_show_path(reform_id: reform.slug, quarter_id: quarter.slug) %>
+                    <td class='chartsTable-cell mod-important-text'>
+                      <%= link_to(reform.name,
+                                  reform_show_path(
+                                    reform_id: reform.slug,
+                                    quarter_id: quarter.slug),
+                                  class: 'chartsTable-cell-link') %>
                     </td>
 
                     <td class='chartsTable-cell'>
