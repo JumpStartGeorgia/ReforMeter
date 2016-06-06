@@ -70,9 +70,18 @@ function highchartsBigSolidGaugeOptions(chartData) {
 }
 
 function highchartsSmallSolidGaugeOptions(chartData) {
+  function getHeight() {
+    if (chartData.title) {
+      return '175';
+    } else {
+      return '100';
+    }
+  }
+
   return {
   	chart: {
-    	type: 'solidgauge'
+    	type: 'solidgauge',
+      height: getHeight()
     },
 
 		title: {
@@ -81,7 +90,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
     },
 
     pane: {
-      center: ['50%', '80%'],
+      center: ['50%', '70%'],
       size: '100',
       startAngle: -90,
       endAngle: 90,
