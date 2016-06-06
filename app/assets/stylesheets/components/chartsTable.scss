@@ -34,6 +34,15 @@ $charts-table-border: solid 3px $color-grey-background;
     padding-left: $padding-main-content;
   }
 
+    .chartsTable-cell.mod-important-text {
+      font-size: 2.0rem;
+    }
+
+    .chartsTable-cell-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
   .highcharts-container {
     width: 100%;
     height: 100%;

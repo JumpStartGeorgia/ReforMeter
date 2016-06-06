@@ -118,7 +118,8 @@ function highchartsSmallSolidGaugeOptions(chartData) {
       tickPixelInterval: 99999,
 			lineWidth: 0,
       labels: {
-        y: 16
+        y: 16,
+        enabled: false
       },
     	stops: [
       	[0, outputHighchartsColorString(chartData.color, '1', '#FFF')]
