@@ -9,6 +9,10 @@ function highchartsOptions(chartType, chartData) {
       return percentageHistoryTimeSeriesOptions(chartData);
     }
 
+    case 'percentage-colorful-reforms-history-time-series': {
+      return percentageColorfulReformsHistoryTimeSeriesOptions(chartData);
+    }
+
     case 'small-meter-gauge': {
       return Highcharts.merge(
         highchartsMeterGaugeOptions(chartData),

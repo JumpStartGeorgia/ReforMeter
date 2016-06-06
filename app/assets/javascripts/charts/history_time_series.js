@@ -128,3 +128,17 @@ function percentageHistoryTimeSeriesOptions(chartData) {
     options
   );
 }
+
+function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
+  var options = {
+    yAxis: {
+      min: 0,
+      max: 100
+    }
+  };
+
+  return Highcharts.merge(
+    historyTimeSeriesOptions(chartData),
+    options
+  );
+}

@@ -221,6 +221,7 @@ class Quarter < ActiveRecord::Base
     hash = {
       type: nil,
       title: nil,
+      id: options[:id],
       subtitle: nil,
       min: nil, max: nil, categories: [], series: []
     }
@@ -260,7 +261,11 @@ class Quarter < ActiveRecord::Base
     end
 
     data.each do |reform|
-      hash[:series] << {name: reform[:reform], color: reform[:color], data: reform[:series].map{|x| x[:data]}.flatten}
+      hash[:series] << {
+        name: reform[:reform],
+        color: reform[:color][:hex],
+        data: reform[:series].map{|x| x[:data]}.flatten
+      }
     end
 
     return hash

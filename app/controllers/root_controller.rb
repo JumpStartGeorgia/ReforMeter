@@ -96,11 +96,11 @@ class RootController < ApplicationController
     @reforms = Reform.active.sorted.with_color
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
 
-    reform_survey_data = Quarter.all_reform_survey_data_for_charting
-
     gon.change_icons = view_context.change_icons
 
-    gon.charts = []
+    gon.charts = [
+      Quarter.all_reform_survey_data_for_charting(id: 'reforms-history-series')
+    ]
 
     @quarters.each do |quarter|
       surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id}
