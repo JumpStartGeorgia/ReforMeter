@@ -96,10 +96,7 @@ class RootController < ApplicationController
     @reforms = Reform.active.sorted.with_color
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
 
-    reform_survey_data = []
-    @reforms.each do |reform|
-      reform_survey_data << Quarter.reform_survey_data_for_charting(reform.id, overall_score_only: true)
-    end
+    reform_survey_data = Quarter.all_reform_survey_data_for_charting
 
     gon.change_icons = view_context.change_icons
 

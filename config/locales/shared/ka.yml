@@ -65,5 +65,6 @@ ka:
         title: 'Expert Response History'
       reform:
         title: 'Reform: %{name}'
+        all_title: 'All Reforms'
         subtitle_government: 'Government Response History'
         subtitle_stakeholder: 'Stakeholder Response History'
