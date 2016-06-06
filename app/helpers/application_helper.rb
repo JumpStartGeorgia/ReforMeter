@@ -32,21 +32,17 @@ module ApplicationHelper
   end
 
   def change_icons
-    return CHANGE_ICONS
+    return {
+      '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), style: 'max-width: 100%; max-height: 100%;'),
+      '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), style: 'max-width: 100%; max-height: 100%;'),
+      '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), style: 'max-width: 100%; max-height: 100%;')
+    }
   end
 
   # value = -1 -> down arrow
   # value =  0 -> flat arrow
   # value =  1 -> up arrow
   def generate_change_icon(change_value)
-    CHANGE_ICONS[change_value.to_s.to_sym]
+    change_icons[change_value.to_s.to_sym]
   end
-
-  private
-
-  CHANGE_ICONS = {
-    '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), style: 'max-width: 100%; max-height: 100%;'),
-    '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), style: 'max-width: 100%; max-height: 100%;'),
-    '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), style: 'max-width: 100%; max-height: 100%;')
-  }
 end
