@@ -76,9 +76,7 @@ page_title t('.title')
 
     <% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
 
-      <div>
-        insert chart here
-      </div>
+      <div class='js-become-highchart' data-chart-type='percentage-history-time-series' data-id='reforms-history-series'></div>
 
     <% end %>
 
