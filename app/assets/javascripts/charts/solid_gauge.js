@@ -112,7 +112,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         y: 16
       },
     	stops: [
-      	[0, '#FFF']
+      	[0, outputHighchartsColorString(chartData.color, '1', '#FFF')]
       ]
     },
 

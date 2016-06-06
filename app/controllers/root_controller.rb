@@ -115,7 +115,7 @@ class RootController < ApplicationController
 
         gon.charts << {
           id: "reform-government-#{quarter.slug}-#{reform.slug}",
-          # color: government_time_series[:color],
+          color: reform.color.to_hash,
           title: nil,
           score: survey.government_overall_score.to_f,
           change: survey.government_overall_change
@@ -174,25 +174,21 @@ class RootController < ApplicationController
           change: @reform_survey.government_overall_change
         }, {
           id: 'reform-government-institutional-setup',
-          color: government_time_series[:color],
           title: I18n.t('shared.categories.initial_setup'),
           score: @reform_survey.government_category1_score.to_f,
           change: @reform_survey.government_category1_change
         }, {
           id: 'reform-government-capacity-building',
-          color: government_time_series[:color],
           title: I18n.t('shared.categories.capacity_building'),
           score: @reform_survey.government_category2_score.to_f,
           change: @reform_survey.government_category2_change
         }, {
           id: 'reform-government-infrastructure-budgeting',
-          color: government_time_series[:color],
           title: I18n.t('shared.categories.infastructure_budgeting'),
           score: @reform_survey.government_category3_score.to_f,
           change: @reform_survey.government_category3_change
         }, {
           id: 'reform-government-legislation-regulations',
-          color: government_time_series[:color],
           title: I18n.t('shared.categories.legislation_regulation'),
           score: @reform_survey.government_category4_score.to_f,
           change: @reform_survey.government_category4_change
