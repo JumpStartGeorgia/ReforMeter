@@ -146,10 +146,10 @@ function highchartsBigMeterGaugeOptions(chartData) {
           innerRadius: '40%',
           outerRadius: '100%',
           label: {
-            text: 'Poor',
+            text: 'Behind',
             rotation: -60,
-            x: 60,
-            y: 55,
+            x: 55,
+            y: 65,
             style: {
               fontSize: '18px',
               color: 'white'
@@ -164,8 +164,8 @@ function highchartsBigMeterGaugeOptions(chartData) {
           innerRadius: '40%',
           outerRadius: '100%',
           label: {
-            text: 'Normal',
-            x: 98,
+            text: 'On Track',
+            x: 88,
             y: 30,
             style: {
               fontSize: '18px',
@@ -181,9 +181,9 @@ function highchartsBigMeterGaugeOptions(chartData) {
           innerRadius: '40%',
           outerRadius: '100%',
           label: {
-            text: 'Good',
+            text: 'Ahead',
             rotation: 60,
-            x: 170,
+            x: 173,
             y: 45,
             style: {
               fontSize: '18px',
