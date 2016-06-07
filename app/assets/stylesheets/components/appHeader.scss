@@ -11,7 +11,7 @@
 
   @include center-and-limit-content-width();
 
-  @media (min-width: $width-move-main-into-top-image) {
+  @media (min-width: $width-move-main-out-of-top-image) {
     height: 130px;
     padding: 0;
   }

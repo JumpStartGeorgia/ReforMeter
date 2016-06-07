@@ -2,7 +2,7 @@
   background: image-url('bg_img_header.jpg') $color-grey-background no-repeat center/cover;
   height: 150px;
 
-  @media (min-width: $width-move-main-into-top-image) {
+  @media (min-width: $width-move-main-out-of-top-image) {
     height: 130px + $height-content-heading;
   }
 }

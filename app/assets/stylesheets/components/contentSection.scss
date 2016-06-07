@@ -37,12 +37,12 @@
   }
 
 .contentSection.mod-overlap-top-image {
-  @media (min-width: $width-move-main-into-top-image) {
+  @media (min-width: $width-move-main-out-of-top-image) {
     margin-top: -1 * $height-content-heading;
   }
 
   .contentSection-header {
-    @media (min-width: $width-move-main-into-top-image) {
+    @media (min-width: $width-move-main-out-of-top-image) {
       padding-top: 0;
       padding-bottom: 0;
       height: $height-content-heading;
