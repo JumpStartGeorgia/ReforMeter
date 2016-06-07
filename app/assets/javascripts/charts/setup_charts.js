@@ -5,7 +5,8 @@ function setupDefaultOptions() {
         contextButton: {
           symbol: highchartDownloadIcon()
         }
-      }
+      },
+      enabled: false
     }
   });
 }
@@ -21,7 +22,11 @@ function setupHighchart($container) {
   }
 
   highchart.create = function() {
-    $container.highcharts(Highcharts.merge(highchartsOptions(chartType, chartData())));
+    $container.highcharts(
+      Highcharts.merge(
+        highchartsOptions(chartType, chartData())
+      )
+    );
   };
 
   return highchart;

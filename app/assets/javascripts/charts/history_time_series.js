@@ -42,6 +42,9 @@ function historyTimeSeriesOptions(chartData) {
       zoomType: 'x',
       type: 'spline'
     },
+    exporting: {
+      enabled: true
+    },
     title: {
       text: null
     },
