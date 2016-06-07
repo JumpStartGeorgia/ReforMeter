@@ -14,6 +14,16 @@ $sidebar-move-to-side: 700px;
   }
 
   .contentSidebarContainer-sidebar {
+    @media (min-width: $sidebar-move-to-side) {
+      margin-left: 20px;
+      min-width: 35%;
+    }
+  }
+
+  // The images in the news sidebars on reform show and expert show pages
+  // have a width of 360 px. This mod class limits the container width
+  // so that it is no wider than these images; it also centers the container.
+  .contentSidebarContainer-sidebar.mod-limit-width-to-image {
     max-width: 360px;
     margin: 0 auto;
 
@@ -21,6 +31,5 @@ $sidebar-move-to-side: 700px;
       max-width: initial;
       margin: initial;
       margin-left: 20px;
-      min-width: 35%;
     }
   }

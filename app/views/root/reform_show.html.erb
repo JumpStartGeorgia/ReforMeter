@@ -253,7 +253,7 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
   </div>
 
   <% if @news.present? %>
-    <div class='contentSidebarContainer-sidebar'>
+    <div class='contentSidebarContainer-sidebar mod-limit-width-to-image'>
       <%= render partial: 'shared/news' %>
     </div>
   <% end %>

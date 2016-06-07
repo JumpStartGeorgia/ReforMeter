@@ -64,55 +64,67 @@
 
   <main class='mainContent'>
 
-    <section class='contentSection'>
+    <div class='contentSidebarContainer'>
 
-      <header class='contentSection-header'>
+      <div class='contentSidebarContainer-content'>
 
-        <h2 class='heading'>
-          <%= t('.header.experts') %>
-        </h2>
+        <section class='contentSection'>
 
-      </header>
+          <header class='contentSection-header'>
 
-      <div class='contentSection-body'>
+            <h2 class='heading'>
+              <%= t('.header.experts') %>
+            </h2>
 
-        <div>insert chart here</div>
+          </header>
 
-        <% if @quarter.expert_survey.summary %>
+          <div class='contentSection-body'>
 
-          <div>
-            <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+            <div>insert chart here</div>
+
+            <% if @quarter.expert_survey.summary %>
+
+              <div>
+                <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+              </div>
+
+            <% end %>
+
           </div>
 
-        <% end %>
+        </section>
 
       </div>
 
-    </section>
+      <div class='contentSidebarContainer-sidebar'>
 
-    <section class='contentSection'>
+        <section class='contentSection'>
 
-      <header class='contentSection-header'>
+          <header class='contentSection-header'>
 
-        <h2 class='heading'>
-          <%= t('.header.government') %>
-        </h2>
+            <h2 class='heading'>
+              <%= t('.header.government') %>
+            </h2>
 
-      </header>
+          </header>
 
-      <div class='contentSection-body'>
+          <div class='contentSection-body'>
 
-        <% @reforms.each do |reform| %>
+            <% @reforms.each do |reform| %>
 
-          <div data-id="<%= reform.slug %>">
-            <%= reform.name %>
+              <div data-id="<%= reform.slug %>">
+                <%= reform.name %>
+              </div>
+
+            <% end %>
+
           </div>
 
-        <% end %>
+        </section>
 
       </div>
 
-    </section>
+    </div>
 
     <% if @external_indicators.present? %>
 
