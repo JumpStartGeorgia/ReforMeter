@@ -64,13 +64,17 @@
 
   <main class='mainContent'>
 
-    <% if @quarter %>
+    <section class='contentSection'>
 
-      <div>
+      <header class='contentSection-header'>
 
-        <h2>
+        <h2 class='heading'>
           <%= t('.header.experts') %>
         </h2>
+
+      </header>
+
+      <div class='contentSection-body'>
 
         <div>insert chart here</div>
 
@@ -84,11 +88,19 @@
 
       </div>
 
-      <div>
+    </section>
 
-        <h2>
+    <section class='contentSection'>
+
+      <header class='contentSection-header'>
+
+        <h2 class='heading'>
           <%= t('.header.government') %>
         </h2>
+
+      </header>
+
+      <div class='contentSection-body'>
 
         <% @reforms.each do |reform| %>
 
@@ -100,27 +112,39 @@
 
       </div>
 
-    <% end %>
+    </section>
 
     <% if @external_indicators.present? %>
 
-      <h2>
-        <%= t('.header.external_indicators') %>
-      </h2>
+      <section class='contentSection'>
 
-      <% @external_indicators.each do |ext_ind| %>
+        <header class='contentSection-header'>
 
-        <h3>
-          <%= ext_ind.title %>
-        </h3>
+          <h2 class='heading'>
+            <%= t('.header.external_indicators') %>
+          </h2>
 
-        <h4>
-          <%= ext_ind.subtitle %>
-        </h4>
+        </header>
 
-        <div>insert chart here </div>
+        <div class='contentSection-body'>
 
-      <% end %>
+          <% @external_indicators.each do |ext_ind| %>
+
+            <h3>
+              <%= ext_ind.title %>
+            </h3>
+
+            <h4>
+              <%= ext_ind.subtitle %>
+            </h4>
+
+            <div>insert chart here </div>
+
+          <% end %>
+
+        </div>
+
+      </section>
 
     <% end %>
 
