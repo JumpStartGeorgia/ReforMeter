@@ -8,8 +8,17 @@ page_title t('.title', time: @quarter.time_period)
   <header class='contentSection-header'>
 
     <h1 class='heading'>
-      <%= inline_svg('experts.svg', class: 'heading-icon') %>
-      <%= yield(:page_title) %>
+
+      <div class='heading-iconTextContainer'>
+
+        <%= inline_svg('experts.svg', class: 'heading-icon') %>
+
+        <div class='heading-text'>
+          <%= yield(:page_title) %>
+        </div>
+
+      </div>
+
     </h1>
 
     <% if @active_quarters %>
