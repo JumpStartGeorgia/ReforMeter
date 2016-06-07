@@ -7,15 +7,23 @@
     <%= render partial: 'application/loading_indicator' %>
 
     <div class='mainFooterContainer'>
+      <% if current_page?(controller: 'root', action: 'index') %>
 
-      <div>
+        <%= yield %>
 
-        <div class='topImageContainer'>
-          <%= render partial: 'application/navbar_header' %>
+      <% else %>
+
+        <div>
+
+          <div class='topImageContainer'>
+            <%= render partial: 'application/navbar_header' %>
+          </div>
+
+          <%= render partial: 'application/main' %>
+
         </div>
 
-        <%= render partial: 'application/main' %>
-      </div>
+      <% end %>
 
       <%= render partial: 'application/footer' %>
 
