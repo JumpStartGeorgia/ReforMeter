@@ -33,9 +33,15 @@ function setupHighchart($container) {
 }
 
 function setupCharts() {
+  var $charts = $('.js-become-highchart');
+
+  if ($charts.length === 0) {
+    return null;
+  }
+
   setupDefaultOptions();
 
-  $('.js-become-highchart').each(function() {
+  $charts.each(function() {
     setupHighchart($(this)).create();;
   });
 }

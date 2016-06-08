@@ -40,7 +40,9 @@ function historyTimeSeriesOptions(chartData) {
   return {
     chart: {
       zoomType: 'x',
-      type: 'spline'
+      type: 'spline',
+      height: null,
+      width: null
     },
     exporting: {
       enabled: true
@@ -144,10 +146,6 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
       title: {
         text: 'Percentage'
       }
-      // min: 0,
-      // max: 100,
-      // minorTickInterval: 'auto',
-      // tickInterval: 50
     }
   };
 

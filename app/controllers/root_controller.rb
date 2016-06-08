@@ -6,12 +6,21 @@ class RootController < ApplicationController
     @quarter = Quarter.latest
     @reforms = Reform.active.sorted.highlight
 
-    # get the survey data for charting
-    expert_survey_data = Quarter.expert_survey_data_for_charting(overall_score_only: true)
+    gon.chart_download_icon = highchart_download_icon
+    gon.change_icons = view_context.change_icons
 
-    reform_survey_data = []
+    gon.charts = [
+      Quarter.expert_survey_data_for_charting(
+        overall_score_only: true,
+        id: 'expert-history'
+      ),
+    ]
+
     @reforms.each do |reform|
-      reform_survey_data << Quarter.reform_survey_data_for_charting(reform.id, overall_score_only: true)
+      gon.charts << Quarter.reform_survey_data_for_charting(
+        reform.id,
+        overall_score_only: true,
+        id: "reform-#{reform.slug}")
     end
 
     # get external indicators for home page
@@ -245,7 +254,10 @@ class RootController < ApplicationController
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
-      Quarter.expert_survey_data_for_charting(overall_score_only: true)
+      Quarter.expert_survey_data_for_charting(
+        overall_score_only: true,
+        id: 'expert-history'
+      )
     ]
 
     @quarters.each do |quarter|

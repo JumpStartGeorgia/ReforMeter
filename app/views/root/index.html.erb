@@ -90,7 +90,7 @@
 
           <div class='contentSection-body'>
 
-            <div>insert chart here</div>
+            <div class='homePage-expertHistoryChart js-become-highchart' data-chart-type='rating-history-time-series' data-id='expert-history'></div>
 
             <% if @quarter.expert_survey.summary %>
 
@@ -133,7 +133,11 @@
             <% @reforms.each do |reform| %>
 
               <div data-id="<%= reform.slug %>">
+
                 <%= reform.name %>
+
+                <div class='homePage-reforms-item-chart js-become-highchart' data-chart-type='mini-time-series' data-id='reform-<%= reform.slug %>'></div>
+
               </div>
 
             <% end %>
