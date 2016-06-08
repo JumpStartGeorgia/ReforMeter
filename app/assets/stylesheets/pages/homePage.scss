@@ -5,3 +5,26 @@
 .homePage-reforms-item-chart {
   height: 100px;
 }
+
+.homePage-intro {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 0 $padding-main-content;
+  width: 100%;
+
+  @include center-and-limit-content-width();
+
+  @media (min-width: 1000px) {
+    flex-direction: row;
+  }
+}
+
+  .homePage-intro-chartSummaryContainer {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 500px) {
+      flex-direction: row;
+    }
+  }

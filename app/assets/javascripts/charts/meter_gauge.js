@@ -2,7 +2,8 @@ function highchartsMeterGaugeOptions(chartData) {
   return {
 
     chart: {
-      type: 'gauge'
+      type: 'gauge',
+      backgroundColor: 'transparent'
     },
 
     pane: {
@@ -140,7 +141,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
       plotBands: [
         {
           borderWidth: 2,
-          borderColor: 'white',
+          borderColor: 'transparent',
           from: 0,
           to: 3.3,
           color: outputHighchartsColorString(color, '.6'),
@@ -158,7 +159,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           }
         },{
           borderWidth: 2,
-          borderColor: 'white',
+          borderColor: 'transparent',
           from: 3.3,
           to: 6.6,
           color: outputHighchartsColorString(color, '.8'),
@@ -175,7 +176,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           }
         },{
           borderWidth: 2,
-          borderColor: 'white',
+          borderColor: 'transparent',
           from: 6.6,
           to: 10,
           color: outputHighchartsColorString(color, '1'),
