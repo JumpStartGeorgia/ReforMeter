@@ -13,7 +13,12 @@ class RootController < ApplicationController
       Quarter.expert_survey_data_for_charting(
         overall_score_only: true,
         id: 'expert-history'
-      ),
+      ), {
+        id: 'reform-current-overall',
+        title: nil,
+        score: @quarter.expert_survey.overall_score.to_f,
+        change: @quarter.expert_survey.overall_change
+      }
     ]
 
     @reforms.each do |reform|
