@@ -1,8 +1,28 @@
 .topImageContainer {
-  background: image-url('bg_img_header.jpg') $color-grey-background no-repeat center/cover;
+  background-image: image-url('bg_img_header.jpg');
+  background-color: $color-grey-background;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   height: 150px;
+  color: white;
 
-  @media (min-width: $width-move-main-out-of-top-image) {
+  @media (min-width: $width-content-overlap-top-image) {
     height: 130px + $height-content-heading;
+  }
+}
+
+.topImageContainer.mod-homepage {
+  background-image: image-url('bg_img_home.jpg');
+  background-position: left top;
+  height: initial;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 30px + $height-content-heading;
+  box-sizing: border-box;
+
+  @media (min-width: $width-content-overlap-top-image) {
+    height: 490px + $height-content-heading;
   }
 }
