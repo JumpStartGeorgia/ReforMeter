@@ -6,6 +6,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
   padding: 0 $padding-main-content;
   width: 100%;
 
@@ -16,11 +17,24 @@
   }
 }
 
+  $width-homepage-move-chart-summary-to-side: 500px;
+
+  .homePage-intro-download {
+    color: inherit;
+    display: block;
+    font-weight: 200;
+    text-align: right;
+
+    @media (min-width: $width-homepage-move-chart-summary-to-side) {
+      text-align: left;
+    }
+  }
+
   .homePage-intro-chartSummaryContainer {
     display: flex;
     flex-direction: column;
 
-    @media (min-width: 500px) {
+    @media (min-width: $width-homepage-move-chart-summary-to-side) {
       flex-direction: row;
     }
   }

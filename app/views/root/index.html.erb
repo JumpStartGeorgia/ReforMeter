@@ -25,15 +25,14 @@
 
           </ul>
 
-          <div>
 
             <%= link_to t('.report_link'),
                         download_data_and_reports_path(
                           type: 'report',
                           quarter: @quarter.slug),
+                        class: 'homePage-intro-download',
                         method: :post %>
 
-          </div>
 
         </div>
 
