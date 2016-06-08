@@ -133,13 +133,15 @@
 
           </header>
 
-          <div class='contentSection-body'>
+          <div class='contentSection-body mod-no-padding'>
 
             <% @reforms.each do |reform| %>
 
-              <div data-id="<%= reform.slug %>">
+              <div class='homePage-reforms-item 'data-id="<%= reform.slug %>">
 
-                <%= reform.name %>
+                <div class='homePage-reforms-item-label'>
+                  <%= reform.name %>
+                </div>
 
                 <div class='homePage-reforms-item-chart js-become-highchart' data-chart-type='mini-time-series' data-id='reform-<%= reform.slug %>'></div>
 
