@@ -28,3 +28,29 @@
       flex-direction: row;
     }
   }
+
+$width-homepage-move-government-to-side: 700px;
+
+.homePage-expertsGovtContainer {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $width-homepage-move-government-to-side) {
+    flex-direction: row;
+  }
+
+  @media (min-width: $width-content-overlap-top-image) {
+    margin-top: -1 * $height-content-heading;
+  }
+}
+
+  .homePage-expertsGovtContainer-experts {
+    width: 100%;
+  }
+
+  .homePage-expertsGovtContainer-government {
+    @media (min-width: $width-homepage-move-government-to-side) {
+      margin-left: 20px;
+      min-width: 35%;
+    }
+  }
