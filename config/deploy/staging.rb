@@ -6,3 +6,4 @@ set :repository, 'https://github.com/JumpStartGeorgia/ReforMeter.git'
 set :branch, 'master'
 set :web_url, 'dev-reformeter.jumpstart.ge'
 set :visible_to_robots, false
+set :use_ssl, true
