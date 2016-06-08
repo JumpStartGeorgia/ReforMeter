@@ -59,7 +59,7 @@ function highchartsBigSolidGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '35', '%');
+          return highchartsGaugeLabel(chartData, this, '35', { unit: '%' });
         }
       },
       tooltip: {
@@ -140,7 +140,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '20', '%');
+          return highchartsGaugeLabel(chartData, this, '20', { unit: '%' });
         }
       },
       tooltip: {

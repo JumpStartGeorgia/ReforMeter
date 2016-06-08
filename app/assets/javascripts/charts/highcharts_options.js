@@ -31,6 +31,13 @@ function highchartsOptions(chartType, chartData) {
       );
     }
 
+    case 'homepage-meter-gauge': {
+      return Highcharts.merge(
+        highchartsMeterGaugeOptions(chartData),
+        highchartsHomepageMeterGaugeOptions(chartData)
+      );
+    }
+
     case 'big-solid-gauge': {
       return highchartsBigSolidGaugeOptions(chartData);
     }

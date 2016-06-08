@@ -40,13 +40,19 @@ function outputHighchartsColorString(color, opacity, fallback) {
   return 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + opacity + ')';
 }
 
-function highchartsGaugeLabel(chartData, point, fontSize, unit) {
+function highchartsGaugeLabel(chartData, point, fontSize, args) {
+  if (!args) args = {};
+
+  var unit = args.unit;
   if (!unit) unit = '';
+
+  var color = args.color;
+  if (!color) color = 'black';
 
   function inDiv(content) {
     return '<div style="text-align:center;">' + content + '</div>';
   }
-  var score = '<span style="font-size:' + fontSize + 'px;color:black;">' + point.y + unit + '</span>';
+  var score = '<span style="font-size:' + fontSize + 'px;color:' + color + ';">' + point.y + unit + '</span>';
 
   if (chartData.change === null) {
     return inDiv(score);
