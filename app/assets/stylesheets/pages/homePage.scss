@@ -24,6 +24,10 @@ $width-homepage-move-chart-summary-to-side: 500px;
   .homePage-intro-link {
     color: inherit;
     font-weight: 200;
+
+    &:hover {
+      color: #1599D6;
+    }
   }
 
   .homePage-intro-download {
@@ -79,19 +83,33 @@ $width-homepage-move-government-to-side: 800px;
     }
   }
 
-.homePage-reforms-item {
-  border-bottom: 2px solid $color-grey-background;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px $padding-main-content;
-}
-
-  .homePage-reforms-item-label {
-    min-width: 100px;
+.homePage-reforms {}
+  .homePage-reforms-item {
+    border-bottom: 2px solid $color-grey-background;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px $padding-main-content;
   }
 
-  .homePage-reforms-item-chart {
-    height: 75px;
-    width: 100%;
+    .homePage-reforms-item-label {
+      min-width: 100px;
+    }
+
+    .homePage-reforms-item-chart {
+      height: 75px;
+      width: 100%;
+    }
+
+  .homePage-reforms-axisAndLink {
+    padding: 5px $padding-main-content;
+    text-align: right;
   }
+
+    .homePage-reforms-axisAndLink-link {
+      color: inherit;
+
+      &:hover {
+        color: #1599D6;
+      }
+    }

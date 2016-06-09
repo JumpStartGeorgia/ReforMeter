@@ -62,8 +62,7 @@
 
               <%= link_to t('.about_link'),
                           about_path,
-                          class: 'homePage-intro-link',
-                          method: :post %>
+                          class: 'homePage-intro-link' %>
 
             </div>
 
@@ -147,7 +146,7 @@
 
             <% @reforms.each do |reform| %>
 
-              <div class='homePage-reforms-item 'data-id="<%= reform.slug %>">
+              <div class='homePage-reforms-item'>
 
                 <div class='homePage-reforms-item-label'>
                   <%= reform.name %>
@@ -158,6 +157,14 @@
               </div>
 
             <% end %>
+
+            <div class='homePage-reforms-axisAndLink'>
+
+              <%= link_to t('.reforms_link'),
+                          reforms_path,
+                          class: 'homePage-reforms-axisAndLink-link' %>
+
+            </div>
 
           </div>
 
