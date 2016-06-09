@@ -19,6 +19,10 @@ function highchartsOptions(chartType, chartData) {
       return ratingHistoryTimeSeriesOptions(chartData);
     }
 
+    case 'small-rating-history-time-series': {
+      return smallRatingHistoryTimeSeriesOptions(chartData);
+    }
+
     case 'percentage-history-time-series': {
       return percentageHistoryTimeSeriesOptions(chartData);
     }

@@ -44,9 +44,6 @@ function historyTimeSeriesOptions(chartData) {
       height: null,
       width: null
     },
-    exporting: {
-      enabled: true
-    },
     title: {
       text: null
     },
@@ -108,6 +105,30 @@ function historyTimeSeriesOptions(chartData) {
 
 function ratingHistoryTimeSeriesOptions(chartData) {
   var options = {
+    exporting: {
+      enabled: true
+    },
+    yAxis: {
+      min: 0,
+      max: 10,
+      tickInterval: 1,
+      title: {
+        text: 'Rating'
+      }
+    }
+  };
+
+  return Highcharts.merge(
+    historyTimeSeriesOptions(chartData),
+    options
+  );
+}
+
+function smallRatingHistoryTimeSeriesOptions(chartData) {
+  var options = {
+    legend: {
+      enabled: false
+    },
     yAxis: {
       min: 0,
       max: 10,
@@ -126,6 +147,9 @@ function ratingHistoryTimeSeriesOptions(chartData) {
 
 function percentageHistoryTimeSeriesOptions(chartData) {
   var options = {
+    exporting: {
+      enabled: true
+    },
     yAxis: {
       min: 0,
       max: 100,
@@ -142,11 +166,14 @@ function percentageHistoryTimeSeriesOptions(chartData) {
 
 function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
   var options = {
+    exporting: {
+      enabled: true
+    },
     yAxis: {
       title: {
         text: 'Percentage'
       }
-    }
+    },
   };
 
   return Highcharts.merge(
