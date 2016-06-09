@@ -2,7 +2,7 @@
 
   <%-
     title = (content_for?(:page_title) && yield(:page_title) != t('shared.common.name') ? "#{strip_tags_nbsp(yield(:page_title))} | #{t('shared.common.name')}" :
-              t('shared.common.name')).html_safe
+              "#{t('shared.common.name')} | #{t('shared.common.sub_title')}").html_safe
     desc = t("shared.common.description").html_safe
   -%>
 
