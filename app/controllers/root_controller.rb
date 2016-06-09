@@ -3,7 +3,7 @@ class RootController < ApplicationController
   def index
     @home_page_about = PageContent.find_by(name: 'home_page_about')
 
-    @quarter = Quarter.with_expert_survey.latest
+    @quarter = Quarter.published.with_expert_survey.latest
     @reforms = Reform.active.sorted.highlight
 
     gon.chart_download_icon = highchart_download_icon
@@ -26,6 +26,7 @@ class RootController < ApplicationController
       gon.charts << Quarter.reform_survey_data_for_charting(
         reform.id,
         overall_score_only: true,
+        quarter_ids: Quarter.published.recent.pluck(:id),
         id: "reform-#{reform.slug}")
       @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
@@ -116,7 +117,7 @@ class RootController < ApplicationController
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
-      Quarter.all_reform_survey_data_for_charting(id: 'reforms-history-series')
+      Quarter.all_reform_survey_data_for_charting(id: 'reforms-history-series', quarter_ids: @quarters.map{|x| x.id})
     ]
 
     @quarters.each do |quarter|
