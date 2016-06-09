@@ -1,4 +1,6 @@
 function historyTimeSeriesOptions(chartData) {
+  var color = chartData.color;
+
   function pointFormatter() {
     function in_paragraph(content) {
       return '<p style="margin: 5px 0;">' + content + '</p>';
@@ -22,10 +24,9 @@ function historyTimeSeriesOptions(chartData) {
     var topColor;
     var bottomColor;
 
-    if (chartData.color) {
-      var color = chartData.color;
-      bottomColor = outputHighchartsColorString(chartData.color, '.6');
-      topColor = outputHighchartsColorString(chartData.color, '1');
+    if (color) {
+      bottomColor = outputHighchartsColorString(color, '.6');
+      topColor = outputHighchartsColorString(color, '1');
     } else {
       bottomColor = defaultChartColors()[2];
       topColor = defaultChartColors()[0];
@@ -72,6 +73,7 @@ function historyTimeSeriesOptions(chartData) {
     },
     plotOptions: {
       areaspline: {
+        color: outputHighchartsColorString(color, '1'),
         fillColor: {
           linearGradient: {
             x1: 0,
@@ -81,6 +83,7 @@ function historyTimeSeriesOptions(chartData) {
           },
           stops: areasplineFillColors()
         },
+        lineWidth: 0,
         marker: {
           enabled: false
         }
