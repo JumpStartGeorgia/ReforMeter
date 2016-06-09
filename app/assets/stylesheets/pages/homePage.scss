@@ -2,27 +2,31 @@
   height: 150px;
 }
 
+$width-homepage-whole-intro-horizontal: 1000px;
+$width-homepage-move-chart-summary-to-side: 500px;
+
+
 .homePage-intro {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  padding: 0 $padding-main-content;
+  padding: 0 $padding-main-content 10px;
   width: 100%;
 
   @include center-and-limit-content-width();
 
-  @media (min-width: 1000px) {
+  @media (min-width: $width-homepage-whole-intro-horizontal) {
     flex-direction: row;
   }
 }
 
-  $width-homepage-move-chart-summary-to-side: 500px;
+  .homePage-intro-link {
+    color: inherit;
+    font-weight: 200;
+  }
 
   .homePage-intro-download {
-    color: inherit;
-    display: block;
-    font-weight: 200;
     text-align: right;
 
     @media (min-width: $width-homepage-move-chart-summary-to-side) {
@@ -38,6 +42,16 @@
       flex-direction: row;
     }
   }
+
+    .homePage-intro-chartSummaryContainer-summary {
+      @media (min-width: $width-homepage-whole-intro-horizontal) {
+        text-align: right;
+      }
+    }
+
+      .homePage-intro-chartSummaryContainer-summary-link {
+        text-align: right;
+      }
 
 $width-homepage-move-government-to-side: 800px;
 
