@@ -103,6 +103,11 @@
           }
         }
 
+        .appHeader-nav-list-item-link.mod-current-page {
+          border-bottom: 1px solid;
+          border-bottom-color: inherit;
+        }
+
       .appHeader-nav-list-item.mod-language {
         padding-top: 35px;
 
