@@ -3,7 +3,7 @@ class RootController < ApplicationController
   def index
     @home_page_about = PageContent.find_by(name: 'home_page_about')
 
-    @quarter = Quarter.latest
+    @quarter = Quarter.with_expert_survey.latest
     @reforms = Reform.active.sorted.highlight
 
     gon.chart_download_icon = highchart_download_icon
@@ -21,11 +21,13 @@ class RootController < ApplicationController
       }
     ]
 
+    @reform_current_quarter_values = []
     @reforms.each do |reform|
       gon.charts << Quarter.reform_survey_data_for_charting(
         reform.id,
         overall_score_only: true,
         id: "reform-#{reform.slug}")
+      @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
 
     # get external indicators for home page

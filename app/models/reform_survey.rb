@@ -66,6 +66,20 @@ class ReformSurvey < ActiveRecord::Base
   end
 
 
+  # get the overall score and change for a quarter, reform and type (government or stakeholder)
+  # format: {reform_id, score, change}
+  def self.overall_values_only(quarter_id, reform_id, type='government')
+    value = where(quarter_id: quarter_id, reform_id: reform_id)
+    if type == 'stakeholder'
+      value = value.select(:government_overall_score, :government_overall_change).first
+      return {reform_id: reform_id, score: value.government_overall_score.to_f, change: value.government_overall_change} if value.present?
+    else # government
+      value = value.select(:stakeholder_overall_score, :stakeholder_overall_change).first
+      return {reform_id: reform_id, score: value.stakeholder_overall_score.to_f, change: value.stakeholder_overall_change} if value.present?
+    end
+    return []
+  end
+
   #######################
   ## METHODS
 
