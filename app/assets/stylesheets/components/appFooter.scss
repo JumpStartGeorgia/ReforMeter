@@ -1,14 +1,13 @@
 .appFooter {
-  width: 100%;
+  align-items: center;
   background-color: white;
-
-  padding: 0 $padding-main-content;
   box-sizing: border-box;
-
+  color: $color-grey-text;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   max-width: $max-width-of-content;
+  padding: 0 $padding-main-content;
+  width: 100%;
 
   @include center-and-limit-content-width();
 }

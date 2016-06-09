@@ -38,15 +38,6 @@ $charts-table-border: solid 3px $color-grey-background;
       font-size: 1.8rem;
     }
 
-    .chartsTable-cell-link {
-      text-decoration: none;
-      color: inherit;
-
-      &:hover {
-        color: #1599D6;
-      }
-    }
-
   .highcharts-container {
     width: 100%;
     height: 100%;

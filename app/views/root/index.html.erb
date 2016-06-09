@@ -31,7 +31,7 @@
                         download_data_and_reports_path(
                           type: 'report',
                           quarter: @quarter.slug),
-                        class: 'homePage-intro-link',
+                        class: 'link mod-light-weight',
                         method: :post %>
 
           </div>
@@ -62,7 +62,7 @@
 
               <%= link_to t('.about_link'),
                           about_path,
-                          class: 'homePage-intro-link' %>
+                          class: 'link mod-light-weight' %>
 
             </div>
 
@@ -114,6 +114,10 @@
 
             <% end %>
 
+            <%= link_to t('.experts_link'),
+                        experts_path,
+                        class: 'link' %>
+
           </div>
 
         </section>
@@ -162,7 +166,7 @@
 
               <%= link_to t('.reforms_link'),
                           reforms_path,
-                          class: 'homePage-reforms-axisAndLink-link' %>
+                          class: 'link' %>
 
             </div>
 

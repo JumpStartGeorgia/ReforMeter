@@ -1,16 +1,3 @@
-function setupDefaultOptions() {
-  Highcharts.setOptions({
-    exporting: {
-      buttons: {
-        contextButton: {
-          symbol: highchartDownloadIcon()
-        }
-      },
-      enabled: false
-    }
-  });
-}
-
 function setupHighchart($container) {
   var highchart = {}
   var chartType = $container.data('chart-type');

@@ -1,3 +1,17 @@
+function setupDefaultOptions() {
+  Highcharts.setOptions({
+    credits: false,
+    exporting: {
+      buttons: {
+        contextButton: {
+          symbol: highchartDownloadIcon()
+        }
+      },
+      enabled: false
+    }
+  });
+}
+
 function highchartsOptions(chartType, chartData) {
   switch (chartType) {
 

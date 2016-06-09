@@ -21,15 +21,6 @@ $width-homepage-move-chart-summary-to-side: 500px;
   }
 }
 
-  .homePage-intro-link {
-    color: inherit;
-    font-weight: 200;
-
-    &:hover {
-      color: #1599D6;
-    }
-  }
-
   .homePage-intro-download {
     text-align: right;
 
@@ -105,11 +96,3 @@ $width-homepage-move-government-to-side: 800px;
     padding: 5px $padding-main-content;
     text-align: right;
   }
-
-    .homePage-reforms-axisAndLink-link {
-      color: inherit;
-
-      &:hover {
-        color: #1599D6;
-      }
-    }

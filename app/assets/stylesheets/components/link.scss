@@ -1,0 +1,15 @@
+.link {
+  color: inherit;
+
+  &:hover {
+    color: #1599D6;
+  }
+}
+
+.link.mod-light-weight {
+  font-weight: 200;
+}
+
+.link.mod-no-decoration {
+  text-decoration: none;
+}
