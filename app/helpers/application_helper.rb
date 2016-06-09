@@ -45,4 +45,14 @@ module ApplicationHelper
   def generate_change_icon(change_value)
     change_icons[change_value.to_s.to_sym]
   end
+
+  def nav_link_select_class_if_path(paths)
+    paths.each do |path|
+      if ((path[:controller] == params[:controller]) && (path[:action] == params[:action]))
+        return ' mod-current-page' 
+      end
+    end
+
+    return ''
+  end
 end
