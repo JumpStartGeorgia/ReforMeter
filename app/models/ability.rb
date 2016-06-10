@@ -28,5 +28,7 @@ class Ability
     can :manage, Role
     cannot :manage, User, role: { name: 'super_admin' }
     cannot :manage, Role, name: 'super_admin'
+    can :read, ReformColor
+    can :manage, Expert
   end
 end

@@ -1,5 +1,6 @@
 class Admin::ExpertsController < ApplicationController
   before_action :set_expert, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /admin/experts
   # GET /admin/experts.json

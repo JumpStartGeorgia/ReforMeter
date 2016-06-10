@@ -1,5 +1,6 @@
 class Admin::ReformColorsController < ApplicationController
   before_action :set_reform_color, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /admin/reform_colors
   # GET /admin/reform_colors.json
