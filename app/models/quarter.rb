@@ -366,6 +366,7 @@ class Quarter < ActiveRecord::Base
           name: I18n.t('shared.categories.overall'),
           type: 'areaspline',
           data: surveys.map{|x| {y: x.nil? ? nil : x.government_overall_score.to_f, change: x.nil? ? nil : x.government_overall_change}}}
+
         if !options[:overall_score_only]
           # category 1
           hash[:series] << {
@@ -388,9 +389,13 @@ class Quarter < ActiveRecord::Base
             dashStyle: 'LongDashDotDot',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category4_score.to_f, change: x.nil? ? nil : x.government_category4_change}}}
         end
+
+        # Specify that unit is '%' for government data
+        hash[:series].each do |series|
+          series[:data].each { |data| data[:unit] = '%' }
+        end
       end
     end
-
 
     return hash
   end

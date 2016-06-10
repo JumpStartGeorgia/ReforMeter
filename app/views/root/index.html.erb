@@ -155,29 +155,30 @@
 
             <% @reforms.each do |reform| %>
 
-              <div class='homePage-reforms-item'>
+              <% if @reform_current_quarter_values.present? %>
 
-                <div class='homePage-reforms-item-label'>
-                  <span class='homePage-reforms-item-label-name'><%= reform.name %></span>
+                <% value = @reform_current_quarter_values.select{|x| x[:reform_id] == reform.id}.first %>
 
+                <div class='homePage-reforms-item'>
 
-                  <% if @reform_current_quarter_values.present? %>
+                  <%= link_to(reform_show_path(reform, Quarter.last), class: 'homePage-reforms-item-label') do %>
 
-                    <% value = @reform_current_quarter_values.select{|x| x[:reform_id] == reform.id}.first %>
+                    <span class='homePage-reforms-item-label-name'><%= reform.name %></span>
 
-                    <% if value.present? %>
-                      <div class='homePage-reforms-item-label-score'>
-                        <%= value[:score].round %>%
-                        <span><%= generate_change_icon(value[:change]) %></span>
-                      </div>
-                    <% end %>
+                      <% if value.present? %>
+                        <div class='homePage-reforms-item-label-score'>
+                          <%= value[:score].round %>%
+                          <span><%= generate_change_icon(value[:change]) %></span>
+                        </div>
+                      <% end %>
 
                   <% end %>
+
+                  <div class='homePage-reforms-item-chart js-become-highchart' data-chart-type='mini-time-series' data-id='reform-<%= reform.slug %>'></div>
+
                 </div>
 
-                <div class='homePage-reforms-item-chart js-become-highchart' data-chart-type='mini-time-series' data-id='reform-<%= reform.slug %>'></div>
-
-              </div>
+              <% end %>
 
             <% end %>
 

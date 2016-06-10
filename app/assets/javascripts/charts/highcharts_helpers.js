@@ -73,11 +73,20 @@ function highchartDownloadIcon() {
 }
 
 function highchartTimeSeriesTooltipPointFormatter(point) {
+  // Use unit if specified, otherwise use empty string
+  var unit;
+  if (point.unit) {
+    unit = point.unit;
+  } else {
+    unit = '';
+  }
+
   function in_paragraph(content) {
     return '<p style="margin: 5px 0;">' + content + '</p>';
   }
 
-  var pointScore = '<b>' + point.y + '</b> ';
+  var pointScore = '<b>' + point.y + unit + '</b> ';
+
   var name = '<span style="color: #66666d;">' + point.series.name + '</span>';
 
   if (point.change) {
