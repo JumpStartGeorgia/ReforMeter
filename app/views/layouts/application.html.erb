@@ -7,7 +7,7 @@
     <%= render partial: 'application/loading_indicator' %>
 
     <div class='mainFooterContainer'>
-      <% if current_page?(controller: 'root', action: 'index') %>
+      <% if params[:controller] == 'root' && params[:action] == 'index' %>
 
         <%= yield %>
 

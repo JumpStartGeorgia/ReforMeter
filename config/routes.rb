@@ -16,8 +16,9 @@ Rails.application.routes.draw do
 
     match '/admin', :to => 'admin#index', :as => :admin, :via => :get
     namespace :admin do
-      resources :users, constraints: { format: :html }
+      resources :experts, except: :show, constraints: { format: :html }
       resources :page_contents, constraints: { format: :html }
+      resources :users, constraints: { format: :html }
     end
 
     get '/contact' => 'root#contact'

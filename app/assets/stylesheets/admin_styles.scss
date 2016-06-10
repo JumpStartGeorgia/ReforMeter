@@ -1,0 +1,16 @@
+@import 'bootstrap_and_overrides';
+
+/* admin drop down menu */
+.appHeader-nav li.dropdown > a{
+  color: #fff;
+}
+.appHeader-nav li.dropdown > a:hover{
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* form styles */
+fieldset.inputs .radio{
+  margin-left: 25px;
+}
+

@@ -49,6 +49,7 @@ en:
         slogan: JumpStart Georgia - Informing Communities with Data and Design
       name: ReforMeter
       sub_title: Tracking Progress - One Reform at a Time
+<<<<<<< HEAD
     expert_show:
       header:
         chart: Expert History
@@ -58,6 +59,16 @@ en:
       no_details: No expert findings are on record.
       no_experts: No experts are on record.
       no_methodology: No methodology is on record.
+=======
+      description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
+      change_time: Change Time Period
+      change_reform: Change Reform
+      all: All
+    links:
+      page_contents: Edit Page Text
+      admin: Admin Section
+      experts: The Experts
+>>>>>>> added admin menu to navbar; added experts admin form
     labels:
       translated_field: "%{field} (%{language})"
     links:

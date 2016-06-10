@@ -1,0 +1,40 @@
+<% object = @expert %>
+<%= semantic_form_for [:admin,object], multipart: true do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "name_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.expert.name'),
+                         language: enabled_locale_name) %>
+      <%= f.input "bio_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.expert.bio'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5, :maxlength => 255  } %>
+    <% end %>
+
+
+    <div class="file input optional form-group" id="expert_avatar_input">
+      <span class="form-label">
+        <label for="expert_avatar" class=" control-label"><%= t('activerecord.attributes.expert.avatar') %></label>
+      </span>
+      <% if @expert.avatar.exists? %>
+        <%= image_tag(@expert.avatar.url('50x50')) %>
+      <% end %>
+      <span class="form-wrapper">
+        <input id="expert_avatar" accept=".jpg,.jpeg,.png,.gif" type="file" name="expert[avatar]" />
+      </span>
+    </div>
+
+    <%= f.input :is_active, as: :radio %>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>
+

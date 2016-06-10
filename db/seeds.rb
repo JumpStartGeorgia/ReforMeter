@@ -118,15 +118,15 @@ if ENV['load_test_data'].present?
 
     # create reform
     puts 'creating test reform'
-    reform1 = Reform.create(name: 'Innovations', summary: '<p>This is a brief summary about test reform 1.</p>', reform_color_id: rc_colors.sample.id)
-    reform2 = Reform.create(name: 'Land Market Development', summary: '<p>This is a brief summary about test reform 2.</p>', reform_color_id: rc_colors.sample.id)
-    reform3 = Reform.create(name: 'Insolvency', summary: '<p>This is a brief summary about test reform 3.</p>', reform_color_id: rc_colors.sample.id)
+    reform1 = Reform.create(name: 'Innovations', summary: '<p>This is a brief summary about test reform 1.</p>', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
+    reform2 = Reform.create(name: 'Land Market Development', summary: '<p>This is a brief summary about test reform 2.</p>', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
+    reform3 = Reform.create(name: 'Insolvency', summary: '<p>This is a brief summary about test reform 3.</p>', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
 
     # create experts
     puts 'creating experts'
-    exp1 = Expert.create(name: 'Expert One', bio: '<p>Expert One is cool cat from Sesame Street.</p>')
-    exp2 = Expert.create(name: 'Expert Two', bio: '<p>Expert Two doesn\'t know how to get to Sesame Street.</p>')
-    exp3 = Expert.create(name: 'Expert Three', bio: '<p>Expert Three was born and raised on Sesame Street.</p>')
+    exp1 = Expert.create(name: 'Expert One', bio: 'Expert One is cool cat from Sesame Street.')
+    exp2 = Expert.create(name: 'Expert Two', bio: 'Expert Two doesn\'t know how to get to Sesame Street.')
+    exp3 = Expert.create(name: 'Expert Three', bio: 'Expert Three was born and raised on Sesame Street.')
 
     # create quarters
     puts 'creating quarters'

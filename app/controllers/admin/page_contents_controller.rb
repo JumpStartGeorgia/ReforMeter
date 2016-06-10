@@ -69,6 +69,7 @@ class Admin::PageContentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_content_params
-      params.require(:page_content).permit(:name)
+      permitted = PageContent.globalize_attribute_names + [:name]
+      params.require(:page_content).permit(*permitted)
     end
 end
