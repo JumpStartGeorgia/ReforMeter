@@ -88,6 +88,11 @@ class Quarter < ActiveRecord::Base
     published.recent.map{|x| [x.time_period, x.slug]}
   end
 
+  # get all quarters with the provided ids
+  def self.with_ids(quarter_ids)
+    where(id: quarter_ids)
+  end
+
   #######################
   ## METHODS
 
@@ -215,7 +220,7 @@ class Quarter < ActiveRecord::Base
   # - type: indicate if want government or stakeholder data (default government)
   # - is_published - indicates if just the published quarters should be returned (default true)
   def self.all_reform_survey_data_for_charting(options={})
-    default_options = {type: 'government', is_published: true, overall_score_only: true}
+    default_options = {type: 'government', is_published: true, overall_score_only: true, quarter_ids: nil}
     options = options.reverse_merge(default_options)
 
     hash = {
@@ -240,11 +245,6 @@ class Quarter < ActiveRecord::Base
         data << reform_survey_data_for_charting(reform.id, options)
       end
     end
-
-##########
-## TODO - this is a hack - make it correct
-## make sure data matches to correct quarter
-##########
 
     # put together in desired format
     hash[:title] = I18n.t('shared.chart_titles.reform.all_title')
@@ -280,7 +280,7 @@ class Quarter < ActiveRecord::Base
   # - overall_score_only - indicates whether just the overall score should be returned or overall and all category scores (default false)
   # - is_published - indicates if just the published quarters should be returned (default true)
   def self.reform_survey_data_for_charting(reform_id, options={})
-    default_options = {type: 'government', overall_score_only: false, is_published: true}
+    default_options = {type: 'government', overall_score_only: false, is_published: true, quarter_ids: nil}
     options = options.reverse_merge(default_options)
 
     hash = {
@@ -291,6 +291,7 @@ class Quarter < ActiveRecord::Base
       color: {r: 0, g: 0, b: 0}, min: nil, max: nil, categories: [], series: []
     }
     quarters = oldest
+    quarters = quarters.with_ids(options[:quarter_ids]) if options[:quarter_ids]
     quarters = quarters.published if options[:is_published]
 
     # get all of the survey results for this reform
@@ -305,6 +306,8 @@ class Quarter < ActiveRecord::Base
         s = surveys.select{|x| x.quarter_id == q.id}.first
         if s.present?
           temp << s
+        elsif options[:quarter_ids]
+          temp << nil
         end
       end
       surveys = temp
@@ -334,23 +337,23 @@ class Quarter < ActiveRecord::Base
         hash[:series] << {
           name: I18n.t('shared.categories.overall'),
           type: 'areaspline',
-          data: surveys.map{|x| {y: x.stakeholder_overall_score.to_f, change: x.stakeholder_overall_change}}}
+          data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_overall_score.to_f, change: x.nil? ? nil : x.stakeholder_overall_change}}}
         if !options[:overall_score_only]
           # category 1
           hash[:series] << {
             name: I18n.t('shared.categories.performance'),
             dashStyle: 'longDash',
-            data: surveys.map{|x| {y: x.stakeholder_category1_score.to_f, change: x.stakeholder_category1_change}}}
+            data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category1_score.to_f, change: x.nil? ? nil : x.stakeholder_category1_change}}}
           # category 2
           hash[:series] << {
             name: I18n.t('shared.categories.goals'),
             dashStyle: 'shortDash',
-            data: surveys.map{|x| {y: x.stakeholder_category2_score.to_f, change: x.stakeholder_category2_change}}}
+            data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category2_score.to_f, change: x.nil? ? nil : x.stakeholder_category2_change}}}
           # category 3
           hash[:series] << {
             name: I18n.t('shared.categories.progress'),
             dashStyle: 'dot',
-            data: surveys.map{|x| {y: x.stakeholder_category3_score.to_f, change: x.stakeholder_category3_change}}}
+            data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category3_score.to_f, change: x.nil? ? nil : x.stakeholder_category3_change}}}
         end
       else #government
         hash[:type] = 'government'
@@ -362,28 +365,28 @@ class Quarter < ActiveRecord::Base
         hash[:series] << {
           name: I18n.t('shared.categories.overall'),
           type: 'areaspline',
-          data: surveys.map{|x| {y: x.government_overall_score.to_f, change: x.government_overall_change}}}
+          data: surveys.map{|x| {y: x.nil? ? nil : x.government_overall_score.to_f, change: x.nil? ? nil : x.government_overall_change}}}
         if !options[:overall_score_only]
           # category 1
           hash[:series] << {
             name: I18n.t('shared.categories.initial_setup'),
             dashStyle: 'dot',
-            data: surveys.map{|x| {y: x.government_category1_score.to_f, change: x.government_category1_change}}}
+            data: surveys.map{|x| {y: x.nil? ? nil : x.government_category1_score.to_f, change: x.nil? ? nil : x.government_category1_change}}}
           # category 2
           hash[:series] << {
             name: I18n.t('shared.categories.capacity_building'),
             dashStyle: 'shortDash',
-            data: surveys.map{|x| {y: x.government_category2_score.to_f, change: x.government_category2_change}}}
+            data: surveys.map{|x| {y: x.nil? ? nil : x.government_category2_score.to_f, change: x.nil? ? nil : x.government_category2_change}}}
           # category 3
           hash[:series] << {
             name: I18n.t('shared.categories.infastructure_budgeting'),
             dashStyle: 'longDash',
-            data: surveys.map{|x| {y: x.government_category3_score.to_f, change: x.government_category3_change}}}
+            data: surveys.map{|x| {y: x.nil? ? nil : x.government_category3_score.to_f, change: x.nil? ? nil : x.government_category3_change}}}
           # category 4
           hash[:series] << {
             name: I18n.t('shared.categories.legislation_regulation'),
             dashStyle: 'LongDashDotDot',
-            data: surveys.map{|x| {y: x.government_category4_score.to_f, change: x.government_category4_change}}}
+            data: surveys.map{|x| {y: x.nil? ? nil : x.government_category4_score.to_f, change: x.nil? ? nil : x.government_category4_change}}}
         end
       end
     end
