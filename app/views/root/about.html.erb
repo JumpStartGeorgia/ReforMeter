@@ -1,30 +1,99 @@
-<% page_title t('.title') %>
+<%
+page_title t('.title')
+@do_not_use_default_page_layout = true
+%>
 
-<% if @about_text %>
-  <div>
-    <%= simple_format_no_tags(@about_text.content) %>
+<section class='contentSection mod-overlap-top-image'>
+
+  <header class='contentSection-header'>
+
+    <h1 class='heading'>
+      <%= yield(:page_title) %>
+    </h1>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+    <% if @about_text %>
+      <div>
+        <%= simple_format_no_tags(@about_text.content) %>
+      </div>
+    <% end %>
+
   </div>
-<% end %>
 
-<h2><%= t('.header.methodology') %></h2>
+</section>
 
-<% if @methodology_expert %>
-  <div>
-    <h3><%= @methodology_expert.title %></h3>
-    <%= simple_format_no_tags(@methodology_expert.content) %>
+<section class='contentSection'>
+
+  <header class='contentSection-header'>
+
+    <h2 class='heading'>
+      <%= t('.methodology') %>
+    </h2>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+    <% if @methodology_expert %>
+      <div>
+        <h3><%= @methodology_expert.title %></h3>
+        <%= simple_format_no_tags(@methodology_expert.content) %>
+      </div>
+    <% end %>
+
+    <% if @methodology_government %>
+      <div>
+        <h3><%= @methodology_government.title %></h3>
+        <%= simple_format_no_tags(@methodology_government.content) %>
+      </div>
+    <% end %>
+
+    <% if @methodology_stakeholder %>
+      <div>
+        <h3><%= @methodology_stakeholder.title %></h3>
+        <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+      </div>
+    <% end %>
+
   </div>
-<% end %>
 
-<% if @methodology_government %>
-  <div>
-    <h3><%= @methodology_government.title %></h3>
-    <%= simple_format_no_tags(@methodology_government.content) %>
-  </div>
-<% end %>
+</section>
 
-<% if @methodology_stakeholder %>
-  <div>
-    <h3><%= @methodology_stakeholder.title %></h3>
-    <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+<section class='contentSection'>
+
+  <header class='contentSection-header'>
+
+    <h2 class='heading'>
+      <%= t('.sponsors_donors') %>
+    </h2>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+    sponsor logos!
+
   </div>
-<% end %>
+
+</section>
+
+<section class='contentSection'>
+
+  <header class='contentSection-header'>
+
+    <h2 class='heading'>
+      <%= t('.partners') %>
+    </h2>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+    partner logos!
+
+  </div>
+
+</section>
