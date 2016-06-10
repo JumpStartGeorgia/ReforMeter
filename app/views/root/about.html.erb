@@ -25,75 +25,92 @@ page_title t('.title')
 
 </section>
 
-<section class='contentSection'>
+<div class='contentSidebarContainer'>
 
-  <header class='contentSection-header'>
+  <div class='contentSidebarContainer-content'>
 
-    <h2 class='heading'>
-      <%= t('.methodology') %>
-    </h2>
+    <section class='contentSection'>
 
-  </header>
+      <header class='contentSection-header'>
 
-  <div class='contentSection-body'>
+        <h2 class='heading'>
+          <%= t('.methodology') %>
+        </h2>
 
-    <% if @methodology_expert %>
-      <div>
-        <h3><%= @methodology_expert.title %></h3>
-        <%= simple_format_no_tags(@methodology_expert.content) %>
+      </header>
+
+      <div class='contentSection-body'>
+
+        <% if @methodology_expert %>
+          <div>
+            <h3><%= @methodology_expert.title %></h3>
+            <%= simple_format_no_tags(@methodology_expert.content) %>
+          </div>
+        <% end %>
+
+        <% if @methodology_government %>
+          <div>
+            <h3><%= @methodology_government.title %></h3>
+            <%= simple_format_no_tags(@methodology_government.content) %>
+          </div>
+        <% end %>
+
+        <% if @methodology_stakeholder %>
+          <div>
+            <h3><%= @methodology_stakeholder.title %></h3>
+            <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+          </div>
+        <% end %>
+
       </div>
-    <% end %>
 
-    <% if @methodology_government %>
-      <div>
-        <h3><%= @methodology_government.title %></h3>
-        <%= simple_format_no_tags(@methodology_government.content) %>
-      </div>
-    <% end %>
-
-    <% if @methodology_stakeholder %>
-      <div>
-        <h3><%= @methodology_stakeholder.title %></h3>
-        <%= simple_format_no_tags(@methodology_stakeholder.content) %>
-      </div>
-    <% end %>
+    </section>
 
   </div>
 
-</section>
+  <div class='contentSidebarContainer-sidebar'>
 
-<section class='contentSection'>
+    <section class='contentSection'>
 
-  <header class='contentSection-header'>
+      <header class='contentSection-header'>
 
-    <h2 class='heading'>
-      <%= t('.sponsors_donors') %>
-    </h2>
+        <h2 class='heading'>
+          <%= t('.sponsors_donors') %>
+        </h2>
 
-  </header>
+      </header>
 
-  <div class='contentSection-body'>
+      <div class='contentSection-body'>
 
-    sponsor logos!
+        sponsor logos!
+
+      </div>
+
+    </section>
+
+    <section class='contentSection'>
+
+      <header class='contentSection-header'>
+
+        <h2 class='heading'>
+          <%= t('.partners') %>
+        </h2>
+
+      </header>
+
+      <div class='contentSection-body'>
+
+        partner logos!
+
+        <%= link_to(image_tag('jumpstart-logo.png'),
+                    'http://jumpstart.ge',
+                    target: '_blank',
+                    title: t('shared.common.jumpstart.slogan')) %>
+
+      </div>
+
+    </section>
 
   </div>
 
-</section>
-
-<section class='contentSection'>
-
-  <header class='contentSection-header'>
-
-    <h2 class='heading'>
-      <%= t('.partners') %>
-    </h2>
-
-  </header>
-
-  <div class='contentSection-body'>
-
-    partner logos!
-
-  </div>
-
-</section>
+</div>
