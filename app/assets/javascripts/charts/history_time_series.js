@@ -1,25 +1,6 @@
 function historyTimeSeriesOptions(chartData) {
   var color = chartData.color;
 
-  function pointFormatter() {
-    function in_paragraph(content) {
-      return '<p style="margin: 5px 0;">' + content + '</p>';
-    }
-
-    var point = '<b>' + this.y + '</b> ';
-    var name = '<span style="color: #66666d;">' + this.series.name + '</span>';
-
-    if (this.change) {
-      var icon = change_icon(this.change);
-
-      var iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
-
-      return in_paragraph(point + iconInSpan + name);
-    } else {
-      return in_paragraph(point + name);
-    }
-  }
-
   function areasplineFillColors() {
     var topColor;
     var bottomColor;
@@ -38,6 +19,19 @@ function historyTimeSeriesOptions(chartData) {
     ];
   }
 
+  function xAxisCrosshair() {
+    if (chartData.series.length > 1) {
+      return {
+        color: 'black',
+        dashStyle: 'solid',
+        width: 1,
+        zIndex: 99
+      };
+    } else {
+      return false;
+    }
+  }
+
   return {
     chart: {
       zoomType: 'x',
@@ -52,12 +46,7 @@ function historyTimeSeriesOptions(chartData) {
     xAxis: {
       type: 'datetime',
       categories: chartData.categories,
-      crosshair: {
-        color: 'black',
-        dashStyle: 'solid',
-        width: 1,
-        zIndex: 99
-      },
+      crosshair: xAxisCrosshair(),
       tickmarkPlacement: 'on'
     },
     legend: {
@@ -99,7 +88,7 @@ function historyTimeSeriesOptions(chartData) {
       backgroundColor: 'white',
       borderWidth: 0,
       headerFormat: '<b>{point.key}</b><br/>',
-      pointFormatter: pointFormatter,
+      pointFormatter: highchartTimeSeriesTooltipPointFormatter,
       shared: true,
       useHTML: true
     }

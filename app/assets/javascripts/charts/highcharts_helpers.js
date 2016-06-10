@@ -71,3 +71,22 @@ function highchartDownloadIcon() {
 
   return 'url(' + gon.chart_download_icon + ')';
 }
+
+function highchartTimeSeriesTooltipPointFormatter() {
+  function in_paragraph(content) {
+    return '<p style="margin: 5px 0;">' + content + '</p>';
+  }
+
+  var point = '<b>' + this.y + '</b> ';
+  var name = '<span style="color: #66666d;">' + this.series.name + '</span>';
+
+  if (this.change) {
+    var icon = change_icon(this.change);
+
+    var iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
+
+    return in_paragraph(point + iconInSpan + name);
+  } else {
+    return in_paragraph(point + name);
+  }
+}

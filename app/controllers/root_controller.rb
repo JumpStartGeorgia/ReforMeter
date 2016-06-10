@@ -295,7 +295,7 @@ class RootController < ApplicationController
       gon.change_icons = view_context.change_icons
 
       gon.charts = [
-        Quarter.expert_survey_data_for_charting, {
+        Quarter.expert_survey_data_for_charting(id: 'expert-history'), {
           id: 'overall',
           title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,

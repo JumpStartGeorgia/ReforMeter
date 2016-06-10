@@ -28,9 +28,11 @@ function miniTimeSeries(chartData) {
     },
     xAxis: {
       type: 'datetime',
+      categories: chartData.categories,
       labels: {
         enabled: false
       },
+      tickmarkPlacement: 'on',
       visible: false
     },
     yAxis: {
@@ -44,7 +46,12 @@ function miniTimeSeries(chartData) {
     },
     series: chartData.series,
     tooltip: {
-      enabled: false
+      backgroundColor: 'white',
+      borderWidth: 0,
+      headerFormat: '<b>{point.key}</b><br/>',
+      pointFormatter: highchartTimeSeriesTooltipPointFormatter,
+      shared: true,
+      useHTML: true
     }
   }
 }
