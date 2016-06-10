@@ -143,7 +143,11 @@ class ExternalIndicator < ActiveRecord::Base
   # - use the chart type and indicator type to create the proper hash format for charting
   # format: chart_type, title, subtitle, min, max, categories[], series[ {name: '', data: [ {y, change} ] } ]
   def format_for_charting
-    chart_type = self.chart_type == CHART_TYPES[:line] ? 'area' : 'column'
+    # if this is country and line -> line
+    # else if line -> area
+    # else column
+    chart_type = self.chart_type == CHART_TYPES[:bar] ? 'column' : self.indicator_type == INDICATOR_TYPES[:country] ? 'line' : 'area'
+
     hash = {chart_type: chart_type, title: self.title, subtitle: self.subtitle, min: self.min, max: self.max, categories: [], series: []}
 
     # add x-axis lables (categories)
