@@ -1,0 +1,16 @@
+<% object = @reform_color %>
+<%= semantic_form_for [:admin,object] do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+
+    <%= f.input :hex, :input_html => { size: 7, maxlength: 7 } %>
+
+    <div class="input js-color-viewer" style="background-color: <%= @reform_color.hex %>; width: 118px;">&nbsp;</div>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>
+

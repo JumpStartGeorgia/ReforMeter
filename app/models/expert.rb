@@ -46,5 +46,9 @@ class Expert < ActiveRecord::Base
     content_type: { content_type: ["image/jpeg", "image/png"] },
     size: { in: 0..4.megabytes }
 
+  #######################
+  ## SCOPES
+  scope :sorted, -> {order(name: :asc)}
+
 
 end

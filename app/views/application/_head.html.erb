@@ -37,5 +37,13 @@
   <%= stylesheet_link_tag  *(css), :media => "all" %>
 
   <%= render partial: 'application/head/favicons' %>
-  <%= javascript_include_tag "application" %>
+
+  <%
+    # add extra scripts if the user is signed in
+    js = ["application"]
+    if user_signed_in?
+      js << 'admin_scripts'
+    end
+  %>
+  <%= javascript_include_tag *(js) %>
 </head>

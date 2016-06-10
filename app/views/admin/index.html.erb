@@ -6,6 +6,9 @@
   <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
     <li><%= link_to t('shared.links.experts'), admin_experts_path %></li>
   <% end %>
+  <% if current_user.is?(['super_admin']) %>
+    <li><%= link_to t('shared.links.reform_colors'), admin_reform_colors_path %></li>
+  <% end %>
   <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
     <li><%= link_to t('shared.links.page_contents'), admin_page_contents_path %></li>
   <% end %>

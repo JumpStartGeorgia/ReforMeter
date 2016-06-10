@@ -4,7 +4,7 @@ class Admin::ExpertsController < ApplicationController
   # GET /admin/experts
   # GET /admin/experts.json
   def index
-    @experts = Expert.all
+    @experts = Expert.sorted
   end
 
   # GET /admin/experts/1
