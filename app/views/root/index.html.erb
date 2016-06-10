@@ -161,7 +161,7 @@
 
                 <div class='homePage-reforms-item'>
 
-                  <%= link_to(reform_show_path(reform, Quarter.last), class: 'homePage-reforms-item-label') do %>
+                  <%= link_to(reform_show_path(reform, @quarter), class: 'homePage-reforms-item-label') do %>
 
                     <span class='homePage-reforms-item-label-name'><%= reform.name %></span>
 
