@@ -158,15 +158,20 @@
               <div class='homePage-reforms-item'>
 
                 <div class='homePage-reforms-item-label'>
-                  <%= reform.name %>
+                  <span class='homePage-reforms-item-label-name'><%= reform.name %></span>
+
+
                   <% if @reform_current_quarter_values.present? %>
+
                     <% value = @reform_current_quarter_values.select{|x| x[:reform_id] == reform.id}.first %>
+
                     <% if value.present? %>
-                      <div>
-                        <%= value[:score] %>
-                        <%= generate_change_icon(value[:change]) %>
+                      <div class='homePage-reforms-item-label-score'>
+                        <%= value[:score].round %>%
+                        <span><%= generate_change_icon(value[:change]) %></span>
                       </div>
                     <% end %>
+
                   <% end %>
                 </div>
 

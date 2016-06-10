@@ -80,12 +80,22 @@ $width-homepage-move-government-to-side: 800px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px $padding-main-content;
   }
 
     .homePage-reforms-item-label {
       min-width: 100px;
     }
+
+      .homePage-reforms-item-label-name {
+        // color: $color-brand;
+      }
+
+      .homePage-reforms-item-label-score {
+        font-size: 2.5rem;
+        font-weight: 600;
+      }
 
     .homePage-reforms-item-chart {
       height: 75px;
