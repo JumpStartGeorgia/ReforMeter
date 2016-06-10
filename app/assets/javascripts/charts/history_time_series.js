@@ -44,10 +44,17 @@ function historyTimeSeriesOptions(chartData) {
     },
     colors: ['#000'],
     xAxis: {
-      type: 'datetime',
-      categories: chartData.categories,
       crosshair: xAxisCrosshair(),
-      tickmarkPlacement: 'on'
+      // Using labels instead of categories to make x axis start on tick
+      // Source: http://stackoverflow.com/questions/18593883/highcharts-remove-gap-between-start-of-xaxis-and-first-value
+      labels: {
+        enabled: true,
+        formatter: function () {
+            return chartData.categories[this.value];
+        }
+      },
+      tickmarkPlacement: 'on',
+      type: 'datetime'
     },
     legend: {
       align: 'right',
@@ -87,8 +94,9 @@ function historyTimeSeriesOptions(chartData) {
     tooltip: {
       backgroundColor: 'white',
       borderWidth: 0,
-      headerFormat: '<b>{point.key}</b><br/>',
-      pointFormatter: highchartTimeSeriesTooltipPointFormatter,
+      formatter: function() {
+        return highchartTimeSeriesTooltipFormatter.call(this, chartData);
+      },
       shared: true,
       useHTML: true
     }

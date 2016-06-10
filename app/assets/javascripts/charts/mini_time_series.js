@@ -27,13 +27,17 @@ function miniTimeSeries(chartData) {
       text: null
     },
     xAxis: {
-      type: 'datetime',
-      categories: chartData.categories,
+      // Using labels instead of categories to make x axis start and end on tick
+      // Source: http://stackoverflow.com/questions/18593883/highcharts-remove-gap-between-start-of-xaxis-and-first-value
       labels: {
-        enabled: false
+        enabled: true,
+        formatter: function () {
+            return chartData.categories[this.value];
+        }
       },
       tickmarkPlacement: 'on',
-      visible: false
+      type: 'datetime',
+      visible: true
     },
     yAxis: {
       title: {
@@ -48,8 +52,9 @@ function miniTimeSeries(chartData) {
     tooltip: {
       backgroundColor: 'white',
       borderWidth: 0,
-      headerFormat: '<b>{point.key}</b><br/>',
-      pointFormatter: highchartTimeSeriesTooltipPointFormatter,
+      formatter: function() {
+        return highchartTimeSeriesTooltipFormatter.call(this, chartData);
+      },
       shared: true,
       useHTML: true
     }
