@@ -137,23 +137,29 @@ class ExternalIndicator < ActiveRecord::Base
     end
   end
 
-  def custom_highchart_name
-    self.chart_type == CHART_TYPES[:bar] ? 'external-indicator-bar' : self.indicator_type == INDICATOR_TYPES[:country] ? 'external-indicator-line-time-series' : 'external-indicator-area-time-series'
+  # if this is country and line -> line
+  # else if line -> area
+  # else column
+  def custom_highchart_type
+    if chart_type == CHART_TYPES[:bar]
+      'external-indicator-bar'
+    else
+      if indicator_type == INDICATOR_TYPES[:country]
+        'external-indicator-line-time-series'
+      else
+        'external-indicator-area-time-series'
+      end
+    end
   end
 
   #######################
   ## METHODS
 
   # format the data for charting
-  # - use the chart type and indicator type to create the proper hash format for charting
-  # format: chart_type, title, subtitle, min, max, categories[], series[ {name: '', data: [ {y, change} ] } ]
+  # - use the indicator type to create the proper hash format for charting
+  # format: title, subtitle, min, max, categories[], series[ {name: '', data: [ {y, change} ] } ]
   def format_for_charting
-    # if this is country and line -> line
-    # else if line -> area
-    # else column
-    chart_type = custom_highchart_name
-
-    hash = {chart_type: chart_type, title: self.title, subtitle: self.subtitle, min: self.min, max: self.max, categories: [], series: []}
+    hash = {title: self.title, subtitle: self.subtitle, min: self.min, max: self.max, categories: [], series: []}
 
     # add x-axis lables (categories)
     hash[:categories] = self.data_hash[:time_periods].map{|x| x[:name]}
