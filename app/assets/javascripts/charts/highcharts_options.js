@@ -63,5 +63,13 @@ function highchartsOptions(chartType, chartData) {
     case 'small-solid-gauge': {
       return highchartsSmallSolidGaugeOptions(chartData);
     }
+
+    case 'external-indicator-area-time-series': {
+      return highchartsExternalIndicatorAreaTimeSeries(chartData);
+    }
+
+    case 'external-indicator-bar': {
+      return highchartsExternalIndicatorBar(chartData);
+    }
   }
 }

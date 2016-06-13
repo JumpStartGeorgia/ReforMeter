@@ -66,6 +66,7 @@ class ExternalIndicator < ActiveRecord::Base
   ## SCOPES
   scope :published, -> { where(is_public: true) }
   scope :sorted, -> { with_translations.order(title: :asc) }
+  scope :reverse_sorted, -> { with_translations.order(title: :desc) }
   scope :for_home_page, -> { where(show_on_home_page: true) }
 
 
@@ -136,6 +137,10 @@ class ExternalIndicator < ActiveRecord::Base
     end
   end
 
+  def custom_highchart_name
+    self.chart_type == CHART_TYPES[:bar] ? 'external-indicator-bar' : self.indicator_type == INDICATOR_TYPES[:country] ? 'external-indicator-line-time-series' : 'external-indicator-area-time-series'
+  end
+
   #######################
   ## METHODS
 
@@ -146,7 +151,7 @@ class ExternalIndicator < ActiveRecord::Base
     # if this is country and line -> line
     # else if line -> area
     # else column
-    chart_type = self.chart_type == CHART_TYPES[:bar] ? 'column' : self.indicator_type == INDICATOR_TYPES[:country] ? 'line' : 'area'
+    chart_type = custom_highchart_name
 
     hash = {chart_type: chart_type, title: self.title, subtitle: self.subtitle, min: self.min, max: self.max, categories: [], series: []}
 

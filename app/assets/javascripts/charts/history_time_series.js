@@ -181,3 +181,24 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
     options
   );
 }
+
+function highchartsExternalIndicatorAreaTimeSeries(chartData) {
+  var options = {
+    exporting: {
+      enabled: true
+    },
+    yAxis: {
+      min: 0,
+      max: 10,
+      tickInterval: 1,
+      title: {
+        text: 'Rating'
+      }
+    }
+  };
+
+  return Highcharts.merge(
+    historyTimeSeriesOptions(chartData),
+    options
+  );
+}
