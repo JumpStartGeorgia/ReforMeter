@@ -198,7 +198,7 @@
 
     </div>
 
-    <% if @external_indicators.present? %>
+    <% if @external_indicator_charts.present? %>
 
       <section class='contentSection'>
 
@@ -212,23 +212,23 @@
 
         <div class='contentSection-body'>
 
-          <% @external_indicators.each do |ext_ind| %>
+          <% @external_indicator_charts.each do |ext_ind_chart| %>
 
             <h3>
-              <%= ext_ind.title %>
+              <%= ext_ind_chart[:title] %>
             </h3>
 
             <h4>
-              <%= ext_ind.subtitle %>
+              <%= ext_ind_chart[:subtitle] %>
             </h4>
 
             <div>
 
-              <div class='js-become-highchart' data-chart-type='<%= ext_ind.custom_highchart_type %>' data-id='external-indicator-<%= ext_ind.id %>'></div>
+              <div class='js-become-highchart' data-chart-type='<%= ext_ind_chart[:chartType] %>' data-id='<%= ext_ind_chart[:id] %>'></div>
 
               <ul class='chartIndexes'>
 
-                <% ext_ind.format_for_charting[:indexes].each do |index| %>
+                <% ext_ind_chart[:indexes].each do |index| %>
 
                   <% most_recent_data_point = index[:data].last %>
 

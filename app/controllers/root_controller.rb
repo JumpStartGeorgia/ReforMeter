@@ -32,15 +32,15 @@ class RootController < ApplicationController
     end
 
     # get external indicators for home page
-    @external_indicators = ExternalIndicator.published.for_home_page.reverse_sorted
-    if @external_indicators.present?
-      @external_indicators.each do |ei|
-        ei_chart = ei.format_for_charting
-        ei_chart[:id] = "external-indicator-#{ei.id}"
-        gon.charts << ei_chart
-      end
+    external_indicators = ExternalIndicator.published.for_home_page.reverse_sorted
+    @external_indicator_charts = external_indicators.map do |ext_ind|
+      {
+        id: "external-indicator-#{ext_ind.id}",
+        chartType: ext_ind.custom_highchart_type
+      }.merge(ext_ind.format_for_charting)
     end
 
+    gon.charts += @external_indicator_charts
   end
 
   def about
