@@ -239,9 +239,17 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
         <div class='contentSection-body'>
 
           <% @external_indicators.each do |ext_ind| %>
-            <h3><%= ext_ind.title %></h3>
-            <h4><%= ext_ind.subtitle %></h4>
-            <div>insert chart here </div>
+
+            <h3>
+              <%= ext_ind.title %>
+            </h3>
+
+            <h4>
+              <%= ext_ind.subtitle %>
+            </h4>
+
+            <div class='js-become-highchart' data-chart-type='<%= ext_ind.custom_highchart_type %>' data-id='external-indicator-<%= ext_ind.id %>'></div>
+
           <% end %>
 
         </div>

@@ -34,7 +34,6 @@ class RootController < ApplicationController
     # get external indicators for home page
     @external_indicators = ExternalIndicator.published.for_home_page.reverse_sorted
     if @external_indicators.present?
-      ext_ind_chart_data = []
       @external_indicators.each do |ei|
         ei_chart = ei.format_for_charting
         ei_chart[:id] = "external-indicator-#{ei.id}"
@@ -241,10 +240,12 @@ class RootController < ApplicationController
 
       # get external indicators for this reform
       @external_indicators = @reform.external_indicators.published.sorted
+
       if @external_indicators.present?
-        ext_ind_chart_data = []
         @external_indicators.each do |ei|
-          ext_ind_chart_data << ei.format_for_charting
+          ei_chart = ei.format_for_charting
+          ei_chart[:id] = "external-indicator-#{ei.id}"
+          gon.charts << ei_chart
         end
       end
 
