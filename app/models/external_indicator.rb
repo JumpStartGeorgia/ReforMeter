@@ -161,7 +161,16 @@ class ExternalIndicator < ActiveRecord::Base
   # - if the index is composite, there will be an additional item in output with all of the composite index values
   #   format: indexes[ {name: '', data: [ {y, change} ] } ]
   def format_for_charting
-    hash = {title: self.title, subtitle: self.subtitle, min: self.min, max: self.max, categories: [], series: []}
+    hash = {
+      id: "external-indicator-#{id}",
+      chartType: custom_highchart_type,
+      title: title,
+      subtitle: subtitle,
+      min: min,
+      max: max,
+      categories: [],
+      series: []
+    }
 
     # add x-axis lables (categories)
     hash[:categories] = self.data_hash[:time_periods].map{|x| x[:name]}

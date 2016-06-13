@@ -224,7 +224,7 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
 
     </div>
 
-    <% if @external_indicators.present? %>
+    <% if @external_indicator_charts.present? %>
 
       <div class='contentSection'>
 
@@ -238,17 +238,12 @@ page_title t('.title', name: @reform.name, time: @quarter.time_period)
 
         <div class='contentSection-body'>
 
-          <% @external_indicators.each do |ext_ind| %>
+          <% @external_indicator_charts.each do |ext_ind_chart| %>
 
-            <h3>
-              <%= ext_ind.title %>
-            </h3>
-
-            <h4>
-              <%= ext_ind.subtitle %>
-            </h4>
-
-            <div class='js-become-highchart' data-chart-type='<%= ext_ind.custom_highchart_type %>' data-id='external-indicator-<%= ext_ind.id %>'></div>
+            <%= render(partial: 'shared/external_indicator_chart',
+                       locals: {
+                         ext_ind_chart: ext_ind_chart
+                       }) %>
 
           <% end %>
 

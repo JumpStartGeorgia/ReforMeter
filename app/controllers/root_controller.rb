@@ -31,13 +31,8 @@ class RootController < ApplicationController
       @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
 
-    # get external indicators for home page
-    external_indicators = ExternalIndicator.published.for_home_page.reverse_sorted
-    @external_indicator_charts = external_indicators.map do |ext_ind|
-      {
-        id: "external-indicator-#{ext_ind.id}",
-        chartType: ext_ind.custom_highchart_type
-      }.merge(ext_ind.format_for_charting)
+    @external_indicator_charts = ExternalIndicator.published.for_home_page.reverse_sorted.map do |ext_ind|
+      ext_ind.format_for_charting
     end
 
     gon.charts += @external_indicator_charts
@@ -238,16 +233,11 @@ class RootController < ApplicationController
         }
       ]
 
-      # get external indicators for this reform
-      @external_indicators = @reform.external_indicators.published.sorted
-
-      if @external_indicators.present?
-        @external_indicators.each do |ei|
-          ei_chart = ei.format_for_charting
-          ei_chart[:id] = "external-indicator-#{ei.id}"
-          gon.charts << ei_chart
-        end
+      @external_indicator_charts = @reform.external_indicators.published.sorted.map do |ext_ind|
+        ext_ind.format_for_charting
       end
+
+      gon.charts += @external_indicator_charts
 
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to experts_path,

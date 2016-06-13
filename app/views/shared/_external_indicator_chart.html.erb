@@ -10,29 +10,33 @@
 
   <div class='js-become-highchart' data-chart-type='<%= ext_ind_chart[:chartType] %>' data-id='<%= ext_ind_chart[:id] %>'></div>
 
-  <ul class='chartIndexes'>
+  <% if ext_ind_chart[:indexes].present? %>
 
-    <% ext_ind_chart[:indexes].each do |index| %>
+    <ul class='chartIndexes'>
 
-      <% most_recent_data_point = index[:data].last %>
+      <% ext_ind_chart[:indexes].each do |index| %>
 
-      <li class='chartIndexes-item'>
+        <% most_recent_data_point = index[:data].last %>
 
-        <%= index[:name] %>
+        <li class='chartIndexes-item'>
 
-        <div>
+          <%= index[:name] %>
 
-          <span class='chartIndexes-item-value'>
-            <%= most_recent_data_point[:y].round %>
-          </span>
+          <div>
 
-          <%= generate_change_icon(most_recent_data_point[:change]) %>
-        </div>
+            <span class='chartIndexes-item-value'>
+              <%= most_recent_data_point[:y].round %>
+            </span>
 
-      </li>
+            <%= generate_change_icon(most_recent_data_point[:change]) %>
+          </div>
 
-    <% end %>
+        </li>
 
-  </ul>
+      <% end %>
+
+    </ul>
+
+  <% end %>
 
 </div>
