@@ -187,13 +187,15 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
     chart: {
       type: 'areaspline'
     },
-    colors: ['#f7d95c'],
     exporting: {
       enabled: true
     },
+    legend: {
+      enabled: false
+    },
     plotOptions: {
-      color: '#f7d95c',
       areaspline: {
+        color: '#f7d95c',
         fillColor: {
           linearGradient: {
             x1: 0,
