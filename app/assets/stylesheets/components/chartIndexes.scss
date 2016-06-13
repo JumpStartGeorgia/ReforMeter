@@ -1,0 +1,10 @@
+.chartIndexes {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+  .chartIndexes-item {
+    list-style-type: none;
+    border: 1px solid;
+    padding: 10px;
+  }

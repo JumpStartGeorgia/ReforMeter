@@ -222,7 +222,30 @@
               <%= ext_ind.subtitle %>
             </h4>
 
-            <div class='js-become-highchart' data-chart-type='<%= ext_ind.custom_highchart_type %>' data-id='external-indicator-<%= ext_ind.id %>'></div>
+            <div>
+
+              <div class='js-become-highchart' data-chart-type='<%= ext_ind.custom_highchart_type %>' data-id='external-indicator-<%= ext_ind.id %>'></div>
+
+              <ul class='chartIndexes'>
+
+                <% ext_ind.format_for_charting[:indexes].each do |index| %>
+
+                  <% most_recent_data_point = index[:data].last %>
+
+                  <li class='chartIndexes-item'>
+
+                    <%= index[:name] %>
+                    <%= most_recent_data_point[:y] %>
+                    <%= generate_change_icon(most_recent_data_point[:change]) %>
+
+                  </li>
+
+                <% end %>
+
+              </ul>
+
+            </div>
+
 
           <% end %>
 
