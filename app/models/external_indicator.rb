@@ -158,6 +158,8 @@ class ExternalIndicator < ActiveRecord::Base
   # format the data for charting
   # - use the indicator type to create the proper hash format for charting
   # format: title, subtitle, min, max, categories[], series[ {name: '', data: [ {y, change} ] } ]
+  # - if the index is composite, there will be an additional item in output with all of the composite index values
+  #   format: indexes[ {name: '', data: [ {y, change} ] } ]
   def format_for_charting
     hash = {title: self.title, subtitle: self.subtitle, min: self.min, max: self.max, categories: [], series: []}
 
@@ -186,6 +188,11 @@ class ExternalIndicator < ActiveRecord::Base
         end
 
       when INDICATOR_TYPES[:composite]
+        # get the overall values for charting
+        hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:overall_value], change: x[:overall_change]}}}
+
+        # get the index values
+        hash[:indexes] = []
         self.data_hash[:indexes].each do |index|
           item = {name: index[:name], data: []}
           self.data_hash[:data].each do |data|
@@ -197,7 +204,7 @@ class ExternalIndicator < ActiveRecord::Base
               item[:data] << {y:nil, change: nil}
             end
           end
-          hash[:series] << item
+          hash[:indexes] << item
         end
 
     end
