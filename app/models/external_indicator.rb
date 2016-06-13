@@ -209,7 +209,7 @@ class ExternalIndicator < ActiveRecord::Base
         # get the index values
         hash[:indexes] = []
         self.data_hash[:indexes].each do |index|
-          item = {name: index[:name], data: []}
+          item = {name: index[:name], short_name: index[:short_name], data: []}
           self.data_hash[:data].each do |data|
             # find the data item for this index
             d = data[:values].select{|x| x[:index] == index[:id]}.first
