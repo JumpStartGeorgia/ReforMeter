@@ -214,44 +214,12 @@
 
           <% @external_indicator_charts.each do |ext_ind_chart| %>
 
-            <h3>
-              <%= ext_ind_chart[:title] %>
-            </h3>
+            <%= render(partial: 'shared/external_indicator_chart',
+                       locals: {
+                         ext_ind_chart: ext_ind_chart
+                       }) %>
 
-            <h4>
-              <%= ext_ind_chart[:subtitle] %>
-            </h4>
-
-            <div>
-
-              <div class='js-become-highchart' data-chart-type='<%= ext_ind_chart[:chartType] %>' data-id='<%= ext_ind_chart[:id] %>'></div>
-
-              <ul class='chartIndexes'>
-
-                <% ext_ind_chart[:indexes].each do |index| %>
-
-                  <% most_recent_data_point = index[:data].last %>
-
-                  <li class='chartIndexes-item'>
-
-                    <%= index[:name] %>
-
-                    <div>
-
-                      <span class='chartIndexes-item-value'>
-                        <%= most_recent_data_point[:y].round %>
-                      </span>
-
-                      <%= generate_change_icon(most_recent_data_point[:change]) %>
-                    </div>
-
-                  </li>
-
-                <% end %>
-
-              </ul>
-
-            </div>
+            
 
 
           <% end %>
