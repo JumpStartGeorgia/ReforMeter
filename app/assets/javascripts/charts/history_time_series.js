@@ -212,11 +212,8 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
         }
       }
     },
-    series: [chartData.series[0]],
+    series: chartData.series,
     yAxis: {
-      min: 0,
-      max: 10,
-      tickInterval: 1,
       title: {
         text: 'Rating'
       }

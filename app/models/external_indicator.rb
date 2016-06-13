@@ -189,7 +189,13 @@ class ExternalIndicator < ActiveRecord::Base
 
       when INDICATOR_TYPES[:composite]
         # get the overall values for charting
-        hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:overall_value], change: x[:overall_change]}}}
+        hash[:series] << {
+          name: I18n.t('shared.categories.overall'),
+          data: self.data_hash[:data].map{|x| {
+            y: x[:overall_value],
+            change: x[:overall_change]}
+          }
+        }
 
         # get the index values
         hash[:indexes] = []
