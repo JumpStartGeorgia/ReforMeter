@@ -184,9 +184,35 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
 
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var options = {
+    chart: {
+      type: 'areaspline'
+    },
+    colors: ['#f7d95c'],
     exporting: {
       enabled: true
     },
+    plotOptions: {
+      color: '#f7d95c',
+      areaspline: {
+        fillColor: {
+          linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+          },
+          stops: [
+            [0, '#faa24f'],
+            [1, '#f7d95c']
+          ]
+        },
+        lineWidth: 0,
+        marker: {
+          enabled: false
+        }
+      }
+    },
+    series: [chartData.series[0]],
     yAxis: {
       min: 0,
       max: 10,
