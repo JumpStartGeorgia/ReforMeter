@@ -215,6 +215,9 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     series: chartData.series,
+    title: {
+      text: chartData.title
+    },
     yAxis: {
       title: {
         text: 'Rating'

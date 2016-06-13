@@ -6,6 +6,9 @@ function highchartsExternalIndicatorBar(chartData) {
     exporting: {
       enabled: true
     },
+    legend: {
+      enabled: false
+    },
     series: chartData.series,
     title: {
       text: chartData.title
