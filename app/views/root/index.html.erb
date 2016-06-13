@@ -235,8 +235,15 @@
                   <li class='chartIndexes-item'>
 
                     <%= index[:name] %>
-                    <%= most_recent_data_point[:y] %>
-                    <%= generate_change_icon(most_recent_data_point[:change]) %>
+
+                    <div>
+
+                      <span class='chartIndexes-item-value'>
+                        <%= most_recent_data_point[:y].round %>
+                      </span>
+
+                      <%= generate_change_icon(most_recent_data_point[:change]) %>
+                    </div>
 
                   </li>
 
