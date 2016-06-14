@@ -46,6 +46,30 @@ class Quarter < ActiveRecord::Base
   validates_inclusion_of :year, in: 2015..2115
 
   validates_attachment_content_type :report, :content_type => 'application/pdf'
+  validate :check_if_can_publish
+
+
+  # if the is_public flag chnaged to true, make sure everything is in place in order to publish
+  # - report
+  # - expert survey
+  # - at least one reform
+  def check_if_can_publish
+    if self.is_public_changed? and self.is_public?
+      if !self.report.exists?
+        errors.add(:base, I18n.t('errors.messages.publish.report') )
+      end
+
+      if !self.expert_survey.present?
+        errors.add(:base, I18n.t('errors.messages.publish.expert_survey') )
+      end
+
+      if !self.reform_surveys.present?
+        errors.add(:base, I18n.t('errors.messages.publish.reform_survey') )
+      end
+
+    end
+    return true
+  end
 
   #######################
   ## SLUG DEFINITION (friendly_id)

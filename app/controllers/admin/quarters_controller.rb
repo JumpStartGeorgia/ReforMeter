@@ -1,5 +1,5 @@
 class Admin::QuartersController < ApplicationController
-  before_action :set_quarter, only: [:show, :edit, :update, :destroy]
+  before_action :set_quarter, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
   authorize_resource
 
   # GET /admin/quarters
@@ -57,6 +57,35 @@ class Admin::QuartersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_quarters_url, notice: t('shared.msgs.success_deleted',
                             obj: t('activerecord.models.quarter', count: 1)) }
+    end
+  end
+
+
+  def publish
+    @quarter.is_public = true
+    respond_to do |format|
+      if @quarter.save
+        format.html { redirect_to admin_quarters_path, notice: t('shared.msgs.success_published',
+                            obj: t('activerecord.models.quarter', count: 1)) }
+      else
+        format.html { redirect_to admin_quarters_path, alert: t('shared.msgs.fail_published',
+                            obj: t('activerecord.models.quarter', count: 1),
+                            msg: @quarter.errors.full_messages.join('; ')) }
+      end
+    end
+  end
+
+  def unpublish
+    @quarter.is_public = false
+    respond_to do |format|
+      if @quarter.save
+        format.html { redirect_to admin_quarters_path, notice: t('shared.msgs.success_unpublished',
+                            obj: t('activerecord.models.quarter', count: 1)) }
+      else
+        format.html { redirect_to admin_quarters_path, alert: t('shared.msgs.fail_unpublished',
+                            obj: t('activerecord.models.quarter', count: 1),
+                            msg: @quarter.errors.full_messages.join('; ')) }
+      end
     end
   end
 

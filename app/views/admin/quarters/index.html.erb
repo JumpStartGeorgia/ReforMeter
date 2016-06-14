@@ -29,7 +29,22 @@
     <% @quarters.each do |quarter| %>
       <tr>
         <td><%= quarter.time_period %></td>
-        <td><%= format_boolean_flag(quarter.is_public) %></td>
+        <td>
+          <%= format_boolean_flag(quarter.is_public) %>
+          <% if quarter.is_public %>
+            <%= link_to t('shared.actions.unpublish'),
+                    unpublish_admin_quarter_path(quarter),
+                    method: :post,
+                    data: { confirm: t('shared.prompts.confirm') },
+                    class: 'btn btn-danger btn-xs' %>
+          <% else %>
+            <%= link_to t('shared.actions.publish'),
+                    publish_admin_quarter_path(quarter),
+                    method: :post,
+                    data: { confirm: t('shared.prompts.confirm') },
+                    class: 'btn btn-success btn-xs' %>
+          <% end %>
+        </td>
         <td><%= simple_format(quarter.summary_good) %></td>
         <td><%= simple_format(quarter.summary_bad) %></td>
         <td><%= link_to t('shared.actions.view'), quarter.report.url,

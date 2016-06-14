@@ -21,13 +21,15 @@ fieldset.inputs .radio{
 .boolean-flag{
   display: inline-block;
   padding: 4px 8px;
-  color: #fff;
+  background-color: #fff;
   border-radius: 5px;
+  border: solid 1px #fff;
   &.boolean-flag-true{
-    background-color: #6ad95d;
-    color: #66666d;
+    color: #6ad95d;
+    border-color: #6ad95d;
   }
   &.boolean-flag-false{
-    background-color: #d95d6a;
+    color: #d95d6a;
+    border-color: #d95d6a;
   }
 }
