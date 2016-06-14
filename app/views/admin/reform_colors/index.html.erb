@@ -34,7 +34,7 @@
           <br />
           <%= reform_color.rgb %>
         </td>
-        <td><%= reform_color.reforms.map{|x| x.name}.join(' <br /> ') %></td>
+        <td><%= reform_color.reform_names.html_safe %></td>
 
         <td>
           <%= if can? :edit, reform_color

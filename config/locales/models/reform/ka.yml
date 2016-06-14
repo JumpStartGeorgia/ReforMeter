@@ -1,0 +1,14 @@
+---
+ka:
+  activerecord:
+    attributes:
+      reform:
+        is_active: Is Active?
+        is_highlight: Show on Home Page?
+        name: Name
+        summary: Summary
+        methodology: Methodlogy
+    models:
+      reform:
+        one: Reform
+        other: Reforms

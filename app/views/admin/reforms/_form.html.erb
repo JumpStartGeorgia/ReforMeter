@@ -1,0 +1,55 @@
+<% object = @reform %>
+<%= semantic_form_for [:admin,object] do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "name_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.reform.name'),
+                         language: enabled_locale_name) %>
+      <%= f.input "summary_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.reform.summary'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5, :maxlength => 255  } %>
+      <%= f.input "methodology_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.reform.methodology'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5, :maxlength => 255  } %>
+    <% end %>
+
+
+    <div class="select input optional form-group" id="reform_reform_color_id_input">
+      <span class="form-label">
+        <label for="reform_reform_color_id" class=" control-label">Reform color</label>
+      </span>
+      <span class="form-wrapper">
+        <select name="reform[reform_color_id]" id="reform_reform_color_id" class="form-control" style="width: 200px">
+          <option value="" data-color="#fff"></option>
+          <% @colors.each do |color| %>
+            <%
+              assigned_to = ''
+              reforms = color.reform_names(', ')
+              assigned_to = " (#{reforms})" if reforms.present?
+              selected = color.id == @reform.reform_color_id ? 'selected' : ''
+            %>
+            <option <%= selected %> value="<%= color.id %>" data-color="<%= color.hex %>"><%= color.hex + assigned_to %></option>
+          <% end %>
+        </select>
+      </span>
+    </div>
+
+    <%= f.input :is_active, as: :radio %>
+    <%= f.input :is_highlight, as: :radio %>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>
+

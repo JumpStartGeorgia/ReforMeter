@@ -60,4 +60,9 @@ class ReformColor < ActiveRecord::Base
   def rgb
     return "(#{self.r}, #{self.g}, #{self.b})"
   end
+
+  # get the names of the reforms with this color
+  def reform_names(delim = ' <br /> ')
+    self.reforms.map{|x| x.name}.join(delim)
+  end
 end

@@ -52,7 +52,7 @@ class Reform < ActiveRecord::Base
   ## SCOPES
   scope :active, -> { where(is_active: true) }
   scope :highlight, -> { where(is_highlight: true) }
-  scope :sorted, -> { with_translations.order(:name) }
+  scope :sorted, -> { with_translations(I18n.locale).order(:name) }
   scope :with_color, -> {includes(:color )}
 
   # get an array of the active reforms in format: [name, slug]

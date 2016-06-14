@@ -58,13 +58,14 @@ ka:
       no_details: No expert findings are on record.
       no_experts: No experts are on record.
       no_methodology: No methodology is on record.
-    labels:
-      translated_field: "%{field} (%{language})"
     links:
       page_contents: Edit Page Text
       admin: Admin Section
       experts: The Experts
       reform_colors: Reform Colors
+      reforms: Reforms
+    labels:
+      translated_field: "%{field} (%{language})"
     locale:
       long:
         en: English

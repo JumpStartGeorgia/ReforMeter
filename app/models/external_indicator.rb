@@ -65,8 +65,8 @@ class ExternalIndicator < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :published, -> { where(is_public: true) }
-  scope :sorted, -> { with_translations.order(title: :asc) }
-  scope :reverse_sorted, -> { with_translations.order(title: :desc) }
+  scope :sorted, -> { with_translations(I18n.locale).order(title: :asc) }
+  scope :reverse_sorted, -> { with_translations(I18n.locale).order(title: :desc) }
   scope :for_home_page, -> { where(show_on_home_page: true) }
 
 
