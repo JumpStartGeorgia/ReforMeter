@@ -1,5 +1,5 @@
 <% object = @quarter %>
-<%= semantic_form_for [:admin,object] do |f| %>
+<%= semantic_form_for [:admin,object], html: {multipart: true} do |f| %>
   <%= f.semantic_errors *f.object.errors.keys %>
   <%= f.inputs do %>
 
@@ -55,6 +55,18 @@
                    :input_html => { :class => 'autogrow', :rows => 5, :maxlength => 255  } %>
     <% end %>
 
+
+    <div class="file input optional form-group" id="quarter_report_input">
+      <span class="form-label">
+        <label for="quarter_report" class=" control-label"><%= t('activerecord.attributes.quarter.report') %></label>
+      </span>
+      <%= link_to t('shared.actions.view'), @quarter.report.url,
+                      class: 'btn btn-default',
+                      target: :blank if @quarter.report.exists? %>
+      <span class="form-wrapper">
+        <input accept=".pdf" id="quarter_report" name="quarter[report]" type="file">
+      </span>
+    </div>
 
     <%= f.input :is_public, as: :radio %>
 

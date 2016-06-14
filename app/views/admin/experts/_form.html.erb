@@ -1,5 +1,5 @@
 <% object = @expert %>
-<%= semantic_form_for [:admin,object], multipart: true do |f| %>
+<%= semantic_form_for [:admin,object], html: {multipart: true} do |f| %>
   <%= f.semantic_errors *f.object.errors.keys %>
   <%= f.inputs do %>
     <%= render layout: 'shared/form/translated_inputs',

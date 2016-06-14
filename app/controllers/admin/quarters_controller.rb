@@ -68,7 +68,7 @@ class Admin::QuartersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quarter_params
-      permitted = Quarter.globalize_attribute_names + [:quarter, :year, :is_public]
+      permitted = Quarter.globalize_attribute_names + [:quarter, :year, :is_public, :report]
       params.require(:quarter).permit(*permitted)
     end
 end
