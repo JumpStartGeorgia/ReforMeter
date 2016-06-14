@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_locale
+  before_action :set_global_vars
 
   ##############################################
   # Locales #
@@ -17,6 +18,12 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }.merge options
   end
 
+  ##############################################
+
+  def set_global_vars
+    # indicate which year can be the first year for data
+    @quarter_start_year = 2015
+  end
 
   ##############################################
   # helpers

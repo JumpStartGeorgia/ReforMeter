@@ -35,8 +35,8 @@
         <td><%= reform.name %></td>
         <td><%= simple_format(reform.summary) %></td>
         <td><%= simple_format(reform.methodology) %></td>
-        <td><%= reform.is_active %></td>
-        <td><%= reform.is_highlight %></td>
+        <td><%= format_boolean_flag(reform.is_active) %></td>
+        <td><%= format_boolean_flag(reform.is_highlight) %></td>
 
         <td>
           <%= if can? :edit, reform

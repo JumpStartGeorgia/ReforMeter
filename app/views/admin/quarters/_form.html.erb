@@ -1,0 +1,67 @@
+<% object = @quarter %>
+<%= semantic_form_for [:admin,object] do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+
+    <div class="select input required form-group" id="quarter_quarter_input">
+      <span class="form-label">
+        <label for="quarter_quarter" class=" control-label"><%= t('activerecord.attributes.quarter.quarter') %><abbr title="required">*</abbr></label>
+      </span>
+      <span class="form-wrapper">
+        <select name="quarter[quarter]" id="quarter_quarter" class="form-control" style="width: 75px;">
+          <% (1..4).each do |quarter| %>
+            <% selected = quarter == @quarter.quarter ? 'selected' : '' %>
+            <option <%= selected %> value="<%= quarter %>"><%= I18n.t('shared.common.formatted_quarter', quarter: quarter) %></option>
+          <% end %>
+        </select>
+      </span>
+    </div>
+
+
+    <div class="select input required form-group" id="quarter_`_input">
+      <span class="form-label">
+        <label for="quarter_year" class=" control-label"><%= t('activerecord.attributes.quarter.year') %><abbr title="required">*</abbr></label>
+      </span>
+      <span class="form-wrapper">
+        <select name="quarter[year]" id="quarter_year" class="form-control" style="width: 75px;">
+          <%
+            years = [@quarter_start_year]
+            if Time.now.year > @quarter_start_year
+              (@quarter_start_year+1..Time.now.year).each {|x| years << x}
+            end
+          %>
+          <% years.each do |year| %>
+            <% selected = year == @quarter.year || @quarter.year.nil? && year == Time.now.year ? 'selected' : '' %>
+            <option <%= selected %> value="<%= year %>"><%= year %></option>
+          <% end %>
+        </select>
+      </span>
+    </div>
+
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "summary_good_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.quarter.summary_good'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5, :maxlength => 255  } %>
+      <%= f.input "summary_bad_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.quarter.summary_bad'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5, :maxlength => 255  } %>
+    <% end %>
+
+
+    <%= f.input :is_public, as: :radio %>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>
+

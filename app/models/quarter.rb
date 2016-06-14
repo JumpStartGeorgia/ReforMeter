@@ -74,8 +74,8 @@ class Quarter < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :published, -> { where(is_public: true) }
-  scope :recent, -> {order(slug: :desc)}
-  scope :oldest, -> {order(slug: :asc)}
+  scope :recent, -> {order(year: :desc, quarter: :desc)}
+  scope :oldest, -> {order(year: :asc, quarter: :asc)}
   scope :with_expert_survey, -> {includes(expert_survey: [:translations] )}
 
   # get the latest quarter
@@ -98,9 +98,12 @@ class Quarter < ActiveRecord::Base
 
   # formal name of quarter: Q# 2016
   def time_period
-    "Q#{self.quarter} #{self.year}"
+    "#{formatted_quarter} #{self.year}"
   end
 
+  def formatted_quarter
+    I18n.t('shared.common.formatted_quarter', quarter: self.quarter)
+  end
 
   def set_reform(reform_slug)
     reform = Reform.friendly.find(reform_slug)

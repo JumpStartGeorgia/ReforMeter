@@ -8,6 +8,7 @@ en:
       load: Load
       log_in: Log in
       view: View
+      load: Load
       with_obj:
         cancel: Cancel %{obj}
         create: Create %{obj}
@@ -49,6 +50,9 @@ en:
         slogan: JumpStart Georgia - Informing Communities with Data and Design
       name: ReforMeter
       sub_title: Tracking Progress - One Reform at a Time
+      formatted_quarter: 'Q%{quarter}'
+      :yes: 'Yes'
+      :no: 'No'
     expert_show:
       header:
         chart: Expert History
@@ -64,6 +68,7 @@ en:
       experts: The Experts
       reform_colors: Reform Colors
       reforms: Reforms
+      quarters: Quarters
     labels:
       translated_field: "%{field} (%{language})"
     locale:

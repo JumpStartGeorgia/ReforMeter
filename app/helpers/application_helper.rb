@@ -55,4 +55,14 @@ module ApplicationHelper
 
     return ''
   end
+
+  # format the true/false value into yes/no with box
+  def format_boolean_flag(flag)
+    if flag == true
+      return "<div class='boolean-flag boolean-flag-true'>#{t('shared.common.yes')}</div>".html_safe
+    else
+      return "<div class='boolean-flag boolean-flag-false'>#{t('shared.common.no')}</div>".html_safe
+    end
+  end
+
 end

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :experts, except: :show, constraints: { format: :html }
       resources :reforms, except: :show, constraints: { format: :html }
       resources :reform_colors, except: :show, constraints: { format: :html }
+      resources :quarters, constraints: { format: :html }
       resources :page_contents, constraints: { format: :html }
       resources :users, constraints: { format: :html }
     end

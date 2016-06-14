@@ -8,6 +8,7 @@ en:
         name: Name
         summary: Summary
         methodology: Methodlogy
+        reform_color_id: Reform Color
     models:
       reform:
         one: Reform
