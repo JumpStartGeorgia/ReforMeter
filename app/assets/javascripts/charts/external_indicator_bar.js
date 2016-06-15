@@ -22,11 +22,12 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
 
     function updateIndexChange(newChangeIcon) {
       var $indexChange = $index.find('.js-act-as-index-change');
-      $indexChange.text(newChangeIcon);
+
+      $indexChange.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
     }
 
     updateIndexValue(Math.round(indexNewDataPoint.y));
-    // updateIndexChange(change_icon(indexNewDataPoint.change));
+    updateIndexChange(change_icon(indexNewDataPoint.change));
   }
 
   $indexesContainer.find('.js-make-index-updatable-by-chart').each(updateIndex);

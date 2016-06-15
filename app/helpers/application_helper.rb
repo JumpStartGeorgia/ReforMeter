@@ -33,9 +33,9 @@ module ApplicationHelper
 
   def change_icons
     return {
-      '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), style: 'max-width: 100%; max-height: 100%;'),
-      '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), style: 'max-width: 100%; max-height: 100%;'),
-      '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), style: 'max-width: 100%; max-height: 100%;')
+      '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), style: 'max-width: 100%; max-height: 100%;', class: 'js-act-as-change-icon'),
+      '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), style: 'max-width: 100%; max-height: 100%;', class: 'js-act-as-change-icon'),
+      '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), style: 'max-width: 100%; max-height: 100%;', class: 'js-act-as-change-icon')
     }
   end
 
@@ -49,7 +49,7 @@ module ApplicationHelper
   def nav_link_select_class_if_path(paths)
     paths.each do |path|
       if ((path[:controller] == params[:controller]) && (path[:action] == params[:action]))
-        return ' mod-current-page' 
+        return ' mod-current-page'
       end
     end
 
