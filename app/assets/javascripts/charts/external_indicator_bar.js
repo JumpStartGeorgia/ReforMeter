@@ -13,6 +13,18 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
   function initializeIndex($index) {
     var index_methods = {};
 
+    var $indexValue = $index.find('.js-act-as-index-value');
+
+    index_methods.updateValue = function(newValue) {
+      $indexValue.text(newValue);
+    }
+
+    index_methods.updateChange = function(newChangeIcon) {
+      var $indexChange = $index.find('.js-act-as-index-change');
+
+      $indexChange.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
+    }
+
     index_methods.update = function() {
       var $indexName = $index.find('.js-act-as-index-name');
       var indexNameText = $indexName.text().trim();
@@ -23,19 +35,8 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
 
       var indexNewDataPoint = indexData[pointArrayIndex];
 
-      function updateIndexValue(newValue) {
-        var $indexValue = $index.find('.js-act-as-index-value');
-        $indexValue.text(newValue);
-      }
-
-      function updateIndexChange(newChangeIcon) {
-        var $indexChange = $index.find('.js-act-as-index-change');
-
-        $indexChange.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
-      }
-
-      updateIndexValue(Math.round(indexNewDataPoint.y));
-      updateIndexChange(change_icon(indexNewDataPoint.change));
+      index_methods.updateValue(Math.round(indexNewDataPoint.y));
+      index_methods.updateChange(change_icon(indexNewDataPoint.change));
     }
 
     return index_methods;
