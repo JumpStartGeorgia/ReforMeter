@@ -2,7 +2,13 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
   var $chart = $('*[data-id="' + chartData.id + '"]');
   var $indexesContainer = $chart.siblings('.js-act-as-chart-indexes-container');
 
-  var pointArrayIndex = seriesData.point.index;
+  var pointArrayIndex;
+
+  if (seriesData.point) {
+    pointArrayIndex = seriesData.point.index;
+  } else {
+    pointArrayIndex = seriesData.points[0].point.index;
+  }
 
   function updateIndex() {
     var $index = $(this);

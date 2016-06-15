@@ -218,6 +218,12 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
     title: {
       text: chartData.title
     },
+    tooltip: {
+      formatter: function() {
+        updateExternalIndicatorIndeces(chartData, this);
+        return highchartTimeSeriesTooltipFormatter.call(this, chartData);
+      }
+    },
     yAxis: {
       title: {
         text: 'Rating'
