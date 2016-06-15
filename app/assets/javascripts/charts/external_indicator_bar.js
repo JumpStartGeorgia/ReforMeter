@@ -10,33 +10,44 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
     pointArrayIndex = seriesData.points[0].point.index;
   }
 
-  function updateIndex() {
-    var $index = $(this);
-    var $indexName = $index.find('.js-act-as-index-name');
-    var indexNameText = $indexName.text().trim();
+  function initializeIndex($index) {
+    var index_methods = {};
 
-    var indexData = chartData.indexes.filter(function(index) {
-      return index.short_name === indexNameText;
-    })[0].data;
+    index_methods.update = function() {
+      var $indexName = $index.find('.js-act-as-index-name');
+      var indexNameText = $indexName.text().trim();
 
-    var indexNewDataPoint = indexData[pointArrayIndex];
+      var indexData = chartData.indexes.filter(function(index) {
+        return index.short_name === indexNameText;
+      })[0].data;
 
-    function updateIndexValue(newValue) {
-      var $indexValue = $index.find('.js-act-as-index-value');
-      $indexValue.text(newValue);
+      var indexNewDataPoint = indexData[pointArrayIndex];
+
+      function updateIndexValue(newValue) {
+        var $indexValue = $index.find('.js-act-as-index-value');
+        $indexValue.text(newValue);
+      }
+
+      function updateIndexChange(newChangeIcon) {
+        var $indexChange = $index.find('.js-act-as-index-change');
+
+        $indexChange.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
+      }
+
+      updateIndexValue(Math.round(indexNewDataPoint.y));
+      updateIndexChange(change_icon(indexNewDataPoint.change));
     }
 
-    function updateIndexChange(newChangeIcon) {
-      var $indexChange = $index.find('.js-act-as-index-change');
-
-      $indexChange.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
-    }
-
-    updateIndexValue(Math.round(indexNewDataPoint.y));
-    updateIndexChange(change_icon(indexNewDataPoint.change));
+    return index_methods;
   }
 
-  $indexesContainer.find('.js-make-index-updatable-by-chart').each(updateIndex);
+  $indexesContainer.find('.js-make-index-updatable-by-chart').each(
+    function() {
+      initializeIndex($(this)).update();
+    }
+  );
+
+  // $indexesContainer.find('.js-make-index-updatable-by-chart').each(updateIndex);
 }
 
 function highchartsExternalIndicatorBar(chartData) {
