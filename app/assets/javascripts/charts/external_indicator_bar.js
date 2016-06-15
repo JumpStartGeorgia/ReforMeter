@@ -15,9 +15,7 @@ function initializeIndexBox(chartDataIndexes, $index) {
   }
 
   index_methods.updateChange = function(newChangeIcon) {
-    var $indexChange = $index.find('.js-act-as-index-change');
-
-    $indexChange.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
+    $index.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
   }
 
   index_methods.update = function(seriesData) {
