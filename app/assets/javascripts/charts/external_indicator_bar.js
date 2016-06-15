@@ -15,40 +15,43 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
 
     var $indexValue = $index.find('.js-act-as-index-value');
 
-    index_methods.updateValue = function(newValue) {
+    var $indexName = $index.find('.js-act-as-index-name');
+    var indexNameText = $indexName.text().trim();
+
+    var indexData = chartData.indexes.filter(function(index) {
+      return index.short_name === indexNameText;
+    })[0].data;
+
+    var indexNewDataPoint = indexData[pointArrayIndex];
+
+    index_methods.updateValue = function() {
+      var newValue = Math.round(indexNewDataPoint.y);
       $indexValue.text(newValue);
     }
 
-    index_methods.updateChange = function(newChangeIcon) {
+    index_methods.updateChange = function() {
+      var newChangeIcon = change_icon(indexNewDataPoint.change);
       var $indexChange = $index.find('.js-act-as-index-change');
 
       $indexChange.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
     }
 
     index_methods.update = function() {
-      var $indexName = $index.find('.js-act-as-index-name');
-      var indexNameText = $indexName.text().trim();
-
-      var indexData = chartData.indexes.filter(function(index) {
-        return index.short_name === indexNameText;
-      })[0].data;
-
-      var indexNewDataPoint = indexData[pointArrayIndex];
-
-      index_methods.updateValue(Math.round(indexNewDataPoint.y));
-      index_methods.updateChange(change_icon(indexNewDataPoint.change));
+      index_methods.updateValue();
+      index_methods.updateChange();
     }
 
     return index_methods;
   }
 
+  var index;
+
   $indexesContainer.find('.js-make-index-updatable-by-chart').each(
     function() {
-      initializeIndex($(this)).update();
+      index = initializeIndex($(this));
+      index.update();
     }
   );
-
-  // $indexesContainer.find('.js-make-index-updatable-by-chart').each(updateIndex);
 }
 
 function highchartsExternalIndicatorBar(chartData) {
