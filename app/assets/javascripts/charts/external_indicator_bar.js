@@ -1,19 +1,6 @@
-function updateExternalIndicatorIndeces(chartData, seriesData) {
-  var $chart = $('*[data-id="' + chartData.id + '"]');
-  var $indexesContainer = $chart.siblings('.js-act-as-chart-indexes-container');
-
-  var indexBoxes = $indexesContainer.find('.js-make-index-updatable-by-chart').map(
-    function() {
-      return initializeIndexBox(chartData.indexes, $(this));
-    }
-  );
-
-  $(indexBoxes).each(function() {
-    this.update(seriesData);
-  });
-}
-
 function highchartsExternalIndicatorBar(chartData) {
+  var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
+
   var options = {
     chart: {
       type: 'column'
@@ -30,7 +17,8 @@ function highchartsExternalIndicatorBar(chartData) {
     },
     tooltip: {
       formatter: function() {
-        updateExternalIndicatorIndeces(chartData, this);
+        indexBoxes.update(this);
+
         return '' + this.y;
       }
     },

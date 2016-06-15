@@ -183,6 +183,8 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
 }
 
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
+  var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
+
   var options = {
     chart: {
       type: 'areaspline'
@@ -220,7 +222,8 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
     },
     tooltip: {
       formatter: function() {
-        updateExternalIndicatorIndeces(chartData, this);
+        indexBoxes.update(this);
+
         return highchartTimeSeriesTooltipFormatter.call(this, chartData);
       }
     },
