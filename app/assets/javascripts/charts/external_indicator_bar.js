@@ -2,15 +2,7 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
   var $chart = $('*[data-id="' + chartData.id + '"]');
   var $indexesContainer = $chart.siblings('.js-act-as-chart-indexes-container');
 
-  var pointArrayIndex;
-
-  if (seriesData.point) {
-    pointArrayIndex = seriesData.point.index;
-  } else {
-    pointArrayIndex = seriesData.points[0].point.index;
-  }
-
-  function initializeIndex($index) {
+  function initializeIndexBox($index) {
     var index_methods = {};
 
     var $indexValue = $index.find('.js-act-as-index-value');
@@ -22,34 +14,42 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
       return index.short_name === indexNameText;
     })[0].data;
 
-    var indexNewDataPoint = indexData[pointArrayIndex];
-
-    index_methods.updateValue = function() {
-      var newValue = Math.round(indexNewDataPoint.y);
+    index_methods.updateValue = function(newValue) {
       $indexValue.text(newValue);
     }
 
-    index_methods.updateChange = function() {
-      var newChangeIcon = change_icon(indexNewDataPoint.change);
+    index_methods.updateChange = function(newChangeIcon) {
       var $indexChange = $index.find('.js-act-as-index-change');
 
       $indexChange.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
     }
 
-    index_methods.update = function() {
-      index_methods.updateValue();
-      index_methods.updateChange();
+    index_methods.update = function(seriesData) {
+      var pointArrayIndex;
+
+      if (seriesData.point) {
+        pointArrayIndex = seriesData.point.index;
+      } else {
+        pointArrayIndex = seriesData.points[0].point.index;
+      }
+
+      var indexNewDataPoint = indexData[pointArrayIndex];
+      var newValue = Math.round(indexNewDataPoint.y);
+      var newChangeIcon = change_icon(indexNewDataPoint.change);
+
+      index_methods.updateValue(newValue);
+      index_methods.updateChange(newChangeIcon);
     }
 
     return index_methods;
   }
 
-  var index;
+  var indexBox;
 
   $indexesContainer.find('.js-make-index-updatable-by-chart').each(
     function() {
-      index = initializeIndex($(this));
-      index.update();
+      indexBox = initializeIndexBox($(this));
+      indexBox.update(seriesData);
     }
   );
 }
