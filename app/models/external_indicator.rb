@@ -200,10 +200,12 @@ class ExternalIndicator < ActiveRecord::Base
         # get the overall values for charting
         hash[:series] << {
           name: I18n.t('shared.categories.overall'),
-          data: self.data_hash[:data].map{|x| {
-            y: x[:overall_value],
-            change: x[:overall_change]}
-          }
+          data: data_hash[:data].map do |x|
+            {
+              y: x[:overall_value],
+              change: x[:overall_change]
+            }
+          end
         }
 
         # get the index values
@@ -214,9 +216,15 @@ class ExternalIndicator < ActiveRecord::Base
             # find the data item for this index
             d = data[:values].select{|x| x[:index] == index[:id]}.first
             if d.present?
-              item[:data] << {y: d[:value], change: d[:change]}
+              item[:data] << {
+                y: d[:value],
+                change: d[:change]
+              }
             else
-              item[:data] << {y:nil, change: nil}
+              item[:data] << {
+                y: nil,
+                change: nil
+              }
             end
           end
           hash[:indexes] << item

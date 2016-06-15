@@ -12,26 +12,27 @@
 
   <% if ext_ind_chart[:indexes].present? %>
 
-    <ul class='chartIndexes'>
+    <ul class='chartIndexes js-act-as-chart-indexes-container'>
 
       <% ext_ind_chart[:indexes].each do |index| %>
 
         <% most_recent_data_point = index[:data].last %>
 
-        <li class='chartIndexes-item'>
+        <li class='chartIndexes-item js-make-index-updatable-by-chart'>
 
-          <span title='<%= index[:name] %>'>
+          <span title='<%= index[:name] %>' class='js-act-as-index-name'>
             <%= index[:short_name] %>
           </span>
 
-
           <div>
 
-            <span class='chartIndexes-item-value'>
+            <span class='chartIndexes-item-value js-act-as-index-value'>
               <%= most_recent_data_point[:y].round %>
             </span>
 
-            <%= generate_change_icon(most_recent_data_point[:change]) %>
+            <span class='js-act-as-index-change'>
+              <%= generate_change_icon(most_recent_data_point[:change]) %>
+            </span>
           </div>
 
         </li>
