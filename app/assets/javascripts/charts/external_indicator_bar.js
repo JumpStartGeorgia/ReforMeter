@@ -2,14 +2,15 @@ function updateExternalIndicatorIndeces(chartData, seriesData) {
   var $chart = $('*[data-id="' + chartData.id + '"]');
   var $indexesContainer = $chart.siblings('.js-act-as-chart-indexes-container');
 
-  var indexBox;
-
-  $indexesContainer.find('.js-make-index-updatable-by-chart').each(
+  var indexBoxes = $indexesContainer.find('.js-make-index-updatable-by-chart').map(
     function() {
-      indexBox = initializeIndexBox(chartData.indexes, $(this));
-      indexBox.update(seriesData);
+      return initializeIndexBox(chartData.indexes, $(this));
     }
   );
+
+  $(indexBoxes).each(function() {
+    this.update(seriesData);
+  });
 }
 
 function highchartsExternalIndicatorBar(chartData) {
