@@ -44,11 +44,13 @@ class Expert < ActiveRecord::Base
   validates :name, presence: :true
   validates_attachment :avatar,
     content_type: { content_type: ["image/jpeg", "image/png"] },
-    size: { in: 0..4.megabytes }
+    size: { in: 0..4.megabytes },
+    if: Proc.new {|x| x.avatar.present? }
+
 
   #######################
   ## SCOPES
-  scope :sorted, -> {order(name: :asc)}
+  scope :sorted, -> {with_translations(I18n.locale).order(name: :asc)}
 
 
 end

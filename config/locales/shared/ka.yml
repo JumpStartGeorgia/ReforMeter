@@ -11,6 +11,8 @@ ka:
       load: Load
       publish: Publish
       unpublish: Unpublish
+      add_reform_survey: Add Reform Survey
+      add_expert_survey: Add Expert Survey
       with_obj:
         cancel: Cancel %{obj}
         create: Create %{obj}

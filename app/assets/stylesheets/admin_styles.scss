@@ -32,4 +32,8 @@ fieldset.inputs .radio{
     color: #d95d6a;
     border-color: #d95d6a;
   }
+  &.boolean-flag-xs{
+    font-size: 12px;
+    padding: 2px 4px;
+  }
 }

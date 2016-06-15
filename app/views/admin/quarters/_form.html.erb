@@ -10,7 +10,8 @@
       <span class="form-wrapper">
         <select name="quarter[quarter]" id="quarter_quarter" class="form-control" style="width: 75px;">
           <% (1..4).each do |quarter| %>
-            <% selected = quarter == @quarter.quarter ? 'selected' : '' %>
+            <% current_quarter = Time.now.month / 4 %>
+            <% selected = @quarter.quarter.nil? && current_quarter == quarter || @quarter.quarter == quarter ? 'selected' : '' %>
             <option <%= selected %> value="<%= quarter %>"><%= I18n.t('shared.common.formatted_quarter', quarter: quarter) %></option>
           <% end %>
         </select>
@@ -18,7 +19,7 @@
     </div>
 
 
-    <div class="select input required form-group" id="quarter_`_input">
+    <div class="select input required form-group" id="quarter_year_input">
       <span class="form-label">
         <label for="quarter_year" class=" control-label"><%= t('activerecord.attributes.quarter.year') %><abbr title="required">*</abbr></label>
       </span>

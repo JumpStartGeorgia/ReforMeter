@@ -115,6 +115,7 @@ if ENV['load_test_data'].present?
     Reform.destroy_all
     Expert.destroy_all
     ExternalIndicator.destroy_all
+    News.destroy_all
 
     # create reform
     puts 'creating test reform'
@@ -132,9 +133,9 @@ if ENV['load_test_data'].present?
     puts 'creating quarters'
     path = "#{Rails.root}/db/test_report_files/"
     report_en = File.open(path + 'sample_report1.pdf')
-    q2 = Quarter.create(year: 2015, quarter: 2, is_public: true, report: report_en, summary_good: '<p>this is awesome!</p>', summary_bad: '<p>this is not good!</p>')
-    q3 = Quarter.create(year: 2015, quarter: 3, is_public: true, report: report_en, summary_good: '<p>this is ok!</p>', summary_bad: '<p>no progress has been made!</p>')
-    q4 = Quarter.create(year: 2015, quarter: 4, is_public: true, report: report_en, summary_good: '<p>good effort!</p>', summary_bad: '<p>are you even working?!</p>')
+    q2 = Quarter.create(year: 2015, quarter: 2, report: report_en, summary_good: '<p>this is awesome!</p>', summary_bad: '<p>this is not good!</p>')
+    q3 = Quarter.create(year: 2015, quarter: 3, report: report_en, summary_good: '<p>this is ok!</p>', summary_bad: '<p>no progress has been made!</p>')
+    q4 = Quarter.create(year: 2015, quarter: 4, report: report_en, summary_good: '<p>good effort!</p>', summary_bad: '<p>are you even working?!</p>')
 
     # create expert surveys
     puts 'creating expert surveys'
@@ -216,6 +217,16 @@ if ENV['load_test_data'].present?
       rs4.save
 
     end
+
+    # publish the quarters
+    # - have to do this after the survey results are created for they are required for published
+    q2.is_public = true
+    q2.save
+    q3.is_public = true
+    q3.save
+    q4.is_public = true
+    q4.save
+
 
     # create news
     puts 'creating news'

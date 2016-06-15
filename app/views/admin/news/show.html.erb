@@ -1,0 +1,29 @@
+<%
+  page_title t('.title')
+%>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/show_actions',
+        locals: {
+          object: @news,
+          index_path: admin_quarters_path,
+          show_path: admin_quarter_news_path(@quarter, @news),
+          edit_path: edit_admin_quarter_news_path(@quarter, @news)
+                }
+  %>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%=t 'activerecord.attributes.news.quarter_id' %>:</strong></dt>
+  <dd><%= @news.quarter.time_period %></dd>
+  <dt><strong><%=t 'activerecord.attributes.news.reform_id' %>:</strong></dt>
+  <dd><%= @news.reform.name %></dd>
+  <dt><strong><%=t 'activerecord.attributes.news.title' %>:</strong></dt>
+  <dd><%= @news.title %></dd>
+  <dt><strong><%=t 'activerecord.attributes.news.content' %>:</strong></dt>
+  <dd><%= simple_format_no_tags(@news.content) %></dd>
+  <dt><strong><%=t 'activerecord.attributes.news.url' %>:</strong></dt>
+  <dd><%= link_to @news.url, @news.url %></dd>
+  <dt><strong><%=t 'activerecord.attributes.news.image' %>:</strong></dt>
+  <dd><%= image_tag @news.image.url('360x200') if @news.image.exists? %></dd>
+</dl>

@@ -1,0 +1,14 @@
+<% model_class = News %>
+<% page_title t('shared.actions.with_obj.new',
+                obj: t('activerecord.models.news', count: 1)) %>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/new_actions',
+        locals: {
+          object: Quarter.new,
+          index_path: admin_quarters_path
+                }
+  %>
+</div>
+
+<%= render partial: 'form' %>

@@ -57,12 +57,31 @@ module ApplicationHelper
   end
 
   # format the true/false value into yes/no with box
-  def format_boolean_flag(flag)
+  def format_boolean_flag(flag, small=false)
+    css_small = small == true ? 'boolean-flag-xs' : ''
     if flag == true
-      return "<div class='boolean-flag boolean-flag-true'>#{t('shared.common.yes')}</div>".html_safe
+      return "<div class='boolean-flag boolean-flag-true #{css_small}'>#{t('shared.common.yes')}</div>".html_safe
     else
-      return "<div class='boolean-flag boolean-flag-false'>#{t('shared.common.no')}</div>".html_safe
+      return "<div class='boolean-flag boolean-flag-false #{css_small}'>#{t('shared.common.no')}</div>".html_safe
     end
   end
+
+
+  # sort the locales so the default locale is first and then the rest are alpha
+  def sort_locales(locales)
+    if locales.present?
+      # sort
+      locales.sort!
+
+      # move default locale to first position
+      default = locales.index{|x| x == I18n.default_locale}
+      if default.present? && default > 0
+        locales.unshift(locales[default])
+        locales.delete_at(default+1)
+      end
+    end
+    return locales
+  end
+
 
 end

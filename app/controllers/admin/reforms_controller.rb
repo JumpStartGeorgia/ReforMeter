@@ -6,7 +6,7 @@ class Admin::ReformsController < ApplicationController
   # GET /admin/reforms
   # GET /admin/reforms.json
   def index
-    @reforms = Reform.sorted.with_color
+    @reforms = Reform.with_color#.sorted
   end
 
   # GET /admin/reforms/1

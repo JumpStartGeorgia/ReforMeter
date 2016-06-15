@@ -5,7 +5,7 @@ class Admin::QuartersController < ApplicationController
   # GET /admin/quarters
   # GET /admin/quarters.json
   def index
-    @quarters = Quarter.recent
+    @quarters = Quarter.recent.with_expert_survey.with_reform_surveys.with_news
   end
 
   # GET /admin/quarters/1
@@ -55,7 +55,7 @@ class Admin::QuartersController < ApplicationController
   def destroy
     @quarter.destroy
     respond_to do |format|
-      format.html { redirect_to admin_quarters_url, notice: t('shared.msgs.success_deleted',
+      format.html { redirect_to admin_quarters_url, notice: t('shared.msgs.success_destroyed',
                             obj: t('activerecord.models.quarter', count: 1)) }
     end
   end

@@ -1,15 +1,19 @@
+<%
+  edit_path ||= nil
+  show_path ||= nil
+%>
 <%= render partial: 'shared/index_admin' %>
 <%= link_to t('shared.actions.with_obj.view_all',
               obj: t("activerecord.models.#{object.model_name.singular}", count: 999)),
             index_path,
             class: 'btn btn-default' %>
-<%= if can? :edit, object
+<%= if can? :edit, object && edit_path.present?
   link_to t('shared.actions.with_obj.edit',
             obj: t("activerecord.models.#{object.model_name.singular}", count: 1)),
           edit_path,
           class: 'btn btn-default'
 end %>
-<%= if can? :destroy, object
+<%= if can? :destroy, object && show_path.present?
   link_to t('shared.actions.with_obj.destroy',
             obj: t("activerecord.models.#{object.model_name.singular}", count: 1)),
           show_path,

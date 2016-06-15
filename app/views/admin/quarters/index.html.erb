@@ -20,6 +20,9 @@
       <th><%=t 'activerecord.attributes.quarter.summary_good' %></th>
       <th><%=t 'activerecord.attributes.quarter.summary_bad' %></th>
       <th><%=t 'activerecord.attributes.quarter.report' %></th>
+      <th><%=t 'activerecord.attributes.quarter.expert_survey' %></th>
+      <th><%=t 'activerecord.attributes.quarter.reform_surveys' %></th>
+      <th><%=t 'activerecord.attributes.quarter.news' %></th>
 
       <th class='action-col'><%=t 'shared.common.actions' %></th>
     </tr>
@@ -30,32 +33,99 @@
       <tr>
         <td><%= quarter.time_period %></td>
         <td>
-          <%= format_boolean_flag(quarter.is_public) %>
-          <% if quarter.is_public %>
-            <%= link_to t('shared.actions.unpublish'),
-                    unpublish_admin_quarter_path(quarter),
-                    method: :post,
-                    data: { confirm: t('shared.prompts.confirm') },
-                    class: 'btn btn-danger btn-xs' %>
-          <% else %>
-            <%= link_to t('shared.actions.publish'),
-                    publish_admin_quarter_path(quarter),
-                    method: :post,
-                    data: { confirm: t('shared.prompts.confirm') },
-                    class: 'btn btn-success btn-xs' %>
-          <% end %>
+          <div><%= format_boolean_flag(quarter.is_public, true) %></div>
+
+          <div>
+            <% if quarter.is_public %>
+              <%= link_to t('shared.actions.unpublish'),
+                      unpublish_admin_quarter_path(quarter),
+                      method: :post,
+                      data: { confirm: t('shared.prompts.confirm') },
+                      class: 'btn btn-danger btn-xs' %>
+            <% else %>
+              <%= link_to t('shared.actions.publish'),
+                      publish_admin_quarter_path(quarter),
+                      method: :post,
+                      data: { confirm: t('shared.prompts.confirm') },
+                      class: 'btn btn-success btn-xs' %>
+            <% end %>
+          </div>
         </td>
         <td><%= simple_format(quarter.summary_good) %></td>
         <td><%= simple_format(quarter.summary_bad) %></td>
-        <td><%= link_to t('shared.actions.view'), quarter.report.url,
-                        class: 'btn btn-default',
-                        target: :blank if quarter.report.exists? %></td>
+        <td>
+          <% if quarter.report.exists? %>
+            <div><%= link_to t('shared.actions.view'), quarter.report.url,
+                          class: 'btn btn-default btn-xs',
+                          target: :blank %></div>
+            <div><%= if can? :edit, quarter
+                  link_to t('shared.actions.edit'),
+                          edit_admin_quarter_path(quarter),
+                          class: 'btn btn-default btn-xs'
+            end %></div>
+          <% else %>
+            <div><%= if can? :edit, quarter
+                  link_to t('shared.actions.add'),
+                          edit_admin_quarter_path(quarter),
+                          class: 'btn btn-primary btn-xs'
+              end %></div>
+          <% end %>
+        </td>
+        <td>
+          <% if quarter.expert_survey.present? %>
+            <div><%= link_to t('shared.actions.view'),
+                      '#',
+                      class: 'btn btn-default btn-xs' %></div>
+            <div><%= link_to t('shared.actions.edit'),
+                      '#',
+                      class: 'btn btn-default btn-xs' %></div>
+          <% else %>
+            <div><%= link_to t('shared.actions.add'),
+                      '#',
+                      class: 'btn btn-primary btn-xs' %></div>
+          <% end %>
+        </td>
+        <td>
+          <div><%= link_to t('shared.actions.add'),
+                    '#',
+                    class: 'btn btn-primary btn-xs' %></div>
+
+          <% if quarter.reform_surveys.present? %>
+
+          <% end %>
+
+        </td>
+        <td>
+          <div><%= link_to t('shared.actions.add'),
+                    new_admin_quarter_news_path(quarter),
+                    class: 'btn btn-primary btn-xs' %></div>
+
+          <% if quarter.news.present? %>
+            <ul>
+              <% quarter.news.each do |news| %>
+                <li>
+                  <%= link_to news.title, admin_quarter_news_path(quarter, news) %>
+                  <%= link_to t('shared.actions.edit'),
+                        edit_admin_quarter_news_path(quarter, news),
+                        class: 'btn btn-default btn-xs' %>
+                  <%= link_to t('shared.actions.destroy'),
+                        admin_quarter_news_path(quarter, news),
+                        method: :delete,
+                        data: { confirm: t('shared.prompts.confirm') },
+                        class: 'btn btn-danger btn-xs' %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
+
+
 
         <td>
           <%= if can? :edit, quarter
                 link_to t('shared.actions.edit'),
                         edit_admin_quarter_path(quarter),
-                        class: 'btn btn-default'
+                        class: 'btn btn-default btn-xs'
           end %>
 
           <%= if can? :destroy, quarter
@@ -63,7 +133,7 @@
                         admin_quarter_path(quarter),
                         method: :delete,
                         data: { confirm: t('shared.prompts.confirm') },
-                        class: 'btn btn-danger'
+                        class: 'btn btn-danger btn-xs'
           end %>
         </td>
       </tr>
