@@ -11,7 +11,6 @@ function defaultChartColors() {
 }
 
 function outputHighchartsColorString(color, opacity, fallback) {
-
   if (!color) {
 
     if (fallback) {

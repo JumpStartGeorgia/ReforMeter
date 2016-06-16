@@ -104,9 +104,11 @@ function historyTimeSeriesOptions(chartData) {
 }
 
 function ratingHistoryTimeSeriesOptions(chartData) {
-  function yAxisPlotBands() {
-    var horizontalDisplacement = -80;
+  function yAxisPlotBands(labelColor) {
+    var horizontalDisplacement = -100;
     var verticalAlign = 'top';
+    var fontSize = '1.6rem';
+    var fontWeight = '600';
 
     return [
       {
@@ -117,7 +119,9 @@ function ratingHistoryTimeSeriesOptions(chartData) {
           x: horizontalDisplacement,
           verticalAlign: verticalAlign,
           style: {
-            color: 'black'
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: outputHighchartsColorString(labelColor, '.6')
           }
         }
       }, {
@@ -128,7 +132,9 @@ function ratingHistoryTimeSeriesOptions(chartData) {
           x: horizontalDisplacement,
           verticalAlign: verticalAlign,
           style: {
-            color: 'black'
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: outputHighchartsColorString(labelColor, '.8')
           }
         }
       }, {
@@ -139,17 +145,19 @@ function ratingHistoryTimeSeriesOptions(chartData) {
           x: horizontalDisplacement,
           verticalAlign: verticalAlign,
           style: {
-            color: 'black'
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: outputHighchartsColorString(labelColor, '1')
           }
         }
       }
     ]
   }
-  
+
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
-      spacingLeft: 60
+      spacingLeft: 80
     },
     exporting: {
       enabled: true
@@ -158,7 +166,7 @@ function ratingHistoryTimeSeriesOptions(chartData) {
       min: 0,
       max: 10,
       tickInterval: 1,
-      plotBands: yAxisPlotBands()
+      plotBands: yAxisPlotBands(chartData.color)
     }
   };
 
