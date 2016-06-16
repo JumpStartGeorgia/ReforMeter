@@ -178,60 +178,64 @@ class RootController < ApplicationController
 
       gon.charts = [
         government_time_series,
-        {
-          id: 'reform-government-overall',
-          color: government_time_series[:color],
-          title: I18n.t('shared.categories.overall'),
-          score: @reform_survey.government_overall_score.to_f,
-          change: @reform_survey.government_overall_change
-        }, {
-          id: 'reform-government-institutional-setup',
-          title: I18n.t('shared.categories.initial_setup'),
-          score: @reform_survey.government_category1_score.to_f,
-          change: @reform_survey.government_category1_change
-        }, {
-          id: 'reform-government-capacity-building',
-          title: I18n.t('shared.categories.capacity_building'),
-          score: @reform_survey.government_category2_score.to_f,
-          change: @reform_survey.government_category2_change
-        }, {
-          id: 'reform-government-infrastructure-budgeting',
-          title: I18n.t('shared.categories.infastructure_budgeting'),
-          score: @reform_survey.government_category3_score.to_f,
-          change: @reform_survey.government_category3_change
-        }, {
-          id: 'reform-government-legislation-regulations',
-          title: I18n.t('shared.categories.legislation_regulation'),
-          score: @reform_survey.government_category4_score.to_f,
-          change: @reform_survey.government_category4_change
-        },
-        stakeholder_time_series,
-        {
-          id: 'reform-stakeholder-overall',
-          color: government_time_series[:color],
-          title: t('shared.categories.overall'),
-          score: @reform_survey.stakeholder_overall_score.to_f,
-          change: @reform_survey.stakeholder_overall_change
-        }, {
-          id: 'reform-stakeholder-performance',
-          color: government_time_series[:color],
-          title: t('shared.categories.performance'),
-          score: @reform_survey.stakeholder_category1_score.to_f,
-          change: @reform_survey.stakeholder_category1_change
-        }, {
-          id: 'reform-stakeholder-goals',
-          color: government_time_series[:color],
-          title: t('shared.categories.goals'),
-          score: @reform_survey.stakeholder_category2_score.to_f,
-          change: @reform_survey.stakeholder_category2_change
-        }, {
-          id: 'reform-stakeholder-progress',
-          color: government_time_series[:color],
-          title: t('shared.categories.progress'),
-          score: @reform_survey.stakeholder_category3_score.to_f,
-          change: @reform_survey.stakeholder_category3_change
-        }
+        stakeholder_time_series
       ]
+
+      if @reform_survey.present?
+        [
+          {
+            id: 'reform-government-overall',
+            color: government_time_series[:color],
+            title: I18n.t('shared.categories.overall'),
+            score: @reform_survey.government_overall_score.to_f,
+            change: @reform_survey.government_overall_change
+          }, {
+            id: 'reform-government-institutional-setup',
+            title: I18n.t('shared.categories.initial_setup'),
+            score: @reform_survey.government_category1_score.to_f,
+            change: @reform_survey.government_category1_change
+          }, {
+            id: 'reform-government-capacity-building',
+            title: I18n.t('shared.categories.capacity_building'),
+            score: @reform_survey.government_category2_score.to_f,
+            change: @reform_survey.government_category2_change
+          }, {
+            id: 'reform-government-infrastructure-budgeting',
+            title: I18n.t('shared.categories.infastructure_budgeting'),
+            score: @reform_survey.government_category3_score.to_f,
+            change: @reform_survey.government_category3_change
+          }, {
+            id: 'reform-government-legislation-regulations',
+            title: I18n.t('shared.categories.legislation_regulation'),
+            score: @reform_survey.government_category4_score.to_f,
+            change: @reform_survey.government_category4_change
+          }, {
+            id: 'reform-stakeholder-overall',
+            color: government_time_series[:color],
+            title: t('shared.categories.overall'),
+            score: @reform_survey.stakeholder_overall_score.to_f,
+            change: @reform_survey.stakeholder_overall_change
+          }, {
+            id: 'reform-stakeholder-performance',
+            color: government_time_series[:color],
+            title: t('shared.categories.performance'),
+            score: @reform_survey.stakeholder_category1_score.to_f,
+            change: @reform_survey.stakeholder_category1_change
+          }, {
+            id: 'reform-stakeholder-goals',
+            color: government_time_series[:color],
+            title: t('shared.categories.goals'),
+            score: @reform_survey.stakeholder_category2_score.to_f,
+            change: @reform_survey.stakeholder_category2_change
+          }, {
+            id: 'reform-stakeholder-progress',
+            color: government_time_series[:color],
+            title: t('shared.categories.progress'),
+            score: @reform_survey.stakeholder_category3_score.to_f,
+            change: @reform_survey.stakeholder_category3_change
+          }
+        ].each { |chart| gon.charts << chart }
+      end
 
       @external_indicator_charts = @reform.external_indicators.published.sorted.map do |ext_ind|
         ext_ind.format_for_charting
