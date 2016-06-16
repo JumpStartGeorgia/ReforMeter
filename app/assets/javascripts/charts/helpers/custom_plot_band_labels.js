@@ -1,9 +1,4 @@
 function ratingTimeSeriesYAxisPlotBands(labelColor) {
-  var horizontalDisplacement = -100;
-  var verticalAlign = 'top';
-  var fontSize = '1.6rem';
-  var fontWeight = '600';
-
   var plotBands = [
     {
       from: 0,
@@ -37,10 +32,10 @@ function ratingTimeSeriesYAxisPlotBands(labelColor) {
 
   $(plotBands).each(
     function() {
-      this.label.x = horizontalDisplacement;
-      this.label.verticalAlign = verticalAlign;
-      this.label.style.fontSize = fontSize;
-      this.label.style.fontWeight = fontWeight;
+      this.label.x = -100;
+      this.label.verticalAlign = 'top';
+      this.label.style.fontSize = '1.6rem';
+      this.label.style.fontWeight = '600';
     }
   );
 
