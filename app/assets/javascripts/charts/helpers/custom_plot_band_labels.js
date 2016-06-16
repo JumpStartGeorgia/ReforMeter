@@ -4,17 +4,13 @@ function ratingTimeSeriesYAxisPlotBands(labelColor) {
   var fontSize = '1.6rem';
   var fontWeight = '600';
 
-  return [
+  var plotBands = [
     {
       from: 0,
       to: 3,
       label: {
         text: 'Behind',
-        x: horizontalDisplacement,
-        verticalAlign: verticalAlign,
         style: {
-          fontSize: fontSize,
-          fontWeight: fontWeight,
           color: outputHighchartsColorString(labelColor, '.6')
         }
       }
@@ -23,11 +19,7 @@ function ratingTimeSeriesYAxisPlotBands(labelColor) {
       to: 6.5,
       label: {
         text: 'On Track',
-        x: horizontalDisplacement,
-        verticalAlign: verticalAlign,
         style: {
-          fontSize: fontSize,
-          fontWeight: fontWeight,
           color: outputHighchartsColorString(labelColor, '.8')
         }
       }
@@ -36,14 +28,21 @@ function ratingTimeSeriesYAxisPlotBands(labelColor) {
       to: 10,
       label: {
         text: 'Ahead',
-        x: horizontalDisplacement,
-        verticalAlign: verticalAlign,
         style: {
-          fontSize: fontSize,
-          fontWeight: fontWeight,
           color: outputHighchartsColorString(labelColor, '1')
         }
       }
     }
   ]
+
+  $(plotBands).each(
+    function() {
+      this.label.x = horizontalDisplacement;
+      this.label.verticalAlign = verticalAlign;
+      this.label.style.fontSize = fontSize;
+      this.label.style.fontWeight = fontWeight;
+    }
+  );
+
+  return plotBands;
 }
