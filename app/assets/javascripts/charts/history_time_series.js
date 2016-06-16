@@ -189,8 +189,16 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
 
+  var externalIndicatorColor = {
+    r: '247',
+    g: '217',
+    b: '92'
+  }
+
   var options = {
     chart: {
+      // Makes room for the yAxis plot band labels
+      spacingLeft: 80,
       type: 'areaspline'
     },
     exporting: {
@@ -232,9 +240,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
-      title: {
-        text: 'Rating'
-      }
+      plotBands: ratingTimeSeriesYAxisPlotBands(externalIndicatorColor)
     }
   };
 
