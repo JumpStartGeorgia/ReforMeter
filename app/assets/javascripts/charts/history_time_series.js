@@ -104,7 +104,53 @@ function historyTimeSeriesOptions(chartData) {
 }
 
 function ratingHistoryTimeSeriesOptions(chartData) {
+  function yAxisPlotBands() {
+    var horizontalDisplacement = -80;
+    var verticalAlign = 'top';
+
+    return [
+      {
+        from: 0,
+        to: 3,
+        label: {
+          text: 'Behind',
+          x: horizontalDisplacement,
+          verticalAlign: verticalAlign,
+          style: {
+            color: 'black'
+          }
+        }
+      }, {
+        from: 3,
+        to: 6.5,
+        label: {
+          text: 'On Track',
+          x: horizontalDisplacement,
+          verticalAlign: verticalAlign,
+          style: {
+            color: 'black'
+          }
+        }
+      }, {
+        from: 6.5,
+        to: 10,
+        label: {
+          text: 'Ahead',
+          x: horizontalDisplacement,
+          verticalAlign: verticalAlign,
+          style: {
+            color: 'black'
+          }
+        }
+      }
+    ]
+  }
+  
   var options = {
+    chart: {
+      // Makes room for the yAxis plot band labels
+      spacingLeft: 60
+    },
     exporting: {
       enabled: true
     },
@@ -112,9 +158,7 @@ function ratingHistoryTimeSeriesOptions(chartData) {
       min: 0,
       max: 10,
       tickInterval: 1,
-      title: {
-        text: 'Rating'
-      }
+      plotBands: yAxisPlotBands()
     }
   };
 
