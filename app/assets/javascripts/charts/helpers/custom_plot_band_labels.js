@@ -1,5 +1,5 @@
-function ratingTimeSeriesYAxisPlotBands(labelColor) {
-  var plotBands = [
+function ratingPlotBands(labelColor) {
+  return [
     {
       from: 0,
       to: 3,
@@ -29,7 +29,9 @@ function ratingTimeSeriesYAxisPlotBands(labelColor) {
       }
     }
   ]
+}
 
+function ratingTimeSeriesYAxisPlotBands(plotBands) {
   $(plotBands).each(
     function() {
       this.label.x = -100;

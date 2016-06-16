@@ -116,7 +116,7 @@ function ratingHistoryTimeSeriesOptions(chartData) {
       min: 0,
       max: 10,
       tickInterval: 1,
-      plotBands: ratingTimeSeriesYAxisPlotBands(chartData.color)
+      plotBands: ratingTimeSeriesYAxisPlotBands(ratingPlotBands(chartData.color))
     }
   };
 
@@ -138,7 +138,7 @@ function smallRatingHistoryTimeSeriesOptions(chartData) {
     yAxis: {
       max: 10,
       min: 0,
-      plotBands: ratingTimeSeriesYAxisPlotBands(chartData.color),
+      plotBands: ratingTimeSeriesYAxisPlotBands(ratingPlotBands(chartData.color)),
       tickInterval: 1
     }
   };
@@ -240,7 +240,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
-      plotBands: ratingTimeSeriesYAxisPlotBands(externalIndicatorColor)
+      plotBands: ratingTimeSeriesYAxisPlotBands(ratingPlotBands(externalIndicatorColor))
     }
   };
 
