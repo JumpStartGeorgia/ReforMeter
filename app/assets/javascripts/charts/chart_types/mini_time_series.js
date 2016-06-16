@@ -1,8 +1,4 @@
 function miniTimeSeries(chartData) {
-  // return {
-  //   colors: ['#000'],
-  // };
-
   return {
     chart: {
       zoomType: 'x',
