@@ -1,4 +1,4 @@
-function setupHighchart($container) {
+function initializeHighchart($container) {
   var highchart = {}
   var chartType = $container.data('chart-type');
   var containerChartID = $container.data('id')
@@ -35,7 +35,11 @@ function setupCharts() {
 
   setupDefaultOptions();
 
-  $charts.each(function() {
-    setupHighchart($(this)).create();;
+  var charts = $charts.map(function() {
+    return initializeHighchart($(this));
+  });
+
+  $(charts).each(function() {
+    this.create();
   });
 }
