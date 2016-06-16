@@ -188,6 +188,38 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
 
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
+  var color = externalIndicatorChart.color;
+
+  var plotBands = [
+    {
+      from: 0,
+      to: 3,
+      label: {
+        text: 'Stuff',
+        style: {
+          color: outputHighchartsColorString(color, '.6')
+        }
+      }
+    }, {
+      from: 3,
+      to: 6.5,
+      label: {
+        text: 'On Track',
+        style: {
+          color: outputHighchartsColorString(color, '.8')
+        }
+      }
+    }, {
+      from: 6.5,
+      to: 10,
+      label: {
+        text: 'Ahead',
+        style: {
+          color: outputHighchartsColorString(color, '1')
+        }
+      }
+    }
+  ];
 
   var options = {
     chart: {
@@ -234,7 +266,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
-      plotBands: ratingTimeSeriesYAxisPlotBands(ratingPlotBands(externalIndicatorChart.color))
+      plotBands: ratingTimeSeriesYAxisPlotBands(plotBands)
     }
   };
 
