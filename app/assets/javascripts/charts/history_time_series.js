@@ -104,56 +104,6 @@ function historyTimeSeriesOptions(chartData) {
 }
 
 function ratingHistoryTimeSeriesOptions(chartData) {
-  function yAxisPlotBands(labelColor) {
-    var horizontalDisplacement = -100;
-    var verticalAlign = 'top';
-    var fontSize = '1.6rem';
-    var fontWeight = '600';
-
-    return [
-      {
-        from: 0,
-        to: 3,
-        label: {
-          text: 'Behind',
-          x: horizontalDisplacement,
-          verticalAlign: verticalAlign,
-          style: {
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            color: outputHighchartsColorString(labelColor, '.6')
-          }
-        }
-      }, {
-        from: 3,
-        to: 6.5,
-        label: {
-          text: 'On Track',
-          x: horizontalDisplacement,
-          verticalAlign: verticalAlign,
-          style: {
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            color: outputHighchartsColorString(labelColor, '.8')
-          }
-        }
-      }, {
-        from: 6.5,
-        to: 10,
-        label: {
-          text: 'Ahead',
-          x: horizontalDisplacement,
-          verticalAlign: verticalAlign,
-          style: {
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            color: outputHighchartsColorString(labelColor, '1')
-          }
-        }
-      }
-    ]
-  }
-
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
@@ -166,7 +116,7 @@ function ratingHistoryTimeSeriesOptions(chartData) {
       min: 0,
       max: 10,
       tickInterval: 1,
-      plotBands: yAxisPlotBands(chartData.color)
+      plotBands: ratingTimeSeriesYAxisPlotBands(chartData.color)
     }
   };
 
@@ -178,16 +128,18 @@ function ratingHistoryTimeSeriesOptions(chartData) {
 
 function smallRatingHistoryTimeSeriesOptions(chartData) {
   var options = {
+    chart: {
+      // Makes room for the yAxis plot band labels
+      spacingLeft: 80
+    },
     legend: {
       enabled: false
     },
     yAxis: {
-      min: 0,
       max: 10,
-      tickInterval: 1,
-      title: {
-        text: 'Rating'
-      }
+      min: 0,
+      plotBands: ratingTimeSeriesYAxisPlotBands(chartData.color),
+      tickInterval: 1
     }
   };
 
