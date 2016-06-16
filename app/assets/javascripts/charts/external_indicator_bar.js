@@ -16,10 +16,15 @@ function highchartsExternalIndicatorBar(chartData) {
       text: chartData.title
     },
     tooltip: {
+      backgroundColor: '#455357',
       formatter: function() {
         indexBoxes.update(this);
 
-        return '' + this.y;
+        return Math.round(this.y);
+      },
+      style: {
+        color: 'white',
+        fontSize: '2rem'
       }
     },
     xAxis: {

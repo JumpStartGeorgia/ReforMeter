@@ -229,10 +229,15 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       text: chartData.title
     },
     tooltip: {
+      backgroundColor: '#455357',
       formatter: function() {
         indexBoxes.update(this);
 
-        return highchartTimeSeriesTooltipFormatter.call(this, chartData);
+        return Math.round(this.y);
+      },
+      style: {
+        color: 'white',
+        fontSize: '2rem'
       }
     },
     yAxis: {
