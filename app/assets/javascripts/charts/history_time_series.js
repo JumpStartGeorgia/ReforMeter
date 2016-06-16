@@ -189,37 +189,7 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
   var color = externalIndicatorChart.color;
-
-  var plotBands = [
-    {
-      from: 0,
-      to: 3,
-      label: {
-        text: 'Stuff',
-        style: {
-          color: outputHighchartsColorString(color, '.6')
-        }
-      }
-    }, {
-      from: 3,
-      to: 6.5,
-      label: {
-        text: 'On Track',
-        style: {
-          color: outputHighchartsColorString(color, '.8')
-        }
-      }
-    }, {
-      from: 6.5,
-      to: 10,
-      label: {
-        text: 'Ahead',
-        style: {
-          color: outputHighchartsColorString(color, '1')
-        }
-      }
-    }
-  ];
+  var max = chartData.max;
 
   var options = {
     chart: {
@@ -266,7 +236,47 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
-      plotBands: ratingTimeSeriesYAxisPlotBands(plotBands)
+      plotBands: ratingTimeSeriesYAxisPlotBands(
+        [
+          {
+            from: max * 0,
+            to: max * .25,
+            label: {
+              text: 'Fail',
+              style: {
+                color: outputHighchartsColorString(color, '.6')
+              }
+            }
+          }, {
+            from: max * .25,
+            to: max * .5,
+            label: {
+              text: 'Poor',
+              style: {
+                color: outputHighchartsColorString(color, '.6')
+              }
+            }
+          }, {
+            from: max * .5,
+            to: max * .75,
+            label: {
+              text: 'Fair',
+              style: {
+                color: outputHighchartsColorString(color, '.8')
+              }
+            }
+          }, {
+            from: max * .75,
+            to: max,
+            label: {
+              text: 'Good',
+              style: {
+                color: outputHighchartsColorString(color, '1')
+              }
+            }
+          }
+        ]
+      )
     }
   };
 
