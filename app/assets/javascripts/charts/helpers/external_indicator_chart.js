@@ -1,11 +1,11 @@
 var externalIndicatorChart = (function() {
-  var chart_methods = {};
+  var externalIndicatorChart = {};
 
-  chart_methods.color = {
+  externalIndicatorChart.color = {
     r: '247',
     g: '217',
     b: '92'
   }
 
-  return chart_methods;
+  return externalIndicatorChart;
 })();
