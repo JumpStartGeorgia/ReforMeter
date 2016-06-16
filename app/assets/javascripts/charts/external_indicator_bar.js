@@ -5,6 +5,12 @@ function highchartsExternalIndicatorBar(chartData) {
     chart: {
       type: 'column'
     },
+    colors: [
+      outputHighchartsColorString(externalIndicatorChart.color, 1),
+      outputHighchartsColorString(externalIndicatorChart.color, 0.8),
+      outputHighchartsColorString(externalIndicatorChart.color, 0.6),
+      outputHighchartsColorString(externalIndicatorChart.color, 0.4)
+    ],
     exporting: {
       enabled: true
     },
