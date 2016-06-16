@@ -244,7 +244,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
             label: {
               text: 'Fail',
               style: {
-                color: outputHighchartsColorString(color, '.6')
+                color: outputHighchartsColorString(color, '.4')
               }
             }
           }, {
