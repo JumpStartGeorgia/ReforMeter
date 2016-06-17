@@ -1,5 +1,6 @@
 function highchartsExternalIndicatorLineTimeSeries(chartData) {
   var options = {
+    colors: externalIndicatorChart.colors,
     exporting: {
       enabled: true
     },

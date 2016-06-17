@@ -1,6 +1,6 @@
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
-  var color = externalIndicatorChart.color;
+  var color = externalIndicatorChart.colorHash;
   var max = chartData.max;
 
   var options = {
