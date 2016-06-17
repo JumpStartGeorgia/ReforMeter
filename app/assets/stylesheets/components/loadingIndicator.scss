@@ -1,17 +1,12 @@
 .loadingIndicator {
-  position: absolute;
+  display: flex;
   z-index: 9999;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(#FFF, 0.3);
+  position: fixed;
 }
 
   .loadingIndicator-image {
-    position: fixed;
-    width: $loadingIndicator-size;
-    height: $loadingIndicator-size;
-    left: 50%;
-    top: 50%;
-    margin-top: $loadingIndicator-size/-2;
-    margin-left: $loadingIndicator-size/-2;
+    margin: auto;
   }
