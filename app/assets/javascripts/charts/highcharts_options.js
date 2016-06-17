@@ -71,5 +71,9 @@ function highchartsOptions(chartType, chartData) {
     case 'external-indicator-bar': {
       return highchartsExternalIndicatorBar(chartData);
     }
+
+    case 'external-indicator-line-time-series': {
+      return highchartsExternalIndicatorLineTimeSeries(chartData);
+    }
   }
 }
