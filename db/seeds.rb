@@ -615,6 +615,107 @@ if ENV['load_test_data'].present?
     ei4.reforms << reform2
     ei4.reforms << reform3
 
+    ei5 = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true)
+    data = {
+      countries: [
+        {id: 1, name: 'Georgia'},
+        {id: 2, name: 'Estonia'},
+        {id: 3, name: 'Armenia'},
+        {id: 4, name: 'Azerbaijan'}
+      ],
+      time_periods: [
+        {id: 1, name: '2003'},
+        {id: 2, name: '2004'},
+        {id: 3, name: '2005'},
+        {id: 4, name: '2006'},
+        {id: 5, name: '2007'},
+        {id: 6, name: '2008'},
+        {id: 7, name: '2009'},
+        {id: 8, name: '2010'},
+        {id: 9, name: '2011'},
+        {id: 10, name: '2012'},
+        {id: 11, name: '2013'},
+        {id: 12, name: '2014'},
+      ],
+      data: [
+        {time_period: 1, values: [
+          {country: 1, value: 1.8, change: nil},
+          {country: 2, value: 2.5, change: nil},
+          {country: 3, value: 11.6, change: nil},
+          {country: 4, value: 1.9, change: nil}
+        ]},
+        {time_period: 2, values: [
+          {country: 1, value: -3.2, change: -1},
+          {country: 2, value: 3.0, change: 1},
+          {country: 3, value: 9.5, change: -1},
+          {country: 4, value: -1.5, change: -1}
+        ]},
+        {time_period: 3, values: [
+          {country: 1, value: 1.7, change: 1},
+          {country: 2, value: 4.2, change: 1},
+          {country: 3, value: 9.2, change: -1},
+          {country: 4, value: 13.1, change: 1}
+        ]},
+        {time_period: 4, values: [
+          {country: 1, value: 1.4, change: -1},
+          {country: 2, value: 3.8, change: -1},
+          {country: 3, value: 8.7, change: -1},
+          {country: 4, value: 19.2, change: 1}
+        ]},
+        {time_period: 5, values: [
+          {country: 1, value: 5.5, change: 1},
+          {country: 2, value: 3.2, change: -1},
+          {country: 3, value: 7.7, change: -1},
+          {country: 4, value: 12.1, change: -1}
+        ]},
+        {time_period: 6, values: [
+          {country: 1, value: -1.0, change: -1},
+          {country: 2, value: -7.2, change: -1},
+          {country: 3, value: 1.0, change: -1},
+          {country: 4, value: -0.1, change: -1}
+        ]},
+        {time_period: 7, values: [
+          {country: 1, value: -7.6, change: -1},
+          {country: 2, value: -4.6, change: 1},
+          {country: 3, value: -17.3, change: -1},
+          {country: 4, value: 0.1, change: 1}
+        ]},
+        {time_period: 8, values: [
+          {country: 1, value: 5.2, change: 1},
+          {country: 2, value: 4.7, change: 1},
+          {country: 3, value: -2.6, change: 1},
+          {country: 4, value: -1.3, change: -1}
+        ]},
+        {time_period: 9, values: [
+          {country: 1, value: 4.2, change: -1},
+          {country: 2, value: 2.4, change: -1},
+          {country: 3, value: 3.9, change: 1},
+          {country: 4, value: -4.8, change: -1}
+        ]},
+        {time_period: 10, values: [
+          {country: 1, value: 3.2, change: -1},
+          {country: 2, value: 3.2, change: 1},
+          {country: 3, value: 4.9, change: 1},
+          {country: 4, value: -3.1, change: 1}
+        ]},
+        {time_period: 11, values: [
+          {country: 1, value: 2.7, change: -1},
+          {country: 2, value: 0.1, change: -1},
+          {country: 3, value: 2.1, change: -1},
+          {country: 4, value: 0.0, change: 1}
+        ]},
+        {time_period: 12, values: [
+          {country: 1, value: 3.8, change: 1},
+          {country: 2, value: 0.6, change: 1},
+          {country: 3, value: 0.9, change: -1},
+          {country: 4, value: -3.1, change: -1}
+        ]}
+      ]
+    }
+    ei5.data = data.to_json
+    ei5.save
+    ei5.reforms << reform1
+
     puts 'LOADING TEST DATA DONE'
   end
 end
