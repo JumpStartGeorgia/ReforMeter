@@ -82,7 +82,13 @@ page_title t('.title')
 
       <div class='contentSection-body'>
 
-        sponsor logos!
+        <a class='aboutPage-logo' href='https://www.usaid.gov/georgia' target='_blank'>
+          <%= image_tag('usaid_logo.jpg') %>
+        </a>
+
+        <a class='aboutPage-logo' href='https://www.facebook.com/G4G-305788096275110/' target='_blank'>
+          <%= image_tag('gg_logo.jpg') %>
+        </a>
 
       </div>
 
@@ -100,11 +106,14 @@ page_title t('.title')
 
       <div class='contentSection-body'>
 
-        partner logos!
+        <a class='aboutPage-logo' href='http://iset-pi.ge/index.php/en/' target='_blank'>
+          <%= image_tag('iset_logo.jpg') %>
+        </a>
 
         <%= link_to(image_tag('jumpstart-logo.png'),
                     'http://jumpstart.ge',
                     target: '_blank',
+                    class: 'aboutPage-logo',
                     title: t('shared.common.jumpstart.slogan')) %>
 
       </div>
