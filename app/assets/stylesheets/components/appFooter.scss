@@ -3,19 +3,42 @@
   background-color: white;
   box-sizing: border-box;
   color: $color-grey-text;
-  display: flex;
-  justify-content: space-between;
-  max-width: $max-width-of-content;
   padding: 0 $padding-main-content;
   width: 100%;
 
   @include center-and-limit-content-width();
 }
 
-  .appFooter-jumpstart {
+  .appFooter-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
+    @media (min-width: 550px) {
+      flex-direction: row;
+    }
   }
 
-    .appFooter-jumpstart-logo {
-      vertical-align: -10px;
+    .appFooter-logos-container {
+      display: flex;
+      flex-direction: column;
+      align-items: inherit;
+      justify-content: inherit;
+
+      @media (min-width: 1000px) {
+        flex-direction: row;
+      }
+    }
+
+    .appFooter-logos-item {
+      display: block;
+      padding: 5px 10px;
+    }
+
+    .appFooter-logos-item.mod-jumpstart {
+
+      .appFooter-logos-item-image {
+        vertical-align: -10px;
+      }
     }

@@ -1,19 +1,42 @@
 <footer class='appFooter'>
 
   <p>
-    <a class='link' href='http://iset-pi.ge/index.php/en/' target='_blank'>
-      <%= t('.iset_copyright', year: Time.now.year) %>
-    </a>
+    <%= t('.description') %>
   </p>
 
-  <p class='appFooter-jumpstart'>
-    <%= t('.made_by_jumpstart',
-          jumpstart: (link_to (image_tag('jumpstart-logo.png',
-                                       class: 'appFooter-jumpstart-logo')),
-                              'http://jumpstart.ge',
-                              target: '_blank',
-                              title: t('shared.common.jumpstart.slogan'))
-        ).html_safe %>
-  </p>
+  <div class='appFooter-logos'>
+
+    <div class='appFooter-logos-container'>
+
+      <a class='appFooter-logos-item' href='https://www.usaid.gov/georgia' target='_blank'>
+        <%= image_tag('usaid_logo.jpg') %>
+      </a>
+
+      <a class='appFooter-logos-item' href='https://www.facebook.com/G4G-305788096275110/' target='_blank'>
+        <%= image_tag('gg_logo.jpg') %>
+      </a>
+
+    </div>
+
+    <div class='appFooter-logos-container'>
+
+      <a class='appFooter-logos-item' href='http://iset-pi.ge/index.php/en/' target='_blank'>
+        <%= image_tag('iset_logo.jpg') %>
+      </a>
+
+      <p class='appFooter-logos-item mod-jumpstart'>
+        © <%= Date.today.year %> |
+        <%= t('.made_by_jumpstart',
+              jumpstart: (link_to (image_tag('jumpstart-logo.png',
+                                           class: 'appFooter-logos-item-image')),
+                                  'http://jumpstart.ge',
+                                  target: '_blank',
+                                  title: t('shared.common.jumpstart.slogan'))
+            ).html_safe %>
+      </p>
+
+    </div>
+
+  </div>
 
 </footer>

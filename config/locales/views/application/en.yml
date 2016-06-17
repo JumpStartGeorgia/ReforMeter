@@ -13,5 +13,5 @@ en:
       link1: 'link #1'
       link2: 'link #2'
     footer:
-      iset_copyright: Copyright © %{year}, International School of Economics at TSU
+      description: This application is made possible by the support of the American People through the United States Agency for International Development (USAID). The contents of this application are the responsibility of International School of Economics at Tbilisi State University (ISET) Policy Institute and do not necessarily reflect the views of USAID or the United States Government.
       made_by_jumpstart: Made by %{jumpstart}
