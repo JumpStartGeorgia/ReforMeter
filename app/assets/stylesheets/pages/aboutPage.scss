@@ -2,3 +2,25 @@
   display: block;
   margin: 10px 0;
 }
+
+$about-page-width-move-sidebar-to-side: 900px;
+
+.aboutPage-contentSidebarContainer {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $about-page-width-move-sidebar-to-side) {
+    flex-direction: row;
+  }
+}
+
+  .aboutPage-contentSidebarContainer-content {
+    width: 100%;
+  }
+
+  .aboutPage-contentSidebarContainer-sidebar {
+    @media (min-width: $about-page-width-move-sidebar-to-side) {
+      margin-left: 20px;
+      min-width: 35%;
+    }
+  }
