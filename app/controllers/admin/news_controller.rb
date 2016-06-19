@@ -17,7 +17,7 @@ class Admin::NewsController < ApplicationController
   # GET /admin/quarters/news/new
   def new
     @news = News.new
-    @reforms = Reform.active#.sorted
+    @news.reform_id = params[:reform_id] if params[:reform_id].present?
   end
 
   # GET /admin/quarters/news/1/edit
@@ -31,7 +31,7 @@ class Admin::NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to admin_quarters_path, notice: t('shared.msgs.success_created',
+        format.html { redirect_to admin_quarters_path(q: @quarter.slug), notice: t('shared.msgs.success_created',
                             obj: t('activerecord.models.news', count: 1)) }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class Admin::NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to admin_quarters_path, notice: t('shared.msgs.success_updated',
+        format.html { redirect_to admin_quarters_path(q: @quarter.slug), notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.news', count: 1)) }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class Admin::NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to admin_quarters_url, notice: t('shared.msgs.success_destroyed',
+      format.html { redirect_to admin_quarters_url(q: @quarter.slug), notice: t('shared.msgs.success_destroyed',
                             obj: t('activerecord.models.news', count: 1)) }
     end
   end

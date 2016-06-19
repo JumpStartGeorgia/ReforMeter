@@ -23,26 +23,31 @@ ka:
         view: View %{obj}
         view_all: View All %{obj}
     categories:
-      capacity_building: Capacity Building
-      goals: Goals
-      infastructure_budgeting: Infastructure & Budgeting
-      initial_setup: Initial Setup
-      legislation_regulation: Legislation & Regulations
+      government: Government
+      government_survey: Government Survey
+      stakeholder: Stakeholder
+      stakeholder_survey: Stakeholder Survey
       overall: Overall
+      change: Change
       performance: Performance
+      goals: Goals
       progress: Progress
+      initial_setup: Initial Setup
+      capacity_building: Capacity Building
+      infastructure_budgeting: Infastructure & Budgeting
+      legislation_regulation: Legislation & Regulations
     change_status:
       down: The value has gone down since last quarter
       flat: The value has not changed since last quarter
       up: The value has gone up since last quarter
     chart_titles:
       expert:
-        title: Expert Response History
+        title: 'Expert Response History'
       reform:
-        all_title: All Reforms
-        subtitle_government: Government Response History
-        subtitle_stakeholder: Stakeholder Response History
         title: 'Reform: %{name}'
+        all_title: 'All Reforms'
+        subtitle_government: 'Government Response History'
+        subtitle_stakeholder: 'Stakeholder Response History'
     common:
       account: Account
       actions: Actions
@@ -89,6 +94,7 @@ ka:
       success_unpublished: "%{obj} was successfully unpublished."
       fail_published: "%{obj} was not successfully published due to the following: %{msg}"
       fail_unpublished: "%{obj} was not successfully unpublished due to the following: %{msg}"
+      all_reform_surveys_exist: A survey for each reform in %{quarter} already exists, so no more surveys need to be added.
     prompts:
       confirm: Are you sure?
       forgot_password: Forgot your password?

@@ -1,0 +1,90 @@
+<% object = @reform_survey %>
+<%= semantic_form_for [:admin, @quarter, object] do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+
+    <%= f.input :quarter_id, as: :hidden, :input_html => { :value => @quarter.id } %>
+    <div class="input optional form-group" id="news_quarter_id_input">
+      <span class="form-label">
+        <label for="news_quarter_id" class=" control-label"><%= t('activerecord.attributes.reform_survey.quarter_id') %></label>
+      </span>
+      <span class="form-wrapper">
+        <%= @quarter.time_period %>
+      </span>
+    </div>
+
+    <div class="select input optional form-group" id="reform_survey_reform_id_input">
+      <span class="form-label">
+        <label for="reform_survey_reform_id" class=" control-label">Reform</label>
+      </span>
+      <span class="form-wrapper">
+        <select name="reform_survey[reform_id]" id="reform_survey_reform_id" class="form-control">
+          <option value=""></option>
+          <% @reforms.each do |reform| %>
+            <%
+              selected = @reform_survey.reform_id == reform.id ? 'selected=selected' : ''
+              disabled = @survey_reforms.select{|x| x.reform_id == reform.id}.length > 0 ? 'disabled=disabled' : ''
+            %>
+            <option <%= selected %> <%= disabled %> value="<%= reform.id %>"><%= reform.name %></option>
+          <% end %>
+        </select>
+      </span>
+    </div>
+
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "summary_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.reform_survey.summary'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5  } %>
+    <% end %>
+
+    <hr />
+
+    <h3><%= t('shared.categories.government_survey') %></h3>
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "government_summary_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.reform_survey.government_summary'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5  } %>
+    <% end %>
+
+    <%= f.input :government_overall_score, as: :string, input_html: {max_length: 5, size: 5} %>
+    <%= f.input :government_category1_score, as: :string, input_html: {max_length: 5, size: 5} %>
+    <%= f.input :government_category2_score, as: :string, input_html: {max_length: 5, size: 5} %>
+    <%= f.input :government_category3_score, as: :string, input_html: {max_length: 5, size: 5} %>
+    <%= f.input :government_category4_score, as: :string, input_html: {max_length: 5, size: 5} %>
+
+    <hr />
+
+    <h3><%= t('shared.categories.stakeholder_survey') %></h3>
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "stakeholder_summary_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.reform_survey.stakeholder_summary'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5  } %>
+    <% end %>
+
+    <%= f.input :stakeholder_overall_score, as: :string, input_html: {max_length: 5, size: 5} %>
+    <%= f.input :stakeholder_category1_score, as: :string, input_html: {max_length: 5, size: 5} %>
+    <%= f.input :stakeholder_category2_score, as: :string, input_html: {max_length: 5, size: 5} %>
+    <%= f.input :stakeholder_category3_score, as: :string, input_html: {max_length: 5, size: 5} %>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>
+

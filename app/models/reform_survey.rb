@@ -48,11 +48,18 @@ class ReformSurvey < ActiveRecord::Base
             :stakeholder_overall_score, :stakeholder_category1_score, :stakeholder_category2_score, :stakeholder_category3_score,
             presence: :true
 
+  validates_uniqueness_of :reform_id, scope: :quarter_id
+
+
   #######################
   ## SCOPES
 
   def self.for_reform(reform_id)
     where(reform_id: reform_id)
+  end
+
+  def self.not_in_reform(reform_id)
+    where.not(reform_id: reform_id)
   end
 
   # get all surveys that are in the provided quarter id

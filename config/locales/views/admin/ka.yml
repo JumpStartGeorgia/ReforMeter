@@ -3,3 +3,6 @@ ka:
   admin:
     index:
       title: Admin Section
+    quarters:
+      index:
+        set_time_period: Select Time Period to Edit

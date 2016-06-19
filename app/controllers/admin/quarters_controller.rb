@@ -5,7 +5,11 @@ class Admin::QuartersController < ApplicationController
   # GET /admin/quarters
   # GET /admin/quarters.json
   def index
-    @quarters = Quarter.recent.with_expert_survey.with_reform_surveys.with_news
+    @quarters = Quarter.recent.all_quarters_array
+    logger.debug "@@"*10 + @quarters.first.inspect
+    params[:q] = nil if !@quarters.map{|x| x[1]}.include?(params[:q])
+    params[:q] = @quarters[0][1] if params[:q].nil? && @quarters.present?
+    @quarter = Quarter.with_expert_survey.with_reform_surveys.with_news.friendly.find(params[:q]) if params[:q].present?
   end
 
   # GET /admin/quarters/1

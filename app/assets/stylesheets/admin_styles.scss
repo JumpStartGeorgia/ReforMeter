@@ -4,6 +4,10 @@
 .appHeader-nav li.dropdown > a{
   color: #fff;
 }
+li.appHeader-nav-list-item > a:hover{
+  color: #fff;
+  text-decoration: none;
+}
 .appHeader-nav li.dropdown > a:hover{
   background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -17,23 +21,45 @@ fieldset.inputs .radio{
 .select2 .select2-selection{
   background-color: #fff;
 }
+.form-quarter-select .select2 .select2-selection span{
+  color: #66666d;
+}
+
 
 .boolean-flag{
   display: inline-block;
   padding: 4px 8px;
-  background-color: #fff;
-  border-radius: 5px;
-  border: solid 1px #fff;
+  font-weight: bold;
   &.boolean-flag-true{
     color: #6ad95d;
-    border-color: #6ad95d;
   }
   &.boolean-flag-false{
     color: #d95d6a;
-    border-color: #d95d6a;
   }
   &.boolean-flag-xs{
     font-size: 12px;
     padding: 2px 4px;
   }
+}
+
+
+/* quarter index page */
+.form-quarter-details{
+  .form-quarter-details-top{
+    & > div.row{
+      margin-top: 20px;
+    }
+  }
+  .form-quarter-details-bottom{
+    margin-top: 20px;
+  }
+}
+.form-survey-item{
+  padding: 15px 10px;
+  &:nth-child(even) {
+      background-color: #ddd;
+  }
+}
+.form-reform-news{
+  margin-left: 30px;
 }

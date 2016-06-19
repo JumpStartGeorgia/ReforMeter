@@ -114,6 +114,11 @@ class Quarter < ActiveRecord::Base
     published.recent.map{|x| [x.time_period, x.slug]}
   end
 
+  # get an array of all quarters in format: [time period, slug]
+  def self.all_quarters_array
+    recent.map{|x| [x.time_period, x.slug]}
+  end
+
   # get all quarters with the provided ids
   def self.with_ids(quarter_ids)
     where(id: quarter_ids)

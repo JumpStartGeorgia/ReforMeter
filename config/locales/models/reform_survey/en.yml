@@ -2,18 +2,22 @@
 en:
   activerecord:
     attributes:
-      quarter:
-        quarter: Quarter
-        year: Year
-        time_period: Time Period
-        is_public: Is Public?
-        summary_good: Good Summary Item
-        summary_bad: Bad Summary Item
-        report: Quarterly Report
-        expert_survey: Expert Survey
-        reform_surveys: Reform Surveys
-        news: News
+      reform_survey:
+        quarter_id:  Quarter
+        reform_id :  Reform
+        summary: Summary
+        government_summary: Government Summary
+        stakeholder_summary: Stakeholder Summary
+        government_overall_score: Government Overall Score
+        government_category1_score: Initial Setup
+        government_category2_score: Capacity Building
+        government_category3_score: Infastructure & Budgeting
+        government_category4_score: Legislation & Regulations
+        stakeholder_overall_score: Stakeholder Overall Score
+        stakeholder_category1_score: Performance
+        stakeholder_category2_score: Goals
+        stakeholder_category3_score: Progress
     models:
-      quarter:
-        one: Quarter
-        other: Quarters
+      reform_survey:
+        one: Reform Survey
+        other: Reform Surveys

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Admin Expert Surveys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_expert_surveys.each do |admin_expert_survey| %>
+      <tr>
+        <td><%= link_to 'Show', admin_expert_survey %></td>
+        <td><%= link_to 'Edit', edit_admin_expert_survey_path(admin_expert_survey) %></td>
+        <td><%= link_to 'Destroy', admin_expert_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expert survey', new_admin_expert_survey_path %>
