@@ -124,6 +124,29 @@ class Quarter < ActiveRecord::Base
     where(id: quarter_ids)
   end
 
+  # get the quarter after the provided quarter
+  def self.quarter_after(quarter_id)
+    q = where(id: quarter_id).first
+    if q.present?
+      new_quarter = q.quarter == 4 ? 1 : q.quarter + 1
+      new_year = q.quarter == 4 ? q.year + 1 : q.year
+
+      return where(quarter: new_quarter, year: new_year).first
+    end
+  end
+
+  # get the quarter before the provided quarter
+  def self.quarter_before(quarter_id)
+    q = where(id: quarter_id).first
+    if q.present?
+      new_quarter = q.quarter == 1 ? 4 : q.quarter - 1
+      new_year = q.quarter == 1 ? q.year - 1 : q.year
+
+      return where(quarter: new_quarter, year: new_year).first
+    end
+  end
+
+
   #######################
   ## METHODS
 

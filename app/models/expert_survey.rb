@@ -35,4 +35,8 @@ class ExpertSurvey < ActiveRecord::Base
 
   validates :quarter_id, :overall_score, :category1_score, :category2_score, :category3_score, presence: :true
 
+  validates :overall_score, :category1_score, :category2_score, :category3_score, inclusion: {in: 0.0..10.0}
+  validates :overall_change, :category1_change, :category2_change, :category3_change, inclusion: {in: [-1, 0, 1]}
+  validates_uniqueness_of :quarter_id
+
 end
