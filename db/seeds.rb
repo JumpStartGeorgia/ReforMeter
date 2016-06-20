@@ -139,18 +139,17 @@ if ENV['load_test_data'].present?
 
     # create expert surveys
     puts 'creating expert surveys'
-    es = q2.create_expert_survey(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5, summary: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p>', details: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p><p> Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
+    es = q2.create_expert_survey(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5,
+                                summary: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p>', details: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p><p> Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
     es.experts << exp1
     es.experts << exp2
 
     es = q3.create_expert_survey(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
-                                overall_change: -1, category1_change: 0, category2_change: -1, category3_change: -1,
                                 summary: '<p>sit amet, te duo probo timeam</p>', details: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Ferri commune voluptatibus ne sed. </p><p>Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam.</p>')
     es.experts << exp2
     es.experts << exp3
 
     es = q4.create_expert_survey(overall_score: 6.82, category1_score: 6.5, category2_score: 8.3, category3_score: 5.5,
-                                overall_change: 1, category1_change: 1, category2_change: 1, category3_change: 1,
                                 summary: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p><p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p><p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p>', details: 'Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. </p><p>Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
     es.experts << exp1
     es.experts << exp3
@@ -184,19 +183,7 @@ if ENV['load_test_data'].present?
               stakeholder_category1_score: reform_survey_scores[score_indexes[1]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[1]][7],
               stakeholder_category3_score: reform_survey_scores[score_indexes[1]][8],
               summary: 'this is a summary', government_summary: 'this is a government summary', stakeholder_summary: 'this is a stakeholder summary')
-      if rs2
-        rs3.government_overall_change = rs3.compute_government_change(rs2.government_overall_score, rs3.government_overall_score)
-        rs3.government_category1_change = rs3.compute_government_change(rs2.government_category1_score, rs3.government_category1_score)
-        rs3.government_category2_change = rs3.compute_government_change(rs2.government_category2_score, rs3.government_category2_score)
-        rs3.government_category3_change = rs3.compute_government_change(rs2.government_category3_score, rs3.government_category3_score)
-        rs3.government_category4_change = rs3.compute_government_change(rs2.government_category4_score, rs3.government_category4_score)
-        rs3.stakeholder_overall_change = rs3.compute_stakeholder_change(rs2.stakeholder_overall_score, rs3.stakeholder_overall_score)
-        rs3.stakeholder_category1_change = rs3.compute_stakeholder_change(rs2.stakeholder_category1_score, rs3.stakeholder_category1_score)
-        rs3.stakeholder_category2_change = rs3.compute_stakeholder_change(rs2.stakeholder_category2_score, rs3.stakeholder_category2_score)
-        rs3.stakeholder_category3_change = rs3.compute_stakeholder_change(rs2.stakeholder_category3_score, rs3.stakeholder_category3_score)
-        rs3.save
 
-      end
       rs4 = q4.reform_surveys.create(reform_id: id,
               government_overall_score: reform_survey_scores[score_indexes[2]][0],government_category1_score: reform_survey_scores[score_indexes[2]][1],
               government_category2_score: reform_survey_scores[score_indexes[2]][2],government_category3_score: reform_survey_scores[score_indexes[2]][3],
@@ -204,17 +191,6 @@ if ENV['load_test_data'].present?
               stakeholder_category1_score: reform_survey_scores[score_indexes[2]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[2]][7],
               stakeholder_category3_score: reform_survey_scores[score_indexes[2]][8],
               summary: 'this is a summary', government_summary: 'this is a government summary', stakeholder_summary: 'this is a stakeholder summary')
-
-      rs4.government_overall_change = rs4.compute_government_change(rs3.government_overall_score, rs4.government_overall_score)
-      rs4.government_category1_change = rs4.compute_government_change(rs3.government_category1_score, rs4.government_category1_score)
-      rs4.government_category2_change = rs4.compute_government_change(rs3.government_category2_score, rs4.government_category2_score)
-      rs4.government_category3_change = rs4.compute_government_change(rs3.government_category3_score, rs4.government_category3_score)
-      rs4.government_category4_change = rs4.compute_government_change(rs3.government_category4_score, rs4.government_category4_score)
-      rs4.stakeholder_overall_change = rs4.compute_stakeholder_change(rs3.stakeholder_overall_score, rs4.stakeholder_overall_score)
-      rs4.stakeholder_category1_change = rs4.compute_stakeholder_change(rs3.stakeholder_category1_score, rs4.stakeholder_category1_score)
-      rs4.stakeholder_category2_change = rs4.compute_stakeholder_change(rs3.stakeholder_category2_score, rs4.stakeholder_category2_score)
-      rs4.stakeholder_category3_change = rs4.compute_stakeholder_change(rs3.stakeholder_category3_score, rs4.stakeholder_category3_score)
-      rs4.save
 
     end
 

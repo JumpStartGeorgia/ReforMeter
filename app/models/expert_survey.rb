@@ -36,7 +36,7 @@ class ExpertSurvey < ActiveRecord::Base
   validates :quarter_id, :overall_score, :category1_score, :category2_score, :category3_score, presence: :true
 
   validates :overall_score, :category1_score, :category2_score, :category3_score, inclusion: {in: 0.0..10.0}
-  validates :overall_change, :category1_change, :category2_change, :category3_change, inclusion: {in: [-1, 0, 1]}
+  # validates :overall_change, :category1_change, :category2_change, :category3_change, inclusion: {in: [-1, 0, 1]}
   validates_uniqueness_of :quarter_id
 
   #######################
@@ -45,6 +45,19 @@ class ExpertSurvey < ActiveRecord::Base
   before_save :set_change_values
   after_save :update_future_quarter
   after_destroy :reset_future_quarter
+
+  #######################
+  ## SCOPES
+
+  # get the survey for the provided quarter id
+  def self.in_quarter(quarter_id)
+    where(quarter_id: quarter_id).first
+  end
+
+
+  #######################
+  #######################
+  private
 
   # set the change value when compared to the last quarter
   def set_change_values
@@ -83,19 +96,6 @@ class ExpertSurvey < ActiveRecord::Base
 
     return true
   end
-
-  #######################
-  ## SCOPES
-
-  # get the survey for the provided quarter id
-  def self.in_quarter(quarter_id)
-    where(quarter_id: quarter_id).first
-  end
-
-
-  #######################
-  #######################
-  private
 
   def compute_change_values(current_survey, previous_survey)
     if current_survey.present? && previous_survey.present?

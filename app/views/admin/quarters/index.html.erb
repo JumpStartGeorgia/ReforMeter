@@ -203,6 +203,9 @@
                     <%= generate_change_icon(reform_survey.stakeholder_overall_change) %>
                   </div>
                   <div class="col-md-3">
+                    <%= link_to t('shared.actions.view'),
+                          admin_quarter_reform_survey_path(@quarter, reform_survey),
+                          class: 'btn btn-default btn-xs' %>
                     <%= link_to t('shared.actions.edit'),
                           edit_admin_quarter_reform_survey_path(@quarter, reform_survey),
                           class: 'btn btn-default btn-xs' %>

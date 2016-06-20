@@ -5,6 +5,7 @@
 <div class='actions-container'>
   <%= render partial: 'shared/new_actions',
         locals: {
+          hide_object_name: true,
           object: Quarter.new,
           index_path: admin_quarters_path(q: @quarter.slug)
                 }

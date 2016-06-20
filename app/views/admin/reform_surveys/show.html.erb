@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%
+page_title t('.title', name: @reform.name, time: @quarter.time_period)
+%>
 
-<%= link_to 'Edit', edit_admin_reform_survey_path(@admin_reform_survey) %> |
-<%= link_to 'Back', admin_reform_surveys_path %>
+<%= render partial: 'shared/reform_show', locals: {show_admin_links: true} %>

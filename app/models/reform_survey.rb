@@ -50,8 +50,8 @@ class ReformSurvey < ActiveRecord::Base
 
   validates :government_overall_score, :government_category1_score, :government_category2_score, :government_category3_score, :government_category4_score, inclusion: {in: 0.0..100.0}
   validates :stakeholder_overall_score, :stakeholder_category1_score, :stakeholder_category2_score, :stakeholder_category3_score, inclusion: {in: 0.0..10.0}
-  validates :government_overall_change, :government_category1_change, :government_category2_change, :government_category3_change, :government_category4_change,
-              :stakeholder_overall_change, :stakeholder_category1_change, :stakeholder_category2_change, :stakeholder_category3_change, inclusion: {in: [-1, 0, 1]}
+  # validates :government_overall_change, :government_category1_change, :government_category2_change, :government_category3_change, :government_category4_change,
+  #             :stakeholder_overall_change, :stakeholder_category1_change, :stakeholder_category2_change, :stakeholder_category3_change, inclusion: {in: [-1, 0, 1]}
   validates_uniqueness_of :reform_id, scope: :quarter_id
 
   #######################
@@ -60,44 +60,6 @@ class ReformSurvey < ActiveRecord::Base
   before_save :set_change_values
   after_save :update_future_quarter
   after_destroy :reset_future_quarter
-
-  # set the change value when compared to the last quarter
-  def set_change_values
-    # get the previous quarter
-    prev_q = Quarter.quarter_before(self.quarter_id)
-    prev_rs = ReformSurvey.for_reform(self.reform_id).in_quarter(prev_q.id).first if prev_q.present?
-    compute_change_values(self, prev_rs)
-
-    return true
-  end
-
-  # if the next quarter has a survey for this reform
-  # calculate its change values
-  def update_future_quarter
-    # get the next quarter
-    next_q = Quarter.quarter_after(self.quarter_id)
-    next_rs = ReformSurvey.for_reform(self.reform_id).in_quarter(next_q.id).first if next_q.present?
-    if next_rs.present?
-      update_change_value(next_rs, self)
-      next_rs.save
-    end
-
-    return true
-  end
-
-  # if the next quarter has a survey for this reform
-  # reset its change values
-  def reset_future_quarter
-    # get the next quarter
-    next_q = Quarter.quarter_after(self.quarter_id)
-    next_rs = ReformSurvey.for_reform(self.reform_id).in_quarter(next_q.id).first if next_q.present?
-    if next_rs.present?
-      reset_change_value(next_rs)
-      next_rs.save
-    end
-
-    return true
-  end
 
   #######################
   ## SCOPES
@@ -138,30 +100,68 @@ class ReformSurvey < ActiveRecord::Base
   #######################
   ## METHODS
 
-  # compute the chagne value for government scores
-  # scores are percents
-  # < 0 -> -1
-  # == 0 -> 0
-  # > 0 -> 1
-  def compute_government_change(previous_score, new_score)
-    difference = new_score - previous_score
-    return difference < 0 ? -1 : difference > 0 ? 1 : 0
-  end
+  # # compute the chagne value for government scores
+  # # scores are percents
+  # # < 0 -> -1
+  # # == 0 -> 0
+  # # > 0 -> 1
+  # def compute_government_change(previous_score, new_score)
+  #   difference = new_score - previous_score
+  #   return difference < 0 ? -1 : difference > 0 ? 1 : 0
+  # end
 
-  # compute the chagne value for government scores
-  # scores are numbers from 0 to 10
-  # < -0.2 -> -1
-  # -0.2 .. 0.2 -> 0
-  # > 0.2 -> 1
-  def compute_stakeholder_change(previous_score, new_score)
-    difference = new_score - previous_score
-    return difference < -0.2 ? -1 : difference > 0.2 ? 1 : 0
-  end
+  # # compute the chagne value for government scores
+  # # scores are numbers from 0 to 10
+  # # < -0.2 -> -1
+  # # -0.2 .. 0.2 -> 0
+  # # > 0.2 -> 1
+  # def compute_stakeholder_change(previous_score, new_score)
+  #   difference = new_score - previous_score
+  #   return difference < -0.2 ? -1 : difference > 0.2 ? 1 : 0
+  # end
 
 
   #######################
   #######################
   private
+
+  # set the change value when compared to the last quarter
+  def set_change_values
+    # get the previous quarter
+    prev_q = Quarter.quarter_before(self.quarter_id)
+    prev_rs = ReformSurvey.for_reform(self.reform_id).in_quarter(prev_q.id).first if prev_q.present?
+    compute_change_values(self, prev_rs)
+
+    return true
+  end
+
+  # if the next quarter has a survey for this reform
+  # calculate its change values
+  def update_future_quarter
+    # get the next quarter
+    next_q = Quarter.quarter_after(self.quarter_id)
+    next_rs = ReformSurvey.for_reform(self.reform_id).in_quarter(next_q.id).first if next_q.present?
+    if next_rs.present?
+      update_change_value(next_rs, self)
+      next_rs.save
+    end
+
+    return true
+  end
+
+  # if the next quarter has a survey for this reform
+  # reset its change values
+  def reset_future_quarter
+    # get the next quarter
+    next_q = Quarter.quarter_after(self.quarter_id)
+    next_rs = ReformSurvey.for_reform(self.reform_id).in_quarter(next_q.id).first if next_q.present?
+    if next_rs.present?
+      reset_change_value(next_rs)
+      next_rs.save
+    end
+
+    return true
+  end
 
   def compute_change_values(current_survey, previous_survey)
     if current_survey.present? && previous_survey.present?
@@ -215,7 +215,7 @@ class ReformSurvey < ActiveRecord::Base
     return change
   end
 
-  # stakeholder is 0-10 and difference of at least 0,2 must be had to be record as changed
+  # stakeholder is 0-10 and difference of at least 0.2 must be had to be record as changed
   def compute_stakeholder_change(current_value, previous_value)
     diff = current_value - previous_value
     change = nil

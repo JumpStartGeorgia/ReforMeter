@@ -44,3 +44,21 @@ en:
               inclusion: must be between 0 and 10
             stakeholder_category3_score:
               inclusion: must be between 0 and 10
+            government_overall_change:
+              inclusion: must be -1, 0, or 1
+            government_category1_change:
+              inclusion: must be -1, 0, or 1
+            government_category2_change:
+              inclusion: must be -1, 0, or 1
+            government_category3_change:
+              inclusion: must be -1, 0, or 1
+            government_category4_change:
+              inclusion: must be -1, 0, or 1
+            stakeholder_overall_change:
+              inclusion: must be -1, 0, or 1
+            stakeholder_category1_change:
+              inclusion: must be -1, 0, or 1
+            stakeholder_category2_change:
+              inclusion: must be -1, 0, or 1
+            stakeholder_category3_change:
+              inclusion: must be -1, 0, or 1

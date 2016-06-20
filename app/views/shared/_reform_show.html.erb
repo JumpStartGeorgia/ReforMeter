@@ -1,5 +1,6 @@
 <%
 @do_not_use_default_page_layout = true
+show_admin_links ||= false
 %>
 
 <div class='contentSection mod-overlap-top-image'>
@@ -55,6 +56,20 @@
   </header>
 
   <div class='contentSection-body'>
+
+    <% if show_admin_links %>
+      <div class='actions-container'>
+        <%= render partial: 'shared/show_actions',
+              locals: {
+                hide_object_name: true,
+                object: Quarter.new,
+                index_path: admin_quarters_path(q: @quarter.slug),
+                show_path: admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey),
+                edit_path: edit_admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey),
+                      }
+        %>
+      </div>
+    <% end %>
 
     <% if @reform_survey.summary %>
       <div>

@@ -12,6 +12,37 @@ class Admin::ExpertSurveyController < ApplicationController
   # GET /admin/expert_surveys/1
   # GET /admin/expert_surveys/1.json
   def show
+
+    @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+    @news = News.by_expert_quarter(@quarter.id)
+
+    gon.chart_download_icon = highchart_download_icon
+    gon.change_icons = view_context.change_icons
+
+    gon.charts = [
+      Quarter.expert_survey_data_for_charting(id: 'expert-history'), {
+        id: 'overall',
+        title: I18n.t('shared.categories.overall'),
+        score: @quarter.expert_survey.overall_score.to_f,
+        change: @quarter.expert_survey.overall_change
+      }, {
+        id: 'performance',
+        title: I18n.t('shared.categories.performance'),
+        score: @quarter.expert_survey.category1_score.to_f,
+        change: @quarter.expert_survey.category1_change
+      }, {
+        id: 'goals',
+        title: I18n.t('shared.categories.goals'),
+        score: @quarter.expert_survey.category2_score.to_f,
+        change: @quarter.expert_survey.category2_change
+      }, {
+        id: 'progress',
+        title: I18n.t('shared.categories.progress'),
+        score: @quarter.expert_survey.category3_score.to_f,
+        change: @quarter.expert_survey.category3_change
+      }
+    ]
+
   end
 
   # GET /admin/expert_surveys/new

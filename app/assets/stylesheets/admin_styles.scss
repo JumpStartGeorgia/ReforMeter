@@ -1,5 +1,9 @@
 @import 'bootstrap_and_overrides';
 
+p{
+  margin: 15px 0;
+}
+
 /* admin drop down menu */
 .appHeader-nav li.dropdown > a{
   color: #fff;

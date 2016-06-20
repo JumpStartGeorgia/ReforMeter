@@ -48,6 +48,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def highchart_download_icon
+    ActionController::Base.helpers.image_path('download.svg')
+  end
+
+
 
   ##############################################
   # Authorization #

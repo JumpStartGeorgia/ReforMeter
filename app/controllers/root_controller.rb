@@ -159,7 +159,6 @@ class RootController < ApplicationController
       @methodology_government = PageContent.find_by(name: 'methodology_government')
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
       @news = News.by_reform_quarter(@quarter.id, @reform.id)
-      logger.debug "======= reform id #{@reform.id}; quarter id = #{@quarter.id}, news length = #{@news.length}"
 
       gon.chart_download_icon = highchart_download_icon
       gon.change_icons = view_context.change_icons
@@ -320,12 +319,6 @@ class RootController < ApplicationController
       redirect_to experts_path,
                 alert: t('shared.msgs.does_not_exist')
     end
-  end
-
-  private
-
-  def highchart_download_icon
-    ActionController::Base.helpers.image_path('download.svg')
   end
 
 end
