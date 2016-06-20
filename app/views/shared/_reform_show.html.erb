@@ -1,0 +1,263 @@
+<%
+@do_not_use_default_page_layout = true
+%>
+
+<div class='contentSection mod-overlap-top-image'>
+
+  <header class='contentSection-header'>
+
+    <h1 class='heading'>
+      <%= yield(:page_title) %>
+    </h1>
+
+    <div>
+
+      <% if @active_reforms %>
+
+        <%= t('shared.common.change_reform') %>:
+
+        <select class='js-become-select2 js-reform-page-reform-select'>
+
+          <% @active_reforms.each do |active_reform| %>
+            <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>>
+              <%= active_reform[0] %>
+            </option>
+          <% end %>
+
+        </select>
+
+      <% end %>
+
+      <% if @active_quarters %>
+
+        <%= t('shared.common.change_time') %>:
+
+        <select class='js-become-select2 js-reform-page-quarter-select'>
+
+          <% @active_quarters.each do |active_quarter| %>
+            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
+              <%= active_quarter[0] %>
+            </option>
+          <% end %>
+
+        </select>
+
+      <% end %>
+
+      <% if @active_reforms.present? || @active_quarters.present? %>
+        <button style='border: 1px solid' class='js-load-new-reform-page' data-new-url-base='<%= reforms_path %>'>
+          <%= t('shared.actions.load') %>
+        </button>
+      <% end %>
+
+    </div>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+    <% if @reform_survey.summary %>
+      <div>
+        <%= simple_format_no_tags(@reform_survey.summary) %>
+      </div>
+    <% end %>
+
+    <section>
+
+      <h2 class='heading mod-vertical-margin'>
+        <%= t('.header.government_summary') %>
+      </h2>
+
+      <div class='summaryGaugesContainer mod-five-gauges'>
+
+        <% if @reform_survey.government_summary %>
+          <div class='summaryGaugesContainer-summary'>
+            <%= simple_format_no_tags(@reform_survey.government_summary) %>
+          </div>
+        <% end %>
+
+        <section class='gaugesContainer'>
+
+          <div class="js-become-highchart solidGauge mod-big mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall'></div>
+
+          <div class='gaugesContainer-small'>
+
+            <div class="js-become-highchart solidGauge mod-small mod-small-dot-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup'></div>
+
+            <div class="js-become-highchart solidGauge mod-small mod-small-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building'></div>
+
+            <div class="js-become-highchart solidGauge mod-small mod-medium-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting'></div>
+
+            <div class="js-become-highchart solidGauge mod-small mod-long-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations'></div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </section>
+
+    <div>
+
+      <ul class='tabList mod-with-separator js-act-as-tab-list'>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_history_chart'>
+            <%= t('.header.government_history') %>
+          </button>
+        </li>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_methodology'>
+            <%= t('.header.methodology') %>
+          </button>
+        </li>
+
+      </ul>
+
+      <div class="tabContent js-act-as-tab-content">
+
+        <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='government_history_chart'>
+          <div class='js-become-highchart' data-chart-type='percentage-history-time-series' data-id='reform-government-history'></div>
+        </div>
+
+        <div class='tabContent-panel js-act-as-tab-content-panel' id='government_methodology'>
+          <% if @methodology_government %>
+            <div>
+              <%= simple_format_no_tags(@methodology_government.content) %>
+            </div>
+          <% else %>
+            <p>
+             <%= t('.no_methodology') %>
+            </p>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class='contentSidebarContainer'>
+
+  <div class='contentSidebarContainer-content'>
+
+    <div class='contentSection'>
+
+      <header class='contentSection-header'>
+
+        <h2 class='heading'>
+          <%= t('.header.stakeholder_summary') %>
+        </h2>
+
+      </header>
+
+      <div class='contentSection-body'>
+
+        <section class='gaugesContainer'>
+
+          <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='reform-stakeholder-overall'></div>
+
+          <div class='gaugesContainer-small'>
+
+            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-performance'></div>
+
+            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-goals'></div>
+
+            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-progress'></div>
+
+          </div>
+
+        </section>
+
+        <% if @reform_survey.stakeholder_summary %>
+          <div>
+            <%= simple_format_no_tags(@reform_survey.stakeholder_summary) %>
+          </div>
+        <% end %>
+
+        <section>
+
+          <ul class='tabList mod-with-separator js-act-as-tab-list'>
+
+            <li class='tabList-item'>
+              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
+                <%= t('.header.stakeholder_history') %>
+              </button>
+            </li>
+
+            <li class='tabList-item'>
+              <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_methodology'>
+                <%= t('.header.methodology') %>
+              </button>
+            </li>
+
+          </ul>
+
+          <div class="tabContent js-act-as-tab-content">
+
+            <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='stakeholder_history_chart'>
+              <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='reform-stakeholder-history'></div>
+            </div>
+
+            <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholder_methodology'>
+              <% if @methodology_stakeholder %>
+                <div>
+                  <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+                </div>
+              <% else %>
+                <p>
+                 <%= t('.no_methodology') %>
+                </p>
+              <% end %>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+    <% if @external_indicator_charts.present? %>
+
+      <div class='contentSection'>
+
+        <header class='contentSection-header'>
+
+          <h2 class='heading'>
+            <%= t('.header.external_indicators') %>
+          </h2>
+
+        </header>
+
+        <div class='contentSection-body'>
+
+          <% @external_indicator_charts.each do |ext_ind_chart| %>
+
+            <%= render(partial: 'shared/external_indicator_chart',
+                       locals: {
+                         ext_ind_chart: ext_ind_chart
+                       }) %>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <% if @news.present? %>
+    <div class='contentSidebarContainer-sidebar mod-limit-width-to-image'>
+      <%= render partial: 'shared/news' %>
+    </div>
+  <% end %>
+
+</div>
