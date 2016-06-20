@@ -2,11 +2,13 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
   var color = externalIndicatorChart.colorHash;
   var max = chartData.max;
+  var spacingLeft = 80;
 
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
-      spacingLeft: 80,
+      spacingLeft: spacingLeft,
+      marginTop: externalIndicatorChart.marginTop,
       type: 'areaspline'
     },
     exporting: {
@@ -37,9 +39,18 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     series: chartData.series,
-    title: {
-      text: chartData.title
-    },
+    subtitle: externalIndicatorChart.subtitle(
+      chartData.subtitle,
+      {
+        x: -1 * spacingLeft
+      }
+    ),
+    title: externalIndicatorChart.title(
+      chartData.title,
+      {
+        x: -1 * spacingLeft
+      }
+    ),
     tooltip: {
       backgroundColor: '#455357',
       formatter: function() {

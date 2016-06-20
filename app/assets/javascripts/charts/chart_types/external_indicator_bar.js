@@ -3,6 +3,7 @@ function highchartsExternalIndicatorBar(chartData) {
 
   var options = {
     chart: {
+      marginTop: externalIndicatorChart.marginTop,
       type: 'column'
     },
     colors: externalIndicatorChart.colors,
@@ -13,9 +14,12 @@ function highchartsExternalIndicatorBar(chartData) {
       enabled: false
     },
     series: chartData.series,
-    title: {
-      text: chartData.title
-    },
+    subtitle: externalIndicatorChart.subtitle(
+      chartData.subtitle
+    ),
+    title: externalIndicatorChart.title(
+      chartData.title
+    ),
     tooltip: {
       backgroundColor: '#455357',
       formatter: function() {

@@ -1,6 +1,8 @@
 var externalIndicatorChart = (function() {
   var externalIndicatorChart = {};
 
+  externalIndicatorChart.marginTop = 90;
+
   externalIndicatorChart.colorHash = {
     r: '250',
     g: '162',
@@ -21,6 +23,38 @@ var externalIndicatorChart = (function() {
     '#f6c03f',
     '#f9db4d'
   ];
+
+  externalIndicatorChart.title = function(text, customOptions) {
+    var options = {
+      align: 'left',
+      text: "<h3 class='heading'>" + text + '</h3>',
+      useHTML: true
+    };
+
+    if (customOptions) {
+      options = mergeObjects(options, customOptions);
+    }
+    return options;
+  }
+
+  externalIndicatorChart.subtitle = function(text, customOptions) {
+    var options = {
+      align: 'left',
+      style: {
+        color: '#66666d',
+        fontSize: '1.6rem',
+        fontWeight: '200'
+      },
+      text: text,
+      useHTML: true
+    };
+
+    if (customOptions) {
+      options = mergeObjects(options, customOptions);
+    }
+
+    return options;
+  }
 
   return externalIndicatorChart;
 })();
