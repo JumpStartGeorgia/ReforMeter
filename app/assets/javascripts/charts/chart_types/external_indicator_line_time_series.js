@@ -3,7 +3,18 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
     chart: {
       marginTop: externalIndicatorChart.marginTop
     },
-    colors: externalIndicatorChart.colors,
+    colors: [
+      '#db220f',
+      '#e56024',
+      '#ef9d38',
+      '#f6c646',
+      '#de3716',
+      '#e8742b',
+      '#f2b23f',
+      '#e24b1d',
+      '#ec8931',
+      '#f6c646'
+    ],
     exporting: {
       enabled: true
     },
