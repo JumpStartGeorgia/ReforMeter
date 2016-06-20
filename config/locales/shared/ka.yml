@@ -5,6 +5,7 @@ ka:
       change_my_password: Change my password
       destroy: Delete
       edit: Edit
+      load: Load
       log_in: Log in
       view: View
       with_obj:
@@ -47,6 +48,17 @@ ka:
       jumpstart:
         slogan: JumpStart Georgia - ჩვენ გაწვდით ინფორმაციას მონაცემებით და დიზაინით
       name: ReforMeter
+      sub_title: Tracking Progress - One Reform at a Time
+    expert_show:
+      header:
+        chart: Expert History
+        experts: The Experts
+        findings: Expert Findings
+        methodology: Methodology
+      no_details: No expert findings are on record.
+      no_experts: No experts are on record.
+      no_methodology: No methodology is on record.
+      title: According to the Experts for %{time}
     labels:
       translated_field: "%{field} (%{language})"
     links:
@@ -68,3 +80,13 @@ ka:
     prompts:
       confirm: Are you sure?
       forgot_password: Forgot your password?
+    reform_show:
+      header:
+        external_indicators: Related Indicators
+        government_history: Government Response History
+        government_summary: According to the Government
+        methodology: Methodology
+        stakeholder_history: Stakeholder Response History
+        stakeholder_summary: According to the Stakeholders
+      no_methodology: No methodology is on record.
+      title: 'Reform: %{name} for %{time}'

@@ -49,6 +49,16 @@ en:
         slogan: JumpStart Georgia - Informing Communities with Data and Design
       name: ReforMeter
       sub_title: Tracking Progress - One Reform at a Time
+    expert_show:
+      header:
+        chart: Expert History
+        experts: The Experts
+        findings: Expert Findings
+        methodology: Methodology
+      no_details: No expert findings are on record.
+      no_experts: No experts are on record.
+      no_methodology: No methodology is on record.
+      title: According to the Experts for %{time}
     labels:
       translated_field: "%{field} (%{language})"
     links:
@@ -70,3 +80,13 @@ en:
     prompts:
       confirm: Are you sure?
       forgot_password: Forgot your password?
+    reform_show:
+      header:
+        external_indicators: Related Indicators
+        government_history: Government Response History
+        government_summary: According to the Government
+        methodology: Methodology
+        stakeholder_history: Stakeholder Response History
+        stakeholder_summary: According to the Stakeholders
+      no_methodology: No methodology is on record.
+      title: 'Reform: %{name} for %{time}'

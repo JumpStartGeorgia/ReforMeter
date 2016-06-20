@@ -14,21 +14,14 @@ en:
       download_options: Download Options
       title: Download Data & Reports
     expert_show:
-      header:
-        chart: Expert History
-        experts: The Experts
-        findings: Expert Findings
-        methodoogy: Methodology
-      no_details: No expert findings are on record.
-      no_experts: No experts are on record.
-      no_methodology: No methodology is on record.
       title: According to the Experts for %{time}
     experts:
       header:
         chart: Expert Response History
-        methodoogy: Methodology
+        methodology: Methodology
         table: Table of Expert History
       no_data: Sorry, but at this time there is no expert data on record.
+      no_methodology: No methodology is on record.
       table_header:
         overall: Overall Score
         summary: Summary
@@ -45,19 +38,11 @@ en:
       reforms_link: View All Reforms
       report_link: Download Full Report
     reform_show:
-      header:
-        external_indicators: Related Indicators
-        government_history: Government Response History
-        government_summary: According to the Government
-        methodoogy: Methodology
-        stakeholder_history: Stakeholder Response History
-        stakeholder_summary: According to the Stakeholders
-      no_data: Sorry, but at this time there is no expert data on record.
-      no_methodology: No methodology is on record.
       title: 'Reform: %{name} for %{time}'
     reforms:
       header:
         table: Reforms by Time Period
+      no_data: Sorry, but at this time there is no expert data on record.
       table_header:
         government: Government
         reform: Reform
