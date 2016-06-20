@@ -37,6 +37,19 @@ var externalIndicatorChart = (function() {
     return options;
   }
 
+  externalIndicatorChart.tooltipFormatter = function(pointData) {
+    var value = Math.round(pointData.y)
+
+    if (pointData.point.change) {
+      var icon = change_icon(pointData.point.change);
+      var iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
+
+      return value + iconInSpan;
+    }
+
+    return value;
+  }
+
   externalIndicatorChart.subtitle = function(text, customOptions) {
     var options = {
       align: 'left',

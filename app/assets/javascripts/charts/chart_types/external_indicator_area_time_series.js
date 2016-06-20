@@ -52,15 +52,15 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     ),
     tooltip: {
-      backgroundColor: '#455357',
+      backgroundColor: '#f3f3f4',
       formatter: function() {
         indexBoxes.update(this);
 
-        return Math.round(this.y);
+        return externalIndicatorChart.tooltipFormatter(this.points[0]);
       },
       style: {
-        color: 'white',
-        fontSize: '2rem'
+        fontSize: '2rem',
+        fontWeight: '600'
       }
     },
     yAxis: {

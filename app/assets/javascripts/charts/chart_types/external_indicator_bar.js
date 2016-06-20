@@ -21,16 +21,17 @@ function highchartsExternalIndicatorBar(chartData) {
       chartData.title
     ),
     tooltip: {
-      backgroundColor: '#455357',
+      backgroundColor: '#f3f3f4',
       formatter: function() {
         indexBoxes.update(this);
 
-        return Math.round(this.y);
+        return externalIndicatorChart.tooltipFormatter(this);
       },
       style: {
-        color: 'white',
-        fontSize: '2rem'
-      }
+        fontSize: '2rem',
+        fontWeight: '600'
+      },
+      useHTML: true
     },
     xAxis: {
       categories: chartData.categories,
