@@ -11,7 +11,8 @@ function highchartsExternalIndicatorBar(chartData) {
       enabled: true
     },
     legend: {
-      enabled: false
+      align: 'right',
+      enabled: chartData.series.length > 1
     },
     series: chartData.series,
     subtitle: externalIndicatorChart.subtitle(
