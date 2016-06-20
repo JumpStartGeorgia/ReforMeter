@@ -175,61 +175,85 @@ class ExternalIndicator < ActiveRecord::Base
     # add x-axis lables (categories)
     hash[:categories] = self.data_hash[:time_periods].map{|x| x[:name]}
 
+    dash_styles = [
+      'Solid',
+      'Dot',
+      'LongDash',
+      'ShortDash'
+    ]
+
     # add data
     # based off of indicator type, build the data accordingly
-    case self.indicator_type
-      when INDICATOR_TYPES[:basic]
-        hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:values].first[:value], change: x[:values].first[:change]}}}
+    case indicator_type
+    when INDICATOR_TYPES[:basic]
+      hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:values].first[:value], change: x[:values].first[:change]}}}
 
-      when INDICATOR_TYPES[:country]
-        self.data_hash[:countries].each do |country|
-          item = {name: country[:name], data: []}
-          self.data_hash[:data].each do |data|
-            # find the data item for this country
-            d = data[:values].select{|x| x[:country] == country[:id]}.first
-            if d.present?
-              item[:data] << {y: d[:value], change: d[:change]}
-            else
-              item[:data] << {y:nil, change: nil}
-            end
-          end
-          hash[:series] << item
-        end
+    when INDICATOR_TYPES[:country]
 
-      when INDICATOR_TYPES[:composite]
-        # get the overall values for charting
-        hash[:series] << {
-          name: I18n.t('shared.categories.overall'),
-          data: data_hash[:data].map do |x|
-            {
-              y: x[:overall_value],
-              change: x[:overall_change]
-            }
-          end
+      data_hash[:countries].each_with_index do |country, index|
+
+        item = {
+          name: country[:name],
+          dashStyle: dash_styles[index % dash_styles.length],
+          data: []
         }
 
-        # get the index values
-        hash[:indexes] = []
-        self.data_hash[:indexes].each do |index|
-          item = {name: index[:name], short_name: index[:short_name], data: []}
-          self.data_hash[:data].each do |data|
-            # find the data item for this index
-            d = data[:values].select{|x| x[:index] == index[:id]}.first
-            if d.present?
-              item[:data] << {
-                y: d[:value],
-                change: d[:change]
-              }
-            else
-              item[:data] << {
-                y: nil,
-                change: nil
-              }
-            end
+        data_hash[:data].each do |data|
+
+          # find the data item for this country
+          d = data[:values].find do |x|
+            x[:country] == country[:id]
           end
-          hash[:indexes] << item
+
+          if d.present?
+            item[:data] << {
+              y: d[:value],
+              change: d[:change]
+            }
+          else
+            item[:data] << {
+              y: nil,
+              change: nil
+            }
+          end
         end
 
+        hash[:series] << item
+      end
+
+    when INDICATOR_TYPES[:composite]
+      # get the overall values for charting
+      hash[:series] << {
+        name: I18n.t('shared.categories.overall'),
+        data: data_hash[:data].map do |x|
+          {
+            y: x[:overall_value],
+            change: x[:overall_change]
+          }
+        end
+      }
+
+      # get the index values
+      hash[:indexes] = []
+      self.data_hash[:indexes].each do |index|
+        item = {name: index[:name], short_name: index[:short_name], data: []}
+        self.data_hash[:data].each do |data|
+          # find the data item for this index
+          d = data[:values].select{|x| x[:index] == index[:id]}.first
+          if d.present?
+            item[:data] << {
+              y: d[:value],
+              change: d[:change]
+            }
+          else
+            item[:data] << {
+              y: nil,
+              change: nil
+            }
+          end
+        end
+        hash[:indexes] << item
+      end
     end
 
     return hash

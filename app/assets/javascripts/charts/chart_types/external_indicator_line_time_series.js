@@ -5,14 +5,14 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
     },
     colors: [
       '#db220f',
-      '#e56024',
-      '#ef9d38',
-      '#f6c646',
       '#de3716',
-      '#e8742b',
-      '#f2b23f',
       '#e24b1d',
+      '#e56024',
+      '#e8742b',
       '#ec8931',
+      '#ef9d38',
+      '#f2b23f',
+      '#f2b23f',
       '#f6c646'
     ],
     exporting: {
