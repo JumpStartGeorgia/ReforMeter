@@ -7,7 +7,8 @@ en:
         summary: Summary
         details: Details
         experts: Experts
-        overall_score: Overall Score
+        scores: Scores
+        overall_score: Overall
         category1_score: Performance
         category2_score: Goals
         category3_score: Progress

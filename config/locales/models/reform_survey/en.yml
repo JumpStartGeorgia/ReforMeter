@@ -6,14 +6,15 @@ en:
         quarter_id:  Quarter
         reform_id :  Reform
         summary: Summary
+        scores: Scores
         government_summary: Government Summary
         stakeholder_summary: Stakeholder Summary
-        government_overall_score: Government Overall Score
+        government_overall_score: Overall
         government_category1_score: Initial Setup
         government_category2_score: Capacity Building
         government_category3_score: Infastructure & Budgeting
         government_category4_score: Legislation & Regulations
-        stakeholder_overall_score: Stakeholder Overall Score
+        stakeholder_overall_score: Overall
         stakeholder_category1_score: Performance
         stakeholder_category2_score: Goals
         stakeholder_category3_score: Progress

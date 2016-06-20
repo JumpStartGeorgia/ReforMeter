@@ -36,14 +36,17 @@
 
     <hr />
 
-    <%= f.input :overall_score, as: :string, input_html: {max_length: 5, size: 5} %>
-    <%= f.input :category1_score, as: :string, input_html: {max_length: 5, size: 5} %>
-    <%= f.input :category2_score, as: :string, input_html: {max_length: 5, size: 5} %>
-    <%= f.input :category3_score, as: :string, input_html: {max_length: 5, size: 5} %>
+    <h3><%= t('activerecord.attributes.expert_survey.scores') %></h3>
 
+    <div class="row mod-row-no-margins">
+      <%= f.input :overall_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category1_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category2_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category3_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+    </div>
     <hr />
 
-    <h4><%= t('activerecord.attributes.expert_survey.experts') %></h4>
+    <h3><%= t('activerecord.attributes.expert_survey.experts') %></h3>
     <p>
       <%= t('.experts_explanation') %>
       <%= link_to t('.experts_select_all'), '#', class: 'btn btn-default btn-xs js-expects-select-all', :'data-state' => 'all' %>

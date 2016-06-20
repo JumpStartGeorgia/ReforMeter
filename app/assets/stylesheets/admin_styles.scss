@@ -24,11 +24,13 @@ fieldset.inputs .radio{
 .form-quarter-select .select2 .select2-selection span{
   color: #66666d;
 }
-
 fieldset.form-actions{
   background-color: #f9f9f9;
   padding: 10px;
   margin: 20px 0px;
+}
+.row.mod-row-no-margins{
+  margin: 0;
 }
 
 .boolean-flag{
