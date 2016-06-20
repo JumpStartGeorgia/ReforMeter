@@ -21,6 +21,14 @@ $width-homepage-move-chart-summary-to-side: 500px;
   }
 }
 
+  .homePage-intro-summaryGood {
+    list-style-image: image-url('thumb_up.svg');
+  }
+
+  .homePage-intro-summaryBad {
+    list-style-image: image-url('thumb_down.svg');
+  }
+
   .homePage-intro-download {
     text-align: right;
 
