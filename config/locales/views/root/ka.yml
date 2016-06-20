@@ -11,7 +11,6 @@ ka:
     download_data_and_reports:
       choose: Choose
       download: Download
-      download_options: Download Options
       title: Download Data & Reports
     expert_show:
       title: According to the Experts for %{time}
