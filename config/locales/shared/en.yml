@@ -5,9 +5,9 @@ en:
       change_my_password: Change my password
       destroy: Delete
       edit: Edit
+      load: Load
       log_in: Log in
       view: View
-      load: Load
       with_obj:
         cancel: Cancel %{obj}
         create: Create %{obj}
@@ -17,29 +17,50 @@ en:
         update: Update %{obj}
         view: View %{obj}
         view_all: View All %{obj}
+    categories:
+      capacity_building: Capacity Building
+      goals: Goals
+      infastructure_budgeting: Infastructure & Budgeting
+      initial_setup: Initial Setup
+      legislation_regulation: Legislation & Regulations
+      overall: Overall
+      performance: Performance
+      progress: Progress
+    change_status:
+      down: The value has gone down since last quarter
+      flat: The value has not changed since last quarter
+      up: The value has gone up since last quarter
+    chart_titles:
+      expert:
+        title: Expert Response History
+      reform:
+        all_title: All Reforms
+        subtitle_government: Government Response History
+        subtitle_stakeholder: Stakeholder Response History
+        title: 'Reform: %{name}'
     common:
       account: Account
       actions: Actions
+      all: All
+      change_reform: Change Reform
+      change_time: Change Time Period
+      description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
       jumpstart:
         slogan: JumpStart Georgia - Informing Communities with Data and Design
       name: ReforMeter
       sub_title: Tracking Progress - One Reform at a Time
-      description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
-      change_time: Change Time Period
-      change_reform: Change Reform
-      all: All
-    links:
-      page_contents: Edit Page Text
-      admin: Admin Section
     labels:
       translated_field: "%{field} (%{language})"
+    links:
+      admin: Admin Section
+      page_contents: Edit Page Text
     locale:
-      short:
-        en: En
-        ka: "ქა"
       long:
         en: English
-        ka: "ქართული"
+        ka: ქართული
+      short:
+        en: En
+        ka: ქა
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -49,24 +70,3 @@ en:
     prompts:
       confirm: Are you sure?
       forgot_password: Forgot your password?
-    categories:
-      overall: Overall
-      performance: Performance
-      goals: Goals
-      progress: Progress
-      initial_setup: Initial Setup
-      capacity_building: Capacity Building
-      infastructure_budgeting: Infastructure & Budgeting
-      legislation_regulation: Legislation & Regulations
-    change_status:
-      down: The value has gone down since last quarter
-      flat: The value has not changed since last quarter
-      up: The value has gone up since last quarter
-    chart_titles:
-      expert:
-        title: 'Expert Response History'
-      reform:
-        title: 'Reform: %{name}'
-        all_title: 'All Reforms'
-        subtitle_government: 'Government Response History'
-        subtitle_stakeholder: 'Stakeholder Response History'

@@ -1,60 +1,60 @@
 ---
 ka:
   root:
-    index:
-      header:
-        standing: What is the Reform Standing as of %{time}?
-        experts: Overall reform progress according to the experts
-        government: Reform progress according to the government
-        external_indicators: How are the reforms affecting the economy?
-      report_link: Download Full Report
     about:
       title: About
     contact:
       title: Contact
-    reforms:
-      title: Reforms
+    download_data_and_reports:
+      choose: Choose
+      download: Download
+      title: Download Data & Reports
+    expert_show:
       header:
-        table: Reforms by Time Period
-      table_header:
-        time: Time Period
-        reform: Reform
-        government: Government
-        stakeholder: Stakeholder
-        summary: Summary
-    reform_show:
-      title: "Reform: %{name} for %{time}"
-      no_data: Sorry, but at this time there is no expert data on record.
-      no_methodology: No methodology is on record.
-      header:
-        government_summary: According to the Government
-        government_history: Government Response History
+        chart: Expert History
+        experts: The Experts
+        findings: Expert Findings
         methodoogy: Methodology
-        stakeholder_summary: According to the Stakeholders
-        stakeholder_history: Stakeholder Response History
-        external_indicators: Related Indicators
+      no_details: No expert findings are on record.
+      no_experts: No experts are on record.
+      no_methodology: No methodology is on record.
+      title: According to the Experts for %{time}
     experts:
-      title: Experts
       header:
         chart: Expert Response History
         methodoogy: Methodology
         table: Table of Expert History
+      no_data: Sorry, but at this time there is no expert data on record.
       table_header:
-        time: Time Period
         overall: Overall Score
         summary: Summary
-      no_data: Sorry, but at this time there is no expert data on record.
-    expert_show:
-      title: According to the Experts for %{time}
+        time: Time Period
+      title: Experts
+    index:
       header:
-        chart: Expert History
+        experts: Overall reform progress according to the experts
+        external_indicators: How are the reforms affecting the economy?
+        government: Reform progress according to the government
+        standing: What is the Reform Standing as of %{time}?
+      report_link: Download Full Report
+    reform_show:
+      header:
+        external_indicators: Related Indicators
+        government_history: Government Response History
+        government_summary: According to the Government
         methodoogy: Methodology
-        findings: Expert Findings
-        experts: The Experts
-      no_details: No expert findings are on record.
-      no_experts: No experts are on record.
+        stakeholder_history: Stakeholder Response History
+        stakeholder_summary: According to the Stakeholders
+      no_data: Sorry, but at this time there is no expert data on record.
       no_methodology: No methodology is on record.
-    download_data_and_reports:
-      title: Download Data & Reports
-      download: Download
-      choose: Choose
+      title: 'Reform: %{name} for %{time}'
+    reforms:
+      header:
+        table: Reforms by Time Period
+      table_header:
+        government: Government
+        reform: Reform
+        stakeholder: Stakeholder
+        summary: Summary
+        time: Time Period
+      title: Reforms

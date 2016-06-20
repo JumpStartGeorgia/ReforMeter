@@ -4,8 +4,8 @@ en:
     attributes:
       page_content:
         content: Content
-        title: Title of Content Section (optional)
         name: Unique Name
+        title: Title of Content Section (optional)
     models:
       page_content:
         one: Page Content
