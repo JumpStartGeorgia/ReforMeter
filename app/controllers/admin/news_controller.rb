@@ -74,21 +74,6 @@ class Admin::NewsController < ApplicationController
       params.require(:news).permit(*permitted)
     end
 
-    # get the quarter that this news items is for
-    def get_quarter
-      begin
-        @quarter = Quarter.friendly.find(params[:quarter_id])
-
-        if @quarter.nil?
-          redirect_to admin_quarters_path,
-                  alert: t('shared.msgs.does_not_exist')
-        end
-      rescue ActiveRecord::RecordNotFound  => e
-        redirect_to admin_quarters_path,
-                  alert: t('shared.msgs.does_not_exist')
-      end
-    end
-
     def load_reforms
       @reforms = Reform.active#.sorted
     end

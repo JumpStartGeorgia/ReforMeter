@@ -50,6 +50,7 @@ class Expert < ActiveRecord::Base
 
   #######################
   ## SCOPES
+  scope :active, -> { where(is_active: true) }
   scope :sorted, -> {with_translations(I18n.locale).order(name: :asc)}
 
 

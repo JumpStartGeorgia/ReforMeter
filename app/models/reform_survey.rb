@@ -159,6 +159,8 @@ class ReformSurvey < ActiveRecord::Base
   end
 
 
+  #######################
+  #######################
   private
 
   def compute_change_values(current_survey, previous_survey)

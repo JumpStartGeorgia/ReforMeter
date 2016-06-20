@@ -3,10 +3,27 @@ en:
   activerecord:
     attributes:
       expert_survey:
-        quarter_id: Quarter
+        quarter_id:  Quarter
         summary: Summary
         details: Details
+        experts: Experts
+        overall_score: Overall Score
+        category1_score: Performance
+        category2_score: Goals
+        category3_score: Progress
     models:
       expert_survey:
         one: Expert Survey
         other: Expert Surveys
+    errors:
+      models:
+        expert_survey:
+          attributes:
+            overall_score:
+              inclusion: must be between 0 and 10
+            category1_score:
+              inclusion: must be between 0 and 10
+            category2_score:
+              inclusion: must be between 0 and 10
+            category3_score:
+              inclusion: must be between 0 and 10

@@ -6,7 +6,7 @@
   <%= render partial: 'shared/edit_actions',
         locals: {
           object: Quarter.new,
-          index_path: admin_quarters_path
+          index_path: admin_quarters_path(q: @quarter.slug)
                 }
   %>
 </div>

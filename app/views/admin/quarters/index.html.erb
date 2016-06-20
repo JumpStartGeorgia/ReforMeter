@@ -115,10 +115,10 @@
                 </div>
                 <div class="col-md-6">
                   <%= link_to t('shared.actions.view'),
-                          '#',
+                          admin_quarter_expert_survey_path(quarter_id: @quarter.slug, id: @quarter.expert_survey),
                           class: 'btn btn-default btn-sm' %>
                   <%= link_to t('shared.actions.edit'),
-                          '#',
+                          edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug, id: @quarter.expert_survey),
                           class: 'btn btn-default btn-sm' %>
                 </div>
               </div>
@@ -156,7 +156,7 @@
 
           <% else %>
             <div><%= link_to t('shared.actions.add'),
-                      '#',
+                      new_admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
                       class: 'btn btn-primary btn-sm' %></div>
           <% end %>
         </div>
