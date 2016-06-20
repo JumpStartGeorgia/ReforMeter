@@ -16,14 +16,16 @@
             <%= index[:short_name] %>
           </span>
 
-          <div>
+          <p class='chartIndexes-item-values'>
 
-            <span class='chartIndexes-item-value js-act-as-index-value'>
+            <span class='chartIndexes-item-values-score js-act-as-index-value'>
               <%= most_recent_data_point[:y].round %>
             </span>
 
-            <%= generate_change_icon(most_recent_data_point[:change]) %>
-          </div>
+            <span class='chartIndexes-item-values-change'>
+              <%= generate_change_icon(most_recent_data_point[:change]) %>
+            </span>
+          </p>
 
         </li>
 

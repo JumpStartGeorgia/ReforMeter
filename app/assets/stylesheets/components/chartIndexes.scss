@@ -9,6 +9,15 @@
     padding: 5px 10px;
   }
 
-    .chartIndexes-item-value {
-      font-size: 3rem;
+    .chartIndexes-item-values {
+      line-height: 1;
+      margin: 0;
     }
+
+      .chartIndexes-item-values-score {
+        font-size: 3rem;
+      }
+
+      .chartIndexes-item-values-change {
+        
+      }

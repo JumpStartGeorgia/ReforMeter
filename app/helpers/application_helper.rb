@@ -33,9 +33,9 @@ module ApplicationHelper
 
   def change_icons
     return {
-      '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), style: 'max-width: 100%; max-height: 100%;', class: 'js-act-as-change-icon'),
-      '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), style: 'max-width: 100%; max-height: 100%;', class: 'js-act-as-change-icon'),
-      '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), style: 'max-width: 100%; max-height: 100%;', class: 'js-act-as-change-icon')
+      '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), class: 'changeIcon js-act-as-change-icon'),
+      '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), class: 'changeIcon js-act-as-change-icon'),
+      '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), class: 'changeIcon js-act-as-change-icon')
     }
   end
 
