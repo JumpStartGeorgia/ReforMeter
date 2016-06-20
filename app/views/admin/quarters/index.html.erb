@@ -93,17 +93,17 @@
 
     <div class="form-quarter-details-bottom">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 form-expert-survey-items">
           <h3><%=t 'activerecord.attributes.quarter.expert_survey' %></h3>
 
           <% if @quarter.expert_survey.present? %>
-            <div class="form-survey-item">
+            <div class="form-survey-header">
               <div class="row">
                 <div class="col-md-6">
-                  <strong><%= t('shared.categories.overall') %></strong>
+                  <%= t('shared.categories.overall') %>
                 </div>
                 <div class="col-md-6">
-                  <strong><%=t 'shared.common.actions' %></strong>
+                  <%=t 'shared.common.actions' %>
                 </div>
               </div>
             </div>
@@ -123,11 +123,14 @@
                 </div>
               </div>
 
-              <div class="form-reform-news">
-                <strong><%=t 'activerecord.attributes.quarter.news' %>:</strong>
-                <div><%= link_to t('shared.actions.add'),
+              <div class="form-survey-news">
+                <div>
+                  <%=t 'activerecord.attributes.quarter.news' %>:
+                  &nbsp;&nbsp;
+                  <%= link_to t('shared.actions.add'),
                           new_admin_quarter_news_path(@quarter),
-                          class: 'btn btn-primary btn-xs' %></div>
+                          class: 'btn btn-primary btn-xs' %>
+                </div>
                 <%
                   # get the news that does not have a reform id
                   news = @quarter.news.select{|x| x.reform_id.nil?}
@@ -161,7 +164,7 @@
           <% end %>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8 form-reform-survey-items">
           <h3><%=t 'activerecord.attributes.quarter.reform_surveys' %></h3>
 
           <div><%= link_to t('shared.actions.add'),
@@ -169,19 +172,19 @@
                     class: 'btn btn-primary btn-sm' %></div>
 
           <% if @quarter.reform_surveys.present? %>
-            <div class="form-survey-item">
+            <div class="form-survey-header">
               <div class="row">
                 <div class="col-md-5">
-                  <strong><%= t('.table_header.reform') %></strong>
+                  <%= t('.table_header.reform') %>
                 </div>
                 <div class="col-md-2">
-                  <strong><%= t('.table_header.government') %></strong>
+                  <%= t('.table_header.government') %>
                 </div>
                 <div class="col-md-2">
-                  <strong><%= t('.table_header.stakeholder') %></strong>
+                  <%= t('.table_header.stakeholder') %>
                 </div>
                 <div class="col-md-3">
-                  <strong><%=t 'shared.common.actions' %></strong>
+                  <%=t 'shared.common.actions' %>
                 </div>
               </div>
             </div>
@@ -211,11 +214,14 @@
                   </div>
                 </div>
 
-                <div class="form-reform-news">
-                  <strong><%=t 'activerecord.attributes.quarter.news' %>:</strong>
-                  <div><%= link_to t('shared.actions.add'),
+                <div class="form-survey-news">
+                  <div>
+                    <%=t 'activerecord.attributes.quarter.news' %>:
+                    &nbsp;&nbsp;
+                    <%= link_to t('shared.actions.add'),
                             new_admin_quarter_news_path(@quarter, reform_id: reform_survey.reform_id),
-                            class: 'btn btn-primary btn-xs' %></div>
+                            class: 'btn btn-primary btn-xs' %>
+                  </div>
                   <%
                     # get the news for this reform
                     news = @quarter.news.select{|x| x.reform_id == reform_survey.reform_id}

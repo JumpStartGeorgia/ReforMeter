@@ -37,6 +37,7 @@
     <hr />
 
     <h3><%= t('activerecord.attributes.expert_survey.scores') %></h3>
+    <p class="form-instructions"><%= t('.score_explanation') %></p>
 
     <div class="row mod-row-no-margins">
       <%= f.input :overall_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
@@ -47,7 +48,7 @@
     <hr />
 
     <h3><%= t('activerecord.attributes.expert_survey.experts') %></h3>
-    <p>
+    <p class="form-instructions">
       <%= t('.experts_explanation') %>
       <%= link_to t('.experts_select_all'), '#', class: 'btn btn-default btn-xs js-expects-select-all', :'data-state' => 'all' %>
       <%= link_to t('.experts_deselect_all'), '#', class: 'btn btn-default btn-xs js-expects-select-all', :'data-state' => 'none' %>

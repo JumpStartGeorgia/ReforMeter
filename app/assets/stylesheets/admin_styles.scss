@@ -32,6 +32,9 @@ fieldset.form-actions{
 .row.mod-row-no-margins{
   margin: 0;
 }
+.form-instructions{
+  margin-bottom: 15px !important;
+}
 
 .boolean-flag{
   display: inline-block;
@@ -59,15 +62,27 @@ fieldset.form-actions{
   }
   .form-quarter-details-bottom{
     margin-top: 20px;
+    .header{
+
+    }
   }
 }
-.form-survey-item{
-  padding: 15px 10px;
-  &:nth-child(even) {
-      background-color: #ddd;
+.form-reform-survey-items, .form-expert-survey-items {
+  .form-survey-header{
+    padding: 15px 10px;
+    border-bottom: solid 1px #000;
+  }
+  & > .form-survey-item{
+    padding: 15px 10px;
+    &:nth-child(odd) {
+        background-color: #ddd;
+    }
   }
 }
-.form-reform-news{
+.form-survey-news{
+  border-top: solid 1px #666;
+  margin-top: 10px;
+  padding-top: 10px;
   margin-left: 30px;
 }
 

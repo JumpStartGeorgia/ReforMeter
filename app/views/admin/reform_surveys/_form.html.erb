@@ -57,6 +57,8 @@
     <% end %>
 
     <h4><%= t('activerecord.attributes.reform_survey.scores') %></h4>
+    <p class="form-instructions"><%= t('.government_score_explanation') %></p>
+
     <div class="row mod-row-no-margins">
       <%= f.input :government_overall_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
       <%= f.input :government_category1_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
@@ -80,6 +82,8 @@
     <% end %>
 
     <h4><%= t('activerecord.attributes.reform_survey.scores') %></h4>
+    <p class="form-instructions"><%= t('.stakeholder_score_explanation') %></p>
+
     <div class="row mod-row-no-margins">
       <%= f.input :stakeholder_overall_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
       <%= f.input :stakeholder_category1_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>

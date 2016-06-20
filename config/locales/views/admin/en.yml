@@ -12,3 +12,8 @@ en:
         experts_explanation: Select all of the experts that participated in the survey.
         experts_select_all: Select All Experts
         experts_deselect_all: Deselect All Experts
+        score_explanation: All scores must be between 0 and 10.
+    reform_surveys:
+        form:
+          government_score_explanation: All scores are percents and must be between 0 and 100.
+          stakeholder_score_explanation: All scores must be between 0 and 10.
