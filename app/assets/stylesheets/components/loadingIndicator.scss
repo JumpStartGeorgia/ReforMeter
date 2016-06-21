@@ -1,12 +1,29 @@
 .loadingIndicator {
   display: flex;
-  z-index: 9999;
+  z-index: 9998;
   width: 100%;
   height: 100%;
-  background-color: rgba(#FFF, 0.3);
+  background-color: rgba(#FFF, 0.8);
   position: fixed;
 }
 
   .loadingIndicator-image {
+    z-index: 9999;
     margin: auto;
+    // transform: rotate(90deg);
   }
+
+    .loadingIndicator-image-dial {
+      transform-origin: 88% center;
+      animation: rotation180 4s infinite alternate;
+    }
+
+@keyframes rotation180 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}
