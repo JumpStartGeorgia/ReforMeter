@@ -5,7 +5,15 @@ function initializeExportChartGroupButton($exportButton, charts) {
         width = 0;
 
     $.each(charts, function(i, chart) {
-      var svg = chart.getSVG();
+      var svg = chart.getSVG(
+        {
+          chart: {
+            width: chart.chartWidth,
+            height: chart.chartHeight
+          }
+        }
+      );
+
       svg = svg.replace('<svg', '<g transform="translate(0,' + top + ')" ');
       svg = svg.replace('</svg>', '</g>');
 
@@ -15,7 +23,9 @@ function initializeExportChartGroupButton($exportButton, charts) {
       svgArr.push(svg);
     });
 
-    return '<svg height="'+ top +'" width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + svgArr.join('') + '</svg>';
+    var svgObj = '<svg height="'+ top +'" width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + svgArr.join('') + '</svg>';
+
+    return svgObj;
   }
 
   function exportCharts(options) {
