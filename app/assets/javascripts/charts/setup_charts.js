@@ -1,7 +1,8 @@
 function initializeHighchart($container) {
   var highchart = {}
   var chartType = $container.data('chart-type');
-  var containerChartID = $container.data('id')
+  var containerChartID = $container.data('id');
+  var exportableByID = $container.data('exportable-by-id');
 
   function chartData() {
     return gon.charts.filter(function(chartData) {
@@ -16,11 +17,15 @@ function initializeHighchart($container) {
   }
 
   highchart.create = function() {
-    $container.highcharts(
-      Highcharts.merge(
-        highchartsOptions(chartType, highchartData)
-      )
+    highchart.exportableBy = function(exportChartGroupButtonID) {
+      return exportableByID === exportChartGroupButtonID;
+    }
+
+    var options = Highcharts.merge(
+      highchartsOptions(chartType, highchartData)
     );
+
+    highchart.highchartsObject = new Highcharts.Chart($container[0], options);
   };
 
   return highchart;
@@ -42,4 +47,23 @@ function setupCharts() {
   $(charts).each(function() {
     this.create();
   });
+
+  var $exportButtons = $('.js-export-chart-group');
+
+  $exportButtons.each(
+    function() {
+      var $exportButton = $(this);
+      exportButtonDataID = $exportButton.data('export-id');
+
+      var exportableCharts = charts.filter(
+        function() {
+          return this.exportableBy(exportButtonDataID);
+        }
+      ).map(function() {
+        return this.highchartsObject;
+      });
+
+      initializeExportChartGroupButton($exportButton, exportableCharts);
+    }
+  )
 }
