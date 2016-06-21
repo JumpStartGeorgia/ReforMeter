@@ -1,3 +1,4 @@
+
 <%
 @do_not_use_default_page_layout = true
 %>
@@ -51,8 +52,8 @@
 
       <section class='gaugesContainer'>
 
-        <button class='js-export-chart-group' data-export-id='fdsajkfda132reware53243eare1' type='button'>
-          Download meter gauges
+        <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' type='button'>
+          <%= inline_svg('download.svg') %>
         </button>
 
         <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='overall' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
