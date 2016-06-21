@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       resources :reform_colors, except: :show, constraints: { format: :html }
       resources :quarters, except: :show, constraints: { format: :html } do
         resources :news, except: :index, constraints: { format: :html }
-        resources :expert_survey, except: :index, constraints: { format: :html }
+        resource :expert_survey, except: :index, constraints: { format: :html }
         resources :reform_surveys, except: :index, constraints: { format: :html }
         member do
           post 'publish'

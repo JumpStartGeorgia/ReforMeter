@@ -4,7 +4,7 @@ class RootController < ApplicationController
     @home_page_about = PageContent.find_by(name: 'home_page_about')
 
     @quarter = Quarter.published.with_expert_survey.latest
-    @reforms = Reform.active.sorted.highlight
+    @reforms = Reform.in_quarter(@quarter.id).active.highlight#.sorted if @quarter
 
     gon.chart_download_icon = highchart_download_icon
     gon.change_icons = view_context.change_icons
@@ -22,11 +22,12 @@ class RootController < ApplicationController
     ]
 
     @reform_current_quarter_values = []
+    quarter_ids = Quarter.published.recent.pluck(:id)
     @reforms.each do |reform|
       gon.charts << Quarter.reform_survey_data_for_charting(
         reform.id,
         overall_score_only: true,
-        quarter_ids: Quarter.published.recent.pluck(:id),
+        quarter_ids: quarter_ids,
         id: "reform-#{reform.slug}")
       @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
@@ -106,7 +107,7 @@ class RootController < ApplicationController
   def reforms
     @reform_text = PageContent.find_by(name: 'reform_text')
     @quarters = Quarter.published.recent
-    @reforms = Reform.active.sorted.with_color
+    @reforms = Reform.with_survey_data.active.with_color#.sorted
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
 
     gon.chart_download_icon = highchart_download_icon
@@ -146,7 +147,7 @@ class RootController < ApplicationController
   def reform_show
     begin
       @quarter = Quarter.published.with_expert_survey.friendly.find(params[:quarter_id])
-      @reform = Reform.active.with_color.friendly.find(params[:reform_id])
+      @reform = Reform.with_survey_data.active.with_color.friendly.find(params[:reform_id])
       @reform_survey = ReformSurvey.for_reform(@reform.id).in_quarter(@quarter.id).first if @quarter && @reform
 
       if @reform.nil? || @quarter.nil? || @reform_survey.nil?
@@ -163,16 +164,20 @@ class RootController < ApplicationController
       gon.chart_download_icon = highchart_download_icon
       gon.change_icons = view_context.change_icons
 
+      quarter_ids = Quarter.with_reform(@reform.id).published.recent.pluck(:id)
+
       government_time_series = Quarter.reform_survey_data_for_charting(
         @reform.id,
         type: 'government',
-        id: 'reform-government-history'
+        id: 'reform-government-history',
+        quarter_ids: quarter_ids
       )
 
       stakeholder_time_series = Quarter.reform_survey_data_for_charting(
         @reform.id,
         type: 'stakeholder',
-        id: 'reform-stakeholder-history'
+        id: 'reform-stakeholder-history',
+        quarter_ids: quarter_ids
       )
 
       gon.charts = [
@@ -243,7 +248,7 @@ class RootController < ApplicationController
       gon.charts += @external_indicator_charts
 
     rescue ActiveRecord::RecordNotFound  => e
-      redirect_to experts_path,
+      redirect_to reforms_path,
                 alert: t('shared.msgs.does_not_exist')
     end
   end

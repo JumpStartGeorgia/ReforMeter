@@ -33,7 +33,7 @@
 
 
     <%= render layout: 'shared/form/translated_inputs',
-               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+               locals: { object: object, id_suffix: '1' } do |enabled_locale, enabled_locale_name| %>
       <%= f.input "summary_#{enabled_locale}",
                   as: :text,
                   label: t('shared.labels.translated_field',
@@ -47,7 +47,7 @@
     <h3><%= t('shared.categories.government_survey') %></h3>
 
     <%= render layout: 'shared/form/translated_inputs',
-               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+               locals: { object: object, id_suffix: '2' } do |enabled_locale, enabled_locale_name| %>
       <%= f.input "government_summary_#{enabled_locale}",
                   as: :text,
                   label: t('shared.labels.translated_field',
@@ -72,7 +72,7 @@
     <h3><%= t('shared.categories.stakeholder_survey') %></h3>
 
     <%= render layout: 'shared/form/translated_inputs',
-               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+               locals: { object: object, id_suffix: '3' } do |enabled_locale, enabled_locale_name| %>
       <%= f.input "stakeholder_summary_#{enabled_locale}",
                   as: :text,
                   label: t('shared.labels.translated_field',

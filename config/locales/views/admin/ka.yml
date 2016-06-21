@@ -6,7 +6,7 @@ ka:
     quarters:
       index:
         set_time_period: Select Time Period to Edit
-    expert_survey:
+    expert_surveys:
       form:
         no_experts: There are no experts on file. You must add them so you can assign them to an expert survey.
         experts_explanation: Select all of the experts that participated in the survey.

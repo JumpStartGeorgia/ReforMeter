@@ -1,7 +1,8 @@
-class Admin::ExpertSurveyController < ApplicationController
-  before_action :set_expert_survey, only: [:show, :edit, :update, :destroy]
+class Admin::ExpertSurveysController < ApplicationController
   before_action :get_quarter
+  before_action :set_expert_survey, only: [:show, :edit, :update, :destroy]
   before_action :load_experts, only: [:new, :edit, :create, :update]
+  authorize_resource
 
   # GET /admin/expert_surveys
   # GET /admin/expert_surveys.json
@@ -20,7 +21,7 @@ class Admin::ExpertSurveyController < ApplicationController
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
-      Quarter.expert_survey_data_for_charting(id: 'expert-history'), {
+      Quarter.expert_survey_data_for_charting(id: 'expert-history', is_published: false), {
         id: 'overall',
         title: I18n.t('shared.categories.overall'),
         score: @quarter.expert_survey.overall_score.to_f,
@@ -49,9 +50,9 @@ class Admin::ExpertSurveyController < ApplicationController
   def new
     # if survey already exsts for this quarter, load it
     # - there can be only one survey per quarter
-    survey = ExpertSurvey.where(quarter: @quarter.id)
-    if survey
-      redirect_to edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug, id: survey.id)
+    survey = ExpertSurvey.where(quarter: @quarter.id).first
+    if survey.present?
+      redirect_to edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug)
     end
 
     @expert_survey = ExpertSurvey.new
@@ -68,7 +69,7 @@ class Admin::ExpertSurveyController < ApplicationController
 
     respond_to do |format|
       if @expert_survey.save
-        format.html { redirect_to admin_quarters_path(q: @quarter.slug), notice: t('shared.msgs.success_created',
+        format.html { redirect_to admin_quarter_expert_survey_path(quarter_id: @quarter.slug), notice: t('shared.msgs.success_created',
                             obj: t('activerecord.models.expert_survey', count: 1)) }
       else
         format.html { render :new }
@@ -81,7 +82,7 @@ class Admin::ExpertSurveyController < ApplicationController
   def update
     respond_to do |format|
       if @expert_survey.update(expert_survey_params)
-        format.html { redirect_to admin_quarters_path(q: @quarter.slug), notice: t('shared.msgs.success_updated',
+        format.html { redirect_to admin_quarter_expert_survey_path(quarter_id: @quarter.slug), notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.expert_survey', count: 1)) }
       else
         format.html { render :edit }
@@ -102,7 +103,8 @@ class Admin::ExpertSurveyController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_expert_survey
-      @expert_survey = ExpertSurvey.find(params[:id])
+      # @expert_survey = ExpertSurvey.find(params[:id])
+      @expert_survey = @quarter.expert_survey
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

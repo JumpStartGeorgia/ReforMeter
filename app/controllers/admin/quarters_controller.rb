@@ -32,7 +32,7 @@ class Admin::QuartersController < ApplicationController
 
     respond_to do |format|
       if @quarter.save
-        format.html { redirect_to admin_quarters_path, notice: t('shared.msgs.success_created',
+        format.html { redirect_to admin_quarters_path(q: @quarter.slug), notice: t('shared.msgs.success_created',
                             obj: t('activerecord.models.quarter', count: 1)) }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class Admin::QuartersController < ApplicationController
   def update
     respond_to do |format|
       if @quarter.update(quarter_params)
-        format.html { redirect_to admin_quarters_path, notice: t('shared.msgs.success_updated',
+        format.html { redirect_to admin_quarters_path(q: @quarter.slug), notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.quarter', count: 1)) }
       else
         format.html { render :edit }

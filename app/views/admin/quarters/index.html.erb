@@ -36,6 +36,14 @@
           <%= @quarter.time_period %>
         </div>
         <div class="col-md-4">
+          <strong><%=t 'activerecord.attributes.quarter.report' %>:</strong>
+          <% if @quarter.report.exists? %>
+            <%= link_to t('shared.actions.view'), @quarter.report.url,
+                          class: 'btn btn-default btn-sm',
+                          target: :blank %>
+          <% end %>
+        </div>
+        <div class="col-md-4">
           <strong><%=t 'activerecord.attributes.quarter.is_public' %>:</strong>
           <%= format_boolean_flag(@quarter.is_public) %>
 
@@ -51,14 +59,6 @@
                     method: :post,
                     data: { confirm: t('shared.prompts.confirm') },
                     class: 'btn btn-success btn-sm' %>
-          <% end %>
-        </div>
-        <div class="col-md-4">
-          <strong><%=t 'activerecord.attributes.quarter.report' %>:</strong>
-          <% if @quarter.report.exists? %>
-            <%= link_to t('shared.actions.view'), @quarter.report.url,
-                          class: 'btn btn-default btn-sm',
-                          target: :blank %>
           <% end %>
         </div>
       </div>
@@ -115,10 +115,10 @@
                 </div>
                 <div class="col-md-6">
                   <%= link_to t('shared.actions.view'),
-                          admin_quarter_expert_survey_path(quarter_id: @quarter.slug, id: @quarter.expert_survey),
+                          admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
                           class: 'btn btn-default btn-sm' %>
                   <%= link_to t('shared.actions.edit'),
-                          edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug, id: @quarter.expert_survey),
+                          edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
                           class: 'btn btn-default btn-sm' %>
                 </div>
               </div>

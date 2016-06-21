@@ -60,5 +60,21 @@ class Reform < ActiveRecord::Base
     active.sorted.map{|x| [x.name, x.slug]}
   end
 
+  # get all reforms that are in the quarter
+  def self.in_quarter(quarter_id)
+    q = Quarter.find_by(id: quarter_id)
+
+    if q.present?
+      where(id: q.reform_ids)
+    end
+  end
+
+  # get all reforms that have survey data
+  def self.with_survey_data(quarters_are_published=true)
+    q = Quarter.all
+    q = q.published if quarters_are_published
+    where(id: q.map{|x| x.reform_ids}.flatten.uniq)
+  end
+
 
 end

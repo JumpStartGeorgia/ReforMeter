@@ -1,7 +1,8 @@
 class Admin::ReformSurveysController < ApplicationController
-  before_action :set_reform_survey, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_reform_survey, only: [:new, :create, :show, :edit, :update, :destroy]
   before_action :get_quarter
   before_action :load_reforms, only: [:new, :edit, :create, :update]
+  authorize_resource
 
   # GET /admin/reform_surveys
   # GET /admin/reform_surveys.json
@@ -21,16 +22,22 @@ class Admin::ReformSurveysController < ApplicationController
     gon.chart_download_icon = highchart_download_icon
     gon.change_icons = view_context.change_icons
 
+    quarter_ids = Quarter.with_reform(@reform.id).recent.pluck(:id)
+
     government_time_series = Quarter.reform_survey_data_for_charting(
       @reform.id,
       type: 'government',
-      id: 'reform-government-history'
+      id: 'reform-government-history',
+      is_published: false,
+      quarter_ids: quarter_ids
     )
 
     stakeholder_time_series = Quarter.reform_survey_data_for_charting(
       @reform.id,
       type: 'stakeholder',
-      id: 'reform-stakeholder-history'
+      id: 'reform-stakeholder-history',
+      is_published: false,
+      quarter_ids: quarter_ids
     )
 
     gon.charts = [
@@ -124,11 +131,11 @@ class Admin::ReformSurveysController < ApplicationController
   # POST /admin/reform_surveys
   # POST /admin/reform_surveys.json
   def create
-    @reform_survey = ReformSurvey.new(reform_survey_params)
+    # @reform_survey = ReformSurvey.new(reform_survey_params)
 
     respond_to do |format|
       if @reform_survey.save
-        format.html { redirect_to admin_quarters_path(q: @quarter.slug), notice: t('shared.msgs.success_created',
+        format.html { redirect_to admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey.id), notice: t('shared.msgs.success_created',
                             obj: t('activerecord.models.reform_survey', count: 1)) }
       else
         format.html { render :new }
@@ -141,7 +148,7 @@ class Admin::ReformSurveysController < ApplicationController
   def update
     respond_to do |format|
       if @reform_survey.update(reform_survey_params)
-        format.html { redirect_to admin_quarters_path(q: @quarter.slug), notice: t('shared.msgs.success_updated',
+        format.html { redirect_to admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey.id), notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.reform_survey', count: 1)) }
       else
         format.html { render :edit }
@@ -162,7 +169,7 @@ class Admin::ReformSurveysController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reform_survey
-      @reform_survey = params[:action] == 'new' ? ReformSurvey.new : ReformSurvey.find(params[:id])
+      @reform_survey = params[:action] == 'new' ? ReformSurvey.new : params[:action] == 'create' ? @reform_survey = ReformSurvey.new(reform_survey_params) : ReformSurvey.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

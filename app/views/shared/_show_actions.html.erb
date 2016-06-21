@@ -4,19 +4,25 @@
   hide_object_name ||= false
   object_name_plural = !hide_object_name ? t("activerecord.models.#{object.model_name.singular}", count: 999) : ''
   object_name_singular = !hide_object_name ? t("activerecord.models.#{object.model_name.singular}", count: 1) : ''
+logger.debug "!!"*30
+logger.debug edit_path
+logger.debug can? :edit, object
+logger.debug show_path
+logger.debug can? :destroy, object
+
 %>
 <%= render partial: 'shared/index_admin' %>
 <%= link_to t('shared.actions.with_obj.view_all',
               obj: object_name_plural),
             index_path,
             class: 'btn btn-default' %>
-<%= if can? :edit, object && edit_path.present?
+<%= if can?(:edit, object) && edit_path.present?
   link_to t('shared.actions.with_obj.edit',
             obj: object_name_singular),
           edit_path,
           class: 'btn btn-default'
 end %>
-<%= if can? :destroy, object && show_path.present?
+<%= if can?(:destroy, object) && show_path.present?
   link_to t('shared.actions.with_obj.destroy',
             obj: object_name_singular),
           show_path,

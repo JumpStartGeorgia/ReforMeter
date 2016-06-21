@@ -1,5 +1,8 @@
-<% object = @expert_survey %>
-<%= semantic_form_for [:admin, @quarter, object] do |f| %>
+<%
+  object = @expert_survey
+%>
+
+<%= semantic_form_for [:admin, @quarter, object], url: admin_quarter_expert_survey_path(quarter_id: @quarter.slug) do |f| %>
   <%= f.semantic_errors *f.object.errors.keys %>
   <%= f.inputs do %>
 
@@ -21,10 +24,7 @@
                          field: t('activerecord.attributes.expert_survey.summary'),
                          language: enabled_locale_name),
                    :input_html => { :class => 'autogrow', :rows => 5, :maxlength => 255  } %>
-    <% end %>
 
-    <%= render layout: 'shared/form/translated_inputs',
-               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
       <%= f.input "details_#{enabled_locale}",
                   as: :text,
                   label: t('shared.labels.translated_field',

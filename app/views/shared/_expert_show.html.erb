@@ -5,6 +5,8 @@ show_admin_links ||= false
 
 <div class='contentSection mod-overlap-top-image'>
 
+  <%= bootstrap_flash %>
+
   <header class='contentSection-header'>
 
     <h1 class='heading'>
@@ -50,8 +52,8 @@ show_admin_links ||= false
                 hide_object_name: true,
                 object: Quarter.new,
                 index_path: admin_quarters_path(q: @quarter.slug),
-                show_path: admin_quarter_expert_survey_path(quarter_id: @quarter.slug, id: @expert_survey),
-                edit_path: edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug, id: @expert_survey),
+                show_path: admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
+                edit_path: edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
                       }
         %>
       </div>

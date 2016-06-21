@@ -146,6 +146,11 @@ class Quarter < ActiveRecord::Base
     end
   end
 
+  # get all of the quarters that this reform exists in
+  def self.with_reform(reform_id)
+    includes(:reform_surveys).where(reform_surveys: {reform_id: reform_id})
+  end
+
 
   #######################
   ## METHODS
@@ -157,6 +162,11 @@ class Quarter < ActiveRecord::Base
 
   def formatted_quarter
     I18n.t('shared.common.formatted_quarter', quarter: self.quarter)
+  end
+
+  # get an array of the reform ids in this quarter
+  def reform_ids
+    reform_surveys.pluck(:reform_id)
   end
 
   def set_reform(reform_slug)
@@ -293,7 +303,7 @@ class Quarter < ActiveRecord::Base
     # # get all of the survey results for this reform
     # surveys = ReformSurvey.for_reform(reform_id)
 
-    reforms = Reform.active
+    reforms = Reform.active.with_survey_data(options[:is_published])
 
     # get data for all reforms
     data = []
@@ -354,7 +364,7 @@ class Quarter < ActiveRecord::Base
     # get all of the survey results for this reform
     surveys = ReformSurvey.for_reform(reform_id)
 
-    reform = Reform.active.find_by(id: reform_id)
+    reform = Reform.active.with_survey_data(options[:is_published]).find_by(id: reform_id)
 
     if quarters.present? && surveys.present? && reform.present?
       # make sure survey data is in correct quarter order
