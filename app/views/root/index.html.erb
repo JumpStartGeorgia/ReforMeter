@@ -106,11 +106,6 @@
 
             <div class='homePage-expertHistoryChart js-become-highchart' data-chart-type='small-rating-history-time-series' data-id='expert-history'></div>
 
-            <div>
-              <%= @quarter.expert_survey.overall_score %>
-              <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
-            </div>
-
             <% if @quarter.expert_survey.summary %>
 
               <div>
