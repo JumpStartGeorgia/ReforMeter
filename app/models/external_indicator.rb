@@ -155,6 +155,41 @@ class ExternalIndicator < ActiveRecord::Base
   #######################
   ## METHODS
 
+  def full_title(delim = ' - ')
+    "#{self.title}#{delim}#{self.subtitle}"
+  end
+
+  # return one of following:
+  # - min-max
+  # - > min
+  # - < max
+  def range
+    x = ''
+    if min.present? && max.present?
+      x = "#{min} - #{max}"
+    elsif min.present?
+      x = "> #{min}"
+    elsif max.present?
+      x = "< #{max}"
+    end
+    return x
+  end
+
+  # get the name of the indicator type
+  def indicator_type_name
+    I18n.t("shared.external_indicators.indicator_types.#{INDICATOR_TYPES.keys[INDICATOR_TYPES.values.index(self.chart_type)]}")
+  end
+
+  # get the name of the chart type
+  def chart_type_name
+    I18n.t("shared.external_indicators.chart_types.#{CHART_TYPES.keys[CHART_TYPES.values.index(self.chart_type)]}")
+  end
+
+  # get the name of the scale type
+  def scale_type_name
+    I18n.t("shared.external_indicators.scale_types.#{SCALE_TYPES.keys[SCALE_TYPES.values.index(self.chart_type)]}")
+  end
+
   # format the data for charting
   # - use the indicator type to create the proper hash format for charting
   # format: title, subtitle, min, max, categories[], series[ {name: '', data: [ {y, change} ] } ]

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
     match '/admin', :to => 'admin#index', :as => :admin, :via => :get
     namespace :admin do
+      resources :external_indicators, constraints: { format: :html }
       resources :experts, except: :show, constraints: { format: :html }
       resources :reforms, except: :show, constraints: { format: :html }
       resources :reform_colors, except: :show, constraints: { format: :html }

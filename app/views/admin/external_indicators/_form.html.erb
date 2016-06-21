@@ -1,0 +1,58 @@
+<%
+  object = @external_indicator
+%>
+
+<%= semantic_form_for [:admin, object] do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "title_#{enabled_locale}",
+                  as: :string,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.external_indicator.title'),
+                         language: enabled_locale_name) %>
+
+      <%= f.input "subtitle_#{enabled_locale}",
+                  as: :string,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.external_indicator.subtitle'),
+                         language: enabled_locale_name) %>
+
+      <%= f.input "description_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.external_indicator.description'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 5  } %>
+    <% end %>
+
+
+    <hr />
+
+    <div class="row mod-row-no-margins">
+      <%= f.input :indicator_type, as: :radio, collection: @indicator_types, wrapper_html: {class: 'col-md-4'} %>
+      <%= f.input :chart_type, as: :radio, collection: @chart_types, wrapper_html: {class: 'col-md-4'} %>
+      <%= f.input :scale_type, as: :radio, collection: @scale_types, wrapper_html: {class: 'col-md-4'} %>
+    </div>
+
+    <hr />
+
+    <p class="form-instructions"><%= t('.range_explanation') %></p>
+    <div class="row mod-row-no-margins">
+      <%= f.input :min, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :max, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+    </div>
+
+    <hr />
+
+    <%= f.input :show_on_home_page, as: :radio %>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>
+

@@ -11,8 +11,7 @@ ka:
       load: Load
       publish: Publish
       unpublish: Unpublish
-      add_reform_survey: Add Reform Survey
-      add_expert_survey: Add Expert Survey
+      add: Add
       with_obj:
         cancel: Cancel %{obj}
         create: Create %{obj}
@@ -78,6 +77,7 @@ ka:
       reform_colors: Reform Colors
       reforms: Reforms
       quarters: Quarters
+      external_indicators: External Indicators
     labels:
       translated_field: "%{field} (%{language})"
     locale:
@@ -107,6 +107,17 @@ ka:
         stakeholder_history: Stakeholder Response History
         stakeholder_summary: According to the Stakeholders
       no_methodology: No methodology is on record.
+    external_indicators:
+      indicator_types:
+        basic: Basic
+        country: Country
+        composite: Composite
+      chart_types:
+        line: Line
+        bar: Bar
+      scale_types:
+        percent: Percent
+        number: Number
   errors:
     messages:
       publish:

@@ -21,4 +21,7 @@ en:
         stakeholder_score_explanation: All scores must be between 0 and 10.
       show:
         title: "Reform: %{name} for %{time}"
+    external_indicators:
+      form:
+        range_explanation: Use the Min and Max fields to force the chart to show a specific range on the y-axis. You can enter Min and/or Max. If a range is not inputted, then the chart will automatically adjust the y-axis range to fit the data.
 

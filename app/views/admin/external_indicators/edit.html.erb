@@ -1,0 +1,15 @@
+<% model_class = ExternalIndicator %>
+<% page_title t('shared.actions.with_obj.edit',
+                obj: t('activerecord.models.external_indicator', count: 1)) %>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/edit_actions',
+        locals: {
+          object: @external_indicator,
+          index_path: admin_external_indicators_path,
+          show_path: admin_external_indicator_path(@external_indicator)
+                }
+  %>
+</div>
+
+<%= render partial: 'form' %>
