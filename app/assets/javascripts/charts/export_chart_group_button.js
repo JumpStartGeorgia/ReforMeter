@@ -8,8 +8,8 @@ function initializeExportChartGroupButton($exportButton, charts) {
       var svg = chart.getSVG(
         {
           chart: {
-            width: chart.chartWidth,
-            height: chart.chartHeight
+            height: chart.chartHeight,
+            width: chart.chartWidth
           }
         }
       );
@@ -23,7 +23,13 @@ function initializeExportChartGroupButton($exportButton, charts) {
       svgArr.push(svg);
     });
 
-    var svgObj = '<svg height="'+ top +'" width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + svgArr.join('') + '</svg>';
+    function surroundWithSVG(content) {
+      return '<svg height="'+ top +'" width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
+    }
+
+    var svgObj = surroundWithSVG(
+      svgArr.join('')
+    );
 
     return svgObj;
   }
