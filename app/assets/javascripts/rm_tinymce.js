@@ -10,7 +10,7 @@ var RMTinyMCE = (function() {
 
     tinymce.remove();
 
-    var tinymceOptions = {selector: "textarea.tinymce"};
+    var tinymceOptions = {selector: RMTinymceMethods.selector};
     var tinymceDefaultConfig = gon.tinymce_config.default;
 
     // Add default config attributes to tinymce options
