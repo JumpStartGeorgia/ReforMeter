@@ -24,11 +24,10 @@ class ApplicationController < ActionController::Base
     # indicate which year can be the first year for data
     @quarter_start_year = 2015
 
-    # if this is an admin page, load the config
-    gon.tinymce_config = ''
-    if user_signed_in? && request.path.starts_with?("/#{I18n.locale}/admin/")
-      gon.tinymce_config = YAML.load_file('config/tinymce.yml')
-    end
+
+    # if user_signed_in? && request.path.starts_with?("/#{I18n.locale}/admin/")
+    gon.tinymce_config = YAML.load_file('config/tinymce.yml')
+    # end
   end
 
   ##############################################

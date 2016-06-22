@@ -9,15 +9,17 @@ $(document).ready(function() {
 
 $(document).on('page:change', function() {
   if ($( "textarea.tinymce" ).length) {
+    if (!gon.tinymce_config) {
+      throw new Error('Tinymce config not available');
+    }
+
     tinymce.remove();
 
-    if (gon.tinymce_config){
-      var tinymceOptions = {selector: "textarea.tinymce"};
-      var tinymceDefaultConfig = gon.tinymce_config.default;
+    var tinymceOptions = {selector: "textarea.tinymce"};
+    var tinymceDefaultConfig = gon.tinymce_config.default;
 
-      // Add default config attributes to tinymce options
-      for (var attrname in tinymceDefaultConfig) { tinymceOptions[attrname] = tinymceDefaultConfig[attrname]; }
-      tinyMCE.init(tinymceOptions);
-    }
+    // Add default config attributes to tinymce options
+    for (var attrname in tinymceDefaultConfig) { tinymceOptions[attrname] = tinymceDefaultConfig[attrname]; }
+    tinyMCE.init(tinymceOptions);
   }
 });
