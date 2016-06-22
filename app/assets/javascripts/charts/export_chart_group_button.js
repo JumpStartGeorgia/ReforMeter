@@ -1,8 +1,8 @@
 function initializeExportChartGroupButton($exportButton, charts) {
   function getChartGroupSVG() {
     var svgArr = [],
-        top = 0,
-        width = 0;
+        height = 0;
+        xOffset = 0;
 
     $.each(charts, function(i, chart) {
       var svg = chart.getSVG(
@@ -14,17 +14,17 @@ function initializeExportChartGroupButton($exportButton, charts) {
         }
       );
 
-      svg = svg.replace('<svg', '<g transform="translate(0,' + top + ')" ');
+      svg = svg.replace('<svg', '<g transform="translate(' + xOffset + ',0)" ');
       svg = svg.replace('</svg>', '</g>');
 
-      top += chart.chartHeight;
-      width = Math.max(width, chart.chartWidth);
+      height = Math.max(height, chart.chartHeight);
+      xOffset += chart.chartWidth;
 
       svgArr.push(svg);
     });
 
     function surroundWithSVG(content) {
-      return '<svg height="'+ top +'" width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
+      return '<svg height="'+ height + '" width="' + xOffset + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
     }
 
     var svgObj = surroundWithSVG(
