@@ -63,7 +63,7 @@ show_admin_links ||= false
 
       <% if @quarter.expert_survey.summary %>
         <div class='summaryGaugesContainer-summary'>
-          <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+          <%= simple_format(@quarter.expert_survey.summary) %>
         </div>
       <% end %>
 

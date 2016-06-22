@@ -58,36 +58,32 @@ fieldset.form-actions{
 
 
 /* quarter index page */
-.form-quarter-details{
-  .form-quarter-details-top{
-    & > div.row{
-      margin-top: 20px;
-    }
-  }
-  .form-quarter-details-bottom{
-    margin-top: 20px;
-    .header{
-
-    }
+.tab-pane-quarters{
+  border-left: 1px solid #dddddd;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+.form-survey-header{
+  padding: 15px 10px;
+  border-bottom: solid 1px #000;
+}
+.form-survey-item{
+  padding: 15px 10px;
+  &:nth-child(odd) {
+      background-color: #ddd;
   }
 }
-.form-reform-survey-items, .form-expert-survey-items {
-  .form-survey-header{
-    padding: 15px 10px;
-    border-bottom: solid 1px #000;
-  }
-  & > .form-survey-item{
-    padding: 15px 10px;
-    &:nth-child(odd) {
-        background-color: #ddd;
-    }
+.form-news-item{
+  padding: 15px 10px;
+  &:nth-child(odd) {
+    border-top: dashed 1px #999;
   }
 }
 .form-survey-news{
-  border-top: solid 1px #666;
-  margin-top: 10px;
-  padding-top: 10px;
-  margin-left: 30px;
+/*  border-top: solid 1px #666;
+*/  margin-top: 20px;
+  /*padding-top: 20px;*/
+  /*margin-left: 30px;*/
 }
 
 /* expert survey form */
