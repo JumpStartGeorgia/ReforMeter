@@ -1,6 +1,8 @@
 var RMTinyMCE = (function() {
   var RMTinymceMethods = {};
 
+  RMTinymceMethods.selector = 'textarea.tinymce';
+
   RMTinymceMethods.load = function() {
     if (!gon.tinymce_config) {
       throw new Error('Tinymce config not available');

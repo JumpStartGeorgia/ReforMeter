@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 
 $(document).on('page:change', function() {
-  if ($( "textarea.tinymce" ).length) {
+  if ($( RMTinyMCE.selector ).length) {
     RMTinyMCE.load();
   }
 });
