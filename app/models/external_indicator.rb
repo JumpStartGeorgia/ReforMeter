@@ -27,6 +27,10 @@ class ExternalIndicator < ActiveRecord::Base
   #######################
   ## RELATIONSHIPS
   has_and_belongs_to_many :reforms
+  has_many :indices, class_name: 'ExternalIndicatorIndex', dependent: :destroy
+  has_many :countries, class_name: 'ExternalIndicatorCountry', dependent: :destroy
+  accepts_nested_attributes_for :indices, reject_if: :all_blank
+  accepts_nested_attributes_for :countries, reject_if: :all_blank
 
   #######################
   ## VALIDATIONS
@@ -48,7 +52,7 @@ class ExternalIndicator < ActiveRecord::Base
   # format: {
   #   time_periods: [{id, name}]
   #   countries: [{id, name}]
-  #   indexes: [{id, name, short_name, change_multiplier}]
+  #   indexes: [{id, name, short_name, description, change_multiplier}]
   #   data: [{time_period, overall_value, overall_change, values[{index/country, value, change}] }]
   # }
   def load_data_hash
