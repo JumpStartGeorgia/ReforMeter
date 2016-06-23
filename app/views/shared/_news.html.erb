@@ -1,10 +1,12 @@
 <aside>
+
   <h2 class='u-hide-visually'>
     Expert News
   </h2>
 
   <% @news.each do |news| %>
-    <div class='contentSection'>
+
+    <section class='contentSection'>
 
       <% if news.image.exists? %>
 
@@ -30,11 +32,10 @@
       <div class='contentSection-body<%= ' mod-no-top-border' if news.image.exists? %>'>
 
         <%= simple_format_no_tags(news.content) %>
-        
+
       </div>
 
-    </div>
-
+    </section>
 
   <% end %>
 
