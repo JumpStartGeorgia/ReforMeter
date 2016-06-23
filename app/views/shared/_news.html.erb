@@ -4,8 +4,10 @@
   </h2>
 
   <% @news.each do |news| %>
-    <% if news.image.exists? %>
-      <div class='contentSection'>
+    <div class='contentSection'>
+
+      <% if news.image.exists? %>
+      
         <%= image_tag(
               news.image.url('360x200'),
               class: 'responsiveImage') %>
@@ -25,9 +27,7 @@
           <%= simple_format_no_tags(news.content) %>
         </div>
 
-      </div>
-    <% else %>
-      <div class='contentSection'>
+      <% else %>
 
         <header class='contentSection-header'>
           <h3 class='heading'>
@@ -42,8 +42,9 @@
           <%= simple_format_no_tags(news.content) %>
         </div>
 
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+
 
   <% end %>
 
