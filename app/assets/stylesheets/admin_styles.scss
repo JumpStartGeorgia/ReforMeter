@@ -112,3 +112,22 @@ fieldset.form-actions{
     }
   }
 }
+
+/* admin index page */
+.admin-link-list{
+  & > div{
+    position: relative;
+    text-align: center;
+    min-height: 180px;
+    margin-top: 20px;
+    p{
+      margin-top: 0;
+    }
+    a{
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

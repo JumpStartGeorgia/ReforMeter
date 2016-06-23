@@ -2,23 +2,60 @@
   page_title t('.title')
 -%>
 
-<ul>
-  <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
-    <li><%= link_to t('shared.links.quarters'), admin_quarters_path %></li>
-  <% end %>
-  <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
-    <li><%= link_to t('shared.links.reforms'), admin_reforms_path %></li>
-  <% end %>
-  <% if current_user.is?(['super_admin']) %>
-    <li><%= link_to t('shared.links.reform_colors'), admin_reform_colors_path %></li>
-  <% end %>
-  <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
-    <li><%= link_to t('shared.links.experts'), admin_experts_path %></li>
-  <% end %>
-  <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
-    <li><%= link_to t('shared.links.page_contents'), admin_page_contents_path %></li>
-  <% end %>
-  <% if current_user.is?(['super_admin', 'site_admin']) %>
-    <li><%= link_to t('activerecord.models.user', count: 999), admin_users_path %></li>
-  <% end %>
-</ul>
+
+  <div class="row admin-link-list">
+    <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
+      <div class="col-md-3">
+        <h3><%= t('shared.links.quarters') %></h3>
+        <p>
+          <%= t('.explanations.quarters') %>
+        </p>
+        <%= link_to t('shared.actions.view'), admin_quarters_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+    <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
+      <div class="col-md-3">
+        <h3><%= t('shared.links.reforms') %></h3>
+        <p>
+          <%= t('.explanations.reforms') %>
+        </p>
+        <%= link_to t('shared.actions.view'), admin_reforms_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+    <% if current_user.is?(['super_admin']) %>
+      <div class="col-md-3">
+        <h3><%= t('shared.links.reform_colors') %></h3>
+        <p>
+          <%= t('.explanations.reform_colors') %>
+        </p>
+        <%= link_to t('shared.actions.view'), admin_reform_colors_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+    <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
+      <div class="col-md-3">
+        <h3><%= t('shared.links.experts') %></h3>
+        <p>
+          <%= t('.explanations.experts') %>
+        </p>
+        <%= link_to t('shared.actions.view'), admin_experts_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+    <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
+      <div class="col-md-3">
+        <h3><%= t('shared.links.page_contents') %></h3>
+        <p>
+          <%= t('.explanations.page_contents') %>
+        </p>
+        <%= link_to t('shared.actions.view'), admin_page_contents_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+    <% if current_user.is?(['super_admin', 'site_admin']) %>
+      <div class="col-md-3">
+        <h3><%= t('activerecord.models.user', count: 999) %></h3>
+        <p>
+          <%= t('.explanations.users') %>
+        </p>
+        <%= link_to t('shared.actions.view'), admin_users_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
