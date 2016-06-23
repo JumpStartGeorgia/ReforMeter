@@ -1,4 +1,4 @@
-function highchartsBigMeterGaugeOptions(chartData) {
+function highchartsHomepageMeterGaugeOptions(chartData) {
   var color = chartData.color;
 
   return {
@@ -25,7 +25,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
             text: 'Behind',
             rotation: -60,
             x: 55,
-            y: 65,
+            y: 60,
             style: {
               fontSize: '18px',
               color: 'white'
@@ -42,7 +42,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           label: {
             text: 'On Track',
             x: 88,
-            y: 30,
+            y: 20,
             style: {
               fontSize: '18px',
               color: 'white'
@@ -60,7 +60,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
             text: 'Ahead',
             rotation: 60,
             x: 173,
-            y: 45,
+            y: 35,
             style: {
               fontSize: '18px',
               color: 'white'
@@ -78,15 +78,15 @@ function highchartsBigMeterGaugeOptions(chartData) {
         y: 70,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '35');
+          return highchartsGaugeLabel(chartData, this, '35', { color: 'white' });
         }
       },
       pivot: {
-        backgroundColor: 'white'
+        backgroundColor: 'rgb(0, 0, 0)'
       },
       dial: {
         baseWidth: 20,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        backgroundColor: 'rgb(255, 255, 255)',
         baseLength: 0,
         radius: '60%',
         rearLength: '10%'
