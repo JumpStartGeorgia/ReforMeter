@@ -7,42 +7,32 @@
     <div class='contentSection'>
 
       <% if news.image.exists? %>
-      
+
         <%= image_tag(
               news.image.url('360x200'),
               class: 'responsiveImage') %>
 
-        <div class='contentSection-header'>
-
-          <h3 class='heading'>
-            <%= link_to news.title,
-                        news.url,
-                        target: :blank,
-                        class: 'link' %>
-          </h3>
-
-        </div>
-
-        <div class='contentSection-body mod-no-top-border'>
-          <%= simple_format_no_tags(news.content) %>
-        </div>
-
-      <% else %>
-
-        <header class='contentSection-header'>
-          <h3 class='heading'>
-            <%= link_to news.title,
-                        news.url,
-                        target: :blank,
-                        class: 'link mod-no-decoration' %>
-          </h3>
-        </header>
-
-        <div class='contentSection-body'>
-          <%= simple_format_no_tags(news.content) %>
-        </div>
-
       <% end %>
+
+      <header class='contentSection-header'>
+
+        <h3 class='heading'>
+
+          <%= link_to news.title,
+                      news.url,
+                      target: :blank,
+                      class: 'link mod-no-decoration' %>
+
+        </h3>
+
+      </header>
+
+      <div class='contentSection-body<%= ' mod-no-top-border' if news.image.exists? %>'>
+
+        <%= simple_format_no_tags(news.content) %>
+        
+      </div>
+
     </div>
 
 
