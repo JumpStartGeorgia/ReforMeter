@@ -14,10 +14,9 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
     yAxis: {
       plotBands: [
         {
-          borderWidth: 2,
-          borderColor: 'transparent',
+          borderWidth: 0,
           from: 0,
-          to: 3.3,
+          to: 3.2,
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
@@ -32,8 +31,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
             }
           }
         },{
-          borderWidth: 2,
-          borderColor: 'transparent',
+          borderWidth: 0,
           from: 3.3,
           to: 6.6,
           color: outputHighchartsColorString(color, '.8'),
@@ -49,9 +47,8 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
             }
           }
         },{
-          borderWidth: 2,
-          borderColor: 'transparent',
-          from: 6.6,
+          borderWidth: 0,
+          from: 6.7,
           to: 10,
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
@@ -82,7 +79,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
         }
       },
       pivot: {
-        backgroundColor: 'rgb(0, 0, 0)'
+        backgroundColor: '#5e588e'
       },
       dial: {
         baseWidth: 20,
