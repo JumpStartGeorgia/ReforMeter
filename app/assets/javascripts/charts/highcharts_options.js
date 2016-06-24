@@ -8,6 +8,9 @@ function setupDefaultOptions() {
         }
       },
       enabled: false
+    },
+    yAxis: {
+      title: false
     }
   });
 }
