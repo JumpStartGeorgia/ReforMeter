@@ -1,0 +1,14 @@
+@import 'tipsy';
+
+.tipsy {
+  min-width: 250px;
+}
+
+  .tipsy-inner {
+    text-align: left;
+    padding: 1rem;
+    min-width: 100%;
+    background-color: darken($color-grey-background, 10%);
+    color: $color-grey-text;
+    border: 1px solid #ed7818;
+  }

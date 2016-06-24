@@ -40,6 +40,7 @@
 //= require highcharts/highcharts-more
 //= require highcharts/modules/solid-gauge
 //= require highcharts/modules/exporting
+//= require tipsy
 
 //= require_tree .
 
