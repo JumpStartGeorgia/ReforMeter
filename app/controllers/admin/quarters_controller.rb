@@ -1,4 +1,5 @@
 class Admin::QuartersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_quarter, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
   authorize_resource
 
