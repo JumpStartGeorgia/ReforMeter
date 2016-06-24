@@ -179,7 +179,10 @@ class ExternalIndicator < ActiveRecord::Base
       'Solid',
       'Dot',
       'LongDash',
-      'ShortDash'
+      'ShortDash',
+      'ShortDot',
+      'ShortDashDot',
+      'LongDashDotDot'
     ]
 
     # add data

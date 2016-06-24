@@ -10,19 +10,14 @@ var externalIndicatorChart = (function() {
   };
 
   externalIndicatorChart.colors = [
-    '#ed7818',
-    '#f09326',
-    '#f4ae35',
-    '#f7c943',
-    '#ee811d',
-    '#f19c2b',
-    '#f5b73a',
-    '#f8d248',
-    '#ef8a22',
-    '#f2a530',
-    '#f6c03f',
-    '#f9db4d'
-  ];
+      '#ed7818',
+      '#ef8a22',
+      '#f19c2b',
+      '#f4ae35',
+      '#f6c03f',
+      '#f8d248',
+      '#f9db4d'
+    ];
 
   externalIndicatorChart.title = function(text, customOptions) {
     var options = {
