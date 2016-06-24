@@ -10,9 +10,14 @@
 
       <% if news.image.exists? %>
 
-        <%= image_tag(
-              news.image.url('360x200'),
-              class: 'responsiveImage') %>
+        <%= link_to news.url,
+                    target: :blank do %>
+
+          <%= image_tag(
+                news.image.url('360x200'),
+                class: 'responsiveImage') %>
+
+        <% end %>
 
       <% end %>
 
