@@ -32,17 +32,25 @@ var externalIndicatorChart = (function() {
     return options;
   }
 
-  externalIndicatorChart.tooltipFormatter = function(pointData) {
-    var value = Math.round(pointData.y)
+  externalIndicatorChart.tooltipFormatter = function(pointData, args) {
+    if (!args) args = {};
+
+    var seriesName = '';
+
+    if (args.seriesName) {
+      seriesName = pointData.series.name + '</br>';
+    }
+
+    var value = Math.round(pointData.y);
+
+    var iconInSpan = ''
 
     if (pointData.point.change) {
       var icon = change_icon(pointData.point.change);
-      var iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
-
-      return value + iconInSpan;
+      iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
     }
 
-    return value;
+    return seriesName + value + iconInSpan;
   }
 
   externalIndicatorChart.subtitle = function(text, customOptions) {

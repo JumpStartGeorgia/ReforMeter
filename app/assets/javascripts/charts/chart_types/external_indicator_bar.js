@@ -26,7 +26,12 @@ function highchartsExternalIndicatorBar(chartData) {
       formatter: function() {
         indexBoxes.update(this);
 
-        return externalIndicatorChart.tooltipFormatter(this);
+        return externalIndicatorChart.tooltipFormatter(
+          this,
+          {
+            seriesName: chartData.series.length > 1
+          }
+        );
       },
       style: {
         fontSize: '2rem',
