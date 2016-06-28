@@ -2,6 +2,12 @@
 
 <section class='contactPage-info'>
 
+  <% if @intro_text %>
+    <div>
+      <%= simple_format_no_tags(@intro_text.content) %>
+    </div>
+  <% end %>
+
   <p class='contactPage-info-line mod-important'>
     ISET Policy Institute
   </p>

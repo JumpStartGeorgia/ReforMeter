@@ -104,6 +104,12 @@ PageContent.find_or_create_by(name: 'download_report_text') do |pc|
     pc.title = 'Quarterly Reports'
     pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
 end
+# contact intro text
+PageContent.find_or_create_by(name: 'contact_text') do |pc|
+    puts 'creating page content for contact text'
+    pc.title = 'Contact'
+    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
+end
 
 
 
