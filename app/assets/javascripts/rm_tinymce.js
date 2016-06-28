@@ -1,4 +1,4 @@
-var RMTinyMCE = (function() {
+var RMRichTextArea = (function() {
   var exports = {};
 
   exports.selector = 'textarea.tinymce';
