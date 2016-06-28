@@ -36,7 +36,7 @@ function ratingTimeSeriesYAxisPlotBands(plotBands) {
     function() {
       this.label.x = -100;
       this.label.verticalAlign = 'middle';
-      this.label.style.fontSize = '1.6rem';
+      this.label.style.fontSize = '16px';
       this.label.style.fontWeight = '600';
     }
   );
