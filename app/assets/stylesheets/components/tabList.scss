@@ -14,14 +14,11 @@
       background: none;
       font-weight: 200;
       padding: 0;
-    }
+      color: rgb(51, 51, 51);
 
-    .tabList-item-button.is-selected {
-      background-color: #FFF;
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 2rem;
-      vertical-align: middle;
+      &:hover, & .heading:hover {
+        color: $color-brand;
+      }
     }
 
 .tabList.mod-header {
@@ -37,6 +34,14 @@
       display: block;
       padding: 22px $padding-main-content;
     }
+
+    .tabList-item-button.is-selected {
+      background-color: #FFF;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 2rem;
+      vertical-align: middle;
+    }
 }
 
 .tabList.mod-with-separator {
@@ -46,4 +51,11 @@
     padding: 0 20px;
     content: '|';
   }
+
+    .tabList-item-button.mod-primary {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 2rem;
+      vertical-align: middle;
+    }
 }
