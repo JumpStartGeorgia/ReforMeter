@@ -16,11 +16,11 @@
           <ul>
 
             <li class='homePage-intro-summaryGood'>
-              <%= simple_format_no_tags(@quarter.summary_good) %>
+              <%= simple_format(@quarter.summary_good) %>
             </li>
 
             <li class='homePage-intro-summaryBad'>
-              <%= simple_format_no_tags(@quarter.summary_bad) %>
+              <%= simple_format(@quarter.summary_bad) %>
             </li>
 
           </ul>
@@ -44,7 +44,11 @@
 
         <% if @quarter %>
 
-          <div class='js-become-highchart meterGauge mod-big' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+          <%= link_to expert_show_path(@quarter) do %>
+
+            <div class='js-become-highchart meterGauge mod-big mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+
+          <% end %>
 
         <% end %>
 

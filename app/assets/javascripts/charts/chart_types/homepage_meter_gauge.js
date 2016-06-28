@@ -1,4 +1,4 @@
-function highchartsBigMeterGaugeOptions(chartData) {
+function highchartsHomepageMeterGaugeOptions(chartData) {
   var color = chartData.color;
 
   return {
@@ -14,10 +14,9 @@ function highchartsBigMeterGaugeOptions(chartData) {
     yAxis: {
       plotBands: [
         {
-          borderWidth: 2,
-          borderColor: 'transparent',
+          borderWidth: 0,
           from: 0,
-          to: 3.3,
+          to: 3.2,
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
@@ -25,15 +24,14 @@ function highchartsBigMeterGaugeOptions(chartData) {
             text: 'Behind',
             rotation: -60,
             x: 55,
-            y: 65,
+            y: 60,
             style: {
               fontSize: '18px',
               color: 'white'
             }
           }
         },{
-          borderWidth: 2,
-          borderColor: 'transparent',
+          borderWidth: 0,
           from: 3.3,
           to: 6.6,
           color: outputHighchartsColorString(color, '.8'),
@@ -42,16 +40,15 @@ function highchartsBigMeterGaugeOptions(chartData) {
           label: {
             text: 'On Track',
             x: 88,
-            y: 30,
+            y: 20,
             style: {
               fontSize: '18px',
               color: 'white'
             }
           }
         },{
-          borderWidth: 2,
-          borderColor: 'transparent',
-          from: 6.6,
+          borderWidth: 0,
+          from: 6.7,
           to: 10,
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
@@ -60,7 +57,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
             text: 'Ahead',
             rotation: 60,
             x: 173,
-            y: 45,
+            y: 35,
             style: {
               fontSize: '18px',
               color: 'white'
@@ -78,15 +75,15 @@ function highchartsBigMeterGaugeOptions(chartData) {
         y: 70,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '35');
+          return highchartsGaugeLabel(chartData, this, '35', { color: 'white' });
         }
       },
       pivot: {
-        backgroundColor: 'white'
+        backgroundColor: '#5e588e'
       },
       dial: {
         baseWidth: 20,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        backgroundColor: 'rgb(255, 255, 255)',
         baseLength: 0,
         radius: '60%',
         rearLength: '10%'

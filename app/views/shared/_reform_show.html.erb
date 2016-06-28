@@ -75,7 +75,7 @@ show_admin_links ||= false
 
     <% if @reform_survey.summary %>
       <div>
-        <%= simple_format_no_tags(@reform_survey.summary) %>
+        <%= simple_format(@reform_survey.summary) %>
       </div>
     <% end %>
 
@@ -120,7 +120,7 @@ show_admin_links ||= false
       <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
         <li class='tabList-item'>
-          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_history_chart'>
+          <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_history_chart'>
             <%= t('.header.government_history') %>
           </button>
         </li>
@@ -201,7 +201,7 @@ show_admin_links ||= false
           <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
             <li class='tabList-item'>
-              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
+              <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
                 <%= t('.header.stakeholder_history') %>
               </button>
             </li>

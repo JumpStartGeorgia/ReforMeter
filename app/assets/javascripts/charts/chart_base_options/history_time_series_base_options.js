@@ -42,7 +42,7 @@ function historyTimeSeriesOptions(chartData) {
     title: {
       text: null
     },
-    colors: ['#000'],
+    colors: ['#0e3a5b'],
     xAxis: {
       crosshair: xAxisCrosshair(),
       // Using labels instead of categories to make x axis start on tick
@@ -85,6 +85,7 @@ function historyTimeSeriesOptions(chartData) {
         }
       },
       spline: {
+        lineWidth: 2.5,
         marker: {
           enabled: false
         }

@@ -3,6 +3,13 @@ ka:
   admin:
     index:
       title: Admin Section
+      explanations:
+        quarters: Manage the data for quarters like quarterly report, expert survey, reform surveys, and news.
+        reforms: Manage reform data like name, summary, methodology, color, and show on homepage.
+        reform_colors: Manage the list of colors that reforms can be.
+        experts: Manage the expert data like name, bio, and image.
+        page_contents: Manage content that appears on pages like about text, methdologoes, etc.
+        users: Manage who has access to edit the data on the site.
     quarters:
       index:
         set_time_period: Select Time Period to Edit

@@ -1,4 +1,5 @@
 class Admin::ExpertSurveysController < ApplicationController
+  before_action :authenticate_user!
   before_action :get_quarter
   before_action :set_expert_survey, only: [:show, :edit, :update, :destroy]
   before_action :load_experts, only: [:new, :edit, :create, :update]

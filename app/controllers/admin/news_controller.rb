@@ -1,4 +1,5 @@
 class Admin::NewsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   before_action :get_quarter
   before_action :load_reforms, only: [:new, :edit, :create, :update]

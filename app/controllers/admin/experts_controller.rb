@@ -1,4 +1,5 @@
 class Admin::ExpertsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_expert, only: [:show, :edit, :update, :destroy]
   authorize_resource
 

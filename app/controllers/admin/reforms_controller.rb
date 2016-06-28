@@ -1,4 +1,5 @@
 class Admin::ReformsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_reform, only: [:show, :edit, :update, :destroy]
   before_action :load_colors, only: [:new, :edit, :create, :update]
   authorize_resource
