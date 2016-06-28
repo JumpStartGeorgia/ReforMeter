@@ -1,12 +1,13 @@
 var RMRichTextArea = (function() {
   var exports = {};
-  var selector = 'textarea.tinymce';
+  var selector = '.js-become-rich-text-editor';
 
   exports.existsOnPage = function() {
     return $(selector).length > 0;
   }
 
   exports.load = function() {
+
     if (!gon.tinymce_config) {
       throw new Error('Tinymce config not available');
     }
