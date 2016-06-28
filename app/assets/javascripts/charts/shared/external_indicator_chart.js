@@ -43,7 +43,7 @@ var externalIndicatorChart = (function() {
 
     var value = Math.round(pointData.y);
 
-    var iconInSpan = ''
+    var iconInSpan = '';
 
     if (pointData.point.change) {
       var icon = change_icon(pointData.point.change);

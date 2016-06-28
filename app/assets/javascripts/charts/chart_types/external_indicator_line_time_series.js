@@ -11,7 +11,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
     title: externalIndicatorChart.title(chartData.title),
     yAxis: {
       title: {
-        text: 'Percentage'
+        text: chartData.unitLabel
       }
     },
   };

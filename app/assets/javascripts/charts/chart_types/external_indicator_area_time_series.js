@@ -104,7 +104,10 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
             }
           }
         ]
-      )
+      ),
+      title: {
+        text: chartData.unitLabel
+      }
     }
   };
 

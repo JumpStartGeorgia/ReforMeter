@@ -50,6 +50,11 @@ function highchartsExternalIndicatorBar(chartData) {
     xAxis: {
       categories: chartData.categories,
       tickmarkPlacement: 'on'
+    },
+    yAxis: {
+      title: {
+        text: chartData.unitLabel
+      }
     }
   };
 
