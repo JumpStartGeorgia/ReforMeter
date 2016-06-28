@@ -64,7 +64,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
-      plotBands: ratingTimeSeriesYAxisPlotBands(
+      plotBands: customTimeSeriesPlotBands(
         [
           {
             from: max * 0,

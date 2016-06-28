@@ -31,7 +31,7 @@ function ratingPlotBands(labelColor) {
   ]
 }
 
-function ratingTimeSeriesYAxisPlotBands(plotBands) {
+function customTimeSeriesPlotBands(plotBands) {
   $(plotBands).each(
     function() {
       this.label.x = -100;
