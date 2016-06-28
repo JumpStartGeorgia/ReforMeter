@@ -1,22 +1,28 @@
 var RMTinyMCE = (function() {
-  var RMTinymceMethods = {};
+  var exports = {};
 
-  RMTinymceMethods.selector = 'textarea.tinymce';
+  exports.selector = 'textarea.tinymce';
 
-  RMTinymceMethods.load = function() {
+  exports.load = function() {
     if (!gon.tinymce_config) {
       throw new Error('Tinymce config not available');
     }
 
     tinymce.remove();
 
-    var tinymceOptions = {selector: RMTinymceMethods.selector};
+    var tinymceOptions = {
+      selector: exports.selector
+    };
+
     var tinymceDefaultConfig = gon.tinymce_config.default;
 
     // Add default config attributes to tinymce options
-    for (var attrname in tinymceDefaultConfig) { tinymceOptions[attrname] = tinymceDefaultConfig[attrname]; }
+    for (var attrname in tinymceDefaultConfig) {
+      tinymceOptions[attrname] = tinymceDefaultConfig[attrname];
+    }
+
     tinyMCE.init(tinymceOptions);
   }
 
-  return RMTinymceMethods;
+  return exports;
 })();
