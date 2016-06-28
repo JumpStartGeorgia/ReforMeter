@@ -1,12 +1,20 @@
 function highchartsExternalIndicatorBar(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
 
+  function colors() {
+    if (chartData.series.length > 1) {
+      return externalIndicatorChart.colors;
+    } else {
+      return [externalIndicatorChart.colors[3]];
+    }
+  }
+
   var options = {
     chart: {
       marginTop: externalIndicatorChart.marginTop,
       type: 'column'
     },
-    colors: externalIndicatorChart.colors,
+    colors: colors(),
     exporting: {
       enabled: true
     },
