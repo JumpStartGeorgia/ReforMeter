@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 
 $(document).on('page:change', function() {
-  if ($( RMRichTextArea.selector ).length) {
+  if (RMRichTextArea.existsOnPage()) {
     RMRichTextArea.load();
   }
 });

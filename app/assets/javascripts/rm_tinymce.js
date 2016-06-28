@@ -1,7 +1,10 @@
 var RMRichTextArea = (function() {
   var exports = {};
+  var selector = 'textarea.tinymce';
 
-  exports.selector = 'textarea.tinymce';
+  exports.existsOnPage = function() {
+    return $(selector).length > 0;
+  }
 
   exports.load = function() {
     if (!gon.tinymce_config) {
@@ -11,7 +14,7 @@ var RMRichTextArea = (function() {
     tinymce.remove();
 
     var tinymceOptions = {
-      selector: exports.selector
+      selector: selector
     };
 
     var tinymceDefaultConfig = gon.tinymce_config.default;
