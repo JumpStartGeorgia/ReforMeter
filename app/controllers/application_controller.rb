@@ -57,7 +57,12 @@ class ApplicationController < ActionController::Base
     ActionController::Base.helpers.image_path('download.svg')
   end
 
-
+  def highchart_export_config
+    {
+      icon: highchart_download_icon,
+      translations: I18n.t('shared.chart_download')
+    }
+  end
 
   ##############################################
   # Authorization #

@@ -5,9 +5,18 @@ function setupDefaultOptions() {
       buttons: {
         contextButton: {
           symbol: highchartDownloadIcon()
+        },
+        printButton: {
+          enabled: false
         }
       },
       enabled: false
+    },
+    lang: {
+      downloadPNG: gon.chart_download.translations.download_png,
+      downloadJPEG: gon.chart_download.translations.download_jpeg,
+      downloadPDF: gon.chart_download.translations.download_pdf,
+      downloadSVG: gon.chart_download.translations.download_svg
     },
     yAxis: {
       title: false

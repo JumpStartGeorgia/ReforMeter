@@ -6,7 +6,7 @@ class RootController < ApplicationController
     @quarter = Quarter.published.with_expert_survey.latest
     @reforms = Reform.in_quarter(@quarter.id).active.highlight#.sorted if @quarter
 
-    gon.chart_download_icon = highchart_download_icon
+    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
@@ -113,7 +113,7 @@ class RootController < ApplicationController
     @reforms = Reform.with_survey_data.active.with_color#.sorted
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
 
-    gon.chart_download_icon = highchart_download_icon
+    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
@@ -164,7 +164,7 @@ class RootController < ApplicationController
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
       @news = News.by_reform_quarter(@quarter.id, @reform.id)
 
-      gon.chart_download_icon = highchart_download_icon
+      gon.chart_download = highchart_export_config
       gon.change_icons = view_context.change_icons
 
       quarter_ids = Quarter.with_reform(@reform.id).published.recent.pluck(:id)
@@ -262,7 +262,7 @@ class RootController < ApplicationController
 
     @quarters = Quarter.published.recent.with_expert_survey
 
-    gon.chart_download_icon = highchart_download_icon
+    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
@@ -296,7 +296,7 @@ class RootController < ApplicationController
       @methodology_expert = PageContent.find_by(name: 'methodology_expert')
       @news = News.by_expert_quarter(@quarter.id)
 
-      gon.chart_download_icon = highchart_download_icon
+      gon.chart_download = highchart_export_config
       gon.change_icons = view_context.change_icons
 
       gon.charts = [
