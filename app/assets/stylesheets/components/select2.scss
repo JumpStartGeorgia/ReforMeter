@@ -13,12 +13,12 @@
     min-width: 100px;
   }
 
-.form-quarter-select .select2 {
-  .select2-selection {
+.form-quarter-select, form {
+  .select2 .select2-selection {
     background-color: #fff;
   }
 
-  .select2-selection span {
+  .select2 .select2-selection span {
     color: #66666d;
   }
 }
