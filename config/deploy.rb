@@ -228,7 +228,7 @@ namespace :deploy do
                      with local assets (#{precompiled_assets_dir})"]
 
       system %(rsync #{rsync_verbose} -e 'ssh -p #{ssh_port}' \
-                 --recursive --times --delete ./#{precompiled_assets_dir}/. \
+                 --recursive --times --copy-links --delete ./#{precompiled_assets_dir}/. \
                  #{user}@#{domain}:#{deploy_to}/tmp/assets)
     end
 
