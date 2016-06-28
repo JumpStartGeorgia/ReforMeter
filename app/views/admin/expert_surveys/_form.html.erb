@@ -21,16 +21,16 @@
       <%= f.input "summary_#{enabled_locale}",
                   as: :text,
                   label: t('shared.labels.translated_field',
-                         field: t('activerecord.attributes.expert_survey.summary'),
-                         language: enabled_locale_name),
-                   :input_html => { :class => 'autogrow', :rows => 5, :maxlength => 255  } %>
+                  field: t('activerecord.attributes.expert_survey.summary'),
+                  language: enabled_locale_name),
+                  :input_html => { :class => 'autogrow', :rows => 2, :maxlength => 255  } %>
 
       <%= f.input "details_#{enabled_locale}",
                   as: :text,
                   label: t('shared.labels.translated_field',
                          field: t('activerecord.attributes.expert_survey.details'),
                          language: enabled_locale_name),
-                   :input_html => { :class => 'autogrow', :rows => 5  } %>
+                   :input_html => { :class => 'js-become-rich-text-editor', :rows => 5  } %>
     <% end %>
 
 
@@ -88,4 +88,3 @@
     <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
   <% end %>
 <% end %>
-

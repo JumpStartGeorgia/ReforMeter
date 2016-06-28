@@ -75,7 +75,7 @@ show_admin_links ||= false
 
     <% if @reform_survey.summary %>
       <div>
-        <%= simple_format_no_tags(@reform_survey.summary) %>
+        <%= simple_format(@reform_survey.summary) %>
       </div>
     <% end %>
 

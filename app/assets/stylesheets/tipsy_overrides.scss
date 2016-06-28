@@ -8,7 +8,7 @@
     text-align: left;
     padding: 1rem;
     min-width: 100%;
-    background-color: darken($color-grey-background, 10%);
+    background-color: $color-grey-background;
     color: $color-grey-text;
-    border: 1px solid #ed7818;
+    border: 1px solid #eaeaea;
   }
