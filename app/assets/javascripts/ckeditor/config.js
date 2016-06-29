@@ -1,3 +1,5 @@
+// To generate configuration: http://ckeditor.com/latest/samples/toolbarconfigurator/index.html#basic
+
 CKEDITOR.editorConfig = function( config ) {
 	config.toolbarGroups = [
 		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
