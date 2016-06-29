@@ -6,11 +6,11 @@ function highchartsBigSolidGaugeOptions(chartData) {
 
     title: {
       text: chartData.title,
-      y: 40
+      y: 15
     },
 
     pane: {
-      center: ['50%', '80%'],
+      center: ['50%', '68%'],
       size: '200',
       startAngle: -90,
       endAngle: 90,
@@ -56,7 +56,7 @@ function highchartsBigSolidGaugeOptions(chartData) {
       data: [chartData.score],
       dataLabels: {
         borderWidth: 0,
-        y: 45,
+        y: 70,
         useHTML: true,
         formatter: function() {
           return highchartsGaugeLabel(chartData, this, '35', { unit: '%' });
