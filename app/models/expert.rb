@@ -18,10 +18,12 @@ class Expert < ActiveRecord::Base
   has_attached_file :avatar,
                     :url => "/system/expert_avatar/:id/:style/:basename.:extension",
                     :styles => {
-                        :'100x100' => {:geometry => "100x100#"}
+                        :'100x100' => {:geometry => "100x100#"},
+                        :'50x50' => {:geometry => "50x50#"}
                     },
                     :convert_options => {
-                      :'100x100' => '-quality 85'
+                      :'100x100' => '-quality 85',
+                      :'50x50' => '-quality 85'
                     },
                     :default_url => "missing/expert_avatar/:style/default_user.png"
 
@@ -42,7 +44,14 @@ class Expert < ActiveRecord::Base
   validates :name, presence: :true
   validates_attachment :avatar,
     content_type: { content_type: ["image/jpeg", "image/png"] },
-    size: { in: 0..4.megabytes }
+    size: { in: 0..4.megabytes },
+    if: Proc.new {|x| x.avatar.present? }
+
+
+  #######################
+  ## SCOPES
+  scope :active, -> { where(is_active: true) }
+  scope :sorted, -> {with_translations(I18n.locale).order(name: :asc)}
 
 
 end

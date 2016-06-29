@@ -196,3 +196,9 @@ gem 'autoprefixer-rails', '~> 6.3', '>= 6.3.6'
 
 # Super cool charts!
 gem 'highcharts-rails', '~> 4.2', '>= 4.2.3'
+
+# wysiwyg editor
+gem 'tinymce-rails', '~> 4.3', '>= 4.3.12'
+
+# Tooltips
+gem 'tipsy-rails', '~> 1.0', '>= 1.0.5'

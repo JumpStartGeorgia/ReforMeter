@@ -1,0 +1,15 @@
+---
+ka:
+  activerecord:
+    attributes:
+      reform_color:
+        hex: Hex Code
+        r: Red
+        g: Green
+        b: Blue
+        color_code: Color Code
+        reform: Assigned to Reform
+    models:
+      reform_color:
+        one: Reform Color
+        other: Reform Colors

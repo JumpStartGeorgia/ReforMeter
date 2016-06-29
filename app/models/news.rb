@@ -19,10 +19,12 @@ class News < ActiveRecord::Base
   has_attached_file :image,
                     :url => "/system/news/:id/:style.:extension",
                     :styles => {
-                        :'360x200' => {:geometry => "360x200#"}
+                        :'360x200' => {:geometry => "360x200#"},
+                        :'90x50' => {:geometry => "90x50#"}
                     },
                     :convert_options => {
-                      :'360x200' => '-quality 85'
+                      :'360x200' => '-quality 85',
+                      :'90x50' => '-quality 85'
                     }
 
   #######################
@@ -39,7 +41,9 @@ class News < ActiveRecord::Base
 
   #######################
   ## VALIDATIONS
+  # reform_id is optional because without it, it means it is for expert survey
   validates :quarter_id, :title, :url, presence: :true
+  validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_attachment :image,
     content_type: { content_type: ["image/jpeg", "image/png"] },
     size: { in: 0..4.megabytes }

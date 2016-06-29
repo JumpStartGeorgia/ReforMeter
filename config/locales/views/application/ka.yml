@@ -10,3 +10,6 @@ ka:
       download_data_and_reports: Download Data & Reports
       experts: Experts
       reforms: Reforms
+      account:
+        edit_profile: პროფილის შეცვლა
+        logout: გასვლა

@@ -1,0 +1,15 @@
+---
+ka:
+  activerecord:
+    attributes:
+      news:
+        quarter_id: Quarter
+        reform_id: Reform
+        image: Image
+        title: Title
+        content: Content
+        url: URL to Story
+    models:
+      news:
+        one: News Item
+        other: News

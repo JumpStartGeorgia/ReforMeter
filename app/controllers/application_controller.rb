@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_locale
+  before_action :set_global_vars
 
   ##############################################
   # Locales #
@@ -17,6 +18,17 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }.merge options
   end
 
+  ##############################################
+
+  def set_global_vars
+    # indicate which year can be the first year for data
+    @quarter_start_year = 2015
+
+
+    # if user_signed_in? && request.path.starts_with?("/#{I18n.locale}/admin/")
+    gon.tinymce_config = YAML.load_file('config/tinymce.yml')
+    # end
+  end
 
   ##############################################
   # helpers
@@ -26,6 +38,36 @@ class ApplicationController < ActionController::Base
   end
 
 
+  # get the quarter that this news items is for
+  def get_quarter
+    begin
+      @quarter = Quarter.friendly.find(params[:quarter_id])
+
+      if @quarter.nil?
+        redirect_to admin_quarters_path,
+                alert: t('shared.msgs.does_not_exist')
+      end
+    rescue ActiveRecord::RecordNotFound  => e
+      redirect_to admin_quarters_path,
+                alert: t('shared.msgs.does_not_exist')
+    end
+  end
+
+  def highchart_download_icon
+    ActionController::Base.helpers.image_path('download.svg')
+  end
+
+  def highchart_export_config
+    {
+      icon: highchart_download_icon,
+      translations: {
+        download_png: I18n.t('shared.chart_download.download_png'),
+        download_jpeg: I18n.t('shared.chart_download.download_jpeg'),
+        download_pdf: I18n.t('shared.chart_download.download_pdf'),
+        download_svg: I18n.t('shared.chart_download.download_svg')
+      }
+    }
+  end
 
   ##############################################
   # Authorization #

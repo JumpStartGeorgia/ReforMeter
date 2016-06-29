@@ -1,0 +1,14 @@
+<% model_class = Reform %>
+<% page_title t('shared.actions.with_obj.new',
+                obj: t('activerecord.models.reform', count: 1)) %>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/new_actions',
+        locals: {
+          object: @reform,
+          index_path: admin_reforms_path
+                }
+  %>
+</div>
+
+<%= render partial: 'form' %>

@@ -52,12 +52,28 @@ class Reform < ActiveRecord::Base
   ## SCOPES
   scope :active, -> { where(is_active: true) }
   scope :highlight, -> { where(is_highlight: true) }
-  scope :sorted, -> { with_translations.order(:name) }
+  scope :sorted, -> { with_translations(I18n.locale).order(:name) }
   scope :with_color, -> {includes(:color )}
 
   # get an array of the active reforms in format: [name, slug]
   def self.active_reforms_array
     active.sorted.map{|x| [x.name, x.slug]}
+  end
+
+  # get all reforms that are in the quarter
+  def self.in_quarter(quarter_id)
+    q = Quarter.find_by(id: quarter_id)
+
+    if q.present?
+      where(id: q.reform_ids)
+    end
+  end
+
+  # get all reforms that have survey data
+  def self.with_survey_data(quarters_are_published=true)
+    q = Quarter.all
+    q = q.published if quarters_are_published
+    where(id: q.map{|x| x.reform_ids}.flatten.uniq)
   end
 
 

@@ -1,0 +1,90 @@
+<%
+  object = @expert_survey
+%>
+
+<%= semantic_form_for [:admin, @quarter, object], url: admin_quarter_expert_survey_path(quarter_id: @quarter.slug) do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+
+    <%= f.input :quarter_id, as: :hidden, :input_html => { :value => @quarter.id } %>
+    <div class="input required form-group" id="news_quarter_id_input">
+      <span class="form-label">
+        <label for="news_quarter_id" class=" control-label"><%= t('activerecord.attributes.expert_survey.quarter_id') %></label>
+      </span>
+      <span class="form-wrapper">
+        <%= @quarter.time_period %>
+      </span>
+    </div>
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "summary_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                  field: t('activerecord.attributes.expert_survey.summary'),
+                  language: enabled_locale_name),
+                  :input_html => { :class => 'autogrow', :rows => 2, :maxlength => 255  } %>
+
+      <%= f.input "details_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.expert_survey.details'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'js-become-rich-text-editor', :rows => 5  } %>
+    <% end %>
+
+
+    <hr />
+
+    <h3><%= t('activerecord.attributes.expert_survey.scores') %></h3>
+    <p class="form-instructions"><%= t('.score_explanation') %></p>
+
+    <div class="row mod-row-no-margins">
+      <%= f.input :overall_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category1_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category2_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category3_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+    </div>
+    <hr />
+
+    <h3><%= t('activerecord.attributes.expert_survey.experts') %></h3>
+    <p class="form-instructions">
+      <%= t('.experts_explanation') %>
+      <%= link_to t('.experts_select_all'), '#', class: 'btn btn-default btn-xs js-expects-select-all', :'data-state' => 'all' %>
+      <%= link_to t('.experts_deselect_all'), '#', class: 'btn btn-default btn-xs js-expects-select-all', :'data-state' => 'none' %>
+    </p>
+    <% if @experts.present? %>
+
+      <div class="check_boxes input optional form-group" id="expert_survey_experts_input">
+        <input name="expert_survey[expert_ids][]" id="expert_survey_experts_none" value="" type="hidden">
+        <div class="form-wrapper">
+          <% @experts.each do |expert| %>
+            <div class="checkbox">
+              <label for="expert_survey_expert_ids_<%= expert.id %>" class="checkbox-inline">
+                <% checked = object.expert_ids.include?(expert.id) ? 'checked=checked' : '' %>
+                <input name="expert_survey[expert_ids][]" id="expert_survey_expert_ids_<%= expert.id %>" value="<%= expert.id %>" <%= checked %> type="checkbox">
+                <div>
+                  <div><%= image_tag(expert.avatar.url('50x50')) %></div>
+                  <div><%= expert.name %></div>
+                </div>
+              </label>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+
+    <% else %>
+      <p>
+        <%= t('.no_experts') %>
+      </p>
+      <p>
+        <%= link_to t('shared.actions.add'), admin_experts_path, class: 'btn btn-primary btn-xs' %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>

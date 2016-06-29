@@ -64,7 +64,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
-      plotBands: ratingTimeSeriesYAxisPlotBands(
+      plotBands: customTimeSeriesPlotBands(
         [
           {
             from: max * 0,
@@ -104,7 +104,10 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
             }
           }
         ]
-      )
+      ),
+      title: {
+        text: chartData.unitLabel
+      }
     }
   };
 

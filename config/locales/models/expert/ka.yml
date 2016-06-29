@@ -1,0 +1,13 @@
+---
+ka:
+  activerecord:
+    attributes:
+      expert:
+        is_active: Is Public?
+        avatar: Expert Photo
+        name: Name
+        bio: Short Bio
+    models:
+      expert:
+        one: Expert
+        other: The Experts

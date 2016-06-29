@@ -4,7 +4,7 @@ function initializeExternalIndicatorIndexBoxes(chartData, seriesData) {
   var $chart = $('*[data-id="' + chartData.id + '"]');
   var $indexesContainer = $chart.siblings('.js-act-as-chart-indexes-container');
 
-  var indexBoxes = $indexesContainer.find('.js-make-index-updatable-by-chart').map(
+  var indexBoxes = $indexesContainer.find('.js-act-as-index-box').map(
     function() {
       return initializeIndexBox(chartData.indexes, $(this));
     }

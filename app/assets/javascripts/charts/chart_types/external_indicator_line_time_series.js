@@ -3,18 +3,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
     chart: {
       marginTop: externalIndicatorChart.marginTop
     },
-    colors: [
-      '#db220f',
-      '#de3716',
-      '#e24b1d',
-      '#e56024',
-      '#e8742b',
-      '#ec8931',
-      '#ef9d38',
-      '#f2b23f',
-      '#f2b23f',
-      '#f6c646'
-    ],
+    colors: externalIndicatorChart.colors,
     exporting: {
       enabled: true
     },
@@ -22,7 +11,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
     title: externalIndicatorChart.title(chartData.title),
     yAxis: {
       title: {
-        text: 'Percentage'
+        text: chartData.unitLabel
       }
     },
   };

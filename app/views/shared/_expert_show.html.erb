@@ -1,9 +1,12 @@
 
 <%
 @do_not_use_default_page_layout = true
+show_admin_links ||= false
 %>
 
 <div class='contentSection mod-overlap-top-image'>
+
+  <%= bootstrap_flash %>
 
   <header class='contentSection-header'>
 
@@ -42,11 +45,26 @@
 
   <div class='contentSection-body'>
 
+
+    <% if show_admin_links %>
+      <div class='actions-container'>
+        <%= render partial: 'shared/show_actions',
+              locals: {
+                hide_object_name: true,
+                object: Quarter.new,
+                index_path: admin_quarters_path(q: @quarter.slug),
+                show_path: admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
+                edit_path: edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
+                      }
+        %>
+      </div>
+    <% end %>
+
     <div class='summaryGaugesContainer'>
 
       <% if @quarter.expert_survey.summary %>
         <div class='summaryGaugesContainer-summary'>
-          <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+          <%= simple_format(@quarter.expert_survey.summary) %>
         </div>
       <% end %>
 
@@ -71,12 +89,14 @@
       </section>
     </div>
 
-    <div>
+    <section>
       <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
         <li class='tabList-item'>
-          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
-            <%= t('.header.chart') %>
+          <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
+            <h2 class='heading'>
+              <%= t('.header.chart') %>
+            </h2>
           </button>
         </li>
 
@@ -108,7 +128,7 @@
 
       </div>
 
-    </div>
+    </section>
 
   </div>
 
@@ -173,7 +193,7 @@
                                   class: 'expertList-item-image') %>
 
                     <% if expert.bio %>
-                      <%= simple_format_no_tags(expert.bio) %>
+                      <%= simple_format(expert.bio) %>
                     <% end %>
 
                   </li>
