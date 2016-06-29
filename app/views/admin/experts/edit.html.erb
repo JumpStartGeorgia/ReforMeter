@@ -1,0 +1,14 @@
+<% model_class = Expert %>
+<% page_title t('shared.actions.with_obj.edit',
+                obj: t('activerecord.models.expert', count: 1)) %>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/edit_actions',
+        locals: {
+          object: @expert,
+          index_path: admin_experts_path
+                }
+  %>
+</div>
+
+<%= render partial: 'form' %>

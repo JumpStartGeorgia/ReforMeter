@@ -1,0 +1,59 @@
+<%
+  model_class = Reform
+  page_title t('activerecord.models.reform', count: 999)
+%>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/index_actions',
+        locals: {
+          model_class: model_class,
+          new_path: new_admin_reform_path
+        }
+  %>
+</div>
+
+<table class='table table-striped table-hover table-nonfluid datatable-admin'>
+  <thead>
+    <tr>
+      <th></th>
+      <th><%=t 'activerecord.attributes.reform.name' %></th>
+      <th><%=t 'activerecord.attributes.reform.summary' %></th>
+      <th><%=t 'activerecord.attributes.reform.methodology' %></th>
+      <th><%=t 'activerecord.attributes.reform.is_active' %></th>
+      <th><%=t 'activerecord.attributes.reform.is_highlight' %></th>
+
+      <th class='action-col'><%=t 'shared.common.actions' %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reforms.each do |reform| %>
+      <tr>
+        <td>
+          <div style="background-color: <%= reform.color.hex %>; width: 15px;">&nbsp;</div>
+        </td>
+        <td><%= reform.name %></td>
+        <td><%= simple_format(reform.summary) %></td>
+        <td><%= simple_format(reform.methodology) %></td>
+        <td><%= format_boolean_flag(reform.is_active) %></td>
+        <td><%= format_boolean_flag(reform.is_highlight) %></td>
+
+        <td>
+          <%= if can? :edit, reform
+                link_to t('shared.actions.edit'),
+                        edit_admin_reform_path(reform),
+                        class: 'btn btn-default'
+          end %>
+
+          <%= if can? :destroy, reform
+                link_to t('shared.actions.destroy'),
+                        admin_reform_path(reform),
+                        method: :delete,
+                        data: { confirm: t('shared.prompts.confirm') },
+                        class: 'btn btn-danger'
+          end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

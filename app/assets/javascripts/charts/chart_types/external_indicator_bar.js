@@ -1,12 +1,20 @@
 function highchartsExternalIndicatorBar(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
 
+  function colors() {
+    if (chartData.series.length > 1) {
+      return externalIndicatorChart.colors;
+    } else {
+      return [externalIndicatorChart.colors[3]];
+    }
+  }
+
   var options = {
     chart: {
       marginTop: externalIndicatorChart.marginTop,
       type: 'column'
     },
-    colors: externalIndicatorChart.colors,
+    colors: colors(),
     exporting: {
       enabled: true
     },
@@ -26,7 +34,12 @@ function highchartsExternalIndicatorBar(chartData) {
       formatter: function() {
         indexBoxes.update(this);
 
-        return externalIndicatorChart.tooltipFormatter(this);
+        return externalIndicatorChart.tooltipFormatter(
+          this,
+          {
+            seriesName: chartData.series.length > 1
+          }
+        );
       },
       style: {
         fontSize: '2rem',
@@ -37,6 +50,11 @@ function highchartsExternalIndicatorBar(chartData) {
     xAxis: {
       categories: chartData.categories,
       tickmarkPlacement: 'on'
+    },
+    yAxis: {
+      title: {
+        text: chartData.unitLabel
+      }
     }
   };
 

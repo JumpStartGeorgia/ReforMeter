@@ -1,0 +1,79 @@
+<% object = @quarter %>
+<%= semantic_form_for [:admin,object], html: {multipart: true} do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+
+    <div class="row mod-row-no-margins">
+      <div class="col-sm-2 select input required form-group" id="quarter_quarter_input">
+        <span class="form-label">
+          <label for="quarter_quarter" class=" control-label"><%= t('activerecord.attributes.quarter.quarter') %><abbr title="required">*</abbr></label>
+        </span>
+        <span class="form-wrapper">
+          <select name="quarter[quarter]" id="quarter_quarter" class="form-control" style="width: 75px;">
+            <% (1..4).each do |quarter| %>
+              <% current_quarter = Time.now.month / 4 %>
+              <% selected = @quarter.quarter.nil? && current_quarter == quarter || @quarter.quarter == quarter ? 'selected' : '' %>
+              <option <%= selected %> value="<%= quarter %>"><%= I18n.t('shared.common.formatted_quarter', quarter: quarter) %></option>
+            <% end %>
+          </select>
+        </span>
+      </div>
+
+
+      <div class="col-sm-2 select input required form-group" id="quarter_year_input">
+        <span class="form-label">
+          <label for="quarter_year" class=" control-label"><%= t('activerecord.attributes.quarter.year') %><abbr title="required">*</abbr></label>
+        </span>
+        <span class="form-wrapper">
+          <select name="quarter[year]" id="quarter_year" class="form-control" style="width: 75px;">
+            <%
+              years = [@quarter_start_year]
+              if Time.now.year > @quarter_start_year
+                (@quarter_start_year+1..Time.now.year).each {|x| years << x}
+              end
+            %>
+            <% years.each do |year| %>
+              <% selected = year == @quarter.year || @quarter.year.nil? && year == Time.now.year ? 'selected' : '' %>
+              <option <%= selected %> value="<%= year %>"><%= year %></option>
+            <% end %>
+          </select>
+        </span>
+      </div>
+    </div>
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "summary_good_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.quarter.summary_good'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 2, :maxlength => 255  } %>
+      <%= f.input "summary_bad_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.quarter.summary_bad'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 2, :maxlength => 255  } %>
+    <% end %>
+
+
+    <div class="file input optional form-group" id="quarter_report_input">
+      <span class="form-label">
+        <label for="quarter_report" class=" control-label"><%= t('activerecord.attributes.quarter.report') %></label>
+      </span>
+      <%= link_to t('shared.actions.view'), @quarter.report.url,
+                      class: 'btn btn-default',
+                      target: :blank if @quarter.report.exists? %>
+      <span class="form-wrapper">
+        <input accept=".pdf" id="quarter_report" name="quarter[report]" type="file">
+      </span>
+    </div>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>
+

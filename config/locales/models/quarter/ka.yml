@@ -1,0 +1,19 @@
+---
+ka:
+  activerecord:
+    attributes:
+      quarter:
+        quarter: Quarter
+        year: Year
+        time_period: Time Period
+        is_public: Is Public?
+        summary_good: Good Summary Item
+        summary_bad: Bad Summary Item
+        report: Quarterly Report
+        expert_survey: Expert Survey
+        reform_surveys: Reform Surveys
+        news: News
+    models:
+      quarter:
+        one: Quarter
+        other: Quarters

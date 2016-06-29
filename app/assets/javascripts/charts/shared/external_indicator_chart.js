@@ -10,25 +10,24 @@ var externalIndicatorChart = (function() {
   };
 
   externalIndicatorChart.colors = [
-    '#ed7818',
-    '#f09326',
-    '#f4ae35',
-    '#f7c943',
-    '#ee811d',
-    '#f19c2b',
-    '#f5b73a',
-    '#f8d248',
-    '#ef8a22',
-    '#f2a530',
-    '#f6c03f',
-    '#f9db4d'
-  ];
+      '#ed7818',
+      '#ef8a22',
+      '#f19c2b',
+      '#f4ae35',
+      '#f6c03f',
+      '#f8d248',
+      '#f9db4d'
+    ];
 
   externalIndicatorChart.title = function(text, customOptions) {
     var options = {
       align: 'left',
-      text: "<h3 class='heading'>" + text + '</h3>',
-      useHTML: true
+      style: {
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        fontSize: '20px'
+      },
+      text: text
     };
 
     if (customOptions) {
@@ -37,17 +36,25 @@ var externalIndicatorChart = (function() {
     return options;
   }
 
-  externalIndicatorChart.tooltipFormatter = function(pointData) {
-    var value = Math.round(pointData.y)
+  externalIndicatorChart.tooltipFormatter = function(pointData, args) {
+    if (!args) args = {};
+
+    var seriesName = '';
+
+    if (args.seriesName) {
+      seriesName = pointData.series.name + '</br>';
+    }
+
+    var value = Math.round(pointData.y);
+
+    var iconInSpan = '';
 
     if (pointData.point.change) {
       var icon = change_icon(pointData.point.change);
-      var iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
-
-      return value + iconInSpan;
+      iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
     }
 
-    return value;
+    return seriesName + value + iconInSpan;
   }
 
   externalIndicatorChart.subtitle = function(text, customOptions) {
@@ -55,7 +62,7 @@ var externalIndicatorChart = (function() {
       align: 'left',
       style: {
         color: '#66666d',
-        fontSize: '1.6rem',
+        fontSize: '16px',
         fontWeight: '200'
       },
       text: text,

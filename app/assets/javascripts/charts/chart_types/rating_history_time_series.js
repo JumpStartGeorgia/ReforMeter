@@ -7,11 +7,14 @@ function ratingHistoryTimeSeriesOptions(chartData) {
     exporting: {
       enabled: true
     },
+    legend: {
+      enabled: chartData.series.length > 1
+    },
     yAxis: {
       min: 0,
       max: 10,
       tickInterval: 1,
-      plotBands: ratingTimeSeriesYAxisPlotBands(ratingPlotBands(chartData.color))
+      plotBands: customTimeSeriesPlotBands(ratingPlotBands(chartData.color))
     }
   };
 

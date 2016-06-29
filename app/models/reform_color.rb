@@ -21,6 +21,7 @@ class ReformColor < ActiveRecord::Base
 
   validates :hex, :r, :g, :b, presence: :true
   validates_uniqueness_of :hex
+  validates :hex, length: { is: 7 }
 
   #######################
   ## CALLBACKS
@@ -38,6 +39,11 @@ class ReformColor < ActiveRecord::Base
 
 
   #######################
+  ## SCOPES
+  scope :with_reforms, -> {includes(:reforms )}
+
+
+  #######################
   ## METHODS
 
   # get rgb colors in hash format
@@ -50,4 +56,13 @@ class ReformColor < ActiveRecord::Base
     }
   end
 
+  # return the rgb value in a string format of (r, g, b)
+  def rgb
+    return "(#{self.r}, #{self.g}, #{self.b})"
+  end
+
+  # get the names of the reforms with this color
+  def reform_names(delim = ' <br /> ')
+    self.reforms.map{|x| x.name}.join(delim)
+  end
 end

@@ -46,6 +46,30 @@ class Quarter < ActiveRecord::Base
   validates_inclusion_of :year, in: 2015..2115
 
   validates_attachment_content_type :report, :content_type => 'application/pdf'
+  validate :check_if_can_publish
+
+
+  # if the is_public flag chnaged to true, make sure everything is in place in order to publish
+  # - report
+  # - expert survey
+  # - at least one reform
+  def check_if_can_publish
+    if self.is_public_changed? and self.is_public?
+      if !self.report.exists?
+        errors.add(:base, I18n.t('errors.messages.publish.report') )
+      end
+
+      if !self.expert_survey.present?
+        errors.add(:base, I18n.t('errors.messages.publish.expert_survey') )
+      end
+
+      if !self.reform_surveys.present?
+        errors.add(:base, I18n.t('errors.messages.publish.reform_survey') )
+      end
+
+    end
+    return true
+  end
 
   #######################
   ## SLUG DEFINITION (friendly_id)
@@ -74,9 +98,11 @@ class Quarter < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :published, -> { where(is_public: true) }
-  scope :recent, -> {order(slug: :desc)}
-  scope :oldest, -> {order(slug: :asc)}
+  scope :recent, -> {order(year: :desc, quarter: :desc)}
+  scope :oldest, -> {order(year: :asc, quarter: :asc)}
   scope :with_expert_survey, -> {includes(expert_survey: [:translations] )}
+  scope :with_reform_surveys, -> {includes(reform_surveys: [:translations] )}
+  scope :with_news, -> {includes(news: [:translations] )}
 
   # get the latest quarter
   def self.latest
@@ -88,19 +114,60 @@ class Quarter < ActiveRecord::Base
     published.recent.map{|x| [x.time_period, x.slug]}
   end
 
+  # get an array of all quarters in format: [time period, slug]
+  def self.all_quarters_array
+    recent.map{|x| [x.time_period, x.slug]}
+  end
+
   # get all quarters with the provided ids
   def self.with_ids(quarter_ids)
     where(id: quarter_ids)
   end
+
+  # get the quarter after the provided quarter
+  def self.quarter_after(quarter_id)
+    q = where(id: quarter_id).first
+    if q.present?
+      new_quarter = q.quarter == 4 ? 1 : q.quarter + 1
+      new_year = q.quarter == 4 ? q.year + 1 : q.year
+
+      return where(quarter: new_quarter, year: new_year).first
+    end
+  end
+
+  # get the quarter before the provided quarter
+  def self.quarter_before(quarter_id)
+    q = where(id: quarter_id).first
+    if q.present?
+      new_quarter = q.quarter == 1 ? 4 : q.quarter - 1
+      new_year = q.quarter == 1 ? q.year - 1 : q.year
+
+      return where(quarter: new_quarter, year: new_year).first
+    end
+  end
+
+  # get all of the quarters that this reform exists in
+  def self.with_reform(reform_id)
+    includes(:reform_surveys).where(reform_surveys: {reform_id: reform_id})
+  end
+
 
   #######################
   ## METHODS
 
   # formal name of quarter: Q# 2016
   def time_period
-    "Q#{self.quarter} #{self.year}"
+    "#{formatted_quarter} #{self.year}"
   end
 
+  def formatted_quarter
+    I18n.t('shared.common.formatted_quarter', quarter: self.quarter)
+  end
+
+  # get an array of the reform ids in this quarter
+  def reform_ids
+    reform_surveys.pluck(:reform_id)
+  end
 
   def set_reform(reform_slug)
     reform = Reform.friendly.find(reform_slug)
@@ -236,7 +303,7 @@ class Quarter < ActiveRecord::Base
     # # get all of the survey results for this reform
     # surveys = ReformSurvey.for_reform(reform_id)
 
-    reforms = Reform.active
+    reforms = Reform.active.with_survey_data(options[:is_published])
 
     # get data for all reforms
     data = []
@@ -297,7 +364,7 @@ class Quarter < ActiveRecord::Base
     # get all of the survey results for this reform
     surveys = ReformSurvey.for_reform(reform_id)
 
-    reform = Reform.active.find_by(id: reform_id)
+    reform = Reform.active.with_survey_data(options[:is_published]).find_by(id: reform_id)
 
     if quarters.present? && surveys.present? && reform.present?
       # make sure survey data is in correct quarter order
@@ -371,22 +438,22 @@ class Quarter < ActiveRecord::Base
           # category 1
           hash[:series] << {
             name: I18n.t('shared.categories.initial_setup'),
-            dashStyle: 'dot',
+            dashStyle: 'Dot',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category1_score.to_f, change: x.nil? ? nil : x.government_category1_change}}}
           # category 2
           hash[:series] << {
             name: I18n.t('shared.categories.capacity_building'),
-            dashStyle: 'shortDash',
+            dashStyle: 'ShortDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category2_score.to_f, change: x.nil? ? nil : x.government_category2_change}}}
           # category 3
           hash[:series] << {
             name: I18n.t('shared.categories.infastructure_budgeting'),
-            dashStyle: 'longDash',
+            dashStyle: 'Dash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category3_score.to_f, change: x.nil? ? nil : x.government_category3_change}}}
           # category 4
           hash[:series] << {
             name: I18n.t('shared.categories.legislation_regulation'),
-            dashStyle: 'LongDashDotDot',
+            dashStyle: 'LongDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category4_score.to_f, change: x.nil? ? nil : x.government_category4_change}}}
         end
 

@@ -1,1 +1,55 @@
 <% page_title t('.title') %>
+
+<section class='contactPage-info'>
+
+  <% if @intro_text %>
+    <div>
+      <%= simple_format_no_tags(@intro_text.content) %>
+    </div>
+  <% end %>
+
+  <p class='contactPage-info-line mod-important'>
+    ISET Policy Institute
+  </p>
+
+  <p class='contactPage-info-line'>
+    Address: 16, Zandukeli St, Tbilisi
+  </p>
+
+  <p class='contactPage-info-line'>
+    Email: <a href="http://www.google.com/recaptcha/mailhide/d?k=01tBlSg2Z63-In-L3j46Hs5A==&amp;c=ocXR892Yu9uw7cyP5ObMFKNYHuiYFXWuwwvenHGIjW0=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\x3d01tBlSg2Z63-In-L3j46Hs5A\x3d\x3d\x26c\x3docXR892Yu9uw7cyP5ObMFKNYHuiYFXWuwwvenHGIjW0\x3d', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">Click here</a>
+  </p>
+
+  <p class='contactPage-info-line'>
+    Phone: (+995 32) 250 71 77
+  </p>
+
+  <p class='contactPage-info-line'>
+    Fax: (995 32) 299 86 44
+  </p>
+
+</section>
+
+<section class='contactPage-social'>
+
+  <%= link_to 'Facebook',
+              'https://www.facebook.com/ISET.ISET',
+              target: '_blank',
+              class: 'contactPage-social-link' %>
+
+  <%= link_to 'Twitter',
+              'https://twitter.com/ISET_PI',
+              target: '_blank',
+              class: 'contactPage-social-link' %>
+
+  <%= link_to 'Youtube',
+              'https://www.youtube.com/user/ISETchannel',
+              target: '_blank',
+              class: 'contactPage-social-link' %>
+
+  <%= link_to 'LinkedIn',
+              'https://www.linkedin.com/edu/school?id=43086&trk=tyah&trkInfo=clickedVertical%3Aschool%2CclickedEntityId%3A43086%2Cidx%3A6-1-17%2CtarId%3A1441091883758%2Ctas%3Aiset',
+              target: '_blank',
+              class: 'contactPage-social-link' %>
+
+</section>

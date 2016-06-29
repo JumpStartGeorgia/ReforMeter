@@ -1,0 +1,16 @@
+<% model_class = ExpertSurvey %>
+<% page_title t('shared.actions.with_obj.edit',
+                obj: t('activerecord.models.expert_survey', count: 1)) %>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/edit_actions',
+        locals: {
+          hide_object_name: true,
+          object: Quarter.new,
+          index_path: admin_quarters_path(q: @quarter.slug),
+          show_path: admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
+                }
+  %>
+</div>
+
+<%= render partial: 'form' %>

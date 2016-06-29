@@ -1,6 +1,15 @@
 function initializeIndexBox(chartDataIndexes, $index) {
   var index_methods = {};
 
+  $index.tipsy(
+    {
+      className: 'chartIndexes-item-tooltip',
+      gravity: $.fn.tipsy.autoNS,
+      html: true,
+      opacity: 1
+    }
+  );
+
   var $indexValue = $index.find('.js-act-as-index-value');
 
   var $indexName = $index.find('.js-act-as-index-name');

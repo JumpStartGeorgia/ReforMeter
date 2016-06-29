@@ -1,8 +1,11 @@
 <%
 @do_not_use_default_page_layout = true
+show_admin_links ||= false
 %>
 
 <div class='contentSection mod-overlap-top-image'>
+
+  <%= bootstrap_flash %>
 
   <header class='contentSection-header'>
 
@@ -56,9 +59,23 @@
 
   <div class='contentSection-body'>
 
+    <% if show_admin_links %>
+      <div class='actions-container'>
+        <%= render partial: 'shared/show_actions',
+              locals: {
+                hide_object_name: true,
+                object: Quarter.new,
+                index_path: admin_quarters_path(q: @quarter.slug),
+                show_path: admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey),
+                edit_path: edit_admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey),
+                      }
+        %>
+      </div>
+    <% end %>
+
     <% if @reform_survey.summary %>
       <div>
-        <%= simple_format_no_tags(@reform_survey.summary) %>
+        <%= simple_format(@reform_survey.summary) %>
       </div>
     <% end %>
 
@@ -103,7 +120,7 @@
       <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
         <li class='tabList-item'>
-          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_history_chart'>
+          <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_history_chart'>
             <%= t('.header.government_history') %>
           </button>
         </li>
@@ -184,7 +201,7 @@
           <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
             <li class='tabList-item'>
-              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
+              <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
                 <%= t('.header.stakeholder_history') %>
               </button>
             </li>

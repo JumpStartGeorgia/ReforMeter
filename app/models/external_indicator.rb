@@ -65,8 +65,8 @@ class ExternalIndicator < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :published, -> { where(is_public: true) }
-  scope :sorted, -> { with_translations.order(title: :asc) }
-  scope :reverse_sorted, -> { with_translations.order(title: :desc) }
+  scope :sorted, -> { with_translations(I18n.locale).order(title: :asc) }
+  scope :reverse_sorted, -> { with_translations(I18n.locale).order(title: :desc) }
   scope :for_home_page, -> { where(show_on_home_page: true) }
 
 
@@ -152,6 +152,18 @@ class ExternalIndicator < ActiveRecord::Base
     end
   end
 
+  def unit_is_percent?
+    scale_type == SCALE_TYPES[:percent]
+  end
+
+  def unit
+    unit_is_percent? ? '%' : nil
+  end
+
+  def unit_label
+    unit_is_percent? ? 'Percent (%)' : nil
+  end
+
   #######################
   ## METHODS
 
@@ -168,6 +180,7 @@ class ExternalIndicator < ActiveRecord::Base
       subtitle: subtitle,
       min: min,
       max: max,
+      unitLabel: unit_label,
       categories: [],
       series: []
     }
@@ -179,7 +192,10 @@ class ExternalIndicator < ActiveRecord::Base
       'Solid',
       'Dot',
       'LongDash',
-      'ShortDash'
+      'ShortDash',
+      'ShortDot',
+      'ShortDashDot',
+      'LongDashDotDot'
     ]
 
     # add data

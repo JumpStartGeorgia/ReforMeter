@@ -16,8 +16,20 @@ Rails.application.routes.draw do
 
     match '/admin', :to => 'admin#index', :as => :admin, :via => :get
     namespace :admin do
-      resources :users, constraints: { format: :html }
+      resources :experts, except: :show, constraints: { format: :html }
+      resources :reforms, except: :show, constraints: { format: :html }
+      resources :reform_colors, except: :show, constraints: { format: :html }
+      resources :quarters, except: :show, constraints: { format: :html } do
+        resources :news, except: :index, constraints: { format: :html }
+        resource :expert_survey, except: :index, constraints: { format: :html }
+        resources :reform_surveys, except: :index, constraints: { format: :html }
+        member do
+          post 'publish'
+          post 'unpublish'
+        end
+      end
       resources :page_contents, constraints: { format: :html }
+      resources :users, constraints: { format: :html }
     end
 
     get '/contact' => 'root#contact'

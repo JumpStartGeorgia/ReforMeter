@@ -1,0 +1,64 @@
+---
+en:
+  activerecord:
+    attributes:
+      reform_survey:
+        quarter_id:  Quarter
+        reform_id :  Reform
+        summary: Summary
+        scores: Scores
+        government_summary: Government Summary
+        stakeholder_summary: Stakeholder Summary
+        government_overall_score: Overall
+        government_category1_score: Initial Setup
+        government_category2_score: Capacity Building
+        government_category3_score: Infastructure & Budgeting
+        government_category4_score: Legislation & Regulations
+        stakeholder_overall_score: Overall
+        stakeholder_category1_score: Performance
+        stakeholder_category2_score: Goals
+        stakeholder_category3_score: Progress
+    models:
+      reform_survey:
+        one: Reform Survey
+        other: Reform Surveys
+    errors:
+      models:
+        reform_survey:
+          attributes:
+            government_overall_score:
+              inclusion: must be between 0 and 100
+            government_category1_score:
+              inclusion: must be between 0 and 100
+            government_category2_score:
+              inclusion: must be between 0 and 100
+            government_category3_score:
+              inclusion: must be between 0 and 100
+            government_category4_score:
+              inclusion: must be between 0 and 100
+            stakeholder_overall_score:
+              inclusion: must be between 0 and 10
+            stakeholder_category1_score:
+              inclusion: must be between 0 and 10
+            stakeholder_category2_score:
+              inclusion: must be between 0 and 10
+            stakeholder_category3_score:
+              inclusion: must be between 0 and 10
+            government_overall_change:
+              inclusion: must be -1, 0, or 1
+            government_category1_change:
+              inclusion: must be -1, 0, or 1
+            government_category2_change:
+              inclusion: must be -1, 0, or 1
+            government_category3_change:
+              inclusion: must be -1, 0, or 1
+            government_category4_change:
+              inclusion: must be -1, 0, or 1
+            stakeholder_overall_change:
+              inclusion: must be -1, 0, or 1
+            stakeholder_category1_change:
+              inclusion: must be -1, 0, or 1
+            stakeholder_category2_change:
+              inclusion: must be -1, 0, or 1
+            stakeholder_category3_change:
+              inclusion: must be -1, 0, or 1

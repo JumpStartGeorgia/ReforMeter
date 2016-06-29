@@ -1,47 +1,46 @@
 <aside>
+
   <h2 class='u-hide-visually'>
     Expert News
   </h2>
 
   <% @news.each do |news| %>
-    <% if news.image.exists? %>
-      <div class='contentSection'>
-        <%= image_tag(
-              news.image.url('360x200'),
-              class: 'responsiveImage') %>
 
-        <div class='contentSection-header'>
+    <section class='contentSection'>
 
-          <h3 class='heading'>
-            <%= link_to news.title,
-                        news.url,
-                        target: :blank %>
-          </h3>
+      <% if news.image.exists? %>
 
-        </div>
+        <%= link_to news.url,
+                    target: :blank do %>
 
-        <div class='contentSection-body mod-no-top-border'>
-          <%= simple_format_no_tags(news.content) %>
-        </div>
+          <%= image_tag(
+                news.image.url('360x200'),
+                class: 'responsiveImage') %>
 
-      </div>
-    <% else %>
-      <div class='contentSection'>
+        <% end %>
 
-        <header class='contentSection-header'>
-          <h3 class='heading'>
-            <%= link_to news.title,
-                        news.url,
-                        target: :blank %>
-          </h3>
-        </header>
+      <% end %>
 
-        <div class='contentSection-body'>
-          <%= simple_format_no_tags(news.content) %>
-        </div>
+      <header class='contentSection-header'>
+
+        <h3 class='heading'>
+
+          <%= link_to news.title,
+                      news.url,
+                      target: :blank,
+                      class: 'link mod-no-decoration' %>
+
+        </h3>
+
+      </header>
+
+      <div class='contentSection-body<%= ' mod-no-top-border' if news.image.exists? %>'>
+
+        <%= simple_format(news.content) %>
 
       </div>
-    <% end %>
+
+    </section>
 
   <% end %>
 
