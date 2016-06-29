@@ -6,9 +6,7 @@ $expert-image-size: 100px;
 
   .expertList-item {
     list-style-type: none;
-    position: relative;
-    padding-left: $expert-image-size + 10px;
-    min-height: $expert-image-size;
+    display: flex;
     margin: 10px 0;
   }
 
@@ -19,8 +17,20 @@ $expert-image-size: 100px;
       margin: 10px 0 10px;
     }
 
-    .expertList-item-image {
-      position: absolute;
-      left: 0;
-      top: 0;
+    .expertList-item-imageLink {
+      max-width: $expert-image-size;
     }
+
+      .expertList-item-imageLink-image {
+        max-width: $expert-image-size;
+      }
+
+.expertList.mod-two-columns {
+
+  .expertList-item {
+    display: inline-flex;
+    max-width: 50%;
+    box-sizing: border-box;
+  }
+
+}

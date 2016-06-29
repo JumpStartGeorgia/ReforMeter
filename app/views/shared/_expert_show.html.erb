@@ -171,34 +171,42 @@ show_admin_links ||= false
 
           <div class='tabContent-panel js-act-as-tab-content-panel' id='experts'>
 
-            <% if @quarter.expert_survey.experts.each do |expert| %>
+            <ul class='expertList mod-two-columns'>
 
-              <ul class='expertList'>
+              <% if @quarter.expert_survey.experts.each do |expert| %>
 
-                <%= link_to experts_path(anchor: "expert-#{expert.id}") do %>
+                <li class='expertList-item'>
 
-                  <li class='expertList-item'>
-
-                    <h4 class='expertList-item-heading'>
-                      <%= expert.name %>
-                    </h4>
+                  <%= link_to experts_path(anchor: "expert-#{expert.id}"),
+                              class: 'expertList-item-imageLink' do %>
 
                     <%= image_tag(expert.avatar.url('100x100'),
-                                  class: 'expertList-item-image') %>
+                                  class: 'expertList-item-imageLink-image') %>
 
-                  </li>
+                  <% end %>
 
-                <% end %>
+                  <h4 class='expertList-item-heading'>
 
-              </ul>
+                    <%= link_to expert.name,
+                                experts_path(anchor: "expert-#{expert.id}"),
+                                class: 'link mod-no-decoration' %>
 
-            <% end.empty? %>
+                  </h4>
 
-              <p>
-               <%= t('.no_experts') %>
-              </p>
+                </li>
 
-            <% end %>
+              <% end.empty? %>
+
+                <li>
+
+                  <%= t('.no_experts') %>
+
+                </li>
+
+              <% end %>
+
+            </ul>
+
           </div>
 
         </div>
