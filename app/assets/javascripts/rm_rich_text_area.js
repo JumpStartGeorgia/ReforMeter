@@ -4,6 +4,7 @@ var RMRichTextArea = (function() {
 
   exports.load = function() {
 
+    // Get already loaded instances
     var loaded_instances = Object.getOwnPropertyNames(CKEDITOR.instances);
 
     $(selector).each(
@@ -13,11 +14,12 @@ var RMRichTextArea = (function() {
 
         // Remove CKEditor instance if already loaded.
         // Necessary for compatibility with Turbolinks restoration visits,
-        // in which a cached version of the page is loaded
+        // in which the instances are not removed
         if (loaded_instances.includes(editor_id)) {
           CKEDITOR.remove(CKEDITOR.instances[editor_id]);
         }
 
+        // Initialize CKEditor instance
         CKEDITOR.replace($(this).attr('id'));
       }
     );
