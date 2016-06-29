@@ -40,6 +40,9 @@ function highchartsSmallMeterGaugeOptions(chartData) {
     },
 
     title: {
+      style: {
+        fontSize: '16px'
+      },
       text: chartData.title,
       y: 15
     },
