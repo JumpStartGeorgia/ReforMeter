@@ -2,30 +2,35 @@ var RMRichTextArea = (function() {
   var exports = {};
   var selector = '.js-become-rich-text-editor';
 
-  exports.existsOnPage = function() {
-    return $(selector).length > 0;
+  function removeInstance(editor_id) {
+    // Remove any old ckeditor elements from page
+    $('.cke_editor_' + editor_id).remove();
+
+    // Remove CKEditor instances from JavaScript
+    CKEDITOR.remove(CKEDITOR.instances[editor_id]);
   }
 
   exports.load = function() {
 
-    if (!gon.tinymce_config) {
-      throw new Error('Tinymce config not available');
-    }
+    // Get already loaded instances
+    var loaded_instances = Object.getOwnPropertyNames(CKEDITOR.instances);
 
-    tinymce.remove();
+    $(selector).each(
+      function() {
+        var editor_id = $(this).attr('id');
 
-    var tinymceOptions = {
-      selector: selector
-    };
+        // Remove CKEditor instance if already loaded.
+        // Necessary for compatibility with Turbolinks restoration visits,
+        // in which the instances are not removed
+        if (loaded_instances.includes(editor_id)) {
+          removeInstance(editor_id);
+        }
 
-    var tinymceDefaultConfig = gon.tinymce_config.default;
+        // Initialize CKEditor instance
+        CKEDITOR.replace($(this).attr('id'));
+      }
+    );
 
-    // Add default config attributes to tinymce options
-    for (var attrname in tinymceDefaultConfig) {
-      tinymceOptions[attrname] = tinymceDefaultConfig[attrname];
-    }
-
-    tinyMCE.init(tinymceOptions);
   }
 
   return exports;
