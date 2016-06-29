@@ -1,4 +1,4 @@
-//= require tinymce
+//= require ckeditor/init
 
 $(document).ready(function() {
   setupReformColorSelect();
