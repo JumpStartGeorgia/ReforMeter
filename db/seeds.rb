@@ -104,6 +104,12 @@ PageContent.find_or_create_by(name: 'download_report_text') do |pc|
     pc.title = 'Quarterly Reports'
     pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
 end
+# contact intro text
+PageContent.find_or_create_by(name: 'contact_text') do |pc|
+    puts 'creating page content for contact text'
+    pc.title = 'Contact'
+    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
+end
 
 
 
@@ -244,7 +250,10 @@ if ENV['load_test_data'].present?
         {id: 1, name: 'Georgia'},
         {id: 2, name: 'Estonia'},
         {id: 3, name: 'Armenia'},
-        {id: 4, name: 'Azerbaijan'}
+        {id: 4, name: 'Azerbaijan'},
+        {id: 5, name: 'Germany'},
+        {id: 6, name: 'Russia'},
+        {id: 7, name: 'France'}
       ],
       time_periods: [
         {id: 1, name: '2003'},
@@ -265,73 +274,109 @@ if ENV['load_test_data'].present?
           {country: 1, value: 1.8, change: nil},
           {country: 2, value: 2.5, change: nil},
           {country: 3, value: 11.6, change: nil},
-          {country: 4, value: 1.9, change: nil}
+          {country: 4, value: 1.9, change: nil},
+          {country: 5, value: 18.9, change: nil},
+          {country: 6, value: 1, change: nil},
+          {country: 7, value: -2, change: nil}
         ]},
         {time_period: 2, values: [
           {country: 1, value: -3.2, change: -1},
           {country: 2, value: 3.0, change: 1},
           {country: 3, value: 9.5, change: -1},
-          {country: 4, value: -1.5, change: -1}
+          {country: 4, value: -1.5, change: -1},
+          {country: 5, value: 8.9, change: nil},
+          {country: 6, value: 2, change: 1},
+          {country: 7, value: 1, change: 1}
         ]},
         {time_period: 3, values: [
           {country: 1, value: 1.7, change: 1},
           {country: 2, value: 4.2, change: 1},
           {country: 3, value: 9.2, change: -1},
-          {country: 4, value: 13.1, change: 1}
+          {country: 4, value: 13.1, change: 1},
+          {country: 5, value: 1.9, change: nil},
+          {country: 6, value: 4, change: 1},
+          {country: 7, value: 5, change: 1}
         ]},
         {time_period: 4, values: [
           {country: 1, value: 1.4, change: -1},
           {country: 2, value: 3.8, change: -1},
           {country: 3, value: 8.7, change: -1},
-          {country: 4, value: 19.2, change: 1}
+          {country: 4, value: 19.2, change: 1},
+          {country: 5, value: -2, change: nil},
+          {country: 6, value: 8, change: 1},
+          {country: 7, value: 3, change: -1}
         ]},
         {time_period: 5, values: [
           {country: 1, value: 5.5, change: 1},
           {country: 2, value: 3.2, change: -1},
           {country: 3, value: 7.7, change: -1},
-          {country: 4, value: 12.1, change: -1}
+          {country: 4, value: 12.1, change: -1},
+          {country: 5, value: -5, change: nil},
+          {country: 6, value: 7, change: -1},
+          {country: 7, value: -3, change: -1}
         ]},
         {time_period: 6, values: [
           {country: 1, value: -1.0, change: -1},
           {country: 2, value: -7.2, change: -1},
           {country: 3, value: 1.0, change: -1},
-          {country: 4, value: -0.1, change: -1}
+          {country: 4, value: -0.1, change: -1},
+          {country: 5, value: 13, change: nil},
+          {country: 6, value: 3, change: -1},
+          {country: 7, value: 10, change: 1}
         ]},
         {time_period: 7, values: [
           {country: 1, value: -7.6, change: -1},
           {country: 2, value: -4.6, change: 1},
           {country: 3, value: -17.3, change: -1},
-          {country: 4, value: 0.1, change: 1}
+          {country: 4, value: 0.1, change: 1},
+          {country: 5, value: 7, change: nil},
+          {country: 6, value: -1, change: -1},
+          {country: 7, value: 5, change: -1}
         ]},
         {time_period: 8, values: [
           {country: 1, value: 5.2, change: 1},
           {country: 2, value: 4.7, change: 1},
           {country: 3, value: -2.6, change: 1},
-          {country: 4, value: -1.3, change: -1}
+          {country: 4, value: -1.3, change: -1},
+          {country: 5, value: 2.3, change: nil},
+          {country: 6, value: 2, change: 1},
+          {country: 7, value: 15, change: 1}
         ]},
         {time_period: 9, values: [
           {country: 1, value: 4.2, change: -1},
           {country: 2, value: 2.4, change: -1},
           {country: 3, value: 3.9, change: 1},
-          {country: 4, value: -4.8, change: -1}
+          {country: 4, value: -4.8, change: -1},
+          {country: 5, value: 5, change: nil},
+          {country: 6, value: -10, change: -1},
+          {country: 7, value: 9, change: -1}
         ]},
         {time_period: 10, values: [
           {country: 1, value: 3.2, change: -1},
           {country: 2, value: 3.2, change: 1},
           {country: 3, value: 4.9, change: 1},
-          {country: 4, value: -3.1, change: 1}
+          {country: 4, value: -3.1, change: 1},
+          {country: 5, value: 8, change: nil},
+          {country: 6, value: 20, change: 1},
+          {country: 7, value: 4, change: -1}
         ]},
         {time_period: 11, values: [
           {country: 1, value: 2.7, change: -1},
           {country: 2, value: 0.1, change: -1},
           {country: 3, value: 2.1, change: -1},
-          {country: 4, value: 0.0, change: 1}
+          {country: 4, value: 0.0, change: 1},
+          {country: 5, value: 4, change: nil},
+          {country: 6, value: 22, change: 1},
+          {country: 7, value: 1, change: -1}
         ]},
         {time_period: 12, values: [
           {country: 1, value: 3.8, change: 1},
           {country: 2, value: 0.6, change: 1},
           {country: 3, value: 0.9, change: -1},
-          {country: 4, value: -3.1, change: -1}
+          {country: 4, value: -3.1, change: -1},
+          {country: 5, value: 2, change: nil},
+          {country: 6, value: 23, change: 1},
+          {country: 7, value: 1, change: 0}
         ]}
       ]
     }
@@ -627,7 +672,9 @@ if ENV['load_test_data'].present?
         {id: 2, name: 'Estonia'},
         {id: 3, name: 'Armenia'},
         {id: 4, name: 'Azerbaijan'},
-        {id: 5, name: 'Germany'}
+        {id: 5, name: 'Germany'},
+        {id: 6, name: 'Russia'},
+        {id: 7, name: 'France'}
       ],
       time_periods: [
         {id: 1, name: '2003'},
@@ -649,84 +696,108 @@ if ENV['load_test_data'].present?
           {country: 2, value: 2.5, change: nil},
           {country: 3, value: 11.6, change: nil},
           {country: 4, value: 1.9, change: nil},
-          {country: 5, value: 18.9, change: nil}
+          {country: 5, value: 18.9, change: nil},
+          {country: 6, value: 1, change: nil},
+          {country: 7, value: -2, change: nil}
         ]},
         {time_period: 2, values: [
           {country: 1, value: -3.2, change: -1},
           {country: 2, value: 3.0, change: 1},
           {country: 3, value: 9.5, change: -1},
           {country: 4, value: -1.5, change: -1},
-          {country: 5, value: 8.9, change: nil}
+          {country: 5, value: 8.9, change: nil},
+          {country: 6, value: 2, change: 1},
+          {country: 7, value: 1, change: 1}
         ]},
         {time_period: 3, values: [
           {country: 1, value: 1.7, change: 1},
           {country: 2, value: 4.2, change: 1},
           {country: 3, value: 9.2, change: -1},
           {country: 4, value: 13.1, change: 1},
-          {country: 5, value: 1.9, change: nil}
+          {country: 5, value: 1.9, change: nil},
+          {country: 6, value: 4, change: 1},
+          {country: 7, value: 5, change: 1}
         ]},
         {time_period: 4, values: [
           {country: 1, value: 1.4, change: -1},
           {country: 2, value: 3.8, change: -1},
           {country: 3, value: 8.7, change: -1},
           {country: 4, value: 19.2, change: 1},
-          {country: 5, value: -2, change: nil}
+          {country: 5, value: -2, change: nil},
+          {country: 6, value: 8, change: 1},
+          {country: 7, value: 3, change: -1}
         ]},
         {time_period: 5, values: [
           {country: 1, value: 5.5, change: 1},
           {country: 2, value: 3.2, change: -1},
           {country: 3, value: 7.7, change: -1},
           {country: 4, value: 12.1, change: -1},
-          {country: 5, value: -5, change: nil}
+          {country: 5, value: -5, change: nil},
+          {country: 6, value: 7, change: -1},
+          {country: 7, value: -3, change: -1}
         ]},
         {time_period: 6, values: [
           {country: 1, value: -1.0, change: -1},
           {country: 2, value: -7.2, change: -1},
           {country: 3, value: 1.0, change: -1},
           {country: 4, value: -0.1, change: -1},
-          {country: 5, value: 13, change: nil}
+          {country: 5, value: 13, change: nil},
+          {country: 6, value: 3, change: -1},
+          {country: 7, value: 10, change: 1}
         ]},
         {time_period: 7, values: [
           {country: 1, value: -7.6, change: -1},
           {country: 2, value: -4.6, change: 1},
           {country: 3, value: -17.3, change: -1},
           {country: 4, value: 0.1, change: 1},
-          {country: 5, value: 7, change: nil}
+          {country: 5, value: 7, change: nil},
+          {country: 6, value: -1, change: -1},
+          {country: 7, value: 5, change: -1}
         ]},
         {time_period: 8, values: [
           {country: 1, value: 5.2, change: 1},
           {country: 2, value: 4.7, change: 1},
           {country: 3, value: -2.6, change: 1},
           {country: 4, value: -1.3, change: -1},
-          {country: 5, value: 2.3, change: nil}
+          {country: 5, value: 2.3, change: nil},
+          {country: 6, value: 2, change: 1},
+          {country: 7, value: 15, change: 1}
         ]},
         {time_period: 9, values: [
           {country: 1, value: 4.2, change: -1},
           {country: 2, value: 2.4, change: -1},
           {country: 3, value: 3.9, change: 1},
           {country: 4, value: -4.8, change: -1},
-          {country: 5, value: 5, change: nil}
+          {country: 5, value: 5, change: nil},
+          {country: 6, value: -10, change: -1},
+          {country: 7, value: 9, change: -1}
         ]},
         {time_period: 10, values: [
           {country: 1, value: 3.2, change: -1},
           {country: 2, value: 3.2, change: 1},
           {country: 3, value: 4.9, change: 1},
           {country: 4, value: -3.1, change: 1},
-          {country: 5, value: 8, change: nil}
+          {country: 5, value: 8, change: nil},
+          {country: 6, value: 20, change: 1},
+          {country: 7, value: 4, change: -1}
         ]},
         {time_period: 11, values: [
           {country: 1, value: 2.7, change: -1},
           {country: 2, value: 0.1, change: -1},
           {country: 3, value: 2.1, change: -1},
           {country: 4, value: 0.0, change: 1},
-          {country: 5, value: 4, change: nil}
+          {country: 5, value: 4, change: nil},
+          {country: 6, value: 22, change: 1},
+          {country: 7, value: 1, change: -1}
         ]},
         {time_period: 12, values: [
           {country: 1, value: 3.8, change: 1},
           {country: 2, value: 0.6, change: 1},
           {country: 3, value: 0.9, change: -1},
           {country: 4, value: -3.1, change: -1},
-          {country: 5, value: 2, change: nil}
+          {country: 5, value: 2, change: nil},
+          {country: 6, value: 23, change: 1},
+          {country: 7, value: 1, change: 0}
         ]}
       ]
     }

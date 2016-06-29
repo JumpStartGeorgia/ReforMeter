@@ -22,8 +22,12 @@ var externalIndicatorChart = (function() {
   externalIndicatorChart.title = function(text, customOptions) {
     var options = {
       align: 'left',
-      text: "<h3 class='heading'>" + text + '</h3>',
-      useHTML: true
+      style: {
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        fontSize: '20px'
+      },
+      text: text
     };
 
     if (customOptions) {
@@ -43,7 +47,7 @@ var externalIndicatorChart = (function() {
 
     var value = Math.round(pointData.y);
 
-    var iconInSpan = ''
+    var iconInSpan = '';
 
     if (pointData.point.change) {
       var icon = change_icon(pointData.point.change);
@@ -58,7 +62,7 @@ var externalIndicatorChart = (function() {
       align: 'left',
       style: {
         color: '#66666d',
-        fontSize: '1.6rem',
+        fontSize: '16px',
         fontWeight: '200'
       },
       text: text,

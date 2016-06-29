@@ -438,22 +438,22 @@ class Quarter < ActiveRecord::Base
           # category 1
           hash[:series] << {
             name: I18n.t('shared.categories.initial_setup'),
-            dashStyle: 'dot',
+            dashStyle: 'Dot',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category1_score.to_f, change: x.nil? ? nil : x.government_category1_change}}}
           # category 2
           hash[:series] << {
             name: I18n.t('shared.categories.capacity_building'),
-            dashStyle: 'shortDash',
+            dashStyle: 'ShortDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category2_score.to_f, change: x.nil? ? nil : x.government_category2_change}}}
           # category 3
           hash[:series] << {
             name: I18n.t('shared.categories.infastructure_budgeting'),
-            dashStyle: 'longDash',
+            dashStyle: 'Dash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category3_score.to_f, change: x.nil? ? nil : x.government_category3_change}}}
           # category 4
           hash[:series] << {
             name: I18n.t('shared.categories.legislation_regulation'),
-            dashStyle: 'LongDashDotDot',
+            dashStyle: 'LongDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category4_score.to_f, change: x.nil? ? nil : x.government_category4_change}}}
         end
 

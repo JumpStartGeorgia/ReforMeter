@@ -47,6 +47,11 @@ en:
         all_title: 'All Reforms'
         subtitle_government: 'Government Response History'
         subtitle_stakeholder: 'Stakeholder Response History'
+    chart_download:
+      download_png: Download PNG image
+      download_jpeg: Download JPEG image
+      download_pdf: Download PDF document
+      download_svg: Download SVG vector image
     common:
       account: Account
       actions: Actions

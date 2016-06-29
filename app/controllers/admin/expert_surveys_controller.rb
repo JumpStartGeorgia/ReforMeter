@@ -18,7 +18,7 @@ class Admin::ExpertSurveysController < ApplicationController
     @methodology_expert = PageContent.find_by(name: 'methodology_expert')
     @news = News.by_expert_quarter(@quarter.id)
 
-    gon.chart_download_icon = highchart_download_icon
+    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     gon.charts = [

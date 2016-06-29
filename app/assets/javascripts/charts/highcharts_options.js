@@ -4,6 +4,44 @@ function setupDefaultOptions() {
     exporting: {
       buttons: {
         contextButton: {
+          menuItems: [
+            {
+              text: gon.chart_download.translations.download_png,
+              onclick: function() {
+                this.exportChart();
+              }
+            },
+            {
+              text: gon.chart_download.translations.download_jpeg,
+              onclick: function() {
+                this.exportChart(
+                  {
+                    type: 'image/jpeg'
+                  }
+                );
+              }
+            },
+            {
+              text: gon.chart_download.translations.download_pdf,
+              onclick: function() {
+                this.exportChart(
+                  {
+                    type: 'application/pdf'
+                  }
+                );
+              }
+            },
+            {
+              text: gon.chart_download.translations.download_svg,
+              onclick: function() {
+                this.exportChart(
+                  {
+                    type: 'image/svg+xml'
+                  }
+                );
+              }
+            }
+          ],
           symbol: highchartDownloadIcon()
         }
       },
