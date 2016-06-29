@@ -14,5 +14,4 @@ $(document).on('page:change', function() {
   setupTabs();
 
   if ($('body.root.experts').length > 0) openExpertsTab();
-
 });
