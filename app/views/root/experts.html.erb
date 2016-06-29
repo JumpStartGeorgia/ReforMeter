@@ -161,7 +161,35 @@ page_title t('.title')
         </div>
 
         <div class='tabContent-panel js-act-as-tab-content-panel' id='experts'>
-          experts
+
+          <% if @experts.each do |expert| %>
+            <ul class='expertList'>
+
+              <li class='expertList-item'>
+
+                <h4 class='expertList-item-heading'>
+                  <%= expert.name %>
+                </h4>
+
+                <%= image_tag(expert.avatar.url('100x100'),
+                              class: 'expertList-item-image') %>
+
+                <% if expert.bio %>
+                  <%= simple_format(expert.bio) %>
+                <% end %>
+
+              </li>
+
+            </ul>
+
+          <% end.empty? %>
+
+            <p>
+             <%= t('.no_experts') %>
+            </p>
+
+          <% end %>
+          
         </div>
 
       </div>
