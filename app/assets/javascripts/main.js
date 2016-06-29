@@ -10,14 +10,6 @@ $(document).ready(function() {
   }
 });
 
-function openExpertsTab() {
-  // return if anchor tag does not match expert-{number}
-  var anchor_tag = window.location.hash.substring(1);
-  if (!/expert-(\d+)/.test(anchor_tag)) return false;
-
-  $('.js-act-as-tab-list-button[data-selects-tab-content-panel-id="experts"]').click();
-}
-
 $(document).on('page:change', function() {
   setupTabs();
 
