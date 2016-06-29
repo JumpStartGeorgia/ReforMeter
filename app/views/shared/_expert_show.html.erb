@@ -175,20 +175,20 @@ show_admin_links ||= false
 
               <ul class='expertList'>
 
-                <li class='expertList-item'>
+                <%= link_to experts_path(anchor: "expert-#{expert.id}") do %>
 
-                  <h4 class='expertList-item-heading'>
-                    <%= expert.name %>
-                  </h4>
+                  <li class='expertList-item'>
 
-                  <%= image_tag(expert.avatar.url('100x100'),
-                                class: 'expertList-item-image') %>
+                    <h4 class='expertList-item-heading'>
+                      <%= expert.name %>
+                    </h4>
 
-                  <% if expert.bio %>
-                    <%= simple_format(expert.bio) %>
-                  <% end %>
+                    <%= image_tag(expert.avatar.url('100x100'),
+                                  class: 'expertList-item-image') %>
 
-                </li>
+                  </li>
+
+                <% end %>
 
               </ul>
 
@@ -197,7 +197,7 @@ show_admin_links ||= false
               <p>
                <%= t('.no_experts') %>
               </p>
-              
+
             <% end %>
           </div>
 
