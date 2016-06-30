@@ -17,10 +17,12 @@ ka:
     experts:
       header:
         chart: Expert Response History
+        experts: The Experts
         methodology: Methodology
         table: Table of Expert History
       no_data: Sorry, but at this time there is no expert data on record.
       no_methodology: No methodology is on record.
+      no_experts: No experts are on record.
       table_header:
         overall: Overall Score
         summary: Summary

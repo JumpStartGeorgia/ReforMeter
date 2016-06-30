@@ -1,13 +1,8 @@
 ---
 en:
   time:
-    # am: am
     formats:
-      # default: "%a, %d %b %Y %H:%M:%S %z"
-      # long: "%B %d, %Y %H:%M"
-      # short: "%d %b %H:%M"
       file: "%Y%m%d%H%M%S"
-    # pm: pm
   shared:
     actions:
       change_my_password: Change my password
@@ -66,7 +61,7 @@ en:
       all: All
       change_reform: Change Reform
       change_time: Change Time Period
-      description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
+      description: ReforMeter measures the Georgian government's progress in implementing promised reforms.
       jumpstart:
         slogan: JumpStart Georgia - Informing Communities with Data and Design
       name: ReforMeter
