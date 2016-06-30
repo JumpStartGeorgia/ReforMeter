@@ -13,6 +13,9 @@ a:focus {
 fieldset.inputs .radio{
   margin-left: 25px;
 }
+textarea.form-control{
+  padding: 6px 12px !important;
+}
 
 fieldset.form-actions{
   background-color: #f9f9f9;

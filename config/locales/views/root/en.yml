@@ -17,6 +17,7 @@ en:
     experts:
       header:
         chart: Expert Response History
+        experts: The Experts
         methodology: Methodology
         table: Table of Expert History
       no_data: Sorry, but at this time there is no expert data on record.

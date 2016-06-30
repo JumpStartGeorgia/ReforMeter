@@ -149,9 +149,9 @@ if ENV['load_test_data'].present?
 
     # create experts
     puts 'creating experts'
-    exp1 = Expert.create(name: 'Expert One', bio: 'Expert One is cool cat from Sesame Street.')
-    exp2 = Expert.create(name: 'Expert Two', bio: 'Expert Two doesn\'t know how to get to Sesame Street.')
-    exp3 = Expert.create(name: 'Expert Three', bio: 'Expert Three was born and raised on Sesame Street.')
+    exp1 = Expert.create(name: 'Mariam Gamkharashvili', bio: 'Mariam Gamkharashvili is cool cat from Sesame Street.')
+    exp2 = Expert.create(name: 'Nino Macharashvili', bio: 'Nino Macharashvili doesn\'t know how to get to Sesame Street.')
+    exp3 = Expert.create(name: 'Tengo Sultanishvili', bio: 'Tengo Sultanishvili was born and raised on Sesame Street.')
 
     # create quarters
     puts 'creating quarters'

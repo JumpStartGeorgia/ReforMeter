@@ -4,7 +4,7 @@
 
 .solidGauge.mod-big {
   width: 225px;
-  height: 200px;
+  height: 220px;
 }
 
 .solidGauge.mod-white-border .highcharts-series-group .highcharts-series-0 path {
@@ -13,25 +13,25 @@
 }
 
 .solidGauge.mod-small-dot-border .highcharts-series-group .highcharts-series-0 path {
-  stroke: black;
+  stroke: #0e3a5b;
   stroke-width: 2;
   stroke-dasharray: 1,6;
 }
 
 .solidGauge.mod-small-dash-border .highcharts-series-group .highcharts-series-0 path {
-  stroke: black;
+  stroke: #0e3a5b;
   stroke-width: 2;
   stroke-dasharray: 5,4;
 }
 
 .solidGauge.mod-medium-dash-border .highcharts-series-group .highcharts-series-0 path {
-  stroke: black;
+  stroke: #0e3a5b;
   stroke-width: 2;
   stroke-dasharray: 9,9;
 }
 
 .solidGauge.mod-long-dash-border .highcharts-series-group .highcharts-series-0 path {
-  stroke: black;
+  stroke: #0e3a5b;
   stroke-width: 2;
   stroke-dasharray: 18,8;
 }

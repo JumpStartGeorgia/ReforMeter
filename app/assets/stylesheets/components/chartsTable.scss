@@ -2,6 +2,7 @@ $charts-table-border: solid 3px $color-grey-background;
 
 .chartsTable {
   text-align: left;
+  border-collapse: collapse;
 }
 
   // Cannot give bottom border to row, so workaround is to target cells of

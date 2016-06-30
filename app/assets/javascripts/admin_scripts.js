@@ -1,14 +1,16 @@
-//= require tinymce
+//= require ckeditor/init
 
-$(document).ready(function() {
-  setupReformColorSelect();
-  setupReformColorSelectChange();
-  setQuarterFormQuarter();
-  setupExpertsSelectAll();
-});
+(function() {
 
-$(document).on('page:change', function() {
-  if (RMRichTextArea.existsOnPage()) {
+  $(document).ready(function() {
+    setupReformColorSelect();
+    setupReformColorSelectChange();
+    setQuarterFormQuarter();
+    setupExpertsSelectAll();
+  });
+
+  $(document).on('page:change', function() {
     RMRichTextArea.load();
-  }
-});
+  });
+
+})();

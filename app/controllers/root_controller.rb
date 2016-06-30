@@ -262,6 +262,7 @@ class RootController < ApplicationController
     @methodology_expert = PageContent.find_by(name: 'methodology_expert')
 
     @quarters = Quarter.published.recent.with_expert_survey
+    @experts = Expert.active.sorted
 
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons

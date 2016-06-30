@@ -88,60 +88,118 @@ page_title t('.title')
 
   <div class='contentSection'>
 
-    <header class='contentSection-header'>
+    <header class='contentSection-header mod-no-padding'>
 
-      <h2 class='heading'>
-        <%= t('.header.table') %>
-      </h2>
+      <ul class='tabList mod-header js-act-as-tab-list'>
+
+        <li class='tabList-item'>
+
+          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='history'>
+            <%= t('.header.table') %>
+          </button>
+
+        </li>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='experts'>
+            <%= t('.header.experts') %>
+          </button>
+        </li>
+
+      </ul>
 
     </header>
 
     <div class='contentSection-body mod-no-padding'>
 
-      <table class='chartsTable'>
-        <thead>
-          <tr class='chartsTable-row'>
+      <div class='tabContent js-act-as-tab-content'>
 
-            <th class='chartsTable-cell mod-head mod-first-column'>
-              <%= t('.table_header.time') %>
-            </th>
+        <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='history'>
 
-            <th class='chartsTable-cell mod-head'>
-              <%= t('.table_header.overall') %>
-            </th>
+          <table class='chartsTable'>
+            <thead>
+              <tr class='chartsTable-row'>
 
-            <th class='chartsTable-cell mod-head'>
-              <%= t('.table_header.summary') %>
-            </th>
+                <th class='chartsTable-cell mod-head mod-first-column'>
+                  <%= t('.table_header.time') %>
+                </th>
 
-          </tr>
-        </thead>
+                <th class='chartsTable-cell mod-head'>
+                  <%= t('.table_header.overall') %>
+                </th>
 
-        <tbody class='chartsTable-body'>
-          <% @quarters.each do |quarter| %>
-            <tr class='chartsTable-row'>
+                <th class='chartsTable-cell mod-head'>
+                  <%= t('.table_header.summary') %>
+                </th>
 
-              <td class='chartsTable-cell mod-first-column mod-important-text'>
-                <%= link_to(quarter.time_period,
-                            expert_show_path(quarter.slug),
-                            class: 'link mod-no-decoration') %>
-              </td>
+              </tr>
+            </thead>
 
-              <td class='chartsTable-cell'>
-                <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='<%= quarter.slug %>'></div>
-              </td>
+            <tbody class='chartsTable-body'>
+              <% @quarters.each do |quarter| %>
+                <tr class='chartsTable-row'>
 
-              <td class='chartsTable-cell'>
-                <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
-              </td>
+                  <td class='chartsTable-cell mod-first-column mod-important-text'>
+                    <%= link_to(quarter.time_period,
+                                expert_show_path(quarter.slug),
+                                class: 'link mod-no-decoration') %>
+                  </td>
 
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+                  <td class='chartsTable-cell'>
+                    <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='<%= quarter.slug %>'></div>
+                  </td>
 
+                  <td class='chartsTable-cell'>
+                    <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
+                  </td>
+
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='experts'>
+
+          <ul class='expertList'>
+
+            <% if @experts.each do |expert| %>
+
+              <li id='<%= "expert-#{expert.id}" %>' class='expertList-item js-act-as-expert-item'>
+
+                <%= image_tag(expert.avatar.url('100x100'),
+                              class: 'expertList-item-imageLink-image') %>
+
+                <div>
+
+                  <h4 class='expertList-item-heading'>
+                    <%= expert.name %>
+                  </h4>
+
+                  <% if expert.bio %>
+                    <%= simple_format(expert.bio) %>
+                  <% end %>
+
+                </div>
+
+              </li>
+
+            <% end.empty? %>
+
+              <li>
+               <%= t('.no_experts') %>
+              </li>
+
+            <% end %>
+
+          </ul>
+
+
+        </div>
+
+      </div>
     </div>
-
   </div>
 
 <% end %>
