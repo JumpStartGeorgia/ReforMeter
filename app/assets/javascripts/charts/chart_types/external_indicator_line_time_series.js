@@ -13,10 +13,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
       formatter: function() {
         return highchartTimeSeriesTooltipFormatter.call(
           this,
-          chartData,
-          {
-            legendItem: true
-          }
+          chartData
         );
       }
     },

@@ -11,8 +11,8 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
 
   var legendItem = '';
 
-  if (options.legendItem) {
-    legendItem = $(point.series.legendLine.parentGroup.element).clone();
+  if (point.series.legendItem) {
+    legendItem = $(point.series.legendItem.parentGroup.element).clone();
     legendItem.children().remove('text');
     legendItem.attr('transform', '');
 
