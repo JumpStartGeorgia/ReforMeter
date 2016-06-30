@@ -9,11 +9,22 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
     },
     subtitle: externalIndicatorChart.subtitle(chartData.subtitle),
     title: externalIndicatorChart.title(chartData.title),
+    tooltip: {
+      formatter: function() {
+        return highchartTimeSeriesTooltipFormatter.call(
+          this,
+          chartData,
+          {
+            legendItem: true
+          }
+        );
+      }
+    },
     yAxis: {
       title: {
         text: chartData.unitLabel
       }
-    },
+    }
   };
 
   return Highcharts.merge(

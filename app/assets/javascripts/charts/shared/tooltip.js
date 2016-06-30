@@ -1,4 +1,6 @@
-function highchartTimeSeriesTooltipPointFormatter(point) {
+function highchartTimeSeriesTooltipPointFormatter(point, options) {
+  if (!options) options = {};
+
   // Use unit if specified, otherwise use empty string
   var unit;
   if (point.unit) {
@@ -7,33 +9,46 @@ function highchartTimeSeriesTooltipPointFormatter(point) {
     unit = '';
   }
 
-  function in_paragraph(content) {
-    return '<p style="margin: 5px 0;">' + content + '</p>';
+  var legendItem = '';
+
+  if (options.legendItem) {
+    legendItem = $(point.series.legendLine.parentGroup.element).clone();
+    legendItem.children().remove('text');
+    legendItem.attr('transform', '');
+
+    legendItem = '<svg width="50px" height="15px">' + legendItem[0].outerHTML + '</svg>';
   }
 
   var pointScore = '<b>' + point.y + unit + '</b> ';
 
   var name = '<span style="color: #66666d;">' + point.series.name + '</span>';
 
+  var iconInSpan = '';
+
   if (point.change) {
     var icon = change_icon(point.change);
 
-    var iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
-
-    return in_paragraph(pointScore + iconInSpan + name);
-  } else {
-    return in_paragraph(pointScore + name);
+    iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
   }
+
+  function in_paragraph(content) {
+    return '<p style="margin: 5px 0;">' + content + '</p>';
+  }
+
+
+  var fullLine = in_paragraph(legendItem + pointScore + iconInSpan + name);
+
+  return fullLine;
 }
 
-function highchartTimeSeriesTooltipFormatter(chartData) {
+function highchartTimeSeriesTooltipFormatter(chartData, options) {
   var text = '';
   var category = chartData.categories[this.x];
   var header = '<b>' + category + '</b><br/>';
   text += header;
 
   for (var i = 0; i < this.points.length; i++) {
-    text += highchartTimeSeriesTooltipPointFormatter(this.points[i].point);
+    text += highchartTimeSeriesTooltipPointFormatter(this.points[i].point, options);
   }
 
   return text;
