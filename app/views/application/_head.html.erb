@@ -40,7 +40,10 @@
 
   <%
     # add extra scripts if the user is signed in
-    js = ["application", 'admin_scripts']
+    js = ["application"]
+    if user_signed_in?
+      js << 'admin_scripts'
+    end
   %>
   <%= javascript_include_tag *(js) %>
 </head>
