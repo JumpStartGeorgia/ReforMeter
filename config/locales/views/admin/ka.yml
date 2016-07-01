@@ -8,11 +8,15 @@ ka:
         reforms: Manage reform data like name, summary, methodology, color, and show on homepage.
         reform_colors: Manage the list of colors that reforms can be.
         experts: Manage the expert data like name, bio, and image.
-        page_contents: Manage content that appears on pages like about text, methdologoes, etc.
+        page_contents: Manage content that appears on pages like about text, methodologies, etc.
         users: Manage who has access to edit the data on the site.
     quarters:
       index:
         set_time_period: Select Time Period to Edit
+        table_header:
+          reform: Reform
+          government: Government
+          stakeholder: Stakeholder
     expert_surveys:
       form:
         no_experts: There are no experts on file. You must add them so you can assign them to an expert survey.

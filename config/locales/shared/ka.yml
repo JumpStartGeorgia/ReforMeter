@@ -1,5 +1,8 @@
 ---
 ka:
+  time:
+    formats:
+      file: "%Y%m%d%H%M%S"
   shared:
     actions:
       change_my_password: Change my password
@@ -11,8 +14,7 @@ ka:
       load: Load
       publish: Publish
       unpublish: Unpublish
-      add_reform_survey: Add Reform Survey
-      add_expert_survey: Add Expert Survey
+      add: Add
       with_obj:
         cancel: Cancel %{obj}
         create: Create %{obj}
@@ -48,13 +50,18 @@ ka:
         all_title: 'All Reforms'
         subtitle_government: 'Government Response History'
         subtitle_stakeholder: 'Stakeholder Response History'
+    chart_download:
+      download_png: Download PNG image
+      download_jpeg: Download JPEG image
+      download_pdf: Download PDF document
+      download_svg: Download SVG vector image
     common:
       account: Account
       actions: Actions
       all: All
       change_reform: Change Reform
       change_time: Change Time Period
-      description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
+      description: ReforMeter measures the Georgian government's progress in implementing promised reforms.
       jumpstart:
         slogan: JumpStart Georgia - ჩვენ გაწვდით ინფორმაციას მონაცემებით და დიზაინით
       name: ReforMeter
