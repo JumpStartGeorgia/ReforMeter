@@ -1,5 +1,5 @@
 //= require ckeditor/init
-//= require rm_rich_text_area
+//= require_tree ./admin/
 
 (function() {
 
