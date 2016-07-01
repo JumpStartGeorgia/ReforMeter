@@ -11,7 +11,6 @@ var RMRichTextArea = (function() {
   }
 
   exports.load = function() {
-
     // Get already loaded instances
     var loaded_instances = Object.getOwnPropertyNames(CKEDITOR.instances);
 
