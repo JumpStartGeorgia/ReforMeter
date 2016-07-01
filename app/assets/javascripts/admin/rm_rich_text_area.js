@@ -1,3 +1,5 @@
+//= require ckeditor/init
+
 var RMRichTextArea = (function() {
   var exports = {};
   var selector = '.js-become-rich-text-editor';

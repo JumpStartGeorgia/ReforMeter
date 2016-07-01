@@ -1,4 +1,3 @@
-//= require ckeditor/init
 //= require_tree ./admin/
 
 (function() {
