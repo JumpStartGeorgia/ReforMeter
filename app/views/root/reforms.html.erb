@@ -19,7 +19,7 @@ page_title t('.title')
           <%= t('shared.common.change_reform') %>:
         </label>
 
-        <select class="reform js-become-select2" id="reform">
+        <select class='reform js-become-select2 js-filter-reforms-by-reform' id="reform">
 
           <% selected = params[:reform].nil? ? 'selected': '' %>
           <option <%= selected %>>
@@ -46,7 +46,7 @@ page_title t('.title')
           <%= t('shared.common.change_time') %>:
         </label>
 
-        <select class="quarter js-become-select2" id="quarter">
+        <select class='quarter js-become-select2 js-filter-reforms-by-quarter' id="quarter">
 
           <option selected><%= t('shared.common.all') %></option>
 

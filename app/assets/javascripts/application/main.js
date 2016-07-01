@@ -4,7 +4,15 @@
     setupSelect2();
     setupExpertTimePeriodSelect();
     makeReformPageChangeable();
-    setupCharts();
+    var charts = setupCharts();
+
+    if ($('body.root.reforms').length > 0) {
+      var colorfulReformsTimeSeries = charts.filter(function() {
+        return $(this.highchartsObject.renderTo).data('id') === 'reforms-history-series';
+      })[0];
+
+      setupReformSelects(colorfulReformsTimeSeries);
+    }
 
     if ($("body").hasClass("root download_data_and_reports")) {
       activate_download_events();

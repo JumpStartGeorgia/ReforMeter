@@ -65,5 +65,7 @@ function setupCharts() {
 
       initializeExportChartGroupButton($exportButton, exportableCharts);
     }
-  )
+  );
+
+  return charts;
 }
