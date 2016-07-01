@@ -1,9 +1,7 @@
 <% show_name = (can? :create, @page_content) ? true : false %>
 
 <%
-page_title t('.title',
-             label: t('activerecord.attributes.page_content.title'),
-             label_value: @page_content.title)
+page_title @page_content.title
 %>
 
 <div class='actions-container'>

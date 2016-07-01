@@ -42,7 +42,7 @@
 //= require highcharts/modules/exporting
 //= require tipsy
 
-//= require_tree .
+//= require_tree ./application/
 
 ////////////////////////////////////////
 

@@ -15,5 +15,9 @@
 }
 
   .contactPage-social-link {
-    display: block;
+    display: inline-block;
+    margin-right: 10px
+  }
+  .contactPage-social-link:hover {
+    opacity: 0.7;
   }

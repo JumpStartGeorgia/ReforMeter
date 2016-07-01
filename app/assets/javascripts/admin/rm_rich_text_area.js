@@ -1,3 +1,5 @@
+//= require ckeditor/init
+
 var RMRichTextArea = (function() {
   var exports = {};
   var selector = '.js-become-rich-text-editor';
@@ -11,7 +13,6 @@ var RMRichTextArea = (function() {
   }
 
   exports.load = function() {
-
     // Get already loaded instances
     var loaded_instances = Object.getOwnPropertyNames(CKEDITOR.instances);
 
