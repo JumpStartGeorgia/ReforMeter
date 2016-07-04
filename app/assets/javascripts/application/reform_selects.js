@@ -5,6 +5,28 @@ function setupReformSelects(colorfulReformsTimeSeries) {
   var unselectedReformLineWidth = chartObject.series[0].options.lineWidth;
   var selectedReformLineWidth = 10;
 
+  var quarter;
+  var reform;
+
+  function updateTooltip() {
+    if (!quarter) {
+      chartObject.tooltip.hide();
+      return;
+    }
+
+    function pointMatchesQuarter(point) {
+      return point.quarter_name === quarter;
+    }
+
+    function getQuarterPointOfSeries(series) {
+      return series.data.filter(pointMatchesQuarter)[0];
+    }
+
+    var quarterData;
+    quarterData = chartObject.series.map(getQuarterPointOfSeries);
+    chartObject.tooltip.refresh(quarterData);
+  }
+
   function selectedText($select) {
     return $select.find(":selected").text().trim();
   }
@@ -15,7 +37,6 @@ function setupReformSelects(colorfulReformsTimeSeries) {
 
     function filterReformByReform() {
       var selectedOption = $reformSelect.find(":selected");
-      var reform;
 
       if (!selectedOption.attr('value')) {
         reform = undefined;
@@ -35,6 +56,8 @@ function setupReformSelects(colorfulReformsTimeSeries) {
           updateReformLineWidth(series, unselectedReformLineWidth);
         }
       });
+
+      updateTooltip();
 
       chartsTable.filter({
         reform: reform
@@ -64,7 +87,6 @@ function setupReformSelects(colorfulReformsTimeSeries) {
 
     function filterReformByQuarter() {
       var selectedOption = $quarterSelect.find(":selected");
-      var quarter;
 
       if (!selectedOption.attr('value')) {
         quarter = undefined;
@@ -72,21 +94,7 @@ function setupReformSelects(colorfulReformsTimeSeries) {
         quarter = selectedOption.text().trim();
       }
 
-      function pointMatchesQuarter(point) {
-        return point.quarter_name === quarter;
-      }
-
-      function getQuarterPointOfSeries(series) {
-        return series.data.filter(pointMatchesQuarter)[0];
-      }
-
-      if (quarter) {
-        var quarterData;
-        quarterData = chartObject.series.map(getQuarterPointOfSeries);
-        chartObject.tooltip.refresh(quarterData);
-      } else {
-        chartObject.tooltip.hide();
-      }
+      updateTooltip();
 
       chartsTable.filter({
         quarter: quarter
