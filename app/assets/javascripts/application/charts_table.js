@@ -33,12 +33,18 @@ function initializeChartsTable() {
     )
   }
 
-  exports.filter = function(quarter) {
+  exports.filter = function(options) {
     reset();
+
+    if (!options) return;
+
+    if (typeof options !== 'object') {
+      throw new Error('Charts table "filter" method should be invoked with an object as an argument.')
+    }
 
     rows.each(
       function() {
-        if (!this.hasQuarter(quarter)) this.hide();
+        if (options.quarter && !this.hasQuarter(options.quarter)) this.hide();
       }
     );
   }
