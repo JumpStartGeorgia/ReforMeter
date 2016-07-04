@@ -1,5 +1,4 @@
 function setupReformSelects(colorfulReformsTimeSeries) {
-  var $reformSelect = $('.js-filter-reforms-by-reform');
   var $quarterSelect = $('.js-filter-reforms-by-quarter');
 
   var chartObject = colorfulReformsTimeSeries.highchartsObject;
@@ -42,12 +41,24 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     chartsTable.filter(quarter);
   }
 
-  $reformSelect.on(
-    'change',
-    function() {
-      filterReformByReform(selectedText($(this)));
+  function initializeReformSelect() {
+    var exports = {};
+    var $reformSelect = $('.js-filter-reforms-by-reform');
+
+    exports.setup = function() {
+      $reformSelect.on(
+        'change',
+        function() {
+          filterReformByReform(selectedText($(this)));
+        }
+      );
     }
-  );
+
+    return exports;
+  }
+
+  var reformSelect = initializeReformSelect();
+  reformSelect.setup();
 
   $quarterSelect.on(
     'change',
