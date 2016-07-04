@@ -11,21 +11,6 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     return $select.find(":selected").text().trim();
   }
 
-  function filterReformByReform(selectedReformName) {
-    function updateReformLineWidth(series, width) {
-      series.options.lineWidth = width;
-      series.update(series.options);
-    }
-
-    chartObject.series.forEach(function(series) {
-      if (series.name === selectedReformName) {
-        updateReformLineWidth(series, selectedReformLineWidth);
-      } else {
-        updateReformLineWidth(series, unselectedReformLineWidth);
-      }
-    });
-  }
-
   function filterReformByQuarter(quarter) {
     function pointMatchesQuarter(point) {
       return point.quarter_name === quarter;
@@ -44,6 +29,21 @@ function setupReformSelects(colorfulReformsTimeSeries) {
   function initializeReformSelect() {
     var exports = {};
     var $reformSelect = $('.js-filter-reforms-by-reform');
+
+    function filterReformByReform(selectedReformName) {
+      function updateReformLineWidth(series, width) {
+        series.options.lineWidth = width;
+        series.update(series.options);
+      }
+
+      chartObject.series.forEach(function(series) {
+        if (series.name === selectedReformName) {
+          updateReformLineWidth(series, selectedReformLineWidth);
+        } else {
+          updateReformLineWidth(series, unselectedReformLineWidth);
+        }
+      });
+    }
 
     exports.setup = function() {
       $reformSelect.on(
