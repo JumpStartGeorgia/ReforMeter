@@ -4,6 +4,10 @@ function initializeChartsTable() {
   function initializeRow($row) {
     var exports = {};
 
+    exports.show = function() {
+      $row.removeClass('is-hidden');
+    }
+
     exports.hide = function() {
       $row.addClass('is-hidden');
     }
@@ -20,6 +24,14 @@ function initializeChartsTable() {
       return initializeRow($(this));
     }
   );
+
+  exports.reset = function() {
+    rows.each(
+      function() {
+        this.show();
+      }
+    )
+  }
 
   exports.filter = function(quarter) {
     rows.each(
@@ -73,6 +85,8 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     var quarterData = chartObject.series.map(getQuarterPointOfSeries);
 
     chartObject.tooltip.refresh(quarterData);
+
+    chartsTable.reset();
     chartsTable.filter(quarter);
   }
 
