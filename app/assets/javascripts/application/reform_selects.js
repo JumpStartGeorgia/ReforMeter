@@ -1,17 +1,25 @@
 function setupReformSelects(colorfulReformsTimeSeries) {
-  $('.js-filter-reforms-by-reform').on(
-    'change',
-    function() {
-      var selectedReformName = $(this).find(":selected").text().trim();
+  var unselectedReformLineWidth = colorfulReformsTimeSeries.highchartsObject.series[0].options.lineWidth;
+  var selectedReformLineWidth = 10;
 
-      var reformsChartSelectedReformSeries = colorfulReformsTimeSeries.highchartsObject.series.filter(
-        function(series) {
-          return series.name === selectedReformName;
-        }
-      )[0];
 
-      reformsChartSelectedReformSeries.options.lineWidth = 10;
-      reformsChartSelectedReformSeries.update(reformsChartSelectedReformSeries.options);
+
+  function filterReform() {
+    function updateReformLineWidth(series, width) {
+      series.options.lineWidth = width;
+      series.update(series.options);
     }
-  )
+
+    var selectedReformName = $(this).find(":selected").text().trim();
+
+    colorfulReformsTimeSeries.highchartsObject.series.forEach(function(series) {
+      if (series.name === selectedReformName) {
+        updateReformLineWidth(series, selectedReformLineWidth);
+      } else {
+        updateReformLineWidth(series, unselectedReformLineWidth);
+      }
+    });
+  }
+
+  $('.js-filter-reforms-by-reform').on('change', filterReform);
 }
