@@ -58,13 +58,11 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     exports.setup = function() {
       $quarterSelect.on(
         'change',
-        function() {
-          filterReformByQuarter();
-        }
+        filterReformByQuarter
       );
     }
 
-    function filterReformByQuarter(quarter) {
+    function filterReformByQuarter() {
       var selectedOption = $quarterSelect.find(":selected");
       var quarter;
 
