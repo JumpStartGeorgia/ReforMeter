@@ -1,12 +1,30 @@
 function initializeChartsTable() {
   var exports = {};
 
+  function initializeRow($row) {
+    var exports = {};
+
+    exports.hide = function() {
+      $row.addClass('is-hidden');
+    }
+
+    exports.hasQuarter = function(quarter) {
+      return $row.find('.js-act-as-quarter-name').text().trim() === quarter;
+    }
+
+    return exports;
+  }
+
+  var rows = $('.js-act-as-reform-table-row').map(
+    function() {
+      return initializeRow($(this));
+    }
+  );
+
   exports.filter = function(quarter) {
-    $('.js-act-as-reform-table-row').each(
+    rows.each(
       function() {
-        if ($(this).find('.js-act-as-quarter-name').text().trim() !== quarter) {
-          $(this).addClass('is-hidden');
-        }
+        if (!this.hasQuarter(quarter)) this.hide();
       }
     );
   }
