@@ -25,7 +25,7 @@ function initializeChartsTable() {
     }
   );
 
-  exports.reset = function() {
+  function reset() {
     rows.each(
       function() {
         this.show();
@@ -34,6 +34,8 @@ function initializeChartsTable() {
   }
 
   exports.filter = function(quarter) {
+    reset();
+
     rows.each(
       function() {
         if (!this.hasQuarter(quarter)) this.hide();
@@ -86,7 +88,6 @@ function setupReformSelects(colorfulReformsTimeSeries) {
 
     chartObject.tooltip.refresh(quarterData);
 
-    chartsTable.reset();
     chartsTable.filter(quarter);
   }
 
