@@ -142,9 +142,9 @@ page_title t('.title')
 
                 <% if reform %>
 
-                  <tr class='chartsTable-row'>
+                  <tr class='chartsTable-row js-act-as-reform-table-row'>
 
-                    <td class='chartsTable-cell mod-first-column mod-important-text'>
+                    <td class='chartsTable-cell mod-first-column mod-important-text js-act-as-quarter-name'>
                       <%= link_to(quarter.time_period,
                                   reform_show_path(
                                     reform_id: reform.slug,

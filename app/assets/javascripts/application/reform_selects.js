@@ -1,7 +1,26 @@
+function initializeChartsTable() {
+  var exports = {};
+
+  exports.filter = function(quarter) {
+    $('.js-act-as-reform-table-row').each(
+      function() {
+        if ($(this).find('.js-act-as-quarter-name').text().trim() !== quarter) {
+          $(this).addClass('is-hidden');
+        }
+      }
+    );
+  }
+
+  return exports;
+}
+
 function setupReformSelects(colorfulReformsTimeSeries) {
   var $reformSelect = $('.js-filter-reforms-by-reform');
   var $quarterSelect = $('.js-filter-reforms-by-quarter');
+
   var chartObject = colorfulReformsTimeSeries.highchartsObject;
+  var chartsTable = initializeChartsTable();
+
   var unselectedReformLineWidth = chartObject.series[0].options.lineWidth;
   var selectedReformLineWidth = 10;
 
@@ -36,6 +55,7 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     var quarterData = chartObject.series.map(getQuarterPointOfSeries);
 
     chartObject.tooltip.refresh(quarterData);
+    chartsTable.filter(quarter);
   }
 
   $reformSelect.on(
