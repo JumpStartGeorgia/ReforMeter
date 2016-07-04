@@ -1,9 +1,10 @@
 function setupReformSelects(colorfulReformsTimeSeries) {
   var $reformSelect = $('.js-filter-reforms-by-reform');
   var $quarterSelect = $('.js-filter-reforms-by-quarter');
+  var chartObject = colorfulReformsTimeSeries.highchartsObject;
 
 
-  var unselectedReformLineWidth = colorfulReformsTimeSeries.highchartsObject.series[0].options.lineWidth;
+  var unselectedReformLineWidth = chartObject.series[0].options.lineWidth;
   var selectedReformLineWidth = 10;
 
   function filterReformByReform(selectedReformName) {
@@ -12,7 +13,7 @@ function setupReformSelects(colorfulReformsTimeSeries) {
       series.update(series.options);
     }
 
-    colorfulReformsTimeSeries.highchartsObject.series.forEach(function(series) {
+    chartObject.series.forEach(function(series) {
       if (series.name === selectedReformName) {
         updateReformLineWidth(series, selectedReformLineWidth);
       } else {
@@ -22,6 +23,11 @@ function setupReformSelects(colorfulReformsTimeSeries) {
   }
 
   function filterReformByQuarter() {
+    var quarterData = chartObject.series.map(function(series) {
+      return series.data[0];
+    });
+
+    chartObject.tooltip.refresh(quarterData);
   }
 
   $reformSelect.on(
