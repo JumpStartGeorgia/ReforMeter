@@ -1,4 +1,7 @@
-if (typeof(String.prototype.trim) === 'undefined') {
+
+function selectedText($select) {
+  return $select.find(":selected").text().trim();
+}if (typeof(String.prototype.trim) === 'undefined') {
   String.prototype.trim = function() {
     return String(this).replace(/^\s+|\s+$/g, '');
   };
@@ -11,4 +14,8 @@ function mergeObjects(obj1, obj2) {
   for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
 
   return obj3;
+}
+
+function selectedText($select) {
+  return $select.find(":selected").text().trim();
 }

@@ -1,6 +1,4 @@
 function setupReformSelects(colorfulReformsTimeSeries) {
-  var $quarterSelect = $('.js-filter-reforms-by-quarter');
-
   var chartObject = colorfulReformsTimeSeries.highchartsObject;
   var chartsTable = initializeChartsTable();
 
@@ -9,21 +7,6 @@ function setupReformSelects(colorfulReformsTimeSeries) {
 
   function selectedText($select) {
     return $select.find(":selected").text().trim();
-  }
-
-  function filterReformByQuarter(quarter) {
-    function pointMatchesQuarter(point) {
-      return point.quarter_name === quarter;
-    }
-
-    function getQuarterPointOfSeries(series) {
-      return series.data.filter(pointMatchesQuarter)[0];
-    }
-
-    var quarterData = chartObject.series.map(getQuarterPointOfSeries);
-
-    chartObject.tooltip.refresh(quarterData);
-    chartsTable.filter(quarter);
   }
 
   function initializeReformSelect() {
@@ -57,13 +40,40 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     return exports;
   }
 
+  function initializeQuarterSelect() {
+    var exports = {};
+    var $quarterSelect = $('.js-filter-reforms-by-quarter');
+
+    exports.setup = function() {
+      $quarterSelect.on(
+        'change',
+        function() {
+          filterReformByQuarter(selectedText($(this)));
+        }
+      );
+    }
+
+    function filterReformByQuarter(quarter) {
+      function pointMatchesQuarter(point) {
+        return point.quarter_name === quarter;
+      }
+
+      function getQuarterPointOfSeries(series) {
+        return series.data.filter(pointMatchesQuarter)[0];
+      }
+
+      var quarterData = chartObject.series.map(getQuarterPointOfSeries);
+
+      chartObject.tooltip.refresh(quarterData);
+      chartsTable.filter(quarter);
+    }
+
+    return exports;
+  }
+
   var reformSelect = initializeReformSelect();
   reformSelect.setup();
 
-  $quarterSelect.on(
-    'change',
-    function() {
-      filterReformByQuarter(selectedText($(this)));
-    }
-  );
+  var quarterSelect = initializeQuarterSelect();
+  quarterSelect.setup();
 }
