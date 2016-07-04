@@ -48,8 +48,8 @@ function initializeChartsTable() {
       throw new Error('Charts table "filter" method should be invoked with an object as an argument.')
     }
 
-    if (options.quarter) selectedQuarter = options.quarter;
-    if (options.reform) selectedReform = options.reform;
+    if (options.hasOwnProperty('quarter')) selectedQuarter = options.quarter;
+    if (options.hasOwnProperty('reform')) selectedReform = options.reform;
 
     rows.each(
       function() {

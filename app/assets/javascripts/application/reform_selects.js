@@ -13,14 +13,23 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     var exports = {};
     var $reformSelect = $('.js-filter-reforms-by-reform');
 
-    function filterReformByReform(selectedReformName) {
+    function filterReformByReform() {
+      var selectedOption = $reformSelect.find(":selected");
+      var reform;
+
+      if (!selectedOption.attr('value')) {
+        reform = undefined;
+      } else {
+        reform = selectedOption.text().trim();
+      }
+
       function updateReformLineWidth(series, width) {
         series.options.lineWidth = width;
         series.update(series.options);
       }
 
       chartObject.series.forEach(function(series) {
-        if (series.name === selectedReformName) {
+        if (series.name === reform) {
           updateReformLineWidth(series, selectedReformLineWidth);
         } else {
           updateReformLineWidth(series, unselectedReformLineWidth);
@@ -28,16 +37,14 @@ function setupReformSelects(colorfulReformsTimeSeries) {
       });
 
       chartsTable.filter({
-        reform: selectedReformName
+        reform: reform
       });
     }
 
     exports.setup = function() {
       $reformSelect.on(
         'change',
-        function() {
-          filterReformByReform(selectedText($(this)));
-        }
+        filterReformByReform
       );
     }
 
