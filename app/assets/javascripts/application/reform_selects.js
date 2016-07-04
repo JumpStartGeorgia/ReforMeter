@@ -59,12 +59,21 @@ function setupReformSelects(colorfulReformsTimeSeries) {
       $quarterSelect.on(
         'change',
         function() {
-          filterReformByQuarter(selectedText($(this)));
+          filterReformByQuarter();
         }
       );
     }
 
     function filterReformByQuarter(quarter) {
+      var selectedOption = $quarterSelect.find(":selected");
+      var quarter;
+
+      if (!selectedOption.attr('value')) {
+        quarter = undefined;
+      } else {
+        quarter = selectedOption.text().trim();
+      }
+
       function pointMatchesQuarter(point) {
         return point.quarter_name === quarter;
       }
@@ -73,9 +82,12 @@ function setupReformSelects(colorfulReformsTimeSeries) {
         return series.data.filter(pointMatchesQuarter)[0];
       }
 
-      var quarterData = chartObject.series.map(getQuarterPointOfSeries);
+      if (quarter) {
+        var quarterData;
+        quarterData = chartObject.series.map(getQuarterPointOfSeries);
+        chartObject.tooltip.refresh(quarterData);
+      }
 
-      chartObject.tooltip.refresh(quarterData);
       chartsTable.filter({
         quarter: quarter
       });
