@@ -34,7 +34,7 @@
           <%= expert.name %>
         </td>
         <td><%= expert.bio %></td>
-        <td><%= expert.is_active %></td>
+        <td><%= format_boolean_flag(expert.is_active?) %></td>
 
         <td>
           <%= if can? :edit, expert

@@ -12,27 +12,27 @@ en:
       choose: Choose
       download: Download
       title: Download Data & Reports
-    expert_show:
-      title: According to the Experts for %{time}
-    experts:
+    review_board_show:
+      title: According to the Review Board for %{time}
+    review_board:
       header:
-        chart: Expert Response History
-        experts: The Experts
+        chart: Review Board Response History
+        experts: Board Members
         methodology: Methodology
-        table: Table of Expert History
-      no_data: Sorry, but at this time there is no expert data on record.
+        table: Table of History
+      no_data: Sorry, but at this time there is no review board data on record.
       no_methodology: No methodology is on record.
-      no_experts: No experts are on record.
+      no_experts: No board members are on record.
       table_header:
         overall: Overall Score
         summary: Summary
         time: Time Period
-      title: Experts
+      title: Review Board
     index:
       about_link: Learn More
       experts_link: Learn More
       header:
-        experts: Overall reform progress according to the experts
+        experts: Overall reform progress according to the Review Board
         external_indicators: How are the reforms affecting the economy?
         government: Reform progress according to the government
         standing: What is the Reform Standing as of %{time}?
@@ -43,7 +43,7 @@ en:
     reforms:
       header:
         table: Reforms by Time Period
-      no_data: Sorry, but at this time there is no expert data on record.
+      no_data: Sorry, but at this time there is no review board data on record.
       table_header:
         government: Government
         reform: Reform

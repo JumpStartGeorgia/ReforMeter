@@ -6,7 +6,7 @@ en:
         quarter_id:  Quarter
         summary: Summary
         details: Details
-        experts: Experts
+        experts: Review Board
         scores: Scores
         overall_score: Overall
         category1_score: Performance
@@ -14,8 +14,8 @@ en:
         category3_score: Progress
     models:
       expert_survey:
-        one: Expert Survey
-        other: Expert Surveys
+        one: Review Board Survey
+        other: Review Board Surveys
     errors:
       models:
         expert_survey:

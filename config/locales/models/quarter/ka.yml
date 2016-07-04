@@ -3,17 +3,17 @@ ka:
   activerecord:
     attributes:
       quarter:
-        quarter: Quarter
-        year: Year
-        time_period: Time Period
-        is_public: Is Public?
-        summary_good: Good Summary Item
-        summary_bad: Bad Summary Item
-        report: Quarterly Report
-        expert_survey: Expert Survey
-        reform_surveys: Reform Surveys
-        news: News
+        quarter: კვარტალი
+        year: წელი
+        time_period: დროის მონაკვეთი
+        is_public: არის თუ არა საჯარო?
+        summary_good: კარგი შეჯამება
+        summary_bad: ცუდი შეჯამება
+        report: კვარტალური ანგარიში
+        expert_survey: საბჭოს წევრთა კითხვარი
+        reform_surveys: რეფორმების კითხვარი
+        news: სიახლები
     models:
       quarter:
-        one: Quarter
-        other: Quarters
+        one: კვარტალი
+        other: კვარტლები

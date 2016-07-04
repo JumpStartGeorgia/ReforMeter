@@ -41,10 +41,10 @@ page_title t('.title')
 
       <div class='contentSection-body'>
 
-        <% if @methodology_expert %>
+        <% if @methodology_review_board %>
           <div>
-            <h3><%= @methodology_expert.title %></h3>
-            <%= simple_format_no_tags(@methodology_expert.content) %>
+            <h3><%= @methodology_review_board.title %></h3>
+            <%= simple_format_no_tags(@methodology_review_board.content) %>
           </div>
         <% end %>
 

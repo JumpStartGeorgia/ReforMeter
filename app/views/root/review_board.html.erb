@@ -57,9 +57,9 @@ page_title t('.title')
           </div>
 
           <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>
-            <% if @methodology_expert %>
+            <% if @methodology_review_board %>
               <div>
-                <%= simple_format_no_tags(@methodology_expert.content) %>
+                <%= simple_format_no_tags(@methodology_review_board.content) %>
               </div>
             <% else %>
               <p>
@@ -141,7 +141,7 @@ page_title t('.title')
 
                   <td class='chartsTable-cell mod-first-column mod-important-text'>
                     <%= link_to(quarter.time_period,
-                                expert_show_path(quarter.slug),
+                                review_board_show_path(quarter.slug),
                                 class: 'link mod-no-decoration') %>
                   </td>
 

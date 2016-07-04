@@ -4,11 +4,11 @@ ka:
     footer:
       description: ამ კომპიუტერული პროგრამის შექმნა შესაძლებელი გახდა ამერიკელი ხალხის მიერ ამერიკის შეერთებული შტატების საერთაშორისო განვითარების სააგენტოს (USAID)  მეშვეობით გაწეული დახმარების შედეგად. მის შინაარსზე  პასუხისმგებელია თბილისის სახელმწიფო უნივერსიტეტის ეკონომიკის საერთაშორისო სკოლის კვლევითი ინსტიტუტი (ISET Policy Institute) და შეიძლება არ ემთხვეოდეს USAID-ის ან ამერიკის შეერთებული შტატების მთავრობის პოზიციას.
     navbar_header:
-      about: About
-      contact: Contact
-      download_data_and_reports: Download Data & Reports
-      experts: Experts
-      reforms: Reforms
+      about: შესახებ
+      contact: კონტაქტი
+      download_data_and_reports: ჩამოტვირთეთ მონაცემები
+      experts: შეფასების საბჭო
+      reforms: რეფორმები
       account:
         edit_profile: პროფილის შეცვლა
         logout: გასვლა

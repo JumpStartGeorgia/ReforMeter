@@ -44,7 +44,7 @@
 
         <% if @quarter %>
 
-          <%= link_to expert_show_path(@quarter) do %>
+          <%= link_to review_board_show_path(@quarter) do %>
 
             <div class='js-become-highchart meterGauge mod-big mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
 
@@ -119,7 +119,7 @@
             <% end %>
 
             <%= link_to t('.experts_link'),
-                        expert_show_path(@quarter.slug),
+                        review_board_show_path(@quarter.slug),
                         class: 'link' %>
 
           </div>

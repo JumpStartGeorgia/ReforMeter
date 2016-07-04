@@ -27,7 +27,7 @@ show_admin_links ||= false
       <div>
 
         <%= t('shared.common.change_time') %>:
-        <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= experts_path %>'>
+        <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= review_board_path %>'>
 
           <% @active_quarters.each do |active_quarter| %>
             <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
@@ -110,9 +110,9 @@ show_admin_links ||= false
         </div>
 
         <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>
-          <% if @methodology_expert %>
+          <% if @methodology_review_board %>
             <div>
-              <%= simple_format_no_tags(@methodology_expert.content) %>
+              <%= simple_format_no_tags(@methodology_review_board.content) %>
             </div>
           <% else %>
             <p>
@@ -177,7 +177,7 @@ show_admin_links ||= false
 
                 <li class='expertList-item'>
 
-                  <%= link_to experts_path(anchor: "expert-#{expert.id}"),
+                  <%= link_to review_board_path(anchor: "expert-#{expert.id}"),
                               class: 'expertList-item-imageLink' do %>
 
                     <%= image_tag(expert.avatar.url('100x100'),
@@ -188,7 +188,7 @@ show_admin_links ||= false
                   <h4 class='expertList-item-heading'>
 
                     <%= link_to expert.name,
-                                experts_path(anchor: "expert-#{expert.id}"),
+                                review_board_path(anchor: "expert-#{expert.id}"),
                                 class: 'link mod-no-decoration' %>
 
                   </h4>

@@ -44,7 +44,7 @@ class RootController < ApplicationController
 
   def about
     @about_text = PageContent.find_by(name: 'about_text')
-    @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+    @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
     @methodology_government = PageContent.find_by(name: 'methodology_government')
     @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
   end
@@ -55,7 +55,7 @@ class RootController < ApplicationController
 
   def download_data_and_reports
     @download_text = PageContent.find_by(name: 'download_text')
-    @download_expert_text = PageContent.find_by(name: 'download_expert_text')
+    @download_review_board_text = PageContent.find_by(name: 'download_review_board_text')
     @download_reform_text = PageContent.find_by(name: 'download_reform_text')
     @download_external_indicator_text = PageContent.find_by(name: 'download_external_indicator_text')
     @download_report_text = PageContent.find_by(name: 'download_report_text')
@@ -69,9 +69,9 @@ class RootController < ApplicationController
       data,filename = nil
       is_csv = false
       case params[:type]
-        when 'expert'
+        when 'review_board'
           data = Quarter.to_csv('expert')
-          filename = 'ReforMeter_Expert_Data'
+          filename = 'ReforMeter_Review_Board_Data'
           is_csv = true
         when 'reform'
           reform = Reform.friendly.find(params[:reform_id])
@@ -257,9 +257,9 @@ class RootController < ApplicationController
     end
   end
 
-  def experts
-    @expert_text = PageContent.find_by(name: 'expert_text')
-    @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+  def review_board
+    @expert_text = PageContent.find_by(name: 'review_board_text')
+    @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
 
     @quarters = Quarter.published.recent.with_expert_survey
     @experts = Expert.active.sorted
@@ -285,17 +285,17 @@ class RootController < ApplicationController
 
   end
 
-  def expert_show
+  def review_board_show
     begin
       @quarter = Quarter.published.with_expert_survey.friendly.find(params[:id])
 
       if @quarter.nil?
-        redirect_to experts_path,
+        redirect_to review_board_path,
                 alert: t('shared.msgs.does_not_exist')
       end
 
       @active_quarters = Quarter.active_quarters_array
-      @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+      @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
       @news = News.by_expert_quarter(@quarter.id)
 
       gon.chart_download = highchart_export_config
@@ -326,7 +326,7 @@ class RootController < ApplicationController
       ]
 
     rescue ActiveRecord::RecordNotFound => e
-      redirect_to experts_path,
+      redirect_to review_board_path,
                 alert: t('shared.msgs.does_not_exist')
     end
   end

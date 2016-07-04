@@ -11,7 +11,6 @@ en:
       load: Load
       log_in: Log in
       view: View
-      load: Load
       publish: Publish
       unpublish: Unpublish
       add: Add
@@ -26,15 +25,15 @@ en:
         view_all: View All %{obj}
     categories:
       government: Government
-      government_survey: Government Survey
+      government_survey: Government Report
       stakeholder: Stakeholder
-      stakeholder_survey: Stakeholder Survey
+      stakeholder_survey: Stakeholder Assessment
       overall: Overall
       change: Change
       performance: Performance
       goals: Goals
       progress: Progress
-      initial_setup: Initial Setup
+      initial_setup: Institutional Setup
       capacity_building: Capacity Building
       infastructure_budgeting: Infastructure & Budgeting
       legislation_regulation: Legislation & Regulations
@@ -44,7 +43,7 @@ en:
       up: The value has gone up since last quarter
     chart_titles:
       expert:
-        title: 'Expert Response History'
+        title: 'Review Board Response History'
       reform:
         title: 'Reform: %{name}'
         all_title: 'All Reforms'
@@ -71,17 +70,17 @@ en:
       :no: 'No'
     expert_show:
       header:
-        chart: Expert History
-        experts: The Experts
-        findings: Expert Findings
+        chart: Review Board History
+        experts: Board Members
+        findings: Board Findings
         methodology: Methodology
-      no_details: No expert findings are on record.
-      no_experts: No experts are on record.
+      no_details: No board findings are on record.
+      no_experts: No board members are on record.
       no_methodology: No methodology is on record.
     links:
       page_contents: Edit Page Text
       admin: Admin Section
-      experts: The Experts
+      experts: Board Members
       reform_colors: Reform Colors
       reforms: Reforms
       quarters: Quarters
@@ -107,7 +106,7 @@ en:
       forgot_password: Forgot your password?
     reform_show:
       header:
-        external_indicators: Related Indicators
+        external_indicators: Outcomes
         government_history: Government Response History
         government_summary: According to the Government
         methodology: Methodology
@@ -118,5 +117,5 @@ en:
     messages:
       publish:
         report: "A Quarterly Report is required"
-        expert_survey: "The Expert survey results are required"
+        expert_survey: "The Review Board survey results are required"
         reform_survey: "At least one Reform survey results are required"

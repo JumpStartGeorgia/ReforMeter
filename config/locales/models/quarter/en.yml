@@ -10,7 +10,7 @@ en:
         summary_good: Good Summary Item
         summary_bad: Bad Summary Item
         report: Quarterly Report
-        expert_survey: Expert Survey
+        expert_survey: Review Board Survey
         reform_surveys: Reform Surveys
         news: News
     models:

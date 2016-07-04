@@ -15,7 +15,7 @@ class Admin::ExpertSurveysController < ApplicationController
   # GET /admin/expert_surveys/1.json
   def show
 
-    @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+    @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
     @news = News.by_expert_quarter(@quarter.id)
 
     gon.chart_download = highchart_export_config

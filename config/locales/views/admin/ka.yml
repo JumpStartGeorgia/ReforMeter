@@ -2,34 +2,34 @@
 ka:
   admin:
     index:
-      title: Admin Section
+      title: ადმინის სექცია
       explanations:
-        quarters: Manage the data for quarters like quarterly report, expert survey, reform surveys, and news.
-        reforms: Manage reform data like name, summary, methodology, color, and show on homepage.
-        reform_colors: Manage the list of colors that reforms can be.
-        experts: Manage the expert data like name, bio, and image.
-        page_contents: Manage content that appears on pages like about text, methodologies, etc.
-        users: Manage who has access to edit the data on the site.
+        quarters: ისეთი მონაცემების მართვა, როგორიცაა, კვარტალური ანგარიში, საბჭოს წევრთა კვლევა, რეფორმის კითხვარები და ახალი ამბები.
+        reforms: ისეთი მონაცემების მართვა, როგორიცაა, სახელი, შეჯამება, მეთოდოლოგია, ფერი და მთავარ გვერდზე გამოტანა.
+        reform_colors: რეფორმების შესაძლო ფერების მართვა.
+        experts: საბჭოს წევრთა მონაცემების მართვა, მაგალითდ, სახელი, ბიოგრაფია და ფოტო.
+        page_contents: ისეთი კონტენტის მართვა, რომელიც ჩნდება შესახებ, მეთოდოლოგიისა და სხვა გვერდებზე.
+        users: იმის მართვა, თუ ვის აქვს გვერდზე მონაცემთა რედაქტირების უფლება.
     quarters:
       index:
-        set_time_period: Select Time Period to Edit
+        set_time_period: აირჩიეთ დროის პერიოდი, რომლის რედაქტირებაც გსურთ
         table_header:
-          reform: Reform
-          government: Government
-          stakeholder: Stakeholder
+          reform: რეფორმა
+          government: მთავრობა
+          stakeholder: დაინტერესებული პირი
     expert_surveys:
       form:
-        no_experts: There are no experts on file. You must add them so you can assign them to an expert survey.
-        experts_explanation: Select all of the experts that participated in the survey.
-        experts_select_all: Select All Experts
-        experts_deselect_all: Deselect All Experts
-        score_explanation: All scores must be between 0 and 10.
+        no_experts: წევრები არ არიან დამატებული. თქვევნ უნდა დაამატოთ ისინი, რათა მიამაგროთ საბჭოს წევრთა კითხვარს.
+        experts_explanation: კითხვარის განხილვაში ჩართულ ყველა წევრთა მონიშვნა.
+        experts_select_all: ყველა წევრის მონიშვნა
+        experts_deselect_all: ყველა წევრის მონიშვნის გაუქმება
+        score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
       show:
-        title: According to the Experts for %{time}
+        title: საბჭოს დასკვნით %{time}-ისთვის
     reform_surveys:
       form:
-        government_score_explanation: All scores are percents and must be between 0 and 100.
-        stakeholder_score_explanation: All scores must be between 0 and 10.
+        government_score_explanation: ყველა ქულა პროცენტია და უდნა იყოს 0-დან 100-მდე.
+        stakeholder_score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
       show:
-        title: "Reform: %{name} for %{time}"
+        title: "რეფორმა: %{name}-ის %{time}-სთვის"
 
