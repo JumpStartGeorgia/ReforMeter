@@ -26,6 +26,10 @@ function setupReformSelects(colorfulReformsTimeSeries) {
           updateReformLineWidth(series, unselectedReformLineWidth);
         }
       });
+
+      chartsTable.filter({
+        reform: selectedReformName
+      });
     }
 
     exports.setup = function() {

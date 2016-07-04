@@ -16,6 +16,10 @@ function initializeChartsTable() {
       return $row.find('.js-act-as-quarter-name').text().trim() === quarter;
     }
 
+    exports.hasReform = function(reform) {
+      return $row.find('.js-act-as-reform-name').text().trim() === reform;
+    }
+
     return exports;
   }
 
@@ -45,6 +49,8 @@ function initializeChartsTable() {
     rows.each(
       function() {
         if (options.quarter && !this.hasQuarter(options.quarter)) this.hide();
+
+        if (options.reform && !this.hasReform(options.reform)) this.hide();
       }
     );
   }
