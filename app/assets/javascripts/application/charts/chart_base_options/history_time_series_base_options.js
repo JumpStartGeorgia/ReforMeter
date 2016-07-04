@@ -50,7 +50,7 @@ function historyTimeSeriesOptions(chartData) {
       labels: {
         enabled: true,
         formatter: function () {
-            return chartData.categories[this.value];
+          return chartData.categories[this.value];
         }
       },
       tickmarkPlacement: 'on',

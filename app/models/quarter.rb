@@ -459,7 +459,10 @@ class Quarter < ActiveRecord::Base
 
         # Specify that unit is '%' for government data
         hash[:series].each do |series|
-          series[:data].each { |data| data[:unit] = '%' }
+          series[:data].each_with_index do |data, index|
+            data[:unit] = '%'
+            data[:quarter_name] = hash[:categories][index]
+          end
         end
       end
     end
