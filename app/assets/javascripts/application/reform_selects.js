@@ -84,6 +84,8 @@ function setupReformSelects(colorfulReformsTimeSeries) {
         var quarterData;
         quarterData = chartObject.series.map(getQuarterPointOfSeries);
         chartObject.tooltip.refresh(quarterData);
+      } else {
+        chartObject.tooltip.hide();
       }
 
       chartsTable.filter({
