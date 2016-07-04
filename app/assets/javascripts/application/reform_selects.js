@@ -87,7 +87,6 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     var quarterData = chartObject.series.map(getQuarterPointOfSeries);
 
     chartObject.tooltip.refresh(quarterData);
-
     chartsTable.filter(quarter);
   }
 
