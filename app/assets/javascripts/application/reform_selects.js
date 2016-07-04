@@ -72,8 +72,8 @@ function setupReformSelects(colorfulReformsTimeSeries) {
   }
 
   var reformSelect = initializeReformSelect();
-  reformSelect.setup();
-
   var quarterSelect = initializeQuarterSelect();
+
+  reformSelect.setup();
   quarterSelect.setup();
 }
