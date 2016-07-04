@@ -1,5 +1,7 @@
 function initializeChartsTable() {
   var exports = {};
+  var selectedQuarter;
+  var selectedReform;
 
   function initializeRow($row) {
     var exports = {};
@@ -46,11 +48,13 @@ function initializeChartsTable() {
       throw new Error('Charts table "filter" method should be invoked with an object as an argument.')
     }
 
+    if (options.quarter) selectedQuarter = options.quarter;
+    if (options.reform) selectedReform = options.reform;
+
     rows.each(
       function() {
-        if (options.quarter && !this.hasQuarter(options.quarter)) this.hide();
-
-        if (options.reform && !this.hasReform(options.reform)) this.hide();
+        if (selectedQuarter && !this.hasQuarter(selectedQuarter)) this.hide();
+        if (selectedReform && !this.hasReform(selectedReform)) this.hide();
       }
     );
   }
