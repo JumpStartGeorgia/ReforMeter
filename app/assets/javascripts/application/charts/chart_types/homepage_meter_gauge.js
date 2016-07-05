@@ -37,15 +37,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: {
-            text: chartData.translations.on_track,
-            x: 88,
-            y: 20,
-            style: {
-              fontSize: gon.locale === 'ka' ? '17px' : '18px',
-              color: 'white'
-            }
-          }
+          label: meterGaugePlotBandLabels.onTrack(chartData)
         },{
           borderWidth: 0,
           from: 6.7,

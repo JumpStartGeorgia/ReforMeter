@@ -39,15 +39,12 @@ function highchartsBigMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: {
-            text: 'On Track',
-            x: 88,
-            y: 30,
-            style: {
-              fontSize: '18px',
-              color: 'white'
+          label: meterGaugePlotBandLabels.onTrack(
+            chartData,
+            {
+              y: 30
             }
-          }
+          )
         },{
           borderWidth: 2,
           borderColor: 'transparent',

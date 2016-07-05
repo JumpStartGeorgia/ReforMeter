@@ -311,7 +311,12 @@ class RootController < ApplicationController
           id: 'overall',
           title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,
-          change: @quarter.expert_survey.overall_change
+          change: @quarter.expert_survey.overall_change,
+          translations: {
+            behind: I18n.t('shared.chart_rating_categories.behind'),
+            on_track: I18n.t('shared.chart_rating_categories.on_track'),
+            ahead: I18n.t('shared.chart_rating_categories.ahead')
+          }
         }, {
           id: 'performance',
           title: I18n.t('shared.categories.performance'),
