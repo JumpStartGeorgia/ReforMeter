@@ -1,3 +1,4 @@
+
 function setupReformSelects(colorfulReformsTimeSeries) {
   var chartObject = colorfulReformsTimeSeries.highchartsObject;
   var chartsTable = initializeChartsTable();
@@ -22,8 +23,10 @@ function setupReformSelects(colorfulReformsTimeSeries) {
       return series.data.filter(pointMatchesQuarter)[0];
     }
 
-    var quarterData;
-    quarterData = chartObject.series.map(getQuarterPointOfSeries);
+    var quarterData = chartObject.series.filter(function(series) {
+      return !reform || reform === series.name;
+    }).map(getQuarterPointOfSeries);
+
     chartObject.tooltip.refresh(quarterData);
   }
 
