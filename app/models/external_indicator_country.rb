@@ -13,7 +13,7 @@ class ExternalIndicatorCountry < ActiveRecord::Base
   #######################
   ## TRANSLATIONS
 
-  translates :name, :sort_order, :fallbacks_for_empty_translations => true
+  translates :name, :fallbacks_for_empty_translations => true
   globalize_accessors
 
   #######################
@@ -22,7 +22,10 @@ class ExternalIndicatorCountry < ActiveRecord::Base
 
   #######################
   ## VALIDATIONS
+  validates :name, :sort_order, presence: :true
 
-  validates :name, presence: :true
+  #######################
+  ## SCOPES
+  scope :sorted, -> { order(sort_order: :asc) }
 
 end

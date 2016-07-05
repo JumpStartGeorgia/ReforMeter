@@ -23,9 +23,11 @@ class ExternalIndicatorIndex < ActiveRecord::Base
 
   #######################
   ## VALIDATIONS
-
   validates :name, :short_name, :sort_order, presence: :true
   validates :change_multiplier, inclusion: {in: [-1, 1]}
 
+  #######################
+  ## SCOPES
+  scope :sorted, -> { order(sort_order: :asc) }
 
 end

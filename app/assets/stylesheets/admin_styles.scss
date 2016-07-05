@@ -1,4 +1,7 @@
 @import 'bootstrap_and_overrides';
+/*
+ *= require jquery-ui/core
+ */
 
 p{
   margin: 15px 0;
@@ -116,3 +119,21 @@ fieldset.form-actions{
     }
   }
 }
+
+
+/* external indicator sort rows */
+/*table.table-countries tbody, table.table-indices tbody {
+  tr{
+    cursor: move;
+    &.move-after{
+      td{
+        background-color: #efe4b6 !important;
+      }
+    }
+    &.to-move{
+      td{
+        background-color: #96c3ab !important;
+      }
+    }
+  }
+}*/

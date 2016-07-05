@@ -6,48 +6,159 @@
   <%= f.semantic_errors *f.object.errors.keys %>
   <%= f.inputs do %>
 
+  <%= render layout: 'shared/form/translated_inputs',
+             locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+    <%= f.input "title_#{enabled_locale}",
+                as: :string,
+                label: t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator.title'),
+                       language: enabled_locale_name) %>
+
+    <%= f.input "subtitle_#{enabled_locale}",
+                as: :string,
+                label: t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator.subtitle'),
+                       language: enabled_locale_name) %>
+
+    <%= f.input "description_#{enabled_locale}",
+                as: :text,
+                label: t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator.description'),
+                       language: enabled_locale_name),
+                 :input_html => { :class => 'autogrow', :rows => 5  } %>
+  <% end %>
+
+
+  <hr />
+
+  <div class="row mod-row-no-margins">
+    <%= f.input :indicator_type, as: :radio, collection: @indicator_types, wrapper_html: {class: 'col-md-4'} %>
+    <%= f.input :chart_type, as: :radio, collection: @chart_types, wrapper_html: {class: 'col-md-4'} %>
+    <%= f.input :scale_type, as: :radio, collection: @scale_types, wrapper_html: {class: 'col-md-4'} %>
+  </div>
+
+  <div class="js-optional js-optional-countries">
+
+    <hr />
+
+    <h3><%= t('activerecord.models.external_indicator_country', count: 999) %></h3>
+
+    <p><%= t('.country_explanation') %></p>
+
     <%= render layout: 'shared/form/translated_inputs',
-               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
-      <%= f.input "title_#{enabled_locale}",
-                  as: :string,
-                  label: t('shared.labels.translated_field',
-                         field: t('activerecord.attributes.external_indicator.title'),
-                         language: enabled_locale_name) %>
+               locals: { object: object, id_suffix: '-country' } do |enabled_locale, enabled_locale_name| %>
 
-      <%= f.input "subtitle_#{enabled_locale}",
-                  as: :string,
-                  label: t('shared.labels.translated_field',
-                         field: t('activerecord.attributes.external_indicator.subtitle'),
-                         language: enabled_locale_name) %>
+      <table class="table table-striped table-hover table-nonfluid table-countries">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <%= t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator_country.name'),
+                       language: enabled_locale_name)
+              %><abbr title="required">*</abbr>
+            </th>
+            <th>
+              <%=t 'shared.common.actions' %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% object.countries.sorted.each do |cntry| %>
+            <%= f.semantic_fields_for :countries, cntry do |country| %>
+              <%= render partial: 'country_fields', locals: {f: country, object: cntry, enabled_locale: enabled_locale} %>
+            <% end %>
+          <% end %>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <%= link_to_add_association t('shared.actions.add'), f, :countries,
+                    :'data-association-insertion-node' => "#translation-#{enabled_locale}-country table.table-countries tbody",
+                    :'data-association-insertion-method' => 'append',
+                    class: 'btn btn-primary',
+                    render_options: {locals: {enabled_locale: enabled_locale}} %>
+            </td>
+          </tr>
+        </tfoot>
+        </tbody>
+      </table>
 
-      <%= f.input "description_#{enabled_locale}",
-                  as: :text,
-                  label: t('shared.labels.translated_field',
-                         field: t('activerecord.attributes.external_indicator.description'),
-                         language: enabled_locale_name),
-                   :input_html => { :class => 'autogrow', :rows => 5  } %>
     <% end %>
 
+  </div>
+
+  <div class="js-optional js-optional-indices">
 
     <hr />
 
-    <div class="row mod-row-no-margins">
-      <%= f.input :indicator_type, as: :radio, collection: @indicator_types, wrapper_html: {class: 'col-md-4'} %>
-      <%= f.input :chart_type, as: :radio, collection: @chart_types, wrapper_html: {class: 'col-md-4'} %>
-      <%= f.input :scale_type, as: :radio, collection: @scale_types, wrapper_html: {class: 'col-md-4'} %>
-    </div>
+    <h3><%= t('activerecord.models.external_indicator_index', count: 999) %></h3>
 
-    <hr />
+    <p><%= t('.index_explanation') %></p>
 
-    <p class="form-instructions"><%= t('.range_explanation') %></p>
-    <div class="row mod-row-no-margins">
-      <%= f.input :min, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
-      <%= f.input :max, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
-    </div>
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object, id_suffix: '-index' } do |enabled_locale, enabled_locale_name| %>
 
-    <hr />
+      <table class="table table-striped table-hover table-nonfluid table-indices">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              <%= t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator_index.short_name'),
+                       language: enabled_locale_name)
+              %><abbr title="required">*</abbr>
+            </th>
+            <th>
+              <%= t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator_index.name'),
+                       language: enabled_locale_name)
+              %><abbr title="required">*</abbr>
+            </th>
+            <th>
+              <%= t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator_index.description'),
+                       language: enabled_locale_name)
+              %>
+            </th>
+            <th>
+              <%=t 'shared.common.actions' %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% object.indices.sorted.each do |indx| %>
+            <%= f.semantic_fields_for :indices, indx do |index| %>
+              <%= render partial: 'index_fields', locals: {f: index, object: indx, enabled_locale: enabled_locale} %>
+            <% end %>
+          <% end %>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <%= link_to_add_association t('shared.actions.add'), f, :indices,
+                    :'data-association-insertion-node' => "#translation-#{enabled_locale}-index table.table-indices tbody",
+                    :'data-association-insertion-method' => 'append',
+                    class: 'btn btn-primary',
+                    render_options: {locals: {enabled_locale: enabled_locale}} %>
+            </td>
+          </tr>
+        </tfoot>
+        </tbody>
+      </table>
 
-    <%= f.input :show_on_home_page, as: :radio %>
+    <% end %>
+
+  </div>
+
+
+  <hr />
+
+  <p class="form-instructions"><%= t('.range_explanation') %></p>
+  <div class="row mod-row-no-margins">
+    <%= f.input :min, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+    <%= f.input :max, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+  </div>
+
+
 
   <% end %>
 

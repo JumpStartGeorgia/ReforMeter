@@ -14,6 +14,8 @@ ka:
         range: Range
         min: Min
         max: Max
+        countries: Countries
+        indices: Indices
     models:
       external_indicator:
         one: External Indicator

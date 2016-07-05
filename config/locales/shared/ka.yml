@@ -61,6 +61,9 @@ ka:
       formatted_quarter: 'კვ.%{quarter}'
       :yes: 'Yes'
       :no: 'No'
+      move_row:
+        up: Move the row up
+        down: Move the row down
     expert_show:
       header:
         chart: Expert History

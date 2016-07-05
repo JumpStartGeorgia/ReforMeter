@@ -1,0 +1,11 @@
+---
+ka:
+  activerecord:
+    attributes:
+      external_indicator_country:
+        name: Name
+        sort_order: Sort Order
+    models:
+      external_indicator_country:
+        one: Country
+        other: Countries

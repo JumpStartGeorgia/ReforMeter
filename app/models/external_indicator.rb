@@ -27,10 +27,13 @@ class ExternalIndicator < ActiveRecord::Base
   #######################
   ## RELATIONSHIPS
   has_and_belongs_to_many :reforms
-  has_many :indices, class_name: 'ExternalIndicatorIndex', dependent: :destroy
   has_many :countries, class_name: 'ExternalIndicatorCountry', dependent: :destroy
-  accepts_nested_attributes_for :indices, reject_if: :all_blank
-  accepts_nested_attributes_for :countries, reject_if: :all_blank
+  has_many :indices, class_name: 'ExternalIndicatorIndex', dependent: :destroy
+  accepts_nested_attributes_for :countries, :reject_if => lambda { |x| x[:name_en].blank? && x[:name_ka].blank?}, allow_destroy: true
+  accepts_nested_attributes_for :indices, :reject_if => lambda { |x|
+    x[:name_en].blank? && x[:name_ka].blank? &&
+    x[:short_name_en].blank? && x[:short_name_ka].blank?
+  }, :allow_destroy => true
 
   #######################
   ## VALIDATIONS
@@ -47,6 +50,7 @@ class ExternalIndicator < ActiveRecord::Base
   ## CALLBACKS
   after_initialize :load_data_hash
   before_save :set_data
+  after_save :reset_unwanted_fields
 
   # after load, populate data hash
   # format: {
@@ -64,6 +68,16 @@ class ExternalIndicator < ActiveRecord::Base
   def set_data
     self.data = self.data_hash.to_json if self.data_hash.present?
     return true
+  end
+
+  def reset_unwanted_fields
+    if self.indicator_type == INDICATOR_TYPES[:country]
+      # this is country, so index records are not needed
+      self.indices.destroy_all
+    elsif self.indicator_type == INDICATOR_TYPES[:composite]
+      # this is index, so country records are not needed
+      self.countries.destroy_all
+    end
   end
 
   #######################

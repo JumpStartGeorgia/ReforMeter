@@ -17,10 +17,14 @@ class Admin::ExternalIndicatorsController < ApplicationController
   # GET /admin/external_indicators/new
   def new
     @external_indicator = ExternalIndicator.new
+    @external_indicator.countries.build
+    @external_indicator.indices.build
   end
 
   # GET /admin/external_indicators/1/edit
   def edit
+    @external_indicator.countries.build if @external_indicator.countries.length == 0
+    @external_indicator.indices.build if @external_indicator.indices.length == 0
   end
 
   # POST /admin/external_indicators
@@ -89,7 +93,11 @@ class Admin::ExternalIndicatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def external_indicator_params
-      permitted = ExternalIndicator.globalize_attribute_names + [:is_public, :show_on_home_page, :indicator_type, :scale_type, :chart_type, :min, :max]
+      permitted = ExternalIndicator.globalize_attribute_names + [
+        :is_public, :show_on_home_page, :indicator_type, :scale_type, :chart_type, :min, :max,
+        indices_attributes: [ExternalIndicatorIndex.globalize_attribute_names + [:id, :_destroy, :change_multiplier, :sort_order, :external_indicator_id]],
+        countries_attributes: [ExternalIndicatorCountry.globalize_attribute_names + [:id, :_destroy, :sort_order, :external_indicator_id]],
+      ]
       params.require(:external_indicator).permit(*permitted)
     end
 end
