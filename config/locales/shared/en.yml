@@ -43,12 +43,12 @@ en:
       up: The value has gone up since last quarter
     chart_titles:
       expert:
-        title: 'Review Board Response History'
+        title: 'Review Board History'
       reform:
         title: 'Reform: %{name}'
         all_title: 'All Reforms'
-        subtitle_government: 'Government Response History'
-        subtitle_stakeholder: 'Stakeholder Response History'
+        subtitle_government: 'Government History'
+        subtitle_stakeholder: 'Stakeholder History'
     chart_download:
       download_png: Download PNG image
       download_jpeg: Download JPEG image
@@ -118,10 +118,10 @@ en:
     reform_show:
       header:
         external_indicators: Outcomes
-        government_history: Government Response History
+        government_history: Government History
         government_summary: According to the Government
         methodology: Methodology
-        stakeholder_history: Stakeholder Response History
+        stakeholder_history: Stakeholder History
         stakeholder_summary: According to the Stakeholders
       no_methodology: No methodology is on record.
   errors:

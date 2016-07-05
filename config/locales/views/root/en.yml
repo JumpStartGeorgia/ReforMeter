@@ -16,7 +16,7 @@ en:
       title: According to the Review Board for %{time}
     review_board:
       header:
-        chart: Review Board Response History
+        chart: Review Board History
         experts: Board Members
         methodology: Methodology
         table: Table of History
