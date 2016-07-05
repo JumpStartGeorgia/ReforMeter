@@ -15,6 +15,10 @@
     height: 130px;
     padding: 0;
   }
+
+  :lang(ka) {
+    font-size: 1.4rem;
+  }
 }
 
   .appHeader-brand {
@@ -93,6 +97,12 @@
           padding: 10px 10px;
           display: inline-block;
           margin: 0;
+        }
+
+        &:lang(ka) {
+          @media (min-width: $width-show-navigation) {
+            padding: 10px .6vw;
+          }
         }
       }
 
