@@ -2,7 +2,20 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
   var color = externalIndicatorChart.colorHash;
   var max = chartData.max;
-  var spacingLeft = 80;
+  var spacingLeft = localeIs('ka') ? 120 : 80;
+
+  function plotBands(plotBands) {
+    $(plotBands).each(
+      function() {
+        this.label.x = localeIs('ka') ? -140 : -100;
+        this.label.verticalAlign = 'middle';
+        this.label.style.fontSize = localeIs('ka') ? '14px' : '16px';
+        this.label.style.fontWeight = '600';
+      }
+    );
+
+    return plotBands;
+  }
 
   var options = {
     chart: {
@@ -64,7 +77,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
-      plotBands: customTimeSeriesPlotBands(
+      plotBands: plotBands(
         [
           {
             from: max * 0,
