@@ -19,3 +19,7 @@ function mergeObjects(obj1, obj2) {
 function selectedText($select) {
   return $select.find(":selected").text().trim();
 }
+
+function localeIs(locale) {
+  return gon.locale === locale;
+}

@@ -26,7 +26,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
             x: 55,
             y: 60,
             style: {
-              fontSize: '18px',
+              fontSize: gon.locale === 'ka' ? '17px' : '18px',
               color: 'white'
             }
           }
@@ -42,7 +42,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
             x: 88,
             y: 20,
             style: {
-              fontSize: '18px',
+              fontSize: gon.locale === 'ka' ? '17px' : '18px',
               color: 'white'
             }
           }
@@ -56,10 +56,10 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           label: {
             text: chartData.translations.ahead,
             rotation: 60,
-            x: 173,
-            y: 35,
+            x: localeIs('ka') ? 170 : 173,
+            y: localeIs('ka') ? 25 : 35,
             style: {
-              fontSize: '18px',
+              fontSize: localeIs('ka') ? '17px' : '18px',
               color: 'white'
             }
           }
