@@ -227,7 +227,12 @@ class RootController < ApplicationController
             color: government_time_series[:color],
             title: t('shared.categories.overall'),
             score: @reform_survey.stakeholder_overall_score.to_f,
-            change: @reform_survey.stakeholder_overall_change
+            change: @reform_survey.stakeholder_overall_change,
+            translations: {
+              behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+              on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+              ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+            }
           }, {
             id: 'reform-stakeholder-performance',
             color: government_time_series[:color],
