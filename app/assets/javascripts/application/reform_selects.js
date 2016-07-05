@@ -14,19 +14,24 @@ function setupReformSelects(colorfulReformsTimeSeries) {
       return;
     }
 
-    function pointMatchesQuarter(point) {
-      return point.quarter_name === quarter;
+    var tooltipData = [];
+
+    chartObject.series.forEach(function(series) {
+      if (reform && reform !== series.name) return;
+
+      series.data.forEach(function(point) {
+        if (!point.y) return;
+        if (point.quarter_name !== quarter) return;
+
+        tooltipData.push(point);
+      });
+    });
+
+    if (tooltipData.length === 0) {
+      chartObject.tooltip.hide();
+    } else {
+      chartObject.tooltip.refresh(tooltipData);
     }
-
-    function getQuarterPointOfSeries(series) {
-      return series.data.filter(pointMatchesQuarter)[0];
-    }
-
-    var quarterData = chartObject.series.filter(function(series) {
-      return !reform || reform === series.name;
-    }).map(getQuarterPointOfSeries);
-
-    chartObject.tooltip.refresh(quarterData);
   }
 
   function selectedText($select) {
