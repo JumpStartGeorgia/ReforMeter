@@ -49,6 +49,10 @@ ka:
         all_title: ყველა რეფორმა
         subtitle_government: მთავრობის ანგარიშების ქრონიკა
         subtitle_stakeholder: დაინტერესებულ მხარეთა შეფასებების ქრონიკა
+    chart_rating_categories:
+      behind: სუსტი
+      on_track: ზომიერი
+      ahead: ძლიერი
     chart_download:
       download_png: ფოტოს PNG-ი ფორმატში ჩამოტვირთვა
       download_jpeg: ფოტოს JPEG-ი ფორმატში ჩამოტვირთვა

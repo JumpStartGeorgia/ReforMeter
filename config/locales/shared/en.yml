@@ -54,6 +54,10 @@ en:
       download_jpeg: Download JPEG image
       download_pdf: Download PDF document
       download_svg: Download SVG vector image
+    chart_rating_categories:
+      behind: Behind
+      on_track: On Track
+      ahead: Ahead
     common:
       account: Account
       actions: Actions

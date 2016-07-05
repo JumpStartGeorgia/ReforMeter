@@ -21,7 +21,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           innerRadius: '40%',
           outerRadius: '100%',
           label: {
-            text: 'Behind',
+            text: chartData.translations.behind,
             rotation: -60,
             x: 55,
             y: 60,
@@ -38,7 +38,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           innerRadius: '40%',
           outerRadius: '100%',
           label: {
-            text: 'On Track',
+            text: chartData.translations.on_track,
             x: 88,
             y: 20,
             style: {
@@ -54,7 +54,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           innerRadius: '40%',
           outerRadius: '100%',
           label: {
-            text: 'Ahead',
+            text: chartData.translations.ahead,
             rotation: 60,
             x: 173,
             y: 35,
