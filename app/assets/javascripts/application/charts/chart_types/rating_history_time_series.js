@@ -5,6 +5,11 @@ function ratingHistoryTimeSeriesOptions(chartData) {
       spacingLeft: 80
     },
     exporting: {
+      chartOptions: {
+        title: {
+          text: chartData.title
+        }
+      },
       enabled: true
     },
     legend: {
