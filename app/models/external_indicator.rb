@@ -272,6 +272,15 @@ class ExternalIndicator < ActiveRecord::Base
       end
     end
 
+    if hash[:chartType] == 'external-indicator-area-time-series'
+      hash[:translations] = {
+        fail: I18n.t('shared.chart_rating_categories.external_indicators.fail'),
+        poor: I18n.t('shared.chart_rating_categories.external_indicators.poor'),
+        fair: I18n.t('shared.chart_rating_categories.external_indicators.fair'),
+        good: I18n.t('shared.chart_rating_categories.external_indicators.good'),
+      }
+    end
+
     return hash
 
   end

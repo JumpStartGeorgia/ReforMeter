@@ -55,9 +55,15 @@ en:
       download_pdf: Download PDF document
       download_svg: Download SVG vector image
     chart_rating_categories:
-      behind: Behind
-      on_track: On Track
-      ahead: Ahead
+      reforms:
+        behind: Behind
+        on_track: On Track
+        ahead: Ahead
+      external_indicators:
+        fail: Fail
+        poor: Poor
+        fair: Fair
+        good: Good
     common:
       account: Account
       actions: Actions

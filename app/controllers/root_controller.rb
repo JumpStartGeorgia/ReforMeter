@@ -19,9 +19,9 @@ class RootController < ApplicationController
         score: @quarter.expert_survey.overall_score.to_f,
         change: @quarter.expert_survey.overall_change,
         translations: {
-          behind: I18n.t('shared.chart_rating_categories.behind'),
-          on_track: I18n.t('shared.chart_rating_categories.on_track'),
-          ahead: I18n.t('shared.chart_rating_categories.ahead')
+          behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+          on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+          ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
         }
       }
     ]
@@ -313,9 +313,9 @@ class RootController < ApplicationController
           score: @quarter.expert_survey.overall_score.to_f,
           change: @quarter.expert_survey.overall_change,
           translations: {
-            behind: I18n.t('shared.chart_rating_categories.behind'),
-            on_track: I18n.t('shared.chart_rating_categories.on_track'),
-            ahead: I18n.t('shared.chart_rating_categories.ahead')
+            behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+            on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+            ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
           }
         }, {
           id: 'performance',

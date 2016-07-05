@@ -239,9 +239,9 @@ class Quarter < ActiveRecord::Base
       categories: [],
       series: [],
       translations: {
-        behind: I18n.t('shared.chart_rating_categories.behind'),
-        on_track: I18n.t('shared.chart_rating_categories.on_track'),
-        ahead: I18n.t('shared.chart_rating_categories.ahead')
+        behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+        on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+        ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
       }
     }
 

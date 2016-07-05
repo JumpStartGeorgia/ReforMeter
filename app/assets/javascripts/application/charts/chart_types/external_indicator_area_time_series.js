@@ -70,7 +70,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
             from: max * 0,
             to: max * .25,
             label: {
-              text: 'Fail',
+              text: chartData.translations.fail,
               style: {
                 color: outputHighchartsColorString(color, '.4')
               }
@@ -79,7 +79,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
             from: max * .25,
             to: max * .5,
             label: {
-              text: 'Poor',
+              text: chartData.translations.poor,
               style: {
                 color: outputHighchartsColorString(color, '.6')
               }
@@ -88,7 +88,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
             from: max * .5,
             to: max * .75,
             label: {
-              text: 'Fair',
+              text: chartData.translations.fair,
               style: {
                 color: outputHighchartsColorString(color, '.8')
               }
@@ -97,7 +97,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
             from: max * .75,
             to: max,
             label: {
-              text: 'Good',
+              text: chartData.translations.good,
               style: {
                 color: outputHighchartsColorString(color, '1')
               }
