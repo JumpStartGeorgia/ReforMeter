@@ -300,7 +300,8 @@ class Quarter < ActiveRecord::Base
       title: nil,
       id: options[:id],
       subtitle: nil,
-      min: nil, max: nil, categories: [], series: []
+      min: nil, max: nil, categories: [], series: [],
+      unitLabel: I18n.t('shared.common.percent')
     }
     # quarters = oldest
     # quarters = quarters.published if options[:is_published]

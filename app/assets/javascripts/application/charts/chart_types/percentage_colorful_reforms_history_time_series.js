@@ -5,7 +5,7 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
     },
     yAxis: {
       title: {
-        text: 'Percentage'
+        text: chartData.unitLabel
       }
     },
   };
