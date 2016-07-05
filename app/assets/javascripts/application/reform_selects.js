@@ -1,4 +1,3 @@
-
 function setupReformSelects(colorfulReformsTimeSeries) {
   var chartObject = colorfulReformsTimeSeries.highchartsObject;
   var chartsTable = initializeChartsTable();
