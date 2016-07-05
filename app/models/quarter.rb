@@ -237,7 +237,12 @@ class Quarter < ActiveRecord::Base
       min: 0,
       max: 10,
       categories: [],
-      series: []
+      series: [],
+      translations: {
+        behind: I18n.t('shared.chart_rating_categories.behind'),
+        on_track: I18n.t('shared.chart_rating_categories.on_track'),
+        ahead: I18n.t('shared.chart_rating_categories.ahead')
+      }
     }
 
     quarters = oldest

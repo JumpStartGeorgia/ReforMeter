@@ -1,30 +1,30 @@
-function ratingPlotBands(labelColor) {
+function ratingPlotBands(chartData) {
   return [
     {
       from: 0,
       to: 3,
       label: {
-        text: 'Behind',
+        text: chartData.translations.behind,
         style: {
-          color: outputHighchartsColorString(labelColor, '.6')
+          color: outputHighchartsColorString(chartData.color, '.6')
         }
       }
     }, {
       from: 3,
       to: 6.5,
       label: {
-        text: 'On Track',
+        text: chartData.translations.on_track,
         style: {
-          color: outputHighchartsColorString(labelColor, '.8')
+          color: outputHighchartsColorString(chartData.color, '.8')
         }
       }
     }, {
       from: 6.5,
       to: 10,
       label: {
-        text: 'Ahead',
+        text: chartData.translations.ahead,
         style: {
-          color: outputHighchartsColorString(labelColor, '1')
+          color: outputHighchartsColorString(chartData.color, '1')
         }
       }
     }
@@ -36,7 +36,7 @@ function customTimeSeriesPlotBands(plotBands) {
     function() {
       this.label.x = -100;
       this.label.verticalAlign = 'middle';
-      this.label.style.fontSize = '16px';
+      this.label.style.fontSize = localeIs('ka') ? '14px' : '16px';
       this.label.style.fontWeight = '600';
     }
   );

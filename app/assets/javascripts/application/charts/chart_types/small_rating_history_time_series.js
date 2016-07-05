@@ -10,7 +10,7 @@ function smallRatingHistoryTimeSeriesOptions(chartData) {
     yAxis: {
       max: 10,
       min: 0,
-      plotBands: customTimeSeriesPlotBands(ratingPlotBands(chartData.color)),
+      plotBands: customTimeSeriesPlotBands(ratingPlotBands(chartData)),
       tickInterval: 1
     }
   };

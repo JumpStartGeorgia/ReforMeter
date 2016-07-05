@@ -14,7 +14,7 @@ function ratingHistoryTimeSeriesOptions(chartData) {
       min: 0,
       max: 10,
       tickInterval: 1,
-      plotBands: customTimeSeriesPlotBands(ratingPlotBands(chartData.color))
+      plotBands: customTimeSeriesPlotBands(ratingPlotBands(chartData))
     }
   };
 
