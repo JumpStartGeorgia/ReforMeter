@@ -22,9 +22,7 @@ show_admin_links ||= false
         <select class='js-become-select2 js-reform-page-reform-select'>
 
           <% @active_reforms.each do |active_reform| %>
-            <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>>
-              <%= active_reform[0] %>
-            </option>
+            <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>><%= active_reform[0] %></option>
           <% end %>
 
         </select>
@@ -38,9 +36,7 @@ show_admin_links ||= false
         <select class='js-become-select2 js-reform-page-quarter-select'>
 
           <% @active_quarters.each do |active_quarter| %>
-            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
-              <%= active_quarter[0] %>
-            </option>
+            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
           <% end %>
 
         </select>

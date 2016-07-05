@@ -31,9 +31,7 @@ show_admin_links ||= false
         <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= review_board_path %>'>
 
           <% @active_quarters.each do |active_quarter| %>
-            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
-              <%= active_quarter[0] %>
-            </option>
+            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
           <% end %>
 
         </select>
