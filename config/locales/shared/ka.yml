@@ -55,10 +55,10 @@ ka:
         on_track: ზომიერი
         ahead: ძლიერი
       external_indicators:
-        fail: საშინელი
-        poor: ცუდი
-        fair: ისე რა
-        good: მაგარია!
+        fail: ჩამოშლილი
+        poor: სუსტი
+        fair: ზომიერი
+        good: ძლიერი
     chart_download:
       download_png: ფოტოს PNG-ი ფორმატში ჩამოტვირთვა
       download_jpeg: ფოტოს JPEG-ი ფორმატში ჩამოტვირთვა
