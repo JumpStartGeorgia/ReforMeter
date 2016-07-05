@@ -55,13 +55,13 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
     subtitle: externalIndicatorChart.subtitle(
       chartData.subtitle,
       {
-        x: -1 * spacingLeft
+        x: -1 * spacingLeft + 10
       }
     ),
     title: externalIndicatorChart.title(
       chartData.title,
       {
-        x: -1 * spacingLeft
+        x: -1 * spacingLeft + 10
       }
     ),
     tooltip: {
