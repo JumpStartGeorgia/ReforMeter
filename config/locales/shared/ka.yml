@@ -76,6 +76,7 @@ ka:
       name: რეფორმეტრი
       sub_title: თითოეული რეფორმის კვალდაკვალ
       formatted_quarter: 'კვ.%{quarter}'
+      percent: 'პროცენტი (%)'
       :yes: 'დიახ'
       :no: 'არა'
     expert_show:

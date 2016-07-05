@@ -76,6 +76,7 @@ en:
       name: ReforMeter
       sub_title: Tracking Progress - One Reform at a Time
       formatted_quarter: 'Q%{quarter}'
+      percent: 'Percent (%)'
       :yes: 'Yes'
       :no: 'No'
     expert_show:

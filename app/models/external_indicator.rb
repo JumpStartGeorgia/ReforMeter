@@ -161,7 +161,7 @@ class ExternalIndicator < ActiveRecord::Base
   end
 
   def unit_label
-    unit_is_percent? ? 'Percent (%)' : nil
+    unit_is_percent? ? I18n.t('shared.common.percent') : nil
   end
 
   #######################
