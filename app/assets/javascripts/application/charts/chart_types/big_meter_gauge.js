@@ -21,16 +21,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: {
-            text: 'Behind',
-            rotation: -60,
-            x: 55,
-            y: 65,
-            style: {
-              fontSize: '18px',
-              color: 'white'
-            }
-          }
+          label: meterGaugePlotBandLabels.behind(chartData)
         },{
           borderWidth: 2,
           borderColor: 'transparent',
@@ -53,16 +44,12 @@ function highchartsBigMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: {
-            text: 'Ahead',
-            rotation: 60,
-            x: 173,
-            y: 45,
-            style: {
-              fontSize: '18px',
-              color: 'white'
+          label: meterGaugePlotBandLabels.ahead(
+            chartData,
+            {
+              y: localeIs('ka') ? 35 : 45
             }
-          }
+          )
         }
       ]
     },

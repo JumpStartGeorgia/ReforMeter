@@ -20,16 +20,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: {
-            text: chartData.translations.behind,
-            rotation: -60,
-            x: 55,
-            y: 60,
-            style: {
-              fontSize: gon.locale === 'ka' ? '17px' : '18px',
-              color: 'white'
-            }
-          }
+          label: meterGaugePlotBandLabels.behind(chartData)
         },{
           borderWidth: 0,
           from: 3.3,
@@ -45,16 +36,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: {
-            text: chartData.translations.ahead,
-            rotation: 60,
-            x: localeIs('ka') ? 170 : 173,
-            y: localeIs('ka') ? 25 : 35,
-            style: {
-              fontSize: localeIs('ka') ? '17px' : '18px',
-              color: 'white'
-            }
-          }
+          label: meterGaugePlotBandLabels.ahead(chartData)
         }
       ]
     },
