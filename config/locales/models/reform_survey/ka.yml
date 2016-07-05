@@ -13,9 +13,9 @@ ka:
         government_category1_score: ინსტიტუციური მოწყობა
         government_category2_score: კომპეტენციის გაძლიერება
         government_category3_score: ინფრასტრუქტურა და ბიუჯეტი
-        government_category4_score: კანონმდებლობა და რეგულაციები
+        government_category4_score: სამართლებრივი ჩარჩო
         stakeholder_overall_score: ზოგადი შეფასებაF
-        stakeholder_category1_score: არსებული ვითარება
+        stakeholder_category1_score: ვითარება
         stakeholder_category2_score: მიზნები
         stakeholder_category3_score: პროგრესი
     models:

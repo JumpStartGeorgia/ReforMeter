@@ -30,13 +30,13 @@ ka:
       stakeholder_survey: დაინტერესებულ პირთა შეფასება
       overall: ზოგადი შეფასება
       change: ცვლილება
-      performance: არსებული ვითარება
+      performance: ვითარება
       goals: მიზნები
       progress: პროგრესი
       initial_setup: ინსტიტუციური მოწყობა
       capacity_building: კომპეტენციის გაძლიერება
       infastructure_budgeting: ინფრასტრუქტურა და ბიუჯეტი
-      legislation_regulation: კანონმდებლობა და რეგულაციები
+      legislation_regulation: სამართლებრივი ჩარჩო
     change_status:
       down: ბოლო კვარტალთან შედარებით შეფასებამ დაიწია
       flat: ბოლო კვარტალთან შედარებით შეფასება არ შეცვლილა
@@ -48,7 +48,7 @@ ka:
         title: 'რეფორმა: %{name}'
         all_title: ყველა რეფორმა
         subtitle_government: მთავრობის ანგარიშების ქრონიკა
-        subtitle_stakeholder: დაინტერესებულ მხარეთა შეფასებების ქრონიკა
+        subtitle_stakeholder: შეფასებების ქრონიკა
     chart_rating_categories:
       reforms:
         behind: სუსტი
@@ -121,7 +121,7 @@ ka:
         government_history: მთავრობის ანგარიშების ქრონიკა
         government_summary: მთავრობის მიხედვით
         methodology: მეთოდოლოგია
-        stakeholder_history: დაინტერესებულ მხარეთა შეფასებების ქრონიკა
+        stakeholder_history: შეფასებების ქრონიკა
         stakeholder_summary: დაინტერესებულ მხარეთა მიხედვით
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
   errors:
