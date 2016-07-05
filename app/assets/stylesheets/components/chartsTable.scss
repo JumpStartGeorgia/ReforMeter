@@ -5,6 +5,10 @@ $charts-table-border: solid 3px $color-grey-background;
   border-collapse: collapse;
 }
 
+  .chartsTable-row.is-hidden {
+    display: none;
+  }
+
   // Cannot give bottom border to row, so workaround is to target cells of
   // in all rows except the last
   .chartsTable-row .chartsTable-cell {
