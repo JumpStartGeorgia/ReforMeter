@@ -1,3 +1,4 @@
+
 <%
 @do_not_use_default_page_layout = true
 show_admin_links ||= false
@@ -69,15 +70,23 @@ show_admin_links ||= false
 
       <section class='gaugesContainer'>
 
-        <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='overall'></div>
+        <div class='gaugesContainer-exportButton'>
+
+          <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' type='button'>
+            <%= inline_svg('download.svg') %>
+          </button>
+
+        </div>
+
+        <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='overall' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
 
         <div class='gaugesContainer-small'>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='performance'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='performance' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='goals'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='goals' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='progress'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='progress' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
 
         </div>
 

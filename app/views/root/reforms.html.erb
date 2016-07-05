@@ -19,7 +19,7 @@ page_title t('.title')
           <%= t('shared.common.change_reform') %>:
         </label>
 
-        <select class="reform js-become-select2" id="reform">
+        <select class='reform js-become-select2 js-filter-reforms-by-reform' id="reform">
 
           <% selected = params[:reform].nil? ? 'selected': '' %>
           <option <%= selected %>>
@@ -46,7 +46,7 @@ page_title t('.title')
           <%= t('shared.common.change_time') %>:
         </label>
 
-        <select class="quarter js-become-select2" id="quarter">
+        <select class='quarter js-become-select2 js-filter-reforms-by-quarter' id="quarter">
 
           <option selected><%= t('shared.common.all') %></option>
 
@@ -142,9 +142,9 @@ page_title t('.title')
 
                 <% if reform %>
 
-                  <tr class='chartsTable-row'>
+                  <tr class='chartsTable-row js-act-as-reform-table-row'>
 
-                    <td class='chartsTable-cell mod-first-column mod-important-text'>
+                    <td class='chartsTable-cell mod-first-column mod-important-text js-act-as-quarter-name'>
                       <%= link_to(quarter.time_period,
                                   reform_show_path(
                                     reform_id: reform.slug,
@@ -152,7 +152,7 @@ page_title t('.title')
                                   class: 'link mod-no-decoration') %>
                     </td>
 
-                    <td class='chartsTable-cell mod-important-text'>
+                    <td class='chartsTable-cell mod-important-text js-act-as-reform-name'>
                       <%= link_to(reform.name,
                                   reform_show_path(
                                     reform_id: reform.slug,
