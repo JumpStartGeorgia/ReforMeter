@@ -2,15 +2,21 @@ function ratingHistoryTimeSeriesOptions(chartData) {
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
-      spacingLeft: 80
+      spacingLeft: 80,
+      spacingTop: 25
     },
     exporting: {
+      buttons: {
+        contextButton: {
+          y: -25
+        }
+      },
       chartOptions: {
         title: {
           text: chartData.title
         }
       },
-      enabled: true
+      enabled: true,
     },
     legend: {
       enabled: chartData.series.length > 1
