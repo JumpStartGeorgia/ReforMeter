@@ -15,7 +15,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
 		title: {
       style: {
-        fontSize: '16px'
+        fontSize: localeIs('ka') ? '14px' : '16px'
       },
     	text: chartData.title,
       verticalAlign: 'top',
