@@ -20,6 +20,7 @@
   });
 
   $(document).on('page:change', function() {
+    $('html').attr('lang', gon.locale);
     setupTabs();
 
     if ($('body.root.experts').length > 0) openExpertsTab();
