@@ -175,6 +175,12 @@
 
                   <div class='homePage-reforms-item-chart js-become-highchart' data-chart-type='mini-time-series' data-id='reform-<%= reform.slug %>'></div>
 
+                  <% if reform.summary.present? %>
+
+                    <span class='infoCircle js-act-as-info-circle' original-title='<%= reform.summary %>'>i</span>
+
+                  <% end %>
+
                 </div>
 
               <% end %>
