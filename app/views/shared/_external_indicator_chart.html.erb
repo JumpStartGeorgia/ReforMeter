@@ -1,16 +1,20 @@
 <div class='externalIndicatorChartContainer'>
 
-  <div class='infoCircle js-act-as-info-circle' original-title='Hellooooo'>
-    i
-  </div>
+  <% if ext_ind_chart[:description].present? %>
 
-  <div class='js-become-highchart' data-chart-type='<%= ext_ind_chart[:chartType] %>' data-id='<%= ext_ind_chart[:id] %>'></div>
+    <div class='infoCircle js-act-as-info-circle' original-title='<%= ext_ind_chart[:description] %>'>
+      i
+    </div>
 
-  <% if ext_ind_chart[:indexes].present? %>
+  <% end %>
+
+  <div class='js-become-highchart' data-chart-type='<%= ext_ind_chart[:chart][:chartType] %>' data-id='<%= ext_ind_chart[:chart][:id] %>'></div>
+
+  <% if ext_ind_chart[:chart][:indexes].present? %>
 
     <ul class='chartIndexes js-act-as-chart-indexes-container'>
 
-      <% ext_ind_chart[:indexes].each do |index| %>
+      <% ext_ind_chart[:chart][:indexes].each do |index| %>
 
         <% most_recent_data_point = index[:data].last %>
 

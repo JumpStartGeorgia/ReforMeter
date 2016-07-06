@@ -37,14 +37,14 @@ class RootController < ApplicationController
       @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
 
-    # @external_indicator_charts = ExternalIndicator.published.for_home_page.reverse_sorted.map do |ext_ind|
-    #   ext_ind.format_for_charting
-    # end
     @external_indicator_charts = ExternalIndicator.published.for_home_page.map do |ext_ind|
-      ext_ind.format_for_charting
+      {
+        description: ext_ind.description,
+        chart: ext_ind.format_for_charting
+      }
     end
 
-    gon.charts += @external_indicator_charts
+    gon.charts += @external_indicator_charts.map { |ext_ind| ext_ind[:chart] }
   end
 
   def about

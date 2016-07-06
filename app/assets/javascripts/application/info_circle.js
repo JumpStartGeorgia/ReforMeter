@@ -5,8 +5,8 @@ function initializeInfoCircles() {
   exports.setup = function() {
     $infoCircles.tipsy(
       {
+        className: 'infoCircle-tooltip',
         gravity: $.fn.tipsy.autoNS,
-        html: true,
         opacity: 1
       }
     );
