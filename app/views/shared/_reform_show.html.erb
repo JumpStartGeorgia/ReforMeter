@@ -91,17 +91,29 @@ show_admin_links ||= false
 
         <section class='gaugesContainer'>
 
-          <div class="js-become-highchart solidGauge mod-big mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall'></div>
+          <% exportID = 'fjdsof-qjr3-jr8-9ejg-fwe8fef%@#' %>
+
+          <div class='gaugesContainer-exportButton'>
+
+            <%= render partial: 'shared/gauges_group_export',
+                       locals: {
+                         exportID: exportID,
+                         openMenuID: 'hup14hre9sjf89-21r-3'
+                       } %>
+
+          </div>
+
+          <div class="js-become-highchart solidGauge mod-big mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall' data-exportable-by-id='<%= exportID %>'></div>
 
           <div class='gaugesContainer-small'>
 
-            <div class="js-become-highchart solidGauge mod-small mod-small-dot-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup'></div>
+            <div class="js-become-highchart solidGauge mod-small mod-small-dot-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup' data-exportable-by-id='<%= exportID %>'></div>
 
-            <div class="js-become-highchart solidGauge mod-small mod-small-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building'></div>
+            <div class="js-become-highchart solidGauge mod-small mod-small-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building' data-exportable-by-id='<%= exportID %>'></div>
 
-            <div class="js-become-highchart solidGauge mod-small mod-medium-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting'></div>
+            <div class="js-become-highchart solidGauge mod-small mod-medium-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting' data-exportable-by-id='<%= exportID %>'></div>
 
-            <div class="js-become-highchart solidGauge mod-small mod-long-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations'></div>
+            <div class="js-become-highchart solidGauge mod-small mod-long-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations' data-exportable-by-id='<%= exportID %>'></div>
 
           </div>
 

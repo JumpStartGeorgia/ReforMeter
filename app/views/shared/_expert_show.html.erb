@@ -68,45 +68,27 @@ show_admin_links ||= false
 
       <section class='gaugesContainer'>
 
+        <% exportID = 'fdsajkfda132reware53243eare1' %>
+
         <div class='gaugesContainer-exportButton'>
 
-          <button class='js-toggle-chart-group-export-menu downloadChartsButton' type='button' data-shows-id='53214efdsfj419t4rejw'>
-            <%= inline_svg('download.svg') %>
-          </button>
-
-          <div class='chartExportMenu is-hidden' data-showable-by-id='53214efdsfj419t4rejw'>
-
-            <button class='chartExportMenu-item js-export-chart-group' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/png' type='button'>
-              <%= t('shared.chart_download.download_png') %>
-            </button>
-
-            <button class='chartExportMenu-item js-export-chart-group' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/jpeg' type='button'>
-              <%= t('shared.chart_download.download_jpeg') %>
-            </button>
-
-            <button class='chartExportMenu-item js-export-chart-group' data-export-id='fdsajkfda132reware53243eare1' data-export-type='application/pdf' type='button'>
-              <%= t('shared.chart_download.download_pdf') %>
-            </button>
-
-            <button class='chartExportMenu-item js-export-chart-group' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/svg+xml' type='button'>
-              <%= t('shared.chart_download.download_svg') %>
-            </button>
-
-          </div>
-
-
+          <%= render partial: 'shared/gauges_group_export',
+                     locals: {
+                       exportID: exportID,
+                       openMenuID: '53214efdsfj419t4rejw'
+                     } %>
 
         </div>
 
-        <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='overall' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
+        <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='overall' data-exportable-by-id='<%= exportID %>'></div>
 
         <div class='gaugesContainer-small'>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='performance' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='performance' data-exportable-by-id='<%= exportID %>'></div>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='goals' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='goals' data-exportable-by-id='<%= exportID %>'></div>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='progress' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='progress' data-exportable-by-id='<%= exportID %>'></div>
 
         </div>
 

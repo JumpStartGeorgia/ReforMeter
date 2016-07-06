@@ -1,0 +1,23 @@
+<button class='js-toggle-chart-group-export-menu downloadChartsButton' type='button' data-shows-id='<%= openMenuID %>'>
+  <%= inline_svg('download.svg') %>
+</button>
+
+<div class='chartExportMenu is-hidden' data-showable-by-id='<%= openMenuID %>'>
+
+  <button class='chartExportMenu-item js-export-chart-group' data-export-id='<%= exportID %>' data-export-type='image/png' type='button'>
+    <%= t('shared.chart_download.download_png') %>
+  </button>
+
+  <button class='chartExportMenu-item js-export-chart-group' data-export-id='<%= exportID %>' data-export-type='image/jpeg' type='button'>
+    <%= t('shared.chart_download.download_jpeg') %>
+  </button>
+
+  <button class='chartExportMenu-item js-export-chart-group' data-export-id='<%= exportID %>' data-export-type='application/pdf' type='button'>
+    <%= t('shared.chart_download.download_pdf') %>
+  </button>
+
+  <button class='chartExportMenu-item js-export-chart-group' data-export-id='<%= exportID %>' data-export-type='image/svg+xml' type='button'>
+    <%= t('shared.chart_download.download_svg') %>
+  </button>
+
+</div>
