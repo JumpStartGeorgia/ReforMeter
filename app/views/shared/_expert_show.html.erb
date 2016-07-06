@@ -70,7 +70,11 @@ show_admin_links ||= false
 
         <div class='gaugesContainer-exportButton'>
 
-          <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' type='button'>
+          <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/png' type='button'>
+            <%= inline_svg('download.svg') %>
+          </button>
+
+          <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/svg+xml' type='button'>
             <%= inline_svg('download.svg') %>
           </button>
 

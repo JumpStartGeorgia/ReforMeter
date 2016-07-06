@@ -1,4 +1,12 @@
 function initializeExportChartGroupButton($exportButton, charts) {
+  var exportType = $exportButton.data('export-type'),
+      allowedTypes = ['image/png', 'image/jpeg', 'application/pdf', 'image/svg+xml'];
+
+  
+  if (!allowedTypes.includes(exportType)) {
+    throw new Error('Export button has not allowed type');
+  }
+
   function getChartGroupSVG() {
     var svgArr = [],
         height = 0;
@@ -39,7 +47,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
     Highcharts.post(options.url, {
     	filename: options.filename || 'chart',
-        type: options.type,
+        type: exportType,
         width: options.width,
         svg: getChartGroupSVG()
     });
