@@ -2,7 +2,6 @@ function initializeExportChartGroupButton($exportButton, charts) {
   var exportType = $exportButton.data('export-type'),
       allowedTypes = ['image/png', 'image/jpeg', 'application/pdf', 'image/svg+xml'];
 
-  
   if (!allowedTypes.includes(exportType)) {
     throw new Error('Export button has not allowed type');
   }
