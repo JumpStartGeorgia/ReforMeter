@@ -176,6 +176,7 @@ class ExternalIndicator < ActiveRecord::Base
     hash = {
       id: "external-indicator-#{id}",
       chartType: custom_highchart_type,
+      description: description,
       title: title,
       subtitle: subtitle,
       min: min,

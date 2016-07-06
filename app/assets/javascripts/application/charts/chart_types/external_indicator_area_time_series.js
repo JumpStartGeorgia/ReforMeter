@@ -61,7 +61,10 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
     title: externalIndicatorChart.title(
       chartData.title,
       {
-        x: -1 * spacingLeft + 10
+        description: chartData.description,
+        titleOptions: {
+          x: -1 * spacingLeft + 10
+        }
       }
     ),
     tooltip: {

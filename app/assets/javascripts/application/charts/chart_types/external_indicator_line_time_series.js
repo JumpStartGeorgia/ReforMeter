@@ -8,7 +8,12 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
       enabled: true
     },
     subtitle: externalIndicatorChart.subtitle(chartData.subtitle),
-    title: externalIndicatorChart.title(chartData.title),
+    title: externalIndicatorChart.title(
+      chartData.title,
+      {
+        description: chartData.description
+      }
+    ),
     tooltip: {
       formatter: function() {
         return highchartTimeSeriesTooltipFormatter.call(

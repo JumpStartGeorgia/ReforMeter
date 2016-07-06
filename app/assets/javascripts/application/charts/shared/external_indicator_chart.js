@@ -20,7 +20,13 @@ var externalIndicatorChart = (function() {
     ];
 
   externalIndicatorChart.title = function(text, customOptions) {
-    var infoCircle = "<span class='infoCircle js-act-as-info-circle' original-title='external_indicator[:description]'>i</span>"
+    if (!customOptions) customOptions = {};
+
+    var infoCircle = '';
+
+    if (customOptions.description) {
+      var infoCircle = "<span class='infoCircle js-act-as-info-circle' original-title='" + customOptions.description + "'>i</span>"      
+    }
 
     var options = {
       align: 'left',
@@ -33,8 +39,8 @@ var externalIndicatorChart = (function() {
       useHTML: true
     };
 
-    if (customOptions) {
-      options = mergeObjects(options, customOptions);
+    if (customOptions.titleOptions) {
+      options = mergeObjects(options, customOptions.titleOptions);
     }
     return options;
   }

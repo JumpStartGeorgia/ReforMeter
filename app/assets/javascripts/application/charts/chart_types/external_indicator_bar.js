@@ -27,7 +27,10 @@ function highchartsExternalIndicatorBar(chartData) {
       chartData.subtitle
     ),
     title: externalIndicatorChart.title(
-      chartData.title
+      chartData.title,
+      {
+        description: chartData.description
+      }
     ),
     tooltip: {
       backgroundColor: '#f3f3f4',
