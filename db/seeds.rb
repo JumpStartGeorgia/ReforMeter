@@ -130,7 +130,7 @@ end
 
 Quarter.transaction do
 
-  if ENV['delete_page_content'].present? || ENV['load_test_data'].present?
+  if ENV['delete_test_data'].present? || ENV['load_test_data'].present?
     # first clear all data
     puts 'deleting data in database (quarter, reform, experts, survey data, etc)'
     Quarter.destroy_all
