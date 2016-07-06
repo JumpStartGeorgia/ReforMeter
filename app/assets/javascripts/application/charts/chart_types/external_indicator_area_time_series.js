@@ -25,7 +25,17 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       type: 'areaspline'
     },
     exporting: {
-      enabled: true
+      enabled: true,
+      chartOptions: {
+        title: externalIndicatorChart.title(
+          chartData.title,
+          {
+            titleOptions: {
+              x: -1 * spacingLeft + 10
+            }
+          }
+        )
+      }
     },
     legend: {
       enabled: false

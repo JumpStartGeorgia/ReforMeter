@@ -16,7 +16,10 @@ function highchartsExternalIndicatorBar(chartData) {
     },
     colors: colors(),
     exporting: {
-      enabled: true
+      enabled: true,
+      chartOptions: {
+        title: externalIndicatorChart.title(chartData.title)
+      }
     },
     legend: {
       align: 'right',

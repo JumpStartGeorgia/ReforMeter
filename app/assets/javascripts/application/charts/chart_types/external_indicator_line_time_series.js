@@ -5,7 +5,10 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
     },
     colors: externalIndicatorChart.colors,
     exporting: {
-      enabled: true
+      enabled: true,
+      chartOptions: {
+        title: externalIndicatorChart.title(chartData.title)
+      }
     },
     subtitle: externalIndicatorChart.subtitle(chartData.subtitle),
     title: externalIndicatorChart.title(
