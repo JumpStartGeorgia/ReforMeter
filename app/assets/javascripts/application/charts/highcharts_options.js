@@ -45,6 +45,13 @@ function setupDefaultOptions() {
           symbol: highchartDownloadIcon()
         }
       },
+      chartOptions: {
+        chart: {
+          style: {
+            fontFamily: 'serif'
+          }
+        }
+      },
       enabled: false
     },
     yAxis: {
