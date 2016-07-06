@@ -6,9 +6,11 @@ $info-circle-font-size: 16px;
   width: $info-circle-font-size * 1.5;
   height: $info-circle-font-size * 1.5;
   border-radius: $info-circle-font-size * .75;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
+  text-transform: lowercase;
+  margin: 0 10px;
 }
 
 .infoCircle:hover {

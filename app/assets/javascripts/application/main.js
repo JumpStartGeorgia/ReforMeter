@@ -4,8 +4,9 @@
     setupSelect2();
     setupExpertTimePeriodSelect();
     makeReformPageChangeable();
-    initializeInfoCircles().setup();
     var charts = setupCharts();
+
+    initializeInfoCircles().setup();
 
     if ($('body.root.reforms').length > 0) {
       var colorfulReformsTimeSeries = charts.filter(function() {

@@ -20,14 +20,17 @@ var externalIndicatorChart = (function() {
     ];
 
   externalIndicatorChart.title = function(text, customOptions) {
+    var infoCircle = "<span class='infoCircle js-act-as-info-circle' original-title='external_indicator[:description]'>i</span>"
+
     var options = {
       align: 'left',
       style: {
         fontWeight: 600,
-        textTransform: 'uppercase',
-        fontSize: '20px'
+        fontSize: '20px',
+        textTransform: 'uppercase'
       },
-      text: text
+      text: text + infoCircle,
+      useHTML: true
     };
 
     if (customOptions) {
