@@ -25,7 +25,7 @@ var externalIndicatorChart = (function() {
     var infoCircle = '';
 
     if (customOptions.description) {
-      var infoCircle = "<span class='infoCircle js-act-as-info-circle' original-title='" + customOptions.description + "'>i</span>"      
+      infoCircle = "<span class='infoCircle js-act-as-info-circle' original-title='" + customOptions.description + "'>i</span>"
     }
 
     var options = {
