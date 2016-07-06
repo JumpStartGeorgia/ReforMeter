@@ -226,41 +226,61 @@ show_admin_links ||= false
 
         <section>
 
-          <ul class='tabList mod-with-separator js-act-as-tab-list'>
+          <% if @quarter_ids.length > 1 %>
 
-            <li class='tabList-item'>
-              <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
-                <%= t('.header.stakeholder_history') %>
-              </button>
-            </li>
+            <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
-            <li class='tabList-item'>
-              <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_methodology'>
-                <%= t('.header.methodology') %>
-              </button>
-            </li>
+              <li class='tabList-item'>
+                <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
+                  <%= t('.header.stakeholder_history') %>
+                </button>
+              </li>
 
-          </ul>
+              <li class='tabList-item'>
+                <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_methodology'>
+                  <%= t('.header.methodology') %>
+                </button>
+              </li>
 
-          <div class="tabContent js-act-as-tab-content">
+            </ul>
 
-            <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='stakeholder_history_chart'>
-              <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='reform-stakeholder-history'></div>
+            <div class="tabContent js-act-as-tab-content">
+
+              <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='stakeholder_history_chart'>
+                <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='reform-stakeholder-history'></div>
+              </div>
+
+              <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholder_methodology'>
+                <% if @methodology_stakeholder %>
+                  <div>
+                    <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+                  </div>
+                <% else %>
+                  <p>
+                   <%= t('.no_methodology') %>
+                  </p>
+                <% end %>
+              </div>
+
             </div>
 
-            <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholder_methodology'>
-              <% if @methodology_stakeholder %>
-                <div>
-                  <%= simple_format_no_tags(@methodology_stakeholder.content) %>
-                </div>
-              <% else %>
-                <p>
-                 <%= t('.no_methodology') %>
-                </p>
-              <% end %>
-            </div>
+          <% else %>
 
-          </div>
+            <h2 class='heading'>
+              <%= t('.header.methodology') %>
+            </h2>
+
+            <% if @methodology_stakeholder %>
+              <div>
+                <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+              </div>
+            <% else %>
+              <p>
+               <%= t('.no_methodology') %>
+              </p>
+            <% end %>
+
+          <% end %>
 
         </section>
 
