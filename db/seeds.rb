@@ -150,6 +150,7 @@ Quarter.transaction do
     reform1 = Reform.create(name: 'Innovations', summary: 'This is a brief summary about test reform 1.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
     reform2 = Reform.create(name: 'Land Market Development', summary: 'This is a brief summary about test reform 2.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
     reform3 = Reform.create(name: 'Insolvency', summary: 'This is a brief summary about test reform 3.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
+    reform4 = Reform.create(name: 'Outsolvency', summary: 'This is the outsolvency reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
 
     # create board members
     puts 'creating board members'
@@ -190,9 +191,9 @@ Quarter.transaction do
       [66.9, 73, 41, 65, 82, 6.82, 6.5, 8.3, 5.5],
     ]
 
-    (0..2).each do |index|
-      id = index == 0 ? reform1.id : index == 1  ? reform2.id : reform3.id
-      score_indexes = index == 0 ? [0,1,2] : index == 1  ? [1,2,0] : [2,1,0]
+    (0..3).each do |index|
+      id = index == 0 ? reform1.id : index == 1  ? reform2.id : index == 2 ? reform3.id : reform4.id
+      score_indexes = index == 0 ? [0,1,2] : index == 1  ? [1,2,0] : index == 2 ? [2,1,0] : [2, 0, 1]
       rs2, rs3, rs4 = nil
       # do not create value for 3rd reform in q2
       if index != 2
@@ -204,21 +205,24 @@ Quarter.transaction do
                 stakeholder_category3_score: reform_survey_scores[score_indexes[0]][8],
                 summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
       end
-      rs3 = q3.reform_surveys.create(reform_id: id,
-              government_overall_score: reform_survey_scores[score_indexes[1]][0],government_category1_score: reform_survey_scores[score_indexes[1]][1],
-              government_category2_score: reform_survey_scores[score_indexes[1]][2],government_category3_score: reform_survey_scores[score_indexes[1]][3],
-              government_category4_score: reform_survey_scores[score_indexes[1]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[1]][5],
-              stakeholder_category1_score: reform_survey_scores[score_indexes[1]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[1]][7],
-              stakeholder_category3_score: reform_survey_scores[score_indexes[1]][8],
-              summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
 
-      rs4 = q4.reform_surveys.create(reform_id: id,
-              government_overall_score: reform_survey_scores[score_indexes[2]][0],government_category1_score: reform_survey_scores[score_indexes[2]][1],
-              government_category2_score: reform_survey_scores[score_indexes[2]][2],government_category3_score: reform_survey_scores[score_indexes[2]][3],
-              government_category4_score: reform_survey_scores[score_indexes[2]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[2]][5],
-              stakeholder_category1_score: reform_survey_scores[score_indexes[2]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[2]][7],
-              stakeholder_category3_score: reform_survey_scores[score_indexes[2]][8],
-              summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
+      if index != 3
+        rs3 = q3.reform_surveys.create(reform_id: id,
+                government_overall_score: reform_survey_scores[score_indexes[1]][0],government_category1_score: reform_survey_scores[score_indexes[1]][1],
+                government_category2_score: reform_survey_scores[score_indexes[1]][2],government_category3_score: reform_survey_scores[score_indexes[1]][3],
+                government_category4_score: reform_survey_scores[score_indexes[1]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[1]][5],
+                stakeholder_category1_score: reform_survey_scores[score_indexes[1]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[1]][7],
+                stakeholder_category3_score: reform_survey_scores[score_indexes[1]][8],
+                summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
+
+        rs4 = q4.reform_surveys.create(reform_id: id,
+                government_overall_score: reform_survey_scores[score_indexes[2]][0],government_category1_score: reform_survey_scores[score_indexes[2]][1],
+                government_category2_score: reform_survey_scores[score_indexes[2]][2],government_category3_score: reform_survey_scores[score_indexes[2]][3],
+                government_category4_score: reform_survey_scores[score_indexes[2]][4], stakeholder_overall_score: reform_survey_scores[score_indexes[2]][5],
+                stakeholder_category1_score: reform_survey_scores[score_indexes[2]][6],stakeholder_category2_score: reform_survey_scores[score_indexes[2]][7],
+                stakeholder_category3_score: reform_survey_scores[score_indexes[2]][8],
+                summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
+      end
 
     end
 
