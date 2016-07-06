@@ -3,7 +3,6 @@ function initializeIndexBox(chartDataIndexes, $index) {
 
   $index.tipsy(
     {
-      className: 'chartIndexes-item-tooltip',
       gravity: $.fn.tipsy.autoNS,
       html: true,
       opacity: 1

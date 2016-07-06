@@ -4,6 +4,7 @@
     setupSelect2();
     setupExpertTimePeriodSelect();
     makeReformPageChangeable();
+    initializeInfoCircles().setup();
     var charts = setupCharts();
 
     if ($('body.root.reforms').length > 0) {
