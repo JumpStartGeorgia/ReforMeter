@@ -70,13 +70,23 @@ show_admin_links ||= false
 
         <div class='gaugesContainer-exportButton'>
 
-          <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/png' type='button'>
+          <button class='js-toggle-chart-group-export-menu downloadChartsButton' type='button' data-shows-id='53214efdsfj419t4rejw'>
             <%= inline_svg('download.svg') %>
           </button>
 
-          <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/svg+xml' type='button'>
-            <%= inline_svg('download.svg') %>
-          </button>
+          <div class='gaugesContainer-exportButton-menu is-hidden' data-showable-by-id='53214efdsfj419t4rejw'>
+
+            <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/png' type='button'>
+              <%= inline_svg('download.svg') %>
+            </button>
+
+            <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' data-export-type='image/svg+xml' type='button'>
+              <%= inline_svg('download.svg') %>
+            </button>
+
+          </div>
+
+
 
         </div>
 

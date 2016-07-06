@@ -48,24 +48,7 @@ function setupCharts() {
     this.create();
   });
 
-  var $exportButtons = $('.js-export-chart-group');
-
-  $exportButtons.each(
-    function() {
-      var $exportButton = $(this);
-      exportButtonDataID = $exportButton.data('export-id');
-
-      var exportableCharts = charts.filter(
-        function() {
-          return this.exportableBy(exportButtonDataID);
-        }
-      ).map(function() {
-        return this.highchartsObject;
-      });
-
-      initializeExportChartGroupButton($exportButton, exportableCharts);
-    }
-  );
+  setupExportChartGroupButtons(charts);
 
   return charts;
 }
