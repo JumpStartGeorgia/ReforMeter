@@ -170,20 +170,20 @@ class RootController < ApplicationController
       gon.chart_download = highchart_export_config
       gon.change_icons = view_context.change_icons
 
-      quarter_ids = Quarter.with_reform(@reform.id).published.recent.pluck(:id)
+      @quarter_ids = Quarter.with_reform(@reform.id).published.recent.pluck(:id)
 
       government_time_series = Quarter.reform_survey_data_for_charting(
         @reform.id,
         type: 'government',
         id: 'reform-government-history',
-        quarter_ids: quarter_ids
+        quarter_ids: @quarter_ids
       )
 
       stakeholder_time_series = Quarter.reform_survey_data_for_charting(
         @reform.id,
         type: 'stakeholder',
         id: 'reform-stakeholder-history',
-        quarter_ids: quarter_ids
+        quarter_ids: @quarter_ids
       )
 
       gon.charts = [
