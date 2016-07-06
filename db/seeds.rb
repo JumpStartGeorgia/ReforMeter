@@ -248,7 +248,7 @@ Quarter.transaction do
 
     # external indicators
     puts 'creating external indicators'
-    ei1 = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true)
+    ei1 = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true, description: 'This is the external indicator for the growth of total factor productivity.')
     data = {
       countries: [
         {id: 1, name: 'Georgia'},

@@ -197,7 +197,7 @@
 
     </div>
 
-    <% if @external_indicator_charts.present? %>
+    <% if @external_indicators.present? %>
 
       <section class='contentSection'>
 
@@ -211,11 +211,11 @@
 
         <div class='contentSection-body'>
 
-          <% @external_indicator_charts.each do |ext_ind_chart| %>
+          <% @external_indicators.each do |external_indicator| %>
 
             <%= render(partial: 'shared/external_indicator_chart',
                        locals: {
-                         ext_ind_chart: ext_ind_chart
+                         external_indicator: external_indicator
                        }) %>
 
           <% end %>

@@ -102,11 +102,14 @@ class Admin::ReformSurveysController < ApplicationController
       ].each { |chart| gon.charts << chart }
     end
 
-    @external_indicator_charts = @reform.external_indicators.published.sorted.map do |ext_ind|
-      ext_ind.format_for_charting
+    @external_indicators = @reform.external_indicators.published.sorted.map do |ext_ind|
+      {
+        description: ext_ind.description,
+        chart: ext_ind.format_for_charting
+      }
     end
 
-    gon.charts += @external_indicator_charts
+    gon.charts += @external_indicators.map { |ext_ind| ext_ind[:chart] }
   end
 
   # GET /admin/reform_surveys/new

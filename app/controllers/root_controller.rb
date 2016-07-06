@@ -37,14 +37,14 @@ class RootController < ApplicationController
       @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
 
-    @external_indicator_charts = ExternalIndicator.published.for_home_page.map do |ext_ind|
+    @external_indicators = ExternalIndicator.published.for_home_page.map do |ext_ind|
       {
         description: ext_ind.description,
         chart: ext_ind.format_for_charting
       }
     end
 
-    gon.charts += @external_indicator_charts.map { |ext_ind| ext_ind[:chart] }
+    gon.charts += @external_indicators.map { |ext_ind| ext_ind[:chart] }
   end
 
   def about
@@ -255,11 +255,14 @@ class RootController < ApplicationController
         ].each { |chart| gon.charts << chart }
       end
 
-      @external_indicator_charts = @reform.external_indicators.published.sorted.map do |ext_ind|
-        ext_ind.format_for_charting
+      @external_indicators = @reform.external_indicators.published.sorted.map do |ext_ind|
+        {
+          description: ext_ind.description,
+          chart: ext_ind.format_for_charting
+        }
       end
 
-      gon.charts += @external_indicator_charts
+      gon.charts += @external_indicators.map { |ext_ind| ext_ind[:chart] }
 
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to reforms_path,
