@@ -12,6 +12,8 @@ $info-circle-dimension: $info-circle-font-size * 1.5;
   align-items: center;
   text-transform: lowercase;
   margin: 0 10px;
+  font-weight: 600;
+  font-family: $english-font-family;
 }
 
 .infoCircle:hover {

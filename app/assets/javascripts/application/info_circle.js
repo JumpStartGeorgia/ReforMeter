@@ -1,15 +1,20 @@
 function initializeInfoCircles() {
   var exports = {},
-      $infoCircles = $('.js-act-as-info-circle');
+      selector = '.js-act-as-info-circle';
 
   exports.setup = function() {
-    $infoCircles.tipsy(
-      {
-        className: 'infoCircle-tooltip',
-        gravity: $.fn.tipsy.autoNS,
-        opacity: 1
-      }
-    );
+    $(selector).each(function() {
+      var dataGravity = $(this).data('tipsy-gravity');
+      var gravity = dataGravity ? dataGravity : $.fn.tipsy.autoNS;
+
+      $(this).tipsy(
+        {
+          gravity: gravity,
+          opacity: 1
+        }
+      );
+    });
+
   }
 
   return exports;
