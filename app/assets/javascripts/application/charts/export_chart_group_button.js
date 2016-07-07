@@ -11,11 +11,18 @@ function initializeExportChartGroupButton($exportButton, charts) {
         height = 0;
         xOffset = 0;
 
+    var chartGroupHeight = $.makeArray(charts).reduce(
+      function(biggestHeight, chart) {
+        return Math.max(biggestHeight, chart.chartHeight);
+      },
+      0
+    );
+
     $.each(charts, function(i, chart) {
       var svg = chart.getSVG(
         {
           chart: {
-            height: chart.chartHeight,
+            height: chartGroupHeight,
             style: {
               fontSize: '9.5px'
             },
