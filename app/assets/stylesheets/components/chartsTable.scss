@@ -3,6 +3,7 @@ $charts-table-border: solid 3px $color-grey-background;
 .chartsTable {
   text-align: left;
   border-collapse: collapse;
+  width: 100%;
 }
 
   .chartsTable-row.is-hidden {
@@ -46,9 +47,13 @@ $charts-table-border: solid 3px $color-grey-background;
     padding-left: $padding-main-content;
   }
 
-    .chartsTable-cell.mod-important-text {
-      font-size: 1.8rem;
-    }
+  .chartsTable-cell.mod-important-text {
+    font-size: 1.8rem;
+  }
+
+  .chartsTable-cell.mod-summary {
+    width: 100%;
+  }
 
   .highcharts-container {
     width: 100%;
