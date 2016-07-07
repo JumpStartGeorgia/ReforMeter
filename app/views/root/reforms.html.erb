@@ -143,7 +143,7 @@ page_title t('.title')
                                   reform_show_path(
                                     reform_id: reform.slug,
                                     quarter_id: quarter.slug),
-                                  class: 'link mod-no-decoration') %>
+                                  class: 'chartsTable-cell-link') %>
                     </td>
 
                     <td class='chartsTable-cell mod-important-text js-act-as-reform-name'>
@@ -151,7 +151,7 @@ page_title t('.title')
                                   reform_show_path(
                                     reform_id: reform.slug,
                                     quarter_id: quarter.slug),
-                                  class: 'link mod-no-decoration') %>
+                                  class: 'chartsTable-cell-link') %>
                     </td>
 
                     <td class='chartsTable-cell'>
@@ -162,7 +162,15 @@ page_title t('.title')
                       </p>
 
                       <div class='chartsTable-cell-chart'>
-                        <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= quarter.slug %>-<%= reform.slug %>'></div>
+
+                        <%= link_to(reform_show_path(
+                                      reform_id: reform.slug,
+                                      quarter_id: quarter.slug)) do %>
+
+                          <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= quarter.slug %>-<%= reform.slug %>'></div>
+
+                        <% end %>
+
                       </div>
 
                     </td>
@@ -175,7 +183,15 @@ page_title t('.title')
                       </p>
 
                       <div class='chartsTable-cell-chart'>
-                        <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= quarter.slug %>-<%= reform.slug %>'></div>
+
+                        <%= link_to(reform_show_path(
+                                      reform_id: reform.slug,
+                                      quarter_id: quarter.slug)) do %>
+
+                          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= quarter.slug %>-<%= reform.slug %>'></div>
+
+                        <% end %>
+
                       </div>
 
                     </td>

@@ -55,6 +55,15 @@ $charts-table-border: solid 3px $color-grey-background;
     width: 100%;
   }
 
+    .chartsTable-cell-link {
+      color: $color-brand;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
   .highcharts-container {
     width: 100%;
     height: 100%;
