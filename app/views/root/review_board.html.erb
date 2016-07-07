@@ -174,17 +174,28 @@ page_title t('.title')
 
               <li id='<%= "expert-#{expert.id}" %>' class='expertList-item js-act-as-expert-item'>
 
-                <%= image_tag(expert.avatar.url('100x100'),
-                              class: 'expertList-item-imageLink-image') %>
+                <div class='expertList-item-imageLink'>
+
+                  <%= image_tag(expert.avatar.url('100x100'),
+                                class: 'expertList-item-imageLink-image') %>
+
+                </div>
 
                 <div>
 
-                  <h4 class='expertList-item-heading'>
-                    <%= expert.name %>
-                  </h4>
+                    <h4 class='expertList-item-heading'>
+                      <%= expert.name %>
+                    </h4>
+
 
                   <% if expert.bio %>
-                    <%= simple_format(expert.bio) %>
+
+                    <div class='expertList-item-description'>
+
+                      <%= simple_format(expert.bio) %>
+
+                    </div>
+
                   <% end %>
 
                 </div>
