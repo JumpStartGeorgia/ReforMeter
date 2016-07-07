@@ -1,6 +1,6 @@
 var meterGaugePlotBandLabels = (function() {
   var exports = {},
-      color = 'white'
+      color = 'white';
 
   exports.behind = function(chartData, options) {
     return mergeObjects(
@@ -8,10 +8,10 @@ var meterGaugePlotBandLabels = (function() {
         text: chartData.translations.behind,
         rotation: -60,
         x: 55,
-        y: 60,
+        y: localeIs('ka') ? 55 : 60,
         style: {
-          fontSize: gon.locale === 'ka' ? '1.7em' : '1.8em',
-          color: 'white'
+          fontSize: gon.locale === 'ka' ? '1.5em' : '1.6em',
+          color: color
         }
       },
       options
@@ -22,10 +22,10 @@ var meterGaugePlotBandLabels = (function() {
     return mergeObjects(
       {
         text: chartData.translations.on_track,
-        x: 88,
-        y: 20,
+        x: 94,
+        y: 14,
         style: {
-          fontSize: gon.locale === 'ka' ? '1.7em' : '1.8em',
+          fontSize: gon.locale === 'ka' ? '1.5em' : '1.6em',
           color: color
         }
       },
@@ -41,8 +41,8 @@ var meterGaugePlotBandLabels = (function() {
         x: localeIs('ka') ? 170 : 173,
         y: localeIs('ka') ? 25 : 35,
         style: {
-          fontSize: localeIs('ka') ? '1.7em' : '1.8em',
-          color: 'white'
+          fontSize: localeIs('ka') ? '1.5em' : '1.6em',
+          color: color
         }
       },
       options
