@@ -92,7 +92,7 @@ page_title t('.title')
 
     <% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
 
-      <table class='chartsTable'>
+      <table class='chartsTable mod-reforms'>
 
         <thead>
 
@@ -114,7 +114,7 @@ page_title t('.title')
               <%= t('.table_header.stakeholder') %>
             </th>
 
-            <th class='chartsTable-cell mod-head'>
+            <th class='chartsTable-cell mod-head mod-summary'>
               <%= t('.table_header.summary') %>
             </th>
 
@@ -156,17 +156,31 @@ page_title t('.title')
 
                     <td class='chartsTable-cell'>
 
-                      <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= quarter.slug %>-<%= reform.slug %>'></div>
+                      <p class='chartsTable-cell-text'>
+                        <%= survey.government_overall_score %>
+                        <%= generate_change_icon(survey.government_overall_change) %>
+                      </p>
+
+                      <div class='chartsTable-cell-chart'>
+                        <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= quarter.slug %>-<%= reform.slug %>'></div>
+                      </div>
 
                     </td>
 
                     <td class='chartsTable-cell'>
 
-                      <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= quarter.slug %>-<%= reform.slug %>'></div>
+                      <p class='chartsTable-cell-text'>
+                        <%= survey.stakeholder_overall_score %>
+                        <%= generate_change_icon(survey.stakeholder_overall_change) %>
+                      </p>
+
+                      <div class='chartsTable-cell-chart'>
+                        <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= quarter.slug %>-<%= reform.slug %>'></div>
+                      </div>
 
                     </td>
 
-                    <td class='chartsTable-cell'>
+                    <td class='chartsTable-cell mod-summary'>
                       <%= strip_tags_nbsp(reform.summary) %>
                     </td>
 

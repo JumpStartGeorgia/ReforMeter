@@ -116,7 +116,7 @@ page_title t('.title')
 
         <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='history'>
 
-          <table class='chartsTable'>
+          <table class='chartsTable mod-review-board'>
             <thead>
               <tr class='chartsTable-row'>
 
@@ -128,7 +128,7 @@ page_title t('.title')
                   <%= t('.table_header.overall') %>
                 </th>
 
-                <th class='chartsTable-cell mod-head'>
+                <th class='chartsTable-cell mod-head mod-summary'>
                   <%= t('.table_header.summary') %>
                 </th>
 
@@ -149,7 +149,7 @@ page_title t('.title')
                     <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='<%= quarter.slug %>'></div>
                   </td>
 
-                  <td class='chartsTable-cell'>
+                  <td class='chartsTable-cell mod-summary'>
                     <%= strip_tags_nbsp(quarter.expert_survey.summary) %>
                   </td>
 
@@ -194,7 +194,6 @@ page_title t('.title')
             <% end %>
 
           </ul>
-
 
         </div>
 
