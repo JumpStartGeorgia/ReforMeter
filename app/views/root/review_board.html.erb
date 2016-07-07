@@ -142,11 +142,17 @@ page_title t('.title')
                   <td class='chartsTable-cell mod-first-column mod-important-text'>
                     <%= link_to(quarter.time_period,
                                 review_board_show_path(quarter.slug),
-                                class: 'link mod-no-decoration') %>
+                                class: 'chartsTable-cell-link') %>
                   </td>
 
                   <td class='chartsTable-cell'>
-                    <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='<%= quarter.slug %>'></div>
+
+                    <%= link_to review_board_show_path(quarter.slug) do %>
+
+                      <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='<%= quarter.slug %>'></div>
+
+                    <% end %>
+
                   </td>
 
                   <td class='chartsTable-cell mod-summary'>
