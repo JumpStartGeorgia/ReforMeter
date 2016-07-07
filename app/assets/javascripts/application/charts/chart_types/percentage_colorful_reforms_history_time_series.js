@@ -1,7 +1,7 @@
 function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
   var options = {
     chart: {
-      spacingTop: 25
+      spacingTop: 30
     },
     exporting: {
       buttons: {

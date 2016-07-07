@@ -3,7 +3,7 @@ function ratingHistoryTimeSeriesOptions(chartData) {
     chart: {
       // Makes room for the yAxis plot band labels
       spacingLeft: 80,
-      spacingTop: 25
+      spacingTop: 30
     },
     exporting: {
       buttons: {
