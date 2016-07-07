@@ -16,6 +16,9 @@ function initializeExportChartGroupButton($exportButton, charts) {
         {
           chart: {
             height: chart.chartHeight,
+            style: {
+              fontSize: '9.5px'
+            },
             width: chart.chartWidth
           }
         }

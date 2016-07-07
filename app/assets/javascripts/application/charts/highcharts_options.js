@@ -63,8 +63,6 @@ function setupDefaultOptions() {
         }
       },
       enabled: false,
-      sourceWidth: 1410,
-      sourceHeight: 600,
       scale: 1
     },
     yAxis: {
