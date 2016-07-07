@@ -78,7 +78,6 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     ),
     tooltip: {
-      backgroundColor: '#f3f3f4',
       formatter: function() {
         indexBoxes.update(this);
 
@@ -87,7 +86,8 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       style: {
         fontSize: '2em',
         fontWeight: '600'
-      }
+      },
+      useHTML: true
     },
     yAxis: {
       plotBands: plotBands(

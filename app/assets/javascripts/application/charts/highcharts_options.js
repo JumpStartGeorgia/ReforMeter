@@ -47,7 +47,14 @@ function setupDefaultOptions() {
               }
             }
           ],
-          symbol: highchartDownloadIcon()
+          symbol: highchartDownloadIcon(),
+          theme: {
+            states: {
+              hover: {
+                stroke: null
+              }
+            }
+          }
         }
       },
       chartOptions: {

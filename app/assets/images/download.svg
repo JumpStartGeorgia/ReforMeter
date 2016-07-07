@@ -2,14 +2,14 @@
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+	 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" class='downloadChartsButton'>
 <g>
-	<path fill="#ADB4D1" d="M23.982,20.963c0,1.659-1.346,3.004-3.004,3.004H3.022c-1.661,0-3.004-1.345-3.004-3.004V3.007
+	<path d="M23.982,20.963c0,1.659-1.346,3.004-3.004,3.004H3.022c-1.661,0-3.004-1.345-3.004-3.004V3.007
 		C0.018,1.348,1.361,0,3.022,0h17.956c1.659,0,3.004,1.348,3.004,3.007V20.963z"/>
 	<g>
-		<polygon fill="#FFFFFF" points="16.882,13.611 16.882,16.867 7.116,16.867 7.116,13.611 5.489,13.611 5.489,18.495 18.511,18.495 
+		<polygon fill="#FFFFFF" points="16.882,13.611 16.882,16.867 7.116,16.867 7.116,13.611 5.489,13.611 5.489,18.495 18.511,18.495
 			18.511,13.611 		"/>
-		<polygon fill="#FFFFFF" points="15.256,10.355 13.629,10.355 13.629,5.474 10.371,5.474 10.371,10.355 8.745,10.355 12,15.24 		
+		<polygon fill="#FFFFFF" points="15.256,10.355 13.629,10.355 13.629,5.474 10.371,5.474 10.371,10.355 8.745,10.355 12,15.24
 			"/>
 	</g>
 </g>

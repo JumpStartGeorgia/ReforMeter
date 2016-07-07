@@ -36,7 +36,6 @@ function highchartsExternalIndicatorBar(chartData) {
       }
     ),
     tooltip: {
-      backgroundColor: '#f3f3f4',
       formatter: function() {
         indexBoxes.update(this);
 

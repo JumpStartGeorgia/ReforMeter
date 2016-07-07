@@ -1,7 +1,11 @@
+$download-chart-button-color: #ADB4D1;
+
 .downloadChartsButton {
-  border: none;
-  background-color: inherit;
-  padding: 0;
   height: 24px;
   width: 24px;
+  fill: $download-chart-button-color;
+
+  &:hover {
+    fill: darken($download-chart-button-color, 10%);
+  }
 }
