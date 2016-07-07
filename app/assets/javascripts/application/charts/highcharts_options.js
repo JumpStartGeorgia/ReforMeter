@@ -48,7 +48,7 @@ function setupDefaultOptions() {
       chartOptions: {
         chart: {
           style: {
-            fontFamily: 'serif'
+            fontFamily: 'sans-serif'
           }
         }
       },
