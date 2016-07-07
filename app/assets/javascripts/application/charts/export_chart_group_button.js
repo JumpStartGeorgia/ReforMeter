@@ -22,6 +22,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
       var svg = chart.getSVG(
         {
           chart: {
+            backgroundColor: 'white',
             height: chartGroupHeight,
             style: {
               fontSize: '9.5px'
