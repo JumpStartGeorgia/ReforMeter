@@ -1,11 +1,9 @@
-$download-chart-button-color: #ADB4D1;
-
 .downloadChartsButton {
   height: 24px;
   width: 24px;
-  fill: $download-chart-button-color;
+  fill: $color-button;
 
   &:hover {
-    fill: darken($download-chart-button-color, 10%);
+    fill: darken($color-button, 10%);
   }
 }
