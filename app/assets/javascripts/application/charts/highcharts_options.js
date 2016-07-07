@@ -1,5 +1,10 @@
 function setupDefaultOptions() {
   Highcharts.setOptions({
+    chart: {
+      style: {
+        fontSize: '10px'
+      }
+    },
     credits: false,
     exporting: {
       buttons: {
@@ -48,14 +53,27 @@ function setupDefaultOptions() {
       chartOptions: {
         chart: {
           style: {
-            fontFamily: 'sans-serif'
+            fontFamily: 'sans-serif',
+            fontSize: '9px'
           }
+        },
+        legend: {
+          itemDistance: 70,
+          x: -40
         }
       },
-      enabled: false
+      enabled: false,
+      sourceWidth: 1410,
+      sourceHeight: 600,
+      scale: 1
     },
     yAxis: {
-      title: false
+      title: {
+        text: null,
+        style: {
+          fontSize: '1.2em'
+        }
+      }
     }
   });
 }

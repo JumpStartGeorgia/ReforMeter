@@ -48,7 +48,7 @@ function highchartsExternalIndicatorBar(chartData) {
         );
       },
       style: {
-        fontSize: '2rem',
+        fontSize: '2em',
         fontWeight: '600'
       },
       useHTML: true

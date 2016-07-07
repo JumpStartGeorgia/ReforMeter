@@ -62,7 +62,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
         y: 70,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '35');
+          return highchartsGaugeLabel(chartData, this, '3.5em');
         }
       },
       pivot: {

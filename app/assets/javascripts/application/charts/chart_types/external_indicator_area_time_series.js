@@ -9,7 +9,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       function() {
         this.label.x = localeIs('ka') ? -140 : -100;
         this.label.verticalAlign = 'middle';
-        this.label.style.fontSize = localeIs('ka') ? '14px' : '16px';
+        this.label.style.fontSize = localeIs('ka') ? '1.4em' : '1.6em';
         this.label.style.fontWeight = '600';
       }
     );
@@ -85,7 +85,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
         return externalIndicatorChart.tooltipFormatter(this.points[0]);
       },
       style: {
-        fontSize: '2rem',
+        fontSize: '2em',
         fontWeight: '600'
       }
     },

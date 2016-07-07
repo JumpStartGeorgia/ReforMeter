@@ -10,13 +10,13 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
   function inDiv(content) {
     return '<div style="text-align:center;">' + content + '</div>';
   }
-  var score = '<span style="font-size:' + fontSize + 'px;color:' + color + ';">' + point.y + unit + '</span>';
+  var score = '<span style="font-size:' + fontSize + ';color:' + color + ';">' + point.y + unit + '</span>';
 
   if (chartData.change === null) {
     return inDiv(score);
   } else {
     var icon = change_icon(chartData.change);
-    var iconInSpan = '<span style="width: ' + fontSize + 'px; display: inline-block;">' + icon + '</span>';
+    var iconInSpan = '<span style="width: ' + fontSize + '; display: inline-block;">' + icon + '</span>';
 
     return inDiv(score + iconInSpan);
   }

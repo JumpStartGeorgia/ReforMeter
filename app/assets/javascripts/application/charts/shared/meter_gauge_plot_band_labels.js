@@ -10,7 +10,7 @@ var meterGaugePlotBandLabels = (function() {
         x: 55,
         y: 60,
         style: {
-          fontSize: gon.locale === 'ka' ? '17px' : '18px',
+          fontSize: gon.locale === 'ka' ? '1.7em' : '1.8em',
           color: 'white'
         }
       },
@@ -25,7 +25,7 @@ var meterGaugePlotBandLabels = (function() {
         x: 88,
         y: 20,
         style: {
-          fontSize: gon.locale === 'ka' ? '17px' : '18px',
+          fontSize: gon.locale === 'ka' ? '1.7em' : '1.8em',
           color: color
         }
       },
@@ -41,7 +41,7 @@ var meterGaugePlotBandLabels = (function() {
         x: localeIs('ka') ? 170 : 173,
         y: localeIs('ka') ? 25 : 35,
         style: {
-          fontSize: localeIs('ka') ? '17px' : '18px',
+          fontSize: localeIs('ka') ? '1.7em' : '1.8em',
           color: 'white'
         }
       },

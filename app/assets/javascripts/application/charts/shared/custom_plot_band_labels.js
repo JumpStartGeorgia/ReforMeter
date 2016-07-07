@@ -36,7 +36,7 @@ function customTimeSeriesPlotBands(plotBands) {
     function() {
       this.label.x = -100;
       this.label.verticalAlign = 'middle';
-      this.label.style.fontSize = localeIs('ka') ? '14px' : '16px';
+      this.label.style.fontSize = localeIs('ka') ? '1.4em' : '1.6em';
       this.label.style.fontWeight = '600';
     }
   );

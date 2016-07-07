@@ -15,7 +15,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
 		title: {
       style: {
-        fontSize: localeIs('ka') ? '14px' : '16px'
+        fontSize: '1.4em'
       },
     	text: chartData.title,
       verticalAlign: 'top',
@@ -72,7 +72,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '20', { unit: '%' });
+          return highchartsGaugeLabel(chartData, this, '2em', { unit: '%' });
         }
       },
       tooltip: {

@@ -32,7 +32,7 @@ var externalIndicatorChart = (function() {
       align: 'left',
       style: {
         fontWeight: 600,
-        fontSize: '20px',
+        fontSize: '2em',
         textTransform: 'uppercase'
       },
       text: text + infoCircle,
@@ -71,7 +71,7 @@ var externalIndicatorChart = (function() {
       align: 'left',
       style: {
         color: '#66666d',
-        fontSize: '16px',
+        fontSize: '1.6em',
         fontWeight: '200'
       },
       text: text,

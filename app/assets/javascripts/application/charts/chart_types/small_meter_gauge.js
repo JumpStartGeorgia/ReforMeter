@@ -41,7 +41,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
 
     title: {
       style: {
-        fontSize: '16px'
+        fontSize: '1.6em'
       },
       text: chartData.title,
       y: 15
@@ -55,7 +55,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '20');
+          return highchartsGaugeLabel(chartData, this, '2em');
         }
       },
       pivot: {

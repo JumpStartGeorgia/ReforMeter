@@ -49,7 +49,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
         y: 70,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '35', { color: 'white' });
+          return highchartsGaugeLabel(chartData, this, '3.5em', { color: 'white' });
         }
       },
       pivot: {

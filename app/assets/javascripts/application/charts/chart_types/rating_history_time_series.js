@@ -16,7 +16,7 @@ function ratingHistoryTimeSeriesOptions(chartData) {
           text: chartData.title
         }
       },
-      enabled: true,
+      enabled: true
     },
     legend: {
       enabled: chartData.series.length > 1
