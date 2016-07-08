@@ -65,7 +65,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           return helpers.dataLabel(
             chartData,
             this,
-            helpers.textSize(2.5),
+            helpers.textSize(3.5),
             {
               color: 'white'
             }

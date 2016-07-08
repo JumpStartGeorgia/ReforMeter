@@ -167,7 +167,7 @@
                       <% if value.present? %>
                         <div class='homePage-reforms-item-label-score'>
                           <%= value[:score].round %>%
-                          <span><%= generate_change_icon(value[:change]) %></span>
+                          <span class='homePage-reforms-item-label-score-icon'><%= generate_change_icon(value[:change]) %></span>
                         </div>
                       <% end %>
 
