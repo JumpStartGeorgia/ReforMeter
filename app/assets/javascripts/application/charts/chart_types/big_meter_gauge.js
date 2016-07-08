@@ -1,7 +1,7 @@
 function highchartsBigMeterGaugeOptions(chartData) {
   var color = chartData.color;
 
-  return {
+  var options = {
     title: {
       text: chartData.title,
       y: 15
@@ -78,4 +78,10 @@ function highchartsBigMeterGaugeOptions(chartData) {
     }]
 
   };
+
+  return Highcharts.merge(
+    highchartsMeterGaugeOptions(chartData),
+    options
+  );
+
 }

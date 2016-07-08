@@ -114,17 +114,11 @@ function highchartsOptions(chartType, chartData) {
     }
 
     case 'big-meter-gauge': {
-      return Highcharts.merge(
-        highchartsMeterGaugeOptions(chartData),
-        highchartsBigMeterGaugeOptions(chartData)
-      );
+      return highchartsBigMeterGaugeOptions(chartData);
     }
 
     case 'homepage-meter-gauge': {
-      return Highcharts.merge(
-        highchartsMeterGaugeOptions(chartData),
-        highchartsHomepageMeterGaugeOptions(chartData)
-      );
+      return highchartsHomepageMeterGaugeOptions(chartData);
     }
 
     case 'big-solid-gauge': {

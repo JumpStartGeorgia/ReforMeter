@@ -1,7 +1,7 @@
 function highchartsSmallMeterGaugeOptions(chartData) {
   var color = chartData.color;
 
-  return {
+  var options = {
     yAxis: {
       plotBands: [
         {
@@ -71,4 +71,6 @@ function highchartsSmallMeterGaugeOptions(chartData) {
       }
     }]
   };
+
+  return options;
 }
