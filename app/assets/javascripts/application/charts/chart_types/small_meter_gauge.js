@@ -72,5 +72,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
     }]
   };
 
-  return options;
+  return Highcharts.merge(
+    highchartsMeterGaugeOptions(chartData),
+    options
+  );
 }

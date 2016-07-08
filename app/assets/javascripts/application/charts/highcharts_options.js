@@ -107,10 +107,7 @@ function highchartsOptions(chartType, chartData) {
     }
 
     case 'small-meter-gauge': {
-      return Highcharts.merge(
-        highchartsMeterGaugeOptions(chartData),
-        highchartsSmallMeterGaugeOptions(chartData)
-      );
+      return highchartsSmallMeterGaugeOptions(chartData);
     }
 
     case 'big-meter-gauge': {
