@@ -1,5 +1,9 @@
 function highchartsHomepageMeterGaugeOptions(chartData) {
+  var size = 400;
   var color = chartData.color;
+
+  var helpers = meterGaugeHelpers(size);
+  var plotBandLabels = helpers.plotBandLabels(size);
 
   var options = {
     title: {
@@ -8,7 +12,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
     },
 
     pane: {
-      size: '200'
+      size: size
     },
 
     yAxis: {
@@ -20,7 +24,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: meterGaugePlotBandLabels.behind(chartData)
+          label: plotBandLabels.behind(chartData)
         },{
           borderWidth: 0,
           from: 3.3,
@@ -28,7 +32,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: meterGaugePlotBandLabels.onTrack(chartData)
+          label: plotBandLabels.onTrack(chartData)
         },{
           borderWidth: 0,
           from: 6.7,
@@ -36,7 +40,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: meterGaugePlotBandLabels.ahead(chartData)
+          label: plotBandLabels.ahead(chartData)
         }
       ]
     },
@@ -56,7 +60,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
         backgroundColor: '#5e588e'
       },
       dial: {
-        baseWidth: 20,
+        baseWidth: size/10,
         backgroundColor: 'rgb(255, 255, 255)',
         baseLength: 0,
         radius: '60%',

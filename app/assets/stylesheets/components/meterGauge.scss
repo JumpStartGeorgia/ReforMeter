@@ -1,3 +1,5 @@
+$homepage-meter-gauge-size: 400px;
+
 .meterGauge.mod-small {
   height: 125px;
   width: 100px;
@@ -10,6 +12,13 @@
   min-height: 220px;
 }
 
-.meterGauge.mod-homepage path {
-  stroke-width: 0;
+.meterGauge.mod-homepage {
+  width: $homepage-meter-gauge-size * 1.25;
+  min-width: $homepage-meter-gauge-size * 1.25;
+  height: $homepage-meter-gauge-size * 1.1;
+  min-height: $homepage-meter-gauge-size * 1.1;
+
+  path {
+    stroke-width: 0;
+  }
 }
