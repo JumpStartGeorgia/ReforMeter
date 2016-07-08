@@ -165,9 +165,18 @@
                     <span class='homePage-reforms-item-label-name'><%= reform.name %></span>
 
                       <% if value.present? %>
-                        <div class='homePage-reforms-item-label-score'>
-                          <%= value[:score].round %>%
-                          <span class='homePage-reforms-item-label-score-icon'><%= generate_change_icon(value[:change]) %></span>
+                        <div class='homePage-reforms-item-label-rating'>
+                          <span class='homePage-reforms-item-label-rating-score'><%= value[:score].round %>%</span>
+                          <span class='homePage-reforms-item-label-rating-icon'><%=
+
+                            generate_change_icon(
+                              value[:change],
+                              {
+                                mod_class: 'mod-homepage-reforms'
+                              }
+                            )
+
+                          %></span>
                         </div>
                       <% end %>
 

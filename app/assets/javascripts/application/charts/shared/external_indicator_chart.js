@@ -59,7 +59,12 @@ var externalIndicatorChart = (function() {
     var iconInSpan = '';
 
     if (pointData.point.change) {
-      var icon = change_icon(pointData.point.change);
+      var icon = change_icon(
+        pointData.point.change,
+        {
+          modClass: 'mod-external-indicator-chart'
+        }
+      );
       iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
     }
 

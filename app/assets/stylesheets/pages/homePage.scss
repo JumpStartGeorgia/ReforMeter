@@ -102,12 +102,16 @@ $width-homepage-move-government-to-side: 800px;
         // color: $color-brand;
       }
 
-      .homePage-reforms-item-label-score {
+      .homePage-reforms-item-label-rating {
         font-size: 2.5rem;
         font-weight: 600;
       }
 
-        .homePage-reforms-item-label-score-icon {
+        .homePage-reforms-item-label-rating-score {
+          display: inline-block;
+        }
+
+        .homePage-reforms-item-label-rating-icon {
           width: 2.5rem;
           height: 2.5rem;
           display: inline-block;

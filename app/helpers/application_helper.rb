@@ -31,19 +31,22 @@ module ApplicationHelper
     text.html_safe
   end
 
-  def change_icons
+  def change_icons(args = {})
+    icon_class = 'changeIcon js-act-as-change-icon'
+    icon_class += " #{args[:mod_class]}" if args[:mod_class].present?
+
     return {
-      '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), class: 'changeIcon js-act-as-change-icon'),
-      '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), class: 'changeIcon js-act-as-change-icon'),
-      '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), class: 'changeIcon js-act-as-change-icon')
+      '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), class: icon_class),
+      '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), class: icon_class),
+      '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), class: icon_class)
     }
   end
 
   # value = -1 -> down arrow
   # value =  0 -> flat arrow
   # value =  1 -> up arrow
-  def generate_change_icon(change_value)
-    change_icons[change_value.to_s.to_sym]
+  def generate_change_icon(change_value, args = {})
+    change_icons(args)[change_value.to_s.to_sym]
   end
 
   def nav_link_select_class_if_path(paths)
