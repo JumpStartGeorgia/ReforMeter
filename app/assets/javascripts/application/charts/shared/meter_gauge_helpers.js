@@ -9,6 +9,10 @@
 function meterGaugeHelpers(size) {
   var meterGauge = {};
 
+  meterGauge.chartWidth = size * 1.25;
+  meterGauge.chartHeight = size * 1.1;
+  meterGauge.paneSize = size;
+
   // For size = 200, proportion = .5 ---> 100
   meterGauge.textPosition = function(proportion) {
     return proportion * size;
@@ -74,30 +78,6 @@ function meterGaugeHelpers(size) {
     }
 
     return exports;
-  }
-
-  meterGauge.dataLabel = function(chartData, point, fontSize, args) {
-    if (!args) args = {};
-
-    var unit = args.unit;
-    if (!unit) unit = '';
-
-    var color = args.color;
-    if (!color) color = 'black';
-
-    function inDiv(content) {
-      return '<div style="text-align:center;">' + content + '</div>';
-    }
-    var score = '<span style="font-size:' + fontSize + ';color:' + color + ';">' + point.y + unit + '</span>';
-
-    if (chartData.change === null) {
-      return inDiv(score);
-    } else {
-      var icon = change_icon(chartData.change);
-      var iconInSpan = '<span style="width: ' + fontSize + ';height: ' + fontSize + ';display: inline-block;">' + icon + '</span>';
-
-      return inDiv(score + iconInSpan);
-    }
   }
 
   return meterGauge;

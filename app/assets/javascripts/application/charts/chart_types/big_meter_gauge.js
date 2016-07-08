@@ -1,14 +1,25 @@
 function highchartsBigMeterGaugeOptions(chartData) {
+  // See meter gauge helpers file for documentation on size variable
+  var size = 200;
   var color = chartData.color;
 
+  var helpers = meterGaugeHelpers(size);
+  var plotBandLabels = helpers.plotBandLabels();
+
   var options = {
+
+    chart: {
+      width: helpers.chartWidth,
+      height: helpers.chartHeight
+    },
+
     title: {
       text: chartData.title,
       y: 15
     },
 
     pane: {
-      size: '200'
+      size: helpers.paneSize
     },
 
     yAxis: {
@@ -21,7 +32,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: meterGaugePlotBandLabels.behind(chartData)
+          label: plotBandLabels.behind(chartData)
         },{
           borderWidth: 2,
           borderColor: 'transparent',
@@ -30,7 +41,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: meterGaugePlotBandLabels.onTrack(
+          label: plotBandLabels.onTrack(
             chartData,
             {
               y: 30
@@ -44,7 +55,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: meterGaugePlotBandLabels.ahead(
+          label: plotBandLabels.ahead(
             chartData,
             {
               y: localeIs('ka') ? 35 : 45
@@ -62,14 +73,14 @@ function highchartsBigMeterGaugeOptions(chartData) {
         y: 70,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '3.5em');
+          return highchartsGaugeLabel(chartData, this, helpers.textSize(3.5));
         }
       },
       pivot: {
         backgroundColor: 'white'
       },
       dial: {
-        baseWidth: 20,
+        baseWidth: helpers.paneSize/10,
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
         baseLength: 0,
         radius: '60%',

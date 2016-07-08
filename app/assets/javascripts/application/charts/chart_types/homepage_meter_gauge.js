@@ -1,6 +1,6 @@
 function highchartsHomepageMeterGaugeOptions(chartData) {
   // See meter gauge helpers file for documentation on size variable
-  var size = 200;
+  var size = 400;
   var color = chartData.color;
 
   var helpers = meterGaugeHelpers(size);
@@ -9,16 +9,17 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
   var options = {
 
     chart: {
-      width: size * 1.25,
-      height: size * 1.1,
+      width: helpers.chartWidth,
+      height: helpers.chartHeight
     },
+
     title: {
       text: chartData.title,
       y: 15
     },
 
     pane: {
-      size: size
+      size: helpers.paneSize
     },
 
     yAxis: {
@@ -62,10 +63,10 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
         y: 70,
         useHTML: true,
         formatter: function() {
-          return helpers.dataLabel(
+          return highchartsGaugeLabel(
             chartData,
             this,
-            helpers.textSize(3.5),
+            helpers.textSize(2.5),
             {
               color: 'white'
             }
@@ -76,7 +77,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
         backgroundColor: '#5e588e'
       },
       dial: {
-        baseWidth: size/10,
+        baseWidth: helpers.paneSize/10,
         backgroundColor: 'rgb(255, 255, 255)',
         baseLength: 0,
         radius: '60%',
