@@ -1,6 +1,6 @@
 function highchartsHomepageMeterGaugeOptions(chartData) {
   // See meter gauge helpers file for documentation on size variable
-  var size = 400;
+  var size = 200;
   var color = chartData.color;
 
   var helpers = meterGaugeHelpers(size);
