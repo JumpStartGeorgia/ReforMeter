@@ -16,7 +16,7 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
     return inDiv(score);
   } else {
     var icon = change_icon(chartData.change);
-    var iconInSpan = '<span style="width: ' + fontSize + '; display: inline-block;">' + icon + '</span>';
+    var iconInSpan = '<span style="width: ' + fontSize + ';display: inline-block;">' + icon + '</span>';
 
     return inDiv(score + iconInSpan);
   }

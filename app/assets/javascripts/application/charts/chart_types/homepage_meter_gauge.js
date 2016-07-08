@@ -1,4 +1,5 @@
 function highchartsHomepageMeterGaugeOptions(chartData) {
+  // See meter gauge helpers file for documentation on size variable
   var size = 400;
   var color = chartData.color;
 
@@ -16,6 +17,9 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
     },
 
     yAxis: {
+      labels: {
+        enabled: false
+      },
       plotBands: [
         {
           borderWidth: 0,
@@ -53,7 +57,14 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
         y: 70,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '3.5em', { color: 'white' });
+          return highchartsGaugeLabel(
+            chartData,
+            this,
+            helpers.textSize(2.5),
+            {
+              color: 'white'
+            }
+          );
         }
       },
       pivot: {

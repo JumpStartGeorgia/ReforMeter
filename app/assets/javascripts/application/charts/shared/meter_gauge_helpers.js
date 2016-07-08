@@ -1,3 +1,14 @@
+/*
+  The following elements are built according to the size variable:
+  - pane size
+  - plot band labels (position and size)
+  - dial base width
+  - label score font size
+
+  Note: If you change the size for a chart, you must change the
+  corresponding SCSS variable.
+*/
+
 function meterGaugeHelpers(size) {
   var meterGauge = {};
 
@@ -24,7 +35,7 @@ function meterGaugeHelpers(size) {
           text: chartData.translations.behind,
           rotation: -60,
           x: meterGauge.textPosition(.275),
-          y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.3),
+          y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
           style: {
             fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
             color: color
