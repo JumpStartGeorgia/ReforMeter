@@ -1,12 +1,17 @@
 function highchartsHomepageMeterGaugeOptions(chartData) {
   // See meter gauge helpers file for documentation on size variable
-  var size = 400;
+  var size = 200;
   var color = chartData.color;
 
   var helpers = meterGaugeHelpers(size);
-  var plotBandLabels = helpers.plotBandLabels(size);
+  var plotBandLabels = helpers.plotBandLabels();
 
   var options = {
+
+    chart: {
+      width: size * 1.25,
+      height: size * 1.1,
+    },
     title: {
       text: chartData.title,
       y: 15
@@ -57,7 +62,7 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
         y: 70,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(
+          return helpers.dataLabel(
             chartData,
             this,
             helpers.textSize(2.5),
