@@ -150,6 +150,7 @@
   </div>
 
 
+
   <hr />
 
   <p class="form-instructions"><%= t('.range_explanation') %></p>
@@ -158,6 +159,66 @@
     <%= f.input :max, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
   </div>
 
+  <hr />
+
+  <div class="js-optional js-optional-plot-bands">
+
+    <h3><%= t('activerecord.models.external_indicator_plot_band', count: 999) %></h3>
+
+    <p><%= t('.plot_band_explanation') %></p>
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object, id_suffix: '-plot-band' } do |enabled_locale, enabled_locale_name| %>
+
+      <table class="table table-striped table-hover table-nonfluid table-plot-bands">
+        <thead>
+          <tr>
+            <th>
+              <%= t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator_plot_band.name'),
+                       language: enabled_locale_name)
+              %><abbr title="required">*</abbr>
+            </th>
+            <th>
+              <%= t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator_plot_band.from'),
+                       language: enabled_locale_name)
+              %><abbr title="required">*</abbr>
+            </th>
+            <th>
+              <%= t('shared.labels.translated_field',
+                       field: t('activerecord.attributes.external_indicator_plot_band.to'),
+                       language: enabled_locale_name)
+              %><abbr title="required">*</abbr>
+            </th>
+            <th>
+              <%=t 'shared.common.actions' %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% object.plot_bands.sorted.each do |band| %>
+            <%= f.semantic_fields_for :plot_bands, band do |pband| %>
+              <%= render partial: 'plot_band_fields', locals: {f: pband, object: band, enabled_locale: enabled_locale} %>
+            <% end %>
+          <% end %>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <%= link_to_add_association t('shared.actions.add'), f, :plot_bands,
+                    :'data-association-insertion-node' => "#translation-#{enabled_locale}-plot-band table.table-plot-bands tbody",
+                    :'data-association-insertion-method' => 'append',
+                    class: 'btn btn-primary',
+                    render_options: {locals: {enabled_locale: enabled_locale}} %>
+            </td>
+          </tr>
+        </tfoot>
+        </tbody>
+      </table>
+
+    <% end %>
+
+  </div>
 
 
   <% end %>

@@ -29,10 +29,15 @@ class ExternalIndicator < ActiveRecord::Base
   has_and_belongs_to_many :reforms
   has_many :countries, class_name: 'ExternalIndicatorCountry', dependent: :destroy
   has_many :indices, class_name: 'ExternalIndicatorIndex', dependent: :destroy
+  has_many :plot_bands, class_name: 'ExternalIndicatorPlotBand', dependent: :destroy
   accepts_nested_attributes_for :countries, :reject_if => lambda { |x| x[:name_en].blank? && x[:name_ka].blank?}, allow_destroy: true
   accepts_nested_attributes_for :indices, :reject_if => lambda { |x|
     x[:name_en].blank? && x[:name_ka].blank? &&
     x[:short_name_en].blank? && x[:short_name_ka].blank?
+  }, :allow_destroy => true
+  accepts_nested_attributes_for :plot_bands, :reject_if => lambda { |x|
+    x[:name_en].blank? && x[:name_ka].blank? &&
+    x[:from].blank? && x[:to].blank?
   }, :allow_destroy => true
 
   #######################

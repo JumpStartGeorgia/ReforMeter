@@ -16,6 +16,7 @@ en:
         max: Max
         countries: Countries
         indices: Indices
+        plot_bands: Plot Bands
     models:
       external_indicator:
         one: External Indicator

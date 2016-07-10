@@ -1,0 +1,36 @@
+<%
+  object ||= nil
+%>
+<tr class="nested-fields">
+  <td>
+    <%= f.input "name_#{enabled_locale}",
+                as: :string,
+                label: false %>
+  </td>
+  <td>
+    <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
+        <%= f.input :from,
+                    as: :string,
+                    label: false,
+                    input_html: {size: 5, class: 'js-plot-band-from'} %>
+      <% else %>
+        <%= object.from %>
+      <% end %>
+  </td>
+  <td>
+    <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
+        <%= f.input :to,
+                    as: :string,
+                    label: false,
+                    input_html: {size: 5, class: 'js-plot-band-to'} %>
+      <% else %>
+        <%= object.to %>
+      <% end %>
+  </td>
+
+  <td>
+    <%= link_to_remove_association t('shared.actions.destroy'), f,
+            data: { confirm: t('shared.prompts.confirm') },
+            class: 'btn btn-danger' %>
+  </td>
+</tr>

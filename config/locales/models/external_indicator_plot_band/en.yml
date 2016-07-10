@@ -1,0 +1,12 @@
+---
+en:
+  activerecord:
+    attributes:
+      external_indicator_plot_band:
+        name: Name
+        from: From
+        to: To
+    models:
+      external_indicator_plot_band:
+        one: Plot Band
+        other: Plot Bands

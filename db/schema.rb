@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623174715) do
+ActiveRecord::Schema.define(version: 20160710193234) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -116,6 +116,29 @@ ActiveRecord::Schema.define(version: 20160623174715) do
 
   add_index "external_indicator_indices", ["external_indicator_id"], name: "index_external_indicator_indices_on_external_indicator_id", using: :btree
   add_index "external_indicator_indices", ["sort_order"], name: "index_external_indicator_indices_on_sort_order", using: :btree
+
+  create_table "external_indicator_plot_band_translations", force: :cascade do |t|
+    t.integer  "external_indicator_plot_band_id", limit: 4,   null: false
+    t.string   "locale",                          limit: 255, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "name",                            limit: 255
+  end
+
+  add_index "external_indicator_plot_band_translations", ["external_indicator_plot_band_id"], name: "index_6e4496c4c9ee24721b317482691ded5a6a6bfa32", using: :btree
+  add_index "external_indicator_plot_band_translations", ["locale"], name: "index_external_indicator_plot_band_translations_on_locale", using: :btree
+  add_index "external_indicator_plot_band_translations", ["name"], name: "index_external_indicator_plot_band_translations_on_name", using: :btree
+
+  create_table "external_indicator_plot_bands", force: :cascade do |t|
+    t.integer  "external_indicator_id", limit: 4
+    t.integer  "from",                  limit: 4
+    t.integer  "to",                    limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "external_indicator_plot_bands", ["external_indicator_id"], name: "index_external_indicator_plot_bands_on_external_indicator_id", using: :btree
+  add_index "external_indicator_plot_bands", ["from", "to"], name: "index_external_indicator_plot_bands_on_from_and_to", using: :btree
 
   create_table "external_indicator_translations", force: :cascade do |t|
     t.integer  "external_indicator_id", limit: 4,     null: false

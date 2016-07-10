@@ -139,6 +139,85 @@ function setupExternalIndicatorCocoon(){
       $(row).fadeOut();
     });
   });
+
+  // add plot band
+  $('.js-optional-plot-bands .tab-pane').on('cocoon:after-insert', function(e, insertedItem) {
+    var locale = $(this).data('locale');
+    var page_locales = [];
+    var row = $(insertedItem).clone();
+
+    // get all locales except the active one
+    $('.js-optional-plot-bands .tab-pane').each(function(){if ($(this).data('locale') != locale){page_locales.push($(this).data('locale'))}});
+
+    // replace the locale and then add the row to the correct table
+    for(var i=0;i<page_locales.length;i++){
+      // update the inserted row with the appropriate locale
+      $(row).html($(row).html().replace(new RegExp("_" + locale,"g"), '_' + page_locales[i]));
+
+      // add the row
+      $('.js-optional-plot-bands .tab-pane[data-locale="' + page_locales[i] + '"] table tbody').append($(row));
+    }
+
+
+    // if the new row is not in default locale tab, remove the input fields for to/from
+    // including the the locale that started the cocoon insert because it might not need to have the inputs since the add button is in all tabs
+    page_locales.push(locale);
+    for(var i=0;i<page_locales.length;i++){
+      if (page_locales[i] != gon.default_locale){
+        $('.js-optional-plot-bands .tab-pane[data-locale="' + page_locales[i] + '"] table tbody tr:last td:eq(1)').html('');
+        $('.js-optional-plot-bands .tab-pane[data-locale="' + page_locales[i] + '"] table tbody tr:last td:eq(2)').html('');
+      }
+    }
+
+  });
+
+  // delete plot band
+  $('.js-optional-plot-bands .tab-pane').on('cocoon:before-remove', function(e, deletedItem) {
+    // get the index of the row being deleted so the same row for other languages can also be deleted
+    var index = $(this).find('table tbody tr').index(deletedItem);
+
+    // mark this row in every table as deleted
+    $('.js-optional-plot-bands .tab-pane table tbody').each(function(){
+      var row = $(this).find('tr')[index];
+      // mark as deleted
+      $(row).find('td:last input').val('true');
+      // hide row
+      $(row).fadeOut();
+    });
+
+  });
+
+
+  // when the from value changes, update this value in all other tables
+  $('.js-optional-plot-bands .tab-pane').on('change', '.js-plot-band-from', function(){
+    var locale = $(this).closest('.tab-pane').data('locale');
+    var row_index = $(this).closest('tr').index();
+    var page_locales = [];
+
+    // get all locales except the active one
+    $('.js-optional-plot-bands .tab-pane').each(function(){if ($(this).data('locale') != locale){page_locales.push($(this).data('locale'))}});
+
+    // update the value
+    for(var i=0;i<page_locales.length;i++){
+      $('.js-optional-plot-bands .tab-pane[data-locale="' + page_locales[i] + '"] table tbody tr:eq(' + row_index + ') td:eq(1)').html($(this).val());
+    }
+  });
+
+  // when the to value changes, update this value in all other tables
+  $('.js-optional-plot-bands .tab-pane').on('change', '.js-plot-band-to', function(){
+    var locale = $(this).closest('.tab-pane').data('locale');
+    var row_index = $(this).closest('tr').index();
+    var page_locales = [];
+
+    // get all locales except the active one
+    $('.js-optional-plot-bands .tab-pane').each(function(){if ($(this).data('locale') != locale){page_locales.push($(this).data('locale'))}});
+
+    // update the value
+    for(var i=0;i<page_locales.length;i++){
+      $('.js-optional-plot-bands .tab-pane[data-locale="' + page_locales[i] + '"] table tbody tr:eq(' + row_index + ') td:eq(2)').html($(this).val());
+    }
+  });
+
 }
 
 
