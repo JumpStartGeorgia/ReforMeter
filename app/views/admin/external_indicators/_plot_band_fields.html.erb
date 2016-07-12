@@ -7,22 +7,22 @@
                 as: :string,
                 label: false %>
   </td>
-  <td>
+  <td class="js-to-clear">
     <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
         <%= f.input :from,
                     as: :string,
                     label: false,
-                    input_html: {size: 5, class: 'js-plot-band-from'} %>
+                    input_html: {size: 5, class: 'js-update-value'} %>
       <% else %>
         <%= object.from %>
       <% end %>
   </td>
-  <td>
+  <td class="js-to-clear">
     <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
         <%= f.input :to,
                     as: :string,
                     label: false,
-                    input_html: {size: 5, class: 'js-plot-band-to'} %>
+                    input_html: {size: 5, class: 'js-update-value'} %>
       <% else %>
         <%= object.to %>
       <% end %>

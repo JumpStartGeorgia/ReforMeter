@@ -12,6 +12,7 @@ en:
       publish: Publish
       unpublish: Unpublish
       add: Add
+      manage_data: Manage Data
       with_obj:
         cancel: Cancel %{obj}
         create: Create %{obj}

@@ -16,7 +16,7 @@
 
 require 'csv'
 class ExternalIndicator < ActiveRecord::Base
-  attr_accessor :data_hash
+  attr_accessor :data_hash, :update_change_values
 
   #######################
   ## TRANSLATIONS
@@ -30,6 +30,7 @@ class ExternalIndicator < ActiveRecord::Base
   has_many :countries, class_name: 'ExternalIndicatorCountry', dependent: :destroy
   has_many :indices, class_name: 'ExternalIndicatorIndex', dependent: :destroy
   has_many :plot_bands, class_name: 'ExternalIndicatorPlotBand', dependent: :destroy
+  has_many :time_periods, class_name: 'ExternalIndicatorTime', dependent: :destroy
   accepts_nested_attributes_for :countries, :reject_if => lambda { |x| x[:name_en].blank? && x[:name_ka].blank?}, allow_destroy: true
   accepts_nested_attributes_for :indices, :reject_if => lambda { |x|
     x[:name_en].blank? && x[:name_ka].blank? &&
@@ -39,6 +40,7 @@ class ExternalIndicator < ActiveRecord::Base
     x[:name_en].blank? && x[:name_ka].blank? &&
     x[:from].blank? && x[:to].blank?
   }, :allow_destroy => true
+  accepts_nested_attributes_for :time_periods, :reject_if => lambda { |x| x[:name_en].blank? && x[:name_ka].blank?}, allow_destroy: true
 
   #######################
   ## VALIDATIONS
@@ -57,33 +59,10 @@ class ExternalIndicator < ActiveRecord::Base
   before_save :set_data
   after_save :reset_unwanted_fields
 
-  # after load, populate data hash
-  # format: {
-  #   time_periods: [{id, name}]
-  #   countries: [{id, name}]
-  #   indexes: [{id, name, short_name, description, change_multiplier}]
-  #   data: [{time_period, overall_value, overall_change, values[{index/country, value, change}] }]
-  # }
-  def load_data_hash
-    self.data_hash = self.data.present? ? JSON.parse(self.data, symbolize_names: true) : {}
-    return true
-  end
+  before_save :set_change_values
+  # after_save :update_future_time
+  # after_destroy :reset_future_time
 
-  # convert the data hash to json string
-  def set_data
-    self.data = self.data_hash.to_json if self.data_hash.present?
-    return true
-  end
-
-  def reset_unwanted_fields
-    if self.indicator_type == INDICATOR_TYPES[:country]
-      # this is country, so index records are not needed
-      self.indices.destroy_all
-    elsif self.indicator_type == INDICATOR_TYPES[:composite]
-      # this is index, so country records are not needed
-      self.countries.destroy_all
-    end
-  end
 
   #######################
   ## SCOPES
@@ -178,6 +157,18 @@ class ExternalIndicator < ActiveRecord::Base
   #######################
   ## METHODS
 
+  def is_basic?
+    self.indicator_type == INDICATOR_TYPES[:basic]
+  end
+
+  def is_country?
+    self.indicator_type == INDICATOR_TYPES[:country]
+  end
+
+  def is_composite?
+    self.indicator_type == INDICATOR_TYPES[:composite]
+  end
+
   def full_title(delim = ' - ')
     "#{self.title}#{delim}#{self.subtitle}"
   end
@@ -200,7 +191,7 @@ class ExternalIndicator < ActiveRecord::Base
 
   # get the name of the indicator type
   def indicator_type_name
-    I18n.t("shared.external_indicators.indicator_types.#{INDICATOR_TYPES.keys[INDICATOR_TYPES.values.index(self.chart_type)]}")
+    I18n.t("shared.external_indicators.indicator_types.#{INDICATOR_TYPES.keys[INDICATOR_TYPES.values.index(self.indicator_type)]}")
   end
 
   # get the name of the chart type
@@ -210,7 +201,7 @@ class ExternalIndicator < ActiveRecord::Base
 
   # get the name of the scale type
   def scale_type_name
-    I18n.t("shared.external_indicators.scale_types.#{SCALE_TYPES.keys[SCALE_TYPES.values.index(self.chart_type)]}")
+    I18n.t("shared.external_indicators.scale_types.#{SCALE_TYPES.keys[SCALE_TYPES.values.index(self.scale_type)]}")
   end
 
   # format the data for charting
@@ -318,5 +309,120 @@ class ExternalIndicator < ActiveRecord::Base
 
   end
 
+
+
+  #######################
+  #######################
+  private
+
+  # after load, populate data hash
+  # format: {
+  #   time_periods: [{id, name}]
+  #   countries: [{id, name}]
+  #   indexes: [{id, name, short_name, description, change_multiplier}]
+  #   data: [{time_period, overall_value, overall_change, values[{index/country, value, change}] }]
+  # }
+  def load_data_hash
+    self.data_hash = self.data.present? ? JSON.parse(self.data, symbolize_names: true) : {}
+    return true
+  end
+
+  # convert the data hash to json string
+  def set_data
+    self.data = self.data_hash.to_json if self.data_hash.present?
+    return true
+  end
+
+  def reset_unwanted_fields
+    if self.indicator_type == INDICATOR_TYPES[:country]
+      # this is country, so index records are not needed
+      self.indices.destroy_all
+    elsif self.indicator_type == INDICATOR_TYPES[:composite]
+      # this is index, so country records are not needed
+      self.countries.destroy_all
+    end
+    return true
+  end
+
+  # set the change value when compared to the last time period
+  def set_change_values
+    if self.update_change_values == true
+      if self.time_periods.length == 1
+        # there is only one record, so all change values should be nil
+        self.time_periods.each do |tp|
+          tp.overall_change = nil
+          tp.data.each do |datum|
+            datum.change = nil
+          end
+        end
+      else
+        # compare each time period with the previous time period and compute the change value
+        # start with the most recent and go backwards
+        (self.time_periods.length-1).downto(1).each do |index|
+          current = self.time_periods[index]
+          previous = self.time_periods[index-1]
+
+          # if this is composite indicator, then update the overall_change in time period
+          if self.is_composite?
+            current.overall_change = compute_change(current.overall_value, previous.overall_value)
+          end
+
+          # compute change for the data values
+          current.data.each_with_index do |current_datum, current_index|
+            if self.is_country?
+              # find country in previous
+              previous_datum = previous.data.select{|x| x.country_id == current_datum.country_id}.first
+              if previous_datum.present?
+                current_datum.change = compute_change(current_datum.value, previous_datum.value)
+              else
+                # could not find the previous matching record, so reset to nil
+                current_datum.change = nil
+              end
+
+            elsif self.is_composite?
+              # find index in previous
+              previous_datum = previous.data.select{|x| x.index_id == current_datum.index_id}.first
+              if previous_datum.present?
+                # get change_multiplier value for this index
+                index = self.indices.select{|x| x.id == current_datum.index_id}.first
+                current_datum.change = compute_change(current_datum.value, previous_datum.value, index.present? ? index.change_multiplier : 1)
+              else
+                # could not find the previous matching record, so reset to nil
+                current_datum.change = nil
+              end
+
+            else # basic
+              previous_datum = previous.data[current_index]
+              if previous_datum.present?
+                current_datum.change = compute_change(current_datum.value, previous_datum.value)
+              else
+                # could not find the previous matching record, so reset to nil
+                current_datum.change = nil
+              end
+            end
+          end
+        end
+      end
+    end
+
+    return true
+  end
+
+  # any change in value is a change
+  def compute_change(current_value, previous_value, change_multiplier=1)
+    return nil if current_value.nil? || previous_value.nil?
+
+    diff = current_value - previous_value
+    change = nil
+    if diff < 0
+      change = -1
+    elsif diff > 0
+      change = 1
+    else
+      change = 0
+    end
+
+    return change * change_multiplier
+  end
 
 end

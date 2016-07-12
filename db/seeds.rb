@@ -236,9 +236,44 @@ if ENV['load_test_data'].present?
     News.create(quarter_id: q3.id, reform_id: reform1.id, title: 'This is reform news', content: "<p>this is #{reform3.name} reform news for Q4 2015</p>", url: 'http://google.ge')
 
 
+
     # external indicators
+    csv_path = "#{Rails.root}/db/test_external_indicator_files/"
     puts 'creating external indicators'
-    ei1 = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true)
+    ei = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true)
+    csv_data = CSV.read(csv_path + 'growth.csv')
+
+    # countries
+    csv_data[0].each_with_index do |header, index|
+      if index > 0
+        ei.countries.build(name: header, sort_order: index)
+      end
+    end
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index])
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+
+
     data = {
       countries: [
         {id: 1, name: 'Georgia'},
@@ -335,12 +370,48 @@ if ENV['load_test_data'].present?
         ]}
       ]
     }
-    ei1.data = data.to_json
-    ei1.save
-    ei1.reforms << reform1
+    ei.data = data.to_json
+    ei.update_change_values = false
+    ei.save
+    ei.reforms << reform1
 
 
-    ei2 = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, is_public: true)
+    ei = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, is_public: true)
+    csv_data = CSV.read(csv_path + 'gesi.csv')
+
+    # indices
+    ei.indices.build(name: 'Business Confidence Index', short_name: 'BCI', sort_order: 1)
+    ei.indices.build(name: 'Consumer Confidence Index', short_name: 'CCI', sort_order: 2)
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            if c_index == 1
+              time.overall_value = row[c_index]
+            else
+              time.data.build(index_id: ei.indices[c_index-2].id, value: row[c_index])
+            end
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+
+
+
     data = {
       indexes: [
         {id: 1, name: 'Business Confidence Index', short_name: 'BCI', change_multiplier: 1},
@@ -376,12 +447,56 @@ if ENV['load_test_data'].present?
         ]}
       ]
     }
-    ei2.data = data.to_json
-    ei2.save
-    ei2.reforms << reform2
+    ei.data = data.to_json
+    ei.update_change_values = false
+    ei.save
+    ei.reforms << reform2
 
 
-    ei3 = ExternalIndicator.new(title: 'How is the economy doing?', subtitle: 'Georgian Economic Performance Index (G-EPI)', scale_type: 1, indicator_type: 3, chart_type: 1, min: 0, max: 100, show_on_home_page: true, is_public: true)
+    ei = ExternalIndicator.new(title: 'How is the economy doing?', subtitle: 'Georgian Economic Performance Index (G-EPI)', scale_type: 1, indicator_type: 3, chart_type: 1, min: 0, max: 100, show_on_home_page: true, is_public: true)
+    csv_data = CSV.read(csv_path + 'gepi.csv')
+
+    # indices
+    ei.indices.build(name: 'Difference in borrowing and lending rates of financial institutions', short_name: 'Net Interest Spread', change_multiplier: -1, sort_order: 1)
+    ei.indices.build(name: 'Georgia’s performance in the OECD Programme for International Student Assessment (Pisa)', short_name: 'Pisa', change_multiplier: 1, sort_order: 2)
+    ei.indices.build(name: 'Waste water treatment capacity per capita', short_name: 'Waste water treatment capacity per capita', change_multiplier: 1, sort_order: 3)
+    ei.indices.build(name: 'The change in real GDP', short_name: '%∆GDP', change_multiplier: 1, sort_order: 4)
+    ei.indices.build(name: 'Dollarization rate of the Georgian economy', short_name: 'Dollarization Rate', change_multiplier: -1, sort_order: 5)
+    ei.indices.build(name: 'Share of investment in total GDP ', short_name: 'Investment % of GDP', change_multiplier: 1, sort_order: 6)
+    ei.indices.build(name: 'Degree of export diversification across major geographic jurisdictions', short_name: 'Export Diversification', change_multiplier: 1, sort_order: 7)
+    ei.indices.build(name: 'Degree of export innovation (measured as the share of new products and services in total exports)', short_name: 'Creative Export', change_multiplier: 1, sort_order: 8)
+    ei.indices.build(name: 'Share of formally employed in Georgia’s total population', short_name: 'Formal Employment', change_multiplier: 1, sort_order: 9)
+    ei.indices.build(name: 'Gini coefficient as measure of income inequality', short_name: 'Gini', change_multiplier: -1, sort_order: 10)
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            if c_index == 1
+              time.overall_value = row[c_index]
+            else
+              time.data.build(index_id: ei.indices[c_index-2].id, value: row[c_index])
+            end
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+
+
+
     data = {
       indexes: [
         {id: 1, name: 'Difference in borrowing and lending rates of financial institutions', short_name: 'Net Interest Spread', change_multiplier: -1},
@@ -556,10 +671,36 @@ if ENV['load_test_data'].present?
         ]}
       ]
     }
-    ei3.data = data.to_json
-    ei3.save
+    ei.data = data.to_json
+    ei.update_change_values = false
+    ei.save
 
-    ei4 = ExternalIndicator.new(title: 'Georgia Growth of Total Factor Productivity', scale_type: 2, indicator_type: 1, chart_type: 1, is_public: true)
+    ei = ExternalIndicator.new(title: 'Georgia Growth of Total Factor Productivity', scale_type: 2, indicator_type: 1, chart_type: 1, is_public: true)
+    csv_data = CSV.read(csv_path + 'geo_growth.csv')
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            time.data.build(value: row[c_index])
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+
     data = {
       time_periods: [
         {id: 1, name: '2003'},
@@ -614,13 +755,47 @@ if ENV['load_test_data'].present?
         ]}
       ]
     }
-    ei4.data = data.to_json
-    ei4.save
-    ei4.reforms << reform1
-    ei4.reforms << reform2
-    ei4.reforms << reform3
+    ei.data = data.to_json
+    ei.update_change_values = false
+    ei.save
+    ei.reforms << reform1
+    ei.reforms << reform2
+    ei.reforms << reform3
 
-    ei5 = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true)
+
+    ei = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true)
+    csv_data = CSV.read(csv_path + 'growth.csv')
+
+    # countries
+    csv_data[0].each_with_index do |header, index|
+      if index > 0
+        ei.countries.build(name: header, sort_order: index)
+      end
+    end
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index])
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+
     data = {
       countries: [
         {id: 1, name: 'Georgia'},
@@ -730,9 +905,10 @@ if ENV['load_test_data'].present?
         ]}
       ]
     }
-    ei5.data = data.to_json
-    ei5.save
-    ei5.reforms << reform1
+    ei.data = data.to_json
+    ei.update_change_values = false
+    ei.save
+    ei.reforms << reform1
 
     puts 'LOADING TEST DATA DONE'
   end

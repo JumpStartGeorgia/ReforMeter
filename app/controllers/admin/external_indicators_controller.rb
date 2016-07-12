@@ -1,5 +1,5 @@
 class Admin::ExternalIndicatorsController < ApplicationController
-  before_action :set_external_indicator, only: [:show, :edit, :update, :destroy]
+  before_action :set_external_indicator, only: [:show, :edit, :update, :destroy, :data]
   before_action :set_type_arrays, only: [:new, :edit, :create, :update]
   authorize_resource
 
@@ -48,6 +48,7 @@ class Admin::ExternalIndicatorsController < ApplicationController
   # PATCH/PUT /admin/external_indicators/1.json
   def update
     respond_to do |format|
+
       if @external_indicator.update(external_indicator_params)
         format.html { redirect_to [:admin, @external_indicator], notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.external_indicator', count: 1)) }
@@ -64,6 +65,17 @@ class Admin::ExternalIndicatorsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_external_indicators_url, notice: t('shared.msgs.success_destroyed',
                             obj: t('activerecord.models.external_indicator', count: 1)) }
+    end
+  end
+
+
+  def data
+    if request.patch?
+      @external_indicator.update_change_values = true
+      if @external_indicator.update(external_indicator_params)
+        flash[:notice] = t('shared.msgs.success_updated',
+                            obj: t('activerecord.models.external_indicator', count: 1))
+      end
     end
   end
 
@@ -100,6 +112,8 @@ class Admin::ExternalIndicatorsController < ApplicationController
         indices_attributes: [ExternalIndicatorIndex.globalize_attribute_names + [:id, :_destroy, :change_multiplier, :sort_order, :external_indicator_id]],
         countries_attributes: [ExternalIndicatorCountry.globalize_attribute_names + [:id, :_destroy, :sort_order, :external_indicator_id]],
         plot_bands_attributes: [ExternalIndicatorPlotBand.globalize_attribute_names + [:id, :_destroy, :to, :from, :external_indicator_id]],
+        time_periods_attributes: [ExternalIndicatorTime.globalize_attribute_names + [:id, :_destroy, :sort_order, :overall_value, :external_indicator_id],
+        data_attributes: [:id, :_destroy, :value, :country_id, :index_id, :external_indicator_time_id]]
       ]
       params.require(:external_indicator).permit(*permitted)
     end

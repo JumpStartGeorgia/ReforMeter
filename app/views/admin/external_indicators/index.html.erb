@@ -45,6 +45,12 @@
                         class: 'btn btn-default'
           end %>
 
+          <%= if can? :edit, external_indicator
+                link_to t('shared.actions.manage_data'),
+                        data_admin_external_indicator_path(external_indicator),
+                        class: 'btn btn-default'
+          end %>
+
           <%= if can? :destroy, external_indicator
                 link_to t('shared.actions.destroy'),
                         admin_external_indicator_path(external_indicator),

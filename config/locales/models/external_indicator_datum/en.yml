@@ -1,0 +1,13 @@
+---
+en:
+  activerecord:
+    attributes:
+      external_indicator_datum:
+        value: Value
+        change: Change
+        country_id: Country
+        index_id: Composite Index
+    models:
+      external_indicator_datum:
+        one: Datum
+        other: Data
