@@ -10,12 +10,19 @@
   .loadingIndicator-image {
     z-index: 9999;
     margin: auto;
-    // transform: rotate(90deg);
   }
 
+    .loadingIndicator-image-dial-container {
+      transform: translate(97px, 93px);
+    }
+
     .loadingIndicator-image-dial {
-      transform-origin: 88% center;
       animation: rotation180 4s infinite alternate;
+    }
+
+    .loadingIndicator-image-dial path {
+      transform-origin: 88% 50%;
+      transform: translate(-97px, -93px);
     }
 
 @keyframes rotation180 {
