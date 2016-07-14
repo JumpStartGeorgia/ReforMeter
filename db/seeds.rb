@@ -517,6 +517,12 @@ Quarter.transaction do
     ei.indices.build(name: 'Share of formally employed in Georgia’s total population', short_name: 'Formal Employment', change_multiplier: 1, sort_order: 9)
     ei.indices.build(name: 'Gini coefficient as measure of income inequality', short_name: 'Gini', change_multiplier: -1, sort_order: 10)
 
+    # plot bands
+    ei.plot_bands.build(name: 'Fail', from: 0, to: 25)
+    ei.plot_bands.build(name: 'Poor', from: 25, to: 50)
+    ei.plot_bands.build(name: 'Fair', from: 50, to: 75)
+    ei.plot_bands.build(name: 'Good', from: 75, to: 100)
+
     # times
     csv_data.map{|x| x[0]}.each_with_index do |time, index|
       if index > 0

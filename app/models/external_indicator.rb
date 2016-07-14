@@ -139,33 +139,6 @@ class ExternalIndicator < ActiveRecord::Base
     end
   end
 
-  # if this is country and line -> line
-  # else if line -> area
-  # else column
-  def custom_highchart_type
-    if chart_type == CHART_TYPES[:bar]
-      'external-indicator-bar'
-    else
-      if indicator_type == INDICATOR_TYPES[:country]
-        'external-indicator-line-time-series'
-      else
-        'external-indicator-area-time-series'
-      end
-    end
-  end
-
-  def unit_is_percent?
-    scale_type == SCALE_TYPES[:percent]
-  end
-
-  def unit
-    unit_is_percent? ? '%' : nil
-  end
-
-  def unit_label
-    unit_is_percent? ? I18n.t('shared.common.percent') : nil
-  end
-
   #######################
   ## METHODS
 
@@ -216,6 +189,33 @@ class ExternalIndicator < ActiveRecord::Base
     I18n.t("shared.external_indicators.scale_types.#{SCALE_TYPES.keys[SCALE_TYPES.values.index(self.scale_type)]}")
   end
 
+  # if this is country and line -> line
+  # else if line -> area
+  # else column
+  def custom_highchart_type
+    if chart_type == CHART_TYPES[:bar]
+      'external-indicator-bar'
+    else
+      if indicator_type == INDICATOR_TYPES[:country]
+        'external-indicator-line-time-series'
+      else
+        'external-indicator-area-time-series'
+      end
+    end
+  end
+
+  def unit_is_percent?
+    scale_type == SCALE_TYPES[:percent]
+  end
+
+  def unit
+    unit_is_percent? ? '%' : nil
+  end
+
+  def unit_label
+    unit_is_percent? ? I18n.t('shared.common.percent') : nil
+  end
+
   # format the data for charting
   # - use the indicator type to create the proper hash format for charting
   # format: title, subtitle, min, max, categories[], series[ {name: '', data: [ {y, change} ] } ]
@@ -232,11 +232,193 @@ class ExternalIndicator < ActiveRecord::Base
       max: max,
       unitLabel: unit_label,
       categories: [],
+      series: [],
+      plot_bands: nil
+    }
+
+    # add x-axis lables (categories)
+    time = self.time_periods.sorted
+    hash[:categories] = time.map{|x| x.name}
+
+    # if there are plot bands, add them
+    plot_bands = self.plot_bands.sorted
+    if plot_bands.present?
+      hash[:plot_bands] = []
+      plot_bands.each_with_index do |pb, index|
+        hash[:plot_bands] << {from: pb.from, to: pb.to, text: pb.name, opacity: (0.4 + index*0.6/(plot_bands.length-1))}
+      end
+    end
+
+    dash_styles = [
+      'Solid',
+      'Dot',
+      'LongDash',
+      'ShortDash',
+      'ShortDot',
+      'ShortDashDot',
+      'LongDashDotDot'
+    ]
+
+    # add data
+    # based off of indicator type, build the data accordingly
+    case indicator_type
+    when INDICATOR_TYPES[:basic]
+      # hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:values].first[:value], change: x[:values].first[:change]}}}
+      hash[:series] << {data: time.map{|x| {y: x.data.first.value.to_f, change: x.data.first.change}  }}
+    when INDICATOR_TYPES[:country]
+
+      self.countries.sorted.each_with_index do |country, index|
+        # start the item for the series
+        item = {
+          name: country.name,
+          dashStyle: dash_styles[index % dash_styles.length],
+          data: []
+        }
+
+        # for each time period, get the country data
+        time.each do |tp|
+          # get country data
+          d = tp.data.select{|x| x.country_id == country.id}.first
+          if d.present?
+            item[:data] << {
+              y: d.value.to_f,
+              change: d.change
+            }
+          else
+            item[:data] << {
+              y: nil,
+              change: nil
+            }
+          end
+        end
+
+        hash[:series] << item
+      end
+
+
+
+      # data_hash[:countries].each_with_index do |country, index|
+
+      #   item = {
+      #     name: country[:name],
+      #     dashStyle: dash_styles[index % dash_styles.length],
+      #     data: []
+      #   }
+
+      #   data_hash[:data].each do |data|
+
+      #     # find the data item for this country
+      #     d = data[:values].find do |x|
+      #       x[:country] == country[:id]
+      #     end
+
+      #     if d.present?
+      #       item[:data] << {
+      #         y: d[:value],
+      #         change: d[:change]
+      #       }
+      #     else
+      #       item[:data] << {
+      #         y: nil,
+      #         change: nil
+      #       }
+      #     end
+      #   end
+
+      #   hash[:series] << item
+      # end
+
+    when INDICATOR_TYPES[:composite]
+      # the overall value is first
+      hash[:series] << {
+        name: I18n.t('shared.categories.overall'),
+        data: time.map do |x|
+          {
+            y: x.overall_value.to_f,
+            change: x.overall_change
+          }
+        end
+      }
+
+      # get the index values
+      hash[:indexes] = []
+      self.indices.sorted.each_with_index do |ind, index|
+        item = {name: ind.name, short_name: ind.short_name, data: []}
+
+        # for each time period, get the country data
+        time.each do |tp|
+          # get country data
+          d = tp.data.select{|x| x.index_id == ind.id}.first
+          if d.present?
+            item[:data] << {
+              y: d.value.to_f,
+              change: d.change
+            }
+          else
+            item[:data] << {
+              y: nil,
+              change: nil
+            }
+          end
+        end
+        hash[:indexes] << item
+      end
+
+      # # get the overall values for charting
+      # hash[:series] << {
+      #   name: I18n.t('shared.categories.overall'),
+      #   data: data_hash[:data].map do |x|
+      #     {
+      #       y: x[:overall_value],
+      #       change: x[:overall_change]
+      #     }
+      #   end
+      # }
+
+      # # get the index values
+      # hash[:indexes] = []
+      # self.data_hash[:indexes].each do |index|
+      #   item = {name: index[:name], short_name: index[:short_name], data: []}
+      #   self.data_hash[:data].each do |data|
+      #     # find the data item for this index
+      #     d = data[:values].select{|x| x[:index] == index[:id]}.first
+      #     if d.present?
+      #       item[:data] << {
+      #         y: d[:value],
+      #         change: d[:change]
+      #       }
+      #     else
+      #       item[:data] << {
+      #         y: nil,
+      #         change: nil
+      #       }
+      #     end
+      #   end
+      #   hash[:indexes] << item
+      # end
+    end
+
+    return hash
+
+  end
+
+  def format_for_charting_old
+    hash = {
+      id: "external-indicator-#{id}",
+      chartType: custom_highchart_type,
+      description: description,
+      title: title,
+      subtitle: subtitle,
+      min: min,
+      max: max,
+      unitLabel: unit_label,
+      categories: [],
       series: []
     }
 
     # add x-axis lables (categories)
-    hash[:categories] = self.data_hash[:time_periods].map{|x| x[:name]}
+    time = self.time_periods.sorted
+    hash[:categories] = time.map{|x| x.name}
 
     dash_styles = [
       'Solid',
@@ -253,7 +435,6 @@ class ExternalIndicator < ActiveRecord::Base
     case indicator_type
     when INDICATOR_TYPES[:basic]
       hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:values].first[:value], change: x[:values].first[:change]}}}
-
     when INDICATOR_TYPES[:country]
 
       data_hash[:countries].each_with_index do |country, index|
@@ -288,6 +469,7 @@ class ExternalIndicator < ActiveRecord::Base
       end
 
     when INDICATOR_TYPES[:composite]
+
       # get the overall values for charting
       hash[:series] << {
         name: I18n.t('shared.categories.overall'),

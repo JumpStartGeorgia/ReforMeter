@@ -12,6 +12,11 @@ class Admin::ExternalIndicatorsController < ApplicationController
   # GET /admin/external_indicators/1
   # GET /admin/external_indicators/1.json
   def show
+    gon.chart_download = highchart_export_config
+    gon.change_icons = view_context.change_icons
+
+    @chart_data = @external_indicator.format_for_charting
+    gon.charts = [@chart_data]
   end
 
   # GET /admin/external_indicators/new

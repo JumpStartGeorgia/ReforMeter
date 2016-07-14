@@ -41,3 +41,5 @@ en:
         plot_band_explanation: A Plot Band is a group of labels that appear on the y-axis to help give context to the values (i.e., behind, on track, ahead). Plot bands are optional. If you want plot bands, enter the text and the range of the band.
       data:
         title: Manage Data for %{name}
+      show:
+        title: "External Indicator: %{name}"

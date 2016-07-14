@@ -1,20 +1,30 @@
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
   var color = externalIndicatorChart.colorHash;
-  var max = chartData.max;
   var spacingLeft = localeIs('ka') ? 120 : 80;
 
+  // plotBands is array of plot bands from chartData
+  // create settings for each plot band
   function plotBands(plotBands) {
-    $(plotBands).each(
-      function() {
-        this.label.x = localeIs('ka') ? -140 : -100;
-        this.label.verticalAlign = 'middle';
-        this.label.style.fontSize = localeIs('ka') ? '14px' : '16px';
-        this.label.style.fontWeight = '600';
-      }
-    );
+    var bands = [];
+    $(plotBands).each(function() {
+      bands.push({
+        from: this.from,
+        to: this.to,
+        label: {
+          text: this.text,
+          style: {
+            color: outputHighchartsColorString(color, this.opacity),
+            fontSize: localeIs('ka') ? '14px' : '16px',
+            fontWeight: '600'
+          },
+          x: localeIs('ka') ? -140 : -100,
+          verticalAlign: 'middle'
+        }
+      });
+    });
 
-    return plotBands;
+    return bands;
   }
 
   var options = {
@@ -90,47 +100,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
-      plotBands: plotBands(
-        [
-          {
-            from: max * 0,
-            to: max * .25,
-            label: {
-              text: chartData.translations.fail,
-              style: {
-                color: outputHighchartsColorString(color, '.4')
-              }
-            }
-          }, {
-            from: max * .25,
-            to: max * .5,
-            label: {
-              text: chartData.translations.poor,
-              style: {
-                color: outputHighchartsColorString(color, '.6')
-              }
-            }
-          }, {
-            from: max * .5,
-            to: max * .75,
-            label: {
-              text: chartData.translations.fair,
-              style: {
-                color: outputHighchartsColorString(color, '.8')
-              }
-            }
-          }, {
-            from: max * .75,
-            to: max,
-            label: {
-              text: chartData.translations.good,
-              style: {
-                color: outputHighchartsColorString(color, '1')
-              }
-            }
-          }
-        ]
-      ),
+      plotBands: plotBands(chartData.plot_bands),
       title: {
         text: chartData.unitLabel
       }

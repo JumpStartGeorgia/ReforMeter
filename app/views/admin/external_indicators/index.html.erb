@@ -15,6 +15,7 @@
 <table class='table table-striped table-hover table-nonfluid datatable-admin'>
   <thead>
     <tr>
+      <th></th>
       <th><%=t 'activerecord.attributes.external_indicator.title' %></th>
       <th><%=t 'activerecord.attributes.external_indicator.indicator_type' %></th>
       <th><%=t 'activerecord.attributes.external_indicator.chart_type' %></th>
@@ -30,6 +31,11 @@
   <tbody>
     <% @external_indicators.each do |external_indicator| %>
       <tr>
+        <td>
+          <%= link_to t('shared.actions.view'),
+                      admin_external_indicator_path(external_indicator),
+                      class: 'btn btn-default' %>
+        </td>
         <td><%= external_indicator.full_title('<br />').html_safe %></td>
         <td><%= external_indicator.indicator_type_name %></td>
         <td><%= external_indicator.chart_type_name %></td>

@@ -26,6 +26,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
       }
     },
     yAxis: {
+      plotBands: plotBands(chartData.plot_bands),
       title: {
         text: chartData.unitLabel
       }
