@@ -1,3 +1,4 @@
+
 <%
 @do_not_use_default_page_layout = true
 show_admin_links ||= false
@@ -27,12 +28,10 @@ show_admin_links ||= false
       <div>
 
         <%= t('shared.common.change_time') %>:
-        <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= experts_path %>'>
+        <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= review_board_path %>'>
 
           <% @active_quarters.each do |active_quarter| %>
-            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
-              <%= active_quarter[0] %>
-            </option>
+            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
           <% end %>
 
         </select>
@@ -63,33 +62,43 @@ show_admin_links ||= false
 
       <% if @quarter.expert_survey.summary %>
         <div class='summaryGaugesContainer-summary'>
-          <%= simple_format_no_tags(@quarter.expert_survey.summary) %>
+          <%= simple_format(@quarter.expert_survey.summary) %>
         </div>
       <% end %>
 
       <section class='gaugesContainer'>
 
-        <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='overall'></div>
+        <div class='gaugesContainer-exportButton'>
+
+          <button class='js-export-chart-group downloadChartsButton' data-export-id='fdsajkfda132reware53243eare1' type='button'>
+            <%= inline_svg('download.svg') %>
+          </button>
+
+        </div>
+
+        <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='overall' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
 
         <div class='gaugesContainer-small'>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='performance'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='performance' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='goals'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='goals' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
 
-          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='progress'></div>
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='progress' data-exportable-by-id='fdsajkfda132reware53243eare1'></div>
 
         </div>
 
       </section>
     </div>
 
-    <div>
+    <section>
       <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
         <li class='tabList-item'>
-          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
-            <%= t('.header.chart') %>
+          <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
+            <h2 class='heading'>
+              <%= t('.header.chart') %>
+            </h2>
           </button>
         </li>
 
@@ -108,9 +117,9 @@ show_admin_links ||= false
         </div>
 
         <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>
-          <% if @methodology_expert %>
+          <% if @methodology_review_board %>
             <div>
-              <%= simple_format_no_tags(@methodology_expert.content) %>
+              <%= simple_format_no_tags(@methodology_review_board.content) %>
             </div>
           <% else %>
             <p>
@@ -121,7 +130,7 @@ show_admin_links ||= false
 
       </div>
 
-    </div>
+    </section>
 
   </div>
 
@@ -153,7 +162,7 @@ show_admin_links ||= false
 
       <div class='contentSection-body'>
 
-        <div class="tabContent js-act-as-tab-content">
+        <div class='tabContent js-act-as-tab-content'>
 
           <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='findings'>
             <% if @quarter.expert_survey.details %>
@@ -168,37 +177,43 @@ show_admin_links ||= false
           </div>
 
           <div class='tabContent-panel js-act-as-tab-content-panel' id='experts'>
-            <h3 class='heading mod-vertical-margin'>
-              The Experts
-            </h3>
 
-            <% if @quarter.expert_survey.experts %>
-              <ul class='expertList'>
-                <% @quarter.expert_survey.experts.each do |expert| %>
+            <ul class='expertList mod-two-columns'>
 
-                  <li class='expertList-item'>
+              <% if @quarter.expert_survey.experts.each do |expert| %>
 
-                    <h4 class='expertList-item-heading'>
-                      <%= expert.name %>
-                    </h4>
+                <li class='expertList-item'>
+
+                  <%= link_to review_board_path(anchor: "expert-#{expert.id}"),
+                              class: 'expertList-item-imageLink' do %>
 
                     <%= image_tag(expert.avatar.url('100x100'),
-                                  class: 'expertList-item-image') %>
+                                  class: 'expertList-item-imageLink-image') %>
 
-                    <% if expert.bio %>
-                      <%= simple_format(expert.bio) %>
-                    <% end %>
+                  <% end %>
 
-                  </li>
+                  <h4 class='expertList-item-heading'>
 
-                <% end %>
-              </ul>
+                    <%= link_to expert.name,
+                                review_board_path(anchor: "expert-#{expert.id}"),
+                                class: 'link mod-no-decoration' %>
 
-            <% else %>
-              <p>
-               <%= t('.no_experts') %>
-              </p>
-            <% end %>
+                  </h4>
+
+                </li>
+
+              <% end.empty? %>
+
+                <li>
+
+                  <%= t('.no_experts') %>
+
+                </li>
+
+              <% end %>
+
+            </ul>
+
           </div>
 
         </div>

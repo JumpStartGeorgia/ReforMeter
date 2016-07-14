@@ -1,18 +1,19 @@
 <div class='externalIndicatorChartContainer'>
 
-  <div class='js-become-highchart' data-chart-type='<%= ext_ind_chart[:chartType] %>' data-id='<%= ext_ind_chart[:id] %>'></div>
+  <div class='js-become-highchart' data-chart-type='<%= external_indicator[:chartType] %>' data-id='<%= external_indicator[:id] %>'></div>
 
-  <% if ext_ind_chart[:indexes].present? %>
+  <% if external_indicator[:indexes].present? %>
 
     <ul class='chartIndexes js-act-as-chart-indexes-container'>
 
-      <% ext_ind_chart[:indexes].each do |index| %>
+      <% external_indicator[:indexes].each do |index| %>
 
         <% most_recent_data_point = index[:data].last %>
 
-        <li class='chartIndexes-item js-make-index-updatable-by-chart'>
-
-          <span title='<%= index[:name] %>' class='js-act-as-index-name'>
+        <li class='chartIndexes-item js-act-as-index-box' original-title='<h4 class="chartIndexes-item-tooltip-heading"><%= index[:name] %></h4><div class="chartIndexes-item-tooltip-description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>'>
+          <span class='js-act-as-index-name'>
             <%= index[:short_name] %>
           </span>
 

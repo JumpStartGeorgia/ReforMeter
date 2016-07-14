@@ -28,21 +28,20 @@
 <hr />
 
 <% if @quarter.present? %>
-  <div class="form-quarter-details">
-    <div class="form-quarter-details-top">
+
+<div>
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#overview" aria-controls="home" role="tab" data-toggle="tab">Overview</a></li>
+    <li role="presentation"><a href="#expert-survey" aria-controls="profile" role="tab" data-toggle="tab"><%=t 'activerecord.attributes.quarter.expert_survey' %></a></li>
+    <li role="presentation"><a href="#reform-surveys" aria-controls="messages" role="tab" data-toggle="tab"><%=t 'activerecord.attributes.quarter.reform_surveys' %></a></li>
+  </ul>
+
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane-quarters tab-pane active" id="overview">
+
       <div class="row">
-        <div class="col-md-4">
-          <strong><%=t 'activerecord.attributes.quarter.time_period' %>: </strong>
-          <%= @quarter.time_period %>
-        </div>
-        <div class="col-md-4">
-          <strong><%=t 'activerecord.attributes.quarter.report' %>:</strong>
-          <% if @quarter.report.exists? %>
-            <%= link_to t('shared.actions.view'), @quarter.report.url,
-                          class: 'btn btn-default btn-sm',
-                          target: :blank %>
-          <% end %>
-        </div>
         <div class="col-md-4">
           <strong><%=t 'activerecord.attributes.quarter.is_public' %>:</strong>
           <%= format_boolean_flag(@quarter.is_public) %>
@@ -61,15 +60,13 @@
                     class: 'btn btn-success btn-sm' %>
           <% end %>
         </div>
-      </div>
-      <div class="row">
         <div class="col-md-4">
-          <strong><%=t 'activerecord.attributes.quarter.summary_good' %>:</strong>
-          <%= simple_format(@quarter.summary_good) %>
-        </div>
-        <div class="col-md-4">
-          <strong><%=t 'activerecord.attributes.quarter.summary_bad' %>:</strong>
-          <%= simple_format(@quarter.summary_bad) %>
+          <strong><%=t 'activerecord.attributes.quarter.report' %>:</strong>
+          <% if @quarter.report.exists? %>
+            <%= link_to t('shared.actions.view'), @quarter.report.url,
+                          class: 'btn btn-default btn-sm',
+                          target: :blank %>
+          <% end %>
         </div>
         <div class="col-md-4 text-right">
           <%= if can? :edit, @quarter
@@ -87,172 +84,192 @@
           end %>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <strong><%=t 'activerecord.attributes.quarter.summary_good' %>:</strong>
+          <%= simple_format(@quarter.summary_good) %>
+        </div>
+        <div class="col-md-6">
+          <strong><%=t 'activerecord.attributes.quarter.summary_bad' %>:</strong>
+          <%= simple_format(@quarter.summary_bad) %>
+        </div>
+      </div>
+
     </div>
 
-    <hr />
+    <div role="tabpanel" class="tab-pane-quarters tab-pane" id="expert-survey">
 
-    <div class="form-quarter-details-bottom">
-      <div class="row">
-        <div class="col-md-4 form-expert-survey-items">
-          <h3><%=t 'activerecord.attributes.quarter.expert_survey' %></h3>
+      <% if @quarter.expert_survey.present? %>
+        <div class="row">
+          <div class="col-md-2">
+            <strong><%= t('shared.categories.overall') %></strong>
+          </div>
+          <div class="col-md-3">
+            <strong><%=t 'shared.common.actions' %></strong>
+          </div>
+        </div>
+        <div class="form-survey-item">
+          <div class="row">
+            <div class="col-md-2">
+              <%= @quarter.expert_survey.overall_score %>
+              <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
+            </div>
+            <div class="col-md-3">
+              <%= link_to t('shared.actions.view'),
+                      admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
+                      class: 'btn btn-default btn-sm' %>
+              <%= link_to t('shared.actions.edit'),
+                      edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
+                      class: 'btn btn-default btn-sm' %>
+            </div>
+          </div>
 
-          <% if @quarter.expert_survey.present? %>
+          <div class="form-survey-news">
             <div class="form-survey-header">
-              <div class="row">
-                <div class="col-md-6">
-                  <%= t('shared.categories.overall') %>
+              <strong><%=t 'activerecord.attributes.quarter.news' %>:</strong>
+              &nbsp;&nbsp;
+              <%= link_to t('shared.actions.add'),
+                      new_admin_quarter_news_path(@quarter),
+                      class: 'btn btn-primary btn-sm' %>
+            </div>
+            <%
+              # get the news that does not have a reform id
+              news = @quarter.news.select{|x| x.reform_id.nil?}
+              if news.present?
+            %>
+
+              <% news.each do |news_item| %>
+                <div class="form-news-item">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <%= news_item.title %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= link_to t('shared.actions.view'),
+                            admin_quarter_news_path(@quarter, news_item),
+                            class: 'btn btn-default btn-sm' %>
+                      <%= link_to t('shared.actions.edit'),
+                            edit_admin_quarter_news_path(@quarter, news_item),
+                            class: 'btn btn-default btn-sm' %>
+                      <%= link_to t('shared.actions.destroy'),
+                            admin_quarter_news_path(@quarter, news_item),
+                            method: :delete,
+                            data: { confirm: t('shared.prompts.confirm') },
+                            class: 'btn btn-danger btn-sm' %>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <%=t 'shared.common.actions' %>
-                </div>
+              <% end %>
+
+            <% end %>
+
+          </div>
+        </div>
+
+      <% else %>
+        <div><%= link_to t('shared.actions.add'),
+                  new_admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
+                  class: 'btn btn-primary btn-sm' %></div>
+      <% end %>
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane-quarters tab-pane" id="reform-surveys">
+      <div><%= link_to t('shared.actions.add'),
+                new_admin_quarter_reform_survey_path(@quarter),
+                class: 'btn btn-primary btn-sm' %></div>
+
+      <% if @quarter.reform_surveys.present? %>
+        <div class="form-survey-header">
+          <div class="row">
+            <div class="col-md-5">
+              <strong><%= t('.table_header.reform') %></strong>
+            </div>
+            <div class="col-md-2">
+              <strong><%= t('.table_header.government') %></strong>
+            </div>
+            <div class="col-md-2">
+              <strong><%= t('.table_header.stakeholder') %></strong>
+            </div>
+            <div class="col-md-3">
+              <strong><%=t 'shared.common.actions' %></strong>
+            </div>
+          </div>
+        </div>
+        <% @quarter.reform_surveys.each do |reform_survey| %>
+          <div class="form-survey-item">
+            <div class="row">
+              <div class="col-md-5">
+                <%= reform_survey.reform.name %>
+              </div>
+              <div class="col-md-2">
+                <%= reform_survey.government_overall_score %>
+                <%= generate_change_icon(reform_survey.government_overall_change) %>
+              </div>
+              <div class="col-md-2">
+                <%= reform_survey.stakeholder_overall_score %>
+                <%= generate_change_icon(reform_survey.stakeholder_overall_change) %>
+              </div>
+              <div class="col-md-3">
+                <%= link_to t('shared.actions.view'),
+                      admin_quarter_reform_survey_path(@quarter, reform_survey),
+                      class: 'btn btn-default btn-sm' %>
+                <%= link_to t('shared.actions.edit'),
+                      edit_admin_quarter_reform_survey_path(@quarter, reform_survey),
+                      class: 'btn btn-default btn-sm' %>
+                <%= link_to t('shared.actions.destroy'),
+                      admin_quarter_reform_survey_path(@quarter, reform_survey),
+                      method: :delete,
+                      data: { confirm: t('shared.prompts.confirm') },
+                      class: 'btn btn-danger btn-sm' %>
               </div>
             </div>
-            <div class="form-survey-item">
-              <div class="row">
-                <div class="col-md-6">
-                  <%= @quarter.expert_survey.overall_score %>
-                  <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
-                </div>
-                <div class="col-md-6">
-                  <%= link_to t('shared.actions.view'),
-                          admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
-                          class: 'btn btn-default btn-sm' %>
-                  <%= link_to t('shared.actions.edit'),
-                          edit_admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
-                          class: 'btn btn-default btn-sm' %>
-                </div>
+
+            <div class="form-survey-news">
+              <div class="form-survey-header">
+                <strong><%=t 'activerecord.attributes.quarter.news' %>:</strong>
+                &nbsp;&nbsp;
+                <%= link_to t('shared.actions.add'),
+                        new_admin_quarter_news_path(@quarter, reform_id: reform_survey.reform_id),
+                        class: 'btn btn-primary btn-sm' %>
               </div>
+              <%
+                # get the news for this reform
+                news = @quarter.news.select{|x| x.reform_id == reform_survey.reform_id}
+                if news.present?
+              %>
 
-              <div class="form-survey-news">
-                <div>
-                  <%=t 'activerecord.attributes.quarter.news' %>:
-                  &nbsp;&nbsp;
-                  <%= link_to t('shared.actions.add'),
-                          new_admin_quarter_news_path(@quarter),
-                          class: 'btn btn-primary btn-xs' %>
-                </div>
-                <%
-                  # get the news that does not have a reform id
-                  news = @quarter.news.select{|x| x.reform_id.nil?}
-                  if news.present?
-                %>
-
-                <ul>
-                    <% news.each do |news_item| %>
-                      <li>
-                        <%= link_to news_item.title, admin_quarter_news_path(@quarter, news_item) %>
+                <% news.each do |news_item| %>
+                  <div class="form-news-item">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <%= news_item.title %>
+                      </div>
+                      <div class="col-md-3">
+                        <%= link_to t('shared.actions.view'),
+                              admin_quarter_news_path(@quarter, news_item),
+                              class: 'btn btn-default btn-sm' %>
                         <%= link_to t('shared.actions.edit'),
                               edit_admin_quarter_news_path(@quarter, news_item),
-                              class: 'btn btn-default btn-xs' %>
+                              class: 'btn btn-default btn-sm' %>
                         <%= link_to t('shared.actions.destroy'),
                               admin_quarter_news_path(@quarter, news_item),
                               method: :delete,
                               data: { confirm: t('shared.prompts.confirm') },
-                              class: 'btn btn-danger btn-xs' %>
-                      </li>
-                    <% end %>
-                  </ul>
+                              class: 'btn btn-danger btn-sm' %>
+                      </div>
+                    </div>
+                  </div>
                 <% end %>
-
-              </div>
+              <% end %>
             </div>
-
-          <% else %>
-            <div><%= link_to t('shared.actions.add'),
-                      new_admin_quarter_expert_survey_path(quarter_id: @quarter.slug),
-                      class: 'btn btn-primary btn-sm' %></div>
-          <% end %>
-        </div>
-
-        <div class="col-md-8 form-reform-survey-items">
-          <h3><%=t 'activerecord.attributes.quarter.reform_surveys' %></h3>
-
-          <div><%= link_to t('shared.actions.add'),
-                    new_admin_quarter_reform_survey_path(@quarter),
-                    class: 'btn btn-primary btn-sm' %></div>
-
-          <% if @quarter.reform_surveys.present? %>
-            <div class="form-survey-header">
-              <div class="row">
-                <div class="col-md-5">
-                  <%= t('.table_header.reform') %>
-                </div>
-                <div class="col-md-2">
-                  <%= t('.table_header.government') %>
-                </div>
-                <div class="col-md-2">
-                  <%= t('.table_header.stakeholder') %>
-                </div>
-                <div class="col-md-3">
-                  <%=t 'shared.common.actions' %>
-                </div>
-              </div>
-            </div>
-            <% @quarter.reform_surveys.each do |reform_survey| %>
-              <div class="form-survey-item">
-                <div class="row">
-                  <div class="col-md-5">
-                    <%= reform_survey.reform.name %>
-                  </div>
-                  <div class="col-md-2">
-                    <%= reform_survey.government_overall_score %>
-                    <%= generate_change_icon(reform_survey.government_overall_change) %>
-                  </div>
-                  <div class="col-md-2">
-                    <%= reform_survey.stakeholder_overall_score %>
-                    <%= generate_change_icon(reform_survey.stakeholder_overall_change) %>
-                  </div>
-                  <div class="col-md-3">
-                    <%= link_to t('shared.actions.view'),
-                          admin_quarter_reform_survey_path(@quarter, reform_survey),
-                          class: 'btn btn-default btn-xs' %>
-                    <%= link_to t('shared.actions.edit'),
-                          edit_admin_quarter_reform_survey_path(@quarter, reform_survey),
-                          class: 'btn btn-default btn-xs' %>
-                    <%= link_to t('shared.actions.destroy'),
-                          admin_quarter_reform_survey_path(@quarter, reform_survey),
-                          method: :delete,
-                          data: { confirm: t('shared.prompts.confirm') },
-                          class: 'btn btn-danger btn-xs' %>
-                  </div>
-                </div>
-
-                <div class="form-survey-news">
-                  <div>
-                    <%=t 'activerecord.attributes.quarter.news' %>:
-                    &nbsp;&nbsp;
-                    <%= link_to t('shared.actions.add'),
-                            new_admin_quarter_news_path(@quarter, reform_id: reform_survey.reform_id),
-                            class: 'btn btn-primary btn-xs' %>
-                  </div>
-                  <%
-                    # get the news for this reform
-                    news = @quarter.news.select{|x| x.reform_id == reform_survey.reform_id}
-                    if news.present?
-                  %>
-
-                    <ul>
-                      <% news.each do |news_item| %>
-                        <li>
-                          <%= link_to news_item.title, admin_quarter_news_path(@quarter, news_item) %>
-                          <%= link_to t('shared.actions.edit'),
-                                edit_admin_quarter_news_path(@quarter, news_item),
-                                class: 'btn btn-default btn-xs' %>
-                          <%= link_to t('shared.actions.destroy'),
-                                admin_quarter_news_path(@quarter, news_item),
-                                method: :delete,
-                                data: { confirm: t('shared.prompts.confirm') },
-                                class: 'btn btn-danger btn-xs' %>
-                        </li>
-                      <% end %>
-                    </ul>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
+
+</div>
+
+
 <% end %>

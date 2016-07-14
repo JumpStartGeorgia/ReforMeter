@@ -1,0 +1,21 @@
+$info-circle-font-size: 16px;
+$info-circle-dimension: $info-circle-font-size * 1.5;
+
+.infoCircle {
+  background-color: $color-grey-background;
+  font-size: $info-circle-font-size;
+  min-width: $info-circle-dimension;
+  min-height: $info-circle-dimension;
+  border-radius: $info-circle-dimension * .5;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: lowercase;
+  margin: 0 10px;
+  font-weight: 600;
+  font-family: $english-font-family;
+}
+
+.infoCircle:hover {
+  background-color: darken($color-grey-background, 25%);
+}

@@ -1,11 +1,14 @@
 .tabContent {
-
 }
 
   .tabContent-panel {
     display: none;
   }
 
+  .tabContent-panel.mod-content-padding {
+    padding: 0 $padding-main-content;
+  }
+
   .tabContent-panel.is-selected {
-    display: initial;
+    display: block;
   }

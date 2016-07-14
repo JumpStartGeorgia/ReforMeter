@@ -3,11 +3,12 @@ ka:
   activerecord:
     attributes:
       expert:
-        is_active: Is Public?
-        avatar: Expert Photo
-        name: Name
-        bio: Short Bio
+        is_active: არის თუ არა საჯარო?
+        avatar: ფოტო
+        name: სახელი
+        bio: მოკლე ბიოგრაფია
     models:
       expert:
-        one: Expert
-        other: The Experts
+        one: საბჭოს წევრი
+        other: საბჭოს წევრები
+

@@ -1,4 +1,5 @@
 class Admin::ExpertSurveysController < ApplicationController
+  before_action :authenticate_user!
   before_action :get_quarter
   before_action :set_expert_survey, only: [:show, :edit, :update, :destroy]
   before_action :load_experts, only: [:new, :edit, :create, :update]
@@ -14,10 +15,10 @@ class Admin::ExpertSurveysController < ApplicationController
   # GET /admin/expert_surveys/1.json
   def show
 
-    @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+    @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
     @news = News.by_expert_quarter(@quarter.id)
 
-    gon.chart_download_icon = highchart_download_icon
+    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     gon.charts = [

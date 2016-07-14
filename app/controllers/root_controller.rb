@@ -6,7 +6,7 @@ class RootController < ApplicationController
     @quarter = Quarter.published.with_expert_survey.latest
     @reforms = Reform.in_quarter(@quarter.id).active.highlight#.sorted if @quarter
 
-    gon.chart_download_icon = highchart_download_icon
+    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
@@ -17,7 +17,12 @@ class RootController < ApplicationController
         id: 'reform-current-overall',
         title: nil,
         score: @quarter.expert_survey.overall_score.to_f,
-        change: @quarter.expert_survey.overall_change
+        change: @quarter.expert_survey.overall_change,
+        translations: {
+          behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+          on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+          ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+        }
       }
     ]
 
@@ -32,26 +37,27 @@ class RootController < ApplicationController
       @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
 
-    @external_indicator_charts = ExternalIndicator.published.for_home_page.reverse_sorted.map do |ext_ind|
+    @external_indicators = ExternalIndicator.published.for_home_page.map do |ext_ind|
       ext_ind.format_for_charting
     end
 
-    gon.charts += @external_indicator_charts
+    gon.charts += @external_indicators
   end
 
   def about
     @about_text = PageContent.find_by(name: 'about_text')
-    @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+    @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
     @methodology_government = PageContent.find_by(name: 'methodology_government')
     @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
   end
 
   def contact
+    @intro_text = PageContent.find_by(name: 'contact_text')
   end
 
   def download_data_and_reports
     @download_text = PageContent.find_by(name: 'download_text')
-    @download_expert_text = PageContent.find_by(name: 'download_expert_text')
+    @download_review_board_text = PageContent.find_by(name: 'download_review_board_text')
     @download_reform_text = PageContent.find_by(name: 'download_reform_text')
     @download_external_indicator_text = PageContent.find_by(name: 'download_external_indicator_text')
     @download_report_text = PageContent.find_by(name: 'download_report_text')
@@ -65,9 +71,9 @@ class RootController < ApplicationController
       data,filename = nil
       is_csv = false
       case params[:type]
-        when 'expert'
+        when 'review_board'
           data = Quarter.to_csv('expert')
-          filename = 'ReforMeter_Expert_Data'
+          filename = 'ReforMeter_Review_Board_Data'
           is_csv = true
         when 'reform'
           reform = Reform.friendly.find(params[:reform_id])
@@ -110,7 +116,7 @@ class RootController < ApplicationController
     @reforms = Reform.with_survey_data.active.with_color#.sorted
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
 
-    gon.chart_download_icon = highchart_download_icon
+    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
@@ -161,7 +167,7 @@ class RootController < ApplicationController
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
       @news = News.by_reform_quarter(@quarter.id, @reform.id)
 
-      gon.chart_download_icon = highchart_download_icon
+      gon.chart_download = highchart_export_config
       gon.change_icons = view_context.change_icons
 
       quarter_ids = Quarter.with_reform(@reform.id).published.recent.pluck(:id)
@@ -218,7 +224,12 @@ class RootController < ApplicationController
             color: government_time_series[:color],
             title: t('shared.categories.overall'),
             score: @reform_survey.stakeholder_overall_score.to_f,
-            change: @reform_survey.stakeholder_overall_change
+            change: @reform_survey.stakeholder_overall_change,
+            translations: {
+              behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+              on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+              ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+            }
           }, {
             id: 'reform-stakeholder-performance',
             color: government_time_series[:color],
@@ -241,11 +252,11 @@ class RootController < ApplicationController
         ].each { |chart| gon.charts << chart }
       end
 
-      @external_indicator_charts = @reform.external_indicators.published.sorted.map do |ext_ind|
+      @external_indicators = @reform.external_indicators.published.sorted.map do |ext_ind|
         ext_ind.format_for_charting
       end
 
-      gon.charts += @external_indicator_charts
+      gon.charts += @external_indicators
 
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to reforms_path,
@@ -253,13 +264,14 @@ class RootController < ApplicationController
     end
   end
 
-  def experts
-    @expert_text = PageContent.find_by(name: 'expert_text')
-    @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+  def review_board
+    @expert_text = PageContent.find_by(name: 'review_board_text')
+    @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
 
     @quarters = Quarter.published.recent.with_expert_survey
+    @experts = Expert.active.sorted
 
-    gon.chart_download_icon = highchart_download_icon
+    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     gon.charts = [
@@ -280,20 +292,20 @@ class RootController < ApplicationController
 
   end
 
-  def expert_show
+  def review_board_show
     begin
       @quarter = Quarter.published.with_expert_survey.friendly.find(params[:id])
 
       if @quarter.nil?
-        redirect_to experts_path,
+        redirect_to review_board_path,
                 alert: t('shared.msgs.does_not_exist')
       end
 
       @active_quarters = Quarter.active_quarters_array
-      @methodology_expert = PageContent.find_by(name: 'methodology_expert')
+      @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
       @news = News.by_expert_quarter(@quarter.id)
 
-      gon.chart_download_icon = highchart_download_icon
+      gon.chart_download = highchart_export_config
       gon.change_icons = view_context.change_icons
 
       gon.charts = [
@@ -301,7 +313,12 @@ class RootController < ApplicationController
           id: 'overall',
           title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,
-          change: @quarter.expert_survey.overall_change
+          change: @quarter.expert_survey.overall_change,
+          translations: {
+            behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+            on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+            ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+          }
         }, {
           id: 'performance',
           title: I18n.t('shared.categories.performance'),
@@ -321,7 +338,7 @@ class RootController < ApplicationController
       ]
 
     rescue ActiveRecord::RecordNotFound => e
-      redirect_to experts_path,
+      redirect_to review_board_path,
                 alert: t('shared.msgs.does_not_exist')
     end
   end

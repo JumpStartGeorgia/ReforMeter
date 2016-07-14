@@ -34,8 +34,7 @@
           <%= expert.name %>
         </td>
         <td><%= expert.bio %></td>
-        <td><%= format_boolean_flag(expert.is_active) %></td>
-
+        <td><%= format_boolean_flag(expert.is_active?) %></td>
         <td>
           <%= if can? :edit, expert
                 link_to t('shared.actions.edit'),

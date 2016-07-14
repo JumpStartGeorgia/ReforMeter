@@ -3,13 +3,13 @@ ka:
   activerecord:
     attributes:
       reform:
-        is_active: Is Active?
-        is_highlight: Show on Home Page?
-        name: Name
-        summary: Summary
-        methodology: Methodlogy
-        reform_color_id: Reform Color
+        is_active: არის თუ არა აქტიური?
+        is_highlight: ვაჩვენოთ გვერდზე?
+        name: სახელი
+        summary: შეჯამება
+        methodology: მეთოდოლოგია
+        reform_color_id: რეფორმის ფერი
     models:
       reform:
-        one: Reform
-        other: Reforms
+        one: რეფორმა
+        other: რეფორმები

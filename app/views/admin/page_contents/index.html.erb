@@ -1,6 +1,5 @@
 <%
   model_class = PageContent
-  show_name = (can? :create, @page_content) ? true : false
   page_title t('activerecord.models.page_content', count: 999)
 %>
 
@@ -18,10 +17,7 @@
     <tr>
       <th></th>
 
-      <% if show_name %>
-        <th><%=t 'activerecord.attributes.page_content.name' %></th>
-      <% end %>
-
+      <th><%=t 'activerecord.attributes.page_content.name' %></th>
       <th><%=t 'activerecord.attributes.page_content.title' %></th>
 
       <th class='action-col'><%=t 'shared.common.actions' %></th>
@@ -37,9 +33,7 @@
                       class: 'btn btn-default' %>
         </td>
 
-        <% if show_name %>
-          <td><%= page_content.name %></td>
-        <% end %>
+        <td><%= page_content.name %></td>
 
         <td><%= page_content.title %></td>
 

@@ -7,30 +7,19 @@ p{
   margin: 15px 0;
 }
 
-/* admin drop down menu */
-.appHeader-nav li.dropdown > a{
-  color: #fff;
-}
-li.appHeader-nav-list-item > a:hover{
-  color: #fff;
+a:focus {
+  color: currentColor;
   text-decoration: none;
-}
-.appHeader-nav li.dropdown > a:hover{
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
 }
 
 /* form styles */
 fieldset.inputs .radio{
   margin-left: 25px;
 }
+textarea.form-control{
+  padding: 6px 12px !important;
+}
 
-.select2 .select2-selection{
-  background-color: #fff;
-}
-.form-quarter-select .select2 .select2-selection span{
-  color: #66666d;
-}
 fieldset.form-actions{
   background-color: #f9f9f9;
   padding: 10px;
@@ -61,36 +50,32 @@ fieldset.form-actions{
 
 
 /* quarter index page */
-.form-quarter-details{
-  .form-quarter-details-top{
-    & > div.row{
-      margin-top: 20px;
-    }
-  }
-  .form-quarter-details-bottom{
-    margin-top: 20px;
-    .header{
-
-    }
+.tab-pane-quarters{
+  border-left: 1px solid #dddddd;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+.form-survey-header{
+  padding: 15px 10px;
+  border-bottom: solid 1px #000;
+}
+.form-survey-item{
+  padding: 15px 10px;
+  &:nth-child(odd) {
+      background-color: #ddd;
   }
 }
-.form-reform-survey-items, .form-expert-survey-items {
-  .form-survey-header{
-    padding: 15px 10px;
-    border-bottom: solid 1px #000;
-  }
-  & > .form-survey-item{
-    padding: 15px 10px;
-    &:nth-child(odd) {
-        background-color: #ddd;
-    }
+.form-news-item{
+  padding: 15px 10px;
+  &:nth-child(odd) {
+    border-top: dashed 1px #999;
   }
 }
 .form-survey-news{
-  border-top: solid 1px #666;
-  margin-top: 10px;
-  padding-top: 10px;
-  margin-left: 30px;
+/*  border-top: solid 1px #666;
+*/  margin-top: 20px;
+  /*padding-top: 20px;*/
+  /*margin-left: 30px;*/
 }
 
 /* expert survey form */
@@ -120,20 +105,21 @@ fieldset.form-actions{
   }
 }
 
-
-/* external indicator sort rows */
-/*table.table-countries tbody, table.table-indices tbody {
-  tr{
-    cursor: move;
-    &.move-after{
-      td{
-        background-color: #efe4b6 !important;
-      }
+/* admin index page */
+.admin-link-list{
+  & > div{
+    position: relative;
+    text-align: center;
+    min-height: 180px;
+    margin-top: 20px;
+    p{
+      margin-top: 0;
     }
-    &.to-move{
-      td{
-        background-color: #96c3ab !important;
-      }
+    a{
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
-}*/
+}

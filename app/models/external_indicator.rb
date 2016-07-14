@@ -154,6 +154,18 @@ class ExternalIndicator < ActiveRecord::Base
     end
   end
 
+  def unit_is_percent?
+    scale_type == SCALE_TYPES[:percent]
+  end
+
+  def unit
+    unit_is_percent? ? '%' : nil
+  end
+
+  def unit_label
+    unit_is_percent? ? I18n.t('shared.common.percent') : nil
+  end
+
   #######################
   ## METHODS
 
@@ -213,10 +225,12 @@ class ExternalIndicator < ActiveRecord::Base
     hash = {
       id: "external-indicator-#{id}",
       chartType: custom_highchart_type,
+      description: description,
       title: title,
       subtitle: subtitle,
       min: min,
       max: max,
+      unitLabel: unit_label,
       categories: [],
       series: []
     }
@@ -228,7 +242,10 @@ class ExternalIndicator < ActiveRecord::Base
       'Solid',
       'Dot',
       'LongDash',
-      'ShortDash'
+      'ShortDash',
+      'ShortDot',
+      'ShortDashDot',
+      'LongDashDotDot'
     ]
 
     # add data
@@ -303,6 +320,15 @@ class ExternalIndicator < ActiveRecord::Base
         end
         hash[:indexes] << item
       end
+    end
+
+    if hash[:chartType] == 'external-indicator-area-time-series'
+      hash[:translations] = {
+        fail: I18n.t('shared.chart_rating_categories.external_indicators.fail'),
+        poor: I18n.t('shared.chart_rating_categories.external_indicators.poor'),
+        fair: I18n.t('shared.chart_rating_categories.external_indicators.fair'),
+        good: I18n.t('shared.chart_rating_categories.external_indicators.good'),
+      }
     end
 
     return hash

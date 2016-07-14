@@ -237,7 +237,12 @@ class Quarter < ActiveRecord::Base
       min: 0,
       max: 10,
       categories: [],
-      series: []
+      series: [],
+      translations: {
+        behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+        on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+        ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+      }
     }
 
     quarters = oldest
@@ -295,7 +300,8 @@ class Quarter < ActiveRecord::Base
       title: nil,
       id: options[:id],
       subtitle: nil,
-      min: nil, max: nil, categories: [], series: []
+      min: nil, max: nil, categories: [], series: [],
+      unitLabel: I18n.t('shared.common.percent')
     }
     # quarters = oldest
     # quarters = quarters.published if options[:is_published]
@@ -399,6 +405,11 @@ class Quarter < ActiveRecord::Base
         hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_stakeholder')
         hash[:min] = 0
         hash[:max] = 10
+        hash[:translations] = {
+          behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+          on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+          ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+        }
 
         # overall
         hash[:series] << {
@@ -438,28 +449,31 @@ class Quarter < ActiveRecord::Base
           # category 1
           hash[:series] << {
             name: I18n.t('shared.categories.initial_setup'),
-            dashStyle: 'dot',
+            dashStyle: 'Dot',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category1_score.to_f, change: x.nil? ? nil : x.government_category1_change}}}
           # category 2
           hash[:series] << {
             name: I18n.t('shared.categories.capacity_building'),
-            dashStyle: 'shortDash',
+            dashStyle: 'ShortDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category2_score.to_f, change: x.nil? ? nil : x.government_category2_change}}}
           # category 3
           hash[:series] << {
             name: I18n.t('shared.categories.infastructure_budgeting'),
-            dashStyle: 'longDash',
+            dashStyle: 'Dash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category3_score.to_f, change: x.nil? ? nil : x.government_category3_change}}}
           # category 4
           hash[:series] << {
             name: I18n.t('shared.categories.legislation_regulation'),
-            dashStyle: 'LongDashDotDot',
+            dashStyle: 'LongDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.government_category4_score.to_f, change: x.nil? ? nil : x.government_category4_change}}}
         end
 
         # Specify that unit is '%' for government data
         hash[:series].each do |series|
-          series[:data].each { |data| data[:unit] = '%' }
+          series[:data].each_with_index do |data, index|
+            data[:unit] = '%'
+            data[:quarter_name] = hash[:categories][index]
+          end
         end
       end
     end

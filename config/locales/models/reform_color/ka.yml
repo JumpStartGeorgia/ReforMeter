@@ -3,13 +3,13 @@ ka:
   activerecord:
     attributes:
       reform_color:
-        hex: Hex Code
-        r: Red
-        g: Green
-        b: Blue
-        color_code: Color Code
-        reform: Assigned to Reform
+        hex: ჰექს კოდი
+        r: წითელი
+        g: მწვანე
+        b: ლურჯი
+        color_code: ფერის კოდი
+        reform: მინიჭებულია რეფორმას
     models:
       reform_color:
-        one: Reform Color
-        other: Reform Colors
+        one: რეფორმის ფერი
+        other: რეფორმის ფერები

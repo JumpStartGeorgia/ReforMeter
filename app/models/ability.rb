@@ -7,7 +7,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    content_resources = [Expert, Quarter, ExpertSurvey, ReformSurvey, News, ExternalIndicator]
+    content_resources = [Expert, Quarter, ExpertSurvey, ReformSurvey, News, Reform, ExternalIndicator]
 
     if user.is? 'super_admin'
       can :manage, :all
@@ -29,8 +29,6 @@ class Ability
     can :manage, Role
     cannot :manage, User, role: { name: 'super_admin' }
     cannot :manage, Role, name: 'super_admin'
-    can :read, ReformColor
-    can :manage, Reform
   end
 
   def init_page_section

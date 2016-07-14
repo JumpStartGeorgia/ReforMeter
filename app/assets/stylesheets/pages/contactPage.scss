@@ -1,0 +1,23 @@
+.contactPage-info {
+  margin: 20px 0;
+}
+
+  .contactPage-info-line {
+    margin: 0;
+  }
+
+  .contactPage-info-line.mod-important {
+    font-weight: 600;
+  }
+
+.contactPage-social {
+  margin: 20px 0;
+}
+
+  .contactPage-social-link {
+    display: inline-block;
+    margin-right: 10px
+  }
+  .contactPage-social-link:hover {
+    opacity: 0.7;
+  }

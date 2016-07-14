@@ -1,7 +1,7 @@
 <header class='appHeader'>
 
   <a class='appHeader-brand' href='<%= root_path %>'>
-    <%= inline_svg('logo_reformeter_eng.svg') %>
+    <%= inline_svg("logo_reformeter_#{I18n.locale}.svg") %>
 
     <p class='appHeader-brand-subtext'>
       <%= t('shared.common.sub_title') %>
@@ -21,8 +21,8 @@
 
       <li class='appHeader-nav-list-item'>
         <%= link_to t('.experts'),
-                    experts_path,
-                    class: "appHeader-nav-list-item-link#{nav_link_select_class_if_path([{controller: 'root', action: 'experts'}, {controller: 'root', action: 'expert_show'}])}" %>
+                    review_board_path,
+                    class: "appHeader-nav-list-item-link#{nav_link_select_class_if_path([{controller: 'root', action: 'review_board'}, {controller: 'root', action: 'review_board_show'}])}" %>
       </li>
 
       <li class='appHeader-nav-list-item'>
@@ -65,7 +65,7 @@
 
       <% if user_signed_in? %>
           <li class='dropdown appHeader-nav-list-item'>
-            <a href="#" id="user-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href="#" id="user-dropdown" class="appHeader-nav-list-item-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
               <span class="caret"></span>
             </a>
@@ -73,7 +73,7 @@
               <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
                 <li><%= link_to t('shared.links.quarters'), admin_quarters_path %></li>
               <% end %>
-              <% if current_user.is?(['super_admin', 'site_admin']) %>
+              <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
                 <li><%= link_to t('shared.links.reforms'), admin_reforms_path %></li>
               <% end %>
               <% if current_user.is?(['super_admin']) %>

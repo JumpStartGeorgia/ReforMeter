@@ -22,9 +22,7 @@ show_admin_links ||= false
         <select class='js-become-select2 js-reform-page-reform-select'>
 
           <% @active_reforms.each do |active_reform| %>
-            <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>>
-              <%= active_reform[0] %>
-            </option>
+            <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>><%= active_reform[0] %></option>
           <% end %>
 
         </select>
@@ -38,9 +36,7 @@ show_admin_links ||= false
         <select class='js-become-select2 js-reform-page-quarter-select'>
 
           <% @active_quarters.each do |active_quarter| %>
-            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>>
-              <%= active_quarter[0] %>
-            </option>
+            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
           <% end %>
 
         </select>
@@ -75,7 +71,7 @@ show_admin_links ||= false
 
     <% if @reform_survey.summary %>
       <div>
-        <%= simple_format_no_tags(@reform_survey.summary) %>
+        <%= simple_format(@reform_survey.summary) %>
       </div>
     <% end %>
 
@@ -120,7 +116,7 @@ show_admin_links ||= false
       <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
         <li class='tabList-item'>
-          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_history_chart'>
+          <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='government_history_chart'>
             <%= t('.header.government_history') %>
           </button>
         </li>
@@ -201,7 +197,7 @@ show_admin_links ||= false
           <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
             <li class='tabList-item'>
-              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
+              <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
                 <%= t('.header.stakeholder_history') %>
               </button>
             </li>
@@ -240,7 +236,7 @@ show_admin_links ||= false
 
     </div>
 
-    <% if @external_indicator_charts.present? %>
+    <% if @external_indicators.present? %>
 
       <div class='contentSection'>
 
@@ -254,11 +250,11 @@ show_admin_links ||= false
 
         <div class='contentSection-body'>
 
-          <% @external_indicator_charts.each do |ext_ind_chart| %>
+          <% @external_indicators.each do |external_indicator| %>
 
             <%= render(partial: 'shared/external_indicator_chart',
                        locals: {
-                         ext_ind_chart: ext_ind_chart
+                         external_indicator: external_indicator
                        }) %>
 
           <% end %>

@@ -1,5 +1,5 @@
 <%
-  page_title t('.title')
+  page_title @news.title
 %>
 
 <div class='actions-container'>
@@ -17,7 +17,7 @@
   <dt><strong><%=t 'activerecord.attributes.news.quarter_id' %>:</strong></dt>
   <dd><%= @news.quarter.time_period %></dd>
   <dt><strong><%=t 'activerecord.attributes.news.reform_id' %>:</strong></dt>
-  <dd><%= @news.reform.name %></dd>
+  <dd><%= @news.reform.name if @news.reform_id %></dd>
   <dt><strong><%=t 'activerecord.attributes.news.title' %>:</strong></dt>
   <dd><%= @news.title %></dd>
   <dt><strong><%=t 'activerecord.attributes.news.content' %>:</strong></dt>

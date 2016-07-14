@@ -1,86 +1,104 @@
 ---
 ka:
+  time:
+    formats:
+      file: "%Y%m%d%H%M%S"
   shared:
     actions:
-      change_my_password: Change my password
-      destroy: Delete
-      edit: Edit
-      load: Load
-      log_in: Log in
-      view: View
-      load: Load
-      publish: Publish
-      unpublish: Unpublish
-      add: Add
+      change_my_password: პაროლის შეცვლა
+      destroy: წაშლა
+      edit: რედაქტირება
+      load: ჩატვირთვა
+      log_in: შესვლა
+      view: ნახვა
+      publish: გამოქვეყნება
+      unpublish: გამოქვეყნების გაუქმება
+      add: დამატება
       manage_data: Manage Data
       with_obj:
-        cancel: Cancel %{obj}
-        create: Create %{obj}
-        destroy: Delete %{obj}
-        edit: Edit %{obj}
-        new: New %{obj}
-        update: Update %{obj}
-        view: View %{obj}
-        view_all: View All %{obj}
+        cancel: "%{obj}-ის გაუქმება"
+        create: "%{obj}-ის შექმნა"
+        destroy: "%{obj}-ის წაშლა"
+        edit: "%{obj}-ის რედაქტირება"
+        new: "ახალი %{obj}"
+        update: "%{obj}-ის განახლება"
+        view: "%{obj}-ის ნახვა"
+        view_all: "ყველას %{obj}-ის ნახვა"
     categories:
-      government: Government
-      government_survey: Government Survey
-      stakeholder: Stakeholder
-      stakeholder_survey: Stakeholder Survey
-      overall: Overall
-      change: Change
-      performance: Performance
-      goals: Goals
-      progress: Progress
-      initial_setup: Initial Setup
-      capacity_building: Capacity Building
-      infastructure_budgeting: Infastructure & Budgeting
-      legislation_regulation: Legislation & Regulations
+      government: მთავრობა
+      government_survey: მთავრობის ანგარიში
+      stakeholder: დაინტერესებული პირი
+      stakeholder_survey: დაინტერესებულ პირთა შეფასება
+      overall: ზოგადი შეფასება
+      change: ცვლილება
+      performance: ვითარება
+      goals: მიზნები
+      progress: პროგრესი
+      initial_setup: ინსტიტუციური მოწყობა
+      capacity_building: კომპეტენციის გაძლიერება
+      infastructure_budgeting: ინფრასტრუქტურა და ბიუჯეტი
+      legislation_regulation: სამართლებრივი ჩარჩო
     change_status:
-      down: The value has gone down since last quarter
-      flat: The value has not changed since last quarter
-      up: The value has gone up since last quarter
+      down: ბოლო კვარტალთან შედარებით შეფასებამ დაიწია
+      flat: ბოლო კვარტალთან შედარებით შეფასება არ შეცვლილა
+      up: ბოლო კვარტალთან შედარებით შეფასებამ აიწია
     chart_titles:
       expert:
-        title: 'Expert Response History'
+        title: 'საბჭოს შეფასებების ქრონიკა'
       reform:
-        title: 'Reform: %{name}'
-        all_title: 'All Reforms'
-        subtitle_government: 'Government Response History'
-        subtitle_stakeholder: 'Stakeholder Response History'
+        title: 'რეფორმა: %{name}'
+        all_title: ყველა რეფორმა
+        subtitle_government: მთავრობის ანგარიშების ქრონიკა
+        subtitle_stakeholder: შეფასებების ქრონიკა
+    chart_rating_categories:
+      reforms:
+        behind: სუსტი
+        on_track: ზომიერი
+        ahead: ძლიერი
+      external_indicators:
+        fail: ჩამოშლილი
+        poor: სუსტი
+        fair: ზომიერი
+        good: ძლიერი
+    chart_download:
+      download_png: ფოტოს PNG-ი ფორმატში ჩამოტვირთვა
+      download_jpeg: ფოტოს JPEG-ი ფორმატში ჩამოტვირთვა
+      download_pdf: დოკუმენტის PDF ფორმატში ჩამოტვირთვა
+      download_svg: ფოტოს SVG-ი ფორმატში ჩამოტვირთვა
     common:
-      account: Account
-      actions: Actions
-      all: All
-      change_reform: Change Reform
-      change_time: Change Time Period
-      description: RefoMeter measures the Georgian government's progress in implementing promised reforms.
+      account: ანგარიში
+      actions: მოქმედებები
+      all: ყველა
+      change_reform: რეფორმის შეცვლა
+      change_time: დროის მონაკვეთის შეცვლა
+      description: რეფორმეტრი ზომავს საქართველოს მთავრობის  მიერ განხორციელებული რეფორმების პროგრესს.
       jumpstart:
         slogan: JumpStart Georgia - ჩვენ გაწვდით ინფორმაციას მონაცემებით და დიზაინით
-      name: ReforMeter
-      sub_title: Tracking Progress - One Reform at a Time
+      name: რეფორმეტრი
+      sub_title: თითოეული რეფორმის კვალდაკვალ
       formatted_quarter: 'კვ.%{quarter}'
-      :yes: 'Yes'
-      :no: 'No'
+      percent: 'პროცენტი (%)'
+      :yes: 'დიახ'
+      :no: 'არა'
       move_row:
         up: Move the row up
         down: Move the row down
     expert_show:
       header:
-        chart: Expert History
-        experts: The Experts
-        findings: Expert Findings
-        methodology: Methodology
-      no_details: No expert findings are on record.
-      no_experts: No experts are on record.
-      no_methodology: No methodology is on record.
+        chart: შეფასების საბჭო ისტორია
+        experts: საბჭოს წევრები
+        findings: საბჭოს შეფასება
+        methodology: მეთოდოლოგია
+      no_details: საბჭოს შეფასება არ არის ჩანაწერებში.
+      no_experts: არ არსებობს საბჭოს წევრებზე ჩანაწერი.
+      no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
     links:
-      page_contents: Edit Page Text
-      admin: Admin Section
-      experts: The Experts
-      reform_colors: Reform Colors
-      reforms: Reforms
-      quarters: Quarters
+      page_contents: გვერდის ტექსტის რედაქტირება
+      admin: ადმინის სექცია
+      experts: საბჭოს წევრები
+      reform_colors: რეფორმის ფერები
+      reforms: რეფორმები
+      quarters: მეოთხედები
       external_indicators: External Indicators
     labels:
       translated_field: "%{field} (%{language})"
@@ -89,28 +107,28 @@ ka:
         en: English
         ka: ქართული
     msgs:
-      does_not_exist: You tried to access a page that does not exist.
-      not_authorized: You are not authorized to view that page.
-      success_created: "%{obj} was successfully created."
-      success_destroyed: "%{obj} was successfully destroyed."
-      success_updated: "%{obj} was successfully updated."
-      success_published: "%{obj} was successfully published."
-      success_unpublished: "%{obj} was successfully unpublished."
-      fail_published: "%{obj} was not successfully published due to the following: %{msg}"
-      fail_unpublished: "%{obj} was not successfully unpublished due to the following: %{msg}"
-      all_reform_surveys_exist: A survey for each reform in %{quarter} already exists, so no more surveys need to be added.
+      does_not_exist: თქვენ ცდილობთ ისეთ გვერდზე შეშვლას, რომელიც არ არსებობს.
+      not_authorized: თქვენ არ ხართ ავტორიზებული, რომ ნახოთ ეს გვერდი.
+      success_created: "%{obj} წარმატებით შეიქმნა."
+      success_destroyed: "%{obj} წარმატებით გაუქმდა."
+      success_updated: "%{obj} წარმატებით განახლდა."
+      success_published: "%{obj} წარმატებით გამოქვეყნდა."
+      success_unpublished: "%{obj}-ს წარმატებით გაუქმდა გამოქვეყნება."
+      fail_published: "%{obj} ვერ გამოქვეყნდა შემდეგი მიზეზით: %{msg}"
+      fail_unpublished: "%{obj}-ს გამოქვეყნება ვერ გაუქმნდა შემდეგი მიზეზით: %{msg}"
+      all_reform_surveys_exist: "%{quarter}-ის ყველა რეფორმა უკვე არსებობს, არ არის საჭირო დამატებითი კითხვარების დამატება."
     prompts:
-      confirm: Are you sure?
-      forgot_password: Forgot your password?
+      confirm: დარწმუნებული ხართ?
+      forgot_password: დაგავიწყდათ პაროლი?
     reform_show:
       header:
-        external_indicators: Related Indicators
-        government_history: Government Response History
-        government_summary: According to the Government
-        methodology: Methodology
-        stakeholder_history: Stakeholder Response History
-        stakeholder_summary: According to the Stakeholders
-      no_methodology: No methodology is on record.
+        external_indicators: შედეგები
+        government_history: მთავრობის ანგარიშების ქრონიკა
+        government_summary: მთავრობის მიხედვით
+        methodology: მეთოდოლოგია
+        stakeholder_history: შეფასებების ქრონიკა
+        stakeholder_summary: დაინტერესებულ მხარეთა მიხედვით
+      no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
     external_indicators:
       indicator_types:
         basic: Basic
@@ -125,6 +143,6 @@ ka:
   errors:
     messages:
       publish:
-        report: "A Quarterly Report is required"
-        expert_survey: "The Expert survey results are required"
-        reform_survey: "At least one Reform survey results are required"
+        report: "საჭიროა კვარტალური ანგარიში"
+        expert_survey: "საჭიროა ექსპერტთა კითხვარის შედეგები"
+        reform_survey: "საჭიროა მინიმუმ ერთი რეფორმის კითხვარი"

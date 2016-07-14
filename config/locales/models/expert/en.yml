@@ -4,10 +4,10 @@ en:
     attributes:
       expert:
         is_active: Is Public?
-        avatar: Expert Photo
+        avatar: Photo
         name: Name
         bio: Short Bio
     models:
       expert:
-        one: Expert
-        other: The Experts
+        one: Board Member
+        other: Board Members

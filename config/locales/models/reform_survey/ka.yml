@@ -3,62 +3,62 @@ ka:
   activerecord:
     attributes:
       reform_survey:
-        quarter_id:  Quarter
-        reform_id :  Reform
-        summary: Summary
-        scores: Scores
-        government_summary: Government Summary
-        stakeholder_summary: Stakeholder Summary
-        government_overall_score: Overall
-        government_category1_score: Initial Setup
-        government_category2_score: Capacity Building
-        government_category3_score: Infastructure & Budgeting
-        government_category4_score: Legislation & Regulations
-        stakeholder_overall_score: Overall
-        stakeholder_category1_score: Performance
-        stakeholder_category2_score: Goals
-        stakeholder_category3_score: Progress
+        quarter_id:  მეოთხედი
+        reform_id :  რეფორმა
+        summary: შეჯამება
+        scores: ქულები
+        government_summary: მთავრობის შეჯამება
+        stakeholder_summary: დაინტერესებულ მხარეთა შეჯამება
+        government_overall_score: ზოგადი შეფასება
+        government_category1_score: ინსტიტუციური მოწყობა
+        government_category2_score: კომპეტენციის გაძლიერება
+        government_category3_score: ინფრასტრუქტურა და ბიუჯეტი
+        government_category4_score: სამართლებრივი ჩარჩო
+        stakeholder_overall_score: ზოგადი შეფასებაF
+        stakeholder_category1_score: ვითარება
+        stakeholder_category2_score: მიზნები
+        stakeholder_category3_score: პროგრესი
     models:
       reform_survey:
-        one: Reform Survey
-        other: Reform Surveys
+        one: კითხვარი
+        other: რეფორმების კითხვარი
     errors:
       models:
         reform_survey:
           attributes:
             government_overall_score:
-              inclusion: must be between 0 and 100
+              inclusion: უნდა იყოს 0-დან 10-მდე
             government_category1_score:
-              inclusion: must be between 0 and 100
+              inclusion: უნდა იყოს 0-დან 10-მდე
             government_category2_score:
-              inclusion: must be between 0 and 100
+              inclusion: უნდა იყოს 0-დან 10-მდე
             government_category3_score:
-              inclusion: must be between 0 and 100
+              inclusion: უნდა იყოს 0-დან 10-მდე
             government_category4_score:
-              inclusion: must be between 0 and 100
+              inclusion: უნდა იყოს 0-დან 10-მდე
             stakeholder_overall_score:
-              inclusion: must be between 0 and 10
+              inclusion: უნდა იყოს 0-დან 10-მდე
             stakeholder_category1_score:
-              inclusion: must be between 0 and 10
+              inclusion: უნდა იყოს 0-დან 10-მდე
             stakeholder_category2_score:
-              inclusion: must be between 0 and 10
+              inclusion: უნდა იყოს 0-დან 10-მდე
             stakeholder_category3_score:
-              inclusion: must be between 0 and 10
+              inclusion: უნდა იყოს 0-დან 10-მდე
             government_overall_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1
             government_category1_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1
             government_category2_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1
             government_category3_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1
             government_category4_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1
             stakeholder_overall_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1
             stakeholder_category1_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1
             stakeholder_category2_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1
             stakeholder_category3_change:
-              inclusion: must be -1, 0, or 1
+              inclusion: უნდა იყოს -1,0 ან 1

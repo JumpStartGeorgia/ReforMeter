@@ -16,11 +16,11 @@
           <ul>
 
             <li class='homePage-intro-summaryGood'>
-              <%= simple_format_no_tags(@quarter.summary_good) %>
+              <%= simple_format(@quarter.summary_good) %>
             </li>
 
             <li class='homePage-intro-summaryBad'>
-              <%= simple_format_no_tags(@quarter.summary_bad) %>
+              <%= simple_format(@quarter.summary_bad) %>
             </li>
 
           </ul>
@@ -44,7 +44,11 @@
 
         <% if @quarter %>
 
-          <div class='js-become-highchart meterGauge mod-big' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+          <%= link_to review_board_show_path(@quarter) do %>
+
+            <div class='js-become-highchart meterGauge mod-big mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+
+          <% end %>
 
         <% end %>
 
@@ -115,7 +119,7 @@
             <% end %>
 
             <%= link_to t('.experts_link'),
-                        expert_show_path(@quarter.slug),
+                        review_board_show_path(@quarter.slug),
                         class: 'link' %>
 
           </div>
@@ -171,6 +175,12 @@
 
                   <div class='homePage-reforms-item-chart js-become-highchart' data-chart-type='mini-time-series' data-id='reform-<%= reform.slug %>'></div>
 
+                  <% if reform.summary.present? %>
+
+                    <span class='infoCircle js-act-as-info-circle' original-title='<%= reform.summary %>' data-tipsy-gravity='e'>i</span>
+
+                  <% end %>
+
                 </div>
 
               <% end %>
@@ -193,7 +203,7 @@
 
     </div>
 
-    <% if @external_indicator_charts.present? %>
+    <% if @external_indicators.present? %>
 
       <section class='contentSection'>
 
@@ -207,11 +217,11 @@
 
         <div class='contentSection-body'>
 
-          <% @external_indicator_charts.each do |ext_ind_chart| %>
+          <% @external_indicators.each do |external_indicator| %>
 
             <%= render(partial: 'shared/external_indicator_chart',
                        locals: {
-                         ext_ind_chart: ext_ind_chart
+                         external_indicator: external_indicator
                        }) %>
 
           <% end %>

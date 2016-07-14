@@ -23,6 +23,7 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 @import 'media-queries';
 // @import 'bootstrap_and_overrides';
 @import 'formtastic_overrides';
+@import 'tipsy_overrides';
 
 // Font awesome icons
 @import 'font-awesome-sprockets';
@@ -41,10 +42,12 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 @import 'components/contentSection';
 @import 'components/contentSidebarContainer';
 @import 'components/downloadBox';
+@import 'components/downloadChartsButton';
 @import 'components/expertList';
 @import 'components/externalIndicatorChart';
 @import 'components/gaugesContainer';
 @import 'components/heading';
+@import 'components/infoCircle';
 @import 'components/link';
 @import 'components/loadingIndicator';
 @import 'components/mainContent';
@@ -60,6 +63,7 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 @import 'components/translated_inputs';
 
 @import 'pages/aboutPage';
+@import 'pages/contactPage';
 @import 'pages/downloadPage';
 @import 'pages/homePage';
 

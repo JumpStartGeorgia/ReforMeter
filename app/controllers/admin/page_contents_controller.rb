@@ -1,7 +1,7 @@
 class Admin::PageContentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_page_content, only: [:show, :edit, :update, :destroy]
   authorize_resource
-  #before_action :authenticate_user!
 
   # GET /page_contents
   # GET /page_contents.json

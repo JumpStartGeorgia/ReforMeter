@@ -10,14 +10,14 @@
                locals: { object: object } do |enabled_locale, enabled_locale_name| %>
       <%= f.input "title_#{enabled_locale}",
                   label: t('shared.labels.translated_field',
-                         field: t('activerecord.attributes.page_content.title'),
-                         language: enabled_locale_name) %>
+                   field: t('activerecord.attributes.page_content.title'),
+                   language: enabled_locale_name) %>
       <%= f.input "content_#{enabled_locale}",
                   as: :text,
                   label: t('shared.labels.translated_field',
-                         field: t('activerecord.attributes.page_content.content'),
-                         language: enabled_locale_name),
-                  input_html: { class: 'tinymce' } %>
+                   field: t('activerecord.attributes.page_content.content'),
+                   language: enabled_locale_name),
+                  input_html: { class: 'js-become-rich-text-editor' } %>
     <% end %>
   <% end %>
 
