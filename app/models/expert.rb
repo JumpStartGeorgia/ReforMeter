@@ -12,7 +12,7 @@
 #  avatar_updated_at   :datetime
 #
 
-class Expert < ActiveRecord::Base
+class Expert < AddMissingTranslation
   #######################
   ## ATTACHED FILE
   has_attached_file :avatar,
@@ -54,4 +54,15 @@ class Expert < ActiveRecord::Base
   scope :sorted, -> {with_translations(I18n.locale).order(name: :asc)}
 
 
+  #######################
+  #######################
+  private
+
+  def has_required_translations?(trans)
+    trans.name.present?
+  end
+
+  def add_missing_translations(default_trans)
+    self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+  end
 end

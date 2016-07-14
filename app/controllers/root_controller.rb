@@ -4,7 +4,7 @@ class RootController < ApplicationController
     @home_page_about = PageContent.find_by(name: 'home_page_about')
 
     @quarter = Quarter.published.with_expert_survey.latest
-    @reforms = Reform.in_quarter(@quarter.id).active.highlight#.sorted if @quarter
+    @reforms = Reform.in_quarter(@quarter.id).active.highlight.sorted if @quarter
 
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
@@ -113,7 +113,7 @@ class RootController < ApplicationController
   def reforms
     @reform_text = PageContent.find_by(name: 'reform_text')
     @quarters = Quarter.published.recent
-    @reforms = Reform.with_survey_data.active.with_color#.sorted
+    @reforms = Reform.with_survey_data.active.with_color.sorted
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
 
     gon.chart_download = highchart_export_config

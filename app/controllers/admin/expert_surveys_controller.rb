@@ -117,6 +117,6 @@ class Admin::ExpertSurveysController < ApplicationController
     end
 
     def load_experts
-      @experts = Expert.active#.sorted
+      @experts = Expert.active.sorted
     end
 end

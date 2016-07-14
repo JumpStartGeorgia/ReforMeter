@@ -10,7 +10,7 @@
 #  updated_at            :datetime         not null
 #
 
-class ExternalIndicatorPlotBand < ActiveRecord::Base
+class ExternalIndicatorPlotBand < AddMissingTranslation
   #######################
   ## TRANSLATIONS
 
@@ -31,4 +31,16 @@ class ExternalIndicatorPlotBand < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :sorted, -> { order(from: :asc) }
+
+  #######################
+  #######################
+  private
+
+  def has_required_translations?(trans)
+    trans.name.present?
+  end
+
+  def add_missing_translations(default_trans)
+    self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+  end
 end

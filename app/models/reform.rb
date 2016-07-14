@@ -11,7 +11,7 @@
 #  reform_color_id :integer
 #
 
-class Reform < ActiveRecord::Base
+class Reform < AddMissingTranslation
   #######################
   ## TRANSLATIONS
 
@@ -77,4 +77,17 @@ class Reform < ActiveRecord::Base
   end
 
 
+
+  #######################
+  #######################
+  private
+
+  def has_required_translations?(trans)
+    trans.name.present? && trans.summary.present?
+  end
+
+  def add_missing_translations(default_trans)
+    self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+    self.summary = default_trans.summary if self["summary_#{Globalize.locale}"].blank?
+  end
 end

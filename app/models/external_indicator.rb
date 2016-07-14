@@ -15,7 +15,7 @@
 #
 
 require 'csv'
-class ExternalIndicator < ActiveRecord::Base
+class ExternalIndicator < AddMissingTranslation
   attr_accessor :data_hash, :update_change_values
 
   #######################
@@ -45,7 +45,7 @@ class ExternalIndicator < ActiveRecord::Base
   #######################
   ## VALIDATIONS
 
-  validates :indicator_type, :scale_type, :chart_type, presence: :true
+  validates :title, :indicator_type, :scale_type, :chart_type, presence: :true
 
   #######################
   ## CONSTANTS
@@ -631,6 +631,18 @@ class ExternalIndicator < ActiveRecord::Base
     end
 
     return change * change_multiplier
+  end
+
+
+  #######################
+  #######################
+
+  def has_required_translations?(trans)
+    trans.title.present?
+  end
+
+  def add_missing_translations(default_trans)
+    self.title = default_trans.title if self["title_#{Globalize.locale}"].blank?
   end
 
 end

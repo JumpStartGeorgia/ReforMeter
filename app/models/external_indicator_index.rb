@@ -10,7 +10,7 @@
 #  updated_at            :datetime         not null
 #
 
-class ExternalIndicatorIndex < ActiveRecord::Base
+class ExternalIndicatorIndex < AddMissingTranslation
   #######################
   ## TRANSLATIONS
 
@@ -30,4 +30,16 @@ class ExternalIndicatorIndex < ActiveRecord::Base
   ## SCOPES
   scope :sorted, -> { order(sort_order: :asc) }
 
+  #######################
+  #######################
+  private
+
+  def has_required_translations?(trans)
+    trans.name.present? && trans.short_name.present?
+  end
+
+  def add_missing_translations(default_trans)
+    self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+    self.short_name = default_trans.short_name if self["short_name_#{Globalize.locale}"].blank?
+  end
 end

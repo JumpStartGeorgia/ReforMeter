@@ -13,7 +13,7 @@
 #  updated_at         :datetime         not null
 #
 
-class News < ActiveRecord::Base
+class News < AddMissingTranslation
   #######################
   ## ATTACHED FILE
   has_attached_file :image,
@@ -60,5 +60,18 @@ class News < ActiveRecord::Base
   # get news for a quarter and reform
   def self.by_reform_quarter(quarter_id, reform_id)
     where(quarter_id: quarter_id, reform_id: reform_id)
+  end
+
+
+  #######################
+  #######################
+  private
+
+  def has_required_translations?(trans)
+    trans.title.present?
+  end
+
+  def add_missing_translations(default_trans)
+    self.title = default_trans.title if self["title_#{Globalize.locale}"].blank?
   end
 end
