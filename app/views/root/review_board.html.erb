@@ -31,48 +31,7 @@ page_title t('.title')
       </div>
     <% end %>
 
-    <% if @quarters.present? %>
-
-      <div>
-        <ul class='tabList mod-with-separator js-act-as-tab-list'>
-
-          <li class='tabList-item'>
-            <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
-              <%= t('.header.chart') %>
-            </button>
-          </li>
-
-          <li class='tabList-item'>
-            <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
-              <%= t('.header.methodology') %>
-            </button>
-          </li>
-
-        </ul>
-
-        <div class="tabContent js-act-as-tab-content">
-
-          <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='chart'>
-            <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='expert-history'></div>
-          </div>
-
-          <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>
-            <% if @methodology_review_board %>
-              <div>
-                <%= simple_format_no_tags(@methodology_review_board.content) %>
-              </div>
-            <% else %>
-              <p>
-               <%= t('.no_methodology') %>
-              </p>
-            <% end %>
-          </div>
-
-        </div>
-
-      </div>
-
-    <% else %>
+    <% if @quarters.blank? %>
 
       <p class="alert alert-warning">
         <%= t('.no_data') %>
@@ -85,6 +44,7 @@ page_title t('.title')
 </div>
 
 <% if @quarters.present? %>
+
 
   <div class='contentSection'>
 
@@ -101,10 +61,23 @@ page_title t('.title')
         </li>
 
         <li class='tabList-item'>
+          <button class='tabList-item-button mod-primary js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
+            <%= t('.header.chart') %>
+          </button>
+        </li>
+
+        <li class='tabList-item'>
           <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='experts'>
             <%= t('.header.experts') %>
           </button>
         </li>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
+            <%= t('.header.methodology') %>
+          </button>
+        </li>
+
 
       </ul>
 
@@ -160,13 +133,17 @@ page_title t('.title')
 
         </div>
 
+        <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='chart'>
+          <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='expert-history'></div>
+        </div>
+
         <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='experts'>
 
           <ul class='expertList'>
 
             <% if @experts.each do |expert| %>
 
-              <li id='<%= "expert-#{expert.id}" %>' class='expertList-item js-act-as-expert-item'>
+              <li id='<%= "board-member-#{expert.id}" %>' class='expertList-item js-act-as-expert-item'>
 
                 <%= image_tag(expert.avatar.url('100x100'),
                               class: 'expertList-item-imageLink-image') %>
@@ -198,8 +175,22 @@ page_title t('.title')
 
         </div>
 
+        <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='methodology'>
+          <% if @methodology_review_board %>
+            <div>
+              <%= simple_format_no_tags(@methodology_review_board.content) %>
+            </div>
+          <% else %>
+            <p>
+             <%= t('.no_methodology') %>
+            </p>
+          <% end %>
+        </div>
+
+
       </div>
     </div>
   </div>
+
 
 <% end %>

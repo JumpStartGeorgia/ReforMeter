@@ -15,10 +15,10 @@ en:
       title: According to the Review Board for %{time}
     review_board:
       header:
-        chart: Review Board History
+        chart: Timeline
         experts: Board Members
         methodology: Methodology
-        table: Table of History
+        table: Results
       no_data: Sorry, but at this time there is no review board data on record.
       no_methodology: No methodology is on record.
       no_experts: No board members are on record.

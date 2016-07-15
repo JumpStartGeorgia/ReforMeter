@@ -25,6 +25,6 @@
     $('html').attr('lang', gon.locale);
     setupTabs();
 
-    if ($('body.root.experts').length > 0) openExpertsTab();
+    if ($('body.root.review_board').length > 0) openExpertsTab();
   });
 })();
