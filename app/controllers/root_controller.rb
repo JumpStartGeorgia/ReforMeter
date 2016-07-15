@@ -108,6 +108,8 @@ class RootController < ApplicationController
 
   def reforms
     @reform_text = PageContent.find_by(name: 'reform_text')
+    @methodology_government = PageContent.find_by(name: 'methodology_government')
+    @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
     @quarters = Quarter.published.recent
     @reforms = Reform.with_survey_data.active.with_color.sorted
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?

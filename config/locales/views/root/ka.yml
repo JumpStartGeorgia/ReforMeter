@@ -41,7 +41,9 @@ ka:
       title: "რეფორმა: %{name}-ის %{time}-სთვის"
     reforms:
       header:
-        table: რეფორმები დროის მონაკვეთის მიხედვით
+        table: Results
+        chart: Timeline
+        methodology: Methodology
       no_data: ბოდიშს გიხდით, ამ დროისთვის არ არსებობს საბჭოს წევრთა მონაცემთა ჩანაწერი.
       table_header:
         government: მთავრობა

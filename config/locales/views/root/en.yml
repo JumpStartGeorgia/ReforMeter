@@ -41,7 +41,9 @@ en:
       title: 'Reform: %{name} for %{time}'
     reforms:
       header:
-        table: Reforms by Time Period
+        table: Results
+        chart: Timeline
+        methodology: Methodology
       no_data: Sorry, but at this time there is no review board data on record.
       table_header:
         government: Government

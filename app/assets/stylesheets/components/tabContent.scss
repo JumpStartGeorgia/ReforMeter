@@ -1,8 +1,11 @@
 .tabContent {
 }
 
+  /* using height and overflow so do not need to redraw charts to get correct width */
   .tabContent-panel {
-    display: none;
+    display: block;
+    height: 0;
+    overflow-y: hidden;
   }
 
   .tabContent-panel.mod-content-padding {
@@ -10,5 +13,6 @@
   }
 
   .tabContent-panel.is-selected {
-    display: block;
+    height: auto;
+    overflow-y: visible;
   }
