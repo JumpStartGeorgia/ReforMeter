@@ -51,10 +51,6 @@ class RootController < ApplicationController
     @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
   end
 
-  def contact
-    @intro_text = PageContent.find_by(name: 'contact_text')
-  end
-
   def download_data_and_reports
     @download_text = PageContent.find_by(name: 'download_text')
     @download_review_board_text = PageContent.find_by(name: 'download_review_board_text')

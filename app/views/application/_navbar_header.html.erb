@@ -32,21 +32,15 @@
       </li>
 
       <li class='appHeader-nav-list-item'>
-        <%= link_to t('.about'),
-                    about_path,
-                    class: "appHeader-nav-list-item-link#{nav_link_select_class_if_path([{controller: 'root', action: 'about'}])}" %>
-      </li>
-
-      <li class='appHeader-nav-list-item'>
         <%= link_to t('.download_data_and_reports'),
                     download_data_and_reports_path,
                     class: "appHeader-nav-list-item-link#{nav_link_select_class_if_path([{controller: 'root', action: 'download_data_and_reports'}])}" %>
       </li>
 
       <li class='appHeader-nav-list-item'>
-        <%= link_to t('.contact'),
-                    contact_path,
-                    class: "appHeader-nav-list-item-link#{nav_link_select_class_if_path([{controller: 'root', action: 'contact'}])}" %>
+        <%= link_to t('.about'),
+                    about_path,
+                    class: "appHeader-nav-list-item-link#{nav_link_select_class_if_path([{controller: 'root', action: 'about'}])}" %>
       </li>
 
       <% I18n.available_locales.each do |locale| %>

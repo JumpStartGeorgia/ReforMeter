@@ -38,7 +38,6 @@ Rails.application.routes.draw do
       resources :users, constraints: { format: :html }
     end
 
-    get '/contact' => 'root#contact'
     get '/about' => 'root#about'
     get '/download_data_and_reports' => 'root#download_data_and_reports'
     post '/download_data_and_reports' => 'root#download_data_and_reports'
