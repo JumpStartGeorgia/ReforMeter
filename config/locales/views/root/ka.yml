@@ -15,10 +15,10 @@ ka:
       title: საბჭოს დასკვნით %{time}-ისთვის
     review_board:
       header:
-        chart: Timeline
+        chart: ქრონოლოგია
         experts: ექსპერტები
         methodology: მეთოდოლოგია
-        table: Results
+        table: შედეგები
       no_data: ბოდიშს გიხდით, ამ დროისთვის არ არსებობს საბჭოს წევრთა მონაცემთა ჩანაწერი.
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
       no_experts: არ არსებობს საბჭოს წევრებზე ჩანაწერი.
@@ -41,9 +41,9 @@ ka:
       title: "რეფორმა: %{name}-ის %{time}-სთვის"
     reforms:
       header:
-        table: Results
-        chart: Timeline
-        methodology: Methodology
+        table: შედეგები
+        chart: ქრონოლოგია
+        methodology: მეთოდოლოგია
       no_data: ბოდიშს გიხდით, ამ დროისთვის არ არსებობს საბჭოს წევრთა მონაცემთა ჩანაწერი.
       table_header:
         government: მთავრობა
