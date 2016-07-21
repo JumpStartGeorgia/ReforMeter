@@ -32,9 +32,10 @@
   <hr />
 
   <div class="row mod-row-no-margins">
-    <%= f.input :indicator_type, as: :radio, collection: @indicator_types, wrapper_html: {class: 'col-md-4'} %>
-    <%= f.input :chart_type, as: :radio, collection: @chart_types, wrapper_html: {class: 'col-md-4'} %>
-    <%= f.input :scale_type, as: :radio, collection: @scale_types, wrapper_html: {class: 'col-md-4'} %>
+    <%= f.input :indicator_type, as: :radio, collection: @indicator_types, wrapper_html: {class: 'col-md-3'} %>
+    <%= f.input :chart_type, as: :radio, collection: @chart_types, wrapper_html: {class: 'col-md-3'} %>
+    <%= f.input :scale_type, as: :radio, collection: @scale_types, wrapper_html: {class: 'col-md-3'} %>
+    <%= f.input :show_on_home_page, as: :radio, wrapper_html: {class: 'col-md-3'} %>
   </div>
 
   <div class="js-optional js-optional-countries">
@@ -159,9 +160,10 @@
     <%= f.input :max, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
   </div>
 
-  <hr />
 
   <div class="js-optional js-optional-plot-bands">
+
+    <hr />
 
     <h3><%= t('activerecord.models.external_indicator_plot_band', count: 999) %></h3>
 
@@ -220,6 +222,28 @@
 
   </div>
 
+  <hr />
+
+  <h3><%= t('activerecord.models.reform', count: 999) %></h3>
+
+  <p><%= t('.reform_explanation') %></p>
+
+  <div class="check_boxes input optional form-group" id="external_indicator_reforms_input">
+    <input name="external_indicator[reform_ids][]" id="external_indicator_reforms_none" value="" type="hidden">
+    <div class="form-wrapper">
+      <% @reforms.each do |reform| %>
+        <div class="checkbox">
+          <label for="external_indicator_reform_ids_<%= reform.id %>" class="checkbox-inline">
+            <% checked = object.reform_ids.include?(reform.id) ? 'checked=checked' : '' %>
+            <input name="external_indicator[reform_ids][]" id="external_indicator_reform_ids_<%= reform.id %>" value="<%= reform.id %>" <%= checked %> type="checkbox">
+            <div>
+              <%= reform.name %>
+            </div>
+          </label>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
   <% end %>
 

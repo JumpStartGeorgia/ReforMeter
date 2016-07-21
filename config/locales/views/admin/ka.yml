@@ -39,6 +39,7 @@ ka:
         country_explanation: Use the section below to enter the countries that you want to compare for this external indicator. Use the up and down arrows to set the order of the countries.
         index_explanation: Use the section below to enter the composite indices that make up this external indicator. Short Name is what will appear on the web page and the Name and Description are what will appear in the popup box when the user hovers overs the index. Use the up and down arrows to set the order of the indices.
         plot_band_explanation: A Plot Band is a group of labels that appear on the y-axis to help give context to the values (i.e., behind, on track, ahead). Plot bands are optional. If you want plot bands, enter the text and the range of the band.
+        reform_explanation: Select which Reforms you want this external indicator to be associated with. You can select more than one.
       data:
         title: Manage Data for %{name}
       show:

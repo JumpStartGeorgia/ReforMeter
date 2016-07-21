@@ -105,6 +105,33 @@ fieldset.form-actions{
   }
 }
 
+/* external indicator form */
+#external_indicator_reforms_input > div{
+  input[type="checkbox"]{
+    display: none;
+    & + div{
+      border: solid 2px #fff;
+    }
+    &:checked + div{
+      border: solid 2px #1599D6;
+    }
+  }
+  & > div{
+    margin:0;
+    text-align: center;
+    display: inline-block;
+    min-width: 150px;
+    width: 20%;
+    vertical-align: top;
+    & > label > div {
+      padding: 10px;
+      div:last-of-type{
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
 /* admin index page */
 .admin-link-list{
   & > div{

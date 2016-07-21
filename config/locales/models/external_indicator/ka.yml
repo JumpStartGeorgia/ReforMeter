@@ -18,6 +18,7 @@ ka:
         indices: Indices
         plot_bands: Plot Bands
         time_periods: Time Periods
+        reforms: Reforms
     models:
       external_indicator:
         one: External Indicator

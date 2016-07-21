@@ -23,6 +23,7 @@
       <th><%=t 'activerecord.attributes.external_indicator.range' %></th>
       <th><%=t 'activerecord.attributes.external_indicator.is_public' %></th>
       <th><%=t 'activerecord.attributes.external_indicator.show_on_home_page' %></th>
+      <th><%=t 'activerecord.attributes.external_indicator.reforms' %></th>
 
       <th class='action-col'><%=t 'shared.common.actions' %></th>
     </tr>
@@ -43,6 +44,7 @@
         <td><%= external_indicator.range %></td>
         <td><%= format_boolean_flag(external_indicator.is_public) %></td>
         <td><%= format_boolean_flag(external_indicator.show_on_home_page) %></td>
+        <td><%= external_indicator.reforms.sorted.map{|x| x.name}.join(', ') %></td>
 
         <td>
           <%= if can? :edit, external_indicator

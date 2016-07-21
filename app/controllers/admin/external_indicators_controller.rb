@@ -95,6 +95,8 @@ class Admin::ExternalIndicatorsController < ApplicationController
       @indicator_types = []
       @chart_types = []
       @scale_types = []
+      @reforms = Reform.active.sorted
+
       ext_ind = ExternalIndicator
 
       ext_ind::INDICATOR_TYPES.keys.each do |key|
@@ -108,12 +110,14 @@ class Admin::ExternalIndicatorsController < ApplicationController
       ext_ind::SCALE_TYPES.keys.each do |key|
         @scale_types << [I18n.t("shared.external_indicators.scale_types.#{key}"), ext_ind::SCALE_TYPES[key]]
       end
+
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def external_indicator_params
       permitted = ExternalIndicator.globalize_attribute_names + [
-        :is_public, :show_on_home_page, :indicator_type, :scale_type, :chart_type, :min, :max,
+        :is_public, :show_on_home_page, :indicator_type, :scale_type, :chart_type, :min, :max, reform_ids: [],
         indices_attributes: [ExternalIndicatorIndex.globalize_attribute_names + [:id, :_destroy, :change_multiplier, :sort_order, :external_indicator_id]],
         countries_attributes: [ExternalIndicatorCountry.globalize_attribute_names + [:id, :_destroy, :sort_order, :external_indicator_id]],
         plot_bands_attributes: [ExternalIndicatorPlotBand.globalize_attribute_names + [:id, :_destroy, :to, :from, :external_indicator_id]],

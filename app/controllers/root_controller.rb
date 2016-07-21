@@ -37,7 +37,7 @@ class RootController < ApplicationController
       @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
 
-    @external_indicators = ExternalIndicator.published.for_home_page.map do |ext_ind|
+    @external_indicators = ExternalIndicator.published.reverse_sorted.for_home_page.map do |ext_ind|
       ext_ind.format_for_charting
     end
 

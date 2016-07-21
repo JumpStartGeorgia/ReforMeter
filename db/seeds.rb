@@ -293,6 +293,11 @@ Quarter.transaction do
     ei.indices.build(name: 'Business Confidence Index', short_name: 'BCI', sort_order: 1)
     ei.indices.build(name: 'Consumer Confidence Index', short_name: 'CCI', sort_order: 2)
 
+    # plot bands
+    ei.plot_bands.build(name: 'Negative', from: -100, to: -33)
+    ei.plot_bands.build(name: 'Neutral', from: -33, to: 33)
+    ei.plot_bands.build(name: 'Positive', from: 33, to: 100)
+
     # times
     csv_data.map{|x| x[0]}.each_with_index do |time, index|
       if index > 0
