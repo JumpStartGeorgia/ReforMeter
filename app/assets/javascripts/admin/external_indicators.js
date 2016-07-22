@@ -53,42 +53,16 @@ function moveRowInOtherTables(current_tab_pane, original_index, move_direction){
     }
   }
 
-  // do not show plot bands for country or for bars
-  // all other options, show it
-  function setExternalIndicatorPlotBandDisplay(){
-    var val_ind = $('input[name="external_indicator[indicator_type]"]:checked').val();
-    var val_chart = $('input[name="external_indicator[chart_type]"]:checked').val();
-    // ind values
-    // 1 = basic
-    // 2 = country
-    // 3 = composite
-
-    // chart values
-    // 1 = line
-    // 2 = bar
-    if (val_ind == '2' || val_chart == '2'){
-      setTabDisplay('plot-bands', 'none');
-    }else {
-      setTabDisplay('plot-bands', 'block');
-    }
-  }
-
 
 function setupExternalIndicatorType() {
 
   $('input[name="external_indicator[indicator_type]"]').click(function() {
     setExternalIndicatorTabDisplay();
-    setExternalIndicatorPlotBandDisplay();
-  });
-
-  $('input[name="external_indicator[chart_type]"]').click(function() {
-    setExternalIndicatorPlotBandDisplay();
   });
 
   // when form loads, if indicator_type is set, show the correct tabs
   $(document).ready(function() {
     setExternalIndicatorTabDisplay();
-    setExternalIndicatorPlotBandDisplay();
   });
 }
 

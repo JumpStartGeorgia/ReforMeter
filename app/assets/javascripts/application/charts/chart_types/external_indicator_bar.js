@@ -1,5 +1,6 @@
 function highchartsExternalIndicatorBar(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
+  var spacingLeft = chartData.plot_bands != null ? localeIs('ka') ? 120 : 80 : 0;
 
   function colors() {
     if (chartData.series.length > 1) {
@@ -11,6 +12,8 @@ function highchartsExternalIndicatorBar(chartData) {
 
   var options = {
     chart: {
+      // Makes room for the yAxis plot band labels
+      spacingLeft: spacingLeft,
       marginTop: externalIndicatorChart.marginTop,
       type: 'column'
     },
@@ -18,7 +21,14 @@ function highchartsExternalIndicatorBar(chartData) {
     exporting: {
       enabled: true,
       chartOptions: {
-        title: externalIndicatorChart.title(chartData.title)
+        title: externalIndicatorChart.title(
+          chartData.title,
+          {
+            titleOptions: {
+              x: -1 * spacingLeft + 10
+            }
+          }
+        )
       }
     },
     legend: {
@@ -27,12 +37,18 @@ function highchartsExternalIndicatorBar(chartData) {
     },
     series: chartData.series,
     subtitle: externalIndicatorChart.subtitle(
-      chartData.subtitle
+      chartData.subtitle,
+      {
+        x: -1 * spacingLeft + 10
+      }
     ),
     title: externalIndicatorChart.title(
       chartData.title,
       {
-        description: chartData.description
+        description: chartData.description,
+        titleOptions: {
+          x: -1 * spacingLeft + 10
+        }
       }
     ),
     tooltip: {
@@ -58,6 +74,9 @@ function highchartsExternalIndicatorBar(chartData) {
       tickmarkPlacement: 'on'
     },
     yAxis: {
+      min: chartData.min,
+      max: chartData.max,
+      plotBands: plotBands(chartData.plot_bands, false),
       title: {
         text: chartData.unitLabel
       }

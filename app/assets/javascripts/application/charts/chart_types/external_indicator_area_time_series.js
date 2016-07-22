@@ -1,31 +1,6 @@
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
-  var color = externalIndicatorChart.colorHash;
-  var spacingLeft = localeIs('ka') ? 120 : 80;
-
-  // plotBands is array of plot bands from chartData
-  // create settings for each plot band
-  function plotBands(plotBands) {
-    var bands = [];
-    $(plotBands).each(function() {
-      bands.push({
-        from: this.from,
-        to: this.to,
-        label: {
-          text: this.text,
-          style: {
-            color: outputHighchartsColorString(color, this.opacity),
-            fontSize: localeIs('ka') ? '14px' : '16px',
-            fontWeight: '600'
-          },
-          x: localeIs('ka') ? -140 : -100,
-          verticalAlign: 'middle'
-        }
-      });
-    });
-
-    return bands;
-  }
+  var spacingLeft = chartData.plot_bands != null ? localeIs('ka') ? 120 : 80 : 0;
 
   var options = {
     chart: {
@@ -100,6 +75,8 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     },
     yAxis: {
+      min: chartData.min,
+      max: chartData.max,
       plotBands: plotBands(chartData.plot_bands),
       title: {
         text: chartData.unitLabel
