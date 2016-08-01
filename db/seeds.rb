@@ -1,6 +1,13 @@
 # This file should contain all the record creation needed to seed the database
 # with its default values. The data can then be loaded with the rake db:seed
 # (or created alongside the db with db:setup).
+#
+# run-time variables (set these to true if you want seeds to run them):
+# 1. create_user_accounts
+# 2. delete_page_content
+# 3. delete_reform_colors
+# 4. delete_test_data
+# 5. load_test_data
 
 roles = %w(super_admin site_admin content_manager)
 roles.each do |role|
