@@ -12,6 +12,22 @@ function meterGaugeHelpers(size) {
   meterGauge.chartWidth = size * 1.25;
   meterGauge.chartHeight = size * 1.1;
   meterGauge.paneSize = size;
+  
+  meterGauge.plotBandLabelForScore = function(score) {
+    var plotBandLabel;
+    
+    if (score >= 0 && score <= 3.3) {
+      plotBandLabel = gon.translations.meter_gauge.plot_band_label.behind;
+    } else if (score > 3.3 && score <= 6.6) {
+      plotBandLabel = gon.translations.meter_gauge.plot_band_label.on_track;
+    } else if (score > 6.6 && score <= 10) {
+      plotBandLabel = gon.translations.meter_gauge.plot_band_label.ahead;
+    } else {
+      throw new Error('No meter gauge plot band label available for score ' + score)
+    }
+    
+    return plotBandLabel;
+  }
 
   // For size = 200, proportion = .5 ---> 100
   meterGauge.textPosition = function(proportion) {
@@ -33,7 +49,7 @@ function meterGaugeHelpers(size) {
 
       return mergeObjects(
         {
-          text: chartData.translations.behind,
+          text: gon.translations.meter_gauge.plot_band_label.behind,
           rotation: -60,
           x: meterGauge.textPosition(.275),
           y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
@@ -49,7 +65,7 @@ function meterGaugeHelpers(size) {
     exports.onTrack = function(chartData, options) {
       return mergeObjects(
         {
-          text: chartData.translations.on_track,
+          text: gon.translations.meter_gauge.plot_band_label.on_track,
           x: meterGauge.textPosition(.47),
           y: meterGauge.textPosition(.07),
           style: {
@@ -64,7 +80,7 @@ function meterGaugeHelpers(size) {
     exports.ahead = function(chartData, options) {
       return mergeObjects(
         {
-          text: chartData.translations.ahead,
+          text: gon.translations.meter_gauge.plot_band_label.ahead,
           rotation: 60,
           x: localeIs('ka') ? meterGauge.textPosition(.85) : meterGauge.textPosition(.865),
           y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),

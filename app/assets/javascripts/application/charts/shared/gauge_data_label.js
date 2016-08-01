@@ -21,5 +21,9 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
     gaugeLabel += '<span style="vertical-align: middle; width: ' + fontSize + ';height: ' + fontSize + ';display: inline-block;">' + icon + '</span>';
   }
   
+  if (args.plotBandLabel) {
+    gaugeLabel += '</br><p>' + args.plotBandLabel + '</p>';
+  }
+  
   return inDiv(gaugeLabel);
 }

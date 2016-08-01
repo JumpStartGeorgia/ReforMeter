@@ -1,5 +1,7 @@
 function highchartsSmallMeterGaugeOptions(chartData) {
   var color = chartData.color;
+  
+  var helpers = meterGaugeHelpers(100);
 
   var options = {
     yAxis: {
@@ -55,7 +57,14 @@ function highchartsSmallMeterGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '2em');
+          return highchartsGaugeLabel(
+            chartData, 
+            this, 
+            '2em', 
+            {
+              plotBandLabel: helpers.plotBandLabelForScore(chartData.score)
+            }
+          );
         }
       },
       pivot: {

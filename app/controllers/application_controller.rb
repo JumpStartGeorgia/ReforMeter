@@ -25,6 +25,15 @@ class ApplicationController < ActionController::Base
     # indicate which year can be the first year for data
     @quarter_start_year = 2015
     gon.default_locale = I18n.default_locale.to_s
+    gon.translations = {
+      meter_gauge: {
+        plot_band_label: {
+          behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+          on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+          ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+        }
+      }
+    }
   end
 
   ##############################################
