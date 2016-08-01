@@ -1,3 +1,4 @@
+//= require cocoon
 //= require_tree ./admin/
 
 (function() {
@@ -7,6 +8,9 @@
     setupReformColorSelectChange();
     setQuarterFormQuarter();
     setupExpertsSelectAll();
+    setupExternalIndicatorType();
+    setupExternalIndicatorCocoon();
+    setupExternalIndicatorMove();
   });
 
   $(document).on('page:change', function() {

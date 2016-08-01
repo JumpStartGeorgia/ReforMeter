@@ -4,7 +4,7 @@ class RootController < ApplicationController
     @home_page_about = PageContent.find_by(name: 'home_page_about')
 
     @quarter = Quarter.published.with_expert_survey.latest
-    @reforms = Reform.in_quarter(@quarter.id).active.highlight#.sorted if @quarter
+    @reforms = Reform.in_quarter(@quarter.id).active.highlight.sorted if @quarter
 
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
@@ -37,7 +37,7 @@ class RootController < ApplicationController
       @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
     end
 
-    @external_indicators = ExternalIndicator.published.for_home_page.map do |ext_ind|
+    @external_indicators = ExternalIndicator.published.reverse_sorted.for_home_page.map do |ext_ind|
       ext_ind.format_for_charting
     end
 
@@ -49,10 +49,6 @@ class RootController < ApplicationController
     @methodology_review_board = PageContent.find_by(name: 'methodology_review_board')
     @methodology_government = PageContent.find_by(name: 'methodology_government')
     @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
-  end
-
-  def contact
-    @intro_text = PageContent.find_by(name: 'contact_text')
   end
 
   def download_data_and_reports
@@ -112,8 +108,10 @@ class RootController < ApplicationController
 
   def reforms
     @reform_text = PageContent.find_by(name: 'reform_text')
+    @methodology_government = PageContent.find_by(name: 'methodology_government')
+    @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
     @quarters = Quarter.published.recent
-    @reforms = Reform.with_survey_data.active.with_color#.sorted
+    @reforms = Reform.with_survey_data.active.with_color.sorted
     @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
 
     gon.chart_download = highchart_export_config

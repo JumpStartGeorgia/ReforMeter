@@ -185,7 +185,7 @@ class Admin::ReformSurveysController < ApplicationController
 
     def load_reforms
       # ge all reforms
-      @reforms = Reform.active#.sorted
+      @reforms = Reform.active.sorted
 
       # get all reforms that already have a survey for this quarter
       @survey_reforms = ReformSurvey.in_quarter(@quarter.id)

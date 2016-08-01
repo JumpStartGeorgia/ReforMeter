@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524100407) do
+ActiveRecord::Schema.define(version: 20160712074058) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -69,6 +69,114 @@ ActiveRecord::Schema.define(version: 20160524100407) do
   end
 
   add_index "experts", ["is_active"], name: "index_experts_on_is_active", using: :btree
+
+  create_table "external_indicator_countries", force: :cascade do |t|
+    t.integer  "external_indicator_id", limit: 4
+    t.integer  "sort_order",            limit: 1, default: 1
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "external_indicator_countries", ["external_indicator_id"], name: "index_external_indicator_countries_on_external_indicator_id", using: :btree
+  add_index "external_indicator_countries", ["sort_order"], name: "index_external_indicator_countries_on_sort_order", using: :btree
+
+  create_table "external_indicator_country_translations", force: :cascade do |t|
+    t.integer  "external_indicator_country_id", limit: 4,   null: false
+    t.string   "locale",                        limit: 255, null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "name",                          limit: 255
+  end
+
+  add_index "external_indicator_country_translations", ["external_indicator_country_id"], name: "index_45405f53088fa55511c972e26ae29858d1c5c67b", using: :btree
+  add_index "external_indicator_country_translations", ["locale"], name: "index_external_indicator_country_translations_on_locale", using: :btree
+  add_index "external_indicator_country_translations", ["name"], name: "index_external_indicator_country_translations_on_name", using: :btree
+
+  create_table "external_indicator_data", force: :cascade do |t|
+    t.integer  "external_indicator_time_id", limit: 4
+    t.integer  "country_id",                 limit: 4
+    t.integer  "index_id",                   limit: 4
+    t.decimal  "value",                                precision: 5, scale: 2, null: false
+    t.integer  "change",                     limit: 4
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+  end
+
+  add_index "external_indicator_data", ["country_id"], name: "index_external_indicator_data_on_country_id", using: :btree
+  add_index "external_indicator_data", ["external_indicator_time_id"], name: "index_external_indicator_data_on_external_indicator_time_id", using: :btree
+  add_index "external_indicator_data", ["index_id"], name: "index_external_indicator_data_on_index_id", using: :btree
+
+  create_table "external_indicator_index_translations", force: :cascade do |t|
+    t.integer  "external_indicator_index_id", limit: 4,     null: false
+    t.string   "locale",                      limit: 255,   null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "name",                        limit: 255
+    t.string   "short_name",                  limit: 255
+    t.text     "description",                 limit: 65535
+  end
+
+  add_index "external_indicator_index_translations", ["external_indicator_index_id"], name: "index_0f2c27aca4248650405e95352dd21c6e1ba9ad12", using: :btree
+  add_index "external_indicator_index_translations", ["locale"], name: "index_external_indicator_index_translations_on_locale", using: :btree
+  add_index "external_indicator_index_translations", ["name"], name: "index_external_indicator_index_translations_on_name", using: :btree
+
+  create_table "external_indicator_indices", force: :cascade do |t|
+    t.integer  "external_indicator_id", limit: 4
+    t.integer  "change_multiplier",     limit: 1, default: 1
+    t.integer  "sort_order",            limit: 1, default: 1
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "external_indicator_indices", ["external_indicator_id"], name: "index_external_indicator_indices_on_external_indicator_id", using: :btree
+  add_index "external_indicator_indices", ["sort_order"], name: "index_external_indicator_indices_on_sort_order", using: :btree
+
+  create_table "external_indicator_plot_band_translations", force: :cascade do |t|
+    t.integer  "external_indicator_plot_band_id", limit: 4,   null: false
+    t.string   "locale",                          limit: 255, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "name",                            limit: 255
+  end
+
+  add_index "external_indicator_plot_band_translations", ["external_indicator_plot_band_id"], name: "index_6e4496c4c9ee24721b317482691ded5a6a6bfa32", using: :btree
+  add_index "external_indicator_plot_band_translations", ["locale"], name: "index_external_indicator_plot_band_translations_on_locale", using: :btree
+  add_index "external_indicator_plot_band_translations", ["name"], name: "index_external_indicator_plot_band_translations_on_name", using: :btree
+
+  create_table "external_indicator_plot_bands", force: :cascade do |t|
+    t.integer  "external_indicator_id", limit: 4
+    t.integer  "from",                  limit: 4
+    t.integer  "to",                    limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "external_indicator_plot_bands", ["external_indicator_id"], name: "index_external_indicator_plot_bands_on_external_indicator_id", using: :btree
+  add_index "external_indicator_plot_bands", ["from", "to"], name: "index_external_indicator_plot_bands_on_from_and_to", using: :btree
+
+  create_table "external_indicator_time_translations", force: :cascade do |t|
+    t.integer  "external_indicator_time_id", limit: 4,   null: false
+    t.string   "locale",                     limit: 255, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "name",                       limit: 255
+  end
+
+  add_index "external_indicator_time_translations", ["external_indicator_time_id"], name: "index_31d260b017f23bf605e7ef343a313a245b2e4283", using: :btree
+  add_index "external_indicator_time_translations", ["locale"], name: "index_external_indicator_time_translations_on_locale", using: :btree
+  add_index "external_indicator_time_translations", ["name"], name: "index_external_indicator_time_translations_on_name", using: :btree
+
+  create_table "external_indicator_times", force: :cascade do |t|
+    t.integer  "external_indicator_id", limit: 4
+    t.integer  "sort_order",            limit: 1,                         default: 1
+    t.decimal  "overall_value",                   precision: 5, scale: 2
+    t.integer  "overall_change",        limit: 4
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+  end
+
+  add_index "external_indicator_times", ["external_indicator_id"], name: "index_external_indicator_times_on_external_indicator_id", using: :btree
+  add_index "external_indicator_times", ["sort_order"], name: "index_external_indicator_times_on_sort_order", using: :btree
 
   create_table "external_indicator_translations", force: :cascade do |t|
     t.integer  "external_indicator_id", limit: 4,     null: false

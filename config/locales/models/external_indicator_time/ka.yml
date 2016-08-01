@@ -1,0 +1,13 @@
+---
+ka:
+  activerecord:
+    attributes:
+      external_indicator_time:
+        name: Name
+        sort_order: Sort Order
+        overall_value: Overall Value
+        overall_change: Overall Change
+    models:
+      external_indicator_time:
+        one: Time Period
+        other: Time Periods

@@ -15,8 +15,8 @@
 #
 
 require 'csv'
-class ExternalIndicator < ActiveRecord::Base
-  attr_accessor :data_hash
+class ExternalIndicator < AddMissingTranslation
+  attr_accessor :data_hash, :update_change_values
 
   #######################
   ## TRANSLATIONS
@@ -27,11 +27,25 @@ class ExternalIndicator < ActiveRecord::Base
   #######################
   ## RELATIONSHIPS
   has_and_belongs_to_many :reforms
+  has_many :countries, class_name: 'ExternalIndicatorCountry', dependent: :destroy
+  has_many :indices, class_name: 'ExternalIndicatorIndex', dependent: :destroy
+  has_many :plot_bands, class_name: 'ExternalIndicatorPlotBand', dependent: :destroy
+  has_many :time_periods, class_name: 'ExternalIndicatorTime', dependent: :destroy
+  accepts_nested_attributes_for :countries, :reject_if => lambda { |x| x[:name_en].blank? && x[:name_ka].blank?}, allow_destroy: true
+  accepts_nested_attributes_for :indices, :reject_if => lambda { |x|
+    x[:name_en].blank? && x[:name_ka].blank? &&
+    x[:short_name_en].blank? && x[:short_name_ka].blank?
+  }, :allow_destroy => true
+  accepts_nested_attributes_for :plot_bands, :reject_if => lambda { |x|
+    x[:name_en].blank? && x[:name_ka].blank? &&
+    x[:from].blank? && x[:to].blank?
+  }, :allow_destroy => true
+  accepts_nested_attributes_for :time_periods, :reject_if => lambda { |x| x[:name_en].blank? && x[:name_ka].blank?}, allow_destroy: true
 
   #######################
   ## VALIDATIONS
 
-  validates :indicator_type, :scale_type, :chart_type, presence: :true
+  validates :title, :indicator_type, :scale_type, :chart_type, presence: :true
 
   #######################
   ## CONSTANTS
@@ -43,24 +57,12 @@ class ExternalIndicator < ActiveRecord::Base
   ## CALLBACKS
   after_initialize :load_data_hash
   before_save :set_data
+  after_save :reset_unwanted_fields
 
-  # after load, populate data hash
-  # format: {
-  #   time_periods: [{id, name}]
-  #   countries: [{id, name}]
-  #   indexes: [{id, name, short_name, change_multiplier}]
-  #   data: [{time_period, overall_value, overall_change, values[{index/country, value, change}] }]
-  # }
-  def load_data_hash
-    self.data_hash = self.data.present? ? JSON.parse(self.data, symbolize_names: true) : {}
-    return true
-  end
+  before_save :set_change_values
+  # after_save :update_future_time
+  # after_destroy :reset_future_time
 
-  # convert the data hash to json string
-  def set_data
-    self.data = self.data_hash.to_json if self.data_hash.present?
-    return true
-  end
 
   #######################
   ## SCOPES
@@ -137,6 +139,56 @@ class ExternalIndicator < ActiveRecord::Base
     end
   end
 
+  #######################
+  ## METHODS
+
+  def is_basic?
+    self.indicator_type == INDICATOR_TYPES[:basic]
+  end
+
+  def is_country?
+    self.indicator_type == INDICATOR_TYPES[:country]
+  end
+
+  def is_composite?
+    self.indicator_type == INDICATOR_TYPES[:composite]
+  end
+
+  def full_title(delim = ' - ')
+    "#{self.title}#{delim}#{self.subtitle}"
+  end
+
+  # return one of following:
+  # - min-max
+  # - > min
+  # - < max
+  def range
+    x = ''
+    if min.present? && max.present?
+      x = "#{min} - #{max}"
+    elsif min.present?
+      x = "> #{min}"
+    elsif max.present?
+      x = "< #{max}"
+    end
+    return x
+  end
+
+  # get the name of the indicator type
+  def indicator_type_name
+    I18n.t("shared.external_indicators.indicator_types.#{INDICATOR_TYPES.keys[INDICATOR_TYPES.values.index(self.indicator_type)]}")
+  end
+
+  # get the name of the chart type
+  def chart_type_name
+    I18n.t("shared.external_indicators.chart_types.#{CHART_TYPES.keys[CHART_TYPES.values.index(self.chart_type)]}")
+  end
+
+  # get the name of the scale type
+  def scale_type_name
+    I18n.t("shared.external_indicators.scale_types.#{SCALE_TYPES.keys[SCALE_TYPES.values.index(self.scale_type)]}")
+  end
+
   # if this is country and line -> line
   # else if line -> area
   # else column
@@ -164,9 +216,6 @@ class ExternalIndicator < ActiveRecord::Base
     unit_is_percent? ? I18n.t('shared.common.percent') : nil
   end
 
-  #######################
-  ## METHODS
-
   # format the data for charting
   # - use the indicator type to create the proper hash format for charting
   # format: title, subtitle, min, max, categories[], series[ {name: '', data: [ {y, change} ] } ]
@@ -183,11 +232,193 @@ class ExternalIndicator < ActiveRecord::Base
       max: max,
       unitLabel: unit_label,
       categories: [],
+      series: [],
+      plot_bands: nil
+    }
+
+    # add x-axis lables (categories)
+    time = self.time_periods.sorted
+    hash[:categories] = time.map{|x| x.name}
+
+    # if there are plot bands, add them
+    plot_bands = self.plot_bands.sorted
+    if plot_bands.present?
+      hash[:plot_bands] = []
+      plot_bands.each_with_index do |pb, index|
+        hash[:plot_bands] << {from: pb.from, to: pb.to, text: pb.name, opacity: (0.4 + index*0.6/(plot_bands.length-1))}
+      end
+    end
+
+    dash_styles = [
+      'Solid',
+      'Dot',
+      'LongDash',
+      'ShortDash',
+      'ShortDot',
+      'ShortDashDot',
+      'LongDashDotDot'
+    ]
+
+    # add data
+    # based off of indicator type, build the data accordingly
+    case indicator_type
+    when INDICATOR_TYPES[:basic]
+      # hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:values].first[:value], change: x[:values].first[:change]}}}
+      hash[:series] << {data: time.map{|x| {y: x.data.first.value.to_f, change: x.data.first.change}  }}
+    when INDICATOR_TYPES[:country]
+
+      self.countries.sorted.each_with_index do |country, index|
+        # start the item for the series
+        item = {
+          name: country.name,
+          dashStyle: dash_styles[index % dash_styles.length],
+          data: []
+        }
+
+        # for each time period, get the country data
+        time.each do |tp|
+          # get country data
+          d = tp.data.select{|x| x.country_id == country.id}.first
+          if d.present?
+            item[:data] << {
+              y: d.value.to_f,
+              change: d.change
+            }
+          else
+            item[:data] << {
+              y: nil,
+              change: nil
+            }
+          end
+        end
+
+        hash[:series] << item
+      end
+
+
+
+      # data_hash[:countries].each_with_index do |country, index|
+
+      #   item = {
+      #     name: country[:name],
+      #     dashStyle: dash_styles[index % dash_styles.length],
+      #     data: []
+      #   }
+
+      #   data_hash[:data].each do |data|
+
+      #     # find the data item for this country
+      #     d = data[:values].find do |x|
+      #       x[:country] == country[:id]
+      #     end
+
+      #     if d.present?
+      #       item[:data] << {
+      #         y: d[:value],
+      #         change: d[:change]
+      #       }
+      #     else
+      #       item[:data] << {
+      #         y: nil,
+      #         change: nil
+      #       }
+      #     end
+      #   end
+
+      #   hash[:series] << item
+      # end
+
+    when INDICATOR_TYPES[:composite]
+      # the overall value is first
+      hash[:series] << {
+        name: I18n.t('shared.categories.overall'),
+        data: time.map do |x|
+          {
+            y: x.overall_value.to_f,
+            change: x.overall_change
+          }
+        end
+      }
+
+      # get the index values
+      hash[:indexes] = []
+      self.indices.sorted.each_with_index do |ind, index|
+        item = {name: ind.name, short_name: ind.short_name, data: []}
+
+        # for each time period, get the country data
+        time.each do |tp|
+          # get country data
+          d = tp.data.select{|x| x.index_id == ind.id}.first
+          if d.present?
+            item[:data] << {
+              y: d.value.to_f,
+              change: d.change
+            }
+          else
+            item[:data] << {
+              y: nil,
+              change: nil
+            }
+          end
+        end
+        hash[:indexes] << item
+      end
+
+      # # get the overall values for charting
+      # hash[:series] << {
+      #   name: I18n.t('shared.categories.overall'),
+      #   data: data_hash[:data].map do |x|
+      #     {
+      #       y: x[:overall_value],
+      #       change: x[:overall_change]
+      #     }
+      #   end
+      # }
+
+      # # get the index values
+      # hash[:indexes] = []
+      # self.data_hash[:indexes].each do |index|
+      #   item = {name: index[:name], short_name: index[:short_name], data: []}
+      #   self.data_hash[:data].each do |data|
+      #     # find the data item for this index
+      #     d = data[:values].select{|x| x[:index] == index[:id]}.first
+      #     if d.present?
+      #       item[:data] << {
+      #         y: d[:value],
+      #         change: d[:change]
+      #       }
+      #     else
+      #       item[:data] << {
+      #         y: nil,
+      #         change: nil
+      #       }
+      #     end
+      #   end
+      #   hash[:indexes] << item
+      # end
+    end
+
+    return hash
+
+  end
+
+  def format_for_charting_old
+    hash = {
+      id: "external-indicator-#{id}",
+      chartType: custom_highchart_type,
+      description: description,
+      title: title,
+      subtitle: subtitle,
+      min: min,
+      max: max,
+      unitLabel: unit_label,
+      categories: [],
       series: []
     }
 
     # add x-axis lables (categories)
-    hash[:categories] = self.data_hash[:time_periods].map{|x| x[:name]}
+    time = self.time_periods.sorted
+    hash[:categories] = time.map{|x| x.name}
 
     dash_styles = [
       'Solid',
@@ -204,7 +435,6 @@ class ExternalIndicator < ActiveRecord::Base
     case indicator_type
     when INDICATOR_TYPES[:basic]
       hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:values].first[:value], change: x[:values].first[:change]}}}
-
     when INDICATOR_TYPES[:country]
 
       data_hash[:countries].each_with_index do |country, index|
@@ -239,6 +469,7 @@ class ExternalIndicator < ActiveRecord::Base
       end
 
     when INDICATOR_TYPES[:composite]
+
       # get the overall values for charting
       hash[:series] << {
         name: I18n.t('shared.categories.overall'),
@@ -286,5 +517,132 @@ class ExternalIndicator < ActiveRecord::Base
 
   end
 
+
+
+  #######################
+  #######################
+  private
+
+  # after load, populate data hash
+  # format: {
+  #   time_periods: [{id, name}]
+  #   countries: [{id, name}]
+  #   indexes: [{id, name, short_name, description, change_multiplier}]
+  #   data: [{time_period, overall_value, overall_change, values[{index/country, value, change}] }]
+  # }
+  def load_data_hash
+    self.data_hash = self.data.present? ? JSON.parse(self.data, symbolize_names: true) : {}
+    return true
+  end
+
+  # convert the data hash to json string
+  def set_data
+    self.data = self.data_hash.to_json if self.data_hash.present?
+    return true
+  end
+
+  def reset_unwanted_fields
+    if self.indicator_type == INDICATOR_TYPES[:country]
+      # this is country, so index records are not needed
+      self.indices.destroy_all
+    elsif self.indicator_type == INDICATOR_TYPES[:composite]
+      # this is index, so country records are not needed
+      self.countries.destroy_all
+    end
+    return true
+  end
+
+  # set the change value when compared to the last time period
+  def set_change_values
+    if self.update_change_values == true
+      if self.time_periods.length == 1
+        # there is only one record, so all change values should be nil
+        self.time_periods.each do |tp|
+          tp.overall_change = nil
+          tp.data.each do |datum|
+            datum.change = nil
+          end
+        end
+      else
+        # compare each time period with the previous time period and compute the change value
+        # start with the most recent and go backwards
+        (self.time_periods.length-1).downto(1).each do |index|
+          current = self.time_periods[index]
+          previous = self.time_periods[index-1]
+
+          # if this is composite indicator, then update the overall_change in time period
+          if self.is_composite?
+            current.overall_change = compute_change(current.overall_value, previous.overall_value)
+          end
+
+          # compute change for the data values
+          current.data.each_with_index do |current_datum, current_index|
+            if self.is_country?
+              # find country in previous
+              previous_datum = previous.data.select{|x| x.country_id == current_datum.country_id}.first
+              if previous_datum.present?
+                current_datum.change = compute_change(current_datum.value, previous_datum.value)
+              else
+                # could not find the previous matching record, so reset to nil
+                current_datum.change = nil
+              end
+
+            elsif self.is_composite?
+              # find index in previous
+              previous_datum = previous.data.select{|x| x.index_id == current_datum.index_id}.first
+              if previous_datum.present?
+                # get change_multiplier value for this index
+                index = self.indices.select{|x| x.id == current_datum.index_id}.first
+                current_datum.change = compute_change(current_datum.value, previous_datum.value, index.present? ? index.change_multiplier : 1)
+              else
+                # could not find the previous matching record, so reset to nil
+                current_datum.change = nil
+              end
+
+            else # basic
+              previous_datum = previous.data[current_index]
+              if previous_datum.present?
+                current_datum.change = compute_change(current_datum.value, previous_datum.value)
+              else
+                # could not find the previous matching record, so reset to nil
+                current_datum.change = nil
+              end
+            end
+          end
+        end
+      end
+    end
+
+    return true
+  end
+
+  # any change in value is a change
+  def compute_change(current_value, previous_value, change_multiplier=1)
+    return nil if current_value.nil? || previous_value.nil?
+
+    diff = current_value - previous_value
+    change = nil
+    if diff < 0
+      change = -1
+    elsif diff > 0
+      change = 1
+    else
+      change = 0
+    end
+
+    return change * change_multiplier
+  end
+
+
+  #######################
+  #######################
+
+  def has_required_translations?(trans)
+    trans.title.present?
+  end
+
+  def add_missing_translations(default_trans)
+    self.title = default_trans.title if self["title_#{Globalize.locale}"].blank?
+  end
 
 end

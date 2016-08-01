@@ -14,6 +14,7 @@ ka:
       publish: გამოქვეყნება
       unpublish: გამოქვეყნების გაუქმება
       add: დამატება
+      manage_data: Manage Data
       with_obj:
         cancel: "%{obj}-ის გაუქმება"
         create: "%{obj}-ის შექმნა"
@@ -79,6 +80,9 @@ ka:
       percent: 'პროცენტი (%)'
       :yes: 'დიახ'
       :no: 'არა'
+      move_row:
+        up: Move the row up
+        down: Move the row down
     expert_show:
       header:
         chart: შეფასების საბჭო ისტორია
@@ -95,6 +99,7 @@ ka:
       reform_colors: რეფორმის ფერები
       reforms: რეფორმები
       quarters: მეოთხედები
+      external_indicators: External Indicators
     labels:
       translated_field: "%{field} (%{language})"
     locale:
@@ -124,6 +129,17 @@ ka:
         stakeholder_history: შეფასებების ქრონიკა
         stakeholder_summary: დაინტერესებულ მხარეთა მიხედვით
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
+    external_indicators:
+      indicator_types:
+        basic: Basic
+        country: Country
+        composite: Composite
+      chart_types:
+        line: Line
+        bar: Bar
+      scale_types:
+        percent: Percent
+        number: Number
   errors:
     messages:
       publish:

@@ -1,20 +1,39 @@
 function highchartsExternalIndicatorLineTimeSeries(chartData) {
+  var spacingLeft = chartData.plot_bands != null ? localeIs('ka') ? 120 : 80 : 0;
+
   var options = {
     chart: {
+      // Makes room for the yAxis plot band labels
+      spacingLeft: spacingLeft,
       marginTop: externalIndicatorChart.marginTop
     },
     colors: externalIndicatorChart.colors,
     exporting: {
       enabled: true,
       chartOptions: {
-        title: externalIndicatorChart.title(chartData.title)
+        title: externalIndicatorChart.title(
+          chartData.title,
+          {
+            titleOptions: {
+              x: -1 * spacingLeft + 10
+            }
+          }
+        )
       }
     },
-    subtitle: externalIndicatorChart.subtitle(chartData.subtitle),
+    subtitle: externalIndicatorChart.subtitle(
+      chartData.subtitle,
+      {
+        x: -1 * spacingLeft + 10
+      }
+    ),
     title: externalIndicatorChart.title(
       chartData.title,
       {
-        description: chartData.description
+        description: chartData.description,
+        titleOptions: {
+          x: -1 * spacingLeft + 10
+        }
       }
     ),
     tooltip: {
@@ -26,6 +45,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
       }
     },
     yAxis: {
+      plotBands: plotBands(chartData.plot_bands, false),
       title: {
         text: chartData.unitLabel
       }

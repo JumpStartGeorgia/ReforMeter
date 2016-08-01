@@ -197,6 +197,9 @@ gem 'autoprefixer-rails', '~> 6.3', '>= 6.3.6'
 # Super cool charts!
 gem 'highcharts-rails', '~> 4.2', '>= 4.2.3'
 
+# nested forms
+gem 'cocoon', '~> 1.2', '>= 1.2.9'
+
 # wysiwyg editor
 gem 'ckeditor', '~> 4.1', '>= 4.1.6'
 

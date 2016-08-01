@@ -5,8 +5,25 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var spacingLeft = localeIs('ka') ? 120 : 80;
 
   function plotBands(plotBands) {
+    
     $(plotBands).each(
       function() {
+        // Fixes plot band format to work with highcharts
+        function fixPlotBandFormat(plotBand) {
+          if (!plotBand.label) {
+            plotBand.label = {};
+            
+            if (plotBand.text) {
+              plotBand.label.text = this.text;
+              delete plotBand.text;
+            }
+          }
+          
+          if (!plotBand.label.style) plotBand.label.style = {};
+        }
+        
+        fixPlotBandFormat(this);
+        
         this.label.x = localeIs('ka') ? -140 : -100;
         this.label.verticalAlign = 'middle';
         this.label.style.fontSize = localeIs('ka') ? '1.4em' : '1.6em';
@@ -90,47 +107,9 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       useHTML: true
     },
     yAxis: {
-      plotBands: plotBands(
-        [
-          {
-            from: max * 0,
-            to: max * .25,
-            label: {
-              text: chartData.translations.fail,
-              style: {
-                color: outputHighchartsColorString(color, '.4')
-              }
-            }
-          }, {
-            from: max * .25,
-            to: max * .5,
-            label: {
-              text: chartData.translations.poor,
-              style: {
-                color: outputHighchartsColorString(color, '.6')
-              }
-            }
-          }, {
-            from: max * .5,
-            to: max * .75,
-            label: {
-              text: chartData.translations.fair,
-              style: {
-                color: outputHighchartsColorString(color, '.8')
-              }
-            }
-          }, {
-            from: max * .75,
-            to: max,
-            label: {
-              text: chartData.translations.good,
-              style: {
-                color: outputHighchartsColorString(color, '1')
-              }
-            }
-          }
-        ]
-      ),
+      min: chartData.min,
+      max: chartData.max,
+      plotBands: plotBands(chartData.plot_bands),
       title: {
         text: chartData.unitLabel
       }

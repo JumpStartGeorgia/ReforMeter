@@ -68,9 +68,11 @@ page_title t('.title')
       </div>
     <% end %>
 
-    <% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
+    <% if !(@quarters.present? && @reforms.present? && @reform_surveys.present?) %>
 
-      <div class='js-become-highchart' data-chart-type='percentage-colorful-reforms-history-time-series' data-id='reforms-history-series'></div>
+      <p class="alert alert-warning">
+        <%= t('.no_data') %>
+      </p>
 
     <% end %>
 
@@ -78,65 +80,89 @@ page_title t('.title')
 
 </div>
 
-<div class='contentSection'>
+<% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
+  <div class='contentSection'>
 
-  <header class='contentSection-header'>
+    <header class='contentSection-header mod-no-padding'>
 
-    <h2 class='heading'>
-      <%= t('.header.table') %>
-    </h2>
+      <ul class='tabList mod-header js-act-as-tab-list'>
 
-  </header>
+        <li class='tabList-item'>
+
+          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='history'>
+            <%= t('.header.table') %>
+          </button>
+
+        </li>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
+            <%= t('.header.chart') %>
+          </button>
+        </li>
+
+        <li class='tabList-item'>
+          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
+            <%= t('.header.methodology') %>
+          </button>
+        </li>
+
+
+      </ul>
+
+    </header>
 
   <div class='contentSection-body mod-no-padding'>
 
-    <% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
+      <div class='tabContent js-act-as-tab-content'>
 
       <table class='chartsTable mod-reforms'>
 
-        <thead>
+          <table class='chartsTable'>
 
-          <tr class='chartsTable-row'>
+            <thead>
 
-            <th class='chartsTable-cell mod-head mod-first-column'>
-              <%= t('.table_header.time') %>
-            </th>
+              <tr class='chartsTable-row'>
 
-            <th class='chartsTable-cell mod-head'>
-              <%= t('.table_header.reform') %>
-            </th>
+                <th class='chartsTable-cell mod-head mod-first-column'>
+                  <%= t('.table_header.time') %>
+                </th>
 
-            <th class='chartsTable-cell mod-head'>
-              <%= t('.table_header.government') %>
-            </th>
+                <th class='chartsTable-cell mod-head'>
+                  <%= t('.table_header.reform') %>
+                </th>
 
-            <th class='chartsTable-cell mod-head'>
-              <%= t('.table_header.stakeholder') %>
-            </th>
+                <th class='chartsTable-cell mod-head'>
+                  <%= t('.table_header.government') %>
+                </th>
 
             <th class='chartsTable-cell mod-head mod-summary'>
               <%= t('.table_header.summary') %>
             </th>
 
-          </tr>
+                <th class='chartsTable-cell mod-head'>
+                  <%= t('.table_header.summary') %>
+                </th>
 
-        </thead>
+              </tr>
 
-        <tbody class='chartsTable-body'>
+            </thead>
 
-          <% @quarters.each do |quarter| %>
+            <tbody class='chartsTable-body'>
 
-            <% surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id} %>
+              <% @quarters.each do |quarter| %>
 
-            <% if surveys.present? %>
+                <% surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id} %>
 
-              <% surveys.each do |survey| %>
+                <% if surveys.present? %>
 
-                <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
+                  <% surveys.each do |survey| %>
 
-                <% if reform %>
+                    <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
 
-                  <tr class='chartsTable-row js-act-as-reform-table-row'>
+                    <% if reform %>
+
+                      <tr class='chartsTable-row js-act-as-reform-table-row'>
 
                     <td class='chartsTable-cell mod-first-column mod-important-text js-act-as-quarter-name'>
                       <%= link_to(quarter.time_period,
@@ -154,7 +180,7 @@ page_title t('.title')
                                   class: 'chartsTable-cell-link') %>
                     </td>
 
-                    <td class='chartsTable-cell'>
+                        <td class='chartsTable-cell'>
 
                       <p class='chartsTable-cell-text'>
                         <%= survey.government_overall_score %>
@@ -173,9 +199,9 @@ page_title t('.title')
 
                       </div>
 
-                    </td>
+                        </td>
 
-                    <td class='chartsTable-cell'>
+                        <td class='chartsTable-cell'>
 
                       <p class='chartsTable-cell-text'>
                         <%= survey.stakeholder_overall_score %>
@@ -194,34 +220,57 @@ page_title t('.title')
 
                       </div>
 
-                    </td>
+                        </td>
 
                     <td class='chartsTable-cell mod-summary'>
                       <%= strip_tags_nbsp(reform.summary) %>
                     </td>
 
-                  </tr>
+                      </tr>
+
+                    <% end %>
+
+                  <% end %>
 
                 <% end %>
 
               <% end %>
 
+            </tbody>
+
+          </table>
+        </div>
+
+        <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
+          <div class='js-become-highchart' data-chart-type='percentage-colorful-reforms-history-time-series' data-id='reforms-history-series'></div>
+        </div>
+
+        <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='methodology'>
+          <% if @methodology_government || @methodology_stakeholder %>
+            <% if @methodology_government %>
+              <div>
+                <h3><%= @methodology_government.title %></h3>
+                <%= simple_format_no_tags(@methodology_government.content) %>
+              </div>
             <% end %>
 
+            <% if @methodology_stakeholder %>
+              <div>
+                <h3><%= @methodology_stakeholder.title %></h3>
+                <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+              </div>
+            <% end %>
+
+          <% else %>
+            <p>
+             <%= t('.no_methodology') %>
+            </p>
           <% end %>
 
-        </tbody>
+        </div>
 
-      </table>
-
-    <% else %>
-
-      <p class="alert alert-warning">
-        <%= t('.no_data') %>
-      </p>
-
-    <% end %>
-
+      </div>
+    </div>
   </div>
 
-</div>
+<% end %>

@@ -6,8 +6,7 @@ ka:
       partners: პარტნიორები
       sponsors_donors: სპონსორები და დონორები
       title: შესახებ
-    contact:
-      title: კონტაქტი
+      contact: კონტაქტი
     download_data_and_reports:
       choose: არჩევა
       download: გადმოწერა
@@ -16,10 +15,10 @@ ka:
       title: საბჭოს დასკვნით %{time}-ისთვის
     review_board:
       header:
-        chart: საბჭოს შეფასებების ქრონიკა
+        chart: ქრონოლოგია
         experts: ექსპერტები
         methodology: მეთოდოლოგია
-        table: ექსპერტთა ისტორიის ცხრილი
+        table: შედეგები
       no_data: ბოდიშს გიხდით, ამ დროისთვის არ არსებობს საბჭოს წევრთა მონაცემთა ჩანაწერი.
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
       no_experts: არ არსებობს საბჭოს წევრებზე ჩანაწერი.
@@ -42,7 +41,9 @@ ka:
       title: "რეფორმა: %{name}-ის %{time}-სთვის"
     reforms:
       header:
-        table: რეფორმები დროის მონაკვეთის მიხედვით
+        table: შედეგები
+        chart: ქრონოლოგია
+        methodology: მეთოდოლოგია
       no_data: ბოდიშს გიხდით, ამ დროისთვის არ არსებობს საბჭოს წევრთა მონაცემთა ჩანაწერი.
       table_header:
         government: მთავრობა

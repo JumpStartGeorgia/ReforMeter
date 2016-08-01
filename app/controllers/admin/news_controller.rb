@@ -77,6 +77,6 @@ class Admin::NewsController < ApplicationController
     end
 
     def load_reforms
-      @reforms = Reform.active#.sorted
+      @reforms = Reform.active.sorted
     end
 end

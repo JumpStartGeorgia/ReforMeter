@@ -1,0 +1,86 @@
+<%
+  object ||= nil
+  indicator ||= nil
+%>
+<tr class="nested-fields">
+  <td>
+    <a class="move-up" href="#" title="<%= t('shared.common.move_row.up')%>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
+    <a class="move-down" href="#" title="<%= t('shared.common.move_row.down')%>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
+  </td>
+  <td class="js-has-sort-order">
+    <%= f.input :sort_order, as: :hidden, input_html: {class: 'sort-order'} %>
+
+    <%= f.input "name_#{enabled_locale}",
+                as: :string,
+                label: false %>
+  </td>
+
+  <% if indicator.is_composite? %>
+    <td class="js-to-clear">
+      <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
+        <%= f.input :overall_value,
+                  as: :string,
+                  label: false,
+                  input_html: {size: 5, class: 'js-update-value'} %>
+      <% else %>
+        <%= object.overall_value %>
+      <% end %>
+    </td>
+    <% indicator.indices.sorted.each do |index| %>
+      <% data_point = object.data.select{|x| x.index_id == index.id}.first if object.present? %>
+      <% data_point = ExternalIndicatorDatum.new if data_point.nil? %>
+      <td class="js-to-clear">
+        <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
+          <%= f.semantic_fields_for :data, data_point do |d| %>
+            <%= d.input :index_id, as: :hidden, input_html: {value: index.id} %>
+            <%= d.input :value,
+                        as: :string,
+                        label: false,
+                        input_html: {size: 5, class: 'js-update-value'} %>
+          <% end %>
+        <% else %>
+          <%= data_point.value %>
+        <% end %>
+      </td>
+    <% end %>
+  <% elsif indicator.is_country? %>
+    <% indicator.countries.sorted.each do |country| %>
+      <% data_point = object.data.select{|x| x.country_id == country.id}.first if object.present?  %>
+      <% data_point = ExternalIndicatorDatum.new if data_point.nil? %>
+      <td class="js-to-clear">
+        <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
+          <%= f.semantic_fields_for :data, data_point do |d| %>
+            <%= d.input :country_id, as: :hidden, input_html: {value: country.id} %>
+            <%= d.input :value,
+                        as: :string,
+                        label: false,
+                        input_html: {size: 5, class: 'js-update-value'} %>
+          <% end %>
+        <% else %>
+          <%= data_point.value %>
+        <% end %>
+      </td>
+    <% end %>
+  <% else #basic %>
+    <td class="js-to-clear">
+      <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
+        <% data_point = object.data.first if object.present?  %>
+        <% data_point = ExternalIndicatorDatum.new if data_point.nil? %>
+        <%= f.semantic_fields_for :data, data_point do |d| %>
+          <%= d.input :value,
+                      as: :string,
+                      label: false,
+                      input_html: {size: 5, class: 'js-update-value'} %>
+        <% end %>
+      <% else %>
+        <%= object.data.first.present? ? object.data.first.value : '' %>
+      <% end %>
+    </td>
+  <% end %>
+
+  <td>
+    <%= link_to_remove_association t('shared.actions.destroy'), f,
+            data: { confirm: t('shared.prompts.confirm') },
+            class: 'btn btn-danger' %>
+  </td>
+</tr>

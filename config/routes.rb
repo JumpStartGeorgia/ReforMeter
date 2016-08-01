@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
     match '/admin', :to => 'admin#index', :as => :admin, :via => :get
     namespace :admin do
+      resources :external_indicators, constraints: { format: :html } do
+        member do
+          get 'data', constraints: { format: :html }
+          patch 'data', constraints: { format: :html }
+        end
+      end
       resources :experts, except: :show, constraints: { format: :html }
       resources :reforms, except: :show, constraints: { format: :html }
       resources :reform_colors, except: :show, constraints: { format: :html }
@@ -24,15 +30,14 @@ Rails.application.routes.draw do
         resource :expert_survey, except: :index, constraints: { format: :html }
         resources :reform_surveys, except: :index, constraints: { format: :html }
         member do
-          post 'publish'
-          post 'unpublish'
+          post 'publish', constraints: { format: :html }
+          post 'unpublish', constraints: { format: :html }
         end
       end
       resources :page_contents, constraints: { format: :html }
       resources :users, constraints: { format: :html }
     end
 
-    get '/contact' => 'root#contact'
     get '/about' => 'root#about'
     get '/download_data_and_reports' => 'root#download_data_and_reports'
     post '/download_data_and_reports' => 'root#download_data_and_reports'

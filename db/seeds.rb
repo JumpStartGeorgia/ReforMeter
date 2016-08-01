@@ -1,6 +1,13 @@
 # This file should contain all the record creation needed to seed the database
 # with its default values. The data can then be loaded with the rake db:seed
 # (or created alongside the db with db:setup).
+#
+# run-time variables (set these to true if you want seeds to run them):
+# 1. create_user_accounts
+# 2. delete_page_content
+# 3. delete_reform_colors
+# 4. delete_test_data
+# 5. load_test_data
 
 roles = %w(super_admin site_admin content_manager)
 roles.each do |role|
@@ -250,568 +257,200 @@ Quarter.transaction do
     News.create(quarter_id: q3.id, reform_id: reform1.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge')
 
 
+
     # external indicators
+    csv_path = "#{Rails.root}/db/test_external_indicator_files/"
     puts 'creating external indicators'
-    ei1 = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true, description: 'This is the external indicator for the growth of total factor productivity.')
-    data = {
-      countries: [
-        {id: 1, name: 'Georgia'},
-        {id: 2, name: 'Estonia'},
-        {id: 3, name: 'Armenia'},
-        {id: 4, name: 'Azerbaijan'},
-        {id: 5, name: 'Germany'},
-        {id: 6, name: 'Russia'},
-        {id: 7, name: 'France'}
-      ],
-      time_periods: [
-        {id: 1, name: '2003'},
-        {id: 2, name: '2004'},
-        {id: 3, name: '2005'},
-        {id: 4, name: '2006'},
-        {id: 5, name: '2007'},
-        {id: 6, name: '2008'},
-        {id: 7, name: '2009'},
-        {id: 8, name: '2010'},
-        {id: 9, name: '2011'},
-        {id: 10, name: '2012'},
-        {id: 11, name: '2013'},
-        {id: 12, name: '2014'},
-      ],
-      data: [
-        {time_period: 1, values: [
-          {country: 1, value: 1.8, change: nil},
-          {country: 2, value: 2.5, change: nil},
-          {country: 3, value: 11.6, change: nil},
-          {country: 4, value: 1.9, change: nil},
-          {country: 5, value: 18.9, change: nil},
-          {country: 6, value: 1, change: nil},
-          {country: 7, value: -2, change: nil}
-        ]},
-        {time_period: 2, values: [
-          {country: 1, value: -3.2, change: -1},
-          {country: 2, value: 3.0, change: 1},
-          {country: 3, value: 9.5, change: -1},
-          {country: 4, value: -1.5, change: -1},
-          {country: 5, value: 8.9, change: nil},
-          {country: 6, value: 2, change: 1},
-          {country: 7, value: 1, change: 1}
-        ]},
-        {time_period: 3, values: [
-          {country: 1, value: 1.7, change: 1},
-          {country: 2, value: 4.2, change: 1},
-          {country: 3, value: 9.2, change: -1},
-          {country: 4, value: 13.1, change: 1},
-          {country: 5, value: 1.9, change: nil},
-          {country: 6, value: 4, change: 1},
-          {country: 7, value: 5, change: 1}
-        ]},
-        {time_period: 4, values: [
-          {country: 1, value: 1.4, change: -1},
-          {country: 2, value: 3.8, change: -1},
-          {country: 3, value: 8.7, change: -1},
-          {country: 4, value: 19.2, change: 1},
-          {country: 5, value: -2, change: nil},
-          {country: 6, value: 8, change: 1},
-          {country: 7, value: 3, change: -1}
-        ]},
-        {time_period: 5, values: [
-          {country: 1, value: 5.5, change: 1},
-          {country: 2, value: 3.2, change: -1},
-          {country: 3, value: 7.7, change: -1},
-          {country: 4, value: 12.1, change: -1},
-          {country: 5, value: -5, change: nil},
-          {country: 6, value: 7, change: -1},
-          {country: 7, value: -3, change: -1}
-        ]},
-        {time_period: 6, values: [
-          {country: 1, value: -1.0, change: -1},
-          {country: 2, value: -7.2, change: -1},
-          {country: 3, value: 1.0, change: -1},
-          {country: 4, value: -0.1, change: -1},
-          {country: 5, value: 13, change: nil},
-          {country: 6, value: 3, change: -1},
-          {country: 7, value: 10, change: 1}
-        ]},
-        {time_period: 7, values: [
-          {country: 1, value: -7.6, change: -1},
-          {country: 2, value: -4.6, change: 1},
-          {country: 3, value: -17.3, change: -1},
-          {country: 4, value: 0.1, change: 1},
-          {country: 5, value: 7, change: nil},
-          {country: 6, value: -1, change: -1},
-          {country: 7, value: 5, change: -1}
-        ]},
-        {time_period: 8, values: [
-          {country: 1, value: 5.2, change: 1},
-          {country: 2, value: 4.7, change: 1},
-          {country: 3, value: -2.6, change: 1},
-          {country: 4, value: -1.3, change: -1},
-          {country: 5, value: 2.3, change: nil},
-          {country: 6, value: 2, change: 1},
-          {country: 7, value: 15, change: 1}
-        ]},
-        {time_period: 9, values: [
-          {country: 1, value: 4.2, change: -1},
-          {country: 2, value: 2.4, change: -1},
-          {country: 3, value: 3.9, change: 1},
-          {country: 4, value: -4.8, change: -1},
-          {country: 5, value: 5, change: nil},
-          {country: 6, value: -10, change: -1},
-          {country: 7, value: 9, change: -1}
-        ]},
-        {time_period: 10, values: [
-          {country: 1, value: 3.2, change: -1},
-          {country: 2, value: 3.2, change: 1},
-          {country: 3, value: 4.9, change: 1},
-          {country: 4, value: -3.1, change: 1},
-          {country: 5, value: 8, change: nil},
-          {country: 6, value: 20, change: 1},
-          {country: 7, value: 4, change: -1}
-        ]},
-        {time_period: 11, values: [
-          {country: 1, value: 2.7, change: -1},
-          {country: 2, value: 0.1, change: -1},
-          {country: 3, value: 2.1, change: -1},
-          {country: 4, value: 0.0, change: 1},
-          {country: 5, value: 4, change: nil},
-          {country: 6, value: 22, change: 1},
-          {country: 7, value: 1, change: -1}
-        ]},
-        {time_period: 12, values: [
-          {country: 1, value: 3.8, change: 1},
-          {country: 2, value: 0.6, change: 1},
-          {country: 3, value: 0.9, change: -1},
-          {country: 4, value: -3.1, change: -1},
-          {country: 5, value: 2, change: nil},
-          {country: 6, value: 23, change: 1},
-          {country: 7, value: 1, change: 0}
-        ]}
-      ]
-    }
-    ei1.data = data.to_json
-    ei1.save
-    ei1.reforms << reform1
+
+    ei = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true, description: 'This is the external indicator for the growth of total factor productivity.')
+    csv_data = CSV.read(csv_path + 'growth.csv')
+
+    # countries
+    csv_data[0].each_with_index do |header, index|
+      if index > 0
+        ei.countries.build(name: header, sort_order: index)
+      end
+    end
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index])
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+    ei.reforms << reform1
 
 
-    ei2 = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, is_public: true)
-    data = {
-      indexes: [
-        {id: 1, name: 'Business Confidence Index', short_name: 'BCI', change_multiplier: 1},
-        {id: 2, name: 'Consumer Confidence Index', short_name: 'CCI', change_multiplier: 1}
-      ],
-      time_periods: [
-        {id: 1, name: 'Q1 2015'},
-        {id: 2, name: 'Q2 2015'},
-        {id: 3, name: 'Q3 2015'},
-        {id: 4, name: 'Q4 2015'},
-        {id: 5, name: 'Q1 2016'}
-      ],
-      data: [
-        {time_period: 1, overall_value: -5.64961274, overall_change: nil, values: [
-          {index: 1, value: 24.52426211, change: nil},
-          {index: 2, value: -25.76552931, change: nil}
-        ]},
-        {time_period: 2, overall_value: -19.60873495, overall_change: -1, values: [
-          {index: 1, value: 3.610635446, change: -1},
-          {index: 2, value: -35.08831522, change: -1}
-        ]},
-        {time_period: 3, overall_value: -14.68866731, overall_change: 1, values: [
-          {index: 1, value: 14.814046, change: 1},
-          {index: 2, value: -34.35714286, change: 1}
-        ]},
-        {time_period: 4, overall_value: -16.94167264, overall_change: -1, values: [
-          {index: 1, value: 11.98510412, change: -1},
-          {index: 2, value: -36.22619048, change: -1}
-        ]},
-        {time_period: 5, overall_value: -16.6468132, overall_change: -1, values: [
-          {index: 1, value: 14.01850071, change: -1},
-          {index: 2, value: -37.09035581, change: -1}
-        ]}
-      ]
-    }
-    ei2.data = data.to_json
-    ei2.save
-    ei2.reforms << reform2
+    ei = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, is_public: true)
+    csv_data = CSV.read(csv_path + 'gesi.csv')
+
+    # indices
+    ei.indices.build(name: 'Business Confidence Index', short_name: 'BCI', sort_order: 1)
+    ei.indices.build(name: 'Consumer Confidence Index', short_name: 'CCI', sort_order: 2)
+
+    # plot bands
+    ei.plot_bands.build(name: 'Negative', from: -100, to: -33)
+    ei.plot_bands.build(name: 'Neutral', from: -33, to: 33)
+    ei.plot_bands.build(name: 'Positive', from: 33, to: 100)
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            if c_index == 1
+              time.overall_value = row[c_index]
+            else
+              time.data.build(index_id: ei.indices[c_index-2].id, value: row[c_index])
+            end
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+    ei.reforms << reform2
 
 
-    ei3 = ExternalIndicator.new(title: 'How is the economy doing?', subtitle: 'Georgian Economic Performance Index (G-EPI)', scale_type: 1, indicator_type: 3, chart_type: 1, min: 0, max: 100, show_on_home_page: true, is_public: true)
-    data = {
-      indexes: [
-        {id: 1, name: 'Difference in borrowing and lending rates of financial institutions', short_name: 'Net Interest Spread', change_multiplier: -1},
-        {id: 2, name: 'Georgia’s performance in the OECD Programme for International Student Assessment (Pisa)', short_name: 'Pisa', change_multiplier: 1},
-        {id: 3, name: 'Waste water treatment capacity per capita', short_name: 'Waste water treatment capacity per capita', change_multiplier: 1},
-        {id: 4, name: 'The change in real GDP', short_name: '%∆GDP', change_multiplier: 1},
-        {id: 5, name: 'Dollarization rate of the Georgian economy', short_name: 'Dollarization Rate', change_multiplier: -1},
-        {id: 6, name: 'Share of investment in total GDP ', short_name: 'Investment % of GDP', change_multiplier: 1},
-        {id: 7, name: 'Degree of export diversification across major geographic jurisdictions', short_name: 'Export Diversification', change_multiplier: 1},
-        {id: 8, name: 'Degree of export innovation (measured as the share of new products and services in total exports)', short_name: 'Creative Export', change_multiplier: 1},
-        {id: 9, name: 'Share of formally employed in Georgia’s total population', short_name: 'Formal Employment', change_multiplier: 1},
-        {id: 10, name: 'Gini coefficient as measure of income inequality', short_name: 'Gini', change_multiplier: -1}
-      ],
-      time_periods: [
-        {id: 1, name: '2003'},
-        {id: 2, name: '2004'},
-        {id: 3, name: '2005'},
-        {id: 4, name: '2006'},
-        {id: 5, name: '2007'},
-        {id: 6, name: '2008'},
-        {id: 7, name: '2009'},
-        {id: 8, name: '2010'},
-        {id: 9, name: '2011'},
-        {id: 10, name: '2012'},
-        {id: 11, name: '2013'},
-        {id: 12, name: '2014'}
-      ],
-      data: [
-        {time_period: 1, overall_value: 81.91367201, overall_change: nil, values: [
-          {index: 1, value: 4.7852, change: nil},
-          {index: 2, value: 11.50112799, change: nil},
-          {index: 3, value: 1.8, change: nil},
-          {index: 4, value: nil, change: nil},
-          {index: 5, value: 86.43, change: nil},
-          {index: 6, value: 5.5, change: nil},
-          {index: 7, value: 25, change: nil},
-          {index: 8, value: 2, change: nil},
-          {index: 9, value: 16, change: nil},
-          {index: 10, value: 0.4, change: nil}
-        ]},
-        {time_period: 1, overall_value: 87.01985371, overall_change: 1, values: [
-          {index: 1, value: 5.6564, change: -1},
-          {index: 2, value: 12.62374629, change: 1},
-          {index: 3, value: 0.3, change: -1},
-          {index: 4, value: 5.6, change: 1},
-          {index: 5, value: 73.80, change: 1},
-          {index: 6, value: 6, change: 1},
-          {index: 7, value: 28, change: 1},
-          {index: 8, value: 2.5, change: 1},
-          {index: 9, value: 16, change: 0},
-          {index: 10, value: 0.4, change: 0}
-        ]},
-        {time_period: 1, overall_value: 85.7529, overall_change: -1, values: [
-          {index: 1, value: 8.2471, change: -1},
-          {index: 2, value: 13.8, change: 1},
-          {index: 3, value: 2.6, change: 1},
-          {index: 4, value: 10.4, change: 1},
-          {index: 5, value: 69.98, change: 1},
-          {index: 6, value: 7.067718937, change: 1},
-          {index: 7, value: 33.74824224, change: 1},
-          {index: 8, value: 3.991048066, change: 1},
-          {index: 9, value: 17.2178668, change: 1},
-          {index: 10, value: 0.4, change: 0}
-        ]},
-        {time_period: 1, overall_value: 83.439, overall_change: -1, values: [
-          {index: 1, value: 9.161, change: -1},
-          {index: 2, value: 13.6, change: -1},
-          {index: 3, value: 3.4, change: 1},
-          {index: 4, value: 9.6, change: -1},
-          {index: 5, value: 67.26, change: 1},
-          {index: 6, value: 15.10950314, change: 1},
-          {index: 7, value: 32.86554748, change: -1},
-          {index: 8, value: 2.801545486, change: -1},
-          {index: 9, value: 16.8142681, change: -1},
-          {index: 10, value: 0.45, change: -1}
-        ]},
-        {time_period: 1, overall_value: 84.4551, overall_change: 1, values: [
-          {index: 1, value: 9.2449, change: -1},
-          {index: 2, value: 13.3, change: -1},
-          {index: 3, value: 4.8, change: 1},
-          {index: 4, value: 11.8, change: 1},
-          {index: 5, value: 62.30, change: 1},
-          {index: 6, value: 18.34073446, change: 1},
-          {index: 7, value: 31.20571571, change: -1},
-          {index: 8, value: 3.188808309, change: 1},
-          {index: 9, value: 17.29774582, change: 1},
-          {index: 10, value: 0.46, change: -1}
-        ]},
-        {time_period: 1, overall_value: 69.9005, overall_change: -1, values: [
-          {index: 1, value: 9.9995, change: -1},
-          {index: 2, value: 16.5, change: 1},
-          {index: 3, value: 6.5, change: 1},
-          {index: 4, value: 2.9, change: -1},
-          {index: 5, value: 72.55, change: -1},
-          {index: 6, value: 12.37460741, change: -1},
-          {index: 7, value: 28.61997207, change: -1},
-          {index: 8, value: 4.1354565, change: 1},
-          {index: 9, value: 15.78071217, change: -1},
-          {index: 10, value: 0.45, change: 1}
-        ]},
-        {time_period: 1, overall_value: 67.5725, overall_change: -1, values: [
-          {index: 1, value: 1.7275, change: 1},
-          {index: 2, value: 16.9, change: 1},
-          {index: 3, value: 9.2, change: 1},
-          {index: 4, value: -4.6, change: -1},
-          {index: 5, value: 68.85, change: 1},
-          {index: 6, value: 6.012966012, change: -1},
-          {index: 7, value: 29.73941121, change: 1},
-          {index: 8, value: 5.131097741, change: 1},
-          {index: 9, value: 16.39159325, change: 1},
-          {index: 10, value: 0.46, change: -1}
-        ]},
-        {time_period: 1, overall_value: 76.089, overall_change: 1, values: [
-          {index: 1, value: 7.111, change: -1},
-          {index: 2, value: 16.3, change: -1},
-          {index: 3, value: 6.7, change: -1},
-          {index: 4, value: 6.2, change: 1},
-          {index: 5, value: 67.11, change: 1},
-          {index: 6, value: 7.443187587, change: 1},
-          {index: 7, value: 34.95113295, change: 1},
-          {index: 8, value: 4.516608352, change: -1},
-          {index: 9, value: 16.80923801, change: 1},
-          {index: 10, value: 0.46, change: 0}
-        ]},
-        {time_period: 1, overall_value: 79.9567, overall_change: 1, values: [
-          {index: 1, value: 8.5433, change: -1},
-          {index: 2, value: 15.1, change: -1},
-          {index: 3, value: 3.6, change: -1},
-          {index: 4, value: 7.2, change: 1},
-          {index: 5, value: 58.57, change: 1},
-          {index: 6, value: 5.96709492, change: -1},
-          {index: 7, value: 36.24242342, change: 1},
-          {index: 8, value: 4.597467412, change: 1},
-          {index: 9, value: 17.03495663, change: 1},
-          {index: 10, value: 0.46, change: 0}
-        ]},
-        {time_period: 1, overall_value: 87.6563, overall_change: 1, values: [
-          {index: 1, value: -0.9437, change: 1},
-          {index: 2, value: 15, change: -1},
-          {index: 3, value: 2.8, change: -1},
-          {index: 4, value: 6.4, change: -1},
-          {index: 5, value: 60.35, change: -1},
-          {index: 6, value: 2.687611656, change: 1},
-          {index: 7, value: 38.15052258, change: 1},
-          {index: 8, value: 4.609485818, change: 1},
-          {index: 9, value: 17.73322949, change: 1},
-          {index: 10, value: 0.43, change: 1}
-        ]},
-        {time_period: 1, overall_value: 85.588, overall_change: -1, values: [
-          {index: 1, value: -0.512, change: -1},
-          {index: 2, value: 14.6, change: -1},
-          {index: 3, value: 2.6, change: -1},
-          {index: 4, value: 3.3, change: -1},
-          {index: 5, value: 55.67, change: 1},
-          {index: 6, value: 4.370229431, change: 1},
-          {index: 7, value: 44.68923236, change: 1},
-          {index: 8, value: 4.091340424, change: -1},
-          {index: 9, value: 17.68974394, change: -1},
-          {index: 10, value: 0.42, change: 1}
-        ]},
-        {time_period: 1, overall_value: 86.1312, overall_change: 1, values: [
-          {index: 1, value: 3.0688, change: -1},
-          {index: 2, value: 12.4, change: -1},
-          {index: 3, value: 3.2, change: 1},
-          {index: 4, value: 4.8, change: 1},
-          {index: 5, value: 57.08, change: -1},
-          {index: 6, value: 9.965800826, change: 1},
-          {index: 7, value: 42.88995091, change: -1},
-          {index: 8, value: 3.912538767, change: -1},
-          {index: 9, value: 18.60355085, change: 1},
-          {index: 10, value: 0.41, change: 1}
-        ]}
-      ]
-    }
-    ei3.data = data.to_json
-    ei3.save
+    ei = ExternalIndicator.new(title: 'How is the economy doing?', subtitle: 'Georgian Economic Performance Index (G-EPI)', scale_type: 1, indicator_type: 3, chart_type: 1, min: 0, max: 100, show_on_home_page: true, is_public: true)
+    csv_data = CSV.read(csv_path + 'gepi.csv')
 
-    ei4 = ExternalIndicator.new(title: 'Georgia Growth of Total Factor Productivity', scale_type: 2, indicator_type: 1, chart_type: 1, is_public: true)
-    data = {
-      time_periods: [
-        {id: 1, name: '2003'},
-        {id: 2, name: '2004'},
-        {id: 3, name: '2005'},
-        {id: 4, name: '2006'},
-        {id: 5, name: '2007'},
-        {id: 6, name: '2008'},
-        {id: 7, name: '2009'},
-        {id: 8, name: '2010'},
-        {id: 9, name: '2011'},
-        {id: 10, name: '2012'},
-        {id: 11, name: '2013'},
-        {id: 12, name: '2014'},
-      ],
-      data: [
-        {time_period: 1, values: [
-          {value: 1.8, change: nil}
-        ]},
-        {time_period: 2, values: [
-          {value: -3.2, change: -1}
-        ]},
-        {time_period: 3, values: [
-          {value: 1.7, change: 1}
-        ]},
-        {time_period: 4, values: [
-          {value: 1.4, change: -1}
-        ]},
-        {time_period: 5, values: [
-          {value: 5.5, change: 1}
-        ]},
-        {time_period: 6, values: [
-          {value: -1.0, change: -1}
-        ]},
-        {time_period: 7, values: [
-          {value: -7.6, change: -1}
-        ]},
-        {time_period: 8, values: [
-          {value: 5.2, change: 1}
-        ]},
-        {time_period: 9, values: [
-          {value: 4.2, change: -1}
-        ]},
-        {time_period: 10, values: [
-          {value: 3.2, change: -1}
-        ]},
-        {time_period: 11, values: [
-          {value: 2.7, change: -1}
-        ]},
-        {time_period: 12, values: [
-          {value: 3.8, change: 1}
-        ]}
-      ]
-    }
-    ei4.data = data.to_json
-    ei4.save
-    ei4.reforms << reform1
-    ei4.reforms << reform2
-    ei4.reforms << reform3
+    # indices
+    ei.indices.build(name: 'Difference in borrowing and lending rates of financial institutions', short_name: 'Net Interest Spread', change_multiplier: -1, sort_order: 1)
+    ei.indices.build(name: 'Georgia’s performance in the OECD Programme for International Student Assessment (Pisa)', short_name: 'Pisa', change_multiplier: 1, sort_order: 2)
+    ei.indices.build(name: 'Waste water treatment capacity per capita', short_name: 'Waste water treatment capacity per capita', change_multiplier: 1, sort_order: 3)
+    ei.indices.build(name: 'The change in real GDP', short_name: '%∆GDP', change_multiplier: 1, sort_order: 4)
+    ei.indices.build(name: 'Dollarization rate of the Georgian economy', short_name: 'Dollarization Rate', change_multiplier: -1, sort_order: 5)
+    ei.indices.build(name: 'Share of investment in total GDP ', short_name: 'Investment % of GDP', change_multiplier: 1, sort_order: 6)
+    ei.indices.build(name: 'Degree of export diversification across major geographic jurisdictions', short_name: 'Export Diversification', change_multiplier: 1, sort_order: 7)
+    ei.indices.build(name: 'Degree of export innovation (measured as the share of new products and services in total exports)', short_name: 'Creative Export', change_multiplier: 1, sort_order: 8)
+    ei.indices.build(name: 'Share of formally employed in Georgia’s total population', short_name: 'Formal Employment', change_multiplier: 1, sort_order: 9)
+    ei.indices.build(name: 'Gini coefficient as measure of income inequality', short_name: 'Gini', change_multiplier: -1, sort_order: 10)
 
-    ei5 = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true)
-    data = {
-      countries: [
-        {id: 1, name: 'Georgia'},
-        {id: 2, name: 'Estonia'},
-        {id: 3, name: 'Armenia'},
-        {id: 4, name: 'Azerbaijan'},
-        {id: 5, name: 'Germany'},
-        {id: 6, name: 'Russia'},
-        {id: 7, name: 'France'}
-      ],
-      time_periods: [
-        {id: 1, name: '2003'},
-        {id: 2, name: '2004'},
-        {id: 3, name: '2005'},
-        {id: 4, name: '2006'},
-        {id: 5, name: '2007'},
-        {id: 6, name: '2008'},
-        {id: 7, name: '2009'},
-        {id: 8, name: '2010'},
-        {id: 9, name: '2011'},
-        {id: 10, name: '2012'},
-        {id: 11, name: '2013'},
-        {id: 12, name: '2014'},
-      ],
-      data: [
-        {time_period: 1, values: [
-          {country: 1, value: 1.8, change: nil},
-          {country: 2, value: 2.5, change: nil},
-          {country: 3, value: 11.6, change: nil},
-          {country: 4, value: 1.9, change: nil},
-          {country: 5, value: 18.9, change: nil},
-          {country: 6, value: 1, change: nil},
-          {country: 7, value: -2, change: nil}
-        ]},
-        {time_period: 2, values: [
-          {country: 1, value: -3.2, change: -1},
-          {country: 2, value: 3.0, change: 1},
-          {country: 3, value: 9.5, change: -1},
-          {country: 4, value: -1.5, change: -1},
-          {country: 5, value: 8.9, change: nil},
-          {country: 6, value: 2, change: 1},
-          {country: 7, value: 1, change: 1}
-        ]},
-        {time_period: 3, values: [
-          {country: 1, value: 1.7, change: 1},
-          {country: 2, value: 4.2, change: 1},
-          {country: 3, value: 9.2, change: -1},
-          {country: 4, value: 13.1, change: 1},
-          {country: 5, value: 1.9, change: nil},
-          {country: 6, value: 4, change: 1},
-          {country: 7, value: 5, change: 1}
-        ]},
-        {time_period: 4, values: [
-          {country: 1, value: 1.4, change: -1},
-          {country: 2, value: 3.8, change: -1},
-          {country: 3, value: 8.7, change: -1},
-          {country: 4, value: 19.2, change: 1},
-          {country: 5, value: -2, change: nil},
-          {country: 6, value: 8, change: 1},
-          {country: 7, value: 3, change: -1}
-        ]},
-        {time_period: 5, values: [
-          {country: 1, value: 5.5, change: 1},
-          {country: 2, value: 3.2, change: -1},
-          {country: 3, value: 7.7, change: -1},
-          {country: 4, value: 12.1, change: -1},
-          {country: 5, value: -5, change: nil},
-          {country: 6, value: 7, change: -1},
-          {country: 7, value: -3, change: -1}
-        ]},
-        {time_period: 6, values: [
-          {country: 1, value: -1.0, change: -1},
-          {country: 2, value: -7.2, change: -1},
-          {country: 3, value: 1.0, change: -1},
-          {country: 4, value: -0.1, change: -1},
-          {country: 5, value: 13, change: nil},
-          {country: 6, value: 3, change: -1},
-          {country: 7, value: 10, change: 1}
-        ]},
-        {time_period: 7, values: [
-          {country: 1, value: -7.6, change: -1},
-          {country: 2, value: -4.6, change: 1},
-          {country: 3, value: -17.3, change: -1},
-          {country: 4, value: 0.1, change: 1},
-          {country: 5, value: 7, change: nil},
-          {country: 6, value: -1, change: -1},
-          {country: 7, value: 5, change: -1}
-        ]},
-        {time_period: 8, values: [
-          {country: 1, value: 5.2, change: 1},
-          {country: 2, value: 4.7, change: 1},
-          {country: 3, value: -2.6, change: 1},
-          {country: 4, value: -1.3, change: -1},
-          {country: 5, value: 2.3, change: nil},
-          {country: 6, value: 2, change: 1},
-          {country: 7, value: 15, change: 1}
-        ]},
-        {time_period: 9, values: [
-          {country: 1, value: 4.2, change: -1},
-          {country: 2, value: 2.4, change: -1},
-          {country: 3, value: 3.9, change: 1},
-          {country: 4, value: -4.8, change: -1},
-          {country: 5, value: 5, change: nil},
-          {country: 6, value: -10, change: -1},
-          {country: 7, value: 9, change: -1}
-        ]},
-        {time_period: 10, values: [
-          {country: 1, value: 3.2, change: -1},
-          {country: 2, value: 3.2, change: 1},
-          {country: 3, value: 4.9, change: 1},
-          {country: 4, value: -3.1, change: 1},
-          {country: 5, value: 8, change: nil},
-          {country: 6, value: 20, change: 1},
-          {country: 7, value: 4, change: -1}
-        ]},
-        {time_period: 11, values: [
-          {country: 1, value: 2.7, change: -1},
-          {country: 2, value: 0.1, change: -1},
-          {country: 3, value: 2.1, change: -1},
-          {country: 4, value: 0.0, change: 1},
-          {country: 5, value: 4, change: nil},
-          {country: 6, value: 22, change: 1},
-          {country: 7, value: 1, change: -1}
-        ]},
-        {time_period: 12, values: [
-          {country: 1, value: 3.8, change: 1},
-          {country: 2, value: 0.6, change: 1},
-          {country: 3, value: 0.9, change: -1},
-          {country: 4, value: -3.1, change: -1},
-          {country: 5, value: 2, change: nil},
-          {country: 6, value: 23, change: 1},
-          {country: 7, value: 1, change: 0}
-        ]}
-      ]
-    }
-    ei5.data = data.to_json
-    ei5.save
-    ei5.reforms << reform1
+    # plot bands
+    ei.plot_bands.build(name: 'Fail', from: 0, to: 25)
+    ei.plot_bands.build(name: 'Poor', from: 25, to: 50)
+    ei.plot_bands.build(name: 'Fair', from: 50, to: 75)
+    ei.plot_bands.build(name: 'Good', from: 75, to: 100)
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            if c_index == 1
+              time.overall_value = row[c_index]
+            else
+              time.data.build(index_id: ei.indices[c_index-2].id, value: row[c_index])
+            end
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+
+
+
+    ei = ExternalIndicator.new(title: 'Georgia Growth of Total Factor Productivity', scale_type: 2, indicator_type: 1, chart_type: 1, is_public: true)
+    csv_data = CSV.read(csv_path + 'geo_growth.csv')
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            time.data.build(value: row[c_index])
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+    ei.reforms << reform1
+    ei.reforms << reform2
+    ei.reforms << reform3
+
+
+    ei = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true)
+    csv_data = CSV.read(csv_path + 'growth.csv')
+
+    # countries
+    csv_data[0].each_with_index do |header, index|
+      if index > 0
+        ei.countries.build(name: header, sort_order: index)
+      end
+    end
+
+    # times
+    csv_data.map{|x| x[0]}.each_with_index do |time, index|
+      if index > 0
+        ei.time_periods.build(name: time, sort_order: index)
+      end
+    end
+    ei.save
+
+    #data
+    csv_data.each_with_index do |row, r_index|
+      if r_index > 0
+        time = ei.time_periods[r_index-1]
+
+        row.each_with_index do |cell, c_index|
+          if c_index > 0
+            time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index])
+          end
+        end
+      end
+    end
+    ei.update_change_values = true
+    ei.save
+    ei.reforms << reform1
 
     puts 'LOADING TEST DATA DONE'
   end

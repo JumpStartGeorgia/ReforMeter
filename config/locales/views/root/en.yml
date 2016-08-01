@@ -6,8 +6,7 @@ en:
       partners: Partners
       sponsors_donors: Sponsors & Donors
       title: About
-    contact:
-      title: Contact
+      contact: Contact
     download_data_and_reports:
       choose: Choose
       download: Download
@@ -16,10 +15,10 @@ en:
       title: According to the Review Board for %{time}
     review_board:
       header:
-        chart: Review Board History
+        chart: Timeline
         experts: Board Members
         methodology: Methodology
-        table: Table of History
+        table: Results
       no_data: Sorry, but at this time there is no review board data on record.
       no_methodology: No methodology is on record.
       no_experts: No board members are on record.
@@ -42,7 +41,9 @@ en:
       title: 'Reform: %{name} for %{time}'
     reforms:
       header:
-        table: Reforms by Time Period
+        table: Results
+        chart: Timeline
+        methodology: Methodology
       no_data: Sorry, but at this time there is no review board data on record.
       table_header:
         government: Government

@@ -188,7 +188,7 @@ show_admin_links ||= false
 
                 <li class='expertList-item'>
 
-                  <%= link_to review_board_path(anchor: "expert-#{expert.id}"),
+                  <%= link_to review_board_path(anchor: "board-member-#{expert.id}"),
                               class: 'expertList-item-imageLink' do %>
 
                     <%= image_tag(expert.avatar.url('100x100'),
@@ -199,7 +199,7 @@ show_admin_links ||= false
                   <h4 class='expertList-item-heading'>
 
                     <%= link_to expert.name,
-                                review_board_path(anchor: "expert-#{expert.id}"),
+                                review_board_path(anchor: "board-member-#{expert.id}"),
                                 class: 'link mod-no-decoration' %>
 
                   </h4>

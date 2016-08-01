@@ -14,6 +14,7 @@ en:
       publish: Publish
       unpublish: Unpublish
       add: Add
+      manage_data: Manage Data
       with_obj:
         cancel: Cancel %{obj}
         create: Create %{obj}
@@ -79,6 +80,9 @@ en:
       percent: 'Percent (%)'
       :yes: 'Yes'
       :no: 'No'
+      move_row:
+        up: Move the row up
+        down: Move the row down
     expert_show:
       header:
         chart: Review Board History
@@ -95,6 +99,7 @@ en:
       reform_colors: Reform Colors
       reforms: Reforms
       quarters: Quarters
+      external_indicators: External Indicators
     labels:
       translated_field: "%{field} (%{language})"
     locale:
@@ -124,6 +129,17 @@ en:
         stakeholder_history: Stakeholder History
         stakeholder_summary: According to the Stakeholders
       no_methodology: No methodology is on record.
+    external_indicators:
+      indicator_types:
+        basic: Basic
+        country: Country
+        composite: Composite
+      chart_types:
+        line: Line
+        bar: Bar
+      scale_types:
+        percent: Percent
+        number: Number
   errors:
     messages:
       publish:

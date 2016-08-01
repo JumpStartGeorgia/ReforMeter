@@ -2,7 +2,6 @@
   page_title t('.title')
 -%>
 
-
   <div class="row admin-link-list">
     <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
       <div class="col-md-3">
@@ -38,6 +37,15 @@
           <%= t('.explanations.experts') %>
         </p>
         <%= link_to t('shared.actions.view'), admin_experts_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+    <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
+      <div class="col-md-3">
+        <h3><%= t('shared.links.external_indicators') %></h3>
+        <p>
+          <%= t('.explanations.external_indicators') %>
+        </p>
+        <%= link_to t('shared.actions.view'), admin_external_indicators_path, class: 'btn btn-default' %>
       </div>
     <% end %>
     <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
