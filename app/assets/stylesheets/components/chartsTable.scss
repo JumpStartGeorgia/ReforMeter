@@ -115,5 +115,15 @@ $charts-table-border: solid 3px $color-grey-background;
         display: none;
       }
     }
-
+    
+      .chartsTable-cell-text-score {
+        vertical-align: middle;
+      }
+    
+      .chartsTable-cell-text-changeIcon {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: middle;
+      }
 }

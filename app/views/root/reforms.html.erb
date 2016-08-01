@@ -116,119 +116,129 @@ page_title t('.title')
 
       <div class='tabContent js-act-as-tab-content'>
 
-      <table class='chartsTable mod-reforms'>
+        <table class='chartsTable mod-reforms'>
 
-          <table class='chartsTable'>
+          <thead>
 
-            <thead>
+            <tr class='chartsTable-row'>
 
-              <tr class='chartsTable-row'>
+              <th class='chartsTable-cell mod-head mod-first-column'>
+                <%= t('.table_header.time') %>
+              </th>
 
-                <th class='chartsTable-cell mod-head mod-first-column'>
-                  <%= t('.table_header.time') %>
-                </th>
+              <th class='chartsTable-cell mod-head'>
+                <%= t('.table_header.reform') %>
+              </th>
 
-                <th class='chartsTable-cell mod-head'>
-                  <%= t('.table_header.reform') %>
-                </th>
+              <th class='chartsTable-cell mod-head'>
+                <%= t('.table_header.government') %>
+              </th>
 
-                <th class='chartsTable-cell mod-head'>
-                  <%= t('.table_header.government') %>
-                </th>
+              <th class='chartsTable-cell mod-head mod-summary'>
+                <%= t('.table_header.summary') %>
+              </th>
 
-            <th class='chartsTable-cell mod-head mod-summary'>
-              <%= t('.table_header.summary') %>
-            </th>
+              <th class='chartsTable-cell mod-head'>
+                <%= t('.table_header.summary') %>
+              </th>
 
-                <th class='chartsTable-cell mod-head'>
-                  <%= t('.table_header.summary') %>
-                </th>
+            </tr>
 
-              </tr>
+          </thead>
 
-            </thead>
+          <tbody class='chartsTable-body'>
 
-            <tbody class='chartsTable-body'>
+            <% @quarters.each do |quarter| %>
 
-              <% @quarters.each do |quarter| %>
+              <% surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id} %>
 
-                <% surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id} %>
+              <% if surveys.present? %>
 
-                <% if surveys.present? %>
+                <% surveys.each do |survey| %>
 
-                  <% surveys.each do |survey| %>
+                  <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
 
-                    <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
+                  <% if reform %>
 
-                    <% if reform %>
+                    <tr class='chartsTable-row js-act-as-reform-table-row'>
 
-                      <tr class='chartsTable-row js-act-as-reform-table-row'>
-
-                    <td class='chartsTable-cell mod-first-column mod-important-text js-act-as-quarter-name'>
-                      <%= link_to(quarter.time_period,
-                                  reform_show_path(
-                                    reform_id: reform.slug,
-                                    quarter_id: quarter.slug),
-                                  class: 'chartsTable-cell-link') %>
-                    </td>
-
-                    <td class='chartsTable-cell mod-important-text js-act-as-reform-name'>
-                      <%= link_to(reform.name,
-                                  reform_show_path(
-                                    reform_id: reform.slug,
-                                    quarter_id: quarter.slug),
-                                  class: 'chartsTable-cell-link') %>
-                    </td>
-
-                        <td class='chartsTable-cell'>
-
-                      <p class='chartsTable-cell-text'>
-                        <%= survey.government_overall_score %>
-                        <%= generate_change_icon(survey.government_overall_change) %>
-                      </p>
-
-                      <div class='chartsTable-cell-chart'>
-
-                        <%= link_to(reform_show_path(
+                      <td class='chartsTable-cell mod-first-column mod-important-text js-act-as-quarter-name'>
+                        <%= link_to(quarter.time_period,
+                                    reform_show_path(
                                       reform_id: reform.slug,
-                                      quarter_id: quarter.slug)) do %>
+                                      quarter_id: quarter.slug),
+                                    class: 'chartsTable-cell-link') %>
+                      </td>
 
-                          <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= quarter.slug %>-<%= reform.slug %>'></div>
-
-                        <% end %>
-
-                      </div>
-
-                        </td>
-
-                        <td class='chartsTable-cell'>
-
-                      <p class='chartsTable-cell-text'>
-                        <%= survey.stakeholder_overall_score %>
-                        <%= generate_change_icon(survey.stakeholder_overall_change) %>
-                      </p>
-
-                      <div class='chartsTable-cell-chart'>
-
-                        <%= link_to(reform_show_path(
+                      <td class='chartsTable-cell mod-important-text js-act-as-reform-name'>
+                        <%= link_to(reform.name,
+                                    reform_show_path(
                                       reform_id: reform.slug,
-                                      quarter_id: quarter.slug)) do %>
+                                      quarter_id: quarter.slug),
+                                    class: 'chartsTable-cell-link') %>
+                      </td>
 
-                          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= quarter.slug %>-<%= reform.slug %>'></div>
+                      <td class='chartsTable-cell'>
 
-                        <% end %>
+                        <p class='chartsTable-cell-text'>
+                          
+                          <span class='chartsTable-cell-text-score'>
+                            <%= survey.government_overall_score %>
+                          </span>
+                          
+                          <span class='chartsTable-cell-text-changeIcon'>
+                            <%= generate_change_icon(survey.government_overall_change) %>
+                          </span>
 
-                      </div>
+                        </p>
 
-                        </td>
+                        <div class='chartsTable-cell-chart'>
 
-                    <td class='chartsTable-cell mod-summary'>
-                      <%= strip_tags_nbsp(reform.summary) %>
-                    </td>
+                          <%= link_to(reform_show_path(
+                                        reform_id: reform.slug,
+                                        quarter_id: quarter.slug)) do %>
 
-                      </tr>
+                            <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= quarter.slug %>-<%= reform.slug %>'></div>
 
-                    <% end %>
+                          <% end %>
+
+                        </div>
+
+                      </td>
+
+                      <td class='chartsTable-cell'>
+
+                        <p class='chartsTable-cell-text'>
+      
+                          <span class='chartsTable-cell-text-score'>
+                            <%= survey.stakeholder_overall_score %>
+                          </span>
+                          
+                          <span class='chartsTable-cell-text-changeIcon'>
+                            <%= generate_change_icon(survey.stakeholder_overall_change) %>
+                          </span>
+                          
+                        </p>
+
+                        <div class='chartsTable-cell-chart'>
+
+                          <%= link_to(reform_show_path(
+                                        reform_id: reform.slug,
+                                        quarter_id: quarter.slug)) do %>
+
+                            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= quarter.slug %>-<%= reform.slug %>'></div>
+
+                          <% end %>
+
+                        </div>
+
+                      </td>
+
+                      <td class='chartsTable-cell mod-summary'>
+                        <%= strip_tags_nbsp(reform.summary) %>
+                      </td>
+
+                    </tr>
 
                   <% end %>
 
@@ -236,9 +246,12 @@ page_title t('.title')
 
               <% end %>
 
-            </tbody>
+            <% end %>
+
+          </tbody>
 
           </table>
+          
         </div>
 
         <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
