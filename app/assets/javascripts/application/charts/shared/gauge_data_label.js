@@ -6,18 +6,20 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
 
   var color = args.color;
   if (!color) color = 'black';
-
+  
   function inDiv(content) {
     return '<div style="text-align:center;">' + content + '</div>';
   }
-  var score = '<span style="vertical-align: middle; font-size:' + fontSize + '; color:' + color + ';">' + point.y + unit + '</span>';
 
-  if (chartData.change === null) {
-    return inDiv(score);
-  } else {
+  var gaugeLabel = '';
+  
+  gaugeLabel += '<span style="vertical-align: middle; font-size:' + fontSize + '; color:' + color + ';">' + point.y + unit + '</span>';
+
+  if (chartData.change) {
     var icon = change_icon(chartData.change);
-    var iconInSpan = '<span style="vertical-align: middle; width: ' + fontSize + ';height: ' + fontSize + ';display: inline-block;">' + icon + '</span>';
-
-    return inDiv(score + iconInSpan);
+    
+    gaugeLabel += '<span style="vertical-align: middle; width: ' + fontSize + ';height: ' + fontSize + ';display: inline-block;">' + icon + '</span>';
   }
+  
+  return inDiv(gaugeLabel);
 }
