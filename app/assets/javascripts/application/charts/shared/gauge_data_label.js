@@ -22,7 +22,7 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
   }
   
   if (args.plotBandLabel) {
-    gaugeLabel += '</br><p>' + args.plotBandLabel + '</p>';
+    gaugeLabel += '</br><p style="margin: 0;">' + args.plotBandLabel + '</p>';
   }
   
   return inDiv(gaugeLabel);
