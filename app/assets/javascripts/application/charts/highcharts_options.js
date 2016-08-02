@@ -98,7 +98,9 @@ function setupDefaultOptions() {
         }
       },
       enabled: false,
-      scale: 1
+      scale: 1,
+      sourceWidth: 1410,
+      sourceHeight: 600
     },
     yAxis: {
       title: {

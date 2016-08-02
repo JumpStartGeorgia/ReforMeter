@@ -39,10 +39,6 @@ function historyTimeSeriesOptions(chartData) {
       height: null,
       width: null
     },
-    exporting: {
-      sourceWidth: 1410,
-      sourceHeight: 600
-    },
     title: {
       text: null
     },
