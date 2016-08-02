@@ -17,7 +17,7 @@
     }
 
     .loadingIndicator-image-dial {
-      animation: rotation180 4s infinite alternate;
+      animation: rotation180 2s infinite alternate ease-in-out;
     }
 
     .loadingIndicator-image-dial path {
