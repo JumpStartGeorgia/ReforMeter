@@ -6,6 +6,22 @@ function highchartsSmallSolidGaugeOptions(chartData) {
       return '100';
     }
   }
+  
+  function scoreLabelText() {
+    switch (chartData.change) {
+      
+      case 0: {
+        return gon.translations.government.rating.middle;
+      }
+      
+      case 1: {
+        return gon.translations.government.rating.rising;
+      }
+        
+    }
+    
+    return '';
+  }
 
   return {
   	chart: {
@@ -72,7 +88,14 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         y: 45,
         useHTML: true,
         formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '2em', { unit: '%' });
+          return highchartsGaugeLabel(
+            chartData, 
+            this, 
+            '2em', 
+            { 
+              unit: '%',
+              secondLineText: scoreLabelText()
+            });
         }
       },
       tooltip: {

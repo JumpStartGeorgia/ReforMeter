@@ -60,6 +60,9 @@ en:
         behind: Behind
         on_track: On Track
         ahead: Ahead
+      government:
+        middle: Stagnant
+        rising: Progressing
       external_indicators:
         fail: Fail
         poor: Poor

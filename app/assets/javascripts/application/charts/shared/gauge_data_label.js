@@ -15,7 +15,7 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
   
   gaugeLabel += '<span style="vertical-align: middle; font-size:' + fontSize + '; color:' + color + ';">' + point.y + unit + '</span>';
 
-  if (chartData.change) {
+  if ([-1, 0, 1].includes(chartData.change)) {
     var icon = change_icon(chartData.change);
     
     gaugeLabel += '<span style="vertical-align: middle; width: ' + fontSize + ';height: ' + fontSize + ';display: inline-block;">' + icon + '</span>';

@@ -32,6 +32,12 @@ class ApplicationController < ActionController::Base
           on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
           ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
         }
+      },
+      government: {
+        rating: {
+          middle: I18n.t('shared.chart_rating_categories.government.middle'),
+          rising: I18n.t('shared.chart_rating_categories.government.rising')
+        }
       }
     }
   end
