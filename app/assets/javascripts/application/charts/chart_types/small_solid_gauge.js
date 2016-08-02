@@ -20,7 +20,8 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
   return {
   	chart: {
-    	type: 'solidgauge'
+    	type: 'solidgauge',
+      height: chartData.title ? '195' : '135'
     },
 
 		title: {
