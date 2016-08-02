@@ -30,6 +30,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
       },
     	text: chartData.title,
       verticalAlign: 'top',
+      widthAdjust: 0
     },
 
     pane: {
