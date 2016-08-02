@@ -54,7 +54,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
       data: [chartData.score],
       dataLabels: {
         borderWidth: 0,
-        y: 45,
+        y: 50,
         useHTML: true,
         formatter: function() {
           return highchartsGaugeLabel(
@@ -62,7 +62,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
             this, 
             '2em', 
             {
-              plotBandLabel: helpers.plotBandLabelForScore(chartData.score)
+              secondLineText: helpers.plotBandLabelForScore(chartData.score)
             }
           );
         }
