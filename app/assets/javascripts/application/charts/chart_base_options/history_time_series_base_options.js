@@ -43,6 +43,10 @@ function historyTimeSeriesOptions(chartData) {
       text: null
     },
     colors: ['#0e3a5b'],
+    exporting: {
+      sourceWidth: 1410,
+      sourceHeight: 600
+    },
     xAxis: {
       crosshair: xAxisCrosshair(),
       // Using labels instead of categories to make x axis start on tick

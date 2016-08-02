@@ -29,7 +29,9 @@ function highchartsExternalIndicatorBar(chartData) {
             }
           }
         )
-      }
+      },
+      sourceWidth: 1410,
+      sourceHeight: 600
     },
     legend: {
       align: 'right',
