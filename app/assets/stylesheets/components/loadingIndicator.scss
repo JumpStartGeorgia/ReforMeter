@@ -1,3 +1,6 @@
+$loading-indicator-transform-fix-x: 50.5%;
+$loading-indicator-transform-fix-y: 83.8%;
+
 .loadingIndicator {
   display: flex;
   z-index: 9998;
@@ -10,10 +13,11 @@
   .loadingIndicator-image {
     z-index: 9999;
     margin: auto;
+    width: 250px;
   }
 
     .loadingIndicator-image-dial-container {
-      transform: translate(97px, 93px);
+      transform: translate($loading-indicator-transform-fix-x, $loading-indicator-transform-fix-y);
     }
 
     .loadingIndicator-image-dial {
@@ -22,7 +26,7 @@
 
     .loadingIndicator-image-dial path {
       transform-origin: 88% 50%;
-      transform: translate(-97px, -93px);
+      transform: translate(-1 * $loading-indicator-transform-fix-x, -1 * $loading-indicator-transform-fix-y);
     }
 
 @keyframes rotation180 {
