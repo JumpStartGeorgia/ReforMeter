@@ -1,11 +1,4 @@
 function highchartsSmallSolidGaugeOptions(chartData) {
-  function getHeight() {
-    if (chartData.title) {
-      return '175';
-    } else {
-      return '100';
-    }
-  }
   
   function scoreLabelText() {
     switch (chartData.change) {
@@ -22,11 +15,12 @@ function highchartsSmallSolidGaugeOptions(chartData) {
     
     return '';
   }
+  
+  scoreLabelText = scoreLabelText();
 
   return {
   	chart: {
-    	type: 'solidgauge',
-      height: getHeight()
+    	type: 'solidgauge'
     },
 
 		title: {
@@ -38,7 +32,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
     },
 
     pane: {
-      center: ['50%', '70%'],
+      center: ['50%', '65%'],
       size: '100',
       startAngle: -90,
       endAngle: 90,
@@ -85,7 +79,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
       data: [chartData.score],
       dataLabels: {
         borderWidth: 0,
-        y: 45,
+        y: scoreLabelText === '' ? 38 : 50,
         useHTML: true,
         formatter: function() {
           return highchartsGaugeLabel(
@@ -94,7 +88,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
             '2em', 
             { 
               unit: '%',
-              secondLineText: scoreLabelText()
+              secondLineText: scoreLabelText
             });
         }
       },
