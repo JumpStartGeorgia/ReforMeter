@@ -26,7 +26,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
 		title: {
       style: {
-        fontSize: '1.4em'
+        fontSize: '1.35em'
       },
     	text: chartData.title,
       verticalAlign: 'top',
