@@ -201,28 +201,46 @@ show_admin_links ||= false
       </header>
 
       <div class='contentSection-body'>
+        
+        <div class='summaryGaugesContainer'>
+          
+          <% if @reform_survey.stakeholder_summary %>
+            <div class='summaryGaugesContainer-summary'>
+              <%= simple_format_no_tags(@reform_survey.stakeholder_summary) %>
+            </div>
+          <% end %>
+          
+          <section class='gaugesContainer'>
+            
+            <% exportID = 'FEeM4KQSfrxdBckV1dcuhzUREHd7Yn0HX0nhKZcNMcQ=' %>
 
-        <section class='gaugesContainer'>
+            <div class='gaugesContainer-exportButton'>
 
-          <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='reform-stakeholder-overall'></div>
+              <%= render partial: 'shared/gauges_group_export',
+                         locals: {
+                           exportID: exportID,
+                           openMenuID: 'SNVBjGMH6QjXnOLQ6ruCOvDd2qjTu3qSYflSedt0bjs='
+                         } %>
 
-          <div class='gaugesContainer-small'>
+            </div>
 
-            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-performance'></div>
+            <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='reform-stakeholder-overall'></div>
 
-            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-goals'></div>
+            <div class='gaugesContainer-small'>
 
-            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-progress'></div>
+              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-performance'></div>
 
-          </div>
+              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-goals'></div>
 
-        </section>
+              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-progress'></div>
 
-        <% if @reform_survey.stakeholder_summary %>
-          <div>
-            <%= simple_format_no_tags(@reform_survey.stakeholder_summary) %>
-          </div>
-        <% end %>
+            </div>
+
+          </section>
+          
+        </div>
+
+        
 
         <section>
 
