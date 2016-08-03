@@ -97,8 +97,6 @@ function historyTimeSeriesOptions(chartData) {
     },
     series: chartData.series,
     tooltip: {
-      backgroundColor: 'white',
-      borderWidth: 0,
       formatter: function() {
         return highchartTimeSeriesTooltipFormatter.call(this, chartData);
       },

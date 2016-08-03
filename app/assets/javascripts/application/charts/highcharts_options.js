@@ -100,6 +100,10 @@ function setupDefaultOptions() {
       enabled: false,
       scale: 1
     },
+    tooltip: {
+      backgroundColor: 'white',
+      borderWidth: 0
+    },
     yAxis: {
       title: {
         text: null,
