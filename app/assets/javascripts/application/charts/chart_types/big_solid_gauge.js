@@ -18,7 +18,9 @@ function highchartsBigSolidGaugeOptions(chartData) {
         backgroundColor: '#EEE',
         innerRadius: '0%',
         outerRadius: '100%',
-        shape: 'arc'
+        shape: 'arc',
+        borderWidth: 1.5,
+        borderColor: 'white'
       }
     },
 
@@ -47,7 +49,7 @@ function highchartsBigSolidGaugeOptions(chartData) {
 
     plotOptions: {
       solidgauge: {
-        innerRadius: '0%',
+        innerRadius: '0%'
       }
     },
 

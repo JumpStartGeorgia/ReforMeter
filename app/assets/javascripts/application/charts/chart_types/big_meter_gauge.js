@@ -10,7 +10,8 @@ function highchartsBigMeterGaugeOptions(chartData) {
 
     chart: {
       width: helpers.chartWidth,
-      height: helpers.chartHeight
+      height: helpers.chartHeight,
+      plotBorderColor: 'transparent'
     },
 
     title: {
@@ -19,6 +20,9 @@ function highchartsBigMeterGaugeOptions(chartData) {
     },
 
     pane: {
+      background: {
+        borderWidth: 0
+      },
       size: helpers.paneSize
     },
 
