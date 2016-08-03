@@ -54,17 +54,15 @@ var externalIndicatorChart = (function() {
       seriesName = pointData.series.name + '</br>';
     }
 
-    var value = Math.round(pointData.y);
+    var value = '<span style="vertical-align: middle;">' + Math.round(pointData.y) + '</span>';
 
     var iconInSpan = '';
 
-    if (pointData.point.change) {
+    if ([-1, 0, 1].includes(pointData.point.change)) {
       var icon = change_icon(
-        pointData.point.change,
-        {
-          modClass: 'mod-external-indicator-chart'
-        }
+        pointData.point.change
       );
+      
       iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
     }
 

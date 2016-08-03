@@ -36,9 +36,9 @@ module ApplicationHelper
     icon_class += " #{args[:mod_class]}" if args[:mod_class].present?
 
     return {
-      '-1': ActionController::Base.helpers.image_tag('arrow_down.svg', title: I18n.t('shared.change_status.down'), class: icon_class),
-      '0': ActionController::Base.helpers.image_tag('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), class: icon_class),
-      '1': ActionController::Base.helpers.image_tag('arrow_up.svg', title: I18n.t('shared.change_status.up'), class: icon_class)
+      '-1': ActionController::Base.helpers.inline_svg('arrow_down.svg', title: I18n.t('shared.change_status.down'), class: icon_class),
+      '0': ActionController::Base.helpers.inline_svg('arrow_flat.svg', title: I18n.t('shared.change_status.flat'), class: icon_class),
+      '1': ActionController::Base.helpers.inline_svg('arrow_up.svg', title: I18n.t('shared.change_status.up'), class: icon_class)
     }
   end
 
