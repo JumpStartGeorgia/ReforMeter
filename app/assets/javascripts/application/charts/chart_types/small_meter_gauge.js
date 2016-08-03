@@ -4,6 +4,12 @@ function highchartsSmallMeterGaugeOptions(chartData) {
   var helpers = meterGaugeHelpers(100);
 
   var options = {
+    
+    chart: {
+      height: '135',
+      width: '125'
+    },
+    
     yAxis: {
       plotBands: [
         {

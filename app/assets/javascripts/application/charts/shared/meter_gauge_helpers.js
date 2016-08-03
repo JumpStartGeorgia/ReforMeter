@@ -9,7 +9,7 @@
 function meterGaugeHelpers(size) {
   var meterGauge = {};
 
-  meterGauge.chartWidth = size * 1.25;
+  meterGauge.chartWidth = size * 1.125;
   meterGauge.chartHeight = size * 1.1;
   meterGauge.paneSize = size;
   
@@ -51,7 +51,7 @@ function meterGaugeHelpers(size) {
         {
           text: gon.translations.meter_gauge.plot_band_label.behind,
           rotation: -60,
-          x: meterGauge.textPosition(.275),
+          x: meterGauge.textPosition(.215),
           y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
           style: {
             fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
@@ -66,7 +66,7 @@ function meterGaugeHelpers(size) {
       return mergeObjects(
         {
           text: gon.translations.meter_gauge.plot_band_label.on_track,
-          x: meterGauge.textPosition(.47),
+          x: meterGauge.textPosition(.41),
           y: meterGauge.textPosition(.07),
           style: {
             fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
@@ -82,7 +82,7 @@ function meterGaugeHelpers(size) {
         {
           text: gon.translations.meter_gauge.plot_band_label.ahead,
           rotation: 60,
-          x: localeIs('ka') ? meterGauge.textPosition(.85) : meterGauge.textPosition(.865),
+          x: localeIs('ka') ? meterGauge.textPosition(.79) : meterGauge.textPosition(.805),
           y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),
           style: {
             fontSize: localeIs('ka') ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
