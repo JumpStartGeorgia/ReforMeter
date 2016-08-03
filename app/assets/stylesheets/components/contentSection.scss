@@ -17,6 +17,11 @@
   .contentSection-header.mod-no-padding {
     padding: 0;
   }
+  
+  .contentSection-header.mod-news {
+    padding-top: 15px;
+    padding-bottom: 5px;
+  }
 
   .contentSection-body {
     border-top: 3px solid $color-grey-background;
