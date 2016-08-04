@@ -55,7 +55,10 @@
     .tabList-item-button.mod-primary {
       font-weight: 600;
       text-transform: uppercase;
-      font-size: 2rem;
       vertical-align: middle;
+      
+      @media (min-width: 500px) {
+        font-size: 2rem;
+      }
     }
 }
