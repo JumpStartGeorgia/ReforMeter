@@ -7,19 +7,23 @@ page_title t('.title')
 
   <header class='contentSection-header'>
 
-    <h1 class='heading'>
+    <div class='contentSection-header-title'>
+      
+      <h1 class='heading'>
 
-      <div class='heading-iconTextContainer'>
+        <div class='heading-iconTextContainer'>
 
-        <%= inline_svg('experts.svg', class: 'heading-icon') %>
+          <%= inline_svg('experts.svg', class: 'heading-icon') %>
 
-        <div class='heading-text'>
-          <%= yield(:page_title) %>
+          <div class='heading-text'>
+            <%= yield(:page_title) %>
+          </div>
+
         </div>
 
-      </div>
-
-    </h1>
+      </h1>
+      
+    </div>
 
   </header>
 

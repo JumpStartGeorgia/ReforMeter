@@ -9,12 +9,16 @@ show_admin_links ||= false
   <%= bootstrap_flash %>
 
   <header class='contentSection-header'>
+    
+    <div class='contentSection-header-title'>
+      
+      <h1 class='heading'>
+        <%= yield(:page_title) %>
+      </h1>
+      
+    </div>
 
-    <h1 class='heading'>
-      <%= yield(:page_title) %>
-    </h1>
-
-    <div>
+    <div class='contentSection-header-controls'>
 
       <% if @active_reforms %>
 

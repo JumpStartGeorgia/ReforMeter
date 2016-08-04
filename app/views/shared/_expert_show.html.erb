@@ -9,23 +9,27 @@ show_admin_links ||= false
   <%= bootstrap_flash %>
 
   <header class='contentSection-header'>
+    
+    <div class='contentSection-header-title'>
+      
+      <h1 class='heading'>
 
-    <h1 class='heading'>
+        <div class='heading-iconTextContainer'>
 
-      <div class='heading-iconTextContainer'>
+          <%= inline_svg('experts.svg', class: 'heading-icon') %>
 
-        <%= inline_svg('experts.svg', class: 'heading-icon') %>
+          <div class='heading-text'>
+            <%= yield(:page_title) %>
+          </div>
 
-        <div class='heading-text'>
-          <%= yield(:page_title) %>
         </div>
 
-      </div>
-
-    </h1>
+      </h1>
+      
+    </div>
 
     <% if @active_quarters %>
-      <div>
+      <div class='contentSection-header-controls'>
 
         <%= t('shared.common.change_time') %>:
         <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= review_board_path %>'>

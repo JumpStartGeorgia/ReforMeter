@@ -28,18 +28,25 @@
     .tabList-item-button {
       font-weight: 600;
       text-transform: uppercase;
-      font-size: 2rem;
+      font-size: 1.5rem;
       width: inherit;
       height: inherit;
       display: block;
-      padding: 22px $padding-main-content;
+      padding: 1em 1.1em;
+      
+      @media (min-width: 425px) {
+        font-size: 1.7rem;
+        padding: 1em 1.2em;
+      }
+      
+      @media (min-width: 525px) {
+        font-size: 2rem;
+        padding: 1.1em $padding-main-content;
+      }
     }
-
+    
     .tabList-item-button.is-selected {
       background-color: #FFF;
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 2rem;
       vertical-align: middle;
     }
 }
