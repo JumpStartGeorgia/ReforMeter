@@ -422,7 +422,7 @@ Quarter.transaction do
     ei.reforms << reform3
 
 
-    ei = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true)
+    ei = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', subtitle: 'This is the very loooooong subtitle of Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true)
     csv_data = CSV.read(csv_path + 'growth.csv')
 
     # countries
