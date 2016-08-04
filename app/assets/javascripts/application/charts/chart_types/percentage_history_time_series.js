@@ -13,8 +13,7 @@ function percentageHistoryTimeSeriesOptions(chartData) {
         title: {
           text: chartData.title
         }
-      },
-      enabled: true
+      }
     },
     yAxis: {
       min: 0,

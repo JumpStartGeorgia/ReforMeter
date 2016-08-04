@@ -85,6 +85,9 @@ module ApplicationHelper
     end
     return locales
   end
-
+  
+  def random_string
+    ('a'..'z').to_a.shuffle[0,8].join
+  end
 
 end
