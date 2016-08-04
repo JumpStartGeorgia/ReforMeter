@@ -7,7 +7,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
     
     chart: {
       height: '135',
-      width: '125'
+      width: '115'
     },
     
     yAxis: {

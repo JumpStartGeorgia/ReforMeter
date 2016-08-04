@@ -1,5 +1,6 @@
 <%
 @do_not_use_default_page_layout = true
+@has_sidebar = @news.present?
 show_admin_links ||= false
 %>
 
@@ -202,10 +203,14 @@ show_admin_links ||= false
 
       <div class='contentSection-body'>
         
-        <div class='summaryGaugesContainer'>
+        <!-- If there is no sidebar, put the summary and gauges next to
+             each other on big screens. -->
+        <% unless @has_sidebar %>
+          <div class='summaryGaugesContainer'>
+        <% end %>
           
           <% if @reform_survey.stakeholder_summary %>
-            <div class='summaryGaugesContainer-summary'>
+            <div class='<%= 'summaryGaugesContainer-summary' unless @has_sidebar %>'>
               <%= simple_format_no_tags(@reform_survey.stakeholder_summary) %>
             </div>
           <% end %>
@@ -238,9 +243,11 @@ show_admin_links ||= false
 
           </section>
           
-        </div>
-
-        
+        <!-- If there is no sidebar, put the summary and gauges next to
+             each other on big screens. -->
+        <% unless @has_sidebar %>
+          </div>
+        <% end %>
 
         <section>
 
