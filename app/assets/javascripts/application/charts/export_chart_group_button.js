@@ -8,18 +8,20 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
   function getChartGroupSVG() {
     var svgArr = [],
-        height = 0;
+        height = 0,
         xOffset = 0;
 
     var chartGroupHeight = $.makeArray(charts).reduce(
       function(biggestHeight, chart) {
-        return Math.max(biggestHeight, chart.chartHeight);
+        return Math.max(biggestHeight, chart.highchartsObject.chartHeight);
       },
       0
     );
-
+    
     $.each(charts, function(i, chart) {
-      var svg = chart.getSVG(
+      var highchartsObject = chart.highchartsObject;
+      
+      var svg = highchartsObject.getSVG(
         {
           chart: {
             backgroundColor: 'white',
@@ -27,7 +29,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
             style: {
               fontSize: '9.5px'
             },
-            width: chart.chartWidth
+            width: highchartsObject.chartWidth
           }
         }
       );
@@ -35,8 +37,8 @@ function initializeExportChartGroupButton($exportButton, charts) {
       svg = svg.replace('<svg', '<g transform="translate(' + xOffset + ',0)" ');
       svg = svg.replace('</svg>', '</g>');
 
-      height = Math.max(height, chart.chartHeight);
-      xOffset += chart.chartWidth;
+      height = Math.max(height, highchartsObject.chartHeight);
+      xOffset += highchartsObject.chartWidth;
 
       svgArr.push(svg);
     });

@@ -26,6 +26,7 @@ function initializeHighchart($container) {
     );
 
     highchart.highchartsObject = new Highcharts.Chart($container[0], options);
+    highchart.data = highchartData;
   };
 
   return highchart;

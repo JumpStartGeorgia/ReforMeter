@@ -16,9 +16,7 @@ function setupExportChartGroupButtons(charts) {
         function() {
           return this.exportableBy(exportButtonDataID);
         }
-      ).map(function() {
-        return this.highchartsObject;
-      });
+      );
 
       initializeExportChartGroupButton($exportButton, exportableCharts);
     }
