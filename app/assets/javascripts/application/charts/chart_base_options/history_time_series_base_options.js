@@ -44,6 +44,14 @@ function historyTimeSeriesOptions(chartData) {
     },
     colors: ['#0e3a5b'],
     exporting: {
+      chartOptions: {
+        subtitle: {
+          text: chartData.subtitle,
+          style: {
+            fontSize: '1.4em'
+          }
+        }
+      },
       sourceWidth: 1410,
       sourceHeight: 600
     },
