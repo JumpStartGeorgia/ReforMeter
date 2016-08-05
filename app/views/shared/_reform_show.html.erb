@@ -284,7 +284,14 @@ show_admin_links ||= false
 
               <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='stakeholder_history_chart'>
 
-                <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='reform-stakeholder-history'></div>
+                <% exportID = random_string %>
+
+                <%= render partial: 'shared/chart_export_button',
+                           locals: {
+                             exportID: exportID
+                           } %>
+
+                <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='reform-stakeholder-history' data-exportable-by-id='<%= exportID %>'></div>
 
               </div>
 

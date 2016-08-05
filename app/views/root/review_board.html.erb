@@ -8,7 +8,7 @@ page_title t('.title')
   <header class='contentSection-header'>
 
     <div class='contentSection-header-title'>
-      
+
       <h1 class='heading'>
 
         <div class='heading-iconTextContainer'>
@@ -22,7 +22,7 @@ page_title t('.title')
         </div>
 
       </h1>
-      
+
     </div>
 
   </header>
@@ -144,7 +144,16 @@ page_title t('.title')
         </div>
 
         <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
-          <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='expert-history'></div>
+
+          <% exportID = random_string %>
+
+          <%= render partial: 'shared/chart_export_button',
+                     locals: {
+                       exportID: exportID
+                     } %>
+
+          <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='expert-history' data-exportable-by-id='<%= exportID %>'></div>
+
         </div>
 
         <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='experts'>

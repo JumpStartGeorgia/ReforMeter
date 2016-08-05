@@ -1,8 +1,5 @@
 function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
   var options = {
-    chart: {
-      spacingTop: 30
-    },
     exporting: {
       buttons: {
         contextButton: {
@@ -13,8 +10,7 @@ function percentageColorfulReformsHistoryTimeSeriesOptions(chartData) {
         title: {
           text: chartData.title
         }
-      },
-      enabled: true
+      }
     },
     yAxis: {
       title: {

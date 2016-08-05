@@ -9,9 +9,9 @@ show_admin_links ||= false
   <%= bootstrap_flash %>
 
   <header class='contentSection-header'>
-    
+
     <div class='contentSection-header-title'>
-      
+
       <h1 class='heading'>
 
         <div class='heading-iconTextContainer'>
@@ -25,7 +25,7 @@ show_admin_links ||= false
         </div>
 
       </h1>
-      
+
     </div>
 
     <% if @active_quarters %>
@@ -118,7 +118,16 @@ show_admin_links ||= false
       <div class="tabContent js-act-as-tab-content">
 
         <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='chart'>
-          <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='expert-history'></div>
+
+          <% exportID = random_string %>
+
+          <%= render partial: 'shared/chart_export_button',
+                     locals: {
+                       exportID: exportID
+                     } %>
+
+          <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='expert-history' data-exportable-by-id='<%= exportID %>'></div>
+
         </div>
 
         <div class='tabContent-panel js-act-as-tab-content-panel' id='methodology'>

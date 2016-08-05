@@ -8,11 +8,11 @@ page_title t('.title')
   <header class='contentSection-header'>
 
     <div class='contentSection-header-title'>
-      
+
       <h1 class='heading'>
         <%= yield(:page_title) %>
       </h1>
-      
+
     </div>
 
     <div class='contentSection-header-controls'>
@@ -117,9 +117,9 @@ page_title t('.title')
     </header>
 
     <div class='contentSection-body mod-no-padding'>
-      
+
       <div class='tabContent js-act-as-tab-content'>
-        
+
         <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='history'>
 
           <table class='chartsTable mod-reforms'>
@@ -187,11 +187,11 @@ page_title t('.title')
                         <td class='chartsTable-cell'>
 
                           <p class='chartsTable-cell-text'>
-                            
+
                             <span class='chartsTable-cell-text-score'>
                               <%= survey.government_overall_score %>
                             </span>
-                            
+
                             <span class='chartsTable-cell-text-changeIcon'>
                               <%= generate_change_icon(survey.government_overall_change) %>
                             </span>
@@ -215,15 +215,15 @@ page_title t('.title')
                         <td class='chartsTable-cell'>
 
                           <p class='chartsTable-cell-text'>
-        
+
                             <span class='chartsTable-cell-text-score'>
                               <%= survey.stakeholder_overall_score %>
                             </span>
-                            
+
                             <span class='chartsTable-cell-text-changeIcon'>
                               <%= generate_change_icon(survey.stakeholder_overall_change) %>
                             </span>
-                            
+
                           </p>
 
                           <div class='chartsTable-cell-chart'>
@@ -257,11 +257,19 @@ page_title t('.title')
             </tbody>
 
           </table>
-            
+
         </div>
 
         <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
-          <div class='js-become-highchart' data-chart-type='percentage-colorful-reforms-history-time-series' data-id='reforms-history-series'></div>
+
+          <% exportID = random_string %>
+
+          <%= render partial: 'shared/chart_export_button',
+                     locals: {
+                       exportID: exportID
+                     } %>
+
+          <div class='js-become-highchart' data-chart-type='percentage-colorful-reforms-history-time-series' data-id='reforms-history-series' data-exportable-by-id='<%= exportID %>'></div>
         </div>
 
         <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='methodology'>
@@ -287,7 +295,7 @@ page_title t('.title')
           <% end %>
 
         </div>
-        
+
       </div>
 
     </div>
