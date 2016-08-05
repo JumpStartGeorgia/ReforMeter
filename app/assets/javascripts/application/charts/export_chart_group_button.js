@@ -100,10 +100,11 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
     Highcharts.post(options.url, exportOptions);
   };
-
-  $exportButton.click(
-    function() {
+  
+  return {
+    setup: function() {
       exportCharts();
+      $exportButton.parents('.js-act-as-chart-export-menu').addClass('is-hidden');    
     }
-  );
+  }
 }

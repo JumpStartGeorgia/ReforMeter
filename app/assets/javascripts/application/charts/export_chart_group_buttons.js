@@ -18,8 +18,10 @@ function setupExportChartGroupButtons(charts) {
           return this.exportableBy(exportButtonDataID);
         }
       );
-
-      initializeExportChartGroupButton($exportButton, exportableCharts);
+      
+      $exportButton.click(
+        initializeExportChartGroupButton($exportButton, exportableCharts).setup
+      )
     }
   );
 }
