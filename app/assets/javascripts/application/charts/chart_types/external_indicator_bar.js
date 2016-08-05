@@ -19,7 +19,6 @@ function highchartsExternalIndicatorBar(chartData) {
     },
     colors: colors(),
     exporting: {
-      enabled: true,
       chartOptions: {
         title: externalIndicatorChart.title(
           chartData.title,

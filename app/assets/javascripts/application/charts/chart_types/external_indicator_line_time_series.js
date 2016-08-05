@@ -9,7 +9,6 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
     },
     colors: externalIndicatorChart.colors,
     exporting: {
-      enabled: true,
       chartOptions: {
         title: externalIndicatorChart.title(
           chartData.title,

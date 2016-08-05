@@ -1,6 +1,13 @@
 <div class='externalIndicatorChartContainer'>
+  
+  <% exportID = random_string %>
 
-  <div class='js-become-highchart' data-chart-type='<%= external_indicator[:chartType] %>' data-id='<%= external_indicator[:id] %>'></div>
+  <%= render partial: 'shared/gauges_group_export',
+             locals: {
+               exportID: exportID
+             } %>
+
+  <div class='js-become-highchart' data-chart-type='<%= external_indicator[:chartType] %>' data-id='<%= external_indicator[:id] %>' data-exportable-by-id='<%= exportID %>'></div>
 
   <% if external_indicator[:indexes].present? %>
 
