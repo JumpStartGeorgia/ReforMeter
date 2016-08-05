@@ -102,8 +102,7 @@ show_admin_links ||= false
 
             <%= render partial: 'shared/gauges_group_export',
                        locals: {
-                         exportID: exportID,
-                         openMenuID: random_string
+                         exportID: exportID
                        } %>
 
           </div>
@@ -156,8 +155,7 @@ show_admin_links ||= false
 
               <%= render partial: 'shared/gauges_group_export',
                          locals: {
-                           exportID: exportID,
-                           openMenuID: random_string
+                           exportID: exportID
                          } %>
             
             <div class='js-become-highchart' data-chart-type='percentage-history-time-series' data-id='reform-government-history' data-exportable-by-id='<%= exportID %>'></div>
@@ -230,14 +228,13 @@ show_admin_links ||= false
           
           <section class='gaugesContainer'>
             
-            <% exportID = 'FEeM4KQSfrxdBckV1dcuhzUREHd7Yn0HX0nhKZcNMcQ=' %>
+            <% exportID = random_string %>
 
             <div class='gaugesContainer-exportButton'>
 
               <%= render partial: 'shared/gauges_group_export',
                          locals: {
-                           exportID: exportID,
-                           openMenuID: 'SNVBjGMH6QjXnOLQ6ruCOvDd2qjTu3qSYflSedt0bjs='
+                           exportID: exportID
                          } %>
 
             </div>

@@ -1,8 +1,9 @@
 function setupExportChartGroupButtons(charts) {
   $('.js-toggle-chart-group-export-menu').click(function() {
-    var menuShowableID = $(this).data('shows-id');
-
-    $('*[data-showable-by-id="' + menuShowableID + '"]').toggleClass('is-hidden');
+    $(this)
+    .parents('.js-act-as-chart-export-container')
+    .find('.js-act-as-chart-export-menu')
+    .toggleClass('is-hidden');
   });
 
   var $exportButtons = $('.js-export-chart-group');

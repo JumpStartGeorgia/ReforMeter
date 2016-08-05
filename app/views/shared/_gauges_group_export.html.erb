@@ -1,10 +1,10 @@
-<div class='chartExport'>
+<div class='chartExport js-act-as-chart-export-container'>
   
-  <button class='chartExport-button js-toggle-chart-group-export-menu' type='button' data-shows-id='<%= openMenuID %>'>
+  <button class='chartExport-button js-toggle-chart-group-export-menu' type='button'>
     <%= inline_svg('download.svg') %>
   </button>
 
-  <div class='chartExport-menu is-hidden' data-showable-by-id='<%= openMenuID %>'>
+  <div class='chartExport-menu js-act-as-chart-export-menu is-hidden'>
 
     <button class='chartExport-menu-item js-export-chart-group' data-export-id='<%= exportID %>' data-export-type='image/png' type='button'>
       <%= t('shared.chart_download.download_png') %>
