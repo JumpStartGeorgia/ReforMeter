@@ -153,12 +153,13 @@ show_admin_links ||= false
             
             <% exportID = random_string %>
 
-              <%= render partial: 'shared/gauges_group_export',
-                         locals: {
-                           exportID: exportID
-                         } %>
+            <%= render partial: 'shared/gauges_group_export',
+                       locals: {
+                         exportID: exportID
+                       } %>
             
             <div class='js-become-highchart' data-chart-type='percentage-history-time-series' data-id='reform-government-history' data-exportable-by-id='<%= exportID %>'></div>
+            
           </div>
 
           <div class='tabContent-panel js-act-as-tab-content-panel' id='government_methodology'>
