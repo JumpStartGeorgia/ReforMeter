@@ -42,8 +42,11 @@ $expert-image-size: 100px;
 
   .expertList-item {
     display: inline-flex;
-    max-width: 50%;
     box-sizing: border-box;
+
+    @media (min-width: 500px) {
+      max-width: 50%;
+    }
   }
 
     .expertList-item-imageLink-image {
