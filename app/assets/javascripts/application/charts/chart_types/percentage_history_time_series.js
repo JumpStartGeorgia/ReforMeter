@@ -1,8 +1,5 @@
 function percentageHistoryTimeSeriesOptions(chartData) {
   var options = {
-    chart: {
-      spacingTop: 30
-    },
     exporting: {
       buttons: {
         contextButton: {
