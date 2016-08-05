@@ -72,14 +72,14 @@ show_admin_links ||= false
 
       <section class='gaugesContainer'>
 
-        <% exportID = 'fdsajkfda132reware53243eare1' %>
+        <% exportID = random_string %>
 
         <div class='gaugesContainer-exportButton'>
 
           <%= render partial: 'shared/gauges_group_export',
                      locals: {
                        exportID: exportID,
-                       openMenuID: '53214efdsfj419t4rejw'
+                       openMenuID: random_string
                      } %>
 
         </div>
