@@ -6,7 +6,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
     throw new Error('Export button has not allowed type');
   }
 
-  function getChartGroupSVG() {    
+  function getChartGroupSVG() {
     var svgArr = [],
         height = 0,
         xOffset = 0;
@@ -17,10 +17,10 @@ function initializeExportChartGroupButton($exportButton, charts) {
       },
       0
     );
-    
+
     $.each(charts, function(i, chart) {
       var highchartsObject = chart.highchartsObject;
-      
+
       var svg = highchartsObject.getSVG(
         {
           chart: {
@@ -56,11 +56,11 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
   function exportCharts() {
     options = Highcharts.merge(Highcharts.getOptions().exporting);
-    
+
     var exportOptions;
-    
+
     if (charts.length === 1) {
-      
+
       var defaultExportOptions = {
         chart: {
           style: {
@@ -73,9 +73,9 @@ function initializeExportChartGroupButton($exportButton, charts) {
           x: -40
         }
       };
-      
-      var chartSpecificExportOptions = charts[0].highchartsObject.userOptions.exporting.chartOptions; 
-      
+
+      var chartSpecificExportOptions = charts[0].highchartsObject.userOptions.exporting.chartOptions;
+
       exportOptions = {
         filename: options.filename || 'chart',
         type: exportType,
@@ -87,24 +87,24 @@ function initializeExportChartGroupButton($exportButton, charts) {
           )
         )
       };
-      
+
     } else {
-      
+
       exportOptions = {
       	filename: 'chart',
         type: exportType,
         svg: getChartGroupSVG()
       }
-      
+
     }
 
     Highcharts.post(options.url, exportOptions);
   };
-  
+
   return {
     setup: function() {
       exportCharts();
-      $exportButton.parents('.js-act-as-chart-export-menu').addClass('is-hidden');    
+      $exportButton.parents('.js-act-as-chart-export-menu').addClass('is-hidden');
     }
   }
 }
