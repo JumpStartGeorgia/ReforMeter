@@ -21,17 +21,22 @@ function initializeExportChartGroupButton($exportButton, charts) {
     $.each(charts, function(i, chart) {
       var highchartsObject = chart.highchartsObject;
 
-      var svg = highchartsObject.getSVG(
-        {
-          chart: {
-            backgroundColor: 'white',
-            height: chartGroupHeight,
-            style: {
-              fontSize: '9.5px'
-            },
-            width: highchartsObject.chartWidth
-          }
+      var defaultExportOptions = {
+        chart: {
+          backgroundColor: 'white',
+          height: chartGroupHeight,
+          style: {
+            fontSize: '9.5px'
+          },
+          width: highchartsObject.chartWidth
         }
+      }
+
+      var svg = chart.highchartsObject.getSVG(
+        Highcharts.merge(
+          defaultExportOptions,
+          chartSpecificExportOptions(chart)
+        )
       );
 
       svg = svg.replace('<svg', '<g transform="translate(' + xOffset + ',0)" ');
@@ -54,6 +59,12 @@ function initializeExportChartGroupButton($exportButton, charts) {
     return svgObj;
   }
 
+  function chartSpecificExportOptions(chart) {
+    if (!chart.highchartsObject.userOptions.exporting) return {};
+    
+    return chart.highchartsObject.userOptions.exporting.chartOptions;
+  }
+
   function singleChartExportOptions(chart) {
     var defaultExportOptions = {
       chart: {
@@ -68,8 +79,6 @@ function initializeExportChartGroupButton($exportButton, charts) {
       }
     };
 
-    var chartSpecificExportOptions = chart.highchartsObject.userOptions.exporting.chartOptions;
-
     return {
       filename: chart.data.title ? chart.data.title + '_ReforMeter' : 'ReforMeter_Chart',
       type: exportType,
@@ -77,7 +86,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
       svg: chart.highchartsObject.getSVG(
         Highcharts.merge(
           defaultExportOptions,
-          chartSpecificExportOptions
+          chartSpecificExportOptions(chart)
         )
       )
     };

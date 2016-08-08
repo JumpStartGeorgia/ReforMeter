@@ -1,27 +1,49 @@
 function highchartsSmallSolidGaugeOptions(chartData) {
-  
+
   function scoreLabelText() {
     switch (chartData.change) {
-      
+
       case 0: {
         return gon.translations.government.rating.middle;
       }
-      
+
       case 1: {
         return gon.translations.government.rating.rising;
       }
-        
+
     }
-    
+
     return '';
   }
-  
+
   scoreLabelText = scoreLabelText();
 
   return {
   	chart: {
     	type: 'solidgauge',
       height: chartData.title ? '195' : '135'
+    },
+
+    exporting: {
+      chartOptions: {
+        plotOptions: {
+        	solidgauge: {
+            dataLabels: {
+              formatter: function() {
+                return highchartsGaugeLabel(
+                  chartData,
+                  this,
+                  '2em',
+                  {
+                    unit: '%',
+                    changeIcon: false,
+                    secondLineText: scoreLabelText
+                  });
+              }
+            }
+          }
+        }
+      }
     },
 
 		title: {
@@ -73,28 +95,28 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
     plotOptions: {
     	solidgauge: {
-      	innerRadius: '0%'
+      	innerRadius: '0%',
+        dataLabels: {
+          borderWidth: 0,
+          y: scoreLabelText === '' ? 38 : 50,
+          useHTML: true,
+          formatter: function() {
+            return highchartsGaugeLabel(
+              chartData,
+              this,
+              '2em',
+              {
+                unit: '%',
+                secondLineText: scoreLabelText
+              });
+          }
+        }
       }
     },
 
     series: [{
 			name: chartData.title,
       data: [chartData.score],
-      dataLabels: {
-        borderWidth: 0,
-        y: scoreLabelText === '' ? 38 : 50,
-        useHTML: true,
-        formatter: function() {
-          return highchartsGaugeLabel(
-            chartData, 
-            this, 
-            '2em', 
-            { 
-              unit: '%',
-              secondLineText: scoreLabelText
-            });
-        }
-      },
       tooltip: {
       	valueSuffix: '%'
       }

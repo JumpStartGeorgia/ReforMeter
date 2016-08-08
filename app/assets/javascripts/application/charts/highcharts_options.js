@@ -7,7 +7,7 @@ function setupDefaultOptions() {
     },
     credits: false,
     exporting: {
-      allowHTML: true,
+      // allowHTML: true,
       chartOptions: {
         chart: {
           style: {
