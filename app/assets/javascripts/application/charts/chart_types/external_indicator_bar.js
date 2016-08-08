@@ -1,4 +1,6 @@
 function highchartsExternalIndicatorBar(chartData) {
+  var externalIndicatorChart = externalIndicatorChartHelpers(chartData);
+
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
   var spacingLeft = chartData.plot_bands != null ? localeIs('ka') ? 120 : 80 : 0;
 
@@ -14,7 +16,6 @@ function highchartsExternalIndicatorBar(chartData) {
     chart: {
       // Makes room for the yAxis plot band labels
       spacingLeft: spacingLeft,
-      marginTop: externalIndicatorChart.marginTop,
       type: 'column'
     },
     colors: colors(),

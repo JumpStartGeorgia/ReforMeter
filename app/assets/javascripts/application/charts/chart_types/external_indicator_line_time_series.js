@@ -1,11 +1,12 @@
 function highchartsExternalIndicatorLineTimeSeries(chartData) {
+  var externalIndicatorChart = externalIndicatorChartHelpers(chartData);
+
   var spacingLeft = chartData.plot_bands != null ? localeIs('ka') ? 120 : 80 : 0;
 
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
-      spacingLeft: spacingLeft,
-      marginTop: externalIndicatorChart.marginTop
+      spacingLeft: spacingLeft
     },
     colors: externalIndicatorChart.colors,
     exporting: {

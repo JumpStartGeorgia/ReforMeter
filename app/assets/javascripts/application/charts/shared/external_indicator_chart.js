@@ -1,7 +1,5 @@
-var externalIndicatorChart = (function() {
+function externalIndicatorChartHelpers(chartData) {
   var externalIndicatorChart = {};
-
-  externalIndicatorChart.marginTop = 90;
 
   externalIndicatorChart.colorHash = {
     r: '250',
@@ -33,15 +31,18 @@ var externalIndicatorChart = (function() {
       style: {
         fontWeight: 600,
         fontSize: '2em',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        paddingBottom: typeof chartData.subtitle === 'string' ? '0' : '10px'
       },
       text: text + infoCircle,
+      widthAdjust: 0,
       useHTML: true
     };
 
     if (customOptions.titleOptions) {
       options = mergeObjects(options, customOptions.titleOptions);
     }
+
     return options;
   }
 
@@ -62,7 +63,7 @@ var externalIndicatorChart = (function() {
       var icon = change_icon(
         pointData.point.change
       );
-      
+
       iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
     }
 
@@ -75,7 +76,8 @@ var externalIndicatorChart = (function() {
       style: {
         color: '#66666d',
         fontSize: '1.6em',
-        fontWeight: '200'
+        fontWeight: '200',
+        paddingBottom: '30px'
       },
       text: text,
       useHTML: true
@@ -89,4 +91,4 @@ var externalIndicatorChart = (function() {
   }
 
   return externalIndicatorChart;
-})();
+};
