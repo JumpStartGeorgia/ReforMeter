@@ -77,7 +77,7 @@ function highchartsExternalIndicatorBar(chartData) {
     yAxis: {
       min: chartData.min,
       max: chartData.max,
-      plotBands: plotBands(chartData.plot_bands, false),
+      plotBands: externalIndicatorChart.plotBands(chartData.plot_bands, false),
       title: {
         text: chartData.unitLabel
       }

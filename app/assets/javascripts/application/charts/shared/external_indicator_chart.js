@@ -17,6 +17,33 @@ function externalIndicatorChartHelpers(chartData) {
       '#f9db4d'
     ];
 
+  // plotBands is array of plot bands from chartData
+  // create settings for each plot band
+  externalIndicatorChart.plotBands(plotBands, use_opacity) {
+    var bands = [];
+    if (use_opacity === undefined){
+      use_opacity = true;
+    }
+    $(plotBands).each(function() {
+      bands.push({
+        from: this.from,
+        to: this.to,
+        label: {
+          text: this.text,
+          style: {
+            color: outputHighchartsColorString(externalIndicatorChart.colorHash, use_opacity == true ? this.opacity : 1),
+            fontSize: localeIs('ka') ? '14px' : '16px',
+            fontWeight: '600'
+          },
+          x: localeIs('ka') ? -140 : -100,
+          verticalAlign: 'middle'
+        }
+      });
+    });
+
+    return bands;
+  }
+
   externalIndicatorChart.title = function(text, customOptions) {
     if (!customOptions) customOptions = {};
 
