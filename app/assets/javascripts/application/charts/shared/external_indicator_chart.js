@@ -8,14 +8,14 @@ function externalIndicatorChartHelpers(chartData) {
   };
 
   externalIndicatorChart.colors = [
-      '#ed7818',
-      '#ef8a22',
-      '#f19c2b',
-      '#f4ae35',
-      '#f6c03f',
-      '#f8d248',
-      '#f9db4d'
-    ];
+    '#ed7818',
+    '#ef8a22',
+    '#f19c2b',
+    '#f4ae35',
+    '#f6c03f',
+    '#f8d248',
+    '#f9db4d'
+  ];
 
   // plotBands is array of plot bands from chartData
   // create settings for each plot band
