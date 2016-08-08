@@ -69,27 +69,32 @@ function highchartsBigMeterGaugeOptions(chartData) {
       ]
     },
 
+    plotOptions: {
+      gauge: {
+        dataLabels: {
+          borderWidth: 0,
+          y: 70,
+          useHTML: true,
+          formatter: function() {
+            return highchartsGaugeLabel(chartData, this, helpers.textSize(3.5));
+          }
+        },
+        pivot: {
+          backgroundColor: 'white'
+        },
+        dial: {
+          baseWidth: helpers.paneSize/10,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          baseLength: 0,
+          radius: '60%',
+          rearLength: '10%'
+        }
+      }
+    },
+
     series: [{
       name: chartData.title,
-      data: [chartData.score],
-      dataLabels: {
-        borderWidth: 0,
-        y: 70,
-        useHTML: true,
-        formatter: function() {
-          return highchartsGaugeLabel(chartData, this, helpers.textSize(3.5));
-        }
-      },
-      pivot: {
-        backgroundColor: 'white'
-      },
-      dial: {
-        baseWidth: helpers.paneSize/10,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        baseLength: 0,
-        radius: '60%',
-        rearLength: '10%'
-      }
+      data: [chartData.score]
     }]
 
   };

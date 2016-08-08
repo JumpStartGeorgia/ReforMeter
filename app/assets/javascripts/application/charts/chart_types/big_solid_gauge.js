@@ -49,24 +49,31 @@ function highchartsBigSolidGaugeOptions(chartData) {
 
     plotOptions: {
       solidgauge: {
-        innerRadius: '0%'
+        innerRadius: '0%',
+        dataLabels: {
+          borderWidth: 0,
+          y: 70,
+          useHTML: true,
+          formatter: function() {
+            return highchartsGaugeLabel(
+              chartData, 
+              this,
+              '3.5em',
+              {
+                unit: '%'
+              }
+            );
+          }
+        },
+        tooltip: {
+          valueSuffix: '%'
+        }
       }
     },
 
     series: [{
       name: chartData.title,
-      data: [chartData.score],
-      dataLabels: {
-        borderWidth: 0,
-        y: 70,
-        useHTML: true,
-        formatter: function() {
-          return highchartsGaugeLabel(chartData, this, '3.5em', { unit: '%' });
-        }
-      },
-      tooltip: {
-        valueSuffix: '%'
-      }
+      data: [chartData.score]
     }]
   };
 }

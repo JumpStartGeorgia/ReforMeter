@@ -1,15 +1,15 @@
 function highchartsSmallMeterGaugeOptions(chartData) {
   var color = chartData.color;
-  
+
   var helpers = meterGaugeHelpers(100);
 
   var options = {
-    
+
     chart: {
       height: '135',
       width: '115'
     },
-    
+
     yAxis: {
       plotBands: [
         {
@@ -47,6 +47,37 @@ function highchartsSmallMeterGaugeOptions(chartData) {
       size: '100'
     },
 
+    plotOptions: {
+      gauge: {
+        dataLabels: {
+          borderWidth: 0,
+          y: 50,
+          useHTML: true,
+          formatter: function() {
+            return highchartsGaugeLabel(
+              chartData,
+              this,
+              '2em',
+              {
+                secondLineText: helpers.plotBandLabelForScore(chartData.score)
+              }
+            );
+          }
+        },
+        pivot: {
+          backgroundColor: 'white',
+          radius: 4
+        },
+        dial: {
+          baseWidth: 15,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          baseLength: 0,
+          radius: '60%',
+          rearLength: '10%'
+        }
+      }
+    },
+
     title: {
       style: {
         fontSize: '1.6em'
@@ -57,33 +88,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
 
     series: [{
       name: chartData.title,
-      data: [chartData.score],
-      dataLabels: {
-        borderWidth: 0,
-        y: 50,
-        useHTML: true,
-        formatter: function() {
-          return highchartsGaugeLabel(
-            chartData, 
-            this, 
-            '2em', 
-            {
-              secondLineText: helpers.plotBandLabelForScore(chartData.score)
-            }
-          );
-        }
-      },
-      pivot: {
-        backgroundColor: 'white',
-        radius: 4
-      },
-      dial: {
-        baseWidth: 15,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        baseLength: 0,
-        radius: '60%',
-        rearLength: '10%'
-      }
+      data: [chartData.score]
     }]
   };
 

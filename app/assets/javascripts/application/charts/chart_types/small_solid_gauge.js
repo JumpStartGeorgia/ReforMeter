@@ -38,7 +38,8 @@ function highchartsSmallSolidGaugeOptions(chartData) {
                     unit: '%',
                     changeIcon: false,
                     secondLineText: scoreLabelText
-                  });
+                  }
+                );
               }
             }
           }
@@ -108,7 +109,11 @@ function highchartsSmallSolidGaugeOptions(chartData) {
               {
                 unit: '%',
                 secondLineText: scoreLabelText
-              });
+              }
+            );
+          },
+          tooltip: {
+          	valueSuffix: '%'
           }
         }
       }
@@ -116,10 +121,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
     series: [{
 			name: chartData.title,
-      data: [chartData.score],
-      tooltip: {
-      	valueSuffix: '%'
-      }
+      data: [chartData.score]
     }]
   };
 }
