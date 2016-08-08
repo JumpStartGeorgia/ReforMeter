@@ -54,48 +54,55 @@ function initializeExportChartGroupButton($exportButton, charts) {
     return svgObj;
   }
 
-  function exportCharts() {
+  function singleChartExportOptions(chart) {
+    var defaultExportOptions = {
+      chart: {
+        style: {
+          fontFamily: 'sans-serif',
+          fontSize: '9px'
+        }
+      },
+      legend: {
+        itemDistance: 70,
+        x: -40
+      }
+    };
+
+    var chartSpecificExportOptions = chart.highchartsObject.userOptions.exporting.chartOptions;
+
+    return {
+      filename: chart.data.title ? chart.data.title + '_ReforMeter' : 'ReforMeter_Chart',
+      type: exportType,
+      scale: 1,
+      svg: chart.highchartsObject.getSVG(
+        Highcharts.merge(
+          defaultExportOptions,
+          chartSpecificExportOptions
+        )
+      )
+    };
+  }
+
+  function multipleChartExportOptions() {
+    return {
+      filename: 'Gauge_Charts_ReforMeter',
+      type: exportType,
+      svg: getChartGroupSVG()
+    };
+  }
+
+  function postExportRequest() {
     options = Highcharts.merge(Highcharts.getOptions().exporting);
 
     var exportOptions;
 
     if (charts.length === 1) {
-      var chart = charts[0]
 
-      var defaultExportOptions = {
-        chart: {
-          style: {
-            fontFamily: 'sans-serif',
-            fontSize: '9px'
-          }
-        },
-        legend: {
-          itemDistance: 70,
-          x: -40
-        }
-      };
-
-      var chartSpecificExportOptions = chart.highchartsObject.userOptions.exporting.chartOptions;
-
-      exportOptions = {
-        filename: chart.data.title ? chart.data.title + '_ReforMeter' : 'ReforMeter_Chart',
-        type: exportType,
-        scale: 1,
-        svg: chart.highchartsObject.getSVG(
-          Highcharts.merge(
-            defaultExportOptions,
-            chartSpecificExportOptions
-          )
-        )
-      };
+      exportOptions = singleChartExportOptions(charts[0]);
 
     } else {
 
-      exportOptions = {
-      	filename: 'Gauge_Charts_ReforMeter',
-        type: exportType,
-        svg: getChartGroupSVG()
-      }
+      exportOptions = multipleChartExportOptions();
 
     }
 
@@ -104,7 +111,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
   return {
     setup: function() {
-      exportCharts();
+      postExportRequest();
       $exportButton.parents('.js-act-as-chart-export-menu').addClass('is-hidden');
     }
   }
