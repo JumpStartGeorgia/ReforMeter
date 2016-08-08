@@ -1,6 +1,3 @@
-
-
-
 function setupDefaultOptions() {
   Highcharts.setOptions({
     chart: {
