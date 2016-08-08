@@ -60,6 +60,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
     var exportOptions;
 
     if (charts.length === 1) {
+      var chart = charts[0]
 
       var defaultExportOptions = {
         chart: {
@@ -74,13 +75,13 @@ function initializeExportChartGroupButton($exportButton, charts) {
         }
       };
 
-      var chartSpecificExportOptions = charts[0].highchartsObject.userOptions.exporting.chartOptions;
+      var chartSpecificExportOptions = chart.highchartsObject.userOptions.exporting.chartOptions;
 
       exportOptions = {
-        filename: options.filename || 'chart',
+        filename: chart.data.title ? chart.data.title + '_ReforMeter' : 'ReforMeter_Chart',
         type: exportType,
         scale: 1,
-        svg: charts[0].highchartsObject.getSVG(
+        svg: chart.highchartsObject.getSVG(
           Highcharts.merge(
             defaultExportOptions,
             chartSpecificExportOptions
@@ -91,7 +92,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
     } else {
 
       exportOptions = {
-      	filename: 'chart',
+      	filename: 'Gauge_Charts_ReforMeter',
         type: exportType,
         svg: getChartGroupSVG()
       }
