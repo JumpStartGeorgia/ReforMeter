@@ -17,9 +17,17 @@ function externalIndicatorChartHelpers(chartData) {
     '#f9db4d'
   ];
 
+  function chartSpacingLeft() {
+    if (!chartData.plot_bands || chartData.plot_bands.length === 0) return 0;
+
+    return localeIs('ka') ? 120 : 80;
+  }
+
+  externalIndicatorChart.spacingLeft = chartSpacingLeft();
+
   // plotBands is array of plot bands from chartData
   // create settings for each plot band
-  externalIndicatorChart.plotBands(plotBands, use_opacity) {
+  externalIndicatorChart.plotBands = function(plotBands, use_opacity) {
     var bands = [];
     if (use_opacity === undefined){
       use_opacity = true;

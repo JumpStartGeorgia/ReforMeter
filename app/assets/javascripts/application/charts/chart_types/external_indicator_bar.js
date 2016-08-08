@@ -1,8 +1,7 @@
 function highchartsExternalIndicatorBar(chartData) {
   var externalIndicatorChart = externalIndicatorChartHelpers(chartData);
-
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
-  var spacingLeft = chartData.plot_bands != null ? localeIs('ka') ? 120 : 80 : 0;
+  var spacingLeft = externalIndicatorChart.spacingLeft;
 
   function colors() {
     if (chartData.series.length > 1) {

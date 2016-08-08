@@ -1,7 +1,7 @@
 function highchartsExternalIndicatorLineTimeSeries(chartData) {
   var externalIndicatorChart = externalIndicatorChartHelpers(chartData);
 
-  var spacingLeft = chartData.plot_bands != null ? localeIs('ka') ? 120 : 80 : 0;
+  var spacingLeft = externalIndicatorChart.spacingLeft;
 
   var options = {
     chart: {

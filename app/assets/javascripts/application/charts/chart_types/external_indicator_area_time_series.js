@@ -4,7 +4,8 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
   var color = externalIndicatorChart.colorHash;
   var max = chartData.max;
-  var spacingLeft = localeIs('ka') ? 120 : 80;
+
+  var spacingLeft = externalIndicatorChart.spacingLeft;
 
   var options = {
     chart: {
@@ -79,7 +80,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
     yAxis: {
       min: chartData.min,
       max: chartData.max,
-      plotBands: externalIndicatorChart.plotBands(chartData.plot_bands),
+      plotBands: externalIndicatorChart.plotBands(chartData.plot_bands, false),
       title: {
         text: chartData.unitLabel
       }
