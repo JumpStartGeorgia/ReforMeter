@@ -18,6 +18,19 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
   scoreLabelText = scoreLabelText();
 
+  function gaugeLabel(dataPoint, isExport) {
+    return highchartsGaugeLabel(
+      chartData,
+      dataPoint,
+      '2em',
+      {
+        unit: '%',
+        changeIcon: !isExport,
+        secondLineText: scoreLabelText
+      }
+    );
+  }
+
   return {
   	chart: {
     	type: 'solidgauge',
@@ -30,16 +43,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         	solidgauge: {
             dataLabels: {
               formatter: function() {
-                return highchartsGaugeLabel(
-                  chartData,
-                  this,
-                  '2em',
-                  {
-                    unit: '%',
-                    changeIcon: false,
-                    secondLineText: scoreLabelText
-                  }
-                );
+                return gaugeLabel(this, true);
               }
             }
           }
@@ -102,15 +106,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
           y: scoreLabelText === '' ? 38 : 50,
           useHTML: true,
           formatter: function() {
-            return highchartsGaugeLabel(
-              chartData,
-              this,
-              '2em',
-              {
-                unit: '%',
-                secondLineText: scoreLabelText
-              }
-            );
+            return gaugeLabel(this, false);
           },
           tooltip: {
           	valueSuffix: '%'

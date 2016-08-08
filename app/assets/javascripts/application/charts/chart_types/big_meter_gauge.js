@@ -6,12 +6,37 @@ function highchartsBigMeterGaugeOptions(chartData) {
   var helpers = meterGaugeHelpers(size);
   var plotBandLabels = helpers.plotBandLabels();
 
+  function gaugeLabel(dataPoint, isExport) {
+    return highchartsGaugeLabel(
+      chartData,
+      dataPoint,
+      helpers.textSize(3.5),
+      {
+        changeIcon: !isExport
+      }
+    );
+  }
+
   var options = {
 
     chart: {
       width: helpers.chartWidth,
       height: helpers.chartHeight,
       plotBorderColor: 'transparent'
+    },
+
+    exporting: {
+      chartOptions: {
+        plotOptions: {
+          gauge: {
+            dataLabels: {
+              formatter: function() {
+                return gaugeLabel(this, true);
+              }
+            }
+          }
+        }
+      }
     },
 
     title: {
@@ -76,11 +101,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
           y: 70,
           useHTML: true,
           formatter: function() {
-            return highchartsGaugeLabel(
-              chartData,
-              this,
-              helpers.textSize(3.5)
-            );
+            return gaugeLabel(this, false);
           }
         },
         pivot: {

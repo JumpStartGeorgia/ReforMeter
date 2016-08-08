@@ -1,13 +1,40 @@
 function highchartsSmallMeterGaugeOptions(chartData) {
+
   var color = chartData.color;
 
   var helpers = meterGaugeHelpers(100);
+
+  function gaugeLabel(dataPoint, isExport) {
+    return highchartsGaugeLabel(
+      chartData,
+      dataPoint,
+      '2em',
+      {
+        changeIcon: !isExport,
+        secondLineText: helpers.plotBandLabelForScore(chartData.score)
+      }
+    );
+  }
 
   var options = {
 
     chart: {
       height: '135',
       width: '115'
+    },
+
+    exporting: {
+      chartOptions: {
+        plotOptions: {
+          gauge: {
+            dataLabels: {
+              formatter: function() {
+                return gaugeLabel(this, true);
+              }
+            }
+          }
+        }
+      }
     },
 
     yAxis: {
@@ -54,14 +81,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           y: 50,
           useHTML: true,
           formatter: function() {
-            return highchartsGaugeLabel(
-              chartData,
-              this,
-              '2em',
-              {
-                secondLineText: helpers.plotBandLabelForScore(chartData.score)
-              }
-            );
+            return gaugeLabel(this, false);
           }
         },
         pivot: {

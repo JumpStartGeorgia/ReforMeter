@@ -1,7 +1,33 @@
 function highchartsBigSolidGaugeOptions(chartData) {
+  function gaugeLabel(dataPoint, isExport) {
+    return highchartsGaugeLabel(
+      chartData,
+      dataPoint,
+      '3.5em',
+      {
+        unit: '%',
+        changeIcon: !isExport
+      }
+    );
+  }
+
   return {
     chart: {
       type: 'solidgauge'
+    },
+
+    exporting: {
+      chartOptions: {
+        plotOptions: {
+          solidgauge: {
+            dataLabels: {
+              formatter: function() {
+                return gaugeLabel(this, true);
+              }
+            }
+          }
+        }
+      }
     },
 
     title: {
@@ -55,14 +81,7 @@ function highchartsBigSolidGaugeOptions(chartData) {
           y: 70,
           useHTML: true,
           formatter: function() {
-            return highchartsGaugeLabel(
-              chartData, 
-              this,
-              '3.5em',
-              {
-                unit: '%'
-              }
-            );
+            return gaugeLabel(this, false);
           }
         },
         tooltip: {
