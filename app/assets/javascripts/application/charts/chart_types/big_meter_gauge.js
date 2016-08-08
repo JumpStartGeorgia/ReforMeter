@@ -76,7 +76,11 @@ function highchartsBigMeterGaugeOptions(chartData) {
           y: 70,
           useHTML: true,
           formatter: function() {
-            return highchartsGaugeLabel(chartData, this, helpers.textSize(3.5));
+            return highchartsGaugeLabel(
+              chartData,
+              this,
+              helpers.textSize(3.5)
+            );
           }
         },
         pivot: {
