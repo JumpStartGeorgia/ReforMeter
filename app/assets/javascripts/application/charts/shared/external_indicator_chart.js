@@ -77,7 +77,7 @@ function externalIndicatorChartHelpers(chartData) {
         color: '#66666d',
         fontSize: '1.6em',
         fontWeight: '200',
-        paddingBottom: '30px'
+        paddingBottom: '20px'
       },
       text: text,
       useHTML: true
