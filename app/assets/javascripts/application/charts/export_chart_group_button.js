@@ -42,6 +42,54 @@ function initializeExportChartGroupButton($exportButton, charts) {
       svg = svg.replace('<svg', '<g transform="translate(' + xOffset + ',0)" ');
       svg = svg.replace('</svg>', '</g>');
 
+      function centerDataLabel(svg) {
+        var $svg = $(svg);
+
+        var $dataLabel = $svg.find('g.highcharts-data-labels');
+
+        function translateString(x, y) {
+          return 'translate(' + x + ',' + y + ')';
+        }
+
+        function replaceTranslateXWithCenteredX(_, _, currentY) {
+          var centeredX = highchartsObject.chartWidth/2;
+          return translateString(centeredX, currentY);
+        }
+
+        var translateRegex = /translate\((\d+),(\d+)\)/;
+
+        var newDataLabelTransform = $dataLabel
+                                    .attr('transform')
+                                    .replace(
+                                      translateRegex,
+                                      replaceTranslateXWithCenteredX
+                                    );
+
+        $dataLabel.attr('transform', newDataLabelTransform);
+
+        $dataLabelChild = $dataLabel.children('g');
+
+        function replaceTranslateXWithZero(_, _, currentY) {
+          return translateString(0, currentY);
+        }
+
+        $dataLabelChild.attr(
+          'transform',
+          $dataLabelChild.attr('transform').replace(
+            translateRegex,
+            replaceTranslateXWithZero
+          )
+        );
+
+        var $tspans =  $dataLabel.find('tspan');
+        $tspans.attr('x', 0)
+        $tspans.attr('text-anchor', 'middle');
+        $tspans.slice(1).attr('dy', '1.2em').removeAttr('dx');
+        return $svg[0].outerHTML;
+      }
+
+      svg = centerDataLabel(svg);
+
       height = Math.max(height, highchartsObject.chartHeight);
       xOffset += highchartsObject.chartWidth;
 
@@ -61,7 +109,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
   function chartSpecificExportOptions(chart) {
     if (!chart.highchartsObject.userOptions.exporting) return {};
-    
+
     return chart.highchartsObject.userOptions.exporting.chartOptions;
   }
 
