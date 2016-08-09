@@ -13,3 +13,7 @@
     border: 1px solid #eaeaea;
     box-sizing: border-box;
   }
+
+  .tipsy .tipsy-arrow {
+    background-image: image-url('custom_tipsy_arrow.gif');
+  }
