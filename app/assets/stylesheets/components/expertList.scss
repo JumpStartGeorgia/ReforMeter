@@ -31,11 +31,12 @@ $expert-image-size: 100px;
 
     .expertList-item-imageLink {
       max-width: $expert-image-size;
+      min-width: $expert-image-size;
       padding-right: 10px;
     }
 
       .expertList-item-imageLink-image {
-        max-width: $expert-image-size;
+        max-width: 100%;
       }
 
 .expertList.mod-two-columns {
@@ -49,8 +50,9 @@ $expert-image-size: 100px;
     }
   }
 
-    .expertList-item-imageLink-image {
+    .expertList-item-imageLink {
       max-width: $expert-image-size/2;
+      min-width: $expert-image-size/2;
     }
 
 }
