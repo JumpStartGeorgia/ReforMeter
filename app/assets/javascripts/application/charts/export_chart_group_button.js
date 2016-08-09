@@ -94,7 +94,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
       svg = centerDataLabel(svg);
 
-      height = Math.max(height, highchartsObject.chartHeight);
+      height = parseInt(Math.max(height, highchartsObject.chartHeight));
       xOffset += highchartsObject.chartWidth;
 
       svgArr.push(svg);
@@ -104,9 +104,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
       return '<svg height="'+ height + '" width="' + xOffset + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
     }
 
-    var svgObj = surroundWithSVG(
-      svgArr.join('')
-    );
+    var svgObj = surroundWithSVG(svgArr.join(''));
 
     return svgObj;
   }
