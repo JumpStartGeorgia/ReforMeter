@@ -57,7 +57,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
           return translateString(centeredX, currentY);
         }
 
-        var translateRegex = /translate\((\d+),(\d+)\)/;
+        var translateRegex = /translate\((-?\d+),(-?\d+)\)/;
 
         var newDataLabelTransform = $dataLabel
                                     .attr('transform')
@@ -71,7 +71,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
         $dataLabelChild = $dataLabel.children('g');
 
         function replaceTranslateXWithZero(_, _, currentY) {
-          return translateString(0, currentY);
+          return translateString('0', currentY);
         }
 
         $dataLabelChild.attr(
