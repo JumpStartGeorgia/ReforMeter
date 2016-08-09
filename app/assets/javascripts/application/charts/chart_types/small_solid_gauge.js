@@ -39,6 +39,11 @@ function highchartsSmallSolidGaugeOptions(chartData) {
 
     exporting: {
       chartOptions: {
+        pane: {
+          background: {
+            borderWidth: 2
+          }
+        },
         plotOptions: {
         	solidgauge: {
             dataLabels: {

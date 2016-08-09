@@ -29,11 +29,6 @@ function initializeExportChartGroupButton($exportButton, charts) {
             fontSize: '9.5px'
           },
           width: highchartsObject.chartWidth
-        },
-        pane: {
-          background: {
-            borderWidth: 2
-          }
         }
       }
 
