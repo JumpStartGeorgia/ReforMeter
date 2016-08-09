@@ -18,7 +18,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
       0
     );
 
-    $.each(charts, function(i, chart) {
+    $.each(charts, function(index, chart) {
       var highchartsObject = chart.highchartsObject;
 
       var defaultExportOptions = {
@@ -84,6 +84,10 @@ function initializeExportChartGroupButton($exportButton, charts) {
         var $tspans =  $dataLabel.find('tspan');
         $tspans.attr('x', 0)
         $tspans.attr('text-anchor', 'middle');
+
+        // add padding to the first chart
+        if (index === 0) $tspans.slice(0, 1).attr('dy', '.5em');
+
         $tspans.slice(1).attr('dy', '1.2em').removeAttr('dx');
         return $svg[0].outerHTML;
       }
