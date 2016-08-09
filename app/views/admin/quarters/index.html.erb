@@ -111,8 +111,12 @@
         <div class="form-survey-item">
           <div class="row">
             <div class="col-md-2">
-              <%= @quarter.expert_survey.overall_score %>
-              <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
+              <span class='form-survey-item-score'>
+                <%= @quarter.expert_survey.overall_score %>
+              </span>
+              <span class='form-survey-item-icon'>
+                <%= generate_change_icon(@quarter.expert_survey.overall_change) %>
+              </span>
             </div>
             <div class="col-md-3">
               <%= link_to t('shared.actions.view'),
@@ -203,12 +207,20 @@
                 <%= reform_survey.reform.name %>
               </div>
               <div class="col-md-2">
-                <%= reform_survey.government_overall_score %>
-                <%= generate_change_icon(reform_survey.government_overall_change) %>
+                <span class='form-survey-item-score'>
+                  <%= reform_survey.government_overall_score %>
+                </span>
+                <span class='form-survey-item-icon'>
+                  <%= generate_change_icon(reform_survey.government_overall_change) %>
+                </span>
               </div>
               <div class="col-md-2">
-                <%= reform_survey.stakeholder_overall_score %>
-                <%= generate_change_icon(reform_survey.stakeholder_overall_change) %>
+                <span class='form-survey-item-score'>
+                  <%= reform_survey.stakeholder_overall_score %>
+                </span>
+                <span class='form-survey-item-icon'>
+                  <%= generate_change_icon(reform_survey.stakeholder_overall_change) %>
+                </span>
               </div>
               <div class="col-md-3">
                 <%= link_to t('shared.actions.view'),

@@ -65,6 +65,18 @@ fieldset.form-actions{
       background-color: #ddd;
   }
 }
+
+  .form-survey-item-score {
+    vertical-align: middle;
+  }
+
+  .form-survey-item-icon {
+    display: inline-block;
+    height: 20px;
+    vertical-align: middle;
+    width: 20px;
+  }
+
 .form-news-item{
   padding: 15px 10px;
   &:nth-child(odd) {
