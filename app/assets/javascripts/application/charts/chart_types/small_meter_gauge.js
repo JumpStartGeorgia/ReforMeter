@@ -19,7 +19,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
   var options = {
 
     chart: {
-      height: '135',
+      height: chartData.title ? '150' : '135',
       width: '115'
     },
 
@@ -100,10 +100,11 @@ function highchartsSmallMeterGaugeOptions(chartData) {
 
     title: {
       style: {
-        fontSize: '1.6em'
+        fontSize: '1.4em'
       },
       text: chartData.title,
-      y: 15
+      verticalAlign: 'top',
+      widthAdjust: 0
     },
 
     series: [{

@@ -15,7 +15,8 @@ function highchartsMeterGaugeOptions(chartData) {
         backgroundColor: 'rgba(0, 0, 0, 0)',
         innerRadius: '40%',
         outerRadius: '100%',
-        shape: 'arc'
+        shape: 'arc',
+        borderWidth: 0
       }
 
     },

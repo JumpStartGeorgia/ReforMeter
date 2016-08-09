@@ -26,6 +26,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
           backgroundColor: 'white',
           height: chartGroupHeight,
           style: {
+            fontFamily: 'sans-serif',
             fontSize: '9.5px'
           },
           width: highchartsObject.chartWidth
