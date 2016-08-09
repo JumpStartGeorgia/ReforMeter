@@ -25,6 +25,9 @@ function highchartsSmallMeterGaugeOptions(chartData) {
 
     exporting: {
       chartOptions: {
+        pane: {
+          center: ['50%', '72%']
+        },
         plotOptions: {
           gauge: {
             dataLabels: {

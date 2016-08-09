@@ -42,7 +42,8 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         pane: {
           background: {
             borderWidth: 2
-          }
+          },
+          center: ['50%', '72%']
         },
         plotOptions: {
         	solidgauge: {
