@@ -1,0 +1,6 @@
+// need this so bootstrap asset paths are correct
+@import "bootstrap-sprockets";
+
+// Core Bootstrap variables and mixins (needed for alerts module)
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';

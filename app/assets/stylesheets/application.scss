@@ -5,19 +5,17 @@ Please read the style guide before making changes to the project.
 URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 */
 
-/*
- *= require select2
- */
-
 @charset 'UTF-8';
+
+@import 'jquery-ui/core';
+@import 'select2';
+@import 'shared_bootstrap';
+
+// This file compiles CSS needed by both admin_styles.scss and application.scss
 
 @import 'normalize_and_overrides';
 
 @import 'fonts';
-
-// Core Bootstrap variables and mixins (needed for alerts module)
-@import 'bootstrap/variables';
-@import 'bootstrap/mixins';
 
 @import 'variables';
 @import 'mixins';
@@ -26,6 +24,7 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 
 @import 'bootstrap/alerts';
 @import 'tipsy_overrides';
+@import 'formtastic_overrides'; // needed in application for login form
 
 // Font awesome icons
 @import 'font-awesome-sprockets';
