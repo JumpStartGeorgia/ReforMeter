@@ -1,9 +1,9 @@
-/* 
+/*
   Cross-browser SVG animation is rather tricky, because Chrome and Firefox
   put the transform-origin in different places by default. The translate
   transforms below fix this by moving the transform-origin to the pivot
   point of the loading indicator dial.
-  
+
   Example: http://jsfiddle.net/4h3xL/1/
 */
 
@@ -11,7 +11,7 @@ $loading-indicator-transform-fix-x: 97px;
 $loading-indicator-transform-fix-y: 93px;
 
 .loadingIndicator {
-  display: flex;
+  display: none;
   z-index: 9998;
   width: 100%;
   height: 100%;
@@ -20,9 +20,12 @@ $loading-indicator-transform-fix-y: 93px;
 }
 
   .loadingIndicator-image {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 9999;
-    margin: auto;
     width: 250px;
+    position: absolute;
   }
 
     .loadingIndicator-image-dial-container {
