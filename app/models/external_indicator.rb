@@ -84,6 +84,7 @@ class ExternalIndicator < AddMissingTranslation
   # }
   def self.to_csv(external_indicator_id=nil)
     ext_ind = published.find_by(id: external_indicator_id)
+    time = ext_ind.time_periods.sorted
 
     case ext_ind.indicator_type
       when INDICATOR_TYPES[:basic]
@@ -91,50 +92,97 @@ class ExternalIndicator < AddMissingTranslation
 
         CSV.generate do |csv|
           csv << header
-          ext_ind.data_hash[:data].each do |data|
-            tp = ext_ind.data_hash[:time_periods].select{|x| x[:id] == data[:time_period]}.first
-            if tp.present?
-              csv << [tp[:name], data[:values][0][:value]]
-            end
+          time.each do |tp|
+            csv << [tp.name, tp.data.first.value.to_f]
           end
+
+          # ext_ind.data_hash[:data].each do |data|
+          #   tp = ext_ind.data_hash[:time_periods].select{|x| x[:id] == data[:time_period]}.first
+          #   if tp.present?
+          #     csv << [tp[:name], data[:values][0][:value]]
+          #   end
+          # end
         end
 
       when INDICATOR_TYPES[:country]
-        header = %w{time_period place value}
+        countries = ext_ind.countries.sorted
+        header = [I18n.t('activerecord.attributes.quarter.time_period')]
+        header << countries.map{|x| x.name}
+        header.flatten!
 
         CSV.generate do |csv|
           csv << header
-          ext_ind.data_hash[:data].each do |data|
-            tp = ext_ind.data_hash[:time_periods].select{|x| x[:id] == data[:time_period]}.first
-            if tp.present?
-              data[:values].each do |value|
-                c = ext_ind.data_hash[:countries].select{|x| x[:id] == value[:country]}.first
-                if c.present?
-                  csv << [tp[:name], c[:name], value[:value]]
-                end
+
+          time.each do |tp|
+            row = [tp.name]
+            # add each country value
+            countries.each do |country|
+              d = tp.data.select{|x| x.country_id == country.id}.first
+              if d.present?
+                row << d.value.to_f
+              else
+                row << ''
               end
             end
+            csv << row
           end
+
+          # ext_ind.data_hash[:data].each do |data|
+          #   tp = ext_ind.data_hash[:time_periods].select{|x| x[:id] == data[:time_period]}.first
+          #   if tp.present?
+          #     data[:values].each do |value|
+          #       c = ext_ind.data_hash[:countries].select{|x| x[:id] == value[:country]}.first
+          #       if c.present?
+          #         csv << [tp[:name], c[:name], value[:value]]
+          #       end
+          #     end
+          #   end
+          # end
         end
 
       when INDICATOR_TYPES[:composite]
-        header = %w{time_period indicator value}
+        indices = ext_ind.indices.sorted
+        header = [I18n.t('activerecord.attributes.quarter.time_period'), I18n.t('shared.categories.overall')]
+        header << indices.map{|x| x.name}
+        header.flatten!
 
         CSV.generate do |csv|
           csv << header
-          ext_ind.data_hash[:data].each do |data|
-            tp = ext_ind.data_hash[:time_periods].select{|x| x[:id] == data[:time_period]}.first
-            if tp.present?
-              csv << [tp[:name], 'Overall', data[:overall_value]]
-              data[:values].each do |value|
-                i = ext_ind.data_hash[:indexes].select{|x| x[:id] == value[:index]}.first
-                if i.present?
-                  csv << [tp[:name], i[:short_name], value[:value]]
-                end
+
+          time.each do |tp|
+            row = [tp.name, tp.overall_value]
+            # add each index value
+            indices.each do |index|
+              d = tp.data.select{|x| x.index_id == index.id}.first
+              if d.present?
+                row << d.value.to_f
+              else
+                row << ''
               end
             end
+            csv << row
+
+
           end
+
         end
+
+
+        # CSV.generate do |csv|
+        #   csv << header
+        #   ext_ind.data_hash[:data].each do |data|
+        #     tp = ext_ind.data_hash[:time_periods].select{|x| x[:id] == data[:time_period]}.first
+        #     if tp.present?
+        #       csv << [tp[:name], 'Overall', data[:overall_value]]
+        #       data[:values].each do |value|
+        #         i = ext_ind.data_hash[:indexes].select{|x| x[:id] == value[:index]}.first
+        #         if i.present?
+        #           csv << [tp[:name], i[:short_name], value[:value]]
+        #         end
+        #       end
+        #     end
+        #   end
+        # end
 
     end
   end
@@ -345,9 +393,9 @@ class ExternalIndicator < AddMissingTranslation
       self.indices.sorted.each_with_index do |ind, index|
         item = {name: ind.name, short_name: ind.short_name, data: []}
 
-        # for each time period, get the country data
+        # for each time period, get the index data
         time.each do |tp|
-          # get country data
+          # get index data
           d = tp.data.select{|x| x.index_id == ind.id}.first
           if d.present?
             item[:data] << {

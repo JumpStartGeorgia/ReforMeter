@@ -127,7 +127,7 @@ show_admin_links ||= false
 
     </section>
 
-    <% if @quarter_ids.length > 1 %>
+    <% if @quarter_ids.present? && @quarter_ids.length > 1 %>
 
       <div>
 
@@ -262,7 +262,7 @@ show_admin_links ||= false
 
         <section>
 
-          <% if @quarter_ids.length > 1 %>
+          <% if @quarter_ids.present? && @quarter_ids.length > 1 %>
 
             <ul class='tabList mod-with-separator js-act-as-tab-list'>
 
