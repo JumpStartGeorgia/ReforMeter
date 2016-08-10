@@ -23,7 +23,12 @@
 
   .downloadBox-selectContainer {
     margin-bottom: 20px;
+    max-width: 100%;
   }
+
+    .downloadBox-selectContainer .select2-container {
+      max-width: 100%;
+    }
 
   .downloadBox-button {
     border: none;
