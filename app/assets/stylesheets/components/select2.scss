@@ -22,3 +22,7 @@
     color: #66666d;
   }
 }
+
+.biggerMinWidth .select2-dropdown {
+  min-width: 150px;
+}
