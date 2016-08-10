@@ -7,11 +7,6 @@
 // need this so bootstrap asset paths are correct
 @import "bootstrap-sprockets";
 
-// Core variables and mixins
-@import 'bootstrap/variables';
-
-@import 'bootstrap/mixins';
-
 // Reset and dependencies
 @import 'bootstrap/normalize';
 @import 'bootstrap/print';
@@ -40,7 +35,6 @@
 @import 'bootstrap/badges';
 @import 'bootstrap/jumbotron';
 @import 'bootstrap/thumbnails';
-@import 'bootstrap/alerts';
 @import 'bootstrap/progress-bars';
 @import 'bootstrap/media';
 @import 'bootstrap/list-group';

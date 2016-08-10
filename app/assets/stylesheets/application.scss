@@ -17,11 +17,16 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 
 @import 'fonts';
 
+// Core Bootstrap variables and mixins (needed for alerts module)
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
+
 @import 'variables';
 @import 'mixins';
 @import 'utilities';
 @import 'media-queries';
 // @import 'bootstrap_and_overrides';
+@import 'bootstrap/alerts';
 @import 'formtastic_overrides';
 @import 'tipsy_overrides';
 
