@@ -1,4 +1,10 @@
+// need this so bootstrap asset paths are correct
+@import "bootstrap-sprockets";
+
+@import 'application';
 @import 'bootstrap_and_overrides';
+@import 'formtastic_overrides';
+
 /*
  *= require jquery-ui/core
  */

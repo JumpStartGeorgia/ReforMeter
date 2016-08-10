@@ -4,9 +4,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-// need this so bootstrap asset paths are correct
-@import "bootstrap-sprockets";
-
 // Reset and dependencies
 @import 'bootstrap/normalize';
 @import 'bootstrap/print';

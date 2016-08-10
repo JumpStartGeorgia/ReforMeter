@@ -6,8 +6,6 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 */
 
 /*
- *= require formtastic
- *= require formtastic-bootstrap
  *= require select2
  */
 
@@ -25,9 +23,8 @@ URL: https://gist.github.com/bobbygrace/9e961e8982f42eb91b80
 @import 'mixins';
 @import 'utilities';
 @import 'media-queries';
-// @import 'bootstrap_and_overrides';
+
 @import 'bootstrap/alerts';
-@import 'formtastic_overrides';
 @import 'tipsy_overrides';
 
 // Font awesome icons
