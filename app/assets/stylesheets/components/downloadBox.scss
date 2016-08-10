@@ -35,8 +35,7 @@
     }
 
     // using more classes to override select2 styles
-    .downloadBox-selectContainer .select2-container .select2-selection--single .select2-selection__rendered{
-      word-wrap: break-word;
+    .downloadBox-selectContainer .select2-container .select2-selection--single .select2-selection__rendered {
       text-overflow: inherit;
       white-space: normal;
     }
