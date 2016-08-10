@@ -30,6 +30,17 @@
       max-width: 100%;
     }
 
+    .downloadBox-selectContainer .select2-selection--single {
+      height: 100%;
+    }
+
+    // using more classes to override select2 styles
+    .downloadBox-selectContainer .select2-container .select2-selection--single .select2-selection__rendered{
+      word-wrap: break-word;
+      text-overflow: inherit;
+      white-space: normal;
+    }
+
   .downloadBox-button {
     border: none;
     font-size: 2.5rem;
