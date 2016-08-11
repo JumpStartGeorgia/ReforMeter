@@ -106,8 +106,13 @@ class RootController < ApplicationController
 
     gon.change_icons = view_context.change_icons
 
+    external_indicator_charts = @external_indicators.map(&:format_for_charting)
+    external_indicator_charts.map do |ext_ind_chart|
+      ext_ind_chart[:displayTitle] = false
+    end
+
     gon.charts = []
-    gon.charts += @external_indicators.map(&:format_for_charting)
+    gon.charts += external_indicator_charts
   end
 
   def reforms
