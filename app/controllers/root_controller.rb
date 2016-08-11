@@ -102,6 +102,7 @@ class RootController < ApplicationController
   end
 
   def external_indicators
+    @most_recent_quarter = Quarter.last
     @external_indicators = ExternalIndicator.published.sorted_for_list_page
 
     gon.change_icons = view_context.change_icons

@@ -52,6 +52,24 @@ page_title t('.title')
                    external_indicator: ext_ind.format_for_charting
                  }) %>
 
+      <ul>
+
+        <% ext_ind.reforms.each do |reform| %>
+
+          <li>
+
+            <%= link_to reform.name,
+                        reform_show_path(
+                          reform.id,
+                          @most_recent_quarter
+                        ) %>
+
+          </li>
+
+        <% end %>
+
+      </ul>
+
     </div>
 
   </div>
