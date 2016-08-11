@@ -53,6 +53,12 @@ function externalIndicatorChartHelpers(chartData) {
   }
 
   externalIndicatorChart.title = function(text, customOptions) {
+    if (!text) {
+      return {
+        text: text
+      };
+    }
+
     if (!customOptions) customOptions = {};
 
     var infoCircle = '';

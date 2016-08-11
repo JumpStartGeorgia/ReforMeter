@@ -3,6 +3,8 @@ function highchartsExternalIndicatorBar(chartData) {
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
   var spacingLeft = externalIndicatorChart.spacingLeft;
 
+  if (typeof(chartData.displayTitle) === 'undefined') chartData.displayTitle = true;
+
   function colors() {
     if (chartData.series.length > 1) {
       return externalIndicatorChart.colors;
@@ -44,7 +46,7 @@ function highchartsExternalIndicatorBar(chartData) {
       }
     ),
     title: externalIndicatorChart.title(
-      chartData.title,
+      chartData.displayTitle ? chartData.title : null,
       {
         description: chartData.description,
         titleOptions: {
