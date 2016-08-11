@@ -68,6 +68,7 @@ class ExternalIndicator < AddMissingTranslation
   ## SCOPES
   scope :published, -> { where(is_public: true) }
   scope :sorted, -> { with_translations(I18n.locale).order(title: :asc) }
+  scope :sorted_for_list_page, -> { with_translations(I18n.locale).order(show_on_home_page: :desc).order(title: :asc) }
   scope :reverse_sorted, -> { with_translations(I18n.locale).order(title: :desc) }
   scope :for_home_page, -> { where(show_on_home_page: true) }
 
