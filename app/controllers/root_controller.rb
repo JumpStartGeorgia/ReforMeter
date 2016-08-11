@@ -103,6 +103,11 @@ class RootController < ApplicationController
 
   def external_indicators
     @external_indicators = ExternalIndicator.published.sorted_for_list_page
+
+    gon.change_icons = view_context.change_icons
+
+    gon.charts = []
+    gon.charts += @external_indicators.map(&:format_for_charting)
   end
 
   def reforms

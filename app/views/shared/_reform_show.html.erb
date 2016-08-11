@@ -351,7 +351,7 @@ show_admin_links ||= false
 
             <%= render(partial: 'shared/external_indicator_chart',
                        locals: {
-                         external_indicator: external_indicator
+                         external_indicator: external_indicator.format_for_charting
                        }) %>
 
           <% end %>
