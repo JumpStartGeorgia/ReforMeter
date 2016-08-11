@@ -3,6 +3,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
   var spacingLeft = externalIndicatorChart.spacingLeft;
 
   if (typeof(chartData.displayTitle) === 'undefined') chartData.displayTitle = true;
+  if (typeof(chartData.displaySubtitle) === 'undefined') chartData.displaySubtitle = true;
 
   var options = {
     chart: {
@@ -23,7 +24,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
       }
     },
     subtitle: externalIndicatorChart.subtitle(
-      chartData.subtitle,
+      chartData.displaySubtitle ? chartData.subtitle : null,
       {
         x: -1 * spacingLeft + 10
       }

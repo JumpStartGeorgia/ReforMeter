@@ -6,6 +6,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var spacingLeft = externalIndicatorChart.spacingLeft;
 
   if (typeof(chartData.displayTitle) === 'undefined') chartData.displayTitle = true;
+  if (typeof(chartData.displaySubtitle) === 'undefined') chartData.displaySubtitle = true;
 
   var options = {
     chart: {
@@ -51,7 +52,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
     },
     series: chartData.series,
     subtitle: externalIndicatorChart.subtitle(
-      chartData.subtitle,
+      chartData.displaySubtitle ? chartData.subtitle : null,
       {
         x: -1 * spacingLeft + 10
       }

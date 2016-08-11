@@ -109,6 +109,7 @@ class RootController < ApplicationController
     external_indicator_charts = @external_indicators.map(&:format_for_charting)
     external_indicator_charts.map do |ext_ind_chart|
       ext_ind_chart[:displayTitle] = false
+      ext_ind_chart[:displaySubtitle] = false
     end
 
     gon.charts = []
