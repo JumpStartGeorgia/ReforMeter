@@ -1,11 +1,11 @@
 function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   var externalIndicatorChart = externalIndicatorChartHelpers(chartData);
-
   var indexBoxes = initializeExternalIndicatorIndexBoxes(chartData, this);
   var color = externalIndicatorChart.colorHash;
   var max = chartData.max;
-
   var spacingLeft = externalIndicatorChart.spacingLeft;
+
+  if (typeof(chartData.displayTitle) === 'undefined') chartData.displayTitle = true;
 
   var options = {
     chart: {
@@ -57,7 +57,7 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       }
     ),
     title: externalIndicatorChart.title(
-      chartData.title,
+      chartData.displayTitle ? chartData.title : null,
       {
         description: chartData.description,
         titleOptions: {
