@@ -43,10 +43,13 @@ page_title t('.title')
 
     <div class='contentSection-body'>
 
+      <p>
+        <%= ext_ind.description %>
+      </p>
+
       <%= render(partial: 'shared/external_indicator_chart',
                  locals: {
-                   external_indicator: ext_ind.format_for_charting,
-                   show_description: true
+                   external_indicator: ext_ind.format_for_charting
                  }) %>
 
     </div>
