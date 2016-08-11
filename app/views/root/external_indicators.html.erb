@@ -20,3 +20,27 @@ page_title t('.title')
   </header>
 
 </div>
+
+<% @external_indicators.each do |ext_ind| %>
+
+  <div class='contentSection'>
+
+    <header class='contentSection-header'>
+
+      <div class='contentSection-header-title'>
+
+        <h2>
+          <%= ext_ind.title %>
+        </h2>
+
+      </div>
+
+    </header>
+
+    <div class='contentSection-body'>
+
+    </div>
+
+  </div>
+
+<% end %>

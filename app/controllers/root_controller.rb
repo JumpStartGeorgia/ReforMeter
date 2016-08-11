@@ -102,7 +102,7 @@ class RootController < ApplicationController
   end
 
   def external_indicators
-    
+    @external_indicators = ExternalIndicator.published
   end
 
   def reforms
