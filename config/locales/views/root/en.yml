@@ -14,6 +14,7 @@ en:
     external_indicators:
       title: Economic Effects
       associated_reforms: Associated Reforms
+      select_indicator: Select External Indicator
     review_board_show:
       title: According to the Review Board for %{time}
     review_board:

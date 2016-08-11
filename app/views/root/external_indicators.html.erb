@@ -17,6 +17,22 @@ page_title t('.title')
 
     </div>
 
+    <div class='contentSection-header-controls'>
+
+      <select class='js-become-select2'>
+
+        <option><%= t('.select_indicator') %></option>
+
+        <% @external_indicators.each do |external_indicator| %>
+
+          <option value="<%= external_indicator.id %>"><%= external_indicator.title %></option>
+
+        <% end %>
+
+      </select>
+
+    </div>
+
   </header>
 
 </div>
