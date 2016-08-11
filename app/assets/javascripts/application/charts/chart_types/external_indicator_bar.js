@@ -23,6 +23,12 @@ function highchartsExternalIndicatorBar(chartData) {
     colors: colors(),
     exporting: {
       chartOptions: {
+        subtitle: externalIndicatorChart.subtitle(
+          chartData.subtitle,
+          {
+            x: -1 * spacingLeft + 10
+          }
+        ),
         title: externalIndicatorChart.title(
           chartData.title,
           {
