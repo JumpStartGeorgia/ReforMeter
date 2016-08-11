@@ -45,7 +45,8 @@ page_title t('.title')
 
       <%= render(partial: 'shared/external_indicator_chart',
                  locals: {
-                   external_indicator: ext_ind.format_for_charting
+                   external_indicator: ext_ind.format_for_charting,
+                   show_description: true
                  }) %>
 
     </div>
