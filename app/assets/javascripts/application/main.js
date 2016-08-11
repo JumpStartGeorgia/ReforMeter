@@ -3,7 +3,7 @@
     setup_navigation_menu();
     setupSelect2();
     setupExpertTimePeriodSelect();
-    makeReformPageChangeable();
+    initializeChangeReformPageControls().setup();
     initializeScrollToIdSelect().setup();
     var charts = setupCharts();
 
