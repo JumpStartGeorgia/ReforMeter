@@ -101,7 +101,11 @@ class RootController < ApplicationController
     end
   end
 
-  def reforms    
+  def external_indicators
+    
+  end
+
+  def reforms
     @reform_text = PageContent.find_by(name: 'reform_text')
     @methodology_government = PageContent.find_by(name: 'methodology_government')
     @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
@@ -115,7 +119,7 @@ class RootController < ApplicationController
     gon.charts = [
       Quarter.all_reform_survey_data_for_charting(id: 'reforms-history-series', quarter_ids: @quarters.map{|x| x.id})
     ]
-    
+
     @quarters.each do |quarter|
       surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id}
 
@@ -217,7 +221,7 @@ class RootController < ApplicationController
             color: government_time_series[:color],
             title: t('shared.categories.overall'),
             score: @reform_survey.stakeholder_overall_score.to_f,
-            change: @reform_survey.stakeholder_overall_change            
+            change: @reform_survey.stakeholder_overall_change
           }, {
             id: 'reform-stakeholder-performance',
             color: government_time_series[:color],

@@ -11,6 +11,9 @@ en:
       choose: Choose
       download: Download
       title: Download Data & Reports
+    external_indicators:
+      title: Economic Effects
+      
     review_board_show:
       title: According to the Review Board for %{time}
     review_board:
