@@ -4,6 +4,7 @@
     setupSelect2();
     setupExpertTimePeriodSelect();
     makeReformPageChangeable();
+    initializeScrollToIdSelect().setup();
     var charts = setupCharts();
 
     initializeInfoCircles().setup();

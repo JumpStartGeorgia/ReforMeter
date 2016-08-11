@@ -19,13 +19,13 @@ page_title t('.title')
 
     <div class='contentSection-header-controls'>
 
-      <select class='js-become-select2'>
+      <select class='js-become-select2 js-scroll-to-id'>
 
         <option><%= t('.select_indicator') %></option>
 
         <% @external_indicators.each do |external_indicator| %>
 
-          <option value="<%= external_indicator.id %>"><%= external_indicator.title %></option>
+          <option value="external-indicator-<%= external_indicator.id %>"><%= external_indicator.title %></option>
 
         <% end %>
 
@@ -39,7 +39,7 @@ page_title t('.title')
 
 <% @external_indicators.each do |ext_ind| %>
 
-  <div class='contentSection'>
+  <div id='external-indicator-<%= ext_ind.id %>' class='contentSection'>
 
     <header class='contentSection-header'>
 
