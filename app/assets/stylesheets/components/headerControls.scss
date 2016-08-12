@@ -1,0 +1,10 @@
+.headerControls {
+}
+
+  .headerControls-row:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+    .headerControls-row-item.mod-left-padding {
+      padding: 0 10px;
+    }

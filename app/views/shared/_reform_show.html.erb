@@ -20,39 +20,71 @@ show_admin_links ||= false
 
     <div class='contentSection-header-controls'>
 
-      <% if @active_reforms %>
+      <div class='headerControls'>
 
-        <%= t('shared.common.change_reform') %>:
+        <div class='headerControls-row'>
 
-        <select class='js-become-select2 js-reform-page-reform-select'>
+          <% if @active_reforms %>
 
-          <% @active_reforms.each do |active_reform| %>
-            <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>><%= active_reform[0] %></option>
+            <label class='labeledSelect-label' for='change-reform-page-quarter-select'>
+              <%= t('shared.common.change_reform') %>:
+            </label>
+
+            <span class='labeledSelect-select'>
+
+              <select id='change-reform-page-quarter-select' class='js-become-select2 js-reform-page-reform-select'>
+
+                <% @active_reforms.each do |active_reform| %>
+                  <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>><%= active_reform[0] %></option>
+                <% end %>
+
+              </select>
+
+            </span>
+
           <% end %>
 
-        </select>
+        </div>
 
-      <% end %>
+        <div class='headerControls-row'>
 
-      <% if @active_quarters %>
+          <span class='headerControls-row-item'>
 
-        <%= t('shared.common.change_time') %>:
+            <% if @active_quarters %>
 
-        <select class='js-become-select2 js-reform-page-quarter-select'>
+              <label class='labeledSelect-label' for='change-reform-page-reform-select'>
+                <%= t('shared.common.change_time') %>:
+              </label>
 
-          <% @active_quarters.each do |active_quarter| %>
-            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
-          <% end %>
+              <span class='labeledSelect-select'>
 
-        </select>
+                <select id='change-reform-page-reform-select' class='js-become-select2 js-reform-page-quarter-select'>
 
-      <% end %>
+                  <% @active_quarters.each do |active_quarter| %>
+                    <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
+                  <% end %>
 
-      <% if @active_reforms.present? || @active_quarters.present? %>
-        <button class='loadButton js-load-new-reform-page' data-new-url-base='<%= reforms_path %>'>
-          <%= t('shared.actions.load') %>
-        </button>
-      <% end %>
+                </select>
+
+              </span>
+
+            <% end %>
+
+          </span>
+
+          <span class='headerControls-row-item mod-left-padding'>
+
+            <% if @active_reforms.present? || @active_quarters.present? %>
+              <button class='loadButton js-load-new-reform-page' data-new-url-base='<%= reforms_path %>'>
+                <%= t('shared.actions.load') %>
+              </button>
+            <% end %>
+
+          </span>
+
+        </div>
+
+      </div>
 
     </div>
 
