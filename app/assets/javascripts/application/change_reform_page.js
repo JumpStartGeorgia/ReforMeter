@@ -22,8 +22,8 @@ function initializeLoadNewReformButton(reformSelect, quarterSelect) {
 
   loadNewReformButton.setup = function() {
     function loadNewReform() {
-      var newQuarter = quarterSelect.jqueryObject.val();
-      var newReform = reformSelect.jqueryObject.val();
+      var newQuarter = quarterSelect.jQueryObject.val();
+      var newReform = reformSelect.jQueryObject.val();
       var newURL = $loadNewReformButton.data('newUrlBase') + '/' + newReform + '/' + newQuarter;
 
       window.location.href = newURL;
@@ -65,11 +65,11 @@ function initializeChangeReformPageControls() {
     var $reformSelect = $('.js-reform-page-reform-select');
 
     Object.defineProperty(
-      quarterSelect,
+      reformSelect,
       'jQueryObject',
       {
         get: function() {
-          return $quarterSelect;
+          return $reformSelect;
         }
       }
     );
@@ -109,7 +109,22 @@ function initializeChangeReformPageControls() {
       }
     );
 
-    quarterSelect.setup = function() {
+    quarterSelect.setup = function($reformSelect) {
+      var updateReforms = selectUpdater(
+        $reformSelect,
+        function() {
+          return reformQuarterPairs.containsPair(
+            this.value,
+            $quarterSelect.val()
+          );
+        }
+      );
+
+      $quarterSelect.change(function() {
+        updateReforms();
+      });
+
+      updateReforms();
     }
 
     return quarterSelect;
@@ -120,7 +135,7 @@ function initializeChangeReformPageControls() {
 
   exports.setup = function() {
     reformSelect.setup(quarterSelect.jQueryObject);
-    quarterSelect.setup();
+    quarterSelect.setup(reformSelect.jQueryObject);
     initializeLoadNewReformButton(reformSelect, quarterSelect).setup();
   }
 
