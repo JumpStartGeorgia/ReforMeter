@@ -349,10 +349,14 @@ show_admin_links ||= false
 
           <% @external_indicators.each do |external_indicator| %>
 
-            <%= render(partial: 'shared/external_indicator_chart',
-                       locals: {
-                         external_indicator: external_indicator
-                       }) %>
+            <div id='external-indicator-<%= external_indicator.id %>'>
+
+              <%= render(partial: 'shared/external_indicator_chart',
+                         locals: {
+                           external_indicator: external_indicator.format_for_charting
+                         }) %>
+
+            </div>
 
           <% end %>
 

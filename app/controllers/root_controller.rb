@@ -267,11 +267,9 @@ class RootController < ApplicationController
         ].each { |chart| gon.charts << chart }
       end
 
-      @external_indicators = @reform.external_indicators.published.sorted.map do |ext_ind|
-        ext_ind.format_for_charting
-      end
+      @external_indicators = @reform.external_indicators.published.sorted
 
-      gon.charts += @external_indicators
+      gon.charts += @external_indicators.map(&:format_for_charting)
 
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to reforms_path,
