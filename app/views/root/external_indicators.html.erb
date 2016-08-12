@@ -69,28 +69,32 @@ page_title t('.title')
                  }) %>
       <% if ext_ind.reforms.present? %>
 
-        <h3>
-          <%= t '.associated_reforms' %>
-        </h3>
+        <section class='indicatorsPage-associatedReforms'>
 
-        <ul>
+          <h3>
+            <%= t '.associated_reforms' %>
+          </h3>
 
-          <% ext_ind.reforms.each do |reform| %>
+          <ul>
 
-            <li>
+            <% ext_ind.reforms.each do |reform| %>
 
-              <%= link_to reform.name,
-                          reform_show_path(
-                            reform.id,
-                            @most_recent_quarter
-                          ),
-                          class: 'link' %>
+              <li>
 
-            </li>
+                <%= link_to reform.name,
+                            reform_show_path(
+                              reform.id,
+                              @most_recent_quarter
+                            ),
+                            class: 'link' %>
 
-          <% end %>
+              </li>
 
-        </ul>
+            <% end %>
+
+          </ul>
+
+        </section>
 
       <% end %>
 
