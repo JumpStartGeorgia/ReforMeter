@@ -345,11 +345,11 @@ show_admin_links ||= false
 
         </header>
 
-        <div class='contentSection-body'>
+        <div class='contentSection-body mod-vertical-padding'>
 
           <% @external_indicators.each do |external_indicator| %>
 
-            <div id='external-indicator-<%= external_indicator.id %>'>
+            <div class='externalIndicatorChartContainer' id='external-indicator-<%= external_indicator.id %>'>
 
               <%= render(partial: 'shared/external_indicator_chart',
                          locals: {
