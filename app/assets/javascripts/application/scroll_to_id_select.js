@@ -3,7 +3,10 @@ function initializeScrollToIdSelect() {
   var $selector = $('.js-scroll-to-id');
 
   function scrollToId() {
-    var $selectedIndicator = $('#' + $selector.val());
+    var selectedId = $selector.val();
+    var $selectedIndicator = $('#' + selectedId);
+
+    window.location.hash = selectedId;
 
     $('html, body').animate(
       {
