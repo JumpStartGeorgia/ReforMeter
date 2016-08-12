@@ -19,48 +19,68 @@ page_title t('.title')
 
     <div class='contentSection-header-controls'>
 
-      <% if @reforms %>
+      <div class='headerControls'>
 
-        <label for="reform">
-          <%= t('shared.common.change_reform') %>:
-        </label>
+        <div class='headerControls-row'>
 
-        <select class='reform js-become-select2 js-filter-reforms-by-reform' id="reform">
+          <span class='headerControls-row-item'>
 
-          <% selected = params[:reform].nil? ? 'selected': '' %>
-          <option <%= selected %>><%= t('shared.common.all') %></option>
+            <% if @reforms %>
 
-          <% @reforms.each do |reform| %>
+              <label for="reform">
+                <%= t('shared.common.change_reform') %>:
+              </label>
 
-            <% selected = params[:reform].present? && params[:reform] == reform.slug ? 'selected': '' %>
+              <select class='reform js-become-select2 js-filter-reforms-by-reform' id="reform">
 
-            <option <%= selected %> value="<%= reform.slug %>"><%= reform.name %></option>
+                <% selected = params[:reform].nil? ? 'selected': '' %>
+                <option <%= selected %>><%= t('shared.common.all') %></option>
 
-          <% end %>
+                <% @reforms.each do |reform| %>
 
-        </select>
+                  <% selected = params[:reform].present? && params[:reform] == reform.slug ? 'selected': '' %>
 
-      <% end %>
+                  <option <%= selected %> value="<%= reform.slug %>"><%= reform.name %></option>
 
-      <% if @quarters %>
+                <% end %>
 
-        <label for="quarter">
-          <%= t('shared.common.change_time') %>:
-        </label>
+              </select>
 
-        <select class='quarter js-become-select2 js-filter-reforms-by-quarter' id="quarter">
+            <% end %>
 
-          <option selected><%= t('shared.common.all') %></option>
+          </span>
 
-          <% @quarters.each do |quarter| %>
+        </div>
 
-            <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
+        <div class='headerControls-row'>
 
-          <% end %>
+          <span class='headerControls-row-item'>
 
-        </select>
+            <% if @quarters %>
 
-      <% end %>
+              <label for="quarter">
+                <%= t('shared.common.change_time') %>:
+              </label>
+
+              <select class='quarter js-become-select2 js-filter-reforms-by-quarter' id="quarter">
+
+                <option selected><%= t('shared.common.all') %></option>
+
+                <% @quarters.each do |quarter| %>
+
+                  <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
+
+                <% end %>
+
+              </select>
+
+            <% end %>
+
+          </span>
+
+        </div>
+
+      </div>
 
     </div>
 
