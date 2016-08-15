@@ -29,7 +29,6 @@
 
     </section>
 
-
     <section class='contentSection'>
 
       <header class='contentSection-header'>
@@ -41,6 +40,24 @@
       </header>
 
       <div class='contentSection-body'>
+
+        <% if @external_indicators.present? %>
+
+          <% @external_indicators.each do |external_indicator| %>
+
+            <h3>
+
+              <%= external_indicator.title %>
+
+              <small>
+                <%= external_indicator.subtitle %>
+              </small>
+
+            </h3>
+
+          <% end %>
+
+        <% end %>
 
       </div>
 

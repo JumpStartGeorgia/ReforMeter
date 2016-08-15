@@ -1,42 +1,49 @@
 # Non-resource pages
 class RootController < ApplicationController
   def index
-    @home_page_about = PageContent.find_by(name: 'home_page_about')
-
     @quarter = Quarter.published.with_expert_survey.latest
-    @reforms = Reform.in_quarter(@quarter.id).active.highlight.sorted if @quarter
+    @external_indicators = ExternalIndicator.published.reverse_sorted.for_home_page
 
-    gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
-    gon.charts = [
-      Quarter.expert_survey_data_for_charting(
-        overall_score_only: true,
-        id: 'expert-history'
-      ), {
-        id: 'reform-current-overall',
-        title: nil,
-        score: @quarter.expert_survey.overall_score.to_f,
-        change: @quarter.expert_survey.overall_change
-      }
-    ]
+    gon.charts = [{
+      id: 'reform-current-overall',
+      title: nil,
+      score: @quarter.expert_survey.overall_score.to_f,
+      change: @quarter.expert_survey.overall_change
+    }]
 
-    @reform_current_quarter_values = []
-    quarter_ids = Quarter.published.recent.pluck(:id)
-    @reforms.each do |reform|
-      gon.charts << Quarter.reform_survey_data_for_charting(
-        reform.id,
-        overall_score_only: true,
-        quarter_ids: quarter_ids,
-        id: "reform-#{reform.slug}")
-      @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
-    end
+    gon.charts += @external_indicators.map(&:format_for_charting)
 
-    @external_indicators = ExternalIndicator.published.reverse_sorted.for_home_page.map do |ext_ind|
-      ext_ind.format_for_charting
-    end
-
-    gon.charts += @external_indicators
+    # @home_page_about = PageContent.find_by(name: 'home_page_about')
+    #
+    # @reforms = Reform.in_quarter(@quarter.id).active.highlight.sorted if @quarter
+    #
+    # gon.chart_download = highchart_export_config
+    # gon.change_icons = view_context.change_icons
+    #
+    # gon.charts = [
+    #   Quarter.expert_survey_data_for_charting(
+    #     overall_score_only: true,
+    #     id: 'expert-history'
+    #   ), {
+    #     id: 'reform-current-overall',
+    #     title: nil,
+    #     score: @quarter.expert_survey.overall_score.to_f,
+    #     change: @quarter.expert_survey.overall_change
+    #   }
+    # ]
+    #
+    # @reform_current_quarter_values = []
+    # quarter_ids = Quarter.published.recent.pluck(:id)
+    # @reforms.each do |reform|
+    #   gon.charts << Quarter.reform_survey_data_for_charting(
+    #     reform.id,
+    #     overall_score_only: true,
+    #     quarter_ids: quarter_ids,
+    #     id: "reform-#{reform.slug}")
+    #   @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
+    # end
   end
 
   def about
