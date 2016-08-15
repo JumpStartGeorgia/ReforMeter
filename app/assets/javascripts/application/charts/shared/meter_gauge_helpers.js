@@ -6,16 +6,16 @@
   - label score font size
 */
 
-function meterGaugeHelpers(size) {
+function meterGaugeHelpers(size, options) {
   var meterGauge = {};
 
   meterGauge.chartWidth = size * 1.125;
   meterGauge.chartHeight = size * 1.1;
   meterGauge.paneSize = size;
-  
+
   meterGauge.plotBandLabelForScore = function(score) {
     var plotBandLabel;
-    
+
     if (score >= 0 && score <= 3.3) {
       plotBandLabel = gon.translations.meter_gauge.plot_band_label.behind;
     } else if (score > 3.3 && score <= 6.6) {
@@ -25,7 +25,7 @@ function meterGaugeHelpers(size) {
     } else {
       throw new Error('No meter gauge plot band label available for score ' + score)
     }
-    
+
     return plotBandLabel;
   }
 
@@ -44,51 +44,71 @@ function meterGaugeHelpers(size) {
     var exports = {},
         color = 'white';
 
+    // Returns the base properties to position and style certain texts
+    // correctly as plot band labels on a meter gauge. Only works for
+    // certain texts; will otherwise throw an error.
+    function plotBandLabelBases(texts) {
+      switch(texts) {
+
+        default: {
+
+          return [
+            {
+              text: gon.translations.meter_gauge.plot_band_label.behind,
+              rotation: -60,
+              x: meterGauge.textPosition(.215),
+              y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
+              style: {
+                fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+                color: color
+              }
+            },
+            {
+              text: gon.translations.meter_gauge.plot_band_label.on_track,
+              x: meterGauge.textPosition(.41),
+              y: meterGauge.textPosition(.07),
+              style: {
+                fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+                color: color
+              }
+            },
+            {
+              text: gon.translations.meter_gauge.plot_band_label.ahead,
+              rotation: 60,
+              x: localeIs('ka') ? meterGauge.textPosition(.79) : meterGauge.textPosition(.805),
+              y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),
+              style: {
+                fontSize: localeIs('ka') ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+                color: color
+              }
+            }
+          ];
+
+        }
+      }
+    }
+
+    var plotBandLabels = plotBandLabelBases();
+
     exports.behind = function(chartData, options) {
       if (!options) options = {};
 
       return mergeObjects(
-        {
-          text: gon.translations.meter_gauge.plot_band_label.behind,
-          rotation: -60,
-          x: meterGauge.textPosition(.215),
-          y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
-          style: {
-            fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
-            color: color
-          }
-        },
+        plotBandLabels[0],
         options
       );
     }
 
     exports.onTrack = function(chartData, options) {
       return mergeObjects(
-        {
-          text: gon.translations.meter_gauge.plot_band_label.on_track,
-          x: meterGauge.textPosition(.41),
-          y: meterGauge.textPosition(.07),
-          style: {
-            fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
-            color: color
-          }
-        },
+        plotBandLabels[1],
         options
       );
     }
 
     exports.ahead = function(chartData, options) {
       return mergeObjects(
-        {
-          text: gon.translations.meter_gauge.plot_band_label.ahead,
-          rotation: 60,
-          x: localeIs('ka') ? meterGauge.textPosition(.79) : meterGauge.textPosition(.805),
-          y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),
-          style: {
-            fontSize: localeIs('ka') ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
-            color: color
-          }
-        },
+        plotBandLabels[2],
         options
       );
     }
