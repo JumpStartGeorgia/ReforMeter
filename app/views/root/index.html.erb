@@ -45,23 +45,25 @@
 
           <% @external_indicators.each do |external_indicator| %>
 
-          <section class='homePage-externalIndicator'>
+            <section class='homePage-externalIndicator'>
 
-            <h3 class='heading mod-no-transform'>
+              <h3 class='heading mod-no-transform'>
 
-              <%= external_indicator.title %>
+                <%= external_indicator.title %>
 
-              <small class='heading-subheading'>
-                <%= external_indicator.subtitle %>
-              </small>
+                <small class='heading-subheading'>
+                  <%= external_indicator.subtitle %>
+                </small>
 
-            </h3>
+              </h3>
 
-            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='external-indicator-<%= external_indicator.id %>'></div>
+              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='external-indicator-<%= external_indicator.id %>'></div>
 
-          </section>
+            </section>
 
           <% end %>
+
+        
 
         <% end %>
 
