@@ -32,15 +32,17 @@ en:
         time: Time Period
       title: Review Board
     index:
-      about_link: Learn More
-      experts_link: Learn More
-      header:
-        experts: Overall reform progress according to the Review Board
-        external_indicators: How are the reforms affecting the economy?
-        government: Reform progress according to the government
-        standing: What is the Reform Standing as of %{time}?
-      reforms_link: View All Reforms
-      report_link: Download Full Report
+      # about_link: Learn More
+      # experts_link: Learn More
+      # header:
+      #   experts: Overall reform progress according to the Review Board
+      #   external_indicators: How are the reforms affecting the economy?
+      #   government: Reform progress according to the government
+      #   standing: What is the Reform Standing as of %{time}?
+      # reforms_link: View All Reforms
+      # report_link: Download Full Report
+      economy_effects: How the Reforms are Affecting the Economy
+      reform_status: Reform Standings
     reform_show:
       title: 'Reform: %{name} for %{time}'
     reforms:
