@@ -43,13 +43,49 @@ function meterGaugeHelpers(size, options) {
   // by default uses text Behind, On Track, Ahead
   meterGauge.plotBandLabels = function(texts) {
     var exports = {},
-        color = 'white';
+        color = 'white',
+        georgianDefaultText = ['სუსტი', 'ზომიერი', 'ძლიერი'],
+        englishDefaultText = ['Behind', 'On Track', 'Ahead'];
 
     // Returns the base properties to position and style certain texts
     // correctly as plot band labels on a meter gauge. Only works for
     // certain texts; will otherwise throw an error.
     function plotBandLabelBases(texts) {
-      if (arraysEqual(texts, ['Behind', 'On Track', 'Ahead'])) {
+      if (arraysEqual(texts, englishDefaultText)) {
+
+        return [
+          {
+            text: gon.translations.meter_gauge.plot_band_label.behind,
+            rotation: -60,
+            x: meterGauge.textPosition(.215),
+            y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
+            style: {
+              fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              color: color
+            }
+          },
+          {
+            text: gon.translations.meter_gauge.plot_band_label.on_track,
+            x: meterGauge.textPosition(.41),
+            y: meterGauge.textPosition(.07),
+            style: {
+              fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              color: color
+            }
+          },
+          {
+            text: gon.translations.meter_gauge.plot_band_label.ahead,
+            rotation: 60,
+            x: localeIs('ka') ? meterGauge.textPosition(.79) : meterGauge.textPosition(.805),
+            y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),
+            style: {
+              fontSize: localeIs('ka') ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              color: color
+            }
+          }
+        ];
+
+      } else if (arraysEqual(texts, georgianDefaultText)) {
 
         return [
           {
@@ -93,7 +129,11 @@ function meterGaugeHelpers(size, options) {
     var plotBandLabels;
 
     if (typeof texts === 'undefined') {
-      plotBandLabels = plotBandLabelBases(['Behind', 'On Track', 'Ahead']);
+      if (localeIs('ka')) {
+        plotBandLabels = plotBandLabelBases(georgianDefaultText);
+      } else {
+        plotBandLabels = plotBandLabelBases(englishDefaultText);
+      }
     } else {
       plotBandLabels = plotBandLabelBases(texts);
     }
