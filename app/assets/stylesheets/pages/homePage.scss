@@ -1,128 +1,130 @@
-.homePage-expertHistoryChart {
-  height: 150px;
-}
-
-$width-homepage-whole-intro-horizontal: 1000px;
-$width-homepage-move-chart-summary-to-side: 500px;
 
 
-.homePage-intro {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  padding: 0 $padding-main-content 10px;
-  width: 100%;
-
-  @include center-and-limit-content-width();
-
-  @media (min-width: $width-homepage-whole-intro-horizontal) {
-    flex-direction: row;
-  }
-}
-
-  .homePage-intro-summaryGood {
-    list-style-image: image-url('thumb_up.svg');
-  }
-
-  .homePage-intro-summaryBad {
-    list-style-image: image-url('thumb_down.svg');
-  }
-
-  .homePage-intro-download {
-    text-align: right;
-
-    @media (min-width: $width-homepage-move-chart-summary-to-side) {
-      text-align: left;
-    }
-  }
-
-  .homePage-intro-chartSummaryContainer {
-    display: flex;
-    flex-direction: column;
-
-    @media (min-width: $width-homepage-move-chart-summary-to-side) {
-      flex-direction: row;
-    }
-  }
-
-    .homePage-intro-chartSummaryContainer-summary {
-      @media (min-width: $width-homepage-whole-intro-horizontal) {
-        text-align: right;
-      }
-    }
-
-      .homePage-intro-chartSummaryContainer-summary-link {
-        text-align: right;
-      }
-
-$width-homepage-move-government-to-side: 800px;
-
-.homePage-expertsGovtContainer {
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: $width-homepage-move-government-to-side) {
-    flex-direction: row;
-  }
-
-  @media (min-width: $width-content-overlap-top-image) {
-    margin-top: -1 * $height-content-heading;
-  }
-}
-
-  .homePage-expertsGovtContainer-experts {
-    width: 100%;
-  }
-
-  .homePage-expertsGovtContainer-government {
-    @media (min-width: $width-homepage-move-government-to-side) {
-      margin-left: 20px;
-      min-width: 40%;
-    }
-  }
-
-.homePage-reforms {}
-  .homePage-reforms-item {
-    border-bottom: 2px solid $color-grey-background;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px $padding-main-content;
-  }
-
-    .homePage-reforms-item-label {
-      color: inherit;
-      text-decoration: none;
-      min-width: 100px;
-    }
-
-      .homePage-reforms-item-label-name {
-        // color: $color-brand;
-      }
-
-      .homePage-reforms-item-label-rating {
-        font-size: 2.5rem;
-        font-weight: 600;
-      }
-
-        .homePage-reforms-item-label-rating-score {
-          display: inline-block;
-        }
-
-        .homePage-reforms-item-label-rating-icon {
-          width: 2.5rem;
-          height: 2.5rem;
-          display: inline-block;
-        }
-
-    .homePage-reforms-item-chart {
-      height: 75px;
-      width: 100%;
-    }
-
-  .homePage-reforms-axisAndLink {
-    padding: 5px $padding-main-content;
-    text-align: right;
-  }
+// .homePage-expertHistoryChart {
+//   height: 150px;
+// }
+//
+// $width-homepage-whole-intro-horizontal: 1000px;
+// $width-homepage-move-chart-summary-to-side: 500px;
+//
+//
+// .homePage-intro {
+//   box-sizing: border-box;
+//   display: flex;
+//   flex-direction: column;
+//   margin-top: 40px;
+//   padding: 0 $padding-main-content 10px;
+//   width: 100%;
+//
+//   @include center-and-limit-content-width();
+//
+//   @media (min-width: $width-homepage-whole-intro-horizontal) {
+//     flex-direction: row;
+//   }
+// }
+//
+//   .homePage-intro-summaryGood {
+//     list-style-image: image-url('thumb_up.svg');
+//   }
+//
+//   .homePage-intro-summaryBad {
+//     list-style-image: image-url('thumb_down.svg');
+//   }
+//
+//   .homePage-intro-download {
+//     text-align: right;
+//
+//     @media (min-width: $width-homepage-move-chart-summary-to-side) {
+//       text-align: left;
+//     }
+//   }
+//
+//   .homePage-intro-chartSummaryContainer {
+//     display: flex;
+//     flex-direction: column;
+//
+//     @media (min-width: $width-homepage-move-chart-summary-to-side) {
+//       flex-direction: row;
+//     }
+//   }
+//
+//     .homePage-intro-chartSummaryContainer-summary {
+//       @media (min-width: $width-homepage-whole-intro-horizontal) {
+//         text-align: right;
+//       }
+//     }
+//
+//       .homePage-intro-chartSummaryContainer-summary-link {
+//         text-align: right;
+//       }
+//
+// $width-homepage-move-government-to-side: 800px;
+//
+// .homePage-expertsGovtContainer {
+//   display: flex;
+//   flex-direction: column;
+//
+//   @media (min-width: $width-homepage-move-government-to-side) {
+//     flex-direction: row;
+//   }
+//
+//   @media (min-width: $width-content-overlap-top-image) {
+//     margin-top: -1 * $height-content-heading;
+//   }
+// }
+//
+//   .homePage-expertsGovtContainer-experts {
+//     width: 100%;
+//   }
+//
+//   .homePage-expertsGovtContainer-government {
+//     @media (min-width: $width-homepage-move-government-to-side) {
+//       margin-left: 20px;
+//       min-width: 40%;
+//     }
+//   }
+//
+// .homePage-reforms {}
+//   .homePage-reforms-item {
+//     border-bottom: 2px solid $color-grey-background;
+//     box-sizing: border-box;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 5px $padding-main-content;
+//   }
+//
+//     .homePage-reforms-item-label {
+//       color: inherit;
+//       text-decoration: none;
+//       min-width: 100px;
+//     }
+//
+//       .homePage-reforms-item-label-name {
+//         // color: $color-brand;
+//       }
+//
+//       .homePage-reforms-item-label-rating {
+//         font-size: 2.5rem;
+//         font-weight: 600;
+//       }
+//
+//         .homePage-reforms-item-label-rating-score {
+//           display: inline-block;
+//         }
+//
+//         .homePage-reforms-item-label-rating-icon {
+//           width: 2.5rem;
+//           height: 2.5rem;
+//           display: inline-block;
+//         }
+//
+//     .homePage-reforms-item-chart {
+//       height: 75px;
+//       width: 100%;
+//     }
+//
+//   .homePage-reforms-axisAndLink {
+//     padding: 5px $padding-main-content;
+//     text-align: right;
+//   }

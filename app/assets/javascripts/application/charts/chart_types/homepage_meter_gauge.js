@@ -1,6 +1,12 @@
 function highchartsHomepageMeterGaugeOptions(chartData) {
-  // See meter gauge helpers file for documentation on size variable
-  var size = 200;
+  var mainContentPadding = 30;
+  var mainContentWidth = $(window).width() - (mainContentPadding * 2);
+  var maxSize = 400;
+
+  // Size is either the maxSize (on big screens) or the mainContentWidth (on
+  // small screens). See meter gauge helpers file for documentation on
+  // size variable
+  var size = mainContentWidth < maxSize ? mainContentWidth : maxSize;
   var color = chartData.color;
 
   var helpers = meterGaugeHelpers(size);

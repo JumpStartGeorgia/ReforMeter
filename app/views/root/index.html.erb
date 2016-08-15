@@ -3,6 +3,27 @@
   <div class='topImageContainer mod-homepage'>
     <%= render partial: 'application/navbar_header' %>
 
+    <%= link_to review_board_show_path(@quarter) do %>
+
+      <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+
+    <% end %>
+
+  </div>
+
+  <main class='mainContent'>
+
+  </main>
+  
+</div>
+
+<% if false %>
+
+<div>
+
+  <div class='topImageContainer mod-homepage'>
+    <%= render partial: 'application/navbar_header' %>
+
     <section class='homePage-intro'>
 
       <% if @quarter %>
@@ -244,3 +265,5 @@
   </main>
 
 </div>
+
+<% end %>
