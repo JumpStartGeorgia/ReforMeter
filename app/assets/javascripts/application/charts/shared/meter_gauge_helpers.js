@@ -58,9 +58,9 @@ function meterGaugeHelpers(size, options) {
             text: gon.translations.meter_gauge.plot_band_label.behind,
             rotation: -60,
             x: meterGauge.textPosition(.215),
-            y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
+            y: meterGauge.textPosition(.28),
             style: {
-              fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              fontSize: meterGauge.textSize(1.6),
               color: color
             }
           },
@@ -69,17 +69,17 @@ function meterGaugeHelpers(size, options) {
             x: meterGauge.textPosition(.41),
             y: meterGauge.textPosition(.07),
             style: {
-              fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              fontSize: meterGauge.textSize(1.6),
               color: color
             }
           },
           {
             text: gon.translations.meter_gauge.plot_band_label.ahead,
             rotation: 60,
-            x: localeIs('ka') ? meterGauge.textPosition(.79) : meterGauge.textPosition(.805),
-            y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),
+            x: meterGauge.textPosition(.805),
+            y: meterGauge.textPosition(.175),
             style: {
-              fontSize: localeIs('ka') ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              fontSize: meterGauge.textSize(1.6),
               color: color
             }
           }
@@ -92,9 +92,9 @@ function meterGaugeHelpers(size, options) {
             text: gon.translations.meter_gauge.plot_band_label.behind,
             rotation: -60,
             x: meterGauge.textPosition(.215),
-            y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
+            y: meterGauge.textPosition(.275),
             style: {
-              fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              fontSize: meterGauge.textSize(1.5),
               color: color
             }
           },
@@ -103,17 +103,17 @@ function meterGaugeHelpers(size, options) {
             x: meterGauge.textPosition(.41),
             y: meterGauge.textPosition(.07),
             style: {
-              fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              fontSize: meterGauge.textSize(1.5),
               color: color
             }
           },
           {
             text: gon.translations.meter_gauge.plot_band_label.ahead,
             rotation: 60,
-            x: localeIs('ka') ? meterGauge.textPosition(.79) : meterGauge.textPosition(.805),
-            y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),
+            x: meterGauge.textPosition(.79),
+            y: meterGauge.textPosition(.125),
             style: {
-              fontSize: localeIs('ka') ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              fontSize: meterGauge.textSize(1.5),
               color: color
             }
           }
