@@ -40,7 +40,8 @@ function meterGaugeHelpers(size, options) {
     return String(modifier * size/200) + 'em';
   }
 
-  meterGauge.plotBandLabels = function() {
+  // by default uses text Behind, On Track, Ahead
+  meterGauge.plotBandLabels = function(texts) {
     var exports = {},
         color = 'white';
 
@@ -48,47 +49,54 @@ function meterGaugeHelpers(size, options) {
     // correctly as plot band labels on a meter gauge. Only works for
     // certain texts; will otherwise throw an error.
     function plotBandLabelBases(texts) {
-      switch(texts) {
+      if (arraysEqual(texts, ['Behind', 'On Track', 'Ahead'])) {
 
-        default: {
-
-          return [
-            {
-              text: gon.translations.meter_gauge.plot_band_label.behind,
-              rotation: -60,
-              x: meterGauge.textPosition(.215),
-              y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
-              style: {
-                fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
-                color: color
-              }
-            },
-            {
-              text: gon.translations.meter_gauge.plot_band_label.on_track,
-              x: meterGauge.textPosition(.41),
-              y: meterGauge.textPosition(.07),
-              style: {
-                fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
-                color: color
-              }
-            },
-            {
-              text: gon.translations.meter_gauge.plot_band_label.ahead,
-              rotation: 60,
-              x: localeIs('ka') ? meterGauge.textPosition(.79) : meterGauge.textPosition(.805),
-              y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),
-              style: {
-                fontSize: localeIs('ka') ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
-                color: color
-              }
+        return [
+          {
+            text: gon.translations.meter_gauge.plot_band_label.behind,
+            rotation: -60,
+            x: meterGauge.textPosition(.215),
+            y: localeIs('ka') ? meterGauge.textPosition(.275) : meterGauge.textPosition(.28),
+            style: {
+              fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              color: color
             }
-          ];
+          },
+          {
+            text: gon.translations.meter_gauge.plot_band_label.on_track,
+            x: meterGauge.textPosition(.41),
+            y: meterGauge.textPosition(.07),
+            style: {
+              fontSize: gon.locale === 'ka' ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              color: color
+            }
+          },
+          {
+            text: gon.translations.meter_gauge.plot_band_label.ahead,
+            rotation: 60,
+            x: localeIs('ka') ? meterGauge.textPosition(.79) : meterGauge.textPosition(.805),
+            y: localeIs('ka') ? meterGauge.textPosition(.125) : meterGauge.textPosition(.175),
+            style: {
+              fontSize: localeIs('ka') ? meterGauge.textSize(1.5) : meterGauge.textSize(1.6),
+              color: color
+            }
+          }
+        ];
 
-        }
+      } else {
+
+        throw new Error('No meter gauge plot band label base properties are available for provided plot band text')
+
       }
     }
 
-    var plotBandLabels = plotBandLabelBases();
+    var plotBandLabels;
+
+    if (typeof texts === 'undefined') {
+      plotBandLabels = plotBandLabelBases(['Behind', 'On Track', 'Ahead']);
+    } else {
+      plotBandLabels = plotBandLabelBases(texts);
+    }
 
     exports.behind = function(chartData, options) {
       if (!options) options = {};
