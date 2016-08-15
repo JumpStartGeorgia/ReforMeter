@@ -39,23 +39,27 @@
 
       </header>
 
-      <div class='contentSection-body'>
+      <div class='contentSection-body mod-no-padding'>
 
         <% if @external_indicators.present? %>
 
           <% @external_indicators.each do |external_indicator| %>
 
-            <h3>
+          <section class='homePage-externalIndicator'>
+
+            <h3 class='heading mod-no-transform'>
 
               <%= external_indicator.title %>
 
-              <small>
+              <small class='heading-subheading'>
                 <%= external_indicator.subtitle %>
               </small>
 
             </h3>
 
             <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='external-indicator-<%= external_indicator.id %>'></div>
+
+          </section>
 
           <% end %>
 

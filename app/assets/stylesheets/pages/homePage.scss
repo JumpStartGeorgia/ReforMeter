@@ -1,4 +1,11 @@
+.homePage-externalIndicator {
+  padding: 10px $padding-main-content;
+  border-bottom: 3px solid $color-grey-background;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 // .homePage-expertHistoryChart {
 //   height: 150px;

@@ -6,6 +6,15 @@
   margin: 0;
 }
 
+  .heading-subheading {
+    display: block;
+    text-transform: none;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: rgb(102, 102, 109);
+    margin: 0;
+  }
+
   .heading-iconTextContainer {
     display: flex;
     justify-content: flex-start;
@@ -34,4 +43,8 @@
 
 .heading.mod-inherit-color {
   color: inherit;
+}
+
+.heading.mod-no-transform {
+  text-transform: none;
 }
