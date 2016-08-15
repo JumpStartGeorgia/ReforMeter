@@ -44,77 +44,95 @@ function meterGaugeHelpers(size, options) {
   meterGauge.plotBandLabels = function(texts) {
     var exports = {},
         color = 'white',
-        georgianDefaultText = ['სუსტი', 'ზომიერი', 'ძლიერი'],
-        englishDefaultText = ['Behind', 'On Track', 'Ahead'];
+        defaultTexts = [
+          gon.translations.meter_gauge.plot_band_label.behind,
+          gon.translations.meter_gauge.plot_band_label.on_track,
+          gon.translations.meter_gauge.plot_band_label.ahead
+        ];
+
+    var georgianDefaultText = localeIs('ka') ? defaultTexts : null,
+        englishDefaultText = localeIs('en') ? defaultTexts : null;
 
     // Returns the base properties to position and style certain texts
     // correctly as plot band labels on a meter gauge. Only works for
     // certain texts; will otherwise throw an error.
-    function plotBandLabelBases(texts) {
+    function plotBandLabels(texts) {
+
+      // Properties for labels regardless of text
+      var plotBandBases = [
+        {
+          text: texts[0],
+          rotation: -60,
+          style: {
+            color: color
+          }
+        },
+        {
+          text: texts[1],
+          style: {
+            color: color
+          }
+        },
+        {
+          text: texts[2],
+          rotation: 60,
+          style: {
+            color: color
+          }
+        }
+      ]
+
+      // Properties for labels that are specific to text
+      var textSpecificProperties;
+
       if (arraysEqual(texts, englishDefaultText)) {
 
-        return [
+        textSpecificProperties = [
           {
-            text: gon.translations.meter_gauge.plot_band_label.behind,
-            rotation: -60,
             x: meterGauge.textPosition(.215),
             y: meterGauge.textPosition(.28),
             style: {
               fontSize: meterGauge.textSize(1.6),
-              color: color
             }
           },
           {
-            text: gon.translations.meter_gauge.plot_band_label.on_track,
             x: meterGauge.textPosition(.41),
             y: meterGauge.textPosition(.07),
             style: {
               fontSize: meterGauge.textSize(1.6),
-              color: color
             }
           },
           {
-            text: gon.translations.meter_gauge.plot_band_label.ahead,
-            rotation: 60,
             x: meterGauge.textPosition(.805),
             y: meterGauge.textPosition(.175),
             style: {
               fontSize: meterGauge.textSize(1.6),
-              color: color
             }
           }
         ];
 
       } else if (arraysEqual(texts, georgianDefaultText)) {
 
-        return [
+        textSpecificProperties = [
           {
-            text: gon.translations.meter_gauge.plot_band_label.behind,
-            rotation: -60,
             x: meterGauge.textPosition(.215),
             y: meterGauge.textPosition(.275),
             style: {
               fontSize: meterGauge.textSize(1.5),
-              color: color
             }
           },
           {
-            text: gon.translations.meter_gauge.plot_band_label.on_track,
             x: meterGauge.textPosition(.41),
             y: meterGauge.textPosition(.07),
             style: {
               fontSize: meterGauge.textSize(1.5),
-              color: color
             }
           },
           {
-            text: gon.translations.meter_gauge.plot_band_label.ahead,
-            rotation: 60,
             x: meterGauge.textPosition(.79),
             y: meterGauge.textPosition(.125),
             style: {
               fontSize: meterGauge.textSize(1.5),
-              color: color
             }
           }
         ];
@@ -124,39 +142,44 @@ function meterGaugeHelpers(size, options) {
         throw new Error('No meter gauge plot band label base properties are available for provided plot band text')
 
       }
+
+      // combine general and text-specific label properties
+      return plotBandBases.map(function(plotBandBase, index) {
+        return $.extend(true, plotBandBase, textSpecificProperties[index])
+      });
     }
 
-    var plotBandLabels;
+    var plotBandLabelProperties;
 
     if (typeof texts === 'undefined') {
       if (localeIs('ka')) {
-        plotBandLabels = plotBandLabelBases(georgianDefaultText);
+        plotBandLabelProperties = plotBandLabels(georgianDefaultText);
       } else {
-        plotBandLabels = plotBandLabelBases(englishDefaultText);
+        plotBandLabelProperties = plotBandLabels(englishDefaultText);
       }
     } else {
-      plotBandLabels = plotBandLabelBases(texts);
+      plotBandLabelProperties = plotBandLabels(texts);
     }
 
     exports.behind = function(chartData, options) {
       if (!options) options = {};
 
       return mergeObjects(
-        plotBandLabels[0],
+        plotBandLabelProperties[0],
         options
       );
     }
 
     exports.onTrack = function(chartData, options) {
       return mergeObjects(
-        plotBandLabels[1],
+        plotBandLabelProperties[1],
         options
       );
     }
 
     exports.ahead = function(chartData, options) {
       return mergeObjects(
-        plotBandLabels[2],
+        plotBandLabelProperties[2],
         options
       );
     }
