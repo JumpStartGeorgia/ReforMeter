@@ -28,5 +28,9 @@ function outputHighchartsColorString(color, opacity, fallback) {
 
   }
 
-  return 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + opacity + ')';
+  if (color.r && color.g && color.b) {
+    return 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + opacity + ')';
+  }
+
+  throw new Error('Color for chart does not have the required RGB data');
 }

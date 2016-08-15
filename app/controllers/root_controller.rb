@@ -13,7 +13,31 @@ class RootController < ApplicationController
       change: @quarter.expert_survey.overall_change
     }]
 
-    gon.charts += @external_indicators.map(&:format_for_charting)
+    # Custom colors for external indicators
+    ext_ind_chart_colors = [
+      {
+        r: '237',
+        g: '59',
+        b: '20',
+        hex: '#ed3b14'
+      },
+      {
+        r: '237',
+        g: '120',
+        b: '24',
+        hex: '#ed7818'
+      }
+    ]
+
+    gon.charts += @external_indicators.each_with_index.map do |external_indicator, index|
+      {
+        id: "external-indicator-#{external_indicator.id}",
+        title: nil,
+        score: 9,
+        change: 1,
+        color: ext_ind_chart_colors[index % ext_ind_chart_colors.length]
+      }
+    end
 
     # @home_page_about = PageContent.find_by(name: 'home_page_about')
     #
