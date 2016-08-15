@@ -20,7 +20,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
 
     chart: {
       height: chartData.title ? '150' : '135',
-      width: '115'
+      width: helpers.chartWidth
     },
 
     exporting: {
@@ -77,7 +77,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
     },
 
     pane: {
-      size: '100'
+      size: helpers.paneSize
     },
 
     plotOptions: {
