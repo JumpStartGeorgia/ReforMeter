@@ -1,8 +1,8 @@
 function highchartsSmallMeterGaugeOptions(chartData) {
-
   var color = chartData.color;
 
   var helpers = meterGaugeHelpers(100);
+  var plotBandLabels = helpers.plotBandLabels(['Poor', 'Fair', 'Good']);
 
   function gaugeLabel(dataPoint, isExport) {
     return highchartsGaugeLabel(
@@ -49,7 +49,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           to: 3.3,
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
-          outerRadius: '100%'
+          outerRadius: '100%',
+          label: plotBandLabels.behind(chartData)
         },{
           borderWidth: 2,
           borderColor: 'white',
@@ -57,7 +58,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           to: 6.6,
           color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
-          outerRadius: '100%'
+          outerRadius: '100%',
+          label: plotBandLabels.onTrack(chartData)
         },{
           borderWidth: 2,
           borderColor: 'white',
@@ -65,7 +67,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           to: 10,
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
-          outerRadius: '100%'
+          outerRadius: '100%',
+          label: plotBandLabels.ahead(chartData)
         }
       ],
       labels: {

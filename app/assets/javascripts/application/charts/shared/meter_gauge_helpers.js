@@ -137,6 +137,32 @@ function meterGaugeHelpers(size, options) {
           }
         ];
 
+      } else if (arraysEqual(texts, ['Poor', 'Fair', 'Good'])) {
+
+        textSpecificProperties = [
+          {
+            x: meterGauge.textPosition(.215),
+            y: meterGauge.textPosition(.275),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          },
+          {
+            x: meterGauge.textPosition(.51),
+            y: meterGauge.textPosition(.2),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          },
+          {
+            x: meterGauge.textPosition(.85),
+            y: meterGauge.textPosition(.285),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          }
+        ];
+
       } else {
 
         throw new Error('No meter gauge plot band label base properties are available for provided plot band text')
