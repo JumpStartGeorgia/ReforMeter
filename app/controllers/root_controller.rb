@@ -3,6 +3,7 @@ class RootController < ApplicationController
   def index
     @quarter = Quarter.published.with_expert_survey.latest
     @external_indicators = ExternalIndicator.published.reverse_sorted.for_home_page
+    @reforms = Reform.in_quarter(@quarter.id).active.highlight.sorted if @quarter
 
     gon.change_icons = view_context.change_icons
 
@@ -12,6 +13,30 @@ class RootController < ApplicationController
       score: @quarter.expert_survey.overall_score.to_f,
       change: @quarter.expert_survey.overall_change
     }]
+
+    surveys = ReformSurvey.all.select{|x| x.quarter_id == @quarter.id}
+
+    surveys.each do |survey|
+      reform = @reforms.select{|x| x.id == survey.reform_id}.first
+
+      next unless reform
+
+      gon.charts << {
+        id: "reform-government-#{@quarter.slug}-#{reform.slug}",
+        color: reform.color.to_hash,
+        title: nil,
+        score: survey.government_overall_score.to_f,
+        change: survey.government_overall_change
+      }
+
+      gon.charts << {
+        id: "reform-stakeholder-#{@quarter.slug}-#{reform.slug}",
+        color: reform.color.to_hash,
+        title: nil,
+        score: survey.stakeholder_overall_score.to_f,
+        change: survey.stakeholder_overall_change
+      }
+    end
 
     # Custom colors for external indicators
     ext_ind_chart_colors = [

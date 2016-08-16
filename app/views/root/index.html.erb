@@ -13,67 +13,187 @@
 
   <main class='mainContent'>
 
-    <section class='contentSection'>
+    <div class='homePage-reformsIndicatorsContainer'>
 
-      <header class='contentSection-header'>
+      <div class='homePage-reformsIndicatorsContainer-reforms'>
 
-        <h2 class='heading'>
-          <%= t '.reform_status' %>
-        </h2>
+        <section class='contentSection'>
 
-      </header>
+          <header class='contentSection-header'>
 
-      <div class='contentSection-body'>
+            <h2 class='heading'>
+              <%= t '.reform_status' %>
+            </h2>
+
+          </header>
+
+          <div class='contentSection-body mod-no-padding'>
+
+            <table class='chartsTable mod-reforms'>
+
+              <thead>
+
+                <tr class='chartsTable-row'>
+
+                  <th class='chartsTable-cell mod-head'>
+                    <%= t('.table_header.reform') %>
+                  </th>
+
+                  <th class='chartsTable-cell mod-head'>
+                    <%= t('.table_header.government') %>
+                  </th>
+
+                  <th class='chartsTable-cell mod-head'>
+                    <%= t('.table_header.stakeholder') %>
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody class='chartsTable-body'>
+
+                <% surveys = ReformSurvey.all.select{|x| x.quarter_id == @quarter.id} %>
+
+                <% if surveys.present? %>
+
+                  <% surveys.each do |survey| %>
+
+                    <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
+
+                    <% if reform %>
+
+                      <tr class='chartsTable-row'>
+
+                        <td class='chartsTable-cell mod-important-text'>
+                          <%= link_to(reform.name,
+                                      reform_show_path(
+                                        reform_id: reform.slug,
+                                        quarter_id: @quarter.slug),
+                                      class: 'chartsTable-cell-link') %>
+                        </td>
+
+                        <td class='chartsTable-cell'>
+
+                          <p class='chartsTable-cell-text'>
+
+                            <span class='chartsTable-cell-text-score'>
+                              <%= survey.government_overall_score %>
+                            </span>
+
+                            <span class='chartsTable-cell-text-changeIcon'>
+                              <%= generate_change_icon(survey.government_overall_change) %>
+                            </span>
+
+                          </p>
+
+                          <div class='chartsTable-cell-chart'>
+
+                            <%= link_to(reform_show_path(
+                                          reform_id: reform.slug,
+                                          quarter_id: @quarter.slug)) do %>
+
+                              <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= @quarter.slug %>-<%= reform.slug %>'></div>
+
+                            <% end %>
+
+                          </div>
+
+                        </td>
+
+                        <td class='chartsTable-cell'>
+
+                          <p class='chartsTable-cell-text'>
+
+                            <span class='chartsTable-cell-text-score'>
+                              <%= survey.stakeholder_overall_score %>
+                            </span>
+
+                            <span class='chartsTable-cell-text-changeIcon'>
+                              <%= generate_change_icon(survey.stakeholder_overall_change) %>
+                            </span>
+
+                          </p>
+
+                          <div class='chartsTable-cell-chart'>
+
+                            <%= link_to(reform_show_path(
+                                          reform_id: reform.slug,
+                                          quarter_id: @quarter.slug)) do %>
+
+                              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= @quarter.slug %>-<%= reform.slug %>'></div>
+
+                            <% end %>
+
+                          </div>
+
+                        </td>
+
+                      </tr>
+
+                    <% end %>
+
+                  <% end %>
+
+                <% end %>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </section>
 
       </div>
 
-    </section>
+      <section class='contentSection'>
 
-    <section class='contentSection'>
+        <header class='contentSection-header'>
 
-      <header class='contentSection-header'>
+          <h2 class='heading'>
+            <%= t '.economy_effects' %>
+          </h2>
 
-        <h2 class='heading'>
-          <%= t '.economy_effects' %>
-        </h2>
+        </header>
 
-      </header>
+        <div class='contentSection-body mod-no-padding'>
 
-      <div class='contentSection-body mod-no-padding'>
+          <% if @external_indicators.present? %>
 
-        <% if @external_indicators.present? %>
+            <% @external_indicators.each do |external_indicator| %>
 
-          <% @external_indicators.each do |external_indicator| %>
+              <section class='homePage-externalIndicator'>
 
-            <section class='homePage-externalIndicator'>
+                <h3 class='heading mod-no-transform'>
 
-              <h3 class='heading mod-no-transform'>
+                  <%= external_indicator.title %>
 
-                <%= external_indicator.title %>
+                  <small class='heading-subheading'>
+                    <%= external_indicator.subtitle %>
+                  </small>
 
-                <small class='heading-subheading'>
-                  <%= external_indicator.subtitle %>
-                </small>
+                </h3>
 
-              </h3>
+                <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='external-indicator-<%= external_indicator.id %>'></div>
 
-              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='external-indicator-<%= external_indicator.id %>'></div>
+              </section>
 
-            </section>
+            <% end %>
+
+          <p class='homePage-externalIndicatorsLink'>
+            <%= link_to t('.external_indicators_link'),
+                        external_indicators_path,
+                        class: 'link' %>
+          </p>
 
           <% end %>
 
-        <p class='homePage-externalIndicatorsLink'>
-          <%= link_to t('.external_indicators_link'),
-                      external_indicators_path,
-                      class: 'link' %>
-        </p>
+        </div>
 
-        <% end %>
+      </section>
 
-      </div>
-
-    </section>
+    </div>
 
   </main>
 
