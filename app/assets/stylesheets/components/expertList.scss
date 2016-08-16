@@ -14,19 +14,11 @@ $expert-image-size: 100px;
       color: #000;
       font-weight: 400;
       font-size: 2rem;
-      margin: 0 0 10px;
+      margin: 20px 0 4px;
     }
 
-    .expertList-item-description {
-      margin: 10px 0;
-    }
-
-      .expertList-item-description p:first-child {
-        margin: 0 0 10px;
-      }
-
-      .expertList-item-description p:last-child {
-        margin: 10px 0 0;
+      .expertList-item-description p {
+        margin: 0;
       }
 
     .expertList-item-imageLink {
@@ -49,6 +41,10 @@ $expert-image-size: 100px;
       max-width: 50%;
     }
   }
+
+    .expertList-item-heading {
+      font-size: 1.8rem;
+    }
 
     .expertList-item-imageLink {
       max-width: $expert-image-size/2;
