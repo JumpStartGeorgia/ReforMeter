@@ -46,6 +46,14 @@ function meterGaugeHelpers(size, options) {
     return String(modifier * size/200) + 'em';
   }
 
+  function PlotBandTextError(message) {
+    this.message = message;
+    this.stack = (new Error()).stack;
+  }
+
+  PlotBandTextError.prototype = Object.create(Error.prototype);
+  PlotBandTextError.prototype.name = 'PlotBandTextError';
+
   // by default uses text Behind, On Track, Ahead
   meterGauge.plotBandLabels = function(texts) {
     var exports = {},
@@ -171,7 +179,7 @@ function meterGaugeHelpers(size, options) {
 
       } else {
 
-        throw new Error('No meter gauge plot band label base properties are available for provided plot band text')
+        throw new PlotBandTextError('No meter gauge plot band label base properties are available for provided plot band text')
 
       }
 
@@ -183,14 +191,27 @@ function meterGaugeHelpers(size, options) {
 
     var plotBandLabelProperties;
 
-    if (typeof texts === 'undefined') {
-      if (localeIs('ka')) {
-        plotBandLabelProperties = plotBandLabels(georgianDefaultText);
+    try {
+
+      if (typeof texts === 'undefined') {
+        if (localeIs('ka')) {
+          plotBandLabelProperties = plotBandLabels(georgianDefaultText);
+        } else {
+          plotBandLabelProperties = plotBandLabels(englishDefaultText);
+        }
       } else {
-        plotBandLabelProperties = plotBandLabels(englishDefaultText);
+        plotBandLabelProperties = plotBandLabels(texts);
       }
-    } else {
-      plotBandLabelProperties = plotBandLabels(texts);
+
+    } catch(error) {
+
+      if (error instanceof PlotBandTextError) {
+        console.log(error.message);
+        return undefined;
+      } else {
+        throw error;
+      }
+
     }
 
     exports.behind = function(chartData, options) {
