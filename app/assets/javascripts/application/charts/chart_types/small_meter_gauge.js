@@ -1,6 +1,13 @@
 function highchartsSmallMeterGaugeOptions(chartData) {
   var color = chartData.color;
   var size = 100;
+
+  if (chartData.responsiveSize) {
+    if ($(window).width() >= 1000) {
+      size = 150;
+    }
+  }
+
   var helpers = meterGaugeHelpers(size);
 
   function plotBandLabels() {
