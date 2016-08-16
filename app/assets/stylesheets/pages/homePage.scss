@@ -34,6 +34,7 @@ $widthHorizontalContentSections: 800px;
 $widthHomepageLinksHorizontal: 800px;
 $homepageLinkFillColor: #1599D6;
 $homepageLinkBackgroundColor: white;
+
 $heightHomepageBigLink: 80px;
 $verticalPaddingHomepageBigLinks: 20px;
 // includes padding
@@ -52,12 +53,12 @@ $outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHome
 }
 
   .homePage-bigLinks-item {
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
     background-color: $homepageLinkBackgroundColor;
     padding: 10px 10px;
     box-sizing: border-box;
-    vertical-align: middle;
     text-decoration: none;
     color: $homepageLinkFillColor;
     height: $heightHomepageBigLink;
@@ -73,15 +74,14 @@ $outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHome
   }
 
     .homePage-bigLinks-item-icon {
-      display: inline-block;
-      vertical-align: middle;
       fill: $homepageLinkFillColor;
+      min-width: 60px;
+      min-height: 60px;
       width: 60px;
       height: 60px;
     }
 
     .homePage-bigLinks-item-text {
-      vertical-align: middle;
       text-transform: uppercase;
       font-weight: 600;
     }
