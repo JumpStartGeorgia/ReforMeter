@@ -10,6 +10,12 @@ $charts-table-border: solid 3px $color-grey-background;
   border-bottom: $charts-table-border;
 }
 
+.chartsTable.mod-no-column-lines {
+  .chartsTable-cell {
+    border-right: 0;
+  }
+}
+
   .chartsTable-row.is-hidden {
     display: none;
   }
