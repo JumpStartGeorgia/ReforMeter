@@ -39,7 +39,7 @@ class RootController < ApplicationController
     end
 
     # Custom colors for external indicators
-    ext_ind_chart_colors = [
+    ext_ind_gauge_colors = [
       {
         r: '237',
         g: '59',
@@ -62,7 +62,7 @@ class RootController < ApplicationController
         score: 9,
         change: 1,
         responsiveTo: '.js-external-indicator-gauges-container',
-        color: ext_ind_chart_colors[index % ext_ind_chart_colors.length]
+        color: ext_ind_gauge_colors[index % ext_ind_gauge_colors.length]
       }
     end
 
