@@ -57,13 +57,13 @@
 
           <div class='contentSection-body mod-no-padding'>
 
-            <table class='chartsTable mod-reforms mod-bottom-border mod-no-column-lines'>
+            <table class='chartsTable mod-homepage mod-bottom-border mod-no-column-lines'>
 
               <thead>
 
                 <tr class='chartsTable-row'>
 
-                  <th class='chartsTable-cell mod-head'>
+                  <th class='chartsTable-cell mod-head mod-first-column'>
                     <%= t('.table_header.reform') %>
                   </th>
 
@@ -93,7 +93,7 @@
 
                       <tr class='chartsTable-row'>
 
-                        <td class='chartsTable-cell mod-important-text'>
+                        <td class='chartsTable-cell mod-important-text mod-first-column'>
                           <%= link_to(reform.name,
                                       reform_show_path(
                                         reform_id: reform.slug,
