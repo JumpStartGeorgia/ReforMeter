@@ -14,6 +14,8 @@ function meterGaugeHelpers(size, options) {
   meterGauge.paneSize = size;
 
   meterGauge.plotBandLabelForScore = function(score, texts) {
+    if (texts === null) return null;
+    
     texts = texts ? texts : [
       gon.translations.meter_gauge.plot_band_label.behind,
       gon.translations.meter_gauge.plot_band_label.on_track,

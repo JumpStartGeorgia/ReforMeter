@@ -21,7 +21,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
         changeIcon: !isExport,
         secondLineText: helpers.plotBandLabelForScore(
           chartData.score,
-          chartData.plotBandLabelTexts
+          plotBandLabels ? null : chartData.plotBandLabelTexts
         )
       }
     );
