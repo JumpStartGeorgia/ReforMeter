@@ -1,12 +1,16 @@
 function highchartsSmallMeterGaugeOptions(chartData) {
   var color = chartData.color;
+  var size = 150;
+  var helpers = meterGaugeHelpers(size);
 
-  var helpers = meterGaugeHelpers(100);
+  function plotBandLabels() {
+    if (typeof chartData.plotBandLabelTexts === 'undefined') return undefined;
+    if (size < 150) return undefined;
 
-  var plotBandLabels;
-  if (typeof chartData.plotBandLabels !== 'undefined') {
-    plotBandLabels = helpers.plotBandLabels(chartData.plotBandLabels);
+    return helpers.plotBandLabels(chartData.plotBandLabelTexts);
   }
+
+  plotBandLabels = plotBandLabels();
 
   function gaugeLabel(dataPoint, isExport) {
     return highchartsGaugeLabel(
