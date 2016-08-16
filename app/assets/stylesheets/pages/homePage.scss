@@ -3,9 +3,10 @@ $widthHomepageIntroHorizontal: 800px;
 .homepage-intro {
   display: flex;
   flex-direction: column;
-  max-width: $max-width-of-content;
 
   @media (min-width: $widthHomepageIntroHorizontal) {
+    @include center-and-limit-content-width();
+
     flex-direction: row;
     align-items: center;
   }
