@@ -15,7 +15,7 @@ function meterGaugeHelpers(size, options) {
 
   meterGauge.plotBandLabelForScore = function(score, texts) {
     if (texts === null) return null;
-    
+
     texts = texts ? texts : [
       gon.translations.meter_gauge.plot_band_label.behind,
       gon.translations.meter_gauge.plot_band_label.on_track,
@@ -158,21 +158,47 @@ function meterGaugeHelpers(size, options) {
         textSpecificProperties = [
           {
             x: meterGauge.textPosition(.215),
-            y: meterGauge.textPosition(.275),
+            y: meterGauge.textPosition(.17),
             style: {
               fontSize: meterGauge.textSize(1.5),
             }
           },
           {
-            x: meterGauge.textPosition(.51),
-            y: meterGauge.textPosition(.2),
+            x: meterGauge.textPosition(.5),
+            y: meterGauge.textPosition(-0.05),
             style: {
               fontSize: meterGauge.textSize(1.5),
             }
           },
           {
-            x: meterGauge.textPosition(.85),
-            y: meterGauge.textPosition(.285),
+            x: meterGauge.textPosition(.81),
+            y: meterGauge.textPosition(0.05),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          }
+        ];
+
+      } else if (arraysEqual(texts, ['Negative', 'Neutral', 'Positive'])) {
+
+        textSpecificProperties = [
+          {
+            x: meterGauge.textPosition(.185),
+            y: meterGauge.textPosition(.225),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          },
+          {
+            x: meterGauge.textPosition(.44),
+            y: meterGauge.textPosition(-.05),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          },
+          {
+            x: meterGauge.textPosition(.8),
+            y: meterGauge.textPosition(0),
             style: {
               fontSize: meterGauge.textSize(1.5),
             }
