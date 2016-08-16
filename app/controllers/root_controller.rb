@@ -61,7 +61,7 @@ class RootController < ApplicationController
         plotBandLabelTexts: ['Poor', 'Fair', 'Good'],
         score: 9,
         change: 1,
-        responsiveSize: true,
+        responsiveTo: '.js-external-indicator-gauges-container',
         color: ext_ind_chart_colors[index % ext_ind_chart_colors.length]
       }
     end

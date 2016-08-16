@@ -2,8 +2,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
   var color = chartData.color;
   var size = 100;
 
-  if (chartData.responsiveSize) {
-    if ($(window).width() >= 1000) {
+  if (chartData.responsiveTo) {
+    if ($(chartData.responsiveTo).width() >= 450) {
       size = 150;
     }
   }
