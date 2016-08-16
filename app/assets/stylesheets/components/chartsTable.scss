@@ -58,7 +58,11 @@ $charts-table-border: solid 3px $color-grey-background;
   }
 
   .chartsTable-cell.mod-important-text {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+
+    @media (min-width: 400px) {
+      font-size: 1.8rem;
+    }
   }
 
   .chartsTable-cell.mod-summary {
@@ -73,6 +77,22 @@ $charts-table-border: solid 3px $color-grey-background;
         text-decoration: underline;
       }
     }
+
+    .chartsTable-cell-text {
+      margin: 0;
+      font-weight: 600;
+    }
+
+      .chartsTable-cell-text-score {
+        vertical-align: middle;
+      }
+
+      .chartsTable-cell-text-changeIcon {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: middle;
+      }
 
   .highcharts-container {
     width: 100%;
@@ -109,31 +129,9 @@ $charts-table-border: solid 3px $color-grey-background;
       }
     }
 
-    .chartsTable-cell.mod-important-text {
-      font-size: 1.6rem;
-
-      @media (min-width: 400px) {
-        font-size: 1.8rem;
-      }
-    }
-
     .chartsTable-cell-text {
-      margin: 0;
-      font-weight: 600;
-
       @media (min-width: 520px) {
         display: none;
       }
     }
-
-      .chartsTable-cell-text-score {
-        vertical-align: middle;
-      }
-
-      .chartsTable-cell-text-changeIcon {
-        display: inline-block;
-        width: 1.5rem;
-        height: 1.5rem;
-        vertical-align: middle;
-      }
 }
