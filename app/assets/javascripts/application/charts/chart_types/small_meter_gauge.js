@@ -1,6 +1,6 @@
 function highchartsSmallMeterGaugeOptions(chartData) {
   var color = chartData.color;
-  var size = 150;
+  var size = 100;
   var helpers = meterGaugeHelpers(size);
 
   function plotBandLabels() {
@@ -19,7 +19,10 @@ function highchartsSmallMeterGaugeOptions(chartData) {
       '2em',
       {
         changeIcon: !isExport,
-        secondLineText: helpers.plotBandLabelForScore(chartData.score)
+        secondLineText: helpers.plotBandLabelForScore(
+          chartData.score,
+          chartData.plotBandLabelTexts
+        )
       }
     );
   }

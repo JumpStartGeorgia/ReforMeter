@@ -13,15 +13,21 @@ function meterGaugeHelpers(size, options) {
   meterGauge.chartHeight = size * 1.1;
   meterGauge.paneSize = size;
 
-  meterGauge.plotBandLabelForScore = function(score) {
+  meterGauge.plotBandLabelForScore = function(score, texts) {
+    texts = texts ? texts : [
+      gon.translations.meter_gauge.plot_band_label.behind,
+      gon.translations.meter_gauge.plot_band_label.on_track,
+      gon.translations.meter_gauge.plot_band_label.ahead
+    ];
+
     var plotBandLabel;
 
     if (score >= 0 && score <= 3.3) {
-      plotBandLabel = gon.translations.meter_gauge.plot_band_label.behind;
+      plotBandLabel = texts[0];
     } else if (score > 3.3 && score <= 6.6) {
-      plotBandLabel = gon.translations.meter_gauge.plot_band_label.on_track;
+      plotBandLabel = texts[1];
     } else if (score > 6.6 && score <= 10) {
-      plotBandLabel = gon.translations.meter_gauge.plot_band_label.ahead;
+      plotBandLabel = texts[2];
     } else {
       throw new Error('No meter gauge plot band label available for score ' + score)
     }
