@@ -29,7 +29,7 @@
 
           <div class='contentSection-body mod-no-padding'>
 
-            <table class='chartsTable mod-reforms'>
+            <table class='chartsTable mod-reforms mod-bottom-border'>
 
               <thead>
 
@@ -141,6 +141,12 @@
 
             </table>
 
+            <p class='homePage-contentSectionLink'>
+              <%= link_to t('.reforms_link'),
+                          reforms_path,
+                          class: 'link' %>
+            </p>
+
           </div>
 
         </section>
@@ -181,7 +187,7 @@
 
             <% end %>
 
-          <p class='homePage-externalIndicatorsLink'>
+          <p class='homePage-contentSectionLink'>
             <%= link_to t('.external_indicators_link'),
                         external_indicators_path,
                         class: 'link' %>

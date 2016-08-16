@@ -6,6 +6,10 @@ $charts-table-border: solid 3px $color-grey-background;
   width: 100%;
 }
 
+.chartsTable.mod-bottom-border {
+  border-bottom: $charts-table-border;
+}
+
   .chartsTable-row.is-hidden {
     display: none;
   }
@@ -115,11 +119,11 @@ $charts-table-border: solid 3px $color-grey-background;
         display: none;
       }
     }
-    
+
       .chartsTable-cell-text-score {
         vertical-align: middle;
       }
-    
+
       .chartsTable-cell-text-changeIcon {
         display: inline-block;
         width: 1.5rem;
