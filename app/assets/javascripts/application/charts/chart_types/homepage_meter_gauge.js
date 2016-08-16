@@ -66,13 +66,13 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
       data: [chartData.score],
       dataLabels: {
         borderWidth: 0,
-        y: 70,
+        y: helpers.textPosition(.33),
         useHTML: true,
         formatter: function() {
           return highchartsGaugeLabel(
             chartData,
             this,
-            helpers.textSize(2.5),
+            helpers.textSize(4),
             {
               color: 'white'
             }
