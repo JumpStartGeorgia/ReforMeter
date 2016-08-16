@@ -4,7 +4,7 @@ function highchartsBigMeterGaugeOptions(chartData) {
   var color = chartData.color;
 
   var helpers = meterGaugeHelpers(size);
-  var plotBandLabels = helpers.plotBandLabels(['Poor', 'Fair', 'Good']);
+  var plotBandLabels = helpers.plotBandLabels();
 
   function gaugeLabel(dataPoint, isExport) {
     return highchartsGaugeLabel(
