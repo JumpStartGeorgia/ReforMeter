@@ -1,4 +1,4 @@
-$widthHorizontalContentSections: 700px;
+$widthHorizontalContentSections: 800px;
 
 .homePage-reformsIndicatorsContainer {
   display: flex;
@@ -31,6 +31,7 @@ $widthHorizontalContentSections: 700px;
   text-align: right;
 }
 
+$widthHomepageLinksHorizontal: 800px;
 $homepageLinkFillColor: #1599D6;
 $homepageLinkBackgroundColor: white;
 
@@ -39,6 +40,11 @@ $homepageLinkBackgroundColor: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: $widthHomepageLinksHorizontal) {
+    flex-direction: row;
+    transform: translateY(-50%);
+  }
 }
 
   .homePage-bigLinks-item {
@@ -53,6 +59,11 @@ $homepageLinkBackgroundColor: white;
 
     &:not(:last-child) {
       border-bottom: solid 10px $color-grey-background;
+
+      @media (min-width: $widthHomepageLinksHorizontal) {
+        border-bottom: 0;
+        margin-right: 10px;
+      }
     }
   }
 
