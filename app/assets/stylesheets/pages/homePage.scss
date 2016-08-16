@@ -50,6 +50,11 @@ $outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHome
   @media (min-width: $widthHomepageLinksSquare) {
     flex-direction: row;
   }
+
+  @media (min-width: $widthHomepageLinksHorizontal) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
   .homePage-bigLinks-pair {
