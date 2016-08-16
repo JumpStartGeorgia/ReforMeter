@@ -107,7 +107,9 @@ class ExternalIndicator < AddMissingTranslation
     {
       id: "external-indicator-#{id}",
       title: nil,
-      plotBandLabelTexts: ['Poor', 'Fair', 'Good'],
+      # Hacked plot bands by removing Fail so that there are only three plot
+      # band labels (gauges can only display three labels)
+      plotBandLabelTexts: plot_bands.map(&:name) - ['Fail'],
       score: 9,
       change: 1,
       responsiveTo: responsiveToSelector,
