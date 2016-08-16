@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="25.375px" height="36px" viewBox="0 0 25.375 36" enable-background="new 0 0 25.375 36" xml:space="preserve">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25.375px" height="36px" viewBox="0 0 25.375 36" enable-background="new 0 0 25.375 36" xml:space="preserve">
 <g>
 	<g>
-		<rect x="4.549" y="20.905" fill="#33343D" width="1.819" height="7.276"/>
-		<rect x="8.188" y="20.905" fill="#33343D" width="1.818" height="7.276"/>
-		<rect x="11.825" y="20.905" fill="#33343D" width="1.819" height="7.276"/>
-		<rect x="15.463" y="20.905" fill="#33343D" width="1.82" height="7.276"/>
-		<rect x="19.102" y="20.905" fill="#33343D" width="1.819" height="7.276"/>
-		<path fill="#33343D" d="M3.64,19.086h18.19c0.502,0,0.91-0.408,0.91-0.91s-0.408-0.909-0.91-0.909H3.64
+		<rect x="4.549" y="20.905" width="1.819" height="7.276"/>
+		<rect x="8.188" y="20.905" width="1.818" height="7.276"/>
+		<rect x="11.825" y="20.905" width="1.819" height="7.276"/>
+		<rect x="15.463" y="20.905" width="1.82" height="7.276"/>
+		<rect x="19.102" y="20.905" width="1.819" height="7.276"/>
+		<path d="M3.64,19.086h18.19c0.502,0,0.91-0.408,0.91-0.91s-0.408-0.909-0.91-0.909H3.64
 			c-0.503,0-0.909,0.407-0.909,0.909S3.137,19.086,3.64,19.086z"/>
-		<path fill="#33343D" d="M13.645,9.16V6.353h5.457l-1.818-1.819l1.818-1.819h-7.276V9.16c-3.478,0.392-6.294,2.938-7.058,6.288
+		<path d="M13.645,9.16V6.353h5.457l-1.818-1.819l1.818-1.819h-7.276V9.16c-3.478,0.392-6.294,2.938-7.058,6.288
 			h15.935C19.938,12.097,17.121,9.551,13.645,9.16z"/>
-		<rect x="2.73" y="30" fill="#33343D" width="20.01" height="1.819"/>
+		<rect x="2.73" y="30" width="20.01" height="1.819"/>
 	</g>
 </g>
 </svg>
