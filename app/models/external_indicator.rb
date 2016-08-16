@@ -83,6 +83,38 @@ class ExternalIndicator < AddMissingTranslation
   #   indexes: [{id, name, short_name, change_multiplier}]
   #   data: [{time_period, overall_value, overall_change, values[{index/country, value, change}] }]
   # }
+
+  # Custom colors for external indicator gauge charts
+
+  def ext_ind_gauge_colors
+    [
+     {
+       r: '237',
+       g: '59',
+       b: '20',
+       hex: '#ed3b14'
+     },
+     {
+       r: '237',
+       g: '120',
+       b: '24',
+       hex: '#ed7818'
+     }
+   ]
+  end
+
+  def gauge_chart_data(index, responsiveToSelector)
+    {
+      id: "external-indicator-#{id}",
+      title: nil,
+      plotBandLabelTexts: ['Poor', 'Fair', 'Good'],
+      score: 9,
+      change: 1,
+      responsiveTo: responsiveToSelector,
+      color: ext_ind_gauge_colors[index % ext_ind_gauge_colors.length]
+    }
+  end
+
   def self.to_csv(external_indicator_id=nil)
     ext_ind = published.find_by(id: external_indicator_id)
     time = ext_ind.time_periods.sorted
