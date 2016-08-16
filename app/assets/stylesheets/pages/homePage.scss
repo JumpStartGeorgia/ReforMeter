@@ -63,10 +63,10 @@ $outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHome
     height: $heightHomepageBigLink;
 
     &:not(:last-child) {
-      border-bottom: solid 10px $color-grey-background;
+      margin-bottom: 10px;
 
       @media (min-width: $widthHomepageLinksHorizontal) {
-        border-bottom: 0;
+        margin-bottom: 0;
         margin-right: 10px;
       }
     }

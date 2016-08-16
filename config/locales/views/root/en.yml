@@ -41,6 +41,11 @@ en:
       #   standing: What is the Reform Standing as of %{time}?
       # reforms_link: View All Reforms
       # report_link: Download Full Report
+      big_link:
+        find_out_why: Find Out Why
+        reforms: Learn About the Reforms
+        economic_effects: Explore the Economic Effects
+        review_board: Meet the Review Board
       economy_effects: How the Reforms are Affecting the Economy
       reform_status: Reform Standings
       reforms_link: View All Reforms
