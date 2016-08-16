@@ -31,6 +31,54 @@ $widthHorizontalContentSections: 700px;
   text-align: right;
 }
 
+$homepageLinkFillColor: #1599D6;
+$homepageLinkBackgroundColor: white;
+
+.homePage-bigLinks {
+  padding: 20px $padding-main-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+  .homePage-bigLinks-item {
+    display: block;
+    width: 100%;
+    background-color: $homepageLinkBackgroundColor;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-decoration: none;
+    color: $homepageLinkFillColor;
+
+    &:not(:last-child) {
+      border-bottom: solid 10px $color-grey-background;
+    }
+  }
+
+    .homePage-bigLinks-item-icon {
+      display: inline-block;
+      vertical-align: middle;
+      fill: $homepageLinkFillColor;
+      width: 60px;
+      height: 60px;
+    }
+
+    .homePage-bigLinks-item-text {
+      vertical-align: middle;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+  .homePage-bigLinks-item:hover {
+    background-color: $homepageLinkFillColor;
+    color: $homepageLinkBackgroundColor;
+
+    .homePage-bigLinks-item-icon {
+      fill: $homepageLinkBackgroundColor;
+    }
+  }
+
 // .homePage-expertHistoryChart {
 //   height: 150px;
 // }
