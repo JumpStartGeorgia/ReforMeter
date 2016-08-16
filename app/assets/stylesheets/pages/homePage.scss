@@ -11,6 +11,7 @@ $widthHorizontalContentSections: 700px;
 
   .homePage-reformsIndicatorsContainer-reforms {
     @media (min-width: $widthHorizontalContentSections) {
+      max-width: 450px;
       margin-right: 20px;
     }
   }
