@@ -1,3 +1,71 @@
+$widthHomepageIntroHorizontal: 800px;
+
+.homepage-intro {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $widthHomepageIntroHorizontal) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.homepage-introText {
+  padding: 0 $padding-main-content;
+  margin-top: 30px;
+  max-width: 38rem;
+
+  @media (min-width: $widthHomepageIntroHorizontal) {
+    order: 2;
+  }
+}
+
+  .heading.mod-homepage-primary {
+    color: white;
+    font-size: 4rem;
+    line-height: 1.2;
+  }
+
+  .homepage-introText-divider {
+    &:first-child:before {
+      display: none;
+    }
+
+    &:before {
+      content: " ";
+      border: 1px solid white;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      display: block;
+      max-width: 50%;
+    }
+  }
+
+  .homepage-introText-subheading {
+    font-size: 3rem;
+    margin: 20px 0;
+  }
+
+.homepage-primaryGaugeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 450px;
+  margin-top: -45px;
+
+  @media (min-width: $widthHomepageIntroHorizontal) {
+    order: 1;
+  }
+}
+
+.homepage-primaryGaugeDescription {
+  margin: 0 auto;
+  margin-top: -30px;
+  font-size: 1.8rem;
+  text-align: center;
+  width: 18em;
+}
+
 $widthHorizontalContentSections: 800px;
 
 .homePage-reformsIndicatorsContainer {
@@ -29,20 +97,6 @@ $widthHorizontalContentSections: 800px;
 .homePage-contentSectionLink {
   padding: 0 $padding-main-content;
   text-align: right;
-}
-
-.homepage-primaryGaugeContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.homepage-primaryGaugeDescription {
-  margin: 0 auto;
-  margin-top: -30px;
-  font-size: 1.8rem;
-  text-align: center;
-  width: 18em;
 }
 
 .homePage-bigLinks {

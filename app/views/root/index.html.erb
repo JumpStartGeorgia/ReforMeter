@@ -3,21 +3,39 @@
   <div class='topImageContainer mod-homepage'>
     <%= render partial: 'application/navbar_header' %>
 
-    <div class='homepage-primaryGaugeContainer'>
+    <section class='homepage-intro'>
 
-      <%= link_to review_board_show_path(@quarter) do %>
+      <div class='homepage-introText'>
 
-        <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+        <h1 class='heading mod-homepage-primary'>
+          <%= t '.heading' %>
+        </h1>
 
-      <% end %>
+        <div class='homepage-introText-divider'></div>
 
-      <p class='homepage-primaryGaugeDescription'>
-        <%= t '.primary_gauge_description' %>
-      </p>
+        <p class='homepage-introText-subheading'>
+          <%= t '.subheading' %>
+        </p>
+
+      </div>
+
+      <div class='homepage-primaryGaugeContainer'>
+
+        <%= link_to review_board_show_path(@quarter) do %>
+
+          <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+
+        <% end %>
+
+        <p class='homepage-primaryGaugeDescription'>
+          <%= t '.primary_gauge_description' %>
+        </p>
+
+      </div>
 
     </div>
 
-  </div>
+    </section>
 
   <main class='mainContent'>
 
