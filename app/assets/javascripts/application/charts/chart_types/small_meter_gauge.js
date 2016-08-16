@@ -2,7 +2,11 @@ function highchartsSmallMeterGaugeOptions(chartData) {
   var color = chartData.color;
 
   var helpers = meterGaugeHelpers(100);
-  var plotBandLabels = helpers.plotBandLabels(['Poor', 'Fair', 'Good']);
+
+  var plotBandLabels;
+  if (typeof chartData.plotBandLabels !== 'undefined') {
+    plotBandLabels = helpers.plotBandLabels(chartData.plotBandLabels);
+  }
 
   function gaugeLabel(dataPoint, isExport) {
     return highchartsGaugeLabel(
@@ -50,7 +54,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: plotBandLabels.behind(chartData)
+          label: plotBandLabels ? plotBandLabels.behind(chartData) : false
         },{
           borderWidth: 2,
           borderColor: 'white',
@@ -59,7 +63,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: plotBandLabels.onTrack(chartData)
+          label: plotBandLabels ? plotBandLabels.onTrack(chartData) : false
         },{
           borderWidth: 2,
           borderColor: 'white',
@@ -68,7 +72,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
           outerRadius: '100%',
-          label: plotBandLabels.ahead(chartData)
+          label: plotBandLabels ? plotBandLabels.ahead(chartData) : false
         }
       ],
       labels: {

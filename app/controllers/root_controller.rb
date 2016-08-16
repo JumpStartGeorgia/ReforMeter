@@ -58,6 +58,7 @@ class RootController < ApplicationController
       {
         id: "external-indicator-#{external_indicator.id}",
         title: nil,
+        plotBandLabels: ['Poor', 'Fair', 'Good'],
         score: 9,
         change: 1,
         color: ext_ind_chart_colors[index % ext_ind_chart_colors.length]
