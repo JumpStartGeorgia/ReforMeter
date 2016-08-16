@@ -64,7 +64,9 @@ $outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHome
     margin: 0 auto;
 
     @media (min-width: $widthHomepageLinksSquare) {
-      margin-right: 10px;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
     }
 
     @media(min-width: $widthHomepageLinksHorizontal) {
