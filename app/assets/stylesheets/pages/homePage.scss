@@ -44,8 +44,8 @@ $widthHomepageIntroHorizontal: 800px;
   }
 
   .homepage-introText-subheading {
-    font-size: 3rem;
-    margin: 20px 0;
+    font-size: 2.6rem;
+    margin-top: 15px;
   }
 
 .homepage-primaryGaugeContainer {
@@ -69,6 +69,10 @@ $widthHomepageIntroHorizontal: 800px;
 }
 
 $widthHorizontalContentSections: 800px;
+
+.heading.mod-homepage-contentSections {
+  font-size: 2.17rem;
+}
 
 .homePage-reformsIndicatorsContainer {
   display: flex;
@@ -169,6 +173,12 @@ $widthHorizontalContentSections: 800px;
       width: 60px;
       height: 60px;
     }
+
+      .homePage-bigLinks-item-icon.mod-experts {
+        min-width: 53px;
+        width: 53px;
+        padding-right: 7px;
+      }
 
     .homePage-bigLinks-item-text {
       text-transform: uppercase;
