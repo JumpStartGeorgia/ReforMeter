@@ -45,16 +45,6 @@ $widthHorizontalContentSections: 800px;
   width: 18em;
 }
 
-$widthHomepageLinksSquare: 500px;
-$widthHomepageLinksHorizontal: 900px;
-$homepageLinkFillColor: #1599D6;
-$homepageLinkBackgroundColor: white;
-
-$heightHomepageBigLink: 80px;
-$verticalPaddingHomepageBigLinks: 20px;
-// includes padding
-$outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHomepageBigLinks);
-
 .homePage-bigLinks {
   padding: $verticalPaddingHomepageBigLinks $padding-main-content;
   display: flex;

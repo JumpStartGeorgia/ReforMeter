@@ -15,3 +15,14 @@ $color-grey-background: #f3f3f4;
 $color-grey-text: #66666d;
 $color-brand: #1599D6;
 $color-button: #ADB4D1;
+
+// home page
+$widthHomepageLinksHorizontal: 900px;
+$widthHomepageLinksSquare: 500px;
+$homepageLinkFillColor: #1599D6;
+$homepageLinkBackgroundColor: white;
+
+$heightHomepageBigLink: 80px;
+$verticalPaddingHomepageBigLinks: 20px;
+// includes padding
+$outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHomepageBigLinks);

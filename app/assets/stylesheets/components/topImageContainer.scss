@@ -20,7 +20,9 @@
   justify-content: space-between;
   box-sizing: border-box;
 
-  @media (min-width: $width-content-overlap-top-image) {
-    padding-bottom: 30px + $height-content-heading;
+  padding-bottom: 30px;
+
+  @media (min-width: $widthHomepageLinksHorizontal) {
+    padding-bottom: 30px + $outerHeightHomepageBigLinks/2;
   }
 }
