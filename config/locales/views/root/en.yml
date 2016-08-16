@@ -41,6 +41,7 @@ en:
       #   standing: What is the Reform Standing as of %{time}?
       # reforms_link: View All Reforms
       # report_link: Download Full Report
+      primary_gauge_description: This is a composite score measuring Georgia's reform progress
       big_link:
         find_out_why: Find Out Why
         reforms: Learn About the Reforms

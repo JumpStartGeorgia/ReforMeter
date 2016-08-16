@@ -31,6 +31,20 @@ $widthHorizontalContentSections: 800px;
   text-align: right;
 }
 
+.homepage-primaryGaugeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage-primaryGaugeDescription {
+  margin: 0 auto;
+  margin-top: -30px;
+  font-size: 1.8rem;
+  text-align: center;
+  width: 18em;
+}
+
 $widthHomepageLinksSquare: 500px;
 $widthHomepageLinksHorizontal: 900px;
 $homepageLinkFillColor: #1599D6;
