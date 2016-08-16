@@ -34,16 +34,20 @@ $widthHorizontalContentSections: 800px;
 $widthHomepageLinksHorizontal: 800px;
 $homepageLinkFillColor: #1599D6;
 $homepageLinkBackgroundColor: white;
+$heightHomepageBigLink: 80px;
+$verticalPaddingHomepageBigLinks: 20px;
+// includes padding
+$outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHomepageBigLinks);
 
 .homePage-bigLinks {
-  padding: 20px $padding-main-content;
+  padding: $verticalPaddingHomepageBigLinks $padding-main-content;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (min-width: $widthHomepageLinksHorizontal) {
     flex-direction: row;
-    transform: translateY(-50%);
+    margin-top: -1/2 * $outerHeightHomepageBigLinks;
   }
 }
 
@@ -56,6 +60,7 @@ $homepageLinkBackgroundColor: white;
     vertical-align: middle;
     text-decoration: none;
     color: $homepageLinkFillColor;
+    height: $heightHomepageBigLink;
 
     &:not(:last-child) {
       border-bottom: solid 10px $color-grey-background;
