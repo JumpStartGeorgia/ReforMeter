@@ -24,9 +24,15 @@
   .heading-icon {
     margin-right: 10px;
     min-width: 26px;
+    vertical-align: middle;
+  }
+
+  .heading-icon.mod-experts {
+    max-width: 40px;
   }
 
   .heading-text {
+    vertical-align: middle;
   }
 
   .heading-coloredText {
