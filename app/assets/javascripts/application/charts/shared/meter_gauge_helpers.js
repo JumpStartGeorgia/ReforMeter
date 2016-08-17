@@ -86,7 +86,8 @@ function meterGaugeHelpers(size, options, chartData) {
     // Returns the base properties to position and style certain texts
     // correctly as plot band labels on a meter gauge. Only works for
     // certain texts; will otherwise throw an error.
-    function plotBandLabels(texts) {
+    function plotBandLabels(texts, options) {
+      if (!options) options = {};
 
       // Properties for labels regardless of text
       var plotBandBases = [
@@ -117,29 +118,64 @@ function meterGaugeHelpers(size, options, chartData) {
 
       if (arraysEqual(texts, englishDefaultText)) {
 
-        textSpecificProperties = [
-          {
-            x: meterGauge.textPosition(.215),
-            y: meterGauge.textPosition(.28),
-            style: {
-              fontSize: meterGauge.textSize(1.6),
+        if (size < 300) {
+
+          textSpecificProperties = [
+            {
+              x: meterGauge.textPosition(.215),
+              y: meterGauge.textPosition(.28),
+              style: {
+                fontSize: meterGauge.textSize(1.6)
+              }
+            },
+            {
+              x: meterGauge.textPosition(.41),
+              y: meterGauge.textPosition(.07),
+              style: {
+                fontSize: meterGauge.textSize(1.6)
+              }
+            },
+            {
+              x: meterGauge.textPosition(.805),
+              y: meterGauge.textPosition(.175),
+              style: {
+                fontSize: meterGauge.textSize(1.6)
+              }
             }
-          },
-          {
-            x: meterGauge.textPosition(.41),
-            y: meterGauge.textPosition(.07),
-            style: {
-              fontSize: meterGauge.textSize(1.6),
+          ];
+
+        } else {
+
+          textSpecificProperties = [
+            {
+              x: meterGauge.textPosition(.215),
+              y: meterGauge.textPosition(.26),
+              style: {
+                fontSize: meterGauge.textSize(1.2),
+                fontWeight: 600
+              }
+            },
+            {
+              x: meterGauge.textPosition(.44),
+              y: meterGauge.textPosition(.1),
+              style: {
+                fontSize: meterGauge.textSize(1.2),
+                fontWeight: 600
+              }
+            },
+            {
+              x: meterGauge.textPosition(.825),
+              y: meterGauge.textPosition(.195),
+              style: {
+                fontSize: meterGauge.textSize(1.2),
+                fontWeight: 600
+              }
             }
-          },
-          {
-            x: meterGauge.textPosition(.805),
-            y: meterGauge.textPosition(.175),
-            style: {
-              fontSize: meterGauge.textSize(1.6),
-            }
-          }
-        ];
+          ];
+
+        }
+
+
 
       } else if (arraysEqual(texts, georgianDefaultText)) {
 
