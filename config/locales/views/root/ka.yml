@@ -11,12 +11,23 @@ ka:
       choose: არჩევა
       download: გადმოწერა
       title: ჩამოტვირთეთ მონაცემები და ანგარიშები
+    economic_effects:
+      associated_reforms: რეფორმები, რომლებიც გავლენას ახდენენ ამ იდიკატორზე
+      select_indicator: გადადი ინდიკატორზე
+      title: ეკონომიკური ეფექტები
     index:
       big_link:
         economic_effects: დააკვირდი ცვილებებს ეკონომიკაში
         find_out_why: გაიგე რატომ
         reforms: გაიგე მეტი რეფორმებზე
         review_board: გაიცანი შეფასებისსაბჭო
+      economy_effects: რა გავლენას ახდენენ რეფორმები ეკონომიკაზე
+      external_indicators_link: ყველა ეკონომიკური ეფექტის ნახვა
+      heading: რა მდგომარეობაა საქართველოში?
+      primary_gauge_description: საქართველოში რეფორმების პროგრესის შეფასების ქულა
+      reform_status: რეფორმების მდგომარეობა
+      reforms_link: ყველა რეფორმის ნახვა
+      subheading: რეფორმების პროგრესის საზომი
     reform_show:
       title: 'რეფორმა: %{name}-ის %{time}-სთვის'
     reforms:
