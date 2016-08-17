@@ -14,12 +14,12 @@ class RootController < ApplicationController
       change: @quarter.expert_survey.overall_change
     }]
 
-    surveys = ReformSurvey.all.select{|x| x.quarter_id == @quarter.id}
+    @surveys = ReformSurvey.all.select{|x| x.quarter_id == @quarter.id}
 
-    surveys.each do |survey|
-      reform = @reforms.select{|x| x.id == survey.reform_id}.first
+    @reforms.each do |reform|
+      survey = @surveys.select { |survey| survey.reform_id === reform.id }.first
 
-      next unless reform
+      next unless survey
 
       gon.charts << {
         id: "reform-government-#{@quarter.slug}-#{reform.slug}",
