@@ -28,6 +28,11 @@ ka:
         time: დროის მონაკვეთი
       title: შეფასების საბჭო
     index:
+      big_link:
+        find_out_why: გაიგე რატომ
+        reforms: გაიგე მეტი რეფორმებზე
+        economic_effects: დააკვირდი ცვილებებს ეკონომიკაში
+        review_board: გაიცანი შეფასებისსაბჭო
     reform_show:
       title: "რეფორმა: %{name}-ის %{time}-სთვის"
     reforms:
