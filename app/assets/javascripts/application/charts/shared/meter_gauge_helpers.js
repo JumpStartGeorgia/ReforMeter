@@ -6,12 +6,26 @@
   - label score font size
 */
 
-function meterGaugeHelpers(size, options) {
+function meterGaugeHelpers(size, options, chartData) {
   var meterGauge = {};
+
+  if (!chartData) chartData = {};
 
   meterGauge.chartWidth = size * 1.125;
   meterGauge.chartHeight = size * 1.1;
   meterGauge.paneSize = size;
+
+  meterGauge.min = chartData.min ? chartData.min : 0;
+  meterGauge.max = chartData.max ? chartData.max : 10;
+
+  minMaxRange = meterGauge.max - meterGauge.min;
+
+  meterGauge.plotBandRanges = [
+    meterGauge.min,
+    (minMaxRange * 1/3) + meterGauge.min,
+    (minMaxRange * 2/3) + meterGauge.min,
+    meterGauge.max
+  ];
 
   meterGauge.plotBandLabelForScore = function(score, texts) {
     if (texts === null) return null;
@@ -24,11 +38,11 @@ function meterGaugeHelpers(size, options) {
 
     var plotBandLabel;
 
-    if (score >= 0 && score <= 3.3) {
+    if (score >= meterGauge.plotBandRanges[0] && score <= meterGauge.plotBandRanges[1]) {
       plotBandLabel = texts[0];
-    } else if (score > 3.3 && score <= 6.6) {
+    } else if (score > meterGauge.plotBandRanges[1] && score <= meterGauge.plotBandRanges[2]) {
       plotBandLabel = texts[1];
-    } else if (score > 6.6 && score <= 10) {
+    } else if (score > meterGauge.plotBandRanges[2] && score <= meterGauge.plotBandRanges[3]) {
       plotBandLabel = texts[2];
     } else {
       throw new Error('No meter gauge plot band label available for score ' + score)

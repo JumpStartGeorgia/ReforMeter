@@ -104,12 +104,15 @@ class ExternalIndicator < AddMissingTranslation
   end
 
   def gauge_chart_data(index, responsiveToSelector)
+    most_recent_data_point = format_for_charting[:series][0][:data].last
     {
       id: "external-indicator-#{id}",
       title: nil,
       plotBandLabelTexts: plot_bands.map(&:name),
-      score: 9,
-      change: 1,
+      min: min,
+      max: max,
+      score: most_recent_data_point[:y],
+      change: most_recent_data_point[:change],
       responsiveTo: responsiveToSelector,
       color: ext_ind_gauge_colors[index % ext_ind_gauge_colors.length]
     }
