@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     end
 
     get '/about' => 'root#about'
-    get '/external_indicators' => 'root#external_indicators'
+    get '/economic_effects' => 'root#economic_effects'
     get '/download_data_and_reports' => 'root#download_data_and_reports'
     post '/download_data_and_reports' => 'root#download_data_and_reports'
     get '/reforms' => 'root#reforms'

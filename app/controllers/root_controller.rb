@@ -105,7 +105,7 @@ class RootController < ApplicationController
     end
   end
 
-  def external_indicators
+  def economic_effects
     @most_recent_quarter = Quarter.published.latest
     @external_indicators = ExternalIndicator.published.sorted_for_list_page
 
