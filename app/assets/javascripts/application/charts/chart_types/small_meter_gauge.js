@@ -39,7 +39,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
   var options = {
 
     chart: {
-      height: chartData.title ? '150' : '135',
+      height: chartData.title ? size + 50 + '' : size + 15 + '',
       width: helpers.chartWidth
     },
 
@@ -99,7 +99,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
     },
 
     pane: {
-      size: helpers.paneSize
+      size: helpers.paneSize,
+      center: ['50%', '58%']
     },
 
     plotOptions: {

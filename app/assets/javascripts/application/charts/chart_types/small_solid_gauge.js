@@ -34,7 +34,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
   return {
   	chart: {
     	type: 'solidgauge',
-      height: chartData.title ? '195' : '135'
+      height: chartData.title ? '195' : '115'
     },
 
     exporting: {
@@ -67,7 +67,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
     },
 
     pane: {
-      center: ['50%', '65%'],
+      center: ['50%', '58%'],
       size: '100',
       startAngle: -90,
       endAngle: 90,
