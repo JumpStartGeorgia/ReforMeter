@@ -11,7 +11,7 @@
 #
 # To load seeds with all variables set to true:
 #
-# rake db:seed create_user_accounts=true delete_page_content=true delete_reform_colors=true delete_test_data=true load_test_data=true
+# bundle exec rake db:seed create_user_accounts=true delete_page_content=true delete_reform_colors=true delete_test_data=true load_test_data=true
 
 roles = %w(super_admin site_admin content_manager)
 roles.each do |role|
@@ -324,9 +324,9 @@ if ENV['load_test_data'].present?
   ei.indices.build(name: 'Consumer Confidence Index', short_name: 'CCI', sort_order: 2)
 
   # plot bands
-  ei.plot_bands.build(name: 'Negative', from: -100, to: -33)
-  ei.plot_bands.build(name: 'Neutral', from: -33, to: 33)
-  ei.plot_bands.build(name: 'Positive', from: 33, to: 100)
+  ei.plot_bands.build(name_en: 'Negative', name_ka: 'უარყოფითი', from: -100, to: -33)
+  ei.plot_bands.build(name_en: 'Neutral', name_ka: 'საშუალო', from: -33, to: 33)
+  ei.plot_bands.build(name_en: 'Positive', name_ka: 'დადებითი', from: 33, to: 100)
 
   # times
   csv_data.map{|x| x[0]}.each_with_index do |time, index|
@@ -373,9 +373,9 @@ if ENV['load_test_data'].present?
   ei.indices.build(name: 'Gini coefficient as measure of income inequality', short_name: 'Gini', change_multiplier: -1, sort_order: 10)
 
   # plot bands
-  ei.plot_bands.build(name: 'Poor', from: 0, to: 33)
-  ei.plot_bands.build(name: 'Fair', from: 34, to: 66)
-  ei.plot_bands.build(name: 'Good', from: 67, to: 100)
+  ei.plot_bands.build(name_en: 'Poor', name_ka: 'ცუდი', from: 0, to: 33)
+  ei.plot_bands.build(name_en: 'Fair', name_ka: 'საშუალო', from: 34, to: 66)
+  ei.plot_bands.build(name_en: 'Good', name_ka: 'კარგი', from: 67, to: 100)
 
   # times
   csv_data.map{|x| x[0]}.each_with_index do |time, index|
