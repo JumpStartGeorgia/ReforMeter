@@ -21,7 +21,18 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
   if (changeIcon && [-1, 0, 1].includes(chartData.change)) {
     var icon = change_icon(chartData.change);
 
-    gaugeLabel += '<span style="vertical-align: middle; width: ' + fontSize + ';height: ' + fontSize + ';display: inline-block;">' + icon + '</span>';
+    var changeIconStyles = [
+      'vertical-align: middle;',
+      'width: ' + fontSize + ';',
+      'height: ' + fontSize + ';',
+      'display: inline-block;'
+    ]
+
+    if (args.maxIconWidth) {
+      changeIconStyles.push('max-width: ' + args.maxIconWidth + ';')
+    }
+
+    gaugeLabel += '<span style="' + changeIconStyles.join(' ') + '">' + icon + '</span>';
   }
 
   if (args.secondLineText) {

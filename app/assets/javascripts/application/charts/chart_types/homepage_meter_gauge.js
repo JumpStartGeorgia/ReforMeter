@@ -74,7 +74,8 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
             this,
             helpers.textSize(4),
             {
-              color: 'white'
+              color: 'white',
+              maxIconWidth: '55px'
             }
           );
         }
