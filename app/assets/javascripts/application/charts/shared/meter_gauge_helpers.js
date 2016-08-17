@@ -229,7 +229,59 @@ function meterGaugeHelpers(size, options, chartData) {
           }
         ];
 
+      } else if (arraysEqual(texts, ['ცუდი', 'საშუალო', 'კარგი'])) {
+
+        textSpecificProperties = [
+          {
+            x: meterGauge.textPosition(.185),
+            y: meterGauge.textPosition(.225),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          },
+          {
+            x: meterGauge.textPosition(.44),
+            y: meterGauge.textPosition(-.05),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          },
+          {
+            x: meterGauge.textPosition(.8),
+            y: meterGauge.textPosition(0),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          }
+        ];
+
       } else if (arraysEqual(texts, ['Negative', 'Neutral', 'Positive'])) {
+
+        textSpecificProperties = [
+          {
+            x: meterGauge.textPosition(.185),
+            y: meterGauge.textPosition(.225),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          },
+          {
+            x: meterGauge.textPosition(.44),
+            y: meterGauge.textPosition(-.05),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          },
+          {
+            x: meterGauge.textPosition(.8),
+            y: meterGauge.textPosition(0),
+            style: {
+              fontSize: meterGauge.textSize(1.5),
+            }
+          }
+        ];
+
+      } else if (arraysEqual(texts, ['უარყოფითი', 'საშუალო', 'დადებითი'])) {
 
         textSpecificProperties = [
           {
