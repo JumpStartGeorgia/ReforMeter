@@ -3,16 +3,16 @@ en:
   activerecord:
     attributes:
       quarter:
-        quarter: Quarter
-        year: Year
-        time_period: Time Period
-        is_public: Is Public?
-        summary_good: Good Summary Item
-        summary_bad: Bad Summary Item
-        report: Quarterly Report
         expert_survey: Review Board Survey
-        reform_surveys: Reform Surveys
+        is_public: Is Public?
         news: News
+        quarter: Quarter
+        reform_surveys: Reform Surveys
+        report: Quarterly Report
+        summary_bad: Bad Summary Item
+        summary_good: Good Summary Item
+        time_period: Time Period
+        year: Year
     models:
       quarter:
         one: Quarter

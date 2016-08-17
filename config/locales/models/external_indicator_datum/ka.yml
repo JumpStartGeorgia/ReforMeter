@@ -3,10 +3,10 @@ ka:
   activerecord:
     attributes:
       external_indicator_datum:
-        value: Value
         change: Change
         country_id: Country
         index_id: Composite Index
+        value: Value
     models:
       external_indicator_datum:
         one: Datum

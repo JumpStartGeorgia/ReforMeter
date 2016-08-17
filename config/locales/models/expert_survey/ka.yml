@@ -3,36 +3,36 @@ ka:
   activerecord:
     attributes:
       expert_survey:
-        quarter_id: კვარტალი
-        summary: შეჯამება
-        details: დეტალები
-        experts: შეფასების საბჭო
-        scores: ქულები
-        overall_score: ზოგადი შეფასება
         category1_score: შესრულება
         category2_score: მიზნები
         category3_score: პროგრესი
-    models:
-      expert_survey:
-        one: კითხვარი შეფასების საბჭო
-        other: კითხვარები შეფასების საბჭო
+        details: დეტალები
+        experts: შეფასების საბჭო
+        overall_score: ზოგადი შეფასება
+        quarter_id: კვარტალი
+        scores: ქულები
+        summary: შეჯამება
     errors:
       models:
         expert_survey:
           attributes:
-            overall_score:
-              inclusion: უნდა იყოს 0-დან 10-მდე
+            category1_change:
+              inclusion: უნდა იყოს -1,0 ან 1
             category1_score:
               inclusion: უნდა იყოს 0-დან 10-მდე
+            category2_change:
+              inclusion: უნდა იყოს -1,0 ან 1
             category2_score:
               inclusion: უნდა იყოს 0-დან 10-მდე
+            category3_change:
+              inclusion: უნდა იყოს -1,0 ან 1
             category3_score:
               inclusion: უნდა იყოს 0-დან 10-მდე
             overall_change:
               inclusion: უნდა იყოს -1,0 ან 1
-            category1_change:
-              inclusion: უნდა იყოს -1,0 ან 1
-            category2_change:
-              inclusion: უნდა იყოს -1,0 ან 1
-            category3_change:
-              inclusion: უნდა იყოს -1,0 ან 1
+            overall_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
+    models:
+      expert_survey:
+        one: კითხვარი შეფასების საბჭო
+        other: კითხვარები შეფასების საბჭო

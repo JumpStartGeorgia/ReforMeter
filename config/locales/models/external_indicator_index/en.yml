@@ -3,11 +3,11 @@ en:
   activerecord:
     attributes:
       external_indicator_index:
+        change_multiplier: Change Multiplier
+        description: Description
         name: Name
         short_name: Short Name
-        description: Description
         sort_order: Sort Order
-        change_multiplier: Change Multiplier
     models:
       external_indicator_index:
         one: Composite Index

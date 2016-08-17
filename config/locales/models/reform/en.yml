@@ -5,10 +5,10 @@ en:
       reform:
         is_active: Is Active?
         is_highlight: Show on Home Page?
-        name: Name
-        summary: Summary
         methodology: Methodology
+        name: Name
         reform_color_id: Reform Color
+        summary: Summary
     models:
       reform:
         one: Reform

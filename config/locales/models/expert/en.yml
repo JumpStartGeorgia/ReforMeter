@@ -3,10 +3,10 @@ en:
   activerecord:
     attributes:
       expert:
-        is_active: Is Public?
         avatar: Photo
-        name: Name
         bio: Short Bio
+        is_active: Is Public?
+        name: Name
     models:
       expert:
         one: Board Member

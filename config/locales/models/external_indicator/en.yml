@@ -3,22 +3,22 @@ en:
   activerecord:
     attributes:
       external_indicator:
-        is_public: Is Public?
-        show_on_home_page: Show on Home Page?
-        title: Title
-        subtitle: Subtitle
+        chart_type: Chart Type
+        countries: Countries
         description: Description
         indicator_type: Indicator Type
-        chart_type: Chart Type
-        scale_type: Scale Type
-        range: Range
-        min: Min
-        max: Max
-        countries: Countries
         indices: Indices
+        is_public: Is Public?
+        max: Max
+        min: Min
         plot_bands: Plot Bands
-        time_periods: Time Periods
+        range: Range
         reforms: Reforms
+        scale_type: Scale Type
+        show_on_home_page: Show on Home Page?
+        subtitle: Subtitle
+        time_periods: Time Periods
+        title: Title
     models:
       external_indicator:
         one: External Indicator

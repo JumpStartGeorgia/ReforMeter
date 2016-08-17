@@ -3,62 +3,62 @@ ka:
   activerecord:
     attributes:
       reform_survey:
-        quarter_id:  მეოთხედი
-        reform_id :  რეფორმა
-        summary: შეჯამება
-        scores: ქულები
-        government_summary: მთავრობის შეჯამება
-        stakeholder_summary: დაინტერესებულ მხარეთა შეჯამება
-        government_overall_score: ზოგადი შეფასება
         government_category1_score: ინსტიტუციური მოწყობა
         government_category2_score: კომპეტენციის გაძლიერება
         government_category3_score: ინფრასტრუქტურა და ბიუჯეტი
         government_category4_score: სამართლებრივი ჩარჩო
-        stakeholder_overall_score: ზოგადი შეფასებაF
+        government_overall_score: ზოგადი შეფასება
+        government_summary: მთავრობის შეჯამება
+        quarter_id: მეოთხედი
+        reform_id: რეფორმა
+        scores: ქულები
         stakeholder_category1_score: ვითარება
         stakeholder_category2_score: მიზნები
         stakeholder_category3_score: პროგრესი
-    models:
-      reform_survey:
-        one: კითხვარი
-        other: რეფორმების კითხვარი
+        stakeholder_overall_score: ზოგადი შეფასებაF
+        stakeholder_summary: დაინტერესებულ მხარეთა შეჯამება
+        summary: შეჯამება
     errors:
       models:
         reform_survey:
           attributes:
-            government_overall_score:
-              inclusion: უნდა იყოს 0-დან 10-მდე
+            government_category1_change:
+              inclusion: უნდა იყოს -1,0 ან 1
             government_category1_score:
               inclusion: უნდა იყოს 0-დან 10-მდე
+            government_category2_change:
+              inclusion: უნდა იყოს -1,0 ან 1
             government_category2_score:
               inclusion: უნდა იყოს 0-დან 10-მდე
+            government_category3_change:
+              inclusion: უნდა იყოს -1,0 ან 1
             government_category3_score:
               inclusion: უნდა იყოს 0-დან 10-მდე
+            government_category4_change:
+              inclusion: უნდა იყოს -1,0 ან 1
             government_category4_score:
-              inclusion: უნდა იყოს 0-დან 10-მდე
-            stakeholder_overall_score:
-              inclusion: უნდა იყოს 0-დან 10-მდე
-            stakeholder_category1_score:
-              inclusion: უნდა იყოს 0-დან 10-მდე
-            stakeholder_category2_score:
-              inclusion: უნდა იყოს 0-დან 10-მდე
-            stakeholder_category3_score:
               inclusion: უნდა იყოს 0-დან 10-მდე
             government_overall_change:
               inclusion: უნდა იყოს -1,0 ან 1
-            government_category1_change:
-              inclusion: უნდა იყოს -1,0 ან 1
-            government_category2_change:
-              inclusion: უნდა იყოს -1,0 ან 1
-            government_category3_change:
-              inclusion: უნდა იყოს -1,0 ან 1
-            government_category4_change:
-              inclusion: უნდა იყოს -1,0 ან 1
-            stakeholder_overall_change:
-              inclusion: უნდა იყოს -1,0 ან 1
+            government_overall_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
             stakeholder_category1_change:
               inclusion: უნდა იყოს -1,0 ან 1
+            stakeholder_category1_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
             stakeholder_category2_change:
               inclusion: უნდა იყოს -1,0 ან 1
+            stakeholder_category2_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
             stakeholder_category3_change:
               inclusion: უნდა იყოს -1,0 ან 1
+            stakeholder_category3_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
+            stakeholder_overall_change:
+              inclusion: უნდა იყოს -1,0 ან 1
+            stakeholder_overall_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
+    models:
+      reform_survey:
+        one: კითხვარი
+        other: რეფორმების კითხვარი

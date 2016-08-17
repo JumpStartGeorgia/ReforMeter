@@ -3,11 +3,11 @@ ka:
   activerecord:
     attributes:
       news:
+        content: შიგთავსი
+        image: სურათი
         quarter_id: კვარტალი
         reform_id: რეფორმა
-        image: სურათი
         title: სათაური
-        content: შიგთავსი
         url: ამბის URL-ი
     models:
       news:

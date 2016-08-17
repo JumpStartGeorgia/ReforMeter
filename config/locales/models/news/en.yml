@@ -3,11 +3,11 @@ en:
   activerecord:
     attributes:
       news:
+        content: Content
+        image: Image
         quarter_id: Quarter
         reform_id: Reform
-        image: Image
         title: Title
-        content: Content
         url: URL to Story
     models:
       news:

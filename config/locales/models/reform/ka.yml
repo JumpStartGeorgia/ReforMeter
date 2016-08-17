@@ -5,10 +5,10 @@ ka:
       reform:
         is_active: არის თუ არა აქტიური?
         is_highlight: ვაჩვენოთ გვერდზე?
-        name: სახელი
-        summary: შეჯამება
         methodology: მეთოდოლოგია
+        name: სახელი
         reform_color_id: რეფორმის ფერი
+        summary: შეჯამება
     models:
       reform:
         one: რეფორმა

@@ -3,11 +3,11 @@ en:
   activerecord:
     attributes:
       reform_color:
-        hex: Hex Code
-        r: Red
-        g: Green
         b: Blue
         color_code: Color Code
+        g: Green
+        hex: Hex Code
+        r: Red
         reform: Assigned to Reform
     models:
       reform_color:

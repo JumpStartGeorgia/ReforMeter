@@ -1,46 +1,46 @@
 ---
 ka:
   admin:
+    expert_surveys:
+      form:
+        experts_deselect_all: ყველა წევრის მონიშვნის გაუქმება
+        experts_explanation: კითხვარის განხილვაში ჩართულ ყველა წევრთა მონიშვნა.
+        experts_select_all: ყველა წევრის მონიშვნა
+        no_experts: წევრები არ არიან დამატებული. თქვევნ უნდა დაამატოთ ისინი, რათა მიამაგროთ საბჭოს წევრთა კითხვარს.
+        score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
+      show:
+        title: საბჭოს დასკვნით %{time}-ისთვის
+    external_indicators:
+      data:
+        title: Manage Data for %{name}
+      form:
+        country_explanation: Use the section below to enter the countries that you want to compare for this external indicator. Use the up and down arrows to set the order of the countries.
+        index_explanation: Use the section below to enter the composite indices that make up this external indicator. Short Name is what will appear on the web page and the Name and Description are what will appear in the popup box when the user hovers overs the index. Use the up and down arrows to set the order of the indices.
+        plot_band_explanation: A Plot Band is a group of labels that appear on the y-axis to help give context to the values (i.e., behind, on track, ahead). Plot bands are optional. If you want plot bands, enter the text and the range of the band.
+        range_explanation: Use the Min and Max fields to force the chart to show a specific range on the y-axis. You can enter Min and/or Max. If a range is not inputted, then the chart will automatically adjust the y-axis range to fit the data.
+        reform_explanation: Select which Reforms you want this external indicator to be associated with. You can select more than one.
+      show:
+        title: 'External Indicator: %{name}'
     index:
-      title: ადმინის სექცია
       explanations:
-        quarters: ისეთი მონაცემების მართვა, როგორიცაა, კვარტალური ანგარიში, საბჭოს წევრთა კვლევა, რეფორმის კითხვარები და ახალი ამბები.
-        reforms: ისეთი მონაცემების მართვა, როგორიცაა, სახელი, შეჯამება, მეთოდოლოგია, ფერი და მთავარ გვერდზე გამოტანა.
-        reform_colors: რეფორმების შესაძლო ფერების მართვა.
         experts: საბჭოს წევრთა მონაცემების მართვა, მაგალითდ, სახელი, ბიოგრაფია და ფოტო.
-        page_contents: ისეთი კონტენტის მართვა, რომელიც ჩნდება შესახებ, მეთოდოლოგიისა და სხვა გვერდებზე.
-        users: იმის მართვა, თუ ვის აქვს გვერდზე მონაცემთა რედაქტირების უფლება.
         external_indicators: Manage the external indciator settings and data.
+        page_contents: ისეთი კონტენტის მართვა, რომელიც ჩნდება შესახებ, მეთოდოლოგიისა და სხვა გვერდებზე.
+        quarters: ისეთი მონაცემების მართვა, როგორიცაა, კვარტალური ანგარიში, საბჭოს წევრთა კვლევა, რეფორმის კითხვარები და ახალი ამბები.
+        reform_colors: რეფორმების შესაძლო ფერების მართვა.
+        reforms: ისეთი მონაცემების მართვა, როგორიცაა, სახელი, შეჯამება, მეთოდოლოგია, ფერი და მთავარ გვერდზე გამოტანა.
+        users: იმის მართვა, თუ ვის აქვს გვერდზე მონაცემთა რედაქტირების უფლება.
+      title: ადმინის სექცია
     quarters:
       index:
         set_time_period: აირჩიეთ დროის პერიოდი, რომლის რედაქტირებაც გსურთ
         table_header:
-          reform: რეფორმა
           government: მთავრობა
+          reform: რეფორმა
           stakeholder: დაინტერესებული პირი
-    expert_surveys:
-      form:
-        no_experts: წევრები არ არიან დამატებული. თქვევნ უნდა დაამატოთ ისინი, რათა მიამაგროთ საბჭოს წევრთა კითხვარს.
-        experts_explanation: კითხვარის განხილვაში ჩართულ ყველა წევრთა მონიშვნა.
-        experts_select_all: ყველა წევრის მონიშვნა
-        experts_deselect_all: ყველა წევრის მონიშვნის გაუქმება
-        score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
-      show:
-        title: საბჭოს დასკვნით %{time}-ისთვის
     reform_surveys:
       form:
         government_score_explanation: ყველა ქულა პროცენტია და უდნა იყოს 0-დან 100-მდე.
         stakeholder_score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
       show:
-        title: "რეფორმა: %{name}-ის %{time}-სთვის"
-    external_indicators:
-      form:
-        range_explanation: Use the Min and Max fields to force the chart to show a specific range on the y-axis. You can enter Min and/or Max. If a range is not inputted, then the chart will automatically adjust the y-axis range to fit the data.
-        country_explanation: Use the section below to enter the countries that you want to compare for this external indicator. Use the up and down arrows to set the order of the countries.
-        index_explanation: Use the section below to enter the composite indices that make up this external indicator. Short Name is what will appear on the web page and the Name and Description are what will appear in the popup box when the user hovers overs the index. Use the up and down arrows to set the order of the indices.
-        plot_band_explanation: A Plot Band is a group of labels that appear on the y-axis to help give context to the values (i.e., behind, on track, ahead). Plot bands are optional. If you want plot bands, enter the text and the range of the band.
-        reform_explanation: Select which Reforms you want this external indicator to be associated with. You can select more than one.
-      data:
-        title: Manage Data for %{name}
-      show:
-        title: "External Indicator: %{name}"
+        title: 'რეფორმა: %{name}-ის %{time}-სთვის'
