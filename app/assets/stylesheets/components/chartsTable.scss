@@ -136,10 +136,17 @@ $charts-table-border: solid 3px $color-grey-background;
     }
 }
 
+$width-homepage-charts-table-show-charts: 410px;
+
 .chartsTable.mod-homepage {
 
-  .chartsTable-cell.mod-head:not(.mod-first-column) {
+  .chartsTable-cell:not(.mod-first-column) {
     text-align: center;
+
+    @media (min-width: $width-homepage-charts-table-show-charts) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   .chartsTable-row {
@@ -149,13 +156,13 @@ $charts-table-border: solid 3px $color-grey-background;
   .chartsTable-cell-chart {
     display: none;
 
-    @media (min-width: 350px) {
+    @media (min-width: $width-homepage-charts-table-show-charts) {
       display: block;
     }
   }
 
   .chartsTable-cell-text {
-    @media (min-width: 350px) {
+    @media (min-width: $width-homepage-charts-table-show-charts) {
       display: none;
     }
   }
