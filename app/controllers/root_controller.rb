@@ -41,36 +41,6 @@ class RootController < ApplicationController
     gon.charts += @external_indicators.each_with_index.map do |external_indicator, index|
       external_indicator.gauge_chart_data(index, '.js-external-indicator-gauges-container')
     end
-
-    # @home_page_about = PageContent.find_by(name: 'home_page_about')
-    #
-    # @reforms = Reform.in_quarter(@quarter.id).active.highlight.sorted if @quarter
-    #
-    # gon.chart_download = highchart_export_config
-    # gon.change_icons = view_context.change_icons
-    #
-    # gon.charts = [
-    #   Quarter.expert_survey_data_for_charting(
-    #     overall_score_only: true,
-    #     id: 'expert-history'
-    #   ), {
-    #     id: 'reform-current-overall',
-    #     title: nil,
-    #     score: @quarter.expert_survey.overall_score.to_f,
-    #     change: @quarter.expert_survey.overall_change
-    #   }
-    # ]
-    #
-    # @reform_current_quarter_values = []
-    # quarter_ids = Quarter.published.recent.pluck(:id)
-    # @reforms.each do |reform|
-    #   gon.charts << Quarter.reform_survey_data_for_charting(
-    #     reform.id,
-    #     overall_score_only: true,
-    #     quarter_ids: quarter_ids,
-    #     id: "reform-#{reform.slug}")
-    #   @reform_current_quarter_values << ReformSurvey.overall_values_only(@quarter.id, reform.id)
-    # end
   end
 
   def about

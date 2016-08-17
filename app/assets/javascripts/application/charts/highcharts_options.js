@@ -44,20 +44,12 @@ function highchartsOptions(chartType, chartData) {
       return ratingHistoryTimeSeriesOptions(chartData);
     }
 
-    case 'small-rating-history-time-series': {
-      return smallRatingHistoryTimeSeriesOptions(chartData);
-    }
-
     case 'percentage-history-time-series': {
       return percentageHistoryTimeSeriesOptions(chartData);
     }
 
     case 'percentage-colorful-reforms-history-time-series': {
       return percentageColorfulReformsHistoryTimeSeriesOptions(chartData);
-    }
-
-    case 'mini-time-series': {
-      return miniTimeSeries(chartData);
     }
 
     case 'small-meter-gauge': {
