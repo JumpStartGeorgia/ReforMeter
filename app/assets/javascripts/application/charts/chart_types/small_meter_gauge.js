@@ -8,7 +8,9 @@ function highchartsSmallMeterGaugeOptions(chartData) {
     }
   }
 
-  var helpers = meterGaugeHelpers(size);
+  var helpers = meterGaugeHelpers(size, {}, chartData);
+  var min = helpers.min;
+  var max = helpers.max;
 
   function plotBandLabels() {
     if (typeof chartData.plotBandLabelTexts === 'undefined') return undefined;
@@ -63,8 +65,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
         {
           borderWidth: 2,
           borderColor: 'white',
-          from: 0,
-          to: 3.3,
+          from: helpers.plotBandRanges[0],
+          to: helpers.plotBandRanges[1],
           color: outputHighchartsColorString(color, '.6'),
           innerRadius: '40%',
           outerRadius: '100%',
@@ -72,8 +74,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
         },{
           borderWidth: 2,
           borderColor: 'white',
-          from: 3.3,
-          to: 6.6,
+          from: helpers.plotBandRanges[1],
+          to: helpers.plotBandRanges[2],
           color: outputHighchartsColorString(color, '.8'),
           innerRadius: '40%',
           outerRadius: '100%',
@@ -81,8 +83,8 @@ function highchartsSmallMeterGaugeOptions(chartData) {
         },{
           borderWidth: 2,
           borderColor: 'white',
-          from: 6.6,
-          to: 10,
+          from: helpers.plotBandRanges[2],
+          to: helpers.plotBandRanges[3],
           color: outputHighchartsColorString(color, '1'),
           innerRadius: '40%',
           outerRadius: '100%',
@@ -91,7 +93,9 @@ function highchartsSmallMeterGaugeOptions(chartData) {
       ],
       labels: {
         enabled: false
-      }
+      },
+      min: helpers.min,
+      max: helpers.max
     },
 
     pane: {

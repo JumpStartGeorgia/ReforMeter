@@ -104,14 +104,15 @@ class ExternalIndicator < AddMissingTranslation
   end
 
   def gauge_chart_data(index, responsiveToSelector)
+    most_recent_data_point = format_for_charting[:series][0][:data].last
     {
       id: "external-indicator-#{id}",
       title: nil,
-      # Hacked plot bands by removing Fail so that there are only three plot
-      # band labels (gauges can only display three labels)
-      plotBandLabelTexts: plot_bands.map(&:name) - ['Fail'],
-      score: 9,
-      change: 1,
+      plotBandLabelTexts: plot_bands.map(&:name),
+      min: min,
+      max: max,
+      score: most_recent_data_point[:y],
+      change: most_recent_data_point[:change],
       responsiveTo: responsiveToSelector,
       color: ext_ind_gauge_colors[index % ext_ind_gauge_colors.length]
     }

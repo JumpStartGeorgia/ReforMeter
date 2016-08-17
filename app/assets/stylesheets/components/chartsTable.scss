@@ -138,6 +138,10 @@ $charts-table-border: solid 3px $color-grey-background;
 
 .chartsTable.mod-homepage {
 
+  .chartsTable-cell.mod-head:not(.mod-first-column) {
+    text-align: center;
+  }
+
   .chartsTable-row {
     padding: 0 $padding-main-content;
   }

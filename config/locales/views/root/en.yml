@@ -32,15 +32,6 @@ en:
         time: Time Period
       title: Review Board
     index:
-      # about_link: Learn More
-      # experts_link: Learn More
-      # header:
-      #   experts: Overall reform progress according to the Review Board
-      #   external_indicators: How are the reforms affecting the economy?
-      #   government: Reform progress according to the government
-      #   standing: What is the Reform Standing as of %{time}?
-      # reforms_link: View All Reforms
-      # report_link: Download Full Report
       heading: Where Does Georgia Stand?
       subheading: A measure of reform progress.
       primary_gauge_description: This is a composite score measuring Georgia's reform progress
@@ -60,6 +51,7 @@ en:
         table: Results
         chart: Timeline
         methodology: Methodology
+      no_methodology: No methodology is on record.
       no_data: Sorry, but at this time there is no review board data on record.
       table_header:
         government: Government

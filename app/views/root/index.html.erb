@@ -43,7 +43,7 @@
 
       <div class='homePage-bigLinks-pair'>
 
-        <a class='homePage-bigLinks-item' href='<%= about_path %>'>
+        <a class='homePage-bigLinks-item' href='<%= review_board_show_path(@quarter) %>'>
 
           <span class='homePage-bigLinks-item-icon'>
             <%= inline_svg('find_icon') %>
@@ -71,7 +71,7 @@
 
       <div class='homePage-bigLinks-pair'>
 
-        <a class='homePage-bigLinks-item' href='<%= external_indicators_path %>'>
+        <a class='homePage-bigLinks-item' href='<%= economic_effects_path %>'>
 
           <span class='homePage-bigLinks-item-icon'>
             <%= inline_svg('explore_icon') %>
@@ -122,15 +122,15 @@
                 <tr class='chartsTable-row'>
 
                   <th class='chartsTable-cell mod-head mod-first-column'>
-                    <%= t('.table_header.reform') %>
+                    <%= t('shared.categories.reform') %>
                   </th>
 
                   <th class='chartsTable-cell mod-head'>
-                    <%= t('.table_header.government') %>
+                    <%= t('shared.categories.government') %>
                   </th>
 
                   <th class='chartsTable-cell mod-head'>
-                    <%= t('.table_header.stakeholder') %>
+                    <%= t('shared.categories.stakeholder') %>
                   </th>
 
                 </tr>
@@ -275,7 +275,7 @@
 
           <p class='homePage-contentSectionLink'>
             <%= link_to t('.external_indicators_link'),
-                        external_indicators_path,
+                        economic_effects_path,
                         class: 'link' %>
           </p>
 
