@@ -52,31 +52,29 @@ page_title t('.title')
 
       <div class='headerControlsRow'>
 
-          <span class='headerControlsRow-item'>
+        <span class='headerControlsRow-item'>
 
-            <% if @quarters %>
+          <% if @quarters %>
 
-              <label for="quarter">
-                <%= t('shared.common.change_time') %>:
-              </label>
+            <label for="quarter">
+              <%= t('shared.common.change_time') %>:
+            </label>
 
-              <select class='quarter js-become-select2 js-filter-reforms-by-quarter' id="quarter">
+            <select class='quarter js-become-select2 js-filter-reforms-by-quarter' id="quarter">
 
-                <option selected><%= t('shared.common.all') %></option>
+              <option selected><%= t('shared.common.all') %></option>
 
-                <% @quarters.each do |quarter| %>
+              <% @quarters.each do |quarter| %>
 
-                  <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
+                <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
 
-                <% end %>
+              <% end %>
 
-              </select>
+            </select>
 
-            <% end %>
+          <% end %>
 
-          </span>
-
-        </div>
+        </span>
 
       </div>
 
