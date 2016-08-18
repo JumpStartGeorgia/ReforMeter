@@ -207,22 +207,22 @@ function meterGaugeHelpers(size, options, chartData) {
 
         textSpecificProperties = [
           {
-            x: meterGauge.textPosition(.215),
-            y: meterGauge.textPosition(.17),
+            x: meterGauge.textPosition(.205),
+            y: meterGauge.textPosition(.19),
             style: {
               fontSize: meterGauge.textSize(1.8),
             }
           },
           {
             x: meterGauge.textPosition(.5),
-            y: meterGauge.textPosition(-0.05),
+            y: meterGauge.textPosition(-0.01),
             style: {
               fontSize: meterGauge.textSize(1.8),
             }
           },
           {
             x: meterGauge.textPosition(.81),
-            y: meterGauge.textPosition(0.05),
+            y: meterGauge.textPosition(0.07),
             style: {
               fontSize: meterGauge.textSize(1.8),
             }
@@ -233,24 +233,24 @@ function meterGaugeHelpers(size, options, chartData) {
 
         textSpecificProperties = [
           {
-            x: meterGauge.textPosition(.185),
-            y: meterGauge.textPosition(.225),
+            x: meterGauge.textPosition(.195),
+            y: meterGauge.textPosition(.205),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.6),
             }
           },
           {
-            x: meterGauge.textPosition(.44),
-            y: meterGauge.textPosition(-.05),
+            x: meterGauge.textPosition(.39),
+            y: meterGauge.textPosition(-.01),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.6),
             }
           },
           {
-            x: meterGauge.textPosition(.8),
-            y: meterGauge.textPosition(0),
+            x: meterGauge.textPosition(.82),
+            y: meterGauge.textPosition(0.06),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.6),
             }
           }
         ];
@@ -259,7 +259,7 @@ function meterGaugeHelpers(size, options, chartData) {
 
         textSpecificProperties = [
           {
-            x: meterGauge.textPosition(.185),
+            x: meterGauge.textPosition(.175),
             y: meterGauge.textPosition(.225),
             style: {
               fontSize: meterGauge.textSize(1.5),
@@ -267,14 +267,14 @@ function meterGaugeHelpers(size, options, chartData) {
           },
           {
             x: meterGauge.textPosition(.44),
-            y: meterGauge.textPosition(-.05),
+            y: meterGauge.textPosition(-0.01),
             style: {
               fontSize: meterGauge.textSize(1.5),
             }
           },
           {
-            x: meterGauge.textPosition(.8),
-            y: meterGauge.textPosition(0),
+            x: meterGauge.textPosition(.81),
+            y: meterGauge.textPosition(.05),
             style: {
               fontSize: meterGauge.textSize(1.5),
             }
@@ -285,24 +285,24 @@ function meterGaugeHelpers(size, options, chartData) {
 
         textSpecificProperties = [
           {
-            x: meterGauge.textPosition(.185),
-            y: meterGauge.textPosition(.225),
+            x: meterGauge.textPosition(.135),
+            y: meterGauge.textPosition(.285),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.4),
             }
           },
           {
-            x: meterGauge.textPosition(.44),
-            y: meterGauge.textPosition(-.05),
+            x: meterGauge.textPosition(.42),
+            y: meterGauge.textPosition(-.03),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.4),
             }
           },
           {
-            x: meterGauge.textPosition(.8),
-            y: meterGauge.textPosition(0),
+            x: meterGauge.textPosition(.81),
+            y: meterGauge.textPosition(0.01),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.4),
             }
           }
         ];
