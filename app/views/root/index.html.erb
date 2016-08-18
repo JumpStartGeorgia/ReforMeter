@@ -144,8 +144,7 @@
                   <% @reforms.each do |reform| %>
 
                     <%
-                      survey = @surveys.select { |survey| survey.reform_id === reform.id }.first
-                      next unless survey
+                      survey = reform.reform_surveys[0]
                     %>
 
                     <tr class='chartsTable-row'>

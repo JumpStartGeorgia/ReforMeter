@@ -3,7 +3,7 @@ class RootController < ApplicationController
   def index
     @quarter = Quarter.published.with_expert_survey.latest
     @external_indicators = ExternalIndicator.published.reverse_sorted.for_home_page
-    @reforms = Reform.in_quarter(@quarter.id).active.highlight.sorted if @quarter
+    @reforms = Reform.with_reform_survey(@quarter.id).in_quarter(@quarter.id).active.highlight.sorted if @quarter
 
     gon.change_icons = view_context.change_icons
 
@@ -14,10 +14,8 @@ class RootController < ApplicationController
       change: @quarter.expert_survey.overall_change
     }]
 
-    @surveys = ReformSurvey.all.select{|x| x.quarter_id == @quarter.id}
-
     @reforms.each do |reform|
-      survey = @surveys.select { |survey| survey.reform_id === reform.id }.first
+      survey = reform.reform_surveys[0]
 
       next unless survey
 

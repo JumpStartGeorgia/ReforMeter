@@ -69,6 +69,10 @@ class Reform < AddMissingTranslation
     end
   end
 
+  def self.with_reform_survey(quarter_id)
+    includes(:reform_surveys).where(reform_surveys: { quarter_id: quarter_id })
+  end
+
   # get all reforms that have survey data
   def self.with_survey_data(quarters_are_published=true)
     q = Quarter.all
