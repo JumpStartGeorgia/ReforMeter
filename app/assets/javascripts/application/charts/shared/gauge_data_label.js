@@ -36,7 +36,7 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
   }
 
   if (args.secondLineText) {
-    gaugeLabel += '<p style="margin: 0;">' + args.secondLineText + '</p>';
+    gaugeLabel += '<p style="margin: 0; font-weight: 400;">' + args.secondLineText + '</p>';
   }
 
   return inDiv(gaugeLabel);
