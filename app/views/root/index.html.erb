@@ -5,31 +5,35 @@
 
     <section class='homepage-intro'>
 
-      <div class='homepage-introText'>
+      <div class='homepage-intro-container'>
 
-        <h1 class='heading mod-homepage-primary'>
-          <%= t '.heading' %>
-        </h1>
+        <div class='homepage-introText'>
 
-        <div class='homepage-introText-divider'></div>
+          <h1 class='heading mod-homepage-primary'>
+            <%= t '.heading' %>
+          </h1>
 
-        <p class='homepage-introText-subheading'>
-          <%= t '.subheading' %>
-        </p>
+          <div class='homepage-introText-divider'></div>
 
-      </div>
+          <p class='homepage-introText-subheading'>
+            <%= t '.subheading' %>
+          </p>
 
-      <div class='homepage-primaryGaugeContainer'>
+        </div>
 
-        <%= link_to review_board_show_path(@quarter) do %>
+        <div class='homepage-primaryGaugeContainer js-homepage-primary-gauge-container'>
 
-          <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+          <%= link_to review_board_show_path(@quarter) do %>
 
-        <% end %>
+            <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
 
-        <p class='homepage-primaryGaugeDescription'>
-          <%= t '.primary_gauge_description' %>
-        </p>
+          <% end %>
+
+          <p class='homepage-primaryGaugeDescription'>
+            <%= t '.primary_gauge_description' %>
+          </p>
+
+        </div>
 
       </div>
 

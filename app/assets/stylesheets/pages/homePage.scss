@@ -1,16 +1,23 @@
-$widthHomepageIntroHorizontal: 800px;
+$widthHomepageIntroHorizontal: 600px;
 
 .homepage-intro {
-  display: flex;
-  flex-direction: column;
-
   @media (min-width: $widthHomepageIntroHorizontal) {
     @include center-and-limit-content-width();
-
-    flex-direction: row;
-    align-items: center;
+    width: 100%;
   }
 }
+
+  .homepage-intro-container {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $widthHomepageIntroHorizontal) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      min-width: 100%;
+    }
+  }
 
 .homepage-introText {
   padding: 0 $padding-main-content;
@@ -52,10 +59,11 @@ $widthHomepageIntroHorizontal: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 450px;
   margin-top: -45px;
 
   @media (min-width: $widthHomepageIntroHorizontal) {
+    width: 50%;
+    max-width: 50%;
     order: 1;
   }
 }
@@ -66,6 +74,7 @@ $widthHomepageIntroHorizontal: 800px;
   font-size: 1.8rem;
   text-align: center;
   width: 18em;
+  max-width: 100%;
 }
 
 $widthHorizontalContentSections: 800px;

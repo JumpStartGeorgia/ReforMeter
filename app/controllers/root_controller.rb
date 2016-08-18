@@ -10,6 +10,7 @@ class RootController < ApplicationController
     gon.charts = [{
       id: 'reform-current-overall',
       title: nil,
+      responsiveTo: '.js-homepage-primary-gauge-container',
       score: @quarter.expert_survey.overall_score.to_f,
       change: @quarter.expert_survey.overall_change
     }]
