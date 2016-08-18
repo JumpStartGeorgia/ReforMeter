@@ -1,7 +1,6 @@
 .gaugesContainer {
   align-items: center;
   display: flex;
-  flex-flow: row wrap;
   justify-content: center;
   position: relative;
 }
@@ -10,7 +9,6 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    padding-top: 64px;
   }
 
   .gaugesContainer-exportButton {
@@ -21,10 +19,34 @@
     height: 24px;
   }
 
-.gaugesContainer.mod-solid-gauges {
+$widthMeterGaugesBecomeHorizontal: 639px;
 
-  .gaugesContainer-small {
-    padding-top: 61px
+.gaugesContainer.mod-meter-gauges {
+  flex-direction: column;
+
+  @media (min-width: $widthMeterGaugesBecomeHorizontal) {
+    flex-direction: row;
   }
 
+  .gaugesContainer-small {
+    @media (min-width: $widthMeterGaugesBecomeHorizontal) {
+      padding-top: 64px;
+    }
+  }
+}
+
+$widthSolidGaugesBecomeHorizontal: 800px;
+
+.gaugesContainer.mod-solid-gauges {
+  flex-direction: column;
+
+  @media (min-width: $widthSolidGaugesBecomeHorizontal) {
+    flex-direction: row;
+  }
+
+  .gaugesContainer-small {
+    @media (min-width: $widthSolidGaugesBecomeHorizontal) {
+      padding-top: 61px;
+    }
+  }
 }
