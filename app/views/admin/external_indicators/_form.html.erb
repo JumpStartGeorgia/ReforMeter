@@ -35,8 +35,18 @@
     <%= f.input :indicator_type, as: :radio, collection: @indicator_types, wrapper_html: {class: 'col-md-3'} %>
     <%= f.input :chart_type, as: :radio, collection: @chart_types, wrapper_html: {class: 'col-md-3'} %>
     <%= f.input :scale_type, as: :radio, collection: @scale_types, wrapper_html: {class: 'col-md-3'} %>
-    <%= f.input :show_on_home_page, as: :radio, wrapper_html: {class: 'col-md-3'} %>
+    <%= f.input :show_on_home_page, as: :radio, wrapper_html: {class: 'col-md-3 js-ext-ind-show-on-home-page-input'} %>
   </div>
+
+  <%= f.input :sort_order,
+              as: :number,
+              wrapper_html: {
+                class: 'external-indicators-sort-order-input js-ext-ind-sort-order-input'
+              },
+              input_html: {
+                maxlength: 5,
+                size: 5
+              } %>
 
   <div class="js-optional js-optional-countries">
 
@@ -251,4 +261,3 @@
     <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
   <% end %>
 <% end %>
-
