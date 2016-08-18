@@ -20,11 +20,11 @@ show_admin_links ||= false
 
     <div class='contentSection-header-controls'>
 
-      <div class='headerControls'>
+      <div class='headerControls-row'>
 
-        <div class='headerControls-row'>
+        <% if @active_reforms %>
 
-          <% if @active_reforms %>
+          <span class='headerControls-row-item'>
 
             <label class='labeledSelect-label' for='change-reform-page-quarter-select'>
               <%= t('shared.common.change_reform') %>:
@@ -42,47 +42,47 @@ show_admin_links ||= false
 
             </span>
 
+          </span>
+
+        <% end %>
+
+      </div>
+
+      <div class='headerControls-row'>
+
+        <span class='headerControls-row-item'>
+
+          <% if @active_quarters %>
+
+            <label class='labeledSelect-label' for='change-reform-page-reform-select'>
+              <%= t('shared.common.change_time') %>:
+            </label>
+
+            <span class='labeledSelect-select'>
+
+              <select id='change-reform-page-reform-select' class='js-become-select2 js-reform-page-quarter-select'>
+
+                <% @active_quarters.each do |active_quarter| %>
+                  <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
+                <% end %>
+
+              </select>
+
+            </span>
+
           <% end %>
 
-        </div>
+        </span>
 
-        <div class='headerControls-row'>
+        <span class='headerControls-row-item mod-left-padding'>
 
-          <span class='headerControls-row-item'>
+          <% if @active_reforms.present? || @active_quarters.present? %>
+            <button class='loadButton js-load-new-reform-page' data-new-url-base='<%= reforms_path %>'>
+              <%= t('shared.actions.load') %>
+            </button>
+          <% end %>
 
-            <% if @active_quarters %>
-
-              <label class='labeledSelect-label' for='change-reform-page-reform-select'>
-                <%= t('shared.common.change_time') %>:
-              </label>
-
-              <span class='labeledSelect-select'>
-
-                <select id='change-reform-page-reform-select' class='js-become-select2 js-reform-page-quarter-select'>
-
-                  <% @active_quarters.each do |active_quarter| %>
-                    <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
-                  <% end %>
-
-                </select>
-
-              </span>
-
-            <% end %>
-
-          </span>
-
-          <span class='headerControls-row-item mod-left-padding'>
-
-            <% if @active_reforms.present? || @active_quarters.present? %>
-              <button class='loadButton js-load-new-reform-page' data-new-url-base='<%= reforms_path %>'>
-                <%= t('shared.actions.load') %>
-              </button>
-            <% end %>
-
-          </span>
-
-        </div>
+        </span>
 
       </div>
 

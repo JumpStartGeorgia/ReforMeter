@@ -1,12 +1,19 @@
 .headerControls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+
 }
 
-  .headerControls-row:not(:last-child) {
-    margin-bottom: 5px;
+  .headerControls-row {
   }
+
+    .headerControls-row-item {
+      margin-bottom: 3px;
+      margin-top: 3px;
+    }
+
+    .headerControls-row-item {
+      display: inline-block;
+      vertical-align: middle;
+    }
 
     .headerControls-row-item.mod-left-padding {
       padding-left: 10px;

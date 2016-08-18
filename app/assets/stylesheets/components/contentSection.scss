@@ -1,3 +1,5 @@
+$widthHeaderControlsBecomeHorizontal: 700px;
+
 .contentSection {
   background-color: white;
   box-sizing: border-box;
@@ -10,15 +12,30 @@
     margin: 0;
     padding: 22px $padding-main-content;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+
+    @media (min-width: $widthHeaderControlsBecomeHorizontal) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
     .contentSection-header-title {
     }
 
     .contentSection-header-controls {
-      margin-left: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 20px;
+
+      @media (min-width: $widthHeaderControlsBecomeHorizontal) {
+        margin-left: 15px;
+        align-items: flex-end;
+        text-align: right;
+        margin-top: 0;
+      }
     }
 
   .contentSection-header.mod-no-padding {

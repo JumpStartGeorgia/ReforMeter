@@ -31,14 +31,18 @@ show_admin_links ||= false
     <% if @active_quarters %>
       <div class='contentSection-header-controls'>
 
-        <%= t('shared.common.change_time') %>:
-        <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= review_board_path %>'>
+        <div class='headerControls-row'>
 
-          <% @active_quarters.each do |active_quarter| %>
-            <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
-          <% end %>
+          <%= t('shared.common.change_time') %>:
+          <select class='js-become-select2 js-change-expert-time-period' data-base-url='<%= review_board_path %>'>
 
-        </select>
+            <% @active_quarters.each do |active_quarter| %>
+              <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
+            <% end %>
+
+          </select>
+          
+        </div>
 
       </div>
     <% end %>
