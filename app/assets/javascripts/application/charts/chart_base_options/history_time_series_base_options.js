@@ -70,7 +70,10 @@ function historyTimeSeriesOptions(chartData) {
     },
     legend: {
       align: 'right',
-      symbolWidth: 40
+      symbolWidth: 40,
+      itemStyle: {
+        fontWeight: '400'
+      }
     },
     yAxis: {
       minorGridLineDashStyle: 'dot',
