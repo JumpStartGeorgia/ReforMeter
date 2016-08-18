@@ -20,7 +20,12 @@ function externalIndicatorChartHelpers(chartData) {
   function chartSpacingLeft() {
     if (!chartData.plot_bands || chartData.plot_bands.length === 0) return 0;
 
-    return localeIs('ka') ? 120 : 80;
+    var spacingLeft = 80;
+
+    if (chartData.unitLabel) spacingLeft -= 20;
+    if (localeIs('ka')) spacingLeft += 30;
+
+    return spacingLeft;
   }
 
   externalIndicatorChart.spacingLeft = chartSpacingLeft();
