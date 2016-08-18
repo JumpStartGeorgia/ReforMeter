@@ -257,7 +257,7 @@
 
               <section class='homePage-externalIndicator'>
 
-                <%= link_to economic_effects_path(anchor: "external-indicator-#{external_indicator.id}"), class: 'link mod-no-decoration' do %>
+                <%= link_to economic_effects_path, class: 'link mod-no-decoration' do %>
 
                   <h3 class='heading mod-no-transform'>
 
@@ -271,7 +271,7 @@
 
                 <% end %>
 
-                <%= link_to economic_effects_path(anchor: "external-indicator-#{external_indicator.id}"), class: 'link mod-no-decoration' do %>
+                <%= link_to economic_effects_path, class: 'link mod-no-decoration' do %>
 
                   <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='external-indicator-<%= external_indicator.id %>'></div>
 
