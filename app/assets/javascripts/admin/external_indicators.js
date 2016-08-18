@@ -322,3 +322,21 @@ function setupExternalIndicatorMove(){
   });
 
 }
+
+function setupExternalIndicatorInputs() {
+  $showOnHomePageWrapper = $('.js-ext-ind-show-on-home-page-input');
+  $sortOrderInput = $('.js-ext-ind-sort-order-input');
+
+  function updateSortOrderWithShowOnHomePage() {
+    $showOnHomePageSelectedInput = $showOnHomePageWrapper.find('input:checked');
+
+    if ($showOnHomePageSelectedInput.val() === 'true') {
+      $sortOrderInput.removeClass('is-hidden');
+    } else {
+      $sortOrderInput.addClass('is-hidden');
+    }
+  }
+
+  $showOnHomePageWrapper.change(updateSortOrderWithShowOnHomePage);
+  updateSortOrderWithShowOnHomePage();
+}

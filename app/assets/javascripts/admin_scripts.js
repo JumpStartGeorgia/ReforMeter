@@ -22,6 +22,7 @@
     setupExternalIndicatorType();
     setupExternalIndicatorCocoon();
     setupExternalIndicatorMove();
+    setupExternalIndicatorInputs();
   });
 
   $(document).on('page:change', function() {
