@@ -35,12 +35,12 @@
       display: block;
       padding: 1em 1.1em;
 
-      @media (min-width: 425px) {
+      @media (min-width: $widthForTablistFontIncrease1) {
         font-size: 1.7rem;
         padding: 1em 1.2em;
       }
 
-      @media (min-width: 525px) {
+      @media (min-width: $widthForTablistFontIncrease2) {
         font-size: 2rem;
         padding: 1.1em $padding-main-content;
       }

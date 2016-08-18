@@ -257,17 +257,25 @@
 
               <section class='homePage-externalIndicator'>
 
-                <h3 class='heading mod-no-transform'>
+                <%= link_to economic_effects_path(anchor: "external-indicator-#{external_indicator.id}"), class: 'link mod-no-decoration' do %>
 
-                  <%= external_indicator.title %>
+                  <h3 class='heading mod-no-transform'>
 
-                  <small class='heading-subheading'>
-                    <%= external_indicator.subtitle %>
-                  </small>
+                    <%= external_indicator.title %>
 
-                </h3>
+                    <small class='heading-subheading'>
+                      <%= external_indicator.subtitle %>
+                    </small>
 
-                <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='external-indicator-<%= external_indicator.id %>'></div>
+                  </h3>
+
+                <% end %>
+
+                <%= link_to economic_effects_path(anchor: "external-indicator-#{external_indicator.id}"), class: 'link mod-no-decoration' do %>
+
+                  <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='external-indicator-<%= external_indicator.id %>'></div>
+
+                <% end %>
 
               </section>
 

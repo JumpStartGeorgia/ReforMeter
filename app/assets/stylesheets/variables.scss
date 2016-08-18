@@ -26,3 +26,8 @@ $heightHomepageBigLink: 80px;
 $verticalPaddingHomepageBigLinks: 20px;
 // includes padding
 $outerHeightHomepageBigLinks: $heightHomepageBigLink + (2 * $verticalPaddingHomepageBigLinks);
+
+
+// Tablist - used in chartsTable media queries
+$widthForTablistFontIncrease1: 425px;
+$widthForTablistFontIncrease2: 525px;

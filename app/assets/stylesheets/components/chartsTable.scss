@@ -168,3 +168,35 @@ $width-homepage-charts-table-show-charts: 410px;
   }
 
 }
+
+
+// Crazy hack section! Gives a min width to the first column of the reforms
+// page chart table and the review board page chart table so that the
+// first column aligns with the first tablist.
+
+.chartsTable.mod-reforms, .chartsTable.mod-review-board {
+  :lang(en) .chartsTable-cell.mod-first-column {
+    box-sizing: border-box;
+    min-width: 95.16px;
+
+    @media (min-width: $widthForTablistFontIncrease1) {
+      min-width: 122.4px;
+    }
+
+    @media (min-width: $widthForTablistFontIncrease2) {
+      min-width: 143.5px;
+    }
+  }
+
+  :lang(ka) .chartsTable-cell.mod-first-column {
+    box-sizing: border-box;
+
+    @media (min-width: $widthForTablistFontIncrease1) {
+
+    }
+
+    @media (min-width: $widthForTablistFontIncrease2) {
+      min-width: 156.016px;
+    }
+  }
+}
