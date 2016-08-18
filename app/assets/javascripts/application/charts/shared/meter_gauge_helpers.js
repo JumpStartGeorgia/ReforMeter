@@ -207,22 +207,22 @@ function meterGaugeHelpers(size, options, chartData) {
 
         textSpecificProperties = [
           {
-            x: meterGauge.textPosition(.205),
-            y: meterGauge.textPosition(.19),
+            x: meterGauge.textPosition(.235),
+            y: meterGauge.textPosition(.205),
             style: {
               fontSize: meterGauge.textSize(1.8),
             }
           },
           {
             x: meterGauge.textPosition(.5),
-            y: meterGauge.textPosition(-0.01),
+            y: meterGauge.textPosition(.02),
             style: {
               fontSize: meterGauge.textSize(1.8),
             }
           },
           {
-            x: meterGauge.textPosition(.81),
-            y: meterGauge.textPosition(0.07),
+            x: meterGauge.textPosition(.79),
+            y: meterGauge.textPosition(0.09),
             style: {
               fontSize: meterGauge.textSize(1.8),
             }
@@ -259,22 +259,22 @@ function meterGaugeHelpers(size, options, chartData) {
 
         textSpecificProperties = [
           {
-            x: meterGauge.textPosition(.175),
-            y: meterGauge.textPosition(.225),
+            x: meterGauge.textPosition(.19),
+            y: meterGauge.textPosition(.25),
             style: {
               fontSize: meterGauge.textSize(1.5),
             }
           },
           {
             x: meterGauge.textPosition(.44),
-            y: meterGauge.textPosition(-0.01),
+            y: meterGauge.textPosition(.01),
             style: {
               fontSize: meterGauge.textSize(1.5),
             }
           },
           {
-            x: meterGauge.textPosition(.81),
-            y: meterGauge.textPosition(.05),
+            x: meterGauge.textPosition(.79),
+            y: meterGauge.textPosition(.08),
             style: {
               fontSize: meterGauge.textSize(1.5),
             }
