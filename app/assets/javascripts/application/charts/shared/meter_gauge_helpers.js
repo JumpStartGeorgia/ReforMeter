@@ -210,21 +210,21 @@ function meterGaugeHelpers(size, options, chartData) {
             x: meterGauge.textPosition(.215),
             y: meterGauge.textPosition(.17),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.8),
             }
           },
           {
             x: meterGauge.textPosition(.5),
             y: meterGauge.textPosition(-0.05),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.8),
             }
           },
           {
             x: meterGauge.textPosition(.81),
             y: meterGauge.textPosition(0.05),
             style: {
-              fontSize: meterGauge.textSize(1.5),
+              fontSize: meterGauge.textSize(1.8),
             }
           }
         ];
