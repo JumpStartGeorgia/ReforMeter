@@ -58,6 +58,7 @@ class ExternalIndicator < AddMissingTranslation
   after_initialize :load_data_hash
   before_save :set_data
   after_save :reset_unwanted_fields
+  before_save :set_sort_order
 
   before_save :set_change_values
   # after_save :update_future_time
@@ -622,6 +623,20 @@ class ExternalIndicator < AddMissingTranslation
   # convert the data hash to json string
   def set_data
     self.data = self.data_hash.to_json if self.data_hash.present?
+    return true
+  end
+
+  def set_sort_order
+    if !show_on_home_page
+      self.sort_order = nil
+      return true
+    end
+
+    if show_on_home_page && self.sort_order.blank?
+      self.sort_order = 1
+      return true
+    end
+
     return true
   end
 

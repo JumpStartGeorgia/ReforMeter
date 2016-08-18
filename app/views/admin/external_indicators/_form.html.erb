@@ -39,13 +39,13 @@
   </div>
 
   <%= f.input :sort_order,
-              as: :number,
               wrapper_html: {
                 class: 'external-indicators-sort-order-input js-ext-ind-sort-order-input'
               },
               input_html: {
                 maxlength: 5,
-                size: 5
+                size: 5,
+                value: object.sort_order.present? ? object.sort_order : '1'
               } %>
 
   <div class="js-optional js-optional-countries">
