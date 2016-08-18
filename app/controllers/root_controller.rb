@@ -2,7 +2,7 @@
 class RootController < ApplicationController
   def index
     @quarter = Quarter.published.with_expert_survey.latest
-    @external_indicators = ExternalIndicator.published.reverse_sorted.for_home_page
+    @external_indicators = ExternalIndicator.published.for_home_page
     @reforms = Reform.with_reform_survey(@quarter.id).in_quarter(@quarter.id).active.highlight.sorted if @quarter
 
     gon.change_icons = view_context.change_icons

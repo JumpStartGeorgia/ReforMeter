@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712074058) do
+ActiveRecord::Schema.define(version: 20160818060804) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -203,7 +203,10 @@ ActiveRecord::Schema.define(version: 20160712074058) do
     t.boolean  "is_public",                   default: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.integer  "sort_order",        limit: 4
   end
+
+  add_index "external_indicators", ["sort_order"], name: "index_external_indicators_on_sort_order", using: :btree
 
   create_table "external_indicators_reforms", id: false, force: :cascade do |t|
     t.integer "external_indicator_id", limit: 4, null: false
