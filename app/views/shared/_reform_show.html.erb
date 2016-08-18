@@ -20,11 +20,11 @@ show_admin_links ||= false
 
     <div class='contentSection-header-controls'>
 
-      <div class='headerControls-row'>
+      <div class='headerControlsRow'>
 
         <% if @active_reforms %>
 
-          <span class='headerControls-row-item'>
+          <span class='headerControlsRow-item'>
 
             <label class='labeledSelect-label' for='change-reform-page-quarter-select'>
               <%= t('shared.common.change_reform') %>:
@@ -48,9 +48,9 @@ show_admin_links ||= false
 
       </div>
 
-      <div class='headerControls-row'>
+      <div class='headerControlsRow'>
 
-        <span class='headerControls-row-item'>
+        <span class='headerControlsRow-item'>
 
           <% if @active_quarters %>
 
@@ -74,7 +74,7 @@ show_admin_links ||= false
 
         </span>
 
-        <span class='headerControls-row-item mod-left-padding'>
+        <span class='headerControlsRow-item mod-left-padding'>
 
           <% if @active_reforms.present? || @active_quarters.present? %>
             <button class='loadButton js-load-new-reform-page' data-new-url-base='<%= reforms_path %>'>
