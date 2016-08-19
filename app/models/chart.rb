@@ -7,9 +7,7 @@ class Chart
   def to_hash
     hash = @options
 
-    unless png_image_exists?
-      hash[:png_image_path] = full_png_image_path
-    end
+    hash[:png_image_path] = full_png_image_path unless png_image_exists?
 
     hash
   end
