@@ -175,33 +175,61 @@ function meterGaugeHelpers(size, options, chartData) {
 
         }
 
-
-
       } else if (arraysEqual(texts, georgianDefaultText)) {
 
-        textSpecificProperties = [
-          {
-            x: meterGauge.textPosition(.215),
-            y: meterGauge.textPosition(.275),
-            style: {
-              fontSize: meterGauge.textSize(1.5),
+        if (size < 300) {
+
+          textSpecificProperties = [
+            {
+              x: meterGauge.textPosition(.215),
+              y: meterGauge.textPosition(.275),
+              style: {
+                fontSize: meterGauge.textSize(1.5),
+              }
+            },
+            {
+              x: meterGauge.textPosition(.41),
+              y: meterGauge.textPosition(.07),
+              style: {
+                fontSize: meterGauge.textSize(1.5),
+              }
+            },
+            {
+              x: meterGauge.textPosition(.79),
+              y: meterGauge.textPosition(.125),
+              style: {
+                fontSize: meterGauge.textSize(1.5),
+              }
             }
-          },
-          {
-            x: meterGauge.textPosition(.41),
-            y: meterGauge.textPosition(.07),
-            style: {
-              fontSize: meterGauge.textSize(1.5),
+          ];
+
+        } else {
+
+          textSpecificProperties = [
+            {
+              x: meterGauge.textPosition(.225),
+              y: meterGauge.textPosition(.26),
+              style: {
+                fontSize: meterGauge.textSize(1.2),
+              }
+            },
+            {
+              x: meterGauge.textPosition(.435),
+              y: meterGauge.textPosition(.11),
+              style: {
+                fontSize: meterGauge.textSize(1.2),
+              }
+            },
+            {
+              x: meterGauge.textPosition(.8),
+              y: meterGauge.textPosition(.175),
+              style: {
+                fontSize: meterGauge.textSize(1.2),
+              }
             }
-          },
-          {
-            x: meterGauge.textPosition(.79),
-            y: meterGauge.textPosition(.125),
-            style: {
-              fontSize: meterGauge.textSize(1.5),
-            }
-          }
-        ];
+          ];
+
+        }
 
       } else if (arraysEqual(texts, ['Poor', 'Fair', 'Good'])) {
 
