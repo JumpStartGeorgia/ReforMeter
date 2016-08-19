@@ -28,6 +28,9 @@ class ApplicationController < ActionController::Base
     # indicate which year can be the first year for data
     @quarter_start_year = 2015
     gon.default_locale = I18n.default_locale.to_s
+
+    gon.create_chart_share_image_url = charts_create_share_image_url
+
     gon.translations = {
       meter_gauge: {
         plot_band_label: {

@@ -293,7 +293,8 @@ class RootController < ApplicationController
     gon.charts = [
       Quarter.expert_survey_data_for_charting(
         overall_score_only: true,
-        id: 'expert-history'
+        id: 'expert-history',
+        png_image_path: Rails.root.join('public', 'system', 'chart_share_images', 'test.png').to_s
       )
     ]
 

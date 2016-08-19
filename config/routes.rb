@@ -49,8 +49,7 @@ Rails.application.routes.draw do
     get '/review_board' => 'root#review_board'
     get '/review_board/:id' => 'root#review_board_show', as: :review_board_show
 
-
-
+    post '/charts/create_share_image', to: 'charts#create_share_image'
 
     root 'root#index'
 

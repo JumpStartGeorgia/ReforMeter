@@ -233,6 +233,7 @@ class Quarter < ActiveRecord::Base
     hash = {
       title: I18n.t('shared.chart_titles.expert.title'),
       id: options[:id],
+      png_image_path: options[:png_image_path],
       subtitle: nil,
       min: 0,
       max: 10,
