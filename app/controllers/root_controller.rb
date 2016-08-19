@@ -294,7 +294,8 @@ class RootController < ApplicationController
       Quarter.expert_survey_data_for_charting(
         overall_score_only: true,
         id: 'expert-history'
-      )
+      ),
+      request.path
     )
 
     gon.charts = [

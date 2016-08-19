@@ -1,35 +1,42 @@
 class Chart
-  def initialize(options)
+  def initialize(options, page_path)
     @options = options
+    @page_path = page_path
   end
 
   def to_hash
     hash = @options
 
-    hash[:png_image_path] = png_image_path.to_s
+    hash[:png_image_path] = full_png_image_path.to_s
 
     hash
   end
 
+  def png_image_path
+    Pathname.new(images_dir).join(
+      remove_forward_slash(page_path),
+    )
+  end
+
   private
 
-  def png_image_path
-    images_dir.join(
-      page_path,
+  def remove_forward_slash(str)
+    str[0] === '/' ? str.slice(1, str.length) : str
+  end
+
+  def full_png_image_path
+    Rails.public_path.join(
+      png_image_path,
       png_image_name
     )
   end
 
-  def page_path
-    'en/review_board'
+  def images_dir
+    'system/chart_share_images'
   end
 
-  def images_dir
-    Rails.root.join(
-      'public',
-      'system',
-      'chart_share_images'
-    )
+  def page_path
+    @page_path
   end
 
   def png_image_name
