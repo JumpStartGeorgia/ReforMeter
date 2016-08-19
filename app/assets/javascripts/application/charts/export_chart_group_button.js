@@ -110,39 +110,6 @@ function initializeExportChartGroupButton($exportButton, charts) {
     return svgObj;
   }
 
-  function chartSpecificExportOptions(chart) {
-    if (!chart.highchartsObject.userOptions.exporting) return {};
-
-    return chart.highchartsObject.userOptions.exporting.chartOptions;
-  }
-
-  function singleChartExportOptions(chart) {
-    var defaultExportOptions = {
-      chart: {
-        style: {
-          fontFamily: 'sans-serif',
-          fontSize: '9px'
-        }
-      },
-      legend: {
-        itemDistance: 70,
-        x: -40
-      }
-    };
-
-    return {
-      filename: chart.data.title ? chart.data.title + '_ReforMeter' : 'ReforMeter_Chart',
-      type: exportType,
-      scale: 1,
-      svg: chart.highchartsObject.getSVG(
-        Highcharts.merge(
-          defaultExportOptions,
-          chartSpecificExportOptions(chart)
-        )
-      )
-    };
-  }
-
   function multipleChartExportOptions() {
     return {
       filename: 'Gauge_Charts_ReforMeter',
