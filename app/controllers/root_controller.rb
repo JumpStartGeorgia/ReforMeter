@@ -302,6 +302,8 @@ class RootController < ApplicationController
 
     gon.charts = charts.map(&:to_hash)
 
+    @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
+
     @quarters.each do |quarter|
       gon.charts << {
         id: quarter.slug,

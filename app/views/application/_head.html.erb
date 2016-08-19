@@ -17,8 +17,18 @@
   <meta property="og:type" content="non_profit" />
   <meta property="og:url" content="<%= current_url %>" />
   <meta property="og:image" content="<%= full_url("/assets/share_#{I18n.locale}.jpg") %>" />
-  <meta property="og:site_name" content="<%= t("shared.common.name") %>" />
 
+  <% if @share_image_paths.present? %>
+
+    <% @share_image_paths.each do |share_image_path| %>
+
+      <meta property="og:image" content="<%= asset_url(share_image_path) %>" />
+
+    <% end %>
+
+  <% end %>
+
+  <meta property="og:site_name" content="<%= t("shared.common.name") %>" />
 
   <%= csrf_meta_tags %>
 
