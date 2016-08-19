@@ -83,6 +83,8 @@ function setupCharts() {
     this.create();
   });
 
+  postCreateChartImages($.makeArray(charts), 'png');
+
   setupExportChartGroupButtons(charts);
 
   return charts;
