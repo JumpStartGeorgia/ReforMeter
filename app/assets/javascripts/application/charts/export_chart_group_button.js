@@ -166,13 +166,19 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
     }
 
-    $.post(
-      gon.create_chart_share_image_url,
-      {
-        png_image_path: charts[0].data.png_image_path,
-        highcharts_export_options: exportOptions
-      }
-    );
+    var pngImagePath = charts[0].data.png_image_path;
+
+    if (pngImagePath) {
+
+      $.post(
+        gon.create_chart_share_image_url,
+        {
+          png_image_path: pngImagePath,
+          highcharts_export_options: exportOptions
+        }
+      );
+
+    }
 
     Highcharts.post(options.url, exportOptions);
   };

@@ -298,9 +298,9 @@ class RootController < ApplicationController
       request.path
     )
 
-    gon.charts = [
-      expert_history_chart.to_hash
-    ]
+    charts = [expert_history_chart]
+
+    gon.charts = charts.map(&:to_hash)
 
     @quarters.each do |quarter|
       gon.charts << {

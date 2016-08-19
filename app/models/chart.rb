@@ -7,15 +7,22 @@ class Chart
   def to_hash
     hash = @options
 
-    hash[:png_image_path] = full_png_image_path.to_s
+    unless png_image_exists?
+      hash[:png_image_path] = full_png_image_path
+    end
 
     hash
+  end
+
+  def png_image_exists?
+    File.exist?(full_png_image_path)
   end
 
   def png_image_path
     Pathname.new(images_dir).join(
       remove_forward_slash(page_path),
-    )
+      png_image_name
+    ).to_s
   end
 
   private
@@ -26,9 +33,8 @@ class Chart
 
   def full_png_image_path
     Rails.public_path.join(
-      png_image_path,
-      png_image_name
-    )
+      png_image_path
+    ).to_s
   end
 
   def images_dir
