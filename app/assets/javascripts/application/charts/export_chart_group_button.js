@@ -152,8 +152,6 @@ function initializeExportChartGroupButton($exportButton, charts) {
   }
 
   function postExportRequest() {
-    options = Highcharts.merge(Highcharts.getOptions().exporting);
-
     var exportOptions;
 
     if (charts.length === 1) {
@@ -187,7 +185,10 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
     postCreateChartImages($.makeArray(charts));
 
-    Highcharts.post(options.url, exportOptions);
+    Highcharts.post(
+      Highcharts.merge(Highcharts.getOptions().exporting).url,
+      exportOptions
+    );
   };
 
   return {
