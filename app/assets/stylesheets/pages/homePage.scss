@@ -22,16 +22,22 @@ $widthHomepageIntroHorizontal: 600px;
 .homepage-introText {
   padding: 0 $padding-main-content;
   margin-top: 30px;
-  max-width: 38rem;
+  max-width: 28rem;
+  font-size: 2rem;
 
   @media (min-width: $widthHomepageIntroHorizontal) {
     order: 2;
+  }
+
+  @media (min-width: 700px) {
+    max-width: 38rem;
+    font-size: 2.6rem;
   }
 }
 
   .heading.mod-homepage-primary {
     color: white;
-    font-size: 4rem;
+    font-size: 1.53em;
     line-height: 1.2;
   }
 
@@ -51,7 +57,7 @@ $widthHomepageIntroHorizontal: 600px;
   }
 
   .homepage-introText-subheading {
-    font-size: 2.6rem;
+    font-size: 1em;
     margin-top: 15px;
   }
 
