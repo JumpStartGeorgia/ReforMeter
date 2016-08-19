@@ -290,12 +290,15 @@ class RootController < ApplicationController
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
-    gon.charts = [
+    expert_history_chart = Chart.new(
       Quarter.expert_survey_data_for_charting(
         overall_score_only: true,
-        id: 'expert-history',
-        png_image_path: Rails.root.join('public', 'system', 'chart_share_images', 'test.png').to_s
+        id: 'expert-history'
       )
+    )
+
+    gon.charts = [
+      expert_history_chart.to_hash
     ]
 
     @quarters.each do |quarter|
