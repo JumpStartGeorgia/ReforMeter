@@ -33,6 +33,12 @@
       <%= render partial: 'application/google_analytics' %>
     <% end %>
 
+    <% if @addthis_id.present? %>
+
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<%= @addthis_id %>"></script>
+
+    <% end %>
+
   </body>
 
 </html>

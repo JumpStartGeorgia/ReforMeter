@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
   ##############################################
 
   def set_global_vars
+    # Used by share buttons in footer
+    @addthis_id = ENV['ADDTHIS_ID']
+
     # indicate which year can be the first year for data
     @quarter_start_year = 2015
     gon.default_locale = I18n.default_locale.to_s
