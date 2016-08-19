@@ -290,15 +290,15 @@ class RootController < ApplicationController
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
-    expert_history_chart = Chart.new(
-      Quarter.expert_survey_data_for_charting(
-        overall_score_only: true,
-        id: 'expert-history'
-      ),
-      request.path
-    )
-
-    charts = [expert_history_chart]
+    charts = [
+      Chart.new(
+        Quarter.expert_survey_data_for_charting(
+          overall_score_only: true,
+          id: 'expert-history'
+        ),
+        request.path
+      )
+    ]
 
     gon.charts = charts.map(&:to_hash)
 
