@@ -156,7 +156,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
     if (charts.length === 1) {
 
-      exportOptions = singleChartExportOptions(charts[0]);
+      exportOptions = charts[0].getExportOptions(exportType);
 
     } else {
 
@@ -164,7 +164,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
     }
 
-    function postCreateChartImages(charts) {
+    function postCreateChartImages(charts, exportType) {
 
       charts.forEach(function(chart) {
         var pngImagePath = chart.data.png_image_path;
@@ -175,7 +175,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
           gon.create_chart_share_image_url,
           {
             png_image_path: pngImagePath,
-            highcharts_export_options: exportOptions
+            highcharts_export_options: chart.getExportOptions(exportType)
           }
         );
 
@@ -183,7 +183,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
 
     }
 
-    postCreateChartImages($.makeArray(charts));
+    postCreateChartImages($.makeArray(charts), 'png');
 
     Highcharts.post(
       Highcharts.merge(Highcharts.getOptions().exporting).url,

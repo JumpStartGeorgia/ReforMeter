@@ -27,6 +27,40 @@ function initializeHighchart($container) {
 
     highchart.highchartsObject = new Highcharts.Chart($container[0], options);
     highchart.data = highchartData;
+
+    highchart.getExportOptions = function(exportType) {
+
+      function chartSpecificExportOptions() {
+        if (!highchart.highchartsObject.userOptions.exporting) return {};
+
+        return highchart.highchartsObject.userOptions.exporting.chartOptions;
+      }
+
+      var defaultExportOptions = {
+        chart: {
+          style: {
+            fontFamily: 'sans-serif',
+            fontSize: '9px'
+          }
+        },
+        legend: {
+          itemDistance: 70,
+          x: -40
+        }
+      };
+
+      return {
+        filename: highchartData.title ? highchartData.title + '_ReforMeter' : 'ReforMeter_Chart',
+        type: exportType,
+        scale: 1,
+        svg: highchart.highchartsObject.getSVG(
+          Highcharts.merge(
+            defaultExportOptions,
+            chartSpecificExportOptions()
+          )
+        )
+      };
+    }
   };
 
   return highchart;
