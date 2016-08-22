@@ -18,5 +18,7 @@ class ChartsController < ApplicationController
     File.open(png_image_path, 'wb') do |file|
       file.write response.body
     end
+
+    render json: nil, status: :ok
   end
 end
