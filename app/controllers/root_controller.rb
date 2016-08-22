@@ -141,9 +141,15 @@ class RootController < ApplicationController
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
-    gon.charts = [
-      Quarter.all_reform_survey_data_for_charting(id: 'reforms-history-series', quarter_ids: @quarters.map{|x| x.id})
+    charts = [
+      Chart.new(
+        Quarter.all_reform_survey_data_for_charting(id: 'reforms-history-series', quarter_ids: @quarters.map{|x| x.id}),
+        request.path
+      )
     ]
+
+    @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
+    gon.charts = charts.map(&:to_hash)
 
     @quarters.each do |quarter|
       surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id}
