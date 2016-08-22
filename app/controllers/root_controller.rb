@@ -195,30 +195,42 @@ class RootController < ApplicationController
 
       @quarter_ids = Quarter.with_reform(@reform.id).published.recent.pluck(:id)
 
-      government_time_series = Quarter.reform_survey_data_for_charting(
-        @reform.id,
-        type: 'government',
-        id: 'reform-government-history',
-        quarter_ids: @quarter_ids
+      government_time_series = Chart.new(
+        Quarter.reform_survey_data_for_charting(
+          @reform.id,
+          type: 'government',
+          id: 'reform-government-history',
+          quarter_ids: @quarter_ids
+        ),
+        request.path
       )
 
-      stakeholder_time_series = Quarter.reform_survey_data_for_charting(
-        @reform.id,
-        type: 'stakeholder',
-        id: 'reform-stakeholder-history',
-        quarter_ids: @quarter_ids
+      stakeholder_time_series = Chart.new(
+        Quarter.reform_survey_data_for_charting(
+          @reform.id,
+          type: 'stakeholder',
+          id: 'reform-stakeholder-history',
+          quarter_ids: @quarter_ids
+        ),
+        request.path
       )
 
-      gon.charts = [
+      charts = [
         government_time_series,
         stakeholder_time_series
       ]
+
+      gon.charts = charts.map(&:to_hash)
+
+      @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
+
+      government_color = government_time_series.to_hash[:color]
 
       if @reform_survey.present?
         [
           {
             id: 'reform-government-overall',
-            color: government_time_series[:color],
+            color: government_color,
             title: I18n.t('shared.categories.overall'),
             score: @reform_survey.government_overall_score.to_f,
             change: @reform_survey.government_overall_change
@@ -244,25 +256,25 @@ class RootController < ApplicationController
             change: @reform_survey.government_category4_change
           }, {
             id: 'reform-stakeholder-overall',
-            color: government_time_series[:color],
+            color: government_color,
             title: t('shared.categories.overall'),
             score: @reform_survey.stakeholder_overall_score.to_f,
             change: @reform_survey.stakeholder_overall_change
           }, {
             id: 'reform-stakeholder-performance',
-            color: government_time_series[:color],
+            color: government_color,
             title: t('shared.categories.performance'),
             score: @reform_survey.stakeholder_category1_score.to_f,
             change: @reform_survey.stakeholder_category1_change
           }, {
             id: 'reform-stakeholder-goals',
-            color: government_time_series[:color],
+            color: government_color,
             title: t('shared.categories.goals'),
             score: @reform_survey.stakeholder_category2_score.to_f,
             change: @reform_survey.stakeholder_category2_change
           }, {
             id: 'reform-stakeholder-progress',
-            color: government_time_series[:color],
+            color: government_color,
             title: t('shared.categories.progress'),
             score: @reform_survey.stakeholder_category3_score.to_f,
             change: @reform_survey.stakeholder_category3_change
