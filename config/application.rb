@@ -41,5 +41,9 @@ module StarterTemplate
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Activates chart image observer, so that its callback is applied to all
+    # models
+    config.active_record.observers = :chart_image_observer
   end
 end

@@ -17,7 +17,7 @@ class Chart
   end
 
   def png_image_path
-    Pathname.new(images_dir).join(
+    Pathname.new(ChartImages.images_dir).join(
       remove_forward_slash(page_path),
       png_image_name
     ).to_s
@@ -33,10 +33,6 @@ class Chart
     Rails.public_path.join(
       png_image_path
     ).to_s
-  end
-
-  def images_dir
-    'system/chart_share_images'
   end
 
   def page_path

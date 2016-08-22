@@ -205,3 +205,6 @@ gem 'ckeditor', '~> 4.1', '>= 4.1.6'
 
 # Tooltips
 gem 'tipsy-rails', '~> 1.0', '>= 1.0.5'
+
+# Needed to apply callbacks to multiple models
+gem 'rails-observers', '~> 0.1.2'
