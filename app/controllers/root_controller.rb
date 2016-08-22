@@ -7,13 +7,44 @@ class RootController < ApplicationController
 
     gon.change_icons = view_context.change_icons
 
-    gon.charts = [{
-      id: 'reform-current-overall',
-      title: nil,
-      responsiveTo: '.js-homepage-primary-gauge-container',
-      score: @quarter.expert_survey.overall_score.to_f,
-      change: @quarter.expert_survey.overall_change
-    }]
+    charts = [
+      Chart.new(
+        {
+          id: 'reform-current-overall',
+          title: nil,
+          responsiveTo: '.js-homepage-primary-gauge-container',
+          score: @quarter.expert_survey.overall_score.to_f,
+          change: @quarter.expert_survey.overall_change
+        }
+      )
+    ]
+
+    # The homepage primary gauge, when made shareable, creates an image
+    # with a size depending on the width of the screen the first
+    # person uses to create it (the actual highcharts config is responsive
+    # to the container width). However, the homepage share image should
+    # always be the biggest width that it can be. So, we create a copy
+    # of the primary gauge and only load it IF it's png image does not
+    # yet exist. If the png image does not exist, and this second primary
+    # gauge chart is created, then the div container has display: none; to
+    # hide it.
+    primary_gauge_for_image = Chart.new(
+      {
+        id: 'reform-current-overall-for-export',
+        title: nil,
+        score: @quarter.expert_survey.overall_score.to_f,
+        change: @quarter.expert_survey.overall_change
+      },
+      request.path
+    )
+
+    unless (primary_gauge_for_image.png_image_exists?)
+      charts << primary_gauge_for_image
+    end
+
+    gon.charts = charts.map(&:to_hash)
+
+    @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
 
     @reforms.each do |reform|
       survey = reform.reform_surveys[0]

@@ -5,20 +5,23 @@
 # Note: Just in case facebook (or a different social media site) caches
 # image names, the chart images are generated with a random ID in the name.
 class Chart
-  def initialize(options, page_path)
+  def initialize(options, page_path = nil)
     @options = options
-    @page_path = page_path
+    @page_path = page_path if (page_path.present?)
   end
 
   def to_hash
     hash = @options
 
-    hash[:png_image_path] = full_png_image_path unless png_image_exists?
+    if page_path.present? && !png_image_exists?
+      hash[:png_image_path] = full_png_image_path unless png_image_exists?
+    end
 
     hash
   end
 
   def png_image_exists?
+    return false if page_path.blank?
     matching_image_paths.present?
   end
 
