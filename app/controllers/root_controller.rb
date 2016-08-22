@@ -110,14 +110,24 @@ class RootController < ApplicationController
 
     gon.change_icons = view_context.change_icons
 
-    external_indicator_charts = @external_indicators.map(&:format_for_charting)
-    external_indicator_charts.map do |ext_ind_chart|
-      ext_ind_chart[:displayTitle] = false
-      ext_ind_chart[:displaySubtitle] = false
+    charts = @external_indicators.map do |external_indicator|
+      Chart.new(
+        external_indicator.format_for_charting,
+        request.path
+      )
+    end
+
+    @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
+
+    chart_hashes = charts.map do |chart|
+      chart_config = chart.to_hash
+      chart_config[:displayTitle] = false
+      chart_config[:displaySubtitle] = false
+      chart_config
     end
 
     gon.charts = []
-    gon.charts += external_indicator_charts
+    gon.charts += chart_hashes
   end
 
   def reforms
