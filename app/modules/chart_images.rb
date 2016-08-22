@@ -1,5 +1,5 @@
 module ChartImages
   def self.images_dir
-    'system/chart_share_images'
+    'system/chart_images'
   end
 end
