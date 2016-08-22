@@ -359,8 +359,18 @@ class RootController < ApplicationController
       gon.chart_download = highchart_export_config
       gon.change_icons = view_context.change_icons
 
+      expert_history_chart = Chart.new(
+        Quarter.expert_survey_data_for_charting(id: 'expert-history'),
+        request.path
+      )
+
+      @share_image_paths = []
+      if expert_history_chart.png_image_exists?
+        @share_image_paths << expert_history_chart.png_image_path
+      end
+
       gon.charts = [
-        Quarter.expert_survey_data_for_charting(id: 'expert-history'), {
+        expert_history_chart.to_hash, {
           id: 'overall',
           title: I18n.t('shared.categories.overall'),
           score: @quarter.expert_survey.overall_score.to_f,
