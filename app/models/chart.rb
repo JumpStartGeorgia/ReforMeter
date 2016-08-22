@@ -17,8 +17,7 @@ class Chart
   end
 
   def png_image_path
-    Pathname.new(ChartImages.images_dir).join(
-      remove_forward_slash(page_path),
+    Pathname.new(images_dir_path_for_page).join(
       png_image_name
     ).to_s
   end
@@ -37,6 +36,12 @@ class Chart
 
   def page_path
     @page_path
+  end
+
+  def images_dir_path_for_page
+    Pathname.new(ChartImages.images_dir).join(
+      remove_forward_slash(page_path)
+    ).to_s
   end
 
   def png_image_name
