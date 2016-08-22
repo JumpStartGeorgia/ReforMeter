@@ -27,7 +27,7 @@
 
   <% end %>
 
-  <meta property="og:image" content="<%= full_url("/assets/share_#{I18n.locale}.jpg") %>" />
+  <meta property="og:image" content="<%= asset_url('share_#{I18n.locale}.jpg') %>" />
   <meta property="og:site_name" content="<%= t("shared.common.name") %>" />
 
   <%= csrf_meta_tags %>
