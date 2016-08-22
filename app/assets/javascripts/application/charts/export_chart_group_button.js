@@ -36,7 +36,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
       var svg = chart.highchartsObject.getSVG(
         Highcharts.merge(
           defaultExportOptions,
-          chartSpecificExportOptions(chart)
+          chart.specificExportOptions()
         )
       );
 

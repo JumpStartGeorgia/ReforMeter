@@ -28,13 +28,13 @@ function initializeHighchart($container) {
     highchart.highchartsObject = new Highcharts.Chart($container[0], options);
     highchart.data = highchartData;
 
+    highchart.specificExportOptions = function() {
+      if (!this.highchartsObject.userOptions.exporting) return {};
+
+      return this.highchartsObject.userOptions.exporting.chartOptions;
+    }
+
     highchart.getExportOptions = function(exportType) {
-
-      function chartSpecificExportOptions() {
-        if (!highchart.highchartsObject.userOptions.exporting) return {};
-
-        return highchart.highchartsObject.userOptions.exporting.chartOptions;
-      }
 
       var defaultExportOptions = {
         chart: {
@@ -56,7 +56,7 @@ function initializeHighchart($container) {
         svg: highchart.highchartsObject.getSVG(
           Highcharts.merge(
             defaultExportOptions,
-            chartSpecificExportOptions()
+            highchart.specificExportOptions()
           )
         )
       };
