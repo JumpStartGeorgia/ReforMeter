@@ -3,52 +3,61 @@
 // svg to improve its styles.
 function improveDataLabelStylesInGaugeSVGExport(svg, highchartsObject, options) {
   if (!options) options = {};
-  if (!options.topPadding) options.topPadding = false;
 
   var $svg = $(svg);
 
   var $dataLabel = $svg.find('g.highcharts-data-labels');
 
+  var translateRegex = /translate\((-?\d+),(-?\d+)\)/;
+
   function translateString(x, y) {
     return 'translate(' + x + ',' + y + ')';
   }
 
-  function replaceTranslateXWithCenteredX(_, _, currentY) {
-    var centeredX = highchartsObject.chartWidth/2;
-    return translateString(centeredX, currentY);
+  function centerWholeDataLabel() {
+    function replaceTranslateXWithCenteredX(_, _, currentY) {
+      var centeredX = highchartsObject.chartWidth/2;
+      return translateString(centeredX, currentY);
+    }
+
+    $dataLabel.attr(
+      'transform',
+      $dataLabel.attr('transform').replace(
+        translateRegex,
+        replaceTranslateXWithCenteredX
+      )
+    );
   }
 
-  var translateRegex = /translate\((-?\d+),(-?\d+)\)/;
+  function removeTranslateXFromDataLabelChildren() {
+    function replaceTranslateXWithZero(_, _, currentY) {
+      return translateString('0', currentY);
+    }
 
-  var newDataLabelTransform = $dataLabel
-                              .attr('transform')
-                              .replace(
-                                translateRegex,
-                                replaceTranslateXWithCenteredX
-                              );
+    $dataLabelChild = $dataLabel.children('g');
 
-  $dataLabel.attr('transform', newDataLabelTransform);
-
-  $dataLabelChild = $dataLabel.children('g');
-
-  function replaceTranslateXWithZero(_, _, currentY) {
-    return translateString('0', currentY);
+    $dataLabelChild.attr(
+      'transform',
+      $dataLabelChild.attr('transform').replace(
+        translateRegex,
+        replaceTranslateXWithZero
+      )
+    );
   }
 
-  $dataLabelChild.attr(
-    'transform',
-    $dataLabelChild.attr('transform').replace(
-      translateRegex,
-      replaceTranslateXWithZero
-    )
-  );
+  function alterTspanStyles() {
+    var $tspans =  $dataLabel.find('tspan');
+    $tspans.attr('x', 0)
+    $tspans.attr('text-anchor', 'middle');
 
-  var $tspans =  $dataLabel.find('tspan');
-  $tspans.attr('x', 0)
-  $tspans.attr('text-anchor', 'middle');
+    if (options.topPadding) $tspans.slice(0, 1).attr('dy', options.topPadding);
 
-  if (options.topPadding) $tspans.slice(0, 1).attr('dy', options.topPadding);
+    $tspans.slice(1).attr('dy', '1.2em').removeAttr('dx');
+  }
 
-  $tspans.slice(1).attr('dy', '1.2em').removeAttr('dx');
+  centerWholeDataLabel();
+  removeTranslateXFromDataLabelChildren();
+  alterTspanStyles();
+
   return $svg[0].outerHTML;
 }
