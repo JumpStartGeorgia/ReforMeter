@@ -7,20 +7,7 @@ function initializeExportChartsButton($exportButton, chart_object) {
   }
 
   var exportURL = Highcharts.merge(Highcharts.getOptions().exporting).url;
-
-  var exportOptions;
-
-  if (chart_object.length === 1) {
-
-    exportOptions = chart_object[0].getExportOptions(exportType);
-
-  } else {
-
-    var chartGroup = initializeChartGroup(chart_object);
-
-    exportOptions = chartGroup.getExportOptions(exportType);
-
-  }
+  var exportOptions = chart_object.getExportOptions(exportType);
 
   function postExportRequest() {
     Highcharts.post(
