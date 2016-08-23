@@ -47,10 +47,18 @@ function initializeHighchart($container, highchartData) {
 
     }
 
+    // Facebook prefers share images to have 1200px width or higher, so
+    // increase the scale to reach that width as necessary.
+    var scale = 1;
+    var svgWidth = parseInt($(svg).attr('width'));
+    var minimumImageWidth = 1200;
+
+    if (svgWidth < minimumImageWidth) scale = minimumImageWidth / svgWidth;
+
     return {
       filename: highchartData.title ? highchartData.title + '_ReforMeter' : 'ReforMeter_Chart',
       type: exportType,
-      scale: 1,
+      scale: scale,
       svg: svg
     };
   }
