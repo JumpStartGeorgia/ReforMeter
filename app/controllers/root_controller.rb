@@ -45,7 +45,7 @@ class RootController < ApplicationController
 
     gon.charts = charts.map(&:to_hash)
 
-    @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
+    @share_image_paths = [primary_gauge_for_image.png_image_path]
 
     @reforms.each do |reform|
       survey = reform.reform_surveys[0]
