@@ -8,7 +8,7 @@ class ChartsController < ApplicationController
 
     image_glob = png_image_path.gsub(/_id-\w+\./, '_id-*.')
 
-    # end action if File already exists
+    # end action if chart image already exists
     render json: nil, status: :ok if Dir.glob(image_glob).present?
 
     post_params = params['highcharts_export_options']
