@@ -6,8 +6,10 @@ class ChartsController < ApplicationController
 
     png_image_path = params['png_image_path']
 
+    image_glob = png_image_path.gsub(/_id-\w+\./, '_id-*.')
+
     # end action if File already exists
-    render json: nil, status: :ok if File.exist?(png_image_path)
+    render json: nil, status: :ok if Dir.glob(image_glob).present?
 
     post_params = params['highcharts_export_options']
 
