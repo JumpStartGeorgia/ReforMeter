@@ -401,28 +401,54 @@ class RootController < ApplicationController
         @share_image_paths << expert_history_chart.png_image_path
       end
 
+      expert_overall_gauge = Chart.new({
+        id: 'overall',
+        title: I18n.t('shared.categories.overall'),
+        score: @quarter.expert_survey.overall_score.to_f,
+        change: @quarter.expert_survey.overall_change
+      })
+
+      expert_performance_gauge = Chart.new({
+        id: 'performance',
+        title: I18n.t('shared.categories.performance'),
+        score: @quarter.expert_survey.category1_score.to_f,
+        change: @quarter.expert_survey.category1_change
+      })
+
+      expert_goals_gauge = Chart.new({
+        id: 'goals',
+        title: I18n.t('shared.categories.goals'),
+        score: @quarter.expert_survey.category2_score.to_f,
+        change: @quarter.expert_survey.category2_change
+      })
+
+      expert_progress_gauge = Chart.new({
+        id: 'progress',
+        title: I18n.t('shared.categories.progress'),
+        score: @quarter.expert_survey.category3_score.to_f,
+        change: @quarter.expert_survey.category3_change
+      })
+
+      expert_gauge_group = ChartGroup.new(
+        [
+          expert_overall_gauge,
+          expert_performance_gauge,
+          expert_goals_gauge,
+          expert_progress_gauge
+        ],
+        id: 'expert-gauge-group'
+      )
+
       gon.charts = [
-        expert_history_chart.to_hash, {
-          id: 'overall',
-          title: I18n.t('shared.categories.overall'),
-          score: @quarter.expert_survey.overall_score.to_f,
-          change: @quarter.expert_survey.overall_change
-        }, {
-          id: 'performance',
-          title: I18n.t('shared.categories.performance'),
-          score: @quarter.expert_survey.category1_score.to_f,
-          change: @quarter.expert_survey.category1_change
-        }, {
-          id: 'goals',
-          title: I18n.t('shared.categories.goals'),
-          score: @quarter.expert_survey.category2_score.to_f,
-          change: @quarter.expert_survey.category2_change
-        }, {
-          id: 'progress',
-          title: I18n.t('shared.categories.progress'),
-          score: @quarter.expert_survey.category3_score.to_f,
-          change: @quarter.expert_survey.category3_change
-        }
+        expert_history_chart.to_hash,
+        expert_overall_gauge.to_hash,
+        expert_performance_gauge.to_hash,
+        expert_goals_gauge.to_hash,
+        expert_progress_gauge.to_hash
+      ]
+
+      gon.chartGroups = [
+        expert_gauge_group.to_hash
       ]
 
     rescue ActiveRecord::RecordNotFound => e

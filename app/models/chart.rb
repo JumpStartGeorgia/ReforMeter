@@ -37,6 +37,10 @@ class Chart
     Pathname.new(images_dir_path_for_page).join(name).to_s
   end
 
+  def id
+    @options[:id]
+  end
+
   private
 
   def remove_forward_slash(str)
@@ -73,7 +77,7 @@ class Chart
   end
 
   def png_image_name_base
-    @options[:id]
+    id
   end
 
   def full_png_image_path
