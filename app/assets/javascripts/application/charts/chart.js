@@ -27,7 +27,7 @@ function initializeHighchart($container, highchartData) {
       }
     };
 
-    svg = highchart.highchartsObject.getSVG(
+    var svg = highchart.highchartsObject.getSVG(
       Highcharts.merge(
         defaultExportOptions,
         highchart.specificExportOptions()

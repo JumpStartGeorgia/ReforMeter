@@ -25,6 +25,19 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
   var helpers = meterGaugeHelpers(size);
   var plotBandLabels = helpers.plotBandLabels();
 
+  function gaugeLabel(dataPoint, isExport) {
+    return highchartsGaugeLabel(
+      chartData,
+      dataPoint,
+      helpers.textSize(4),
+      {
+        changeIcon: !isExport,
+        color: 'white',
+        maxIconWidth: '55px'
+      }
+    );
+  }
+
   var options = {
 
     chart: {
@@ -36,6 +49,20 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
       chartOptions: {
         chart: {
           backgroundColor: '#5a5a90'
+        },
+        title: {
+          style: {
+            color: 'white'
+          }
+        },
+        plotOptions: {
+          gauge: {
+            dataLabels: {
+              formatter: function() {
+                return gaugeLabel(this, true);
+              }
+            }
+          }
         }
       }
     },
@@ -82,35 +109,32 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
       ]
     },
 
+    plotOptions: {
+      gauge: {
+        dataLabels: {
+          borderWidth: 0,
+          y: helpers.textPosition(.33),
+          useHTML: true,
+          formatter: function() {
+            return gaugeLabel(this, false);
+          }
+        },
+        pivot: {
+          backgroundColor: '#5e588e'
+        },
+        dial: {
+          baseWidth: helpers.paneSize/10,
+          backgroundColor: 'rgb(255, 255, 255)',
+          baseLength: 0,
+          radius: '60%',
+          rearLength: '10%'
+        }
+      }
+    },
+
     series: [{
       name: chartData.title,
-      data: [chartData.score],
-      dataLabels: {
-        borderWidth: 0,
-        y: helpers.textPosition(.33),
-        useHTML: true,
-        formatter: function() {
-          return highchartsGaugeLabel(
-            chartData,
-            this,
-            helpers.textSize(4),
-            {
-              color: 'white',
-              maxIconWidth: '55px'
-            }
-          );
-        }
-      },
-      pivot: {
-        backgroundColor: '#5e588e'
-      },
-      dial: {
-        baseWidth: helpers.paneSize/10,
-        backgroundColor: 'rgb(255, 255, 255)',
-        baseLength: 0,
-        radius: '60%',
-        rearLength: '10%'
-      }
+      data: [chartData.score]
     }]
 
   };

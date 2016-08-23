@@ -31,7 +31,7 @@ class RootController < ApplicationController
     primary_gauge_for_image = Chart.new(
       {
         id: 'reform-current-overall-for-share',
-        title: nil,
+        title: I18n.t('root.index.heading'),
         size: 300,
         score: @quarter.expert_survey.overall_score.to_f,
         change: @quarter.expert_survey.overall_change
