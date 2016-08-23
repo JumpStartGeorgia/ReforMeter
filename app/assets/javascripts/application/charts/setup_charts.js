@@ -33,9 +33,10 @@ function setupCharts() {
   });
 
   var chartGroups = initializeChartGroups(charts);
+  var chartObjects = $.merge($.merge([], charts), chartGroups);
 
   postCreateChartImages($.makeArray(charts), 'image/png');
-  setupExportChartGroupButtons(charts);
+  setupExportChartGroupButtons(chartObjects);
 
   return charts;
 }

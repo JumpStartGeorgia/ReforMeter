@@ -69,5 +69,9 @@ function initializeChartGroup(charts, id) {
     };
   };
 
+  chartGroup.exportableBy = function(exportButtonDataID) {
+    return id === exportButtonDataID;
+  }
+
   return chartGroup;
 }
