@@ -1,4 +1,4 @@
-function initializeExportChartsButton($exportButton, chart_object) {
+function initializeExportChartsButton($exportButton, chartObject) {
   var exportType = $exportButton.data('export-type'),
       allowedTypes = ['image/png', 'image/jpeg', 'application/pdf', 'image/svg+xml'];
 
@@ -7,7 +7,7 @@ function initializeExportChartsButton($exportButton, chart_object) {
   }
 
   var exportURL = Highcharts.merge(Highcharts.getOptions().exporting).url;
-  var exportOptions = chart_object.getExportOptions(exportType);
+  var exportOptions = chartObject.getExportOptions(exportType);
 
   function postExportRequest() {
     Highcharts.post(
