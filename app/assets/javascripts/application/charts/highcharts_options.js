@@ -22,6 +22,15 @@ function setupDefaultOptions() {
       enabled: false,
       scale: 1
     },
+    plotOptions: {
+      gauge: {
+        dataLabels: {
+          style: {
+            textShadow: false
+          }
+        }
+      }
+    },
     tooltip: {
       backgroundColor: 'white',
       borderWidth: 0
