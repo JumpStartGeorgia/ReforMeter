@@ -32,6 +32,7 @@ class RootController < ApplicationController
       {
         id: 'reform-current-overall-for-share',
         title: nil,
+        size: 300,
         score: @quarter.expert_survey.overall_score.to_f,
         change: @quarter.expert_survey.overall_change
       },

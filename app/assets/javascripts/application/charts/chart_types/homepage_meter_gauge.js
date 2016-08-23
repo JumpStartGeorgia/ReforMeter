@@ -2,15 +2,23 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
   var mainContentPadding = 30;
 
   // Size is responsive to the width of the chart's container, with a max of 400
-  var size = 400;
+  function size() {
+    if (chartData.size) return chartData.size;
 
-  if (chartData.responsiveTo) {
-    var mainContentWidth = $(chartData.responsiveTo).width() - (mainContentPadding * 2);
+    var defaultSize = 400;
 
-    if (mainContentWidth < size) {
-      size = mainContentWidth;
+    if (chartData.responsiveTo) {
+      var mainContentWidth = $(chartData.responsiveTo).width() - (mainContentPadding * 2);
+
+      if (mainContentWidth < defaultSize) {
+        return mainContentWidth;
+      }
     }
+
+    return defaultSize;
   }
+
+  size = size();
 
   var color = chartData.color;
 
@@ -22,6 +30,14 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
     chart: {
       width: helpers.chartWidth,
       height: helpers.chartHeight
+    },
+
+    exporting: {
+      chartOptions: {
+        chart: {
+          backgroundColor: '#5a5a90'
+        }
+      }
     },
 
     title: {
