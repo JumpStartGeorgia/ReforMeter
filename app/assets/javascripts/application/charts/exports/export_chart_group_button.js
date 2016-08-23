@@ -6,71 +6,79 @@ function initializeExportChartGroupButton($exportButton, charts) {
     throw new Error('Export button has not allowed type');
   }
 
-  function getChartGroupSVG() {
-    var svgArr = [],
-        height = 0,
-        xOffset = 0;
+  function initializeChartGroup() {
+    var chartGroup = {};
 
-    var chartGroupHeight = $.makeArray(charts).reduce(
-      function(biggestHeight, chart) {
-        return Math.max(biggestHeight, chart.highchartsObject.chartHeight);
-      },
-      0
-    );
+    chartGroup.getSVG() = function() {
+      var svgArr = [],
+          height = 0,
+          xOffset = 0;
 
-    $.each(charts, function(index, chart) {
-      var highchartsObject = chart.highchartsObject;
+      var chartGroupHeight = $.makeArray(charts).reduce(
+        function(biggestHeight, chart) {
+          return Math.max(biggestHeight, chart.highchartsObject.chartHeight);
+        },
+        0
+      );
 
-      var defaultExportOptions = {
-        chart: {
-          backgroundColor: 'white',
-          height: chartGroupHeight,
-          style: {
-            fontFamily: 'sans-serif',
-            fontSize: '9.5px'
-          },
-          width: highchartsObject.chartWidth
+      $.each(charts, function(index, chart) {
+        var highchartsObject = chart.highchartsObject;
+
+        var defaultExportOptions = {
+          chart: {
+            backgroundColor: 'white',
+            height: chartGroupHeight,
+            style: {
+              fontFamily: 'sans-serif',
+              fontSize: '9.5px'
+            },
+            width: highchartsObject.chartWidth
+          }
         }
+
+        var svg = chart.highchartsObject.getSVG(
+          Highcharts.merge(
+            defaultExportOptions,
+            chart.specificExportOptions()
+          )
+        );
+
+        svg = svg.replace('<svg', '<g transform="translate(' + xOffset + ',0)" ');
+        svg = svg.replace('</svg>', '</g>');
+
+        svg = improveDataLabelStylesInGaugeSVGExport(
+          svg,
+          highchartsObject,
+          {
+            topPadding: index === 0 ? '.5em' : false
+          }
+        );
+
+        height = parseInt(Math.max(height, highchartsObject.chartHeight));
+        xOffset += highchartsObject.chartWidth;
+
+        svgArr.push(svg);
+      });
+
+      function surroundWithSVG(content) {
+        return '<svg height="'+ height + '" width="' + xOffset + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
       }
 
-      var svg = chart.highchartsObject.getSVG(
-        Highcharts.merge(
-          defaultExportOptions,
-          chart.specificExportOptions()
-        )
-      );
+      var svgObj = surroundWithSVG(svgArr.join(''));
 
-      svg = svg.replace('<svg', '<g transform="translate(' + xOffset + ',0)" ');
-      svg = svg.replace('</svg>', '</g>');
-
-      svg = improveDataLabelStylesInGaugeSVGExport(
-        svg,
-        highchartsObject,
-        {
-          topPadding: index === 0 ? '.5em' : false
-        }
-      );
-
-      height = parseInt(Math.max(height, highchartsObject.chartHeight));
-      xOffset += highchartsObject.chartWidth;
-
-      svgArr.push(svg);
-    });
-
-    function surroundWithSVG(content) {
-      return '<svg height="'+ height + '" width="' + xOffset + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
+      return svgObj;
     }
 
-    var svgObj = surroundWithSVG(svgArr.join(''));
-
-    return svgObj;
+    return chartGroup;
   }
+
+  var chartGroup = initializeChartGroup();
 
   function multipleChartExportOptions() {
     return {
       filename: 'Gauge_Charts_ReforMeter',
       type: exportType,
-      svg: getChartGroupSVG()
+      svg: chartGroup.getChartGroupSVG();
     };
   }
 
