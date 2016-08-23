@@ -47,7 +47,7 @@ function improveDataLabelStylesInGaugeSVGExport(svg, highchartsObject, options) 
   $tspans.attr('x', 0)
   $tspans.attr('text-anchor', 'middle');
 
-  if (options.topPadding) $tspans.slice(0, 1).attr('dy', '.5em');
+  if (options.topPadding) $tspans.slice(0, 1).attr('dy', options.topPadding);
 
   $tspans.slice(1).attr('dy', '1.2em').removeAttr('dx');
   return $svg[0].outerHTML;

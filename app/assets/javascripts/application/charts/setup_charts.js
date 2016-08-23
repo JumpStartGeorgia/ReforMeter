@@ -36,16 +36,18 @@ function initializeHighchart($container, highchartData) {
         }
       };
 
+      svg = highchart.highchartsObject.getSVG(
+        Highcharts.merge(
+          defaultExportOptions,
+          highchart.specificExportOptions()
+        )
+      );
+
       return {
         filename: highchartData.title ? highchartData.title + '_ReforMeter' : 'ReforMeter_Chart',
         type: exportType,
         scale: 1,
-        svg: highchart.highchartsObject.getSVG(
-          Highcharts.merge(
-            defaultExportOptions,
-            highchart.specificExportOptions()
-          )
-        )
+        svg: svg
       };
     }
   };

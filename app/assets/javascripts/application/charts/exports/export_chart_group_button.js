@@ -47,7 +47,7 @@ function initializeExportChartGroupButton($exportButton, charts) {
         svg,
         highchartsObject,
         {
-          topPadding: index === 0
+          topPadding: index === 0 ? '.5em' : false
         }
       );
 
