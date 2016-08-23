@@ -2,6 +2,17 @@ function initializeHighchart($container, highchartData) {
   var highchart = {}
   var chartType = $container.data('chart-type');
   var exportableByID = $container.data('exportable-by-id');
+  var id = $container.data('id');
+
+  Object.defineProperty(
+    highchart,
+    'id',
+    {
+      get: function() {
+        return id;
+      }
+    }
+  )
 
   highchart.exportableBy = function(exportChartGroupButtonID) {
     return exportableByID === exportChartGroupButtonID;

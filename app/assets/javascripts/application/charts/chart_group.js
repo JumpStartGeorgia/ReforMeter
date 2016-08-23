@@ -1,4 +1,4 @@
-function initializeChartGroup(charts) {
+function initializeChartGroup(charts, id) {
   var chartGroup = {};
 
   function getSVG() {
