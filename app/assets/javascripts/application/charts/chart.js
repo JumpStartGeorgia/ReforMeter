@@ -34,6 +34,19 @@ function initializeHighchart($container, highchartData) {
       )
     );
 
+    // if chart is gauge, improve data label styles
+    if (/gauge/.test(chartType)) {
+
+      svg = improveDataLabelStylesInGaugeSVGExport(
+        svg,
+        this.highchartsObject,
+        {
+          topPadding: '0.7em'
+        }
+      );
+
+    }
+
     return {
       filename: highchartData.title ? highchartData.title + '_ReforMeter' : 'ReforMeter_Chart',
       type: exportType,
