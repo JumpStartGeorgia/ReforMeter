@@ -20,7 +20,7 @@ function setupExportChartGroupButtons(charts) {
       );
       
       $exportButton.click(
-        initializeExportChartGroupButton($exportButton, exportableCharts).setup
+        initializeExportChartsButton($exportButton, exportableCharts).setup
       )
     }
   );
