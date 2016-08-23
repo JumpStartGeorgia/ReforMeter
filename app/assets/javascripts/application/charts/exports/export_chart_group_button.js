@@ -1,4 +1,4 @@
-function initializeExportChartsButton($exportButton, charts) {
+function initializeExportChartsButton($exportButton, chart_object) {
   var exportType = $exportButton.data('export-type'),
       allowedTypes = ['image/png', 'image/jpeg', 'application/pdf', 'image/svg+xml'];
 
@@ -10,13 +10,13 @@ function initializeExportChartsButton($exportButton, charts) {
 
   var exportOptions;
 
-  if (charts.length === 1) {
+  if (chart_object.length === 1) {
 
-    exportOptions = charts[0].getExportOptions(exportType);
+    exportOptions = chart_object[0].getExportOptions(exportType);
 
   } else {
 
-    var chartGroup = initializeChartGroup(charts);
+    var chartGroup = initializeChartGroup(chart_object);
 
     exportOptions = {
       filename: 'Gauge_Charts_ReforMeter',
