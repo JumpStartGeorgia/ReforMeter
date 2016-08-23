@@ -357,7 +357,7 @@ if ENV['load_test_data'].present?
   ei.reforms << reform2
 
 
-  ei = ExternalIndicator.new(title: 'How is the economy doing?', subtitle: 'Georgian Economic Performance Index (G-EPI)', scale_type: 1, indicator_type: 3, chart_type: 1, min: 0, max: 100, show_on_home_page: true, sort_order: 1, is_public: true)
+  ei = ExternalIndicator.new(title: 'How is the economy doing?', subtitle: 'Georgian Economic Performance Index (G-EPI)', scale_type: 2, indicator_type: 3, chart_type: 1, min: 0, max: 100, show_on_home_page: true, sort_order: 1, is_public: true)
   csv_data = CSV.read(csv_path + 'gepi.csv')
 
   # indices
