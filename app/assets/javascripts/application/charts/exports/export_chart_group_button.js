@@ -1,4 +1,6 @@
 function initializeExportChartsButton($exportButton, chartObject) {
+  var exportChartButton = {};
+
   var exportType = $exportButton.data('export-type'),
       allowedTypes = ['image/png', 'image/jpeg', 'application/pdf', 'image/svg+xml'];
 
@@ -20,10 +22,12 @@ function initializeExportChartsButton($exportButton, chartObject) {
     $exportButton.parents('.js-act-as-chart-export-menu').addClass('is-hidden');
   }
 
-  return {
-    setup: function() {
+  exportChartButton.setup = function() {
+    $exportButton.click(function() {
       postExportRequest();
       closeContainerMenu();
-    }
+    });
   }
+
+  return exportChartButton;
 }

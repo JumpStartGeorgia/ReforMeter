@@ -27,9 +27,9 @@ function setupExportChartGroupButtons(charts) {
         chartObject = initializeChartGroup(exportableCharts);
       }
 
-      $exportButton.click(
-        initializeExportChartsButton($exportButton, chartObject).setup
-      )
+      var exportChartButton = initializeExportChartsButton($exportButton, chartObject);
+
+      exportChartButton.setup();
     }
   );
 }
