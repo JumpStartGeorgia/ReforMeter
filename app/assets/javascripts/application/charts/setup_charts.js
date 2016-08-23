@@ -1,13 +1,5 @@
-function setupCharts() {
-  var $charts = $('.js-become-highchart');
-
-  if ($charts.length === 0) {
-    return null;
-  }
-
-  setupDefaultOptions();
-
-  var charts = $charts.map(function() {
+function initializeCharts($charts) {
+  return $charts.map(function() {
     var $container = $(this);
     var containerChartID = $container.data('id');
 
@@ -27,6 +19,18 @@ function setupCharts() {
   }).filter(function() {
     return typeof this !== 'undefined';
   });
+}
+
+function setupCharts() {
+  var $charts = $('.js-become-highchart');
+
+  if ($charts.length === 0) {
+    return null;
+  }
+
+  setupDefaultOptions();
+
+  var charts = initializeCharts($charts);
 
   $(charts).each(function() {
     this.create();
