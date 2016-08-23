@@ -1,7 +1,7 @@
 function initializeChartGroup(charts) {
   var chartGroup = {};
 
-  chartGroup.getSVG = function() {
+  function getSVG() {
     var svgArr = [],
         height = 0,
         xOffset = 0;
@@ -60,6 +60,14 @@ function initializeChartGroup(charts) {
 
     return svgObj;
   }
+
+  chartGroup.getExportOptions = function(exportType) {
+    return {
+      filename: 'Gauge_Charts_ReforMeter',
+      type: exportType,
+      svg: getSVG()
+    };
+  };
 
   return chartGroup;
 }

@@ -18,11 +18,7 @@ function initializeExportChartsButton($exportButton, chart_object) {
 
     var chartGroup = initializeChartGroup(chart_object);
 
-    exportOptions = {
-      filename: 'Gauge_Charts_ReforMeter',
-      type: exportType,
-      svg: chartGroup.getSVG()
-    };
+    exportOptions = chartGroup.getExportOptions(exportType);
 
   }
 
