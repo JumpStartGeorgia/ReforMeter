@@ -8,6 +8,10 @@ class ChartsController < ApplicationController
 
     image_glob = png_image_path.gsub(/_id-\w+\./, '_id-*.')
 
+    unless ChartImages.is_parent_dir_of_path(png_image_path)
+      render json: nil, status: :ok
+    end
+
     # end action if chart image already exists
     render json: nil, status: :ok if Dir.glob(image_glob).present?
 
