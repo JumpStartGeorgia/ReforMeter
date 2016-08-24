@@ -1,4 +1,4 @@
-function initializeChartGroup(charts, id) {
+function initializeChartGroup(charts, id, pngImagePath) {
   var chartGroup = {};
 
   function getSVG() {
@@ -67,10 +67,14 @@ function initializeChartGroup(charts, id) {
       type: exportType,
       svg: getSVG()
     };
-  };
+  }
 
   chartGroup.exportableBy = function(exportButtonDataID) {
     return id === exportButtonDataID;
+  }
+
+  chartGroup.png_image_path = function() {
+    return pngImagePath;
   }
 
   return chartGroup;

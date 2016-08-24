@@ -6,6 +6,10 @@ function initializeChartGroups(charts) {
       })[0];
     });
 
-    return initializeChartGroup(chartGroupCharts, chartGroup.id);
+    return initializeChartGroup(
+      chartGroupCharts,
+      chartGroup.id,
+      chartGroup.png_image_path
+    );
   });
 }
