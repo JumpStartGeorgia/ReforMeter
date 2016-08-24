@@ -436,7 +436,8 @@ class RootController < ApplicationController
           expert_goals_gauge,
           expert_progress_gauge
         ],
-        id: 'expert-gauge-group'
+        id: 'expert-gauge-group',
+        page_path: request.path
       )
 
       gon.charts = [
