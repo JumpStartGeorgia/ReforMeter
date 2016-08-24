@@ -62,10 +62,13 @@ function initializeChartGroup(charts, id, pngImagePath) {
   }
 
   chartGroup.getExportOptions = function(exportType) {
+    var svg = getSVG();
+
     return {
       filename: 'Gauge_Charts_ReforMeter',
       type: exportType,
-      svg: getSVG()
+      scale: imageScaleForSVG(svg),
+      svg: svg
     };
   }
 
