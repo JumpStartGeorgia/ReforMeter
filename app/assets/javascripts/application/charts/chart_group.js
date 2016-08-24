@@ -73,9 +73,19 @@ function initializeChartGroup(charts, id, pngImagePath) {
     return id === exportButtonDataID;
   }
 
-  chartGroup.png_image_path = function() {
-    return pngImagePath;
-  }
+  Object.defineProperty(
+    chartGroup,
+    'png_image_path',
+    {
+      get: function() {
+        if (pngImagePath) {
+          return pngImagePath;
+        } else {
+          return false;
+        }
+      }
+    }
+  )
 
   return chartGroup;
 }

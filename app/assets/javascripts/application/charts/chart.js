@@ -19,7 +19,11 @@ function initializeHighchart($container, highchartData) {
     'png_image_path',
     {
       get: function() {
-        return highchartData.png_image_path;
+        if (highchartData.png_image_path) {
+          return highchartData.png_image_path;
+        } else {
+          return false;
+        }
       }
     }
   )
