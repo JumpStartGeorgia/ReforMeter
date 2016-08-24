@@ -128,28 +128,26 @@ show_admin_links ||= false
 
         <section class='gaugesContainer mod-solid-gauges'>
 
-          <% exportID = random_string %>
-
           <div class='gaugesContainer-exportButton'>
 
             <%= render partial: 'shared/chart_export_button',
                        locals: {
-                         exportID: exportID
+                         exportID: 'reform-government-gauge-group'
                        } %>
 
           </div>
 
-          <div class="js-become-highchart solidGauge mod-big mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall' data-exportable-by-id='<%= exportID %>'></div>
+          <div class="js-become-highchart solidGauge mod-big mod-white-border" data-chart-type='big-solid-gauge' data-id='reform-government-overall'></div>
 
           <div class='gaugesContainer-small'>
 
-            <div class="js-become-highchart solidGauge mod-small mod-small-dot-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup' data-exportable-by-id='<%= exportID %>'></div>
+            <div class="js-become-highchart solidGauge mod-small mod-small-dot-border" data-chart-type='small-solid-gauge' data-id='reform-government-institutional-setup'></div>
 
-            <div class="js-become-highchart solidGauge mod-small mod-small-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building' data-exportable-by-id='<%= exportID %>'></div>
+            <div class="js-become-highchart solidGauge mod-small mod-small-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-capacity-building'></div>
 
-            <div class="js-become-highchart solidGauge mod-small mod-medium-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting' data-exportable-by-id='<%= exportID %>'></div>
+            <div class="js-become-highchart solidGauge mod-small mod-medium-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-infrastructure-budgeting'></div>
 
-            <div class="js-become-highchart solidGauge mod-small mod-long-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations' data-exportable-by-id='<%= exportID %>'></div>
+            <div class="js-become-highchart solidGauge mod-small mod-long-dash-border" data-chart-type='small-solid-gauge' data-id='reform-government-legislation-regulations'></div>
 
           </div>
 
@@ -261,26 +259,24 @@ show_admin_links ||= false
 
           <section class='gaugesContainer mod-meter-gauges'>
 
-            <% exportID = random_string %>
-
             <div class='gaugesContainer-exportButton'>
 
               <%= render partial: 'shared/chart_export_button',
                          locals: {
-                           exportID: exportID
+                           exportID: 'reform-stakeholder-gauge-group'
                          } %>
 
             </div>
 
-            <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='reform-stakeholder-overall' data-exportable-by-id='<%= exportID %>'></div>
+            <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='reform-stakeholder-overall'></div>
 
             <div class='gaugesContainer-small'>
 
-              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-performance' data-exportable-by-id='<%= exportID %>'></div>
+              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-performance'></div>
 
-              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-goals' data-exportable-by-id='<%= exportID %>'></div>
+              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-goals'></div>
 
-              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-progress' data-exportable-by-id='<%= exportID %>'></div>
+              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-progress'></div>
 
             </div>
 
