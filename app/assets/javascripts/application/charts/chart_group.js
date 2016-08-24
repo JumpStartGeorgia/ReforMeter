@@ -19,12 +19,12 @@ function initializeChartGroup(charts, id, pngImagePath) {
       var defaultExportOptions = {
         chart: {
           backgroundColor: 'white',
-          height: chartGroupHeight,
+          height: parseInt(chartGroupHeight),
           style: {
             fontFamily: 'sans-serif',
             fontSize: '9.5px'
           },
-          width: highchartsObject.chartWidth
+          width: parseInt(highchartsObject.chartWidth)
         }
       }
 
@@ -47,7 +47,7 @@ function initializeChartGroup(charts, id, pngImagePath) {
       );
 
       height = parseInt(Math.max(height, highchartsObject.chartHeight));
-      xOffset += highchartsObject.chartWidth;
+      xOffset += parseInt(highchartsObject.chartWidth);
 
       svgArr.push(svg);
     });
