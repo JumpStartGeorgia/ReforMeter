@@ -72,18 +72,23 @@ function initializeHighchart($container, highchartData) {
 
     }
 
-    // Facebook prefers share images to have 1200px width or higher, so
-    // increase the scale to reach that width as necessary.
-    var scale = 1;
-    var svgWidth = parseInt($(svg).attr('width'));
-    var minimumImageWidth = 1200;
+    function imageScaleForSVG(svg) {
+      var scale = 1;
+      var svgWidth = parseInt($(svg).attr('width'));
 
-    if (svgWidth < minimumImageWidth) scale = minimumImageWidth / svgWidth;
+      // Facebook prefers share images to have 1200px width or higher, so
+      // increase the scale to reach that width as necessary.
+      var minimumImageWidth = 1200;
+
+      if (svgWidth < minimumImageWidth) scale = minimumImageWidth / svgWidth;
+
+      return scale;
+    }
 
     return {
       filename: highchartData.title ? highchartData.title + '_ReforMeter' : 'ReforMeter_Chart',
       type: exportType,
-      scale: scale,
+      scale: imageScaleForSVG(svg),
       svg: svg
     };
   }
