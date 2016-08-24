@@ -396,11 +396,6 @@ class RootController < ApplicationController
         request.path
       )
 
-      @share_image_paths = []
-      if expert_history_chart.png_image_exists?
-        @share_image_paths << expert_history_chart.png_image_path
-      end
-
       expert_overall_gauge = Chart.new({
         id: 'overall',
         title: I18n.t('shared.categories.overall'),
@@ -451,6 +446,11 @@ class RootController < ApplicationController
       gon.chartGroups = [
         expert_gauge_group.to_hash
       ]
+
+      @share_image_paths = [
+        expert_history_chart,
+        expert_gauge_group
+      ].select(&:png_image_exists?).map(&:png_image_path)
 
     rescue ActiveRecord::RecordNotFound => e
       redirect_to review_board_path,
