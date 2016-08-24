@@ -270,8 +270,6 @@ class RootController < ApplicationController
 
       gon.charts = charts.map(&:to_hash)
 
-      @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
-
       government_color = government_time_series.to_hash[:color]
 
       government_overall_gauge = Chart.new({
@@ -383,6 +381,13 @@ class RootController < ApplicationController
         reform_government_gauge_group,
         reform_stakeholder_gauge_group
       ]
+
+      @share_image_paths = [
+        government_time_series,
+        stakeholder_time_series,
+        reform_government_gauge_group,
+        reform_stakeholder_gauge_group
+      ].select(&:png_image_exists?).map(&:png_image_path)
 
       @external_indicators = @reform.external_indicators.published.sorted
 
