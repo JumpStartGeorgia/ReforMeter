@@ -14,6 +14,16 @@ function initializeHighchart($container, highchartData) {
     }
   )
 
+  Object.defineProperty(
+    highchart,
+    'png_image_path',
+    {
+      get: function() {
+        return highchartData.png_image_path;
+      }
+    }
+  )
+
   highchart.exportableBy = function(exportChartGroupButtonID) {
     return exportableByID === exportChartGroupButtonID;
   }
