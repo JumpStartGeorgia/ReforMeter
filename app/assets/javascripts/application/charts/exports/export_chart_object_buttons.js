@@ -1,4 +1,4 @@
-function setupExportChartGroupButtons(chartObjects) {
+function setupExportChartObjectButtons(chartObjects) {
   $('.js-toggle-chart-group-export-menu').click(function() {
     $(this)
     .parents('.js-act-as-chart-export-container')
@@ -19,7 +19,7 @@ function setupExportChartGroupButtons(chartObjects) {
         }
       )[0];
 
-      var exportChartButton = initializeExportChartsButton($exportButton, chartObject);
+      var exportChartButton = initializeExportChartObjectsButton($exportButton, chartObject);
 
       exportChartButton.setup();
     }

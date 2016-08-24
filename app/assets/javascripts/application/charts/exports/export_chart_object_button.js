@@ -1,4 +1,4 @@
-function initializeExportChartsButton($exportButton, chartObject) {
+function initializeExportChartObjectsButton($exportButton, chartObject) {
   var exportChartButton = {};
 
   var exportType = $exportButton.data('export-type'),

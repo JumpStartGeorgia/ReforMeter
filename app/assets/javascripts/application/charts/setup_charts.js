@@ -40,7 +40,7 @@ function setupCharts() {
   var chartObjects = $.merge($.merge([], charts), chartGroups);
 
   postCreateChartImages($.makeArray(charts), 'image/png');
-  setupExportChartGroupButtons(chartObjects);
+  setupExportChartObjectButtons(chartObjects);
 
   return charts;
 }
