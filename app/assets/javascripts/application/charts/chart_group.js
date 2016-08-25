@@ -14,7 +14,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       0
     );
 
-    $.each(charts, function(index, chart) {
+    var chartElements = charts.map(function(chart, index) {
       var highchartsObject = chart.highchartsObject;
 
       var defaultExportOptions = {
@@ -50,9 +50,8 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       height = parseInt(Math.max(height, highchartsObject.chartHeight));
       xOffset += parseInt(highchartsObject.chartWidth);
 
-      svgElements.push(chartElement);
+      return chartElement;
     });
-
 
     function titleElement(title) {
       var titleElement = '<text>' + title + '</text>';
@@ -60,7 +59,13 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       return titleElement;
     }
 
-    if (typeof title === 'string') svgElements.unshift(titleElement(title));
+    function groupedChartElements(chartElements) {
+      return '<g>' + chartElements.join('') + '</g>';
+    }
+
+    if (typeof title === 'string') svgElements.push(titleElement(title));
+
+    svgElements.push(groupedChartElements(chartElements));
 
     var chartGroupSVGContent = svgElements.join('');
 
