@@ -29,6 +29,12 @@ ka:
       reforms_link: ყველა რეფორმის ნახვა
       subheading: რეფორმების პროგრესის საზომი
     reform_show:
+      gauge_group:
+        government:
+          subtitle: მთავრობა, %{quarter}
+        stakeholder:
+          subtitle: დაინტერესებული პირი, %{quarter}
+        title: 'რეფორმა: %{name}'
       title: 'რეფორმა: %{name}-ის %{time}-სთვის'
     reforms:
       header:
@@ -59,4 +65,6 @@ ka:
         time: დროის მონაკვეთი
       title: შეფასების საბჭო
     review_board_show:
+      gauge_group:
+        title: საბჭოს დასკვნით %{quarter}-ისთვის
       title: საბჭოს დასკვნით %{time}-ისთვის
