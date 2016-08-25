@@ -122,8 +122,8 @@ function meterGaugeHelpers(size, options, chartData) {
 
           textSpecificProperties = [
             {
-              x: meterGauge.textPosition(.215),
-              y: meterGauge.textPosition(.28),
+              x: meterGauge.textPosition(.205),
+              y: meterGauge.textPosition(.305),
               style: {
                 fontSize: meterGauge.textSize(1.6)
               }
