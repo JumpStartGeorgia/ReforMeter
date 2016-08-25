@@ -59,13 +59,15 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       return titleElement;
     }
 
-    function groupedChartElements(chartElements) {
+    function groupedChartElements(chartElements, titleElement) {
       return '<g>' + chartElements.join('') + '</g>';
     }
 
-    if (typeof title === 'string') svgElements.push(titleElement(title));
+    titleElement = titleElement(title)
+    groupedChartElements = groupedChartElements(chartElements, titleElement);
 
-    svgElements.push(groupedChartElements(chartElements));
+    if (typeof title === 'string') svgElements.push(titleElement);
+    svgElements.push(groupedChartElements);
 
     var chartGroupSVGContent = svgElements.join('');
 
