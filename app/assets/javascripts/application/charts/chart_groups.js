@@ -11,7 +11,10 @@ function initializeChartGroups(charts) {
     return initializeChartGroup(
       chartGroupCharts,
       chartGroup.id,
-      chartGroup.png_image_path
+      chartGroup.png_image_path,
+      {
+        title: chartGroup.title
+      }
     );
   });
 }

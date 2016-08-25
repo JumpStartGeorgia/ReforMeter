@@ -491,6 +491,7 @@ class RootController < ApplicationController
           expert_progress_gauge
         ],
         id: 'expert-gauge-group',
+        title: "Expert Ratings for #{@quarter.time_period}",
         page_path: request.path
       )
 

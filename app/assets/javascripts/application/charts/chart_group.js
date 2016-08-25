@@ -1,5 +1,6 @@
-function initializeChartGroup(charts, id, pngImagePath) {
+function initializeChartGroup(charts, id, pngImagePath, options) {
   var chartGroup = {};
+  var title = options.title;
 
   function getSVG() {
     var svgArr = [],
