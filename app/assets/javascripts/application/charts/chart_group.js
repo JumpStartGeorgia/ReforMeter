@@ -16,7 +16,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       0
     );
 
-    var chartElements = charts.map(function(chart, index) {
+    function convertChartToSvgGroupTag(chart, index) {
       var highchartsObject = chart.highchartsObject;
 
       var defaultExportOptions = {
@@ -53,7 +53,9 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       xOffset += parseInt(highchartsObject.chartWidth);
 
       return chartElement;
-    });
+    }
+
+    var chartElements = charts.map(convertChartToSvgGroupTag);
 
     var titleHeight = 70;
 
@@ -107,7 +109,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
   chartGroup.getExportOptions = function(exportType) {
     if (!svg) svg = getSVG();
-    
+
     return {
       filename: title ? title + '_ReforMeter' : 'Gauge_Charts_ReforMeter',
       type: exportType,
