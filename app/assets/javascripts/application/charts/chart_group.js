@@ -1,5 +1,6 @@
 function initializeChartGroup(charts, id, pngImagePath, options) {
   var chartGroup = {};
+  var svg;
   var title = options.title;
   var subtitle = options.subtitle;
 
@@ -103,9 +104,10 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     return surroundWithSVG(chartGroupSVGContent);
   }
 
-  var svg = getSVG();
 
   chartGroup.getExportOptions = function(exportType) {
+    if (!svg) svg = getSVG();
+    
     return {
       filename: title ? title + '_ReforMeter' : 'Gauge_Charts_ReforMeter',
       type: exportType,

@@ -9,9 +9,11 @@ function initializeExportChartObjectsButton($exportButton, chartObject) {
   }
 
   var exportURL = Highcharts.merge(Highcharts.getOptions().exporting).url;
-  var exportOptions = chartObject.getExportOptions(exportType);
+  var exportOptions;
 
   function postExportRequest() {
+    if (!exportOptions) exportOptions = chartObject.getExportOptions(exportType);
+    
     Highcharts.post(
       exportURL,
       exportOptions
