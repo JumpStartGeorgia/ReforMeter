@@ -31,7 +31,7 @@ class RootController < ApplicationController
     primary_gauge_for_image = Chart.new(
       {
         id: 'reform-current-overall-for-share',
-        title: nil,
+        title: I18n.t('root.index.heading'),
         size: 300,
         score: @quarter.expert_survey.overall_score.to_f,
         change: @quarter.expert_survey.overall_change
@@ -45,7 +45,7 @@ class RootController < ApplicationController
 
     gon.charts = charts.map(&:to_hash)
 
-    @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
+    @share_image_paths = [primary_gauge_for_image.png_image_path]
 
     @reforms.each do |reform|
       survey = reform.reform_surveys[0]
@@ -270,65 +270,124 @@ class RootController < ApplicationController
 
       gon.charts = charts.map(&:to_hash)
 
-      @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
-
       government_color = government_time_series.to_hash[:color]
+
+      government_overall_gauge = Chart.new({
+        id: 'reform-government-overall',
+        color: government_color,
+        title: I18n.t('shared.categories.overall'),
+        score: @reform_survey.government_overall_score.to_f,
+        change: @reform_survey.government_overall_change
+      })
+
+      government_institutional_gauge = Chart.new({
+        id: 'reform-government-institutional-setup',
+        title: I18n.t('shared.categories.initial_setup'),
+        score: @reform_survey.government_category1_score.to_f,
+        change: @reform_survey.government_category1_change
+      })
+
+      government_capacity_gauge = Chart.new({
+        id: 'reform-government-capacity-building',
+        title: I18n.t('shared.categories.capacity_building'),
+        score: @reform_survey.government_category2_score.to_f,
+        change: @reform_survey.government_category2_change
+      })
+
+      government_infrastructure_gauge = Chart.new({
+        id: 'reform-government-infrastructure-budgeting',
+        title: I18n.t('shared.categories.infastructure_budgeting'),
+        score: @reform_survey.government_category3_score.to_f,
+        change: @reform_survey.government_category3_change
+      })
+
+      government_legislation_gauge = Chart.new({
+        id: 'reform-government-legislation-regulations',
+        title: I18n.t('shared.categories.legislation_regulation'),
+        score: @reform_survey.government_category4_score.to_f,
+        change: @reform_survey.government_category4_change
+      })
+
+      stakeholder_overall_gauge = Chart.new({
+        id: 'reform-stakeholder-overall',
+        color: government_color,
+        title: t('shared.categories.overall'),
+        score: @reform_survey.stakeholder_overall_score.to_f,
+        change: @reform_survey.stakeholder_overall_change
+      })
+
+      stakeholder_performance_gauge = Chart.new({
+        id: 'reform-stakeholder-performance',
+        color: government_color,
+        title: t('shared.categories.performance'),
+        score: @reform_survey.stakeholder_category1_score.to_f,
+        change: @reform_survey.stakeholder_category1_change
+      })
+
+      stakeholder_goals_gauge = Chart.new({
+        id: 'reform-stakeholder-goals',
+        color: government_color,
+        title: t('shared.categories.goals'),
+        score: @reform_survey.stakeholder_category2_score.to_f,
+        change: @reform_survey.stakeholder_category2_change
+      })
+
+      stakeholder_progress_gauge = Chart.new({
+        id: 'reform-stakeholder-progress',
+        color: government_color,
+        title: t('shared.categories.progress'),
+        score: @reform_survey.stakeholder_category3_score.to_f,
+        change: @reform_survey.stakeholder_category3_change
+      })
 
       if @reform_survey.present?
         [
-          {
-            id: 'reform-government-overall',
-            color: government_color,
-            title: I18n.t('shared.categories.overall'),
-            score: @reform_survey.government_overall_score.to_f,
-            change: @reform_survey.government_overall_change
-          }, {
-            id: 'reform-government-institutional-setup',
-            title: I18n.t('shared.categories.initial_setup'),
-            score: @reform_survey.government_category1_score.to_f,
-            change: @reform_survey.government_category1_change
-          }, {
-            id: 'reform-government-capacity-building',
-            title: I18n.t('shared.categories.capacity_building'),
-            score: @reform_survey.government_category2_score.to_f,
-            change: @reform_survey.government_category2_change
-          }, {
-            id: 'reform-government-infrastructure-budgeting',
-            title: I18n.t('shared.categories.infastructure_budgeting'),
-            score: @reform_survey.government_category3_score.to_f,
-            change: @reform_survey.government_category3_change
-          }, {
-            id: 'reform-government-legislation-regulations',
-            title: I18n.t('shared.categories.legislation_regulation'),
-            score: @reform_survey.government_category4_score.to_f,
-            change: @reform_survey.government_category4_change
-          }, {
-            id: 'reform-stakeholder-overall',
-            color: government_color,
-            title: t('shared.categories.overall'),
-            score: @reform_survey.stakeholder_overall_score.to_f,
-            change: @reform_survey.stakeholder_overall_change
-          }, {
-            id: 'reform-stakeholder-performance',
-            color: government_color,
-            title: t('shared.categories.performance'),
-            score: @reform_survey.stakeholder_category1_score.to_f,
-            change: @reform_survey.stakeholder_category1_change
-          }, {
-            id: 'reform-stakeholder-goals',
-            color: government_color,
-            title: t('shared.categories.goals'),
-            score: @reform_survey.stakeholder_category2_score.to_f,
-            change: @reform_survey.stakeholder_category2_change
-          }, {
-            id: 'reform-stakeholder-progress',
-            color: government_color,
-            title: t('shared.categories.progress'),
-            score: @reform_survey.stakeholder_category3_score.to_f,
-            change: @reform_survey.stakeholder_category3_change
-          }
+          government_overall_gauge.to_hash,
+          government_institutional_gauge.to_hash,
+          government_capacity_gauge.to_hash,
+          government_infrastructure_gauge.to_hash,
+          government_legislation_gauge.to_hash,
+          stakeholder_overall_gauge.to_hash,
+          stakeholder_performance_gauge.to_hash,
+          stakeholder_goals_gauge.to_hash,
+          stakeholder_progress_gauge.to_hash
         ].each { |chart| gon.charts << chart }
       end
+
+      reform_government_gauge_group = ChartGroup.new(
+        [
+          government_overall_gauge,
+          government_institutional_gauge,
+          government_capacity_gauge,
+          government_infrastructure_gauge,
+          government_legislation_gauge
+        ],
+        id: 'reform-government-gauge-group',
+        page_path: request.path
+      )
+
+      reform_stakeholder_gauge_group = ChartGroup.new(
+        [
+          stakeholder_overall_gauge,
+          stakeholder_performance_gauge,
+          stakeholder_goals_gauge,
+          stakeholder_progress_gauge
+        ],
+        id: 'reform-stakeholder-gauge-group',
+        page_path: request.path
+      )
+
+      gon.chartGroups = [
+        reform_government_gauge_group,
+        reform_stakeholder_gauge_group
+      ]
+
+      @share_image_paths = [
+        government_time_series,
+        stakeholder_time_series,
+        reform_government_gauge_group,
+        reform_stakeholder_gauge_group
+      ].select(&:png_image_exists?).map(&:png_image_path)
 
       @external_indicators = @reform.external_indicators.published.sorted
 
@@ -396,34 +455,61 @@ class RootController < ApplicationController
         request.path
       )
 
-      @share_image_paths = []
-      if expert_history_chart.png_image_exists?
-        @share_image_paths << expert_history_chart.png_image_path
-      end
+      expert_overall_gauge = Chart.new({
+        id: 'overall',
+        title: I18n.t('shared.categories.overall'),
+        score: @quarter.expert_survey.overall_score.to_f,
+        change: @quarter.expert_survey.overall_change
+      })
+
+      expert_performance_gauge = Chart.new({
+        id: 'performance',
+        title: I18n.t('shared.categories.performance'),
+        score: @quarter.expert_survey.category1_score.to_f,
+        change: @quarter.expert_survey.category1_change
+      })
+
+      expert_goals_gauge = Chart.new({
+        id: 'goals',
+        title: I18n.t('shared.categories.goals'),
+        score: @quarter.expert_survey.category2_score.to_f,
+        change: @quarter.expert_survey.category2_change
+      })
+
+      expert_progress_gauge = Chart.new({
+        id: 'progress',
+        title: I18n.t('shared.categories.progress'),
+        score: @quarter.expert_survey.category3_score.to_f,
+        change: @quarter.expert_survey.category3_change
+      })
+
+      expert_gauge_group = ChartGroup.new(
+        [
+          expert_overall_gauge,
+          expert_performance_gauge,
+          expert_goals_gauge,
+          expert_progress_gauge
+        ],
+        id: 'expert-gauge-group',
+        page_path: request.path
+      )
 
       gon.charts = [
-        expert_history_chart.to_hash, {
-          id: 'overall',
-          title: I18n.t('shared.categories.overall'),
-          score: @quarter.expert_survey.overall_score.to_f,
-          change: @quarter.expert_survey.overall_change
-        }, {
-          id: 'performance',
-          title: I18n.t('shared.categories.performance'),
-          score: @quarter.expert_survey.category1_score.to_f,
-          change: @quarter.expert_survey.category1_change
-        }, {
-          id: 'goals',
-          title: I18n.t('shared.categories.goals'),
-          score: @quarter.expert_survey.category2_score.to_f,
-          change: @quarter.expert_survey.category2_change
-        }, {
-          id: 'progress',
-          title: I18n.t('shared.categories.progress'),
-          score: @quarter.expert_survey.category3_score.to_f,
-          change: @quarter.expert_survey.category3_change
-        }
+        expert_history_chart.to_hash,
+        expert_overall_gauge.to_hash,
+        expert_performance_gauge.to_hash,
+        expert_goals_gauge.to_hash,
+        expert_progress_gauge.to_hash
       ]
+
+      gon.chartGroups = [
+        expert_gauge_group.to_hash
+      ]
+
+      @share_image_paths = [
+        expert_history_chart,
+        expert_gauge_group
+      ].select(&:png_image_exists?).map(&:png_image_path)
 
     rescue ActiveRecord::RecordNotFound => e
       redirect_to review_board_path,

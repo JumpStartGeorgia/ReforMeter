@@ -1,9 +1,9 @@
 function postCreateChartImages(charts, exportType) {
 
   charts.forEach(function(chart) {
-    var pngImagePath = chart.data.png_image_path;
+    var pngImagePath = chart.png_image_path;
 
-    if (!pngImagePath) return false;
+    if (typeof pngImagePath !== 'string') return false;
 
     $.post(
       gon.create_chart_share_image_url,

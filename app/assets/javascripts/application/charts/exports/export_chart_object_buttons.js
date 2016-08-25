@@ -1,4 +1,4 @@
-function setupExportChartGroupButtons(charts) {
+function setupExportChartObjectButtons(chartObjects) {
   $('.js-toggle-chart-group-export-menu').click(function() {
     $(this)
     .parents('.js-act-as-chart-export-container')
@@ -13,15 +13,15 @@ function setupExportChartGroupButtons(charts) {
       var $exportButton = $(this);
       var exportButtonDataID = $exportButton.data('export-id');
 
-      var exportableCharts = charts.filter(
-        function() {
-          return this.exportableBy(exportButtonDataID);
+      var chartObject = chartObjects.filter(
+        function(chartObject) {
+          return chartObject.exportableBy(exportButtonDataID);
         }
-      );
-      
-      $exportButton.click(
-        initializeExportChartGroupButton($exportButton, exportableCharts).setup
-      )
+      )[0];
+
+      var exportChartButton = initializeExportChartObjectsButton($exportButton, chartObject);
+
+      exportChartButton.setup();
     }
   );
 }
