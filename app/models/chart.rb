@@ -9,11 +9,12 @@ class Chart
 
   def initialize(options, page_path = nil)
     @options = options
+    @id = options[:id]
     @page_path = page_path if (page_path.present?)
   end
 
   def to_hash
-    hash = @options
+    hash = options
 
     if page_path.present? && !png_image_exists?
       hash[:png_image_path] = full_png_image_path
@@ -22,13 +23,9 @@ class Chart
     hash
   end
 
-  def id
-    @options[:id]
-  end
+  attr_reader :id
 
   private
 
-  def page_path
-    @page_path
-  end
+  attr_reader :page_path, :options
 end

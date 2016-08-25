@@ -20,17 +20,9 @@ class ChartGroup
     hash
   end
 
-  def charts
-    @charts
-  end
-
-  def id
-    @id
-  end
+  attr_reader :charts, :id
 
   private
 
-  def page_path
-    @page_path
-  end
+  attr_reader :page_path
 end
