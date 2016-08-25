@@ -53,13 +53,22 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       svgElements.push(chartElement);
     });
 
+
+    function titleElement(title) {
+      var titleElement = '<text>' + title + '</text>';
+
+      return titleElement;
+    }
+
+    if (typeof title === 'string') svgElements.unshift(titleElement(title));
+
+    var chartGroupSVGContent = svgElements.join('');
+
     function surroundWithSVG(content) {
       return '<svg height="'+ height + '" width="' + xOffset + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
     }
 
-    var svgObj = surroundWithSVG(svgElements.join(''));
-
-    return svgObj;
+    return surroundWithSVG(chartGroupSVGContent);
   }
 
   chartGroup.getExportOptions = function(exportType) {
