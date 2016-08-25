@@ -1,5 +1,6 @@
 function initializeHighchart($container, highchartData) {
-  var highchart = {}
+  var highchart = {};
+  var svg;
   var chartType = $container.data('chart-type');
   var exportableByID = $container.data('exportable-by-id');
   var id = $container.data('id');
@@ -38,7 +39,7 @@ function initializeHighchart($container, highchartData) {
     return this.highchartsObject.userOptions.exporting.chartOptions;
   }
 
-  highchart.getExportOptions = function(exportType) {
+  function getSVG() {
     var defaultExportOptions = {
       chart: {
         style: {
@@ -59,6 +60,8 @@ function initializeHighchart($container, highchartData) {
       )
     );
 
+    console.log(id);
+
     // if chart is gauge, improve data label styles
     if (/gauge/.test(chartType)) {
 
@@ -71,6 +74,12 @@ function initializeHighchart($container, highchartData) {
       );
 
     }
+
+    return svg;
+  }
+
+  highchart.getExportOptions = function(exportType) {
+    if (!svg) svg = getSVG();
 
     return {
       filename: highchartData.title ? highchartData.title + '_ReforMeter' : 'ReforMeter_Chart',
