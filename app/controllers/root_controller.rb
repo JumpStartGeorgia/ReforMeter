@@ -363,6 +363,7 @@ class RootController < ApplicationController
           government_legislation_gauge
         ],
         id: 'reform-government-gauge-group',
+        title: "Ratings for #{@reform.name}: #{@quarter.time_period}",
         page_path: request.path
       )
 

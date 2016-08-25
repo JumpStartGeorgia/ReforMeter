@@ -56,7 +56,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     var titleHeight = 70;
 
     var totalWidth = xOffset;
-    var totalHeight = heightOfCharts + titleHeight;
+    var totalHeight = title ? heightOfCharts + titleHeight : heightOfCharts;
 
     function backgroundRect() {
       return '<rect fill="white" x="0" y="0" width="' + totalWidth + '" height="' + totalHeight + '"></rect>';
@@ -69,7 +69,13 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     }
 
     function groupedChartElements(chartElements) {
-      var openingGTag = '<g transform="translate(0, ' + titleHeight + ')">';
+      var openingGTag;
+
+      if (title) {
+        openingGTag = '<g transform="translate(0, ' + titleHeight + ')">';
+      } else {
+        openingGTag = '<g>';
+      }
 
       return openingGTag + chartElements.join('') + '</g>';
     }
