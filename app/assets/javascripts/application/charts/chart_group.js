@@ -4,6 +4,20 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
   var title = options.title;
   var subtitle = options.subtitle;
 
+  function filename() {
+    var filename_prefix;
+
+    if (title) {
+      filename_prefix = title;
+    } else {
+      filename_prefix = 'Gauge_Charts';
+    }
+
+    return filename_prefix + '_ReforMeter';
+  }
+
+  filename = filename();
+
   function getSVG() {
     var svgElements = [],
         heightOfCharts = 0,
@@ -59,10 +73,13 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
     var titleFontSize = 35;
     var titleTopPadding = 7;
-    var titleHeight = titleFontSize * 2;
+    var subtitleFontSize = 21;
+
+    // If there's a subtitle, make room for it
+    var titleGroupHeight = subtitle ? titleFontSize * 2 + subtitleFontSize : titleFontSize * 2;
 
     var totalWidth = xOffset;
-    var totalHeight = title ? heightOfCharts + titleHeight : heightOfCharts;
+    var totalHeight = title ? heightOfCharts + titleGroupHeight : heightOfCharts;
 
     function backgroundRect() {
       return '<rect fill="white" x="0" y="0" width="' + totalWidth + '" height="' + totalHeight + '"></rect>';
@@ -70,11 +87,15 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
     function titleGroupElement(title, subtitle) {
       function surroundInTextElement(content) {
-        return '<text style="background-color: white; font-size: ' + titleFontSize + 'px" y="' + (titleFontSize + titleTopPadding) + '" text-anchor="middle" x="' + totalWidth/2 + '">' + content + '</text>';
+        return '<text style="background-color: white;" y="' + (titleFontSize + titleTopPadding) + '">' + content + '</text>';
       }
 
-      var titleElement = title;
+      var titleElement = '<tspan style="font-size: ' + titleFontSize + 'px;" text-anchor="middle" x="' + totalWidth/2 + '">' + title + '</tspan>';
       var subtitleElement = '';
+
+      if (subtitle) {
+        subtitleElement = '<tspan style="font-size: ' + subtitleFontSize + 'px; fill: #66666D;" text-anchor="middle" x="' + totalWidth/2 + '" dy="' + titleFontSize + 'px">' + subtitle + '</tspan>';
+      }
 
       var titleElement = surroundInTextElement(
         titleElement + subtitleElement
@@ -87,7 +108,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       var openingGTag;
 
       if (title) {
-        openingGTag = '<g transform="translate(0, ' + titleHeight + ')">';
+        openingGTag = '<g transform="translate(0, ' + titleGroupHeight + ')">';
       } else {
         openingGTag = '<g>';
       }
@@ -98,7 +119,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     svgElements.push(backgroundRect());
 
     if (typeof title === 'string') {
-      svgElements.push(titleGroupElement(title));
+      svgElements.push(titleGroupElement(title, subtitle));
     }
 
     svgElements.push(groupedChartElements(chartElements));
@@ -113,12 +134,11 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     return surroundWithSVG(chartGroupSVGContent);
   }
 
-
   chartGroup.getExportOptions = function(exportType) {
     if (!svg) svg = getSVG();
 
     return {
-      filename: title ? title + '_ReforMeter' : 'Gauge_Charts_ReforMeter',
+      filename: filename,
       type: exportType,
       scale: imageScaleForSVG(svg),
       svg: svg
