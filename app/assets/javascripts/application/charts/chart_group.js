@@ -3,7 +3,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
   var title = options.title;
 
   function getSVG() {
-    var svgArr = [],
+    var svgElements = [],
         height = 0,
         xOffset = 0;
 
@@ -29,18 +29,18 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
         }
       }
 
-      var svg = chart.highchartsObject.getSVG(
+      var chartElement = chart.highchartsObject.getSVG(
         Highcharts.merge(
           defaultExportOptions,
           chart.specificExportOptions()
         )
       );
 
-      svg = svg.replace('<svg', '<g transform="translate(' + xOffset + ',0)" ');
-      svg = svg.replace('</svg>', '</g>');
+      chartElement = chartElement.replace('<svg', '<g transform="translate(' + xOffset + ',0)" ');
+      chartElement = chartElement.replace('</svg>', '</g>');
 
-      svg = improveDataLabelStylesInGaugeSVGExport(
-        svg,
+      chartElement = improveDataLabelStylesInGaugeSVGExport(
+        chartElement,
         highchartsObject,
         {
           topPadding: index === 0 ? '.5em' : false
@@ -50,14 +50,14 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
       height = parseInt(Math.max(height, highchartsObject.chartHeight));
       xOffset += parseInt(highchartsObject.chartWidth);
 
-      svgArr.push(svg);
+      svgElements.push(chartElement);
     });
 
     function surroundWithSVG(content) {
       return '<svg height="'+ height + '" width="' + xOffset + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
     }
 
-    var svgObj = surroundWithSVG(svgArr.join(''));
+    var svgObj = surroundWithSVG(svgElements.join(''));
 
     return svgObj;
   }
