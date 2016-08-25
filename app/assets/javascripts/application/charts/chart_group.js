@@ -57,7 +57,9 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
     var chartElements = charts.map(convertChartToSvgGroupTag);
 
-    var titleHeight = 70;
+    var titleFontSize = 35;
+    var titleTopPadding = 7;
+    var titleHeight = titleFontSize * 2;
 
     var totalWidth = xOffset;
     var totalHeight = title ? heightOfCharts + titleHeight : heightOfCharts;
@@ -67,7 +69,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     }
 
     function titleElement(title) {
-      var titleElement = '<text style="background-color: white; font-size: ' + titleHeight/2 + 'px" y="' + titleHeight * .6 + '" text-anchor="middle" x="' + totalWidth/2 + '">' + title + '</text>';
+      var titleElement = '<text style="background-color: white; font-size: ' + titleFontSize + 'px" y="' + (titleFontSize + titleTopPadding) + '" text-anchor="middle" x="' + totalWidth/2 + '">' + title + '</text>';
 
       return titleElement;
     }
@@ -91,7 +93,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     }
 
     if (typeof subtitle === 'string') {
-      
+
     }
 
     svgElements.push(groupedChartElements(chartElements));
