@@ -66,7 +66,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     var svg = getSVG();
 
     return {
-      filename: 'Gauge_Charts_ReforMeter',
+      filename: title ? title + '_ReforMeter' : 'Gauge_Charts_ReforMeter',
       type: exportType,
       scale: imageScaleForSVG(svg),
       svg: svg
