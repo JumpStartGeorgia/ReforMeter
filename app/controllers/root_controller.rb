@@ -363,7 +363,14 @@ class RootController < ApplicationController
           government_legislation_gauge
         ],
         id: 'reform-government-gauge-group',
-        title: "Ratings for #{@reform.name}: #{@quarter.time_period}",
+        title: I18n.t(
+          'root.reform_show.gauge_group.title',
+          name: @reform.name
+        ),
+        subtitle: I18n.t(
+          'root.reform_show.gauge_group.government.subtitle',
+          quarter: @quarter.time_period
+        ),
         page_path: request.path
       )
 
@@ -375,6 +382,14 @@ class RootController < ApplicationController
           stakeholder_progress_gauge
         ],
         id: 'reform-stakeholder-gauge-group',
+        title: I18n.t(
+          'root.reform_show.gauge_group.title',
+          name: @reform.name
+        ),
+        subtitle: I18n.t(
+          'root.reform_show.gauge_group.stakeholder.subtitle',
+          quarter: @quarter.time_period
+        ),
         page_path: request.path
       )
 
@@ -492,7 +507,9 @@ class RootController < ApplicationController
           expert_progress_gauge
         ],
         id: 'expert-gauge-group',
-        title: "Expert Ratings for #{@quarter.time_period}",
+        title: I18n.t(
+          'root.review_board_show.gauge_group.title',
+          quarter: @quarter.time_period),
         page_path: request.path
       )
 

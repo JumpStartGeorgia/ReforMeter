@@ -30,6 +30,12 @@ en:
       subheading: A measure of reform progress.
     reform_show:
       title: 'Reform: %{name} for %{time}'
+      gauge_group:
+        title: 'Reform: %{name}'
+        government:
+          subtitle: 'Government, %{quarter}'
+        stakeholder:
+          subtitle: 'Stakeholders, %{quarter}'
     reforms:
       header:
         chart: Timeline
@@ -60,3 +66,5 @@ en:
       title: Review Board
     review_board_show:
       title: According to the Review Board for %{time}
+      gauge_group:
+        title: Review Board for %{quarter}
