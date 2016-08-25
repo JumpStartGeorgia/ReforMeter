@@ -60,8 +60,6 @@ function initializeHighchart($container, highchartData) {
       )
     );
 
-    console.log(id);
-
     // if chart is gauge, improve data label styles
     if (/gauge/.test(chartType)) {
 

@@ -91,7 +91,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     }
 
     if (typeof subtitle === 'string') {
-      console.log('Subtitle: ', subtitle);
+      
     }
 
     svgElements.push(groupedChartElements(chartElements));
