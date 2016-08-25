@@ -4,7 +4,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
   function getSVG() {
     var svgElements = [],
-        height = 0,
+        heightOfCharts = 0,
         xOffset = 0;
 
     var chartGroupHeight = $.makeArray(charts).reduce(
@@ -47,32 +47,46 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
         }
       );
 
-      height = parseInt(Math.max(height, highchartsObject.chartHeight));
+      heightOfCharts = parseInt(Math.max(heightOfCharts, highchartsObject.chartHeight));
       xOffset += parseInt(highchartsObject.chartWidth);
 
       return chartElement;
     });
 
+    var titleHeight = 70;
+
+    var totalWidth = xOffset;
+    var totalHeight = heightOfCharts + titleHeight;
+
+    function backgroundRect() {
+      return '<rect fill="white" x="0" y="0" width="' + totalWidth + '" height="' + totalHeight + '"></rect>';
+    }
+
     function titleElement(title) {
-      var titleElement = '<text>' + title + '</text>';
+      var titleElement = '<text style="background-color: white; font-size: ' + titleHeight/2 + 'px" y="' + titleHeight * .6 + '" text-anchor="middle" x="' + totalWidth/2 + '">' + title + '</text>';
 
       return titleElement;
     }
 
-    function groupedChartElements(chartElements, titleElement) {
-      return '<g>' + chartElements.join('') + '</g>';
+    function groupedChartElements(chartElements) {
+      var openingGTag = '<g transform="translate(0, ' + titleHeight + ')">';
+
+      return openingGTag + chartElements.join('') + '</g>';
     }
 
-    titleElement = titleElement(title)
-    groupedChartElements = groupedChartElements(chartElements, titleElement);
+    svgElements.push(backgroundRect());
 
-    if (typeof title === 'string') svgElements.push(titleElement);
-    svgElements.push(groupedChartElements);
+    if (typeof title === 'string') {
+      svgElements.push(titleElement(title));
+    }
+
+    svgElements.push(groupedChartElements(chartElements));
 
     var chartGroupSVGContent = svgElements.join('');
 
     function surroundWithSVG(content) {
-      return '<svg height="'+ height + '" width="' + xOffset + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
+
+      return '<svg height="'+ totalHeight + '" width="' + totalWidth + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + content + '</svg>';
     }
 
     return surroundWithSVG(chartGroupSVGContent);
