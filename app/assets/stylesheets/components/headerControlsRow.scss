@@ -1,4 +1,7 @@
 .headerControlsRow {
+  @media (min-width: $widthHeaderControlsBecomeHorizontal) {
+    white-space: nowrap;
+  }
 }
 
   .headerControlsRow-item {
