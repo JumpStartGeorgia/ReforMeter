@@ -1,6 +1,7 @@
 function initializeChartGroup(charts, id, pngImagePath, options) {
   var chartGroup = {};
   var title = options.title;
+  var subtitle = options.subtitle;
 
   function getSVG() {
     var svgElements = [],
@@ -84,6 +85,10 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
     if (typeof title === 'string') {
       svgElements.push(titleElement(title));
+    }
+
+    if (typeof subtitle === 'string') {
+      console.log('Subtitle: ', subtitle);
     }
 
     svgElements.push(groupedChartElements(chartElements));

@@ -13,7 +13,8 @@ function initializeChartGroups(charts) {
       chartGroup.id,
       chartGroup.png_image_path,
       {
-        title: chartGroup.title
+        title: chartGroup.title,
+        subtitle: chartGroup.subtitle
       }
     );
   });

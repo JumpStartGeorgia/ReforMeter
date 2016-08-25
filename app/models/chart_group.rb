@@ -6,6 +6,7 @@ class ChartGroup
     @id = args[:id]
     @page_path = args[:page_path]
     @title = args[:title]
+    @subtitle = args[:subtitle]
   end
 
   def to_hash
@@ -15,6 +16,7 @@ class ChartGroup
     }
 
     hash[:title] = title if title.present?
+    hash[:subtitle] = subtitle if subtitle.present?
 
     if page_path.present? && !png_image_exists?
       hash[:png_image_path] = full_png_image_path
@@ -27,5 +29,5 @@ class ChartGroup
 
   private
 
-  attr_reader :page_path, :title
+  attr_reader :page_path, :title, :subtitle
 end
