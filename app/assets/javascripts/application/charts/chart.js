@@ -65,7 +65,7 @@ function initializeHighchart($container, highchartData) {
 
       svg = improveDataLabelStylesInGaugeSVGExport(
         svg,
-        this.highchartsObject,
+        highchart.highchartsObject,
         {
           topPadding: '0.7em'
         }
