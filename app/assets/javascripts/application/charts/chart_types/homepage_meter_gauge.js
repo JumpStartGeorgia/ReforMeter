@@ -55,6 +55,13 @@ function highchartsHomepageMeterGaugeOptions(chartData) {
             color: 'white'
           }
         },
+        subtitle: {
+          text: chartData.subtitle ? chartData.subtitle : false,
+          style: {
+            color: 'white',
+            fontSize: '13px'
+          }
+        },
         plotOptions: {
           gauge: {
             dataLabels: {

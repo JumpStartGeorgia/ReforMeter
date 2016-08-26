@@ -8,6 +8,7 @@ class RootController < ApplicationController
     gon.change_icons = view_context.change_icons
 
     charts = [
+      # note: see below for chart being used for shareable image
       Chart.new(
         {
           id: 'reform-current-overall',
@@ -32,6 +33,7 @@ class RootController < ApplicationController
       {
         id: 'reform-current-overall-for-share',
         title: I18n.t('root.index.heading'),
+        subtitle: I18n.t('root.index.subheading'),
         size: 300,
         score: @quarter.expert_survey.overall_score.to_f,
         change: @quarter.expert_survey.overall_change
