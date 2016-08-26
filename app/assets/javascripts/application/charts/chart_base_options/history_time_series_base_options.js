@@ -45,10 +45,17 @@ function historyTimeSeriesOptions(chartData) {
     colors: ['#0e3a5b'],
     exporting: {
       chartOptions: {
+        title: {
+          margin: 20,
+          style: {
+            fontSize: '50px'
+          }
+        },
         subtitle: {
           text: chartData.subtitle,
           style: {
-            fontSize: '1.4em'
+            fontSize: '30px',
+            paddingBottom: '20px'
           }
         }
       },

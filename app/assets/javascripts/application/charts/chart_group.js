@@ -10,10 +10,10 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     if (title) {
       filename_prefix = title;
     } else {
-      filename_prefix = 'Gauge_Charts';
+      filename_prefix = 'Gauge Charts';
     }
 
-    return filename_prefix + '_ReforMeter';
+    return filename_prefix + ' - ReforMeter';
   }
 
   filename = filename();
@@ -71,9 +71,9 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
     var chartElements = charts.map(convertChartToSvgGroupTag);
 
-    var titleFontSize = 35;
+    var titleFontSize = 31;
     var titleTopPadding = 7;
-    var subtitleFontSize = 21;
+    var subtitleFontSize = 18;
 
     // If there's a subtitle, make room for it
     var titleGroupHeight = subtitle ? titleFontSize * 2 + subtitleFontSize : titleFontSize * 2;
@@ -87,7 +87,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
     function titleGroupElement(title, subtitle) {
       function surroundInTextElement(content) {
-        return '<text style="background-color: white;" y="' + (titleFontSize + titleTopPadding) + '">' + content + '</text>';
+        return '<text style="font-family: sans-serif; background-color: white;" y="' + (titleFontSize + titleTopPadding) + '">' + content + '</text>';
       }
 
       var titleElement = '<tspan style="font-size: ' + titleFontSize + 'px;" text-anchor="middle" x="' + totalWidth/2 + '">' + title + '</tspan>';
@@ -138,7 +138,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
     if (!svg) svg = getSVG();
 
     return {
-      filename: filename,
+      filename: encodeURIComponent(filename),
       type: exportType,
       scale: imageScaleForSVG(svg),
       svg: svg

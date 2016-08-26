@@ -1,6 +1,7 @@
 function initializeHighchart($container, highchartData) {
   var highchart = {};
   var svg;
+  var filename;
   var chartType = $container.data('chart-type');
   var exportableByID = $container.data('exportable-by-id');
   var id = $container.data('id');
@@ -76,11 +77,16 @@ function initializeHighchart($container, highchartData) {
     return svg;
   }
 
+  function getFilename() {
+    return highchartData.title ? highchartData.title + ' - ReforMeter' : 'Chart - ReforMeter';
+  }
+
   highchart.getExportOptions = function(exportType) {
     if (!svg) svg = getSVG();
+    if (!filename) filename = getFilename();
 
     return {
-      filename: highchartData.title ? highchartData.title + '_ReforMeter' : 'ReforMeter_Chart',
+      filename: encodeURIComponent(filename),
       type: exportType,
       scale: imageScaleForSVG(svg),
       svg: svg
