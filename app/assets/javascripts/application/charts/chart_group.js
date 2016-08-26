@@ -71,7 +71,7 @@ function initializeChartGroup(charts, id, pngImagePath, options) {
 
     var chartElements = charts.map(convertChartToSvgGroupTag);
 
-    var titleFontSize = 30;
+    var titleFontSize = 28;
     var titleTopPadding = 7;
     var subtitleFontSize = 18;
 

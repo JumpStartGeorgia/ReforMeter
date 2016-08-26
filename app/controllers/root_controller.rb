@@ -227,17 +227,7 @@ class RootController < ApplicationController
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
       @news = News.by_reform_quarter(@quarter.id, @reform.id)
 
-      gon.linked_reforms_quarters = Quarter.find_by_sql(
-      <<-QUERY
-        select q.slug AS quarter_slug, r.slug AS reform_slug
-        from quarters as q
-        inner join reform_surveys as rs on rs.quarter_id = q.id
-        inner join reform_translations as r on r.reform_id = rs.reform_id and r.locale = 'ka'
-        where q.is_public=1
-        order by q.slug, r.slug
-      QUERY
-      )
-
+      gon.linked_reforms_quarters = Quarter.linked_reforms
       gon.chart_download = highchart_export_config
       gon.change_icons = view_context.change_icons
 

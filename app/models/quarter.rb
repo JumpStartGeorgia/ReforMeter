@@ -151,6 +151,19 @@ class Quarter < ActiveRecord::Base
     includes(:reform_surveys).where(reform_surveys: {reform_id: reform_id})
   end
 
+  def self.linked_reforms
+    reforms_quarters_sql = <<-QUERY
+      select q.slug AS quarter_slug, r.slug AS reform_slug
+      from quarters as q
+      inner join reform_surveys as rs on rs.quarter_id = q.id
+      inner join reform_translations as r on r.reform_id = rs.reform_id and r.locale = ?
+      where q.is_public=1
+      order by q.slug, r.slug
+    QUERY
+
+    Quarter.find_by_sql [reforms_quarters_sql, I18n.locale]
+  end
+
 
   #######################
   ## METHODS

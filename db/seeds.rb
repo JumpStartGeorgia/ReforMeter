@@ -156,10 +156,11 @@ if ENV['load_test_data'].present?
 
   # create reform
   puts 'creating test reform'
-  reform1 = Reform.create(name: 'Innovations', summary: 'This is a brief summary about test reform 1.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
-  reform2 = Reform.create(name: 'Land Market Development', summary: 'This is a brief summary about test reform 2.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
-  reform3 = Reform.create(name: 'Insolvency', summary: 'This is a brief summary about test reform 3.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
-  reform4 = Reform.create(name: 'Outsolvency', summary: 'This is the outsolvency reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
+  reform1 = Reform.create(name_en: 'Small and Medium Enterprises', name_ka: 'მცირე და საშუალო ბიზნესი', summary: 'This is a brief summary about the small and medium enterprises reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
+  reform2 = Reform.create(name_en: 'Insolvency System', name_ka: 'გადახდისუუნარობის სისტემა', summary: 'This is a brief summary about the insolvency system reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
+  reform3 = Reform.create(name_en: 'Innovations', name_ka: 'ინოვაციები', summary: 'This is a brief summary about the innovations reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
+  reform4 = Reform.create(name_en: 'Pension System', name_ka: 'საპენსიო სისტემა', summary: 'This is the pension system reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
+  reform5 = Reform.create(name_en: 'Land Registration', name_ka: 'მიწის რეგისტრაცია', summary: 'This is the land registration reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
 
   # create board members
   puts 'creating board members'
