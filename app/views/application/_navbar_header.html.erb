@@ -54,9 +54,26 @@
         <% unless I18n.locale == locale %>
 
           <li lang='<%= locale %>' class='appHeader-nav-list-item mod-language'>
-            <%= link_to t("shared.locale.long.#{locale}"),
-                        url_for(locale: locale.to_s),
-                        class: 'appHeader-nav-list-item-link' %>
+
+            <!-- Fixes the link to use the correct, translated slug for the
+                 current reform on reform show page -->
+            <% if ((params[:controller] == 'root') && (params[:action] == 'reform_show')) %>
+
+              <%= link_to t("shared.locale.long.#{locale}"),
+                          reform_show_path(
+                            reform_id: @reform.slug(locale),
+                            quarter_id: @quarter.slug,
+                            locale: locale.to_s),
+                          class: 'appHeader-nav-list-item-link' %>
+
+            <% else %>
+
+              <%= link_to t("shared.locale.long.#{locale}"),
+                          url_for(locale: locale.to_s),
+                          class: 'appHeader-nav-list-item-link' %>
+
+            <% end %>
+
           </li>
 
         <% end %>
