@@ -64,6 +64,15 @@
     padding-bottom: 15px;
   }
 
+  .contentSection-body.mod-flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contentSection-body.mod-fill-vertical-space {
+    height: 100%;
+  }
+
 .contentSection.mod-overlap-top-image {
   @media (min-width: $width-content-overlap-top-image) {
     margin-top: -1 * $height-content-heading;
@@ -76,4 +85,9 @@
       height: $height-content-heading;
     }
   }
+}
+
+.contentSection.mod-flex-column {
+  display: flex;
+  flex-direction: column;
 }
