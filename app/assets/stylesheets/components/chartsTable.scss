@@ -144,7 +144,10 @@ $width-homepage-charts-table-show-charts: 410px;
 
 .chartsTable.mod-homepage {
 
-  .chartsTable-cell.mod-first-column {
+  // Decrease font size of first column text on home page Georgian
+  // charts table so that long reform names (which don't wrap
+  // in Firefox) don't push the other columns out of the viewport
+  .chartsTable-cell.mod-first-column:not(.mod-head):lang(ka) {
     font-size: 1.4rem;
   }
 
