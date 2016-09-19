@@ -22,20 +22,22 @@
         </div>
 
         <div class='homepage-primaryGaugeContainer js-homepage-primary-gauge-container'>
+          <% if @quarter.present? %>
+            <%= link_to review_board_show_path(@quarter) do %>
 
-          <%= link_to review_board_show_path(@quarter) do %>
+              <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
 
-            <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
+              <!-- Only here to create a full size shareable image (always hidden,
+                   and chart will not be initialized if image already exists) -->
+              <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall-for-share' style='display: none;'></div>
 
-            <!-- Only here to create a full size shareable image (always hidden,
-                 and chart will not be initialized if image already exists) -->
-            <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall-for-share' style='display: none;'></div>
+            <% end %>
+
+            <p class='homepage-primaryGaugeDescription'>
+              <%= t '.primary_gauge_description' %>
+            </p>
 
           <% end %>
-
-          <p class='homepage-primaryGaugeDescription'>
-            <%= t '.primary_gauge_description' %>
-          </p>
 
         </div>
 
@@ -45,6 +47,7 @@
 
     </section>
 
+<% if @quarter.present? %>
   <main class='mainContent'>
 
     <nav class='homePage-bigLinks'>
@@ -301,4 +304,5 @@
 
   </main>
 
+<% end %>
 </div>

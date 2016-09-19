@@ -7,72 +7,81 @@ class RootController < ApplicationController
 
     gon.change_icons = view_context.change_icons
 
-    charts = [
-      # note: see below for chart being used for shareable image
-      Chart.new(
+    gon.charts = []
+
+    if @quarter.present?
+      charts = [
+        # note: see below for chart being used for shareable image
+        Chart.new(
+          {
+            id: 'reform-current-overall',
+            title: nil,
+            responsiveTo: '.js-homepage-primary-gauge-container',
+            score: @quarter.expert_survey.overall_score.to_f,
+            change: @quarter.expert_survey.overall_change
+          }
+        )
+      ]
+
+      # The homepage primary gauge, when made shareable, creates an image
+      # with a size depending on the width of the screen the first
+      # person uses to create it (the actual highcharts config is responsive
+      # to the container width). However, the homepage share image should
+      # always be the biggest width that it can be. So, we create a copy
+      # of the primary gauge and only load it IF it's png image does not
+      # yet exist. If the png image does not exist, and this second primary
+      # gauge chart is created, then the div container has display: none; to
+      # hide it.
+      primary_gauge_for_image = Chart.new(
         {
-          id: 'reform-current-overall',
-          title: nil,
-          responsiveTo: '.js-homepage-primary-gauge-container',
+          id: 'reform-current-overall-for-share',
+          title: I18n.t('root.index.heading'),
+          subtitle: I18n.t('root.index.subheading'),
+          size: 300,
           score: @quarter.expert_survey.overall_score.to_f,
           change: @quarter.expert_survey.overall_change
-        }
+        },
+        request.path
       )
-    ]
 
-    # The homepage primary gauge, when made shareable, creates an image
-    # with a size depending on the width of the screen the first
-    # person uses to create it (the actual highcharts config is responsive
-    # to the container width). However, the homepage share image should
-    # always be the biggest width that it can be. So, we create a copy
-    # of the primary gauge and only load it IF it's png image does not
-    # yet exist. If the png image does not exist, and this second primary
-    # gauge chart is created, then the div container has display: none; to
-    # hide it.
-    primary_gauge_for_image = Chart.new(
-      {
-        id: 'reform-current-overall-for-share',
-        title: I18n.t('root.index.heading'),
-        subtitle: I18n.t('root.index.subheading'),
-        size: 300,
-        score: @quarter.expert_survey.overall_score.to_f,
-        change: @quarter.expert_survey.overall_change
-      },
-      request.path
-    )
+      unless (primary_gauge_for_image.png_image_exists?)
+        charts << primary_gauge_for_image
+      end
 
-    unless (primary_gauge_for_image.png_image_exists?)
-      charts << primary_gauge_for_image
+      gon.charts = charts.map(&:to_hash)
+
+      @share_image_paths = [primary_gauge_for_image.png_image_path]
+
     end
 
-    gon.charts = charts.map(&:to_hash)
+    if @reforms.present?
+      @reforms.each do |reform|
+        survey = reform.reform_surveys[0]
 
-    @share_image_paths = [primary_gauge_for_image.png_image_path]
+        next unless survey
 
-    @reforms.each do |reform|
-      survey = reform.reform_surveys[0]
+        gon.charts << {
+          id: "reform-government-#{@quarter.slug}-#{reform.slug}",
+          color: reform.color.to_hash,
+          title: nil,
+          score: survey.government_overall_score.to_f,
+          change: survey.government_overall_change
+        }
 
-      next unless survey
-
-      gon.charts << {
-        id: "reform-government-#{@quarter.slug}-#{reform.slug}",
-        color: reform.color.to_hash,
-        title: nil,
-        score: survey.government_overall_score.to_f,
-        change: survey.government_overall_change
-      }
-
-      gon.charts << {
-        id: "reform-stakeholder-#{@quarter.slug}-#{reform.slug}",
-        color: reform.color.to_hash,
-        title: nil,
-        score: survey.stakeholder_overall_score.to_f,
-        change: survey.stakeholder_overall_change
-      }
+        gon.charts << {
+          id: "reform-stakeholder-#{@quarter.slug}-#{reform.slug}",
+          color: reform.color.to_hash,
+          title: nil,
+          score: survey.stakeholder_overall_score.to_f,
+          change: survey.stakeholder_overall_change
+        }
+      end
     end
 
-    gon.charts += @external_indicators.each_with_index.map do |external_indicator, index|
-      external_indicator.gauge_chart_data(index, '.js-external-indicator-gauges-container')
+    if @quarters.present? && @external_indicators.present?
+      gon.charts += @external_indicators.each_with_index.map do |external_indicator, index|
+        external_indicator.gauge_chart_data(index, '.js-external-indicator-gauges-container')
+      end
     end
   end
 
