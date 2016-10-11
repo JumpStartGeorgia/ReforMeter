@@ -15,7 +15,7 @@ function initializeIndexBox(chartDataIndexes, $index) {
   var indexNameText = $indexName.text().trim();
 
   var indexData = chartDataIndexes.filter(function(index) {
-    return index.short_name === indexNameText;
+    return index.short_name.trim() === indexNameText;
   })[0].data;
 
   index_methods.updateValue = function(newValue) {
@@ -38,7 +38,7 @@ function initializeIndexBox(chartDataIndexes, $index) {
     var indexNewDataPoint = indexData[pointArrayIndex];
     var value = indexNewDataPoint.y;
     var newValue = value ? Math.round(value) : 'N/A';
-    
+
     var newChangeIcon = change_icon(
       indexNewDataPoint.change
     );
