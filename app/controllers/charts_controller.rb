@@ -10,10 +10,14 @@ class ChartsController < ApplicationController
 
     unless ChartImages.is_parent_dir_of_path(png_image_path)
       render json: nil, status: :ok
+      return
     end
 
     # end action if chart image already exists
-    render json: nil, status: :ok if Dir.glob(image_glob).present?
+    if Dir.glob(image_glob).present?
+      render json: nil, status: :ok
+      return
+    end
 
     post_params = params['highcharts_export_options']
 
