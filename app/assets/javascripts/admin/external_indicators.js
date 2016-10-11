@@ -158,6 +158,8 @@ function setupExternalIndicatorCocoon(){
       $('.js-optional-plot-bands .tab-pane[data-locale="' + page_locales[i] + '"] table tbody').append($(row));
     }
 
+    // update the row indices
+    updateTableIndex($(this).closest('.js-optional').find('.tab-pane table tbody'));
 
     // if the new row is not in default locale tab, remove the input fields for to/from
     // including the the locale that started the cocoon insert because it might not need to have the inputs since the add button is in all tabs
@@ -226,6 +228,8 @@ function setupExternalIndicatorCocoon(){
       $('.js-optional-time-periods .tab-pane[data-locale="' + page_locales[i] + '"] table tbody').append($(row));
     }
 
+    // update the row indices
+    updateTableIndex($(this).closest('.js-optional').find('.tab-pane table tbody'));
 
     // if the new row is not in default locale tab, remove the input fields for to/from
     // including the the locale that started the cocoon insert because it might not need to have the inputs since the add button is in all tabs
@@ -272,6 +276,7 @@ function setupExternalIndicatorCocoon(){
     for(var i=0;i<page_locales.length;i++){
       $('.js-optional-time-periods .tab-pane[data-locale="' + page_locales[i] + '"] table tbody tr:eq(' + row_index + ') td:eq(' + col_index + ')').html($(this).val());
     }
+
   });
 
 }

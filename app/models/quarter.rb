@@ -335,9 +335,9 @@ class Quarter < ActiveRecord::Base
 
     # put together in desired format
     hash[:title] = I18n.t('shared.chart_titles.reform.all_title')
-    hash[:min] = data.first[:min]
-    hash[:max] = data.first[:max]
-    hash[:categories] = data.first[:categories]
+    hash[:min] = data.first[:min] if data.present?
+    hash[:max] = data.first[:max] if data.present?
+    hash[:categories] = data.first[:categories] if data.present?
 
     if options[:type] == 'stakeholder'
       hash[:type] = options[:type]
