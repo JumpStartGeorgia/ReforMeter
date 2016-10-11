@@ -36,7 +36,9 @@ function initializeIndexBox(chartDataIndexes, $index) {
     }
 
     var indexNewDataPoint = indexData[pointArrayIndex];
-    var newValue = Math.round(indexNewDataPoint.y);
+    var value = indexNewDataPoint.y;
+    var newValue = value ? Math.round(value) : 'N/A';
+    
     var newChangeIcon = change_icon(
       indexNewDataPoint.change
     );

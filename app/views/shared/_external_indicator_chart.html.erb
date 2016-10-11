@@ -15,8 +15,8 @@
 
       <% external_indicator[:indexes].each do |index| %>
 
-        <% 
-          most_recent_data_point = index[:data].last 
+        <%
+          most_recent_data_point = index[:data].last
           value = most_recent_data_point[:y]
         %>
 
@@ -30,7 +30,7 @@
           <p class='chartIndexes-item-values'>
 
             <span class='chartIndexes-item-values-score js-act-as-index-value'>
-              <%= value.present? ? value.round : "No Data" %>
+              <%= value.present? ? value.round : "N/A" %>
             </span>
 
             <span class='chartIndexes-item-values-change'>
