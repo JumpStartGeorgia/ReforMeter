@@ -92,7 +92,6 @@ class RootController < ApplicationController
 
   def download_data_and_reports
     @download_text = PageContent.find_by(name: 'download_text')
-    @download_review_board_text = PageContent.find_by(name: 'download_review_board_text')
     @download_reform_text = PageContent.find_by(name: 'download_reform_text')
     @download_external_indicator_text = PageContent.find_by(name: 'download_external_indicator_text')
     @download_report_text = PageContent.find_by(name: 'download_report_text')

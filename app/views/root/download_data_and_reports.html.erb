@@ -8,28 +8,6 @@
 
 <ul class='downloadPage-downloadBoxesContainer'>
 
-  <% if @download_review_board_text %>
-    <li class='downloadBox'>
-
-      <h2 class='downloadBox-heading'>
-        <%= @download_review_board_text.title %>
-      </h2>
-
-      <div class='downloadBox-description'>
-        <%= simple_format_no_tags(@download_review_board_text.content) %>
-      </div>
-
-      <div class='downloadBox-button'>
-        <%= link_to params.merge(type: 'review_board'),
-                    method: :post do %>
-          <%= t('.download') %>
-          <%= inline_svg("download_xls.svg") %>
-        <% end %>
-      </div>
-
-    </li>
-  <% end %>
-
   <% if @download_reform_text %>
 
     <li class='downloadBox'>

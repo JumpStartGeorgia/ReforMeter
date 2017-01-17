@@ -92,11 +92,11 @@ PageContent.find_or_create_by(name: 'download_text') do |pc|
     pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
 end
 # download review board text
-PageContent.find_or_create_by(name: 'download_review_board_text') do |pc|
-    puts 'creating page content for download review board text'
-    pc.title = 'Review Board'
-    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
-end
+# PageContent.find_or_create_by(name: 'download_review_board_text') do |pc|
+#     puts 'creating page content for download review board text'
+#     pc.title = 'Review Board'
+#     pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
+# end
 # download reform text
 PageContent.find_or_create_by(name: 'download_reform_text') do |pc|
     puts 'creating page content for download reform text'
@@ -112,7 +112,7 @@ end
 # download reports text
 PageContent.find_or_create_by(name: 'download_report_text') do |pc|
     puts 'creating page content for download report text'
-    pc.title = 'Quarterly Reports'
+    pc.title = 'Reports'
     pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit.</p>'
 end
 # contact intro text
