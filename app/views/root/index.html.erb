@@ -23,7 +23,7 @@
 
         <div class='homepage-primaryGaugeContainer js-homepage-primary-gauge-container'>
           <% if @quarter.present? %>
-            <%= link_to review_board_show_path(@quarter) do %>
+            <%= link_to reform_verdict_show_path(@quarter) do %>
 
               <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
 
@@ -54,7 +54,7 @@
 
       <div class='homePage-bigLinks-pair'>
 
-        <a class='homePage-bigLinks-item' href='<%= review_board_show_path(@quarter) %>'>
+        <a class='homePage-bigLinks-item' href='<%= reform_verdict_show_path(@quarter) %>'>
 
           <span class='homePage-bigLinks-item-icon'>
             <%= inline_svg('find_icon.svg') %>
@@ -94,14 +94,14 @@
 
         </a>
 
-        <a class='homePage-bigLinks-item mod-last-item' href='<%= review_board_path %>'>
+        <a class='homePage-bigLinks-item mod-last-item' href='<%= reform_verdict_path %>'>
 
           <span class='homePage-bigLinks-item-icon mod-experts'>
             <%= inline_svg('experts.svg') %>
           </span>
 
           <span class='homePage-bigLinks-item-text'>
-            <%= t '.big_link.review_board' %>
+            <%= t '.big_link.about' %>
           </span>
 
         </a>

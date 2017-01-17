@@ -86,10 +86,17 @@ class Admin::ReformSurveysController < ApplicationController
           title: t('shared.categories.performance'),
           score: @reform_survey.stakeholder_category1_score.to_f,
           change: @reform_survey.stakeholder_category1_change
+        # }, {
+        #   id: 'reform-stakeholder-goals',
+        #   color: government_time_series[:color],
+        #   title: t('shared.categories.goals'),
+        #   score: @reform_survey.stakeholder_category2_score.to_f,
+        #   change: @reform_survey.stakeholder_category2_change
+        # }, {
         }, {
-          id: 'reform-stakeholder-goals',
+          id: 'reform-stakeholder-outcome',
           color: government_time_series[:color],
-          title: t('shared.categories.goals'),
+          title: t('shared.categories.outcome'),
           score: @reform_survey.stakeholder_category2_score.to_f,
           change: @reform_survey.stakeholder_category2_change
         }, {

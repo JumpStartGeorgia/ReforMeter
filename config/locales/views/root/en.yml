@@ -21,6 +21,7 @@ en:
         find_out_why: Find Out Why
         reforms: Learn About the Reforms
         review_board: Meet the Review Board
+        about: Meet the Reformers
       economy_effects: How the Reforms are Affecting the Economy
       external_indicators_link: View All Economic Effects
       heading: Where Does Georgia Stand?
@@ -50,21 +51,26 @@ en:
         summary: Summary
         time: Time Period
       title: Reforms
-    review_board:
-      header:
-        chart: Timeline
-        experts: Board Members
-        methodology: Methodology
-        table: Results
-      no_data: Sorry, but at this time there is no review board data on record.
-      no_experts: No board members are on record.
-      no_methodology: No methodology is on record.
-      table_header:
-        overall: Overall Score
-        summary: Summary
-        time: Time Period
-      title: Review Board
-    review_board_show:
-      gauge_group:
-        title: Review Board for %{quarter}
-      title: According to the Review Board for %{time}
+    reform_verdict:
+      no_data: Sorry, but at this time there is no reform verdict on record.
+      title: ReformVerdict
+    reform_verdict_show:
+      title: "ReformVerdict: %{time}"
+    # review_board:
+    #   header:
+    #     chart: Timeline
+    #     experts: Board Members
+    #     methodology: Methodology
+    #     table: Results
+    #   no_data: Sorry, but at this time there is no review board data on record.
+    #   no_experts: No board members are on record.
+    #   no_methodology: No methodology is on record.
+    #   table_header:
+    #     overall: Overall Score
+    #     summary: Summary
+    #     time: Time Period
+    #   title: Review Board
+    # review_board_show:
+    #   gauge_group:
+    #     title: Review Board for %{quarter}
+    #   title: According to the Review Board for %{time}

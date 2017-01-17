@@ -30,7 +30,8 @@ ka:
     categories:
       capacity_building: კომპეტენციის გაძლიერება
       change: ცვლილება
-      goals: მიზნები
+      # goals: მიზნები
+      outcome: შედეგები
       government: მთავრობა
       government_survey: მთავრობის ანგარიში
       infastructure_budgeting: ინფრასტრუქტურა და ბიუჯეტი

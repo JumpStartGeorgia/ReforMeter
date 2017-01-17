@@ -281,8 +281,13 @@ class Quarter < ActiveRecord::Base
           data: quarters.map{|x| {y: x.expert_survey.category1_score.to_f, change: x.expert_survey.category1_change}}
         }
         # category 2
+        # hash[:series] << {
+        #   name: I18n.t('shared.categories.goals'),
+        #   dashStyle: 'shortDash',
+        #   data: quarters.map{|x| {y: x.expert_survey.category2_score.to_f, change: x.expert_survey.category2_change}}
+        # }
         hash[:series] << {
-          name: I18n.t('shared.categories.goals'),
+          name: I18n.t('shared.categories.outcome'),
           dashStyle: 'shortDash',
           data: quarters.map{|x| {y: x.expert_survey.category2_score.to_f, change: x.expert_survey.category2_change}}
         }
@@ -437,8 +442,12 @@ class Quarter < ActiveRecord::Base
             dashStyle: 'longDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category1_score.to_f, change: x.nil? ? nil : x.stakeholder_category1_change}}}
           # category 2
+          # hash[:series] << {
+          #   name: I18n.t('shared.categories.goals'),
+          #   dashStyle: 'shortDash',
+          #   data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category2_score.to_f, change: x.nil? ? nil : x.stakeholder_category2_change}}}
           hash[:series] << {
-            name: I18n.t('shared.categories.goals'),
+            name: I18n.t('shared.categories.outcome'),
             dashStyle: 'shortDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category2_score.to_f, change: x.nil? ? nil : x.stakeholder_category2_change}}}
           # category 3

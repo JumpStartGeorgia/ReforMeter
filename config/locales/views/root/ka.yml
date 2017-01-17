@@ -21,6 +21,7 @@ ka:
         find_out_why: გაიგე რატომ
         reforms: გაიგე მეტი რეფორმებზე
         review_board: გაიცანი შეფასების საბჭო
+        about: Meet the Reformers
       economy_effects: რა გავლენას ახდენს რეფორმები ეკონომიკაზე
       external_indicators_link: ყველა ეკონომიკური ეფექტის ნახვა
       heading: რა მდგომარეობაა საქართველოში?
@@ -50,21 +51,26 @@ ka:
         summary: შეჯამება
         time: დროის მონაკვეთი
       title: რეფორმები
-    review_board:
-      header:
-        chart: ქრონოლოგია
-        experts: ექსპერტები
-        methodology: მეთოდოლოგია
-        table: შედეგები
-      no_data: ბოდიშს გიხდით, ამ დროისთვის არ არსებობს საბჭოს წევრთა მონაცემთა ჩანაწერი.
-      no_experts: არ არსებობს საბჭოს წევრებზე ჩანაწერი.
-      no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
-      table_header:
-        overall: ზოგადი შეფასება
-        summary: შეჯამება
-        time: დროის მონაკვეთი
-      title: შეფასების საბჭო
-    review_board_show:
-      gauge_group:
-        title: საბჭოს დასკვნით %{quarter}-ისთვის
-      title: საბჭოს დასკვნით %{time}-ისთვის
+    reform_verdict:
+      no_data: Sorry, but at this time there is no reform verdict on record.
+      title: რეფორმვერდიქტი
+    reform_verdict_show:
+      title: "რეფორმვერდიქტი: %{time}"
+    # review_board:
+    #   header:
+    #     chart: ქრონოლოგია
+    #     experts: ექსპერტები
+    #     methodology: მეთოდოლოგია
+    #     table: შედეგები
+    #   no_data: ბოდიშს გიხდით, ამ დროისთვის არ არსებობს საბჭოს წევრთა მონაცემთა ჩანაწერი.
+    #   no_experts: არ არსებობს საბჭოს წევრებზე ჩანაწერი.
+    #   no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
+    #   table_header:
+    #     overall: ზოგადი შეფასება
+    #     summary: შეჯამება
+    #     time: დროის მონაკვეთი
+    #   title: შეფასების საბჭო
+    # review_board_show:
+    #   gauge_group:
+    #     title: საბჭოს დასკვნით %{quarter}-ისთვის
+    #   title: საბჭოს დასკვნით %{time}-ისთვის

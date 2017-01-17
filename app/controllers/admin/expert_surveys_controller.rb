@@ -32,9 +32,15 @@ class Admin::ExpertSurveysController < ApplicationController
         title: I18n.t('shared.categories.performance'),
         score: @quarter.expert_survey.category1_score.to_f,
         change: @quarter.expert_survey.category1_change
+      # }, {
+      #   id: 'goals',
+      #   title: I18n.t('shared.categories.goals'),
+      #   score: @quarter.expert_survey.category2_score.to_f,
+      #   change: @quarter.expert_survey.category2_change
+      # }, {
       }, {
-        id: 'goals',
-        title: I18n.t('shared.categories.goals'),
+        id: 'outcome',
+        title: I18n.t('shared.categories.outcome'),
         score: @quarter.expert_survey.category2_score.to_f,
         change: @quarter.expert_survey.category2_change
       }, {

@@ -30,7 +30,8 @@ en:
     categories:
       capacity_building: Capacity Building
       change: Change
-      goals: Goals
+      # goals: Goals
+      outcome: Outcome
       government: Government
       government_survey: Government Report
       infastructure_budgeting: Infastructure & Budgeting
