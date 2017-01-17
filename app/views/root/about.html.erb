@@ -1,4 +1,4 @@
-<%
+  <%
 page_title t('.title')
 @do_not_use_default_page_layout = true
 %>
@@ -33,19 +33,131 @@ page_title t('.title')
 
       <header class='contentSection-header'>
 
-        <h2 class='heading'>
-          <%= t('.methodology') %>
-        </h2>
+        <ul class='tabList mod-header js-act-as-tab-list'>
+
+          <li class='tabList-item'>
+            <button class='tabList-item-button js-act-as-tab-list-button is-selected' data-selects-tab-content-panel-id='methodology'>
+              <%= t('.methodology') %>
+            </button>
+          </li>
+
+          <li class='tabList-item'>
+            <button class='tabList-item-button js-act-as-tab-list-button is-selected' data-selects-tab-content-panel-id='steering-committee'>
+              <%= t('.steering_committee') %>
+            </button>
+          </li>
+
+          <li class='tabList-item'>
+            <button class='tabList-item-button js-act-as-tab-list-button is-selected' data-selects-tab-content-panel-id='executive-team'>
+              <%= t('.executive_team') %>
+            </button>
+          </li>
+
+        </ul>
 
       </header>
 
       <div class='contentSection-body'>
 
-        <% if @methodology_general %>
-          <div>
+        <div class='tabContent js-act-as-tab-content'>
+
+          <div class='tabContent-panel is-selected mod-content-padding js-act-as-tab-content-panel' id='methodology'>
             <%= simple_format_no_tags(@methodology_general.content) %>
           </div>
-        <% end %>
+
+          <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='steering-committee'>
+            <ul class='expertList'>
+
+              <% if @steering_committee.each do |expert| %>
+
+                <li class='expertList-item js-act-as-expert-item'>
+
+                  <div class='expertList-item-imageLink'>
+
+                    <%= image_tag(expert.avatar.url('100x100'),
+                                  class: 'expertList-item-imageLink-image') %>
+
+                  </div>
+
+                  <div>
+
+                    <h4 class='expertList-item-heading'>
+                      <%= expert.name %>
+                    </h4>
+
+                    <% if expert.bio %>
+
+                      <div class='expertList-item-description'>
+
+                        <%= simple_format(expert.bio) %>
+
+                      </div>
+
+                    <% end %>
+
+                  </div>
+
+                </li>
+
+              <% end.empty? %>
+
+                <li>
+                 <%= t('.no_steering_committee') %>
+                </li>
+
+              <% end %>
+
+            </ul>
+          </div>
+
+          <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='executive-team'>
+            <ul class='expertList'>
+
+              <% if @executive_team.each do |expert| %>
+
+                <li class='expertList-item js-act-as-expert-item'>
+
+                  <div class='expertList-item-imageLink'>
+
+                    <%= image_tag(expert.avatar.url('100x100'),
+                                  class: 'expertList-item-imageLink-image') %>
+
+                  </div>
+
+                  <div>
+
+                    <h4 class='expertList-item-heading'>
+                      <%= expert.name %>
+                    </h4>
+
+                    <% if expert.bio %>
+
+                      <div class='expertList-item-description'>
+
+                        <%= simple_format(expert.bio) %>
+
+                      </div>
+
+                    <% end %>
+
+                  </div>
+
+                </li>
+
+              <% end.empty? %>
+
+                <li>
+                 <%= t('.no_executive_team') %>
+                </li>
+
+              <% end %>
+
+            </ul>
+
+          </div>
+
+        </div>
+
 
       </div>
 

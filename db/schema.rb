@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818060804) do
+ActiveRecord::Schema.define(version: 20170117133959) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -66,9 +66,13 @@ ActiveRecord::Schema.define(version: 20160818060804) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.integer  "expert_type",         limit: 4
+    t.integer  "reform_id",           limit: 4
   end
 
+  add_index "experts", ["expert_type"], name: "index_experts_on_expert_type", using: :btree
   add_index "experts", ["is_active"], name: "index_experts_on_is_active", using: :btree
+  add_index "experts", ["reform_id"], name: "index_experts_on_reform_id", using: :btree
 
   create_table "external_indicator_countries", force: :cascade do |t|
     t.integer  "external_indicator_id", limit: 4

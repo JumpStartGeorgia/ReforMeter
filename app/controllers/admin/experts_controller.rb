@@ -1,12 +1,13 @@
 class Admin::ExpertsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_expert, only: [:show, :edit, :update, :destroy]
+  before_action :load_types, only: [:new, :edit, :create, :update]
   authorize_resource
 
   # GET /admin/experts
   # GET /admin/experts.json
   def index
-    @experts = Expert.sorted
+    @experts = Expert.sorted.with_reforms
   end
 
   # GET /admin/experts/1
@@ -69,7 +70,19 @@ class Admin::ExpertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expert_params
-      permitted = Expert.globalize_attribute_names + [:avatar, :is_active]
+      permitted = Expert.globalize_attribute_names + [:avatar, :is_active, :expert_type, :reform_id]
       params.require(:expert).permit(*permitted)
+    end
+
+    # create array of expert types to load the form fields
+    def load_types
+      @expert_types = []
+      Expert::EXPERT_TYPES.each do |key,value|
+        @expert_types << [I18n.t("shared.expert_types.#{key}"), value]
+      end
+      @expert_types.sort_by!{|x| x[0]}
+
+      @reforms = Reform.active.sorted
+
     end
 end

@@ -23,6 +23,7 @@
     setupExternalIndicatorCocoon();
     setupExternalIndicatorMove();
     setupExternalIndicatorInputs();
+    setupExpertReformSelector();
   });
 
   $(document).on('page:change', function() {

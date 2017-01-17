@@ -17,6 +17,10 @@
     <% end %>
 
 
+    <%= f.input :expert_type, as: :radio, collection: @expert_types %>
+
+    <%= f.input :reform_id, as: :radio, collection: @reforms %>
+
     <div class="file input optional form-group" id="expert_avatar_input">
       <span class="form-label">
         <label for="expert_avatar" class=" control-label"><%= t('activerecord.attributes.expert.avatar') %></label>

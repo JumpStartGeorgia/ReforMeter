@@ -12,6 +12,7 @@
 #  is_public         :boolean          default(FALSE)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  sort_order        :integer
 #
 
 require 'csv'

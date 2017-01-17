@@ -169,11 +169,15 @@ if ENV['load_test_data'].present?
   reform4 = Reform.create(name_en: 'Pension System', name_ka: 'საპენსიო სისტემა', summary: 'This is the pension system reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
   reform5 = Reform.create(name_en: 'Land Registration', name_ka: 'მიწის რეგისტრაცია', summary: 'This is the land registration reform.', reform_color_id: rc_colors.delete_at(rand(rc_colors.length)).id)
 
-  # create board members
-  puts 'creating board members'
-  exp1 = Expert.create(name: 'Giorgi Gamkharashvili', bio: 'Giorgi Gamkharashvili is cool cat from Sesame Street.')
-  exp2 = Expert.create(name: 'Mariam Macharashvili', bio: 'Mariam Macharashvili doesn\'t know how to get to Sesame Street.')
-  exp3 = Expert.create(name: 'Irakli Sultanishvili', bio: 'Irakli Sultanishvili was born and raised on Sesame Street.')
+  # create members
+  puts 'creating members'
+  exp1 = Expert.create(name: 'Giorgi Gamkharashvili', bio: 'Giorgi Gamkharashvili is cool cat from Sesame Street.', expert_type: Expert::EXPERT_TYPES[:steering_committee])
+  exp2 = Expert.create(name: 'Mariam Macharashvili', bio: 'Mariam Macharashvili doesn\'t know how to get to Sesame Street.', expert_type: Expert::EXPERT_TYPES[:steering_committee])
+  exp3 = Expert.create(name: 'Irakli Sultanishvili', bio: 'Irakli Sultanishvili was born and raised on Sesame Street.', expert_type: Expert::EXPERT_TYPES[:executive_team])
+  exp4 = Expert.create(name: 'Mariam Gamkharashvili', bio: 'Mariam Gamkharashvili is cool cat from Sesame Street.', expert_type: Expert::EXPERT_TYPES[:executive_team])
+  exp5 = Expert.create(name: 'Irakli Macharashvili', bio: 'Irakli Macharashvili doesn\'t know how to get to Sesame Street.', expert_type: Expert::EXPERT_TYPES[:stakeholder], reform_id: reform1.id)
+  exp6 = Expert.create(name: 'Giorgi Gamkharashvili', bio: 'Giorgi Gamkharashvili was born and raised on Sesame Street.', expert_type: Expert::EXPERT_TYPES[:stakeholder], reform_id: reform1.id)
+  exp7 = Expert.create(name: 'Mariam Sultanishvili', bio: 'Mariam Sultanishvili doesn\'t know how to get to Sesame Street.', expert_type: Expert::EXPERT_TYPES[:stakeholder], reform_id: reform2.id)
 
   # create quarters
   puts 'creating quarters'

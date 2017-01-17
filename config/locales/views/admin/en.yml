@@ -1,6 +1,9 @@
 ---
 en:
   admin:
+    experts:
+      table:
+        no_experts: There are no members on file.
     expert_surveys:
       form:
         experts_deselect_all: Deselect All Members
@@ -23,7 +26,7 @@ en:
         title: 'External Indicator: %{name}'
     index:
       explanations:
-        experts: Manage the board member data like name, bio, and image.
+        experts: Manage the member data like name, bio, and image.
         external_indicators: Manage the external indciator settings and data.
         page_contents: Manage content that appears on pages like about text, methodologies, etc.
         quarters: Manage the data for quarters like quarterly report, review board survey, reform surveys, and news.

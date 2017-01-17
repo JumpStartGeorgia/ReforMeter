@@ -1,0 +1,62 @@
+<%
+ is_stakeholder ||= false
+%>
+
+<% if experts.present? %>
+
+  <table class='table table-striped table-hover table-nonfluid datatable-admin'>
+    <thead>
+      <tr>
+        <th></th>
+        <th><%=t 'activerecord.attributes.expert.name' %></th>
+        <th><%=t 'activerecord.attributes.expert.bio' %></th>
+        <% if is_stakeholder == true %>
+          <th><%=t 'activerecord.attributes.expert.reform_id' %></th>
+        <% end %>
+        <th><%=t 'activerecord.attributes.expert.is_active' %></th>
+
+        <th class='action-col'><%=t 'shared.common.actions' %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% experts.each do |expert| %>
+        <tr>
+          <td>
+            <%= image_tag(expert.avatar.url('50x50')) %>
+          </td>
+          <td>
+            <%= expert.name %>
+          </td>
+          <td><%= expert.bio %></td>
+          <% if is_stakeholder == true %>
+            <td><%= expert.reform.name %></td>
+          <% end %>
+          <td><%= format_boolean_flag(expert.is_active?) %></td>
+          <td>
+            <%= if can? :edit, expert
+                  link_to t('shared.actions.edit'),
+                          edit_admin_expert_path(expert),
+                          class: 'btn btn-default'
+            end %>
+
+            <%= if can? :destroy, expert
+                  link_to t('shared.actions.destroy'),
+                          admin_expert_path(expert),
+                          method: :delete,
+                          data: { confirm: t('shared.prompts.confirm') },
+                          class: 'btn btn-danger'
+            end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+
+  <p class="alert alert-warning">
+    <%= t('.no_experts') %>
+  </p>
+
+<% end %>

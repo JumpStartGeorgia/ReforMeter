@@ -88,6 +88,8 @@ class RootController < ApplicationController
   def about
     @about_text = PageContent.find_by(name: 'about_text')
     @methodology_general = PageContent.find_by(name: 'methodology_general')
+    @steering_committee = Expert.steering_committee_members.active.sorted
+    @executive_team = Expert.executive_team_members.active.sorted
   end
 
   def download_data_and_reports
@@ -234,6 +236,7 @@ class RootController < ApplicationController
       @methodology_government = PageContent.find_by(name: 'methodology_government')
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
       @news = News.by_reform_quarter(@quarter.id, @reform.id)
+      @stakeholders = Expert.stakeholders.by_reform(@reform.id).active.sorted
 
       gon.linked_reforms_quarters = Quarter.linked_reforms
       gon.chart_download = highchart_export_config

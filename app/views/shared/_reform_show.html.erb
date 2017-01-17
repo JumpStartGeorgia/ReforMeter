@@ -306,6 +306,12 @@ show_admin_links ||= false
                 </button>
               </li>
 
+              <li class='tabList-item'>
+                <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholders'>
+                  <%= t('.header.stakeholders') %>
+                </button>
+              </li>
+
             </ul>
 
             <div class="tabContent js-act-as-tab-content">
@@ -333,6 +339,51 @@ show_admin_links ||= false
                    <%= t('.no_methodology') %>
                   </p>
                 <% end %>
+              </div>
+
+              <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholders'>
+                <ul class='expertList'>
+
+                  <% if @stakeholders.each do |expert| %>
+
+                    <li class='expertList-item js-act-as-expert-item'>
+
+                      <div class='expertList-item-imageLink'>
+
+                        <%= image_tag(expert.avatar.url('100x100'),
+                                      class: 'expertList-item-imageLink-image') %>
+
+                      </div>
+
+                      <div>
+
+                        <h4 class='expertList-item-heading'>
+                          <%= expert.name %>
+                        </h4>
+
+                        <% if expert.bio %>
+
+                          <div class='expertList-item-description'>
+
+                            <%= simple_format(expert.bio) %>
+
+                          </div>
+
+                        <% end %>
+
+                      </div>
+
+                    </li>
+
+                  <% end.empty? %>
+
+                    <p>
+                     <%= t('.no_stakeholders') %>
+                    </p>
+
+                  <% end %>
+
+                </ul>
               </div>
 
             </div>

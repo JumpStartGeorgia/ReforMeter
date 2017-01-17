@@ -7,7 +7,9 @@ en:
         bio: Short Bio
         is_active: Is Public?
         name: Name
+        expert_type: Type
+        reform_id: Reform
     models:
       expert:
-        one: Board Member
-        other: Board Members
+        one: Member
+        other: Members

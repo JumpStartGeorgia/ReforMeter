@@ -7,6 +7,8 @@ ka:
       partners: პარტნიორები
       sponsors_donors: სპონსორები და დონორები
       title: შესახებ
+      no_steering_committee: There are no steering committee members on record.
+      no_executive_team: There are no executive team members on record.
     download_data_and_reports:
       choose: არჩევა
       download: გადმოწერა

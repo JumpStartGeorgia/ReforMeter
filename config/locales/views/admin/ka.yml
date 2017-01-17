@@ -1,6 +1,9 @@
 ---
 ka:
   admin:
+    experts:
+      table:
+        no_experts: There are no members on file.
     expert_surveys:
       form:
         experts_deselect_all: ყველა წევრის მონიშვნის გაუქმება
@@ -23,7 +26,7 @@ ka:
         title: 'External Indicator: %{name}'
     index:
       explanations:
-        experts: საბჭოს წევრთა მონაცემების მართვა, მაგალითდ, სახელი, ბიოგრაფია და ფოტო.
+        experts: წევრთა მონაცემების მართვა, მაგალითდ, სახელი, ბიოგრაფია და ფოტო.
         external_indicators: Manage the external indciator settings and data.
         page_contents: ისეთი კონტენტის მართვა, რომელიც ჩნდება შესახებ, მეთოდოლოგიისა და სხვა გვერდებზე.
         quarters: ისეთი მონაცემების მართვა, როგორიცაა, კვარტალური ანგარიში, საბჭოს წევრთა კვლევა, რეფორმის კითხვარები და ახალი ამბები.

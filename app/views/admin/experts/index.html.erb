@@ -12,45 +12,44 @@
   %>
 </div>
 
-<table class='table table-striped table-hover table-nonfluid datatable-admin'>
-  <thead>
-    <tr>
-      <th></th>
-      <th><%=t 'activerecord.attributes.expert.name' %></th>
-      <th><%=t 'activerecord.attributes.expert.bio' %></th>
-      <th><%=t 'activerecord.attributes.expert.is_active' %></th>
+<div class='contentSection'>
 
-      <th class='action-col'><%=t 'shared.common.actions' %></th>
-    </tr>
-  </thead>
+  <header class='contentSection-header mod-no-padding'>
 
-  <tbody>
-    <% @experts.each do |expert| %>
-      <tr>
-        <td>
-          <%= image_tag(expert.avatar.url('50x50')) %>
-        </td>
-        <td>
-          <%= expert.name %>
-        </td>
-        <td><%= expert.bio %></td>
-        <td><%= format_boolean_flag(expert.is_active?) %></td>
-        <td>
-          <%= if can? :edit, expert
-                link_to t('shared.actions.edit'),
-                        edit_admin_expert_path(expert),
-                        class: 'btn btn-default'
-          end %>
+    <ul class='tabList mod-header js-act-as-tab-list'>
 
-          <%= if can? :destroy, expert
-                link_to t('shared.actions.destroy'),
-                        admin_expert_path(expert),
-                        method: :delete,
-                        data: { confirm: t('shared.prompts.confirm') },
-                        class: 'btn btn-danger'
-          end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% Expert::EXPERT_TYPES.keys.each_with_index do |key, index| %>
+        <li class='tabList-item'>
+          <% selected = index == 0 ? 'is-selected ' : '' %>
+          <button class='tabList-item-button js-act-as-tab-list-button <%= selected %>' data-selects-tab-content-panel-id='<%= key %>'>
+            <%= t("shared.expert_types.#{key}") %>
+          </button>
+
+        </li>
+      <% end %>
+
+    </ul>
+
+  </header>
+
+  <div class='contentSection-body mod-no-top-border mod-no-padding'>
+
+    <div class='tabContent js-act-as-tab-content'>
+
+      <div class='tabContent-panel is-selected mod-content-padding js-act-as-tab-content-panel' id='steering_committee'>
+        <%= render partial: 'table', locals: {experts: @experts.select{|x| x.expert_type == Expert::EXPERT_TYPES[:steering_committee]}} %>
+      </div>
+
+      <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='stakeholder'>
+        <%= render partial: 'table', locals: {is_stakeholder: true, experts: @experts.select{|x| x.expert_type == Expert::EXPERT_TYPES[:stakeholder]}} %>
+      </div>
+
+      <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='executive_team'>
+        <%= render partial: 'table', locals: {experts: @experts.select{|x| x.expert_type == Expert::EXPERT_TYPES[:executive_team]}} %>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

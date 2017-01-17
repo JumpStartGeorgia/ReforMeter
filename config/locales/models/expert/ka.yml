@@ -7,7 +7,9 @@ ka:
         bio: მოკლე ბიოგრაფია
         is_active: არის თუ არა საჯარო?
         name: სახელი
+        expert_type: Type
+        reform_id: Reform
     models:
       expert:
-        one: საბჭოს წევრი
-        other: საბჭოს წევრები
+        one: Member
+        other: Members

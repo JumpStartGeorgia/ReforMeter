@@ -115,7 +115,7 @@ en:
       translated_field: "%{field} (%{language})"
     links:
       admin: Admin Section
-      experts: Board Members
+      experts: Members
       external_indicators: External Indicators
       page_contents: Edit Page Text
       quarters: Quarters
@@ -145,9 +145,15 @@ en:
         government_history: Government History
         government_summary: According to the Government
         methodology: Methodology
+        stakeholders: Stakeholders
         stakeholder_history: Stakeholder History
         stakeholder_summary: According to the Stakeholders
       no_methodology: No methodology is on record.
+      no_stakeholders: No stakeholders are on record.
+    expert_types:
+      steering_committee: Steering Committee
+      stakeholder: Stakeholder
+      executive_team: Executive Team
   time:
     formats:
       file: "%Y%m%d%H%M%S"
