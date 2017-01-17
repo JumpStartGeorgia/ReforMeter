@@ -13,8 +13,9 @@ en:
         reform_id: Reform
         scores: Scores
         stakeholder_category1_score: Performance
-        stakeholder_category2_score: Goals
-        stakeholder_category3_score: Progress
+        stakeholder_category2_score: Progress
+        # stakeholder_category3_score: Goals
+        stakeholder_category3_score: Outcome
         stakeholder_overall_score: Overall
         stakeholder_summary: Stakeholder Summary
         summary: Summary

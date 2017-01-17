@@ -330,18 +330,18 @@ class RootController < ApplicationController
       #   change: @reform_survey.stakeholder_category2_change
       # })
 
-      stakeholder_goals_gauge = Chart.new({
-        id: 'reform-stakeholder-outcome',
-        color: government_color,
-        title: t('shared.categories.outcome'),
-        score: @reform_survey.stakeholder_category2_score.to_f,
-        change: @reform_survey.stakeholder_category2_change
-      })
-
       stakeholder_progress_gauge = Chart.new({
         id: 'reform-stakeholder-progress',
         color: government_color,
         title: t('shared.categories.progress'),
+        score: @reform_survey.stakeholder_category2_score.to_f,
+        change: @reform_survey.stakeholder_category2_change
+      })
+
+      stakeholder_goals_gauge = Chart.new({
+        id: 'reform-stakeholder-outcome',
+        color: government_color,
+        title: t('shared.categories.outcome'),
         score: @reform_survey.stakeholder_category3_score.to_f,
         change: @reform_survey.stakeholder_category3_change
       })

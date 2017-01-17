@@ -447,12 +447,12 @@ class Quarter < ActiveRecord::Base
           #   dashStyle: 'shortDash',
           #   data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category2_score.to_f, change: x.nil? ? nil : x.stakeholder_category2_change}}}
           hash[:series] << {
-            name: I18n.t('shared.categories.outcome'),
+            name: I18n.t('shared.categories.progress'),
             dashStyle: 'shortDash',
             data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category2_score.to_f, change: x.nil? ? nil : x.stakeholder_category2_change}}}
           # category 3
           hash[:series] << {
-            name: I18n.t('shared.categories.progress'),
+            name: I18n.t('shared.categories.outcome'),
             dashStyle: 'dot',
             data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category3_score.to_f, change: x.nil? ? nil : x.stakeholder_category3_change}}}
         end

@@ -13,8 +13,9 @@ ka:
         reform_id: რეფორმა
         scores: ქულები
         stakeholder_category1_score: ვითარება
-        stakeholder_category2_score: მიზნები
-        stakeholder_category3_score: პროგრესი
+        stakeholder_category2_score: პროგრესი
+        # stakeholder_category3_score: მიზნები
+        stakeholder_category3_score: შედეგები
         stakeholder_overall_score: ზოგადი შეფასებაF
         stakeholder_summary: დაინტერესებულ მხარეთა შეჯამება
         summary: შეჯამება
