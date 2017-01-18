@@ -29,9 +29,16 @@
 
 class ReformSurvey < ActiveRecord::Base
   #######################
+  ## ATTACHED FILE
+  has_attached_file :report,
+                    :url => "/system/reform_survey_reports/:id/:basename_:locale.:extension",
+                    :use_timestamp => false
+
+  #######################
   ## TRANSLATIONS
 
-  translates :summary, :government_summary, :stakeholder_summary, :fallbacks_for_empty_translations => true
+  translates :summary, :government_summary, :stakeholder_summary,
+    :report_file_name, :report_file_size, :report_content_type, :report_updated_at, :fallbacks_for_empty_translations => true
   globalize_accessors
 
   #######################
@@ -53,6 +60,7 @@ class ReformSurvey < ActiveRecord::Base
   # validates :government_overall_change, :government_category1_change, :government_category2_change, :government_category3_change, :government_category4_change,
   #             :stakeholder_overall_change, :stakeholder_category1_change, :stakeholder_category2_change, :stakeholder_category3_change, inclusion: {in: [-1, 0, 1]}
   validates_uniqueness_of :reform_id, scope: :quarter_id
+  validates_attachment_content_type :report, :content_type => 'application/pdf'
 
   #######################
   ## CALLBACKS

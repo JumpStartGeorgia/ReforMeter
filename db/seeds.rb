@@ -241,7 +241,8 @@ if ENV['load_test_data'].present?
               government_category4_score: reform_survey_scores[index][0][4], stakeholder_overall_score: reform_survey_scores[index][0][5],
               stakeholder_category1_score: reform_survey_scores[index][0][6],stakeholder_category2_score: reform_survey_scores[index][0][7],
               stakeholder_category3_score: reform_survey_scores[index][0][8],
-              summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
+              summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
+              report: report_en)
     end
 
     if index != 3
@@ -251,7 +252,8 @@ if ENV['load_test_data'].present?
               government_category4_score: reform_survey_scores[index][1][4], stakeholder_overall_score: reform_survey_scores[index][1][5],
               stakeholder_category1_score: reform_survey_scores[index][1][6],stakeholder_category2_score: reform_survey_scores[index][1][7],
               stakeholder_category3_score: reform_survey_scores[index][1][8],
-              summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
+              summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
+              report: report_en)
 
       rs4 = q4.reform_surveys.create(reform_id: id,
               government_overall_score: reform_survey_scores[index][2][0],government_category1_score: reform_survey_scores[index][2][1],

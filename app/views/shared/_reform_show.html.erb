@@ -106,6 +106,17 @@ show_admin_links ||= false
       </div>
     <% end %>
 
+    <% if @reform_survey.report.exists? %>
+      <div class='downloadBox-button mod-inline mod-pdf mod-pdf-small mod-pull-right mod-padding'>
+        <%= link_to @reform_survey.report.url,
+                  target: :blank,
+                   class: 'js-report' do %>
+          <%= t('.download') %>
+          <%= inline_svg("download_pdf.svg") %>
+        <% end %>
+      </div>
+    <% end %>
+
     <% if @reform_survey.summary %>
       <div>
         <%= simple_format(@reform_survey.summary) %>

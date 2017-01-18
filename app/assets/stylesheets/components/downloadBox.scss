@@ -61,3 +61,19 @@
   .downloadBox-button.mod-pdf {
     background-color: #EF4136;
   }
+  .downloadBox-button.mod-pdf-small {
+    font-size: 2.0rem;
+    padding: 5px 10px;
+  }
+  .downloadBox-button.mod-pdf-small svg{
+    width: 30px;
+  }
+  .downloadBox-button.mod-inline {
+    display: inline-block;
+  }
+  .downloadBox-button.mod-pull-right {
+    float: right;
+  }
+  .downloadBox-button.mod-padding {
+    margin: 15px 0 15px 15px;
+  }

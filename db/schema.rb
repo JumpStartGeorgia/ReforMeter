@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117133959) do
+ActiveRecord::Schema.define(version: 20170118063937) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -322,6 +322,10 @@ ActiveRecord::Schema.define(version: 20170117133959) do
     t.text     "summary",             limit: 65535
     t.text     "government_summary",  limit: 65535
     t.text     "stakeholder_summary", limit: 65535
+    t.string   "report_file_name",    limit: 255
+    t.string   "report_content_type", limit: 255
+    t.integer  "report_file_size",    limit: 4
+    t.datetime "report_updated_at"
   end
 
   add_index "reform_survey_translations", ["locale"], name: "index_reform_survey_translations_on_locale", using: :btree

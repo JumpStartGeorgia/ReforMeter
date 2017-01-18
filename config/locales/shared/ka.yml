@@ -150,6 +150,7 @@ ka:
         stakeholder_summary: დაინტერესებულ მხარეთა მიხედვით
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
       no_stakeholders: No stakeholders are on record.
+      download: Download Report
     expert_types:
       steering_committee: Steering Committee
       stakeholder: Stakeholder
