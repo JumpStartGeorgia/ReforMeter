@@ -32,10 +32,14 @@
   <hr />
 
   <div class="row mod-row-no-margins">
-    <%= f.input :indicator_type, as: :radio, collection: @indicator_types, wrapper_html: {class: 'col-md-3'} %>
-    <%= f.input :chart_type, as: :radio, collection: @chart_types, wrapper_html: {class: 'col-md-3'} %>
-    <%= f.input :scale_type, as: :radio, collection: @scale_types, wrapper_html: {class: 'col-md-3'} %>
-    <%= f.input :show_on_home_page, as: :radio, wrapper_html: {class: 'col-md-3 js-ext-ind-show-on-home-page-input'} %>
+    <%= f.input :indicator_type, as: :radio, collection: @indicator_types, wrapper_html: {class: 'col-md-4'} %>
+    <%= f.input :chart_type, as: :radio, collection: @chart_types, wrapper_html: {class: 'col-md-4'} %>
+    <%= f.input :scale_type, as: :radio, collection: @scale_types, wrapper_html: {class: 'col-md-4'} %>
+  </div>
+
+  <div class="row mod-row-no-margins">
+    <%= f.input :is_public, as: :radio, wrapper_html: {class: 'col-md-4'} %>
+    <%= f.input :show_on_home_page, as: :radio, wrapper_html: {class: 'col-md-4 js-ext-ind-show-on-home-page-input'} %>
   </div>
 
   <%= f.input :sort_order,
