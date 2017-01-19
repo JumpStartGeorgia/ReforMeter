@@ -78,7 +78,7 @@ class RootController < ApplicationController
       end
     end
 
-    if @quarters.present? && @external_indicators.present?
+    if @quarter.present? && @external_indicators.present?
       gon.charts += @external_indicators.each_with_index.map do |external_indicator, index|
         external_indicator.gauge_chart_data(index, '.js-external-indicator-gauges-container')
       end
