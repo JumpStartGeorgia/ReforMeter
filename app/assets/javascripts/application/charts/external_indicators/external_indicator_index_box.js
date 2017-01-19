@@ -23,7 +23,7 @@ function initializeIndexBox(chartDataIndexes, $index) {
   }
 
   index_methods.updateChange = function(newChangeIcon) {
-    $index.find('.js-act-as-change-icon').attr('src', $(newChangeIcon).attr('src'));
+    $index.find('.js-act-as-change-icon').html(newChangeIcon);
   }
 
   index_methods.update = function(seriesData) {
