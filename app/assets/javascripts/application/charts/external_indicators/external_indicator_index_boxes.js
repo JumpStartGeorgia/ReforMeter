@@ -6,7 +6,7 @@ function initializeExternalIndicatorIndexBoxes(chartData, seriesData) {
 
   var indexBoxes = $indexesContainer.find('.js-act-as-index-box').map(
     function() {
-      return initializeIndexBox(chartData.indexes, $(this));
+      return initializeIndexBox(chartData.indexes, $(this), chartData.use_decimals);
     }
   );
 

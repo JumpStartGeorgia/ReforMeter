@@ -138,7 +138,7 @@ function highchartsSmallMeterGaugeOptions(chartData) {
 
     series: [{
       name: chartData.title,
-      data: [chartData.score]
+      data: [chartData.use_decimals ? Number(Math.round(chartData.score+'e2')+'e-2') : Math.round(chartData.score)]
     }]
   };
 
