@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20170118063937) do
-=======
 ActiveRecord::Schema.define(version: 20170120090656) do
->>>>>>> 522831d... ability to have round or non-rounded numbers in ext inds
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false

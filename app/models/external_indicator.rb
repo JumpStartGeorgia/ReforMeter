@@ -13,10 +13,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  sort_order        :integer
-<<<<<<< HEAD
-=======
 #  use_decimals      :boolean          default(FALSE)
->>>>>>> 522831d... ability to have round or non-rounded numbers in ext inds
 #
 
 require 'csv'
