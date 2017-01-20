@@ -1,5 +1,6 @@
-function initializeIndexBox(chartDataIndexes, $index) {
+function initializeIndexBox(chartDataIndexes, $index, use_decimals) {
   var index_methods = {};
+  use_decimals === 'undefined' ? false : use_decimals;
 
   $index.tipsy(
     {
@@ -37,7 +38,7 @@ function initializeIndexBox(chartDataIndexes, $index) {
 
     var indexNewDataPoint = indexData[pointArrayIndex];
     var value = indexNewDataPoint.y;
-    var newValue = value ? Math.round(value) : 'N/A';
+    var newValue = value ? use_decimals ? Number(Math.round(value+'e2')+'e-2') : Math.round(value) : 'N/A';
 
     var newChangeIcon = change_icon(
       indexNewDataPoint.change

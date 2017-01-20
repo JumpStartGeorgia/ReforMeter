@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818060804) do
+ActiveRecord::Schema.define(version: 20170120090656) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -66,9 +66,13 @@ ActiveRecord::Schema.define(version: 20160818060804) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.integer  "expert_type",         limit: 4
+    t.integer  "reform_id",           limit: 4
   end
 
+  add_index "experts", ["expert_type"], name: "index_experts_on_expert_type", using: :btree
   add_index "experts", ["is_active"], name: "index_experts_on_is_active", using: :btree
+  add_index "experts", ["reform_id"], name: "index_experts_on_reform_id", using: :btree
 
   create_table "external_indicator_countries", force: :cascade do |t|
     t.integer  "external_indicator_id", limit: 4
@@ -204,6 +208,7 @@ ActiveRecord::Schema.define(version: 20160818060804) do
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.integer  "sort_order",        limit: 4
+    t.boolean  "use_decimals",                default: false
   end
 
   add_index "external_indicators", ["sort_order"], name: "index_external_indicators_on_sort_order", using: :btree
@@ -318,6 +323,10 @@ ActiveRecord::Schema.define(version: 20160818060804) do
     t.text     "summary",             limit: 65535
     t.text     "government_summary",  limit: 65535
     t.text     "stakeholder_summary", limit: 65535
+    t.string   "report_file_name",    limit: 255
+    t.string   "report_content_type", limit: 255
+    t.integer  "report_file_size",    limit: 4
+    t.datetime "report_updated_at"
   end
 
   add_index "reform_survey_translations", ["locale"], name: "index_reform_survey_translations_on_locale", using: :btree

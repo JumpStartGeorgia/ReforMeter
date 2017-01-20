@@ -10,6 +10,8 @@
 #  avatar_content_type :string(255)
 #  avatar_file_size    :integer
 #  avatar_updated_at   :datetime
+#  expert_type         :integer
+#  reform_id           :integer
 #
 
 class Expert < AddMissingTranslation
