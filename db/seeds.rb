@@ -330,7 +330,7 @@ if ENV['load_test_data'].present?
   ei.reforms << reform1
 
 
-  ei = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, sort_order: 2, is_public: true)
+  ei = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, sort_order: 2, is_public: true, use_decimals: true)
   csv_data = CSV.read(csv_path + 'gesi.csv')
 
   # indices
@@ -371,7 +371,7 @@ if ENV['load_test_data'].present?
   ei.reforms << reform2
 
 
-  ei = ExternalIndicator.new(title: 'How is the economy doing?', subtitle: 'Georgian Economic Performance Index (G-EPI)', scale_type: 2, indicator_type: 3, chart_type: 1, min: 0, max: 100, show_on_home_page: true, sort_order: 1, is_public: true)
+  ei = ExternalIndicator.new(title: 'How is the economy doing?', subtitle: 'Georgian Economic Performance Index (G-EPI)', scale_type: 2, indicator_type: 3, chart_type: 1, min: 0, max: 100, show_on_home_page: true, sort_order: 1, is_public: true, use_decimals: true)
   csv_data = CSV.read(csv_path + 'gepi.csv')
 
   # indices

@@ -101,7 +101,8 @@ function externalIndicatorChartHelpers(chartData) {
       seriesName = pointData.series.name + '</br>';
     }
 
-    var value = '<span style="vertical-align: middle;">' + Math.round(pointData.y) + '</span>';
+    var y = chartData.use_decimals ? Number(Math.round(pointData.y+'e2')+'e-2') : Math.round(pointData.y)
+    var value = '<span style="vertical-align: middle;">' + y + '</span>';
 
     var iconInSpan = '';
 

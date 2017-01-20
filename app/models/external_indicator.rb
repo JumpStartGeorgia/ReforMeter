@@ -13,6 +13,10 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  sort_order        :integer
+<<<<<<< HEAD
+=======
+#  use_decimals      :boolean          default(FALSE)
+>>>>>>> 522831d... ability to have round or non-rounded numbers in ext inds
 #
 
 require 'csv'
@@ -116,7 +120,8 @@ class ExternalIndicator < AddMissingTranslation
       score: most_recent_data_point[:y],
       change: most_recent_data_point[:change],
       responsiveTo: responsiveToSelector,
-      color: ext_ind_gauge_colors[index % ext_ind_gauge_colors.length]
+      color: ext_ind_gauge_colors[index % ext_ind_gauge_colors.length],
+      use_decimals: use_decimals
     }
   end
 
@@ -319,7 +324,8 @@ class ExternalIndicator < AddMissingTranslation
       unitLabel: unit_label,
       categories: [],
       series: [],
-      plot_bands: nil
+      plot_bands: nil,
+      use_decimals: use_decimals
     }
 
     # add x-axis lables (categories)

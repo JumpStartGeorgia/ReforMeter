@@ -30,7 +30,7 @@
           <p class='chartIndexes-item-values'>
 
             <span class='chartIndexes-item-values-score js-act-as-index-value'>
-              <%= value.present? ? value.round : "N/A" %>
+              <%= value.present? ? external_indicator[:use_decimals] ? value.round(2) : value.round : "N/A" %>
             </span>
 
             <span class='chartIndexes-item-values-change js-act-as-change-icon'>

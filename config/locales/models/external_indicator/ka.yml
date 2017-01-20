@@ -19,6 +19,8 @@ ka:
         subtitle: Subtitle
         time_periods: Time Periods
         title: Title
+        sort_order: Home Page Sort Order
+        use_decimals: Show Decimals in Value?
     models:
       external_indicator:
         one: External Indicator
