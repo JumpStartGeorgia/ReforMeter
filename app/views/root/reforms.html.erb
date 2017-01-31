@@ -287,7 +287,16 @@ page_title t('.title')
                        exportID: exportID
                      } %>
 
-          <div class='js-become-highchart' data-chart-type='percentage-colorful-reforms-history-time-series' data-id='reforms-history-series' data-exportable-by-id='<%= exportID %>'></div>
+          <div class='js-become-highchart' data-chart-type='percentage-colorful-reforms-history-time-series' data-id='reforms-government-history-series' data-exportable-by-id='<%= exportID %>'></div>
+
+          <% exportID = random_string %>
+
+          <%= render partial: 'shared/chart_export_button',
+                     locals: {
+                       exportID: exportID
+                     } %>
+
+          <div class='js-become-highchart' data-chart-type='reforms-stakeholder-history-series' data-id='reforms-stakeholder-history-series' data-exportable-by-id='<%= exportID %>'></div>
         </div>
 
         <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='methodology'>

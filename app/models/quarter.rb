@@ -347,6 +347,11 @@ class Quarter < ActiveRecord::Base
     if options[:type] == 'stakeholder'
       hash[:type] = options[:type]
       hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_stakeholder')
+      hash[:translations] = {
+        behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+        on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+        ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+      }
     else # government
       hash[:type] = 'government'
       hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_government')
