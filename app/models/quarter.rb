@@ -15,16 +15,9 @@ require 'csv'
 class Quarter < ActiveRecord::Base
 
   #######################
-  ## ATTACHED FILE
-  has_attached_file :report,
-                    :url => "/system/quarterly_reports/:quarter_slug/:basename_:locale.:extension",
-                    :use_timestamp => false
-
-  #######################
   ## TRANSLATIONS
 
-  translates :summary_good, :summary_bad,
-    :report_file_name, :report_file_size, :report_content_type, :report_updated_at, :fallbacks_for_empty_translations => true
+  translates :summary_good, :summary_bad, :fallbacks_for_empty_translations => true
   globalize_accessors
 
   #######################
@@ -37,6 +30,16 @@ class Quarter < ActiveRecord::Base
   accepts_nested_attributes_for :reform_surveys, reject_if: :all_blank
 
   #######################
+  ## ATTACHED FILE
+  has_attached_file :report_en,
+                    :url => "/system/quarterly_reports/:quarter_slug/en/:basename.:extension",
+                    :use_timestamp => false
+
+  has_attached_file :report_ka,
+                    :url => "/system/quarterly_reports/:quarter_slug/ka/:basename.:extension",
+                    :use_timestamp => false
+
+  #######################
   ## VALIDATIONS
 
   validates :quarter, :year, :slug, presence: :true
@@ -45,7 +48,8 @@ class Quarter < ActiveRecord::Base
   validates_inclusion_of :quarter, in: 1..4
   validates_inclusion_of :year, in: 2015..2115
 
-  validates_attachment_content_type :report, :content_type => 'application/pdf'
+  validates_attachment_content_type :report_en, :content_type => 'application/pdf'
+  validates_attachment_content_type :report_ka, :content_type => 'application/pdf'
   validate :check_if_can_publish
 
 
@@ -55,7 +59,7 @@ class Quarter < ActiveRecord::Base
   # - at least one reform
   def check_if_can_publish
     if self.is_public_changed? and self.is_public?
-      if !self.report.exists?
+      if !self.report_en.exists? && !self.report_ka.exists?
         errors.add(:base, I18n.t('errors.messages.publish.report') )
       end
 
@@ -518,6 +522,12 @@ class Quarter < ActiveRecord::Base
     if reform
       reform_id = reform.id
     end
+  end
+
+  def report(locale=I18n.locale)
+    locale = locale.to_sym
+    locale = I18n.locale if !I18n.available_locales.include?(locale)
+    return locale == :en ? report_en : report_ka
   end
 
 end

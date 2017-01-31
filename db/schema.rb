@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120090656) do
+ActiveRecord::Schema.define(version: 20170131104106) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -279,28 +279,32 @@ ActiveRecord::Schema.define(version: 20170120090656) do
   add_index "page_contents", ["name"], name: "index_page_contents_on_name", using: :btree
 
   create_table "quarter_translations", force: :cascade do |t|
-    t.integer  "quarter_id",          limit: 4,   null: false
-    t.string   "locale",              limit: 255, null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "summary_good",        limit: 255
-    t.string   "summary_bad",         limit: 255
-    t.string   "report_file_name",    limit: 255
-    t.string   "report_content_type", limit: 255
-    t.integer  "report_file_size",    limit: 4
-    t.datetime "report_updated_at"
+    t.integer  "quarter_id",   limit: 4,   null: false
+    t.string   "locale",       limit: 255, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "summary_good", limit: 255
+    t.string   "summary_bad",  limit: 255
   end
 
   add_index "quarter_translations", ["locale"], name: "index_quarter_translations_on_locale", using: :btree
   add_index "quarter_translations", ["quarter_id"], name: "index_quarter_translations_on_quarter_id", using: :btree
 
   create_table "quarters", force: :cascade do |t|
-    t.integer  "quarter",    limit: 1,                   null: false
-    t.integer  "year",       limit: 2,                   null: false
-    t.boolean  "is_public",              default: false
-    t.string   "slug",       limit: 255,                 null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "quarter",                limit: 1,                   null: false
+    t.integer  "year",                   limit: 2,                   null: false
+    t.boolean  "is_public",                          default: false
+    t.string   "slug",                   limit: 255,                 null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "report_en_file_name",    limit: 255
+    t.string   "report_en_content_type", limit: 255
+    t.integer  "report_en_file_size",    limit: 4
+    t.datetime "report_en_updated_at"
+    t.string   "report_ka_file_name",    limit: 255
+    t.string   "report_ka_content_type", limit: 255
+    t.integer  "report_ka_file_size",    limit: 4
+    t.datetime "report_ka_updated_at"
   end
 
   add_index "quarters", ["slug"], name: "index_quarters_on_slug", unique: true, using: :btree
@@ -323,29 +327,25 @@ ActiveRecord::Schema.define(version: 20170120090656) do
     t.text     "summary",             limit: 65535
     t.text     "government_summary",  limit: 65535
     t.text     "stakeholder_summary", limit: 65535
-    t.string   "report_file_name",    limit: 255
-    t.string   "report_content_type", limit: 255
-    t.integer  "report_file_size",    limit: 4
-    t.datetime "report_updated_at"
   end
 
   add_index "reform_survey_translations", ["locale"], name: "index_reform_survey_translations_on_locale", using: :btree
   add_index "reform_survey_translations", ["reform_survey_id"], name: "index_reform_survey_translations_on_reform_survey_id", using: :btree
 
   create_table "reform_surveys", force: :cascade do |t|
-    t.integer  "quarter_id",                   limit: 4,                         null: false
-    t.integer  "reform_id",                    limit: 4,                         null: false
-    t.decimal  "government_overall_score",               precision: 5, scale: 2, null: false
-    t.decimal  "government_category1_score",             precision: 5, scale: 2, null: false
-    t.decimal  "government_category2_score",             precision: 5, scale: 2, null: false
-    t.decimal  "government_category3_score",             precision: 5, scale: 2, null: false
-    t.decimal  "government_category4_score",             precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_overall_score",              precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category1_score",            precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category2_score",            precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category3_score",            precision: 5, scale: 2, null: false
-    t.datetime "created_at",                                                     null: false
-    t.datetime "updated_at",                                                     null: false
+    t.integer  "quarter_id",                   limit: 4,                           null: false
+    t.integer  "reform_id",                    limit: 4,                           null: false
+    t.decimal  "government_overall_score",                 precision: 5, scale: 2, null: false
+    t.decimal  "government_category1_score",               precision: 5, scale: 2, null: false
+    t.decimal  "government_category2_score",               precision: 5, scale: 2, null: false
+    t.decimal  "government_category3_score",               precision: 5, scale: 2, null: false
+    t.decimal  "government_category4_score",               precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_overall_score",                precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category1_score",              precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category2_score",              precision: 5, scale: 2, null: false
+    t.decimal  "stakeholder_category3_score",              precision: 5, scale: 2, null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.integer  "government_overall_change",    limit: 4
     t.integer  "government_category1_change",  limit: 4
     t.integer  "government_category2_change",  limit: 4
@@ -355,6 +355,14 @@ ActiveRecord::Schema.define(version: 20170120090656) do
     t.integer  "stakeholder_category1_change", limit: 4
     t.integer  "stakeholder_category2_change", limit: 4
     t.integer  "stakeholder_category3_change", limit: 4
+    t.string   "report_en_file_name",          limit: 255
+    t.string   "report_en_content_type",       limit: 255
+    t.integer  "report_en_file_size",          limit: 4
+    t.datetime "report_en_updated_at"
+    t.string   "report_ka_file_name",          limit: 255
+    t.string   "report_ka_content_type",       limit: 255
+    t.integer  "report_ka_file_size",          limit: 4
+    t.datetime "report_ka_updated_at"
   end
 
   add_index "reform_surveys", ["quarter_id"], name: "index_reform_surveys_on_quarter_id", using: :btree

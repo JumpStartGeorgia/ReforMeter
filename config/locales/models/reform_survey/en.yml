@@ -19,6 +19,7 @@ en:
         stakeholder_overall_score: Overall
         stakeholder_summary: Stakeholder Summary
         summary: Summary
+        report: Report
     errors:
       models:
         reform_survey:

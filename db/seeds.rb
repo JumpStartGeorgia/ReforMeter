@@ -183,9 +183,10 @@ if ENV['load_test_data'].present?
   puts 'creating quarters'
   path = "#{Rails.root}/db/test_report_files/"
   report_en = File.open(path + 'sample_report1.pdf')
-  q2 = Quarter.create(year: 2015, quarter: 2, report: report_en, summary_good: 'this is awesome!', summary_bad: 'this is not good!')
-  q3 = Quarter.create(year: 2015, quarter: 3, report: report_en, summary_good: 'this is ok!', summary_bad: 'no progress has been made!')
-  q4 = Quarter.create(year: 2015, quarter: 4, report: report_en, summary_good: 'good effort!', summary_bad: 'are you even working?!')
+  report_ka = File.open(path + 'sample_report2.pdf')
+  q2 = Quarter.create(year: 2015, quarter: 2, report_en: report_en, report_ka: report_ka, summary_good: 'this is awesome!', summary_bad: 'this is not good!')
+  q3 = Quarter.create(year: 2015, quarter: 3, report_en: report_en, report_ka: report_ka, summary_good: 'this is ok!', summary_bad: 'no progress has been made!')
+  q4 = Quarter.create(year: 2015, quarter: 4, report_en: report_en, report_ka: report_ka, summary_good: 'good effort!', summary_bad: 'are you even working?!')
 
   # create board member surveys
   puts 'creating expert surveys'
@@ -242,7 +243,7 @@ if ENV['load_test_data'].present?
               stakeholder_category1_score: reform_survey_scores[index][0][6],stakeholder_category2_score: reform_survey_scores[index][0][7],
               stakeholder_category3_score: reform_survey_scores[index][0][8],
               summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
-              report: report_en)
+              report_en: report_en, report_ka: report_ka)
     end
 
     if index != 3
@@ -253,7 +254,7 @@ if ENV['load_test_data'].present?
               stakeholder_category1_score: reform_survey_scores[index][1][6],stakeholder_category2_score: reform_survey_scores[index][1][7],
               stakeholder_category3_score: reform_survey_scores[index][1][8],
               summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
-              report: report_en)
+              report_en: report_en, report_ka: report_ka)
 
       rs4 = q4.reform_surveys.create(reform_id: id,
               government_overall_score: reform_survey_scores[index][2][0],government_category1_score: reform_survey_scores[index][2][1],

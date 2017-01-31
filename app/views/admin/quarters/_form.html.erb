@@ -55,20 +55,24 @@
                          field: t('activerecord.attributes.quarter.summary_bad'),
                          language: enabled_locale_name),
                    :input_html => { :class => 'autogrow', :rows => 2, :maxlength => 255  } %>
+
+      <div class="file input optional form-group" id="quarter_report_<%= enabled_locale %>_input">
+        <span class="form-label">
+          <label for="quarter_report_<%= enabled_locale %>" class=" control-label"><%= t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.quarter.report'),
+                         language: enabled_locale_name) %></label>
+        </span>
+        <%= link_to t('shared.actions.view'), @quarter.report(enabled_locale).url,
+                        class: 'btn btn-default',
+                        target: :blank if @quarter.report(enabled_locale).exists? %>
+        <span class="form-wrapper">
+          <input accept=".pdf" id="quarter_report_<%= enabled_locale %>" name="quarter[report_<%= enabled_locale %>]" type="file">
+        </span>
+      </div>
+
+
     <% end %>
 
-
-    <div class="file input optional form-group" id="quarter_report_input">
-      <span class="form-label">
-        <label for="quarter_report" class=" control-label"><%= t('activerecord.attributes.quarter.report') %></label>
-      </span>
-      <%= link_to t('shared.actions.view'), @quarter.report.url,
-                      class: 'btn btn-default',
-                      target: :blank if @quarter.report.exists? %>
-      <span class="form-wrapper">
-        <input accept=".pdf" id="quarter_report" name="quarter[report]" type="file">
-      </span>
-    </div>
 
   <% end %>
 

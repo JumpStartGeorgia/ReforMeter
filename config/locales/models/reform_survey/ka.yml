@@ -19,6 +19,7 @@ ka:
         stakeholder_overall_score: ზოგადი შეფასებაF
         stakeholder_summary: დაინტერესებულ მხარეთა შეჯამება
         summary: შეჯამება
+        report: რეპორტი
     errors:
       models:
         reform_survey:

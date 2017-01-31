@@ -29,16 +29,9 @@
 
 class ReformSurvey < ActiveRecord::Base
   #######################
-  ## ATTACHED FILE
-  has_attached_file :report,
-                    :url => "/system/reform_survey_reports/:id/:basename_:locale.:extension",
-                    :use_timestamp => false
-
-  #######################
   ## TRANSLATIONS
 
-  translates :summary, :government_summary, :stakeholder_summary,
-    :report_file_name, :report_file_size, :report_content_type, :report_updated_at, :fallbacks_for_empty_translations => true
+  translates :summary, :government_summary, :stakeholder_summary, :fallbacks_for_empty_translations => true
   globalize_accessors
 
   #######################
@@ -46,6 +39,16 @@ class ReformSurvey < ActiveRecord::Base
 
   belongs_to :quarter
   belongs_to :reform
+
+  #######################
+  ## ATTACHED FILE
+  has_attached_file :report_en,
+                    :url => "/system/reform_survey_reports/:id/en/:basename.:extension",
+                    :use_timestamp => false
+
+  has_attached_file :report_ka,
+                    :url => "/system/reform_survey_reports/:id/ka/:basename.:extension",
+                    :use_timestamp => false
 
   #######################
   ## VALIDATIONS
@@ -60,7 +63,8 @@ class ReformSurvey < ActiveRecord::Base
   # validates :government_overall_change, :government_category1_change, :government_category2_change, :government_category3_change, :government_category4_change,
   #             :stakeholder_overall_change, :stakeholder_category1_change, :stakeholder_category2_change, :stakeholder_category3_change, inclusion: {in: [-1, 0, 1]}
   validates_uniqueness_of :reform_id, scope: :quarter_id
-  validates_attachment_content_type :report, :content_type => 'application/pdf'
+  validates_attachment_content_type :report_en, :content_type => 'application/pdf'
+  validates_attachment_content_type :report_ka, :content_type => 'application/pdf'
 
   #######################
   ## CALLBACKS
@@ -107,6 +111,13 @@ class ReformSurvey < ActiveRecord::Base
 
   #######################
   ## METHODS
+
+  def report(locale=I18n.locale)
+    locale = I18n.locale if !I18n.available_locales.include?(locale.to_sym)
+
+    return locale == :en ? report_en : report_ka
+  end
+
 
   # # compute the chagne value for government scores
   # # scores are percents
