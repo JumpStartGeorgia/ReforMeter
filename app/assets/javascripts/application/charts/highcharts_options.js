@@ -61,6 +61,10 @@ function highchartsOptions(chartType, chartData) {
       return percentageColorfulReformsHistoryTimeSeriesOptions(chartData);
     }
 
+    case 'reforms-stakeholder-history-series': {
+      return reformsStakeholderHistorySeriesOptions(chartData);
+    }
+
     case 'small-meter-gauge': {
       return highchartsSmallMeterGaugeOptions(chartData);
     }

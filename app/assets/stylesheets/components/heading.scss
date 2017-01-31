@@ -55,3 +55,8 @@
 .heading.mod-no-transform {
   text-transform: none;
 }
+
+.heading.mod-content-side-padding {
+  padding-left: $padding-main-content;
+  padding-right: $padding-main-content;
+}

@@ -11,7 +11,7 @@
 
     if ($('body.root.reforms').length > 0) {
       var colorfulReformsTimeSeries = charts.filter(function() {
-        return $(this.highchartsObject.renderTo).data('id') === 'reforms-history-series';
+        return $(this.highchartsObject.renderTo).data('id') === 'reforms-government-history-series';
       })[0];
 
       setupReformSelects(colorfulReformsTimeSeries);
