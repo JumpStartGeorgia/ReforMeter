@@ -183,7 +183,7 @@ class RootController < ApplicationController
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
-    government_chart = Chart.new(
+    @government_chart = Chart.new(
       Quarter.all_reform_survey_data_for_charting(
         id: 'reforms-government-history-series',
         type: 'government',
@@ -192,7 +192,7 @@ class RootController < ApplicationController
       request.path
     )
 
-    stakeholder_chart = Chart.new(
+    @stakeholder_chart = Chart.new(
       Quarter.all_reform_survey_data_for_charting(
         id: 'reforms-stakeholder-history-series',
         type: 'stakeholder',
@@ -202,8 +202,8 @@ class RootController < ApplicationController
     )
 
     charts = [
-      government_chart,
-      stakeholder_chart
+      @government_chart,
+      @stakeholder_chart
     ]
 
     @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
