@@ -20,7 +20,9 @@ class FixSlugs < ActiveRecord::Migration
     I18n.locale = locale_was
 
     # erase all existing chart images
-    FileUtils.rm_r("#{Rails.root}/public/system/chart_images")
+    path = "#{Rails.root}/public/system/chart_images"
+    FileUtils.rm_r(path) if File.exists? path
+    
   end
 
   def down

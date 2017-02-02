@@ -1,11 +1,22 @@
 class AddNewPagecontent < ActiveRecord::Migration
   def up
     # add new
-
     PageContent.find_or_create_by(name: 'methodology_general') do |pc|
         puts 'creating page content for general methodology'
         pc.title = 'Methodology'
         pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
+    end
+
+    # update title
+    pc = PageContent.find_by(name: 'download_report_text')
+    if pc.present?
+      locale_was = I18n.locale
+      I18n.available_locales.each do |locale|
+        I18n.locale = locale
+        pc.title = 'Reports'
+        pc.save
+      end
+      I18n.locale = locale_was
     end
 
     # remove old
@@ -17,6 +28,17 @@ class AddNewPagecontent < ActiveRecord::Migration
 
   def down
     PageContent.where(name: 'methodology_general').destroy_all
+
+    pc = PageContent.find_by(name: 'download_report_text')
+    if pc.present?
+      locale_was = I18n.locale
+      I18n.available_locales.each do |locale|
+        I18n.locale = locale
+        pc.title = 'Quarterly Reports'
+        pc.save
+      end
+      I18n.locale = locale_was
+    end
 
     PageContent.find_or_create_by(name: 'methodology_review_board') do |pc|
         puts 'creating page content for methodology review board'
