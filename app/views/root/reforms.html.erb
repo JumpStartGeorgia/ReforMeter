@@ -117,11 +117,15 @@ page_title t('.title')
 
         </li>
 
-        <li class='tabList-item'>
-          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
-            <%= t('.header.chart') %>
-          </button>
-        </li>
+        <% if @quarters.length > 1 %>
+
+          <li class='tabList-item'>
+            <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
+              <%= t('.header.chart') %>
+            </button>
+          </li>
+
+        <% end %>
 
         <li class='tabList-item'>
           <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
@@ -278,47 +282,51 @@ page_title t('.title')
 
         </div>
 
-        <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
+        <% if @quarters.length > 1 %>
 
-          <div>
-
-            <h2 class='heading mod-content-side-padding mod-top-margin'>
-              <%= @government_chart.to_hash[:subtitle] %>
-            </h2>
+          <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
 
             <div>
-              <% exportID = random_string %>
 
-              <%= render partial: 'shared/chart_export_button',
-              locals: {
-                exportID: exportID
-                } %>
+              <h2 class='heading mod-content-side-padding mod-top-margin'>
+                <%= @government_chart.to_hash[:subtitle] %>
+              </h2>
 
-                <div class='js-become-highchart' data-chart-type='percentage-colorful-reforms-history-time-series' data-id='reforms-government-history-series' data-exportable-by-id='<%= exportID %>'></div>
+              <div>
+                <% exportID = random_string %>
+
+                <%= render partial: 'shared/chart_export_button',
+                locals: {
+                  exportID: exportID
+                  } %>
+
+                  <div class='js-become-highchart' data-chart-type='percentage-colorful-reforms-history-time-series' data-id='reforms-government-history-series' data-exportable-by-id='<%= exportID %>'></div>
+              </div>
+
+            </div>
+
+            <div>
+
+              <h2 class='heading mod-content-side-padding mod-top-margin'>
+                <%= @stakeholder_chart.to_hash[:subtitle] %>
+              </h2>
+
+              <div>
+                <% exportID = random_string %>
+
+                <%= render partial: 'shared/chart_export_button',
+                locals: {
+                  exportID: exportID
+                  } %>
+
+                  <div class='js-become-highchart' data-chart-type='reforms-stakeholder-history-series' data-id='reforms-stakeholder-history-series' data-exportable-by-id='<%= exportID %>'></div>
+              </div>
+
             </div>
 
           </div>
 
-          <div>
-
-            <h2 class='heading mod-content-side-padding mod-top-margin'>
-              <%= @stakeholder_chart.to_hash[:subtitle] %>
-            </h2>
-
-            <div>
-              <% exportID = random_string %>
-
-              <%= render partial: 'shared/chart_export_button',
-              locals: {
-                exportID: exportID
-                } %>
-
-                <div class='js-become-highchart' data-chart-type='reforms-stakeholder-history-series' data-id='reforms-stakeholder-history-series' data-exportable-by-id='<%= exportID %>'></div>
-            </div>
-
-          </div>
-
-        </div>
+        <% end %>
 
         <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='methodology'>
           <% if @methodology_government || @methodology_stakeholder %>

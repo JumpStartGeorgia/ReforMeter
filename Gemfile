@@ -180,7 +180,10 @@ gem 'friendly_id', '~> 5.1'
 gem 'friendly_id-globalize', '~> 1.0.0.alpha2'
 
 # create slugs with utf8 text
-gem 'babosa', '~> 1.0', '>= 1.0.2'
+#gem 'babosa', '~> 1.0', '>= 1.0.2'
+
+# convert utf to ascii for url slugs
+gem 'stringex', '~> 2.7'
 
 # managing file attachments
 gem 'paperclip', '~> 4.3', '>= 4.3.6'
