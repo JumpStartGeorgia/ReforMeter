@@ -9,6 +9,7 @@
 //= require twitter/bootstrap/collapse
 //= require twitter/bootstrap/carousel
 //= require twitter/bootstrap/affix
+//= require jquery-ui/datepicker
 //= require cocoon
 //= require_tree ./admin/
 
@@ -24,6 +25,7 @@
     setupExternalIndicatorMove();
     setupExternalIndicatorInputs();
     setupExpertReformSelector();
+    setupReportDatePicker();
   });
 
   $(document).on('page:change', function() {

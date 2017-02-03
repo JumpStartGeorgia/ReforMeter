@@ -50,6 +50,15 @@
     <% end %>
     <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
       <div class="col-md-3">
+        <h3><%= t('shared.links.reports') %></h3>
+        <p>
+          <%= t('.explanations.reports') %>
+        </p>
+        <%= link_to t('shared.actions.view'), admin_reports_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+    <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
+      <div class="col-md-3">
         <h3><%= t('shared.links.page_contents') %></h3>
         <p>
           <%= t('.explanations.page_contents') %>

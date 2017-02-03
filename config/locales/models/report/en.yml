@@ -1,0 +1,13 @@
+---
+en:
+  activerecord:
+    attributes:
+      report:
+        title: Title
+        report: Report
+        is_active: Is Active?
+        report_date: Date Published
+    models:
+      report:
+        one: Report
+        other: Reports

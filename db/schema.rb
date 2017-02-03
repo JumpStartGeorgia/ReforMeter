@@ -423,11 +423,13 @@ ActiveRecord::Schema.define(version: 20170203090632) do
     t.integer  "report_ka_file_size",    limit: 4
     t.datetime "report_ka_updated_at"
     t.string   "slug",                   limit: 255
+    t.date     "report_date"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
   end
 
   add_index "reports", ["is_active"], name: "index_reports_on_is_active", using: :btree
+  add_index "reports", ["report_date"], name: "index_reports_on_report_date", using: :btree
   add_index "reports", ["slug"], name: "index_reports_on_slug", unique: true, using: :btree
 
   create_table "roles", force: :cascade do |t|

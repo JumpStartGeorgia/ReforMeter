@@ -184,8 +184,8 @@ if ENV['load_test_data'].present?
   path = "#{Rails.root}/db/test_report_files/"
   report_en = File.open(path + 'sample_report1.pdf')
   report_ka = File.open(path + 'sample_report2.pdf')
-  Report.create(title_en: '2016 Phase 2', title_ka: '2016 Phase 2', report_en: report_ka, report_ka: report_en)
-  Report.create(title_en: '2017 Phase 1', title_ka: '2017 Phase 1',report_en: report_en, report_ka: report_ka)
+  Report.create(title_en: '2016 Phase 2', title_ka: '2016 Phase 2', report_en: report_ka, report_ka: report_en, report_date: '2017-01-01')
+  Report.create(title_en: '2017 Phase 1', title_ka: '2017 Phase 1',report_en: report_en, report_ka: report_ka, report_date: '2017-07-01')
 
 
   # create quarters

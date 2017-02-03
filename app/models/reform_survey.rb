@@ -121,7 +121,8 @@ class ReformSurvey < ActiveRecord::Base
   ## METHODS
 
   def report(locale=I18n.locale)
-    locale = I18n.locale if !I18n.available_locales.include?(locale.to_sym)
+    locale = locale.to_sym
+    locale = I18n.locale if !I18n.available_locales.include?(locale)
 
     return locale == :en ? report_en : report_ka
   end

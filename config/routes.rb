@@ -22,6 +22,7 @@ Rails.application.routes.draw do
           patch 'data', constraints: { format: :html }
         end
       end
+      resources :reports, except: :show, constraints: { format: :html }
       resources :experts, except: :show, constraints: { format: :html }
       resources :reforms, except: :show, constraints: { format: :html }
       resources :reform_colors, except: :show, constraints: { format: :html }

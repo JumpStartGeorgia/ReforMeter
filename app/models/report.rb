@@ -13,6 +13,7 @@
 #  report_ka_file_size    :integer
 #  report_ka_updated_at   :datetime
 #  slug                   :string(255)
+#  report_date            :date
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -38,7 +39,7 @@ class Report < ActiveRecord::Base
   #######################
   ## VALIDATIONS
 
-  validates :title, presence: :true
+  validates :title, :report_date, presence: :true
   validates_uniqueness_of :title
   validates_attachment_content_type :report_en, :content_type => 'application/pdf'
   validates_attachment_content_type :report_ka, :content_type => 'application/pdf'
@@ -63,14 +64,15 @@ class Report < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :active, -> { where(is_active: true) }
-  scope :sorted, -> { with_translations(I18n.locale).order(created_at: :desc, title: :asc) }
+  scope :sorted, -> { with_translations(I18n.locale).order(report_date: :desc, title: :asc) }
 
 
   #######################
   ## METHODS
 
   def report(locale=I18n.locale)
-    locale = I18n.locale if !I18n.available_locales.include?(locale.to_sym)
+    locale = locale.to_sym
+    locale = I18n.locale if !I18n.available_locales.include?(locale)
 
     return locale == :en ? report_en : report_ka
   end

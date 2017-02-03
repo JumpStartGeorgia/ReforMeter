@@ -1,0 +1,14 @@
+<% model_class = Report %>
+<% page_title t('shared.actions.with_obj.new',
+                obj: t('activerecord.models.report', count: 1)) %>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/new_actions',
+        locals: {
+          object: @report,
+          index_path: admin_reports_path
+                }
+  %>
+</div>
+
+<%= render partial: 'form' %>

@@ -121,6 +121,7 @@ en:
       quarters: Quarters
       reform_colors: Reform Colors
       reforms: Reforms
+      reports: Reports
     locale:
       long:
         en: English
@@ -158,3 +159,6 @@ en:
   time:
     formats:
       file: "%Y%m%d%H%M%S"
+  date:
+    formats:
+      default: ! '%Y-%m-%d'

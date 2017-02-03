@@ -33,6 +33,7 @@ ka:
         reform_colors: რეფორმების შესაძლო ფერების მართვა.
         reforms: ისეთი მონაცემების მართვა, როგორიცაა, სახელი, შეჯამება, მეთოდოლოგია, ფერი და მთავარ გვერდზე გამოტანა.
         users: იმის მართვა, თუ ვის აქვს გვერდზე მონაცემთა რედაქტირების უფლება.
+        reports: Upload reports the summarize what has happened during a time period.
       title: ადმინის სექცია
     quarters:
       index:
@@ -47,3 +48,7 @@ ka:
         stakeholder_score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
       show:
         title: 'რეფორმა: %{name}-ის %{time}-სთვის'
+    reports:
+      index:
+        view_en: "View English"
+        view_ka: "View Georgian"

@@ -33,6 +33,7 @@ en:
         reform_colors: Manage the list of colors that reforms can be.
         reforms: Manage reform data like name, summary, methodology, color, and show on homepage.
         users: Manage who has access to edit the data on the site.
+        reports: Upload reports the summarize what has happened during a time period.
       title: Admin Section
     quarters:
       index:
@@ -47,3 +48,7 @@ en:
         stakeholder_score_explanation: All scores must be between 0 and 10.
       show:
         title: 'Reform: %{name} for %{time}'
+    reports:
+      index:
+        view_en: "View English"
+        view_ka: "View Georgian"
