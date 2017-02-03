@@ -154,6 +154,7 @@ if ENV['delete_test_data'].present? || ENV['load_test_data'].present?
   Expert.destroy_all
   ExternalIndicator.destroy_all
   News.destroy_all
+  Report.destroy_all
 end
 
 
@@ -179,11 +180,16 @@ if ENV['load_test_data'].present?
   exp6 = Expert.create(name: 'Giorgi Gamkharashvili', bio: 'Giorgi Gamkharashvili was born and raised on Sesame Street.', expert_type: Expert::EXPERT_TYPES[:stakeholder], reform_id: reform1.id)
   exp7 = Expert.create(name: 'Mariam Sultanishvili', bio: 'Mariam Sultanishvili doesn\'t know how to get to Sesame Street.', expert_type: Expert::EXPERT_TYPES[:stakeholder], reform_id: reform2.id)
 
-  # create quarters
-  puts 'creating quarters'
+  # create reports
   path = "#{Rails.root}/db/test_report_files/"
   report_en = File.open(path + 'sample_report1.pdf')
   report_ka = File.open(path + 'sample_report2.pdf')
+  Report.create(title_en: '2016 Phase 2', title_ka: '2016 Phase 2', report_en: report_ka, report_ka: report_en)
+  Report.create(title_en: '2017 Phase 1', title_ka: '2017 Phase 1',report_en: report_en, report_ka: report_ka)
+
+
+  # create quarters
+  puts 'creating quarters'
   q2 = Quarter.create(year: 2015, quarter: 2, report_en: report_en, report_ka: report_ka, summary_good: 'this is awesome!', summary_bad: 'this is not good!')
   q3 = Quarter.create(year: 2015, quarter: 3, report_en: report_en, report_ka: report_ka, summary_good: 'this is ok!', summary_bad: 'no progress has been made!')
   q4 = Quarter.create(year: 2015, quarter: 4, report_en: report_en, report_ka: report_ka, summary_good: 'good effort!', summary_bad: 'are you even working?!')

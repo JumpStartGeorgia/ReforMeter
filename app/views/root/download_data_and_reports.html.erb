@@ -8,7 +8,7 @@
 
 <ul class='downloadPage-downloadBoxesContainer'>
 
-  <% if @download_reform_text %>
+  <% if @download_reform_text && @reforms.present? %>
 
     <li class='downloadBox'>
 
@@ -49,7 +49,7 @@
 
   <% end %>
 
-  <% if @download_external_indicator_text %>
+  <% if @download_external_indicator_text && @external_indicators.present?%>
 
     <li class='downloadBox'>
 
@@ -89,7 +89,7 @@
 
   <% end %>
 
-  <% if @download_report_text %>
+  <% if @download_report_text && @reports.present? %>
 
     <li class='downloadBox'>
 
@@ -108,8 +108,8 @@
             <%= t('.choose') %>
           </option>
 
-          <% @quarters.each do |quarter| %>
-            <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
+          <% @reports.each do |report| %>
+            <option value="<%= report.slug %>"><%= report.title %></option>
           <% end %>
 
         </select>

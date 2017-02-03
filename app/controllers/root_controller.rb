@@ -101,7 +101,8 @@ class RootController < ApplicationController
     @reforms = Reform.active.sorted
     @quarters = Quarter.published.recent
     @external_indicators = ExternalIndicator.published.sorted
-
+    @reports = Report.active.sorted
+logger.debug "============= #{@reports.length}"
     # if there is a download request, process it
     if request.post? && params[:type].present?
       data,filename = nil
@@ -129,8 +130,8 @@ class RootController < ApplicationController
           end
         when 'report'
           # just need the url to the file
-          quarter = @quarters.select{|x| x.slug == params[:quarter]}.first
-          data = quarter.report.path if quarter
+          report = @reports.select{|x| x.slug == params[:report]}.first
+          data = report.report.path if report
       end
 
       # send the file

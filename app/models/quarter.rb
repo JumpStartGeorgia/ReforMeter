@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: quarters
+#
+#  id                     :integer          not null, primary key
+#  quarter                :integer          not null
+#  year                   :integer          not null
+#  is_public              :boolean          default(FALSE)
+#  slug                   :string(255)      not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  report_en_file_name    :string(255)
+#  report_en_content_type :string(255)
+#  report_en_file_size    :integer
+#  report_en_updated_at   :datetime
+#  report_ka_file_name    :string(255)
+#  report_ka_content_type :string(255)
+#  report_ka_file_size    :integer
+#  report_ka_updated_at   :datetime
+#
+
   # == Schema Information
 #
 # Table name: quarters

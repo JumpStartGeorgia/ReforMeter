@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   # helpers
 
   def clean_filename(filename)
-    filename.strip.to_slug.transliterate.to_s.gsub(' ', '_').gsub(/[\\ \/ \: \* \? \" \< \> \| \, \. ]/,'')
+    filename.strip.to_url.gsub(' ', '_').gsub(/[\\ \/ \: \* \? \" \< \> \| \, \. ]/,'')
   end
 
 

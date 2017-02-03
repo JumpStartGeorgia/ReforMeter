@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202130627) do
+ActiveRecord::Schema.define(version: 20170203090632) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -397,6 +397,38 @@ ActiveRecord::Schema.define(version: 20170202130627) do
   add_index "reforms", ["is_highlight"], name: "index_reforms_on_is_highlight", using: :btree
   add_index "reforms", ["reform_color_id"], name: "index_reforms_on_reform_color_id", using: :btree
   add_index "reforms", ["slug"], name: "index_reforms_on_slug", unique: true, using: :btree
+
+  create_table "report_translations", force: :cascade do |t|
+    t.integer  "report_id",  limit: 4,   null: false
+    t.string   "locale",     limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "title",      limit: 255
+    t.string   "slug",       limit: 255
+  end
+
+  add_index "report_translations", ["locale"], name: "index_report_translations_on_locale", using: :btree
+  add_index "report_translations", ["report_id"], name: "index_report_translations_on_report_id", using: :btree
+  add_index "report_translations", ["slug"], name: "index_report_translations_on_slug", using: :btree
+  add_index "report_translations", ["title"], name: "index_report_translations_on_title", using: :btree
+
+  create_table "reports", force: :cascade do |t|
+    t.boolean  "is_active",                          default: true
+    t.string   "report_en_file_name",    limit: 255
+    t.string   "report_en_content_type", limit: 255
+    t.integer  "report_en_file_size",    limit: 4
+    t.datetime "report_en_updated_at"
+    t.string   "report_ka_file_name",    limit: 255
+    t.string   "report_ka_content_type", limit: 255
+    t.integer  "report_ka_file_size",    limit: 4
+    t.datetime "report_ka_updated_at"
+    t.string   "slug",                   limit: 255
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+  end
+
+  add_index "reports", ["is_active"], name: "index_reports_on_is_active", using: :btree
+  add_index "reports", ["slug"], name: "index_reports_on_slug", unique: true, using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",       limit: 255

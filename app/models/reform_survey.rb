@@ -25,6 +25,14 @@
 #  stakeholder_category1_change :integer
 #  stakeholder_category2_change :integer
 #  stakeholder_category3_change :integer
+#  report_en_file_name          :string(255)
+#  report_en_content_type       :string(255)
+#  report_en_file_size          :integer
+#  report_en_updated_at         :datetime
+#  report_ka_file_name          :string(255)
+#  report_ka_content_type       :string(255)
+#  report_ka_file_size          :integer
+#  report_ka_updated_at         :datetime
 #
 
 class ReformSurvey < ActiveRecord::Base

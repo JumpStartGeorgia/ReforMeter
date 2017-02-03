@@ -39,7 +39,6 @@ class Reform < AddMissingTranslation
 
   # for genereate friendly_id
   def should_generate_new_friendly_id?
-    slug.blank? || super
 #    name_changed? || super
     super
   end

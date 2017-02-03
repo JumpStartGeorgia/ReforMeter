@@ -11,7 +11,7 @@ function activate_download_events() {
   });
 
   $('a.js-report').on('click', function(){
-    $(this).attr('href', $(this).attr('href') + '&quarter=' + $('select.report').val());
+    $(this).attr('href', $(this).attr('href') + '&report=' + $('select.report').val());
   });
 
 }
