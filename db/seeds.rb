@@ -153,7 +153,7 @@ if ENV['delete_test_data'].present? || ENV['load_test_data'].present?
   Reform.destroy_all
   Expert.destroy_all
   ExternalIndicator.destroy_all
-  News.destroy_all
+  # News.destroy_all
   Report.destroy_all
 end
 
@@ -188,31 +188,32 @@ if ENV['load_test_data'].present?
   Report.create(title_en: '2017 Phase 1', title_ka: '2017 Phase 1',report_en: report_en, report_ka: report_ka, report_date: '2017-07-01')
 
 
-  # create quarters
-  puts 'creating quarters'
-  q2 = Quarter.create(year: 2015, quarter: 2, report_en: report_en, report_ka: report_ka, summary_good: 'this is awesome!', summary_bad: 'this is not good!')
-  q3 = Quarter.create(year: 2015, quarter: 3, report_en: report_en, report_ka: report_ka, summary_good: 'this is ok!', summary_bad: 'no progress has been made!')
-  q4 = Quarter.create(year: 2015, quarter: 4, report_en: report_en, report_ka: report_ka, summary_good: 'good effort!', summary_bad: 'are you even working?!')
+  # # create quarters
+  # puts 'creating quarters'
+  # q2 = Quarter.create(year: 2015, quarter: 2, report_en: report_en, report_ka: report_ka, summary_good: 'this is awesome!', summary_bad: 'this is not good!')
+  # q3 = Quarter.create(year: 2015, quarter: 3, report_en: report_en, report_ka: report_ka, summary_good: 'this is ok!', summary_bad: 'no progress has been made!')
+  # q4 = Quarter.create(year: 2015, quarter: 4, report_en: report_en, report_ka: report_ka, summary_good: 'good effort!', summary_bad: 'are you even working?!')
 
   # create board member surveys
-  puts 'creating expert surveys'
-  es = q2.create_expert_survey(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5,
-                              summary: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.', details: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p><p> Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
-  es.experts << exp1
-  es.experts << exp2
+  # puts 'creating expert surveys'
+  # es = q2.create_expert_survey(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5,
+  #                             summary: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.', details: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p><p> Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
+  # es.experts << exp1
+  # es.experts << exp2
 
-  es = q3.create_expert_survey(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
-                              summary: 'sit amet, te duo probo timeam', details: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Ferri commune voluptatibus ne sed. </p><p>Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam.</p>')
-  es.experts << exp2
-  es.experts << exp3
+  # es = q3.create_expert_survey(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
+  #                             summary: 'sit amet, te duo probo timeam', details: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Ferri commune voluptatibus ne sed. </p><p>Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam.</p>')
+  # es.experts << exp2
+  # es.experts << exp3
 
-  es = q4.create_expert_survey(overall_score: 6.82, category1_score: 6.5, category2_score: 8.3, category3_score: 5.5,
-                              summary: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Lorem ipsum dolor sit amet, te duo probo timeam salutandi.', details: '<p>Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. </p><p>Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
-  es.experts << exp1
-  es.experts << exp3
+  # es = q4.create_expert_survey(overall_score: 6.82, category1_score: 6.5, category2_score: 8.3, category3_score: 5.5,
+  #                             summary: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Lorem ipsum dolor sit amet, te duo probo timeam salutandi.', details: '<p>Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. </p><p>Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
+  # es.experts << exp1
+  # es.experts << exp3
 
   # create reform surveys
   puts 'creating reform surveys'
+  img_path = "#{Rails.root}/db/test_image_files/"
   reform_survey_scores = [
     [
       [63.5, 70, 35, 62, 80, 5.6,6,6.8,4.2],
@@ -242,7 +243,7 @@ if ENV['load_test_data'].present?
     rs2, rs3, rs4 = nil
     # do not create value for 3rd reform in q2
     if index != 2
-      rs2 = q2.reform_surveys.create(reform_id: id,
+      rs2 = ReformSurvey.create(reform_id: id, time_period: "2016-04-01", is_public: true, quarter_id: 1, 
               government_overall_score: reform_survey_scores[index][0][0],government_category1_score: reform_survey_scores[index][0][1],
               government_category2_score: reform_survey_scores[index][0][2],government_category3_score: reform_survey_scores[index][0][3],
               government_category4_score: reform_survey_scores[index][0][4], stakeholder_overall_score: reform_survey_scores[index][0][5],
@@ -250,10 +251,14 @@ if ENV['load_test_data'].present?
               stakeholder_category3_score: reform_survey_scores[index][0][8],
               summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
               report_en: report_en, report_ka: report_ka)
+
+      rs2.news.create(reform_id: id, title: 'This is reform news', content: "this is #reform news for #{rs2.time_period}", url: 'http://google.ge')
+      rs2.news.create(reform_id: id, title: 'This is more reform news', content: 'this is additional news for #{rs2.time_period} with image!', url: 'http://google.ge', image: File.new(img_path + '1.jpg'))
+
     end
 
     if index != 3
-      rs3 = q3.reform_surveys.create(reform_id: id,
+      rs3 = ReformSurvey.create(reform_id: id, time_period: "2016-07-01", is_public: true, quarter_id: 1, 
               government_overall_score: reform_survey_scores[index][1][0],government_category1_score: reform_survey_scores[index][1][1],
               government_category2_score: reform_survey_scores[index][1][2],government_category3_score: reform_survey_scores[index][1][3],
               government_category4_score: reform_survey_scores[index][1][4], stakeholder_overall_score: reform_survey_scores[index][1][5],
@@ -262,7 +267,7 @@ if ENV['load_test_data'].present?
               summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
               report_en: report_en, report_ka: report_ka)
 
-      rs4 = q4.reform_surveys.create(reform_id: id,
+      rs4 = ReformSurvey.create(reform_id: id, time_period: "2016-10-01", is_public: true, quarter_id: 1, 
               government_overall_score: reform_survey_scores[index][2][0],government_category1_score: reform_survey_scores[index][2][1],
               government_category2_score: reform_survey_scores[index][2][2],government_category3_score: reform_survey_scores[index][2][3],
               government_category4_score: reform_survey_scores[index][2][4], stakeholder_overall_score: reform_survey_scores[index][2][5],
@@ -275,26 +280,25 @@ if ENV['load_test_data'].present?
 
   # publish the quarters
   # - have to do this after the survey results are created for they are required for published
-  q2.is_public = true
-  q2.save
-  q3.is_public = true
-  q3.save
-  q4.is_public = true
-  q4.save
+  # q2.is_public = true
+  # q2.save
+  # q3.is_public = true
+  # q3.save
+  # q4.is_public = true
+  # q4.save
 
 
   # create news
-  puts 'creating news'
-  path = "#{Rails.root}/db/test_image_files/"
-  News.create(quarter_id: q4.id, title: 'This is review board news', content: 'this is review board news for Q4 2015', url: 'http://google.ge')
-  News.create(quarter_id: q4.id, reform_id: reform3.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge')
-  News.create(quarter_id: q4.id, reform_id: reform3.id, title: 'This is more reform news', content: 'this is additional review board news for Q4 2015 with image!', url: 'http://google.ge', image: File.new(path + '1.jpg'))
-  News.create(quarter_id: q4.id, reform_id: reform2.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge')
-  News.create(quarter_id: q4.id, reform_id: reform2.id, title: 'This is more reform news', content: 'this is additional review board news for Q4 2015 with image!', url: 'http://google.ge', image: File.new(path + '1.jpg'))
-  News.create(quarter_id: q3.id, title: 'This is review board news', content: 'this is review board news for Q3 2015', url: 'http://google.ge', image: File.new(path + '2.jpg'))
-  News.create(quarter_id: q3.id, title: 'This is more review board news', content: 'this is more review board news for Q3 2015', url: 'http://google.ge', image: File.new(path + '3.jpg'))
-  News.create(quarter_id: q3.id, reform_id: reform2.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge', image: File.new(path + '4.jpg'))
-  News.create(quarter_id: q3.id, reform_id: reform1.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge')
+  # puts 'creating news'
+  # News.create(quarter_id: q4.id, title: 'This is review board news', content: 'this is review board news for Q4 2015', url: 'http://google.ge')
+  # News.create(quarter_id: q4.id, reform_id: reform3.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge')
+  # News.create(quarter_id: q4.id, reform_id: reform3.id, title: 'This is more reform news', content: 'this is additional review board news for Q4 2015 with image!', url: 'http://google.ge', image: File.new(img_path + '1.jpg'))
+  # News.create(quarter_id: q4.id, reform_id: reform2.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge')
+  # News.create(quarter_id: q4.id, reform_id: reform2.id, title: 'This is more reform news', content: 'this is additional review board news for Q4 2015 with image!', url: 'http://google.ge', image: File.new(img_path + '1.jpg'))
+  # News.create(quarter_id: q3.id, title: 'This is review board news', content: 'this is review board news for Q3 2015', url: 'http://google.ge', image: File.new(img_path + '2.jpg'))
+  # News.create(quarter_id: q3.id, title: 'This is more review board news', content: 'this is more review board news for Q3 2015', url: 'http://google.ge', image: File.new(img_path + '3.jpg'))
+  # News.create(quarter_id: q3.id, reform_id: reform2.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge', image: File.new(img_path + '4.jpg'))
+  # News.create(quarter_id: q3.id, reform_id: reform1.id, title: 'This is reform news', content: "this is #{reform3.name} reform news for Q4 2015", url: 'http://google.ge')
 
 
 

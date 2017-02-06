@@ -11,6 +11,7 @@
 #  image_updated_at   :datetime
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  reform_survey_id   :integer
 #
 
 class News < AddMissingTranslation
@@ -35,14 +36,15 @@ class News < AddMissingTranslation
 
   #######################
   ## RELATIONSHIPS
-  belongs_to :reform
-  belongs_to :quarter
+  # belongs_to :reform
+  # belongs_to :quarter
+  belongs_to :reform_survey
 
 
   #######################
   ## VALIDATIONS
   # reform_id is optional because without it, it means it is for expert survey
-  validates :quarter_id, :title, :url, presence: :true
+  validates :reform_survey_id, :title, :url, presence: :true
   validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_attachment :image,
     content_type: { content_type: ["image/jpeg", "image/png"] },

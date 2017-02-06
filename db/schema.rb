@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203090632) do
+ActiveRecord::Schema.define(version: 20170206204711) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -240,9 +240,11 @@ ActiveRecord::Schema.define(version: 20170203090632) do
     t.datetime "image_updated_at"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "reform_survey_id",   limit: 4
   end
 
   add_index "news", ["quarter_id", "reform_id"], name: "index_news_on_quarter_id_and_reform_id", using: :btree
+  add_index "news", ["reform_survey_id"], name: "index_news_on_reform_survey_id", using: :btree
 
   create_table "news_translations", force: :cascade do |t|
     t.integer  "news_id",    limit: 4,     null: false
@@ -333,19 +335,19 @@ ActiveRecord::Schema.define(version: 20170203090632) do
   add_index "reform_survey_translations", ["reform_survey_id"], name: "index_reform_survey_translations_on_reform_survey_id", using: :btree
 
   create_table "reform_surveys", force: :cascade do |t|
-    t.integer  "quarter_id",                   limit: 4,                           null: false
-    t.integer  "reform_id",                    limit: 4,                           null: false
-    t.decimal  "government_overall_score",                 precision: 5, scale: 2, null: false
-    t.decimal  "government_category1_score",               precision: 5, scale: 2, null: false
-    t.decimal  "government_category2_score",               precision: 5, scale: 2, null: false
-    t.decimal  "government_category3_score",               precision: 5, scale: 2, null: false
-    t.decimal  "government_category4_score",               precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_overall_score",                precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category1_score",              precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category2_score",              precision: 5, scale: 2, null: false
-    t.decimal  "stakeholder_category3_score",              precision: 5, scale: 2, null: false
-    t.datetime "created_at",                                                       null: false
-    t.datetime "updated_at",                                                       null: false
+    t.integer  "quarter_id",                   limit: 4,                                           null: false
+    t.integer  "reform_id",                    limit: 4,                                           null: false
+    t.decimal  "government_overall_score",                 precision: 5, scale: 2,                 null: false
+    t.decimal  "government_category1_score",               precision: 5, scale: 2,                 null: false
+    t.decimal  "government_category2_score",               precision: 5, scale: 2,                 null: false
+    t.decimal  "government_category3_score",               precision: 5, scale: 2,                 null: false
+    t.decimal  "government_category4_score",               precision: 5, scale: 2,                 null: false
+    t.decimal  "stakeholder_overall_score",                precision: 5, scale: 2,                 null: false
+    t.decimal  "stakeholder_category1_score",              precision: 5, scale: 2,                 null: false
+    t.decimal  "stakeholder_category2_score",              precision: 5, scale: 2,                 null: false
+    t.decimal  "stakeholder_category3_score",              precision: 5, scale: 2,                 null: false
+    t.datetime "created_at",                                                                       null: false
+    t.datetime "updated_at",                                                                       null: false
     t.integer  "government_overall_change",    limit: 4
     t.integer  "government_category1_change",  limit: 4
     t.integer  "government_category2_change",  limit: 4
@@ -363,10 +365,14 @@ ActiveRecord::Schema.define(version: 20170203090632) do
     t.string   "report_ka_content_type",       limit: 255
     t.integer  "report_ka_file_size",          limit: 4
     t.datetime "report_ka_updated_at"
+    t.date     "time_period"
+    t.boolean  "is_public",                                                        default: false
   end
 
+  add_index "reform_surveys", ["is_public"], name: "index_reform_surveys_on_is_public", using: :btree
   add_index "reform_surveys", ["quarter_id"], name: "index_reform_surveys_on_quarter_id", using: :btree
   add_index "reform_surveys", ["reform_id"], name: "index_reform_surveys_on_reform_id", using: :btree
+  add_index "reform_surveys", ["time_period"], name: "index_reform_surveys_on_time_period", using: :btree
 
   create_table "reform_translations", force: :cascade do |t|
     t.integer  "reform_id",   limit: 4,     null: false
