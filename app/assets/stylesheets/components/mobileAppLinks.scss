@@ -1,0 +1,26 @@
+$mobile-app-link-icon-height: 50px;
+
+.mobileAppLinks {
+  display: flex;
+
+  &-item {
+    display: block;
+    max-height: $mobile-app-link-icon-height;
+    height: $mobile-app-link-icon-height;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+
+    > a {
+      display: block;
+      height: inherit;
+      max-height: inherit;
+
+      > svg {
+        height: inherit;
+        max-height: inherit;
+      }
+    }
+  }
+}
