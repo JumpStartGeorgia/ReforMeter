@@ -39,12 +39,13 @@ class News < AddMissingTranslation
   # belongs_to :reform
   # belongs_to :quarter
   belongs_to :reform_survey
+  belongs_to :verdict
 
 
   #######################
   ## VALIDATIONS
   # reform_id is optional because without it, it means it is for expert survey
-  validates :reform_survey_id, :title, :url, presence: :true
+  validates :title, :url, presence: :true
   validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_attachment :image,
     content_type: { content_type: ["image/jpeg", "image/png"] },

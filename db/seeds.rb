@@ -155,11 +155,15 @@ if ENV['delete_test_data'].present? || ENV['load_test_data'].present?
   ExternalIndicator.destroy_all
   # News.destroy_all
   Report.destroy_all
+  Verdict.destroy_all
 end
 
 
 # if the env variable of load_test_data exists, load the data
 if ENV['load_test_data'].present?
+  path = "#{Rails.root}/db/test_report_files/"
+  img_path = "#{Rails.root}/db/test_image_files/"
+
   puts 'LOADING TEST DATA'
 
   # create reform
@@ -181,7 +185,6 @@ if ENV['load_test_data'].present?
   exp7 = Expert.create(name: 'Mariam Sultanishvili', bio: 'Mariam Sultanishvili doesn\'t know how to get to Sesame Street.', expert_type: Expert::EXPERT_TYPES[:stakeholder], reform_id: reform2.id)
 
   # create reports
-  path = "#{Rails.root}/db/test_report_files/"
   report_en = File.open(path + 'sample_report1.pdf')
   report_ka = File.open(path + 'sample_report2.pdf')
   Report.create(title_en: '2016 Phase 2', title_ka: '2016 Phase 2', report_en: report_ka, report_ka: report_en, report_date: '2017-01-01')
@@ -194,26 +197,19 @@ if ENV['load_test_data'].present?
   # q3 = Quarter.create(year: 2015, quarter: 3, report_en: report_en, report_ka: report_ka, summary_good: 'this is ok!', summary_bad: 'no progress has been made!')
   # q4 = Quarter.create(year: 2015, quarter: 4, report_en: report_en, report_ka: report_ka, summary_good: 'good effort!', summary_bad: 'are you even working?!')
 
-  # create board member surveys
-  # puts 'creating expert surveys'
-  # es = q2.create_expert_survey(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5,
-  #                             summary: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.', details: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p><p> Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
-  # es.experts << exp1
-  # es.experts << exp2
+  # create verdicts
+  puts 'creating verdicts'
+  v1 = Verdict.create(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5,
+                              title_en: '2016 Phase 1', title_ka: '2016 Phase 1', is_public: true, time_period: '2016-06-30')
+  v2 = Verdict.create(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
+                              title_en: '2016 Phase 2', title_ka: '2016 Phase 2', is_public: true, time_period: '2016-12-31')
 
-  # es = q3.create_expert_survey(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
-  #                             summary: 'sit amet, te duo probo timeam', details: '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Ferri commune voluptatibus ne sed. </p><p>Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam.</p>')
-  # es.experts << exp2
-  # es.experts << exp3
-
-  # es = q4.create_expert_survey(overall_score: 6.82, category1_score: 6.5, category2_score: 8.3, category3_score: 5.5,
-  #                             summary: 'Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus. Lorem ipsum dolor sit amet, te duo probo timeam salutandi.', details: '<p>Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam. </p><p>Causae dolores reformidans ea pri, usu pericula forensibus in, utroque nusquam explicari no sit.</p>')
-  # es.experts << exp1
-  # es.experts << exp3
+  v1.news.create(title: 'This is verdict news', content: "this is verdict news for #{v1.time_period}", url: 'http://google.ge')
+  v1.news.create(title: 'This is more verdict news', content: 'this is additional news for #{v1.time_period} with image!', url: 'http://google.ge', image: File.new(img_path + '1.jpg'))
+  v2.news.create(title: 'This is verdict news', content: "this is verdict news for #{v2.time_period}", url: 'http://google.ge')
 
   # create reform surveys
   puts 'creating reform surveys'
-  img_path = "#{Rails.root}/db/test_image_files/"
   reform_survey_scores = [
     [
       [63.5, 70, 35, 62, 80, 5.6,6,6.8,4.2],
@@ -243,7 +239,7 @@ if ENV['load_test_data'].present?
     rs2, rs3, rs4 = nil
     # do not create value for 3rd reform in q2
     if index != 2
-      rs2 = ReformSurvey.create(reform_id: id, time_period: "2016-04-01", is_public: true, quarter_id: 1, 
+      rs2 = ReformSurvey.create(reform_id: id, time_period: "2016-04-01", is_public: true, quarter_id: 1, verdict_id: v1.id,
               government_overall_score: reform_survey_scores[index][0][0],government_category1_score: reform_survey_scores[index][0][1],
               government_category2_score: reform_survey_scores[index][0][2],government_category3_score: reform_survey_scores[index][0][3],
               government_category4_score: reform_survey_scores[index][0][4], stakeholder_overall_score: reform_survey_scores[index][0][5],
@@ -252,13 +248,13 @@ if ENV['load_test_data'].present?
               summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
               report_en: report_en, report_ka: report_ka)
 
-      rs2.news.create(reform_id: id, title: 'This is reform news', content: "this is #reform news for #{rs2.time_period}", url: 'http://google.ge')
+      rs2.news.create(reform_id: id, title: 'This is reform news', content: "this is reform news for #{rs2.time_period}", url: 'http://google.ge')
       rs2.news.create(reform_id: id, title: 'This is more reform news', content: 'this is additional news for #{rs2.time_period} with image!', url: 'http://google.ge', image: File.new(img_path + '1.jpg'))
 
     end
 
     if index != 3
-      rs3 = ReformSurvey.create(reform_id: id, time_period: "2016-07-01", is_public: true, quarter_id: 1, 
+      rs3 = ReformSurvey.create(reform_id: id, time_period: "2016-07-01", is_public: true, quarter_id: 1, verdict_id: v2.id,
               government_overall_score: reform_survey_scores[index][1][0],government_category1_score: reform_survey_scores[index][1][1],
               government_category2_score: reform_survey_scores[index][1][2],government_category3_score: reform_survey_scores[index][1][3],
               government_category4_score: reform_survey_scores[index][1][4], stakeholder_overall_score: reform_survey_scores[index][1][5],
@@ -267,7 +263,7 @@ if ENV['load_test_data'].present?
               summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
               report_en: report_en, report_ka: report_ka)
 
-      rs4 = ReformSurvey.create(reform_id: id, time_period: "2016-10-01", is_public: true, quarter_id: 1, 
+      rs4 = ReformSurvey.create(reform_id: id, time_period: "2016-10-01", is_public: true, quarter_id: 1, verdict_id: v2.id,
               government_overall_score: reform_survey_scores[index][2][0],government_category1_score: reform_survey_scores[index][2][1],
               government_category2_score: reform_survey_scores[index][2][2],government_category3_score: reform_survey_scores[index][2][3],
               government_category4_score: reform_survey_scores[index][2][4], stakeholder_overall_score: reform_survey_scores[index][2][5],

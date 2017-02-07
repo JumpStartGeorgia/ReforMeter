@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206204711) do
+ActiveRecord::Schema.define(version: 20170207094410) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -241,10 +241,12 @@ ActiveRecord::Schema.define(version: 20170206204711) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "reform_survey_id",   limit: 4
+    t.integer  "verdict_id",         limit: 4
   end
 
   add_index "news", ["quarter_id", "reform_id"], name: "index_news_on_quarter_id_and_reform_id", using: :btree
   add_index "news", ["reform_survey_id"], name: "index_news_on_reform_survey_id", using: :btree
+  add_index "news", ["verdict_id"], name: "index_news_on_verdict_id", using: :btree
 
   create_table "news_translations", force: :cascade do |t|
     t.integer  "news_id",    limit: 4,     null: false
@@ -367,12 +369,14 @@ ActiveRecord::Schema.define(version: 20170206204711) do
     t.datetime "report_ka_updated_at"
     t.date     "time_period"
     t.boolean  "is_public",                                                        default: false
+    t.integer  "verdict_id",                   limit: 4
   end
 
   add_index "reform_surveys", ["is_public"], name: "index_reform_surveys_on_is_public", using: :btree
   add_index "reform_surveys", ["quarter_id"], name: "index_reform_surveys_on_quarter_id", using: :btree
   add_index "reform_surveys", ["reform_id"], name: "index_reform_surveys_on_reform_id", using: :btree
   add_index "reform_surveys", ["time_period"], name: "index_reform_surveys_on_time_period", using: :btree
+  add_index "reform_surveys", ["verdict_id"], name: "index_reform_surveys_on_verdict_id", using: :btree
 
   create_table "reform_translations", force: :cascade do |t|
     t.integer  "reform_id",   limit: 4,     null: false
@@ -463,5 +467,40 @@ ActiveRecord::Schema.define(version: 20170206204711) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
+
+  create_table "verdict_translations", force: :cascade do |t|
+    t.integer  "verdict_id", limit: 4,   null: false
+    t.string   "locale",     limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "title",      limit: 255
+    t.string   "slug",       limit: 255
+  end
+
+  add_index "verdict_translations", ["locale"], name: "index_verdict_translations_on_locale", using: :btree
+  add_index "verdict_translations", ["slug"], name: "index_verdict_translations_on_slug", using: :btree
+  add_index "verdict_translations", ["title"], name: "index_verdict_translations_on_title", using: :btree
+  add_index "verdict_translations", ["verdict_id"], name: "index_verdict_translations_on_verdict_id", using: :btree
+
+  create_table "verdicts", force: :cascade do |t|
+    t.decimal  "overall_score",                precision: 5, scale: 2,                 null: false
+    t.decimal  "category1_score",              precision: 5, scale: 2,                 null: false
+    t.decimal  "category2_score",              precision: 5, scale: 1,                 null: false
+    t.decimal  "category3_score",              precision: 5, scale: 2,                 null: false
+    t.integer  "overall_change",   limit: 4
+    t.integer  "integer",          limit: 4
+    t.integer  "category1_change", limit: 4
+    t.integer  "category2_change", limit: 4
+    t.integer  "category3_change", limit: 4
+    t.boolean  "is_public",                                            default: false
+    t.string   "slug",             limit: 255
+    t.date     "time_period"
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
+  end
+
+  add_index "verdicts", ["is_public"], name: "index_verdicts_on_is_public", using: :btree
+  add_index "verdicts", ["slug"], name: "index_verdicts_on_slug", using: :btree
+  add_index "verdicts", ["time_period"], name: "index_verdicts_on_time_period", using: :btree
 
 end

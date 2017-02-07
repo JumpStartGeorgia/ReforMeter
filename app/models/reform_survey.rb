@@ -49,6 +49,7 @@ class ReformSurvey < ActiveRecord::Base
 
   # belongs_to :quarter
   belongs_to :reform
+  belongs_to :verdict
   has_many :news, dependent: :destroy
 
   #######################
@@ -169,10 +170,8 @@ class ReformSurvey < ActiveRecord::Base
 
   # set the change value when compared to the last survey
   def set_change_values
-    puts "- set change values"
     # get the previous survey
     prev_rs = ReformSurvey.previous_survey(self.reform_id, self.time_period)
-    puts "-- prev_rs = #{prev_rs.present? ? prev_rs.id : nil}"
     compute_change_values(self, prev_rs)
 
     return true
@@ -207,7 +206,6 @@ class ReformSurvey < ActiveRecord::Base
   def compute_change_values(current_survey, previous_survey)
     if current_survey.present? && previous_survey.present?
       # found survey, so compute change
-      puts "- computing change from previous survey"
       update_change_value(current_survey, previous_survey)
     else
       # previous survey does not exist,
