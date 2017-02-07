@@ -60,17 +60,17 @@ class Reform < AddMissingTranslation
     active.sorted.map{|x| [x.name, x.slug]}
   end
 
-  # get all reforms that are in the quarter
-  def self.in_quarter(quarter_id)
-    q = Quarter.find_by(id: quarter_id)
+  # get all reforms that are in the verdict
+  def self.in_verdict(verdict_id)
+    v = Verdict.find_by(id: verdict_id)
 
-    if q.present?
-      where(id: q.reform_ids)
+    if v.present?
+      where(id: v.reform_ids)
     end
   end
 
-  def self.with_reform_survey(quarter_id)
-    includes(:reform_surveys).where(reform_surveys: { quarter_id: quarter_id })
+  def self.with_reform_survey(verdict_id)
+    includes(:reform_surveys).where(reform_surveys: { verdict_id: verdict_id })
   end
 
   # get all reforms that have survey data

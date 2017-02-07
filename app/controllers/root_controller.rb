@@ -1,15 +1,17 @@
 # Non-resource pages
 class RootController < ApplicationController
   def index
-    @quarter = Quarter.published.with_expert_survey.latest
+    @verdict = Verdict.published.recent.first
     @external_indicators = ExternalIndicator.published.for_home_page
-    @reforms = Reform.with_reform_survey(@quarter.id).in_quarter(@quarter.id).active.highlight.sorted if @quarter
+    @reforms = Reform.with_reform_survey(@verdict.id).in_verdict(@verdict.id).active.highlight.sorted if @verdict
+
+    # @quarter = Quarter.published.with_expert_survey.latest
 
     gon.change_icons = view_context.change_icons
 
     gon.charts = []
 
-    if @quarter.present?
+    if @verdict.present?
       charts = [
         # note: see below for chart being used for shareable image
         Chart.new(
@@ -17,8 +19,8 @@ class RootController < ApplicationController
             id: 'reform-current-overall',
             title: nil,
             responsiveTo: '.js-homepage-primary-gauge-container',
-            score: @quarter.expert_survey.overall_score.to_f,
-            change: @quarter.expert_survey.overall_change
+            score: @verdict.overall_score.to_f,
+            change: @verdict.overall_change
           }
         )
       ]
@@ -38,8 +40,8 @@ class RootController < ApplicationController
           title: I18n.t('root.index.heading'),
           subtitle: I18n.t('root.index.subheading'),
           size: 300,
-          score: @quarter.expert_survey.overall_score.to_f,
-          change: @quarter.expert_survey.overall_change
+          score: @verdict.overall_score.to_f,
+          change: @verdict.overall_change
         },
         request.path
       )
@@ -61,7 +63,7 @@ class RootController < ApplicationController
         next unless survey
 
         gon.charts << {
-          id: "reform-government-#{@quarter.slug}-#{reform.slug}",
+          id: "reform-government-#{@verdict.slug}-#{reform.slug}",
           color: reform.color.to_hash,
           title: nil,
           score: survey.government_overall_score.to_f,
@@ -69,7 +71,7 @@ class RootController < ApplicationController
         }
 
         gon.charts << {
-          id: "reform-stakeholder-#{@quarter.slug}-#{reform.slug}",
+          id: "reform-stakeholder-#{@verdict.slug}-#{reform.slug}",
           color: reform.color.to_hash,
           title: nil,
           score: survey.stakeholder_overall_score.to_f,
@@ -78,7 +80,7 @@ class RootController < ApplicationController
       end
     end
 
-    if @quarter.present? && @external_indicators.present?
+    if @verdict.present? && @external_indicators.present?
       gon.charts += @external_indicators.each_with_index.map do |external_indicator, index|
         external_indicator.gauge_chart_data(index, '.js-external-indicator-gauges-container')
       end
@@ -99,23 +101,24 @@ class RootController < ApplicationController
     @download_report_text = PageContent.find_by(name: 'download_report_text')
 
     @reforms = Reform.active.sorted
-    @quarters = Quarter.published.recent
+    # @verdict = Verdict.published.recent
+#    @quarters = Quarter.published.recent
     @external_indicators = ExternalIndicator.published.sorted
     @reports = Report.active.sorted
-logger.debug "============= #{@reports.length}"
+
     # if there is a download request, process it
     if request.post? && params[:type].present?
       data,filename = nil
       is_csv = false
       case params[:type]
-        when 'review_board'
-          data = Quarter.to_csv('expert')
-          filename = 'ReforMeter_Review_Board_Data'
-          is_csv = true
+        # when 'review_board'
+        #   data = Quarter.to_csv('expert')
+        #   filename = 'ReforMeter_Review_Board_Data'
+        #   is_csv = true
         when 'reform'
           reform = Reform.friendly.find(params[:reform_id])
           if reform
-            data = Quarter.to_csv('reform', reform.id)
+            data = Verdict.to_csv('reform', reform.id)
             filename = "ReforMeter_#{reform.name}_Reform_Data"
             is_csv = true
           else

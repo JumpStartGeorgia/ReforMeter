@@ -70,6 +70,42 @@ class Verdict < ActiveRecord::Base
     where('time_period < ?', time_period).recent.first
   end
 
+  # expert columns: quarter, year, time period, overall, cat1, cat2, cat3
+  # reform columns: year, time period, govt overall, govt cat1, govt cat2, govt cat3, govt cat4, stakeholder cat1, stakeholder cat2, stakeholder cat3
+  def self.to_csv(type='reform', reform_id=nil)
+    if type == 'reform' && reform_id.present?
+      # get all of the survey results for this reform
+      surveys = ReformSurvey.for_reform(reform_id)
+
+      header = %w{year time_period government_overall_score government_insitutional_setup_score government_capacity_building_score government_infastructure_budgeting_score government_legislation_regulations_score stakholder_overall_score stakholder_performance_score stakholder_goals_score stakholder_progress_score }
+
+      CSV.generate do |csv|
+        csv << header
+
+        published.recent.each do |v|
+          survey = surveys.select{|x| x.verdict_id == v.id}.first
+          if survey
+            csv << [
+                    v.time_period.year, v.title,
+                    survey.government_overall_score, survey.government_category1_score, survey.government_category2_score, survey.government_category3_score, survey.government_category4_score,
+                    survey.stakeholder_overall_score, survey.stakeholder_category1_score, survey.stakeholder_category2_score, survey.stakeholder_category3_score
+                  ]
+          end
+        end
+      end
+
+    # else
+
+    #   header = %w{quarter year time_period overall_score performance_score goals_score progress_score}
+    #   CSV.generate do |csv|
+    #     csv << header
+
+    #     published.recent.with_expert_survey.each do |q|
+    #       csv << [q.quarter, q.year, q.time_period, q.expert_survey.overall_score, q.expert_survey.category1_score, q.expert_survey.category2_score, q.expert_survey.category3_score]
+    #     end
+    #   end
+    end
+  end
 
   #######################
   ## CALLBACKS
@@ -80,6 +116,12 @@ class Verdict < ActiveRecord::Base
 
   #######################
   ## METHODS
+
+  # get an array of the reform ids in this verdict
+  def reform_ids
+    reform_surveys.pluck(:reform_id)
+  end
+
 
 
   #######################

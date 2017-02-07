@@ -22,8 +22,8 @@
         </div>
 
         <div class='homepage-primaryGaugeContainer js-homepage-primary-gauge-container'>
-          <% if @quarter.present? %>
-            <%= link_to reform_verdict_show_path(@quarter) do %>
+          <% if @verdict.present? %>
+            <%= link_to reform_verdict_show_path(@verdict) do %>
 
               <div class='js-become-highchart meterGauge mod-homepage' data-chart-type='homepage-meter-gauge' data-id='reform-current-overall'></div>
 
@@ -47,14 +47,14 @@
 
     </section>
 
-<% if @quarter.present? %>
+<% if @verdict.present? %>
   <main class='mainContent'>
 
     <nav class='homePage-bigLinks'>
 
       <div class='homePage-bigLinks-pair'>
 
-        <a class='homePage-bigLinks-item' href='<%= reform_verdict_show_path(@quarter) %>'>
+        <a class='homePage-bigLinks-item' href='<%= reform_verdict_show_path(@verdict) %>'>
 
           <span class='homePage-bigLinks-item-icon'>
             <%= inline_svg('find_icon.svg') %>
@@ -164,7 +164,7 @@
                         <%= link_to(reform.name,
                                     reform_show_path(
                                       reform_id: reform.slug,
-                                      quarter_id: @quarter.slug),
+                                      verdict_id: @verdict.slug),
                                     class: 'chartsTable-cell-link') %>
                       </td>
 
@@ -186,9 +186,9 @@
 
                           <%= link_to(reform_show_path(
                                         reform_id: reform.slug,
-                                        quarter_id: @quarter.slug)) do %>
+                                        verdict_id: @verdict.slug)) do %>
 
-                            <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= @quarter.slug %>-<%= reform.slug %>'></div>
+                            <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= @verdict.slug %>-<%= reform.slug %>'></div>
 
                           <% end %>
 
@@ -214,9 +214,9 @@
 
                           <%= link_to(reform_show_path(
                                         reform_id: reform.slug,
-                                        quarter_id: @quarter.slug)) do %>
+                                        verdict_id: @verdict.slug)) do %>
 
-                            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= @quarter.slug %>-<%= reform.slug %>'></div>
+                            <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= @verdict.slug %>-<%= reform.slug %>'></div>
 
                           <% end %>
 
