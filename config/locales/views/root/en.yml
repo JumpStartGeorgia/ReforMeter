@@ -44,7 +44,7 @@ en:
         chart: Timeline
         methodology: Methodology
         table: Results
-      no_data: Sorry, but at this time there is no review board data on record.
+      no_data: Sorry, but at this time there is no reform data on record.
       no_methodology: No methodology is on record.
       table_header:
         government: Government

@@ -180,27 +180,28 @@ class RootController < ApplicationController
     @reform_text = PageContent.find_by(name: 'reform_text')
     @methodology_government = PageContent.find_by(name: 'methodology_government')
     @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
-    @quarters = Quarter.published.recent
+    # @quarters = Quarter.published.recent
+    @verdicts = Verdict.published.recent
     @reforms = Reform.with_survey_data.active.with_color.sorted
-    @reform_surveys = ReformSurvey.in_quarters(@quarters.map{|x| x.id}) if @quarters.present?
+    @reform_surveys = ReformSurvey.in_verdicts(@verdicts.map{|x| x.id}) if @verdicts.present?
 
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
 
     @government_chart = Chart.new(
-      Quarter.all_reform_survey_data_for_charting(
+      Verdict.all_reform_survey_data_for_charting(
         id: 'reforms-government-history-series',
         type: 'government',
-        quarter_ids: @quarters.map{|x| x.id}
+        verdict_ids: @verdicts.map{|x| x.id}
       ),
       request.path
     )
 
     @stakeholder_chart = Chart.new(
-      Quarter.all_reform_survey_data_for_charting(
+      Verdict.all_reform_survey_data_for_charting(
         id: 'reforms-stakeholder-history-series',
         type: 'stakeholder',
-        quarter_ids: @quarters.map{|x| x.id}
+        verdict_ids: @verdicts.map{|x| x.id}
       ),
       request.path
     )
@@ -213,8 +214,8 @@ class RootController < ApplicationController
     @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
     gon.charts = charts.map(&:to_hash)
 
-    @quarters.each do |quarter|
-      surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id}
+    @verdicts.each do |verdict|
+      surveys = @reform_surveys.select{|x| x.verdict_id == verdict.id}
 
       surveys.each do |survey|
         reform = @reforms.select{|x| x.id == survey.reform_id}.first
@@ -222,7 +223,7 @@ class RootController < ApplicationController
         next unless reform
 
         gon.charts << {
-          id: "reform-government-#{quarter.slug}-#{reform.slug}",
+          id: "reform-government-#{verdict.slug}-#{reform.slug}",
           color: reform.color.to_hash,
           title: nil,
           score: survey.government_overall_score.to_f,
@@ -230,7 +231,7 @@ class RootController < ApplicationController
         }
 
         gon.charts << {
-          id: "reform-stakeholder-#{quarter.slug}-#{reform.slug}",
+          id: "reform-stakeholder-#{verdict.slug}-#{reform.slug}",
           color: reform.color.to_hash,
           title: nil,
           score: survey.stakeholder_overall_score.to_f,

@@ -107,14 +107,14 @@ class ReformSurvey < ActiveRecord::Base
     where.not(reform_id: reform_id)
   end
 
-  # get all surveys that are in the provided quarter id
-  def self.in_quarter(quarter_id)
-    in_quarters(quarter_id)
+  # get all surveys that are in the provided verdict id
+  def self.in_verdict(verdict_id)
+    in_verdicts(verdict_id)
   end
 
-  # get all surveys that are in the provided list of quarter ids
-  def self.in_quarters(quarter_ids)
-    where(quarter_id: quarter_ids).order(:quarter_id, :reform_id)
+  # get all surveys that are in the provided list of verdict ids
+  def self.in_verdicts(verdict_ids)
+    where(verdict_id: verdict_ids).order(:verdict_id, :reform_id)
   end
 
 

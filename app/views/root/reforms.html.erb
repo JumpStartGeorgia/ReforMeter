@@ -54,19 +54,19 @@ page_title t('.title')
 
         <span class='headerControlsRow-item'>
 
-          <% if @quarters %>
+          <% if @verdicts %>
 
-            <label for="quarter">
+            <label for="verdict">
               <%= t('shared.common.change_time') %>:
             </label>
 
-            <select class='quarter js-become-select2 js-filter-reforms-by-quarter' id="quarter">
+            <select class='verdict js-become-select2 js-filter-reforms-by-verdict' id="verdict">
 
               <option selected><%= t('shared.common.all') %></option>
 
-              <% @quarters.each do |quarter| %>
+              <% @verdicts.each do |verdict| %>
 
-                <option value="<%= quarter.slug %>"><%= quarter.time_period %></option>
+                <option value="<%= verdict.slug %>"><%= verdict.title %></option>
 
               <% end %>
 
@@ -90,7 +90,7 @@ page_title t('.title')
       </div>
     <% end %>
 
-    <% if !(@quarters.present? && @reforms.present? && @reform_surveys.present?) %>
+    <% if !(@verdicts.present? && @reforms.present? && @reform_surveys.present?) %>
 
       <p class="alert alert-warning">
         <%= t('.no_data') %>
@@ -102,7 +102,7 @@ page_title t('.title')
 
 </div>
 
-<% if @quarters.present? && @reforms.present? && @reform_surveys.present? %>
+<% if @verdicts.present? && @reforms.present? && @reform_surveys.present? %>
   <div class='contentSection'>
 
     <header class='contentSection-header mod-no-padding'>
@@ -117,7 +117,7 @@ page_title t('.title')
 
         </li>
 
-        <% if @quarters.length > 1 %>
+        <% if @verdicts.length > 1 %>
 
           <li class='tabList-item'>
             <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
@@ -176,9 +176,9 @@ page_title t('.title')
 
             <tbody class='chartsTable-body'>
 
-              <% @quarters.each do |quarter| %>
+              <% @verdicts.each do |verdict| %>
 
-                <% surveys = @reform_surveys.select{|x| x.quarter_id == quarter.id} %>
+                <% surveys = @reform_surveys.select{|x| x.verdict_id == verdict.id} %>
 
                 <% if surveys.present? %>
 
@@ -190,11 +190,11 @@ page_title t('.title')
 
                       <tr class='chartsTable-row js-act-as-reform-table-row'>
 
-                        <td class='chartsTable-cell mod-first-column mod-important-text js-act-as-quarter-name'>
-                          <%= link_to(quarter.time_period,
+                        <td class='chartsTable-cell mod-first-column mod-important-text js-act-as-verdict-name'>
+                          <%= link_to(verdict.title,
                                       reform_show_path(
                                         reform_id: reform.slug,
-                                        quarter_id: quarter.slug),
+                                        verdict_id: verdict.slug),
                                       class: 'chartsTable-cell-link') %>
                         </td>
 
@@ -202,7 +202,7 @@ page_title t('.title')
                           <%= link_to(reform.name,
                                       reform_show_path(
                                         reform_id: reform.slug,
-                                        quarter_id: quarter.slug),
+                                        verdict_id: verdict.slug),
                                       class: 'chartsTable-cell-link') %>
                         </td>
 
@@ -224,9 +224,9 @@ page_title t('.title')
 
                             <%= link_to(reform_show_path(
                                           reform_id: reform.slug,
-                                          quarter_id: quarter.slug)) do %>
+                                          verdict_id: verdict.slug)) do %>
 
-                              <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= quarter.slug %>-<%= reform.slug %>'></div>
+                              <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= verdict.slug %>-<%= reform.slug %>'></div>
 
                             <% end %>
 
@@ -252,9 +252,9 @@ page_title t('.title')
 
                             <%= link_to(reform_show_path(
                                           reform_id: reform.slug,
-                                          quarter_id: quarter.slug)) do %>
+                                          verdict_id: verdict.slug)) do %>
 
-                              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= quarter.slug %>-<%= reform.slug %>'></div>
+                              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= verdict.slug %>-<%= reform.slug %>'></div>
 
                             <% end %>
 
@@ -282,7 +282,7 @@ page_title t('.title')
 
         </div>
 
-        <% if @quarters.length > 1 %>
+        <% if @verdicts.length > 1 %>
 
           <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
 

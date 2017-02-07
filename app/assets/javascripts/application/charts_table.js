@@ -1,6 +1,6 @@
 function initializeChartsTable() {
   var exports = {};
-  var selectedQuarter;
+  var selectedVerdict;
   var selectedReform;
 
   function initializeRow($row) {
@@ -14,8 +14,8 @@ function initializeChartsTable() {
       $row.addClass('is-hidden');
     }
 
-    exports.hasQuarter = function(quarter) {
-      return $row.find('.js-act-as-quarter-name').text().trim() === quarter;
+    exports.hasVerdict = function(verdict) {
+      return $row.find('.js-act-as-verdict-name').text().trim() === verdict;
     }
 
     exports.hasReform = function(reform) {
@@ -48,12 +48,12 @@ function initializeChartsTable() {
       throw new Error('Charts table "filter" method should be invoked with an object as an argument.')
     }
 
-    if (options.hasOwnProperty('quarter')) selectedQuarter = options.quarter;
+    if (options.hasOwnProperty('verdict')) selectedVerdict = options.verdict;
     if (options.hasOwnProperty('reform')) selectedReform = options.reform;
 
     rows.each(
       function() {
-        if (selectedQuarter && !this.hasQuarter(selectedQuarter)) this.hide();
+        if (selectedVerdict && !this.hasVerdict(selectedVerdict)) this.hide();
         if (selectedReform && !this.hasReform(selectedReform)) this.hide();
       }
     );

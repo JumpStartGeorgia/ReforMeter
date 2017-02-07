@@ -44,7 +44,7 @@ ka:
         chart: ქრონოლოგია
         methodology: მეთოდოლოგია
         table: შედეგები
-      no_data: ბოდიშს გიხდით, ამ დროისთვის არ არსებობს საბჭოს წევრთა მონაცემთა ჩანაწერი.
+      no_data: Sorry, but at this time there is no reform data on record.
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
       table_header:
         government: მთავრობა

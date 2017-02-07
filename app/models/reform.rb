@@ -74,10 +74,10 @@ class Reform < AddMissingTranslation
   end
 
   # get all reforms that have survey data
-  def self.with_survey_data(quarters_are_published=true)
-    q = Quarter.all
-    q = q.published if quarters_are_published
-    where(id: q.map{|x| x.reform_ids}.flatten.uniq)
+  def self.with_survey_data(verdicts_are_published=true)
+    v = Verdict.all
+    v = v.published if verdicts_are_published
+    where(id: v.map{|x| x.reform_ids}.flatten.uniq)
   end
 
 

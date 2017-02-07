@@ -57,6 +57,13 @@ class Verdict < ActiveRecord::Base
   end
 
   #######################
+  ## CALLBACKS
+
+  before_save :set_change_values
+  after_save :update_future_survey
+  after_destroy :reset_future_survey
+
+  #######################
   ## SCOPES
   scope :published, -> { where(is_public: true) }
   scope :sorted, -> { order(time_period: :asc) }
@@ -68,6 +75,11 @@ class Verdict < ActiveRecord::Base
 
   def self.previous_survey(time_period)
     where('time_period < ?', time_period).recent.first
+  end
+
+  # get all verdicts with the provided ids
+  def self.with_ids(verdict_ids)
+    where(id: verdict_ids)
   end
 
   # expert columns: quarter, year, time period, overall, cat1, cat2, cat3
@@ -107,13 +119,205 @@ class Verdict < ActiveRecord::Base
     end
   end
 
-  #######################
-  ## CALLBACKS
+  # get the reform survey data for all verdicts for all reforms
+  # formatted in hash/json format
+  # format: {type, title, subtitle, min, max, categories: [x-axis labels], series: [{name: 'name', color: rgb(), data: [ {y, change} ] } ] }
+  # options:
+  # - type: indicate if want government or stakeholder data (default government)
+  # - is_published - indicates if just the published verdicts should be returned (default true)
+  def self.all_reform_survey_data_for_charting(options={})
+    default_options = {type: 'government', is_published: true, overall_score_only: true, verdict_ids: nil}
+    options = options.reverse_merge(default_options)
 
-  before_save :set_change_values
-  after_save :update_future_survey
-  after_destroy :reset_future_survey
+    hash = {
+      type: nil,
+      title: nil,
+      id: options[:id],
+      subtitle: nil,
+      min: nil, max: nil, categories: [], series: [],
+      unitLabel: I18n.t('shared.common.percent')
+    }
 
+    reforms = Reform.active.with_survey_data(options[:is_published])
+
+    # get data for all reforms
+    data = []
+    if reforms.present?
+      reforms.each do |reform|
+        data << reform_survey_data_for_charting(reform.id, options)
+      end
+    end
+
+    # put together in desired format
+    hash[:title] = I18n.t('shared.chart_titles.reform.all_title')
+    hash[:min] = data.first[:min] if data.present?
+    hash[:max] = data.first[:max] if data.present?
+    hash[:categories] = data.first[:categories] if data.present?
+
+    if options[:type] == 'stakeholder'
+      hash[:type] = options[:type]
+      hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_stakeholder')
+      hash[:translations] = {
+        behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+        on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+        ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+      }
+    else # government
+      hash[:type] = 'government'
+      hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_government')
+    end
+
+    data.each do |reform|
+      hash[:series] << {
+        name: reform[:reform],
+        color: reform[:color][:hex],
+        data: reform[:series].map{|x| x[:data]}.flatten
+      }
+    end
+
+    return hash
+
+  end
+
+  # get the reform survey data for all verdicts
+  # formatted in hash/json format
+  # format: {type, reform, title, subtitle, color, min, max, categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
+  # options:
+  # - type: indicate if want government or stakeholder data (default government)
+  # - overall_score_only - indicates whether just the overall score should be returned or overall and all category scores (default false)
+  # - is_published - indicates if just the published verdicts should be returned (default true)
+  def self.reform_survey_data_for_charting(reform_id, options={})
+    default_options = {type: 'government', overall_score_only: false, is_published: true, verdict_ids: nil}
+    options = options.reverse_merge(default_options)
+
+    hash = {
+      type: nil,
+      reform: nil,
+      title: nil,
+      subtitle: nil,
+      color: {r: 0, g: 0, b: 0}, min: nil, max: nil, categories: [], series: []
+    }
+    verdicts = sorted
+    verdicts = verdicts.with_ids(options[:verdict_ids]) if options[:verdict_ids]
+    verdicts = verdicts.published if options[:is_published]
+
+    # get all of the survey results for this reform
+    surveys = ReformSurvey.for_reform(reform_id)
+
+    reform = Reform.active.with_survey_data(options[:is_published]).find_by(id: reform_id)
+
+    if verdicts.present? && surveys.present? && reform.present?
+      # make sure survey data is in correct verdict order
+      temp = []
+      verdicts.each do |v|
+        s = surveys.select{|x| x.verdict_id == v.id}.first
+        if s.present?
+          temp << s
+        elsif options[:verdict_ids]
+          temp << nil
+        end
+      end
+      surveys = temp
+
+      # set the reform name
+      hash[:reform] = reform.name
+
+      # set the title
+      hash[:title] = I18n.t('shared.chart_titles.reform.title', name: reform.name)
+
+      # load the x-axis labels (categories)
+      hash[:categories] = verdicts.map{|x| x.title}
+
+      # get the reform color
+      reform = Reform.find_by(id: reform_id)
+      hash[:color] = reform.color.to_hash if reform
+      hash[:id] = options[:id]
+
+      # get the data
+      if options[:type] == 'stakeholder'
+        hash[:type] = options[:type]
+        hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_stakeholder')
+        hash[:min] = 0
+        hash[:max] = 10
+        hash[:translations] = {
+          behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+          on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+          ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+        }
+
+        # overall
+        hash[:series] << {
+          name: I18n.t('shared.categories.overall'),
+          type: 'areaspline',
+          data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_overall_score.to_f, change: x.nil? ? nil : x.stakeholder_overall_change}}}
+        if !options[:overall_score_only]
+          # category 1
+          hash[:series] << {
+            name: I18n.t('shared.categories.performance'),
+            dashStyle: 'longDash',
+            data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category1_score.to_f, change: x.nil? ? nil : x.stakeholder_category1_change}}}
+          # category 2
+          # hash[:series] << {
+          #   name: I18n.t('shared.categories.goals'),
+          #   dashStyle: 'shortDash',
+          #   data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category2_score.to_f, change: x.nil? ? nil : x.stakeholder_category2_change}}}
+          hash[:series] << {
+            name: I18n.t('shared.categories.progress'),
+            dashStyle: 'shortDash',
+            data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category2_score.to_f, change: x.nil? ? nil : x.stakeholder_category2_change}}}
+          # category 3
+          hash[:series] << {
+            name: I18n.t('shared.categories.outcome'),
+            dashStyle: 'dot',
+            data: surveys.map{|x| {y: x.nil? ? nil : x.stakeholder_category3_score.to_f, change: x.nil? ? nil : x.stakeholder_category3_change}}}
+        end
+      else #government
+        hash[:type] = 'government'
+        hash[:subtitle] = I18n.t('shared.chart_titles.reform.subtitle_government')
+        hash[:min] = 0
+        hash[:max] = 100
+
+        # overall
+        hash[:series] << {
+          name: I18n.t('shared.categories.overall'),
+          type: 'areaspline',
+          data: surveys.map{|x| {y: x.nil? ? nil : x.government_overall_score.to_f, change: x.nil? ? nil : x.government_overall_change}}}
+
+        if !options[:overall_score_only]
+          # category 1
+          hash[:series] << {
+            name: I18n.t('shared.categories.initial_setup'),
+            dashStyle: 'Dot',
+            data: surveys.map{|x| {y: x.nil? ? nil : x.government_category1_score.to_f, change: x.nil? ? nil : x.government_category1_change}}}
+          # category 2
+          hash[:series] << {
+            name: I18n.t('shared.categories.capacity_building'),
+            dashStyle: 'ShortDash',
+            data: surveys.map{|x| {y: x.nil? ? nil : x.government_category2_score.to_f, change: x.nil? ? nil : x.government_category2_change}}}
+          # category 3
+          hash[:series] << {
+            name: I18n.t('shared.categories.infastructure_budgeting'),
+            dashStyle: 'Dash',
+            data: surveys.map{|x| {y: x.nil? ? nil : x.government_category3_score.to_f, change: x.nil? ? nil : x.government_category3_change}}}
+          # category 4
+          hash[:series] << {
+            name: I18n.t('shared.categories.legislation_regulation'),
+            dashStyle: 'LongDash',
+            data: surveys.map{|x| {y: x.nil? ? nil : x.government_category4_score.to_f, change: x.nil? ? nil : x.government_category4_change}}}
+        end
+
+        # Specify that unit is '%' for government data
+        hash[:series].each do |series|
+          series[:data].each_with_index do |data, index|
+            data[:unit] = '%'
+            data[:verdict_name] = hash[:categories][index]
+          end
+        end
+      end
+    end
+
+    return hash
+  end
   #######################
   ## METHODS
 
@@ -168,7 +372,7 @@ class Verdict < ActiveRecord::Base
       # found survey, so compute change
       update_change_value(current_survey, previous_survey)
     else
-      # previous quarter does not exist or survey does not exist,
+      # previous verdict does not exist or survey does not exist,
       # so cannot compute change values
       # so all changes values must be null
       reset_change_value(current_survey)

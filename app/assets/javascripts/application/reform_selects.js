@@ -5,11 +5,11 @@ function setupReformSelects(colorfulReformsTimeSeries) {
   var unselectedReformLineWidth = chartObject.series[0].options.lineWidth;
   var selectedReformLineWidth = 10;
 
-  var quarter;
+  var verdict;
   var reform;
 
   function updateTooltip() {
-    if (!quarter) {
+    if (!verdict) {
       chartObject.tooltip.hide();
       return;
     }
@@ -21,7 +21,7 @@ function setupReformSelects(colorfulReformsTimeSeries) {
 
       series.data.forEach(function(point) {
         if (!point.y) return;
-        if (point.quarter_name !== quarter) return;
+        if (point.verdict_name !== verdict) return;
 
         tooltipData.push(point);
       });
@@ -81,30 +81,30 @@ function setupReformSelects(colorfulReformsTimeSeries) {
     return exports;
   }
 
-  function initializeQuarterSelect() {
+  function initializeVerdictSelect() {
     var exports = {};
-    var $quarterSelect = $('.js-filter-reforms-by-quarter');
+    var $verdictSelect = $('.js-filter-reforms-by-verdict');
 
     exports.setup = function() {
-      $quarterSelect.on(
+      $verdictSelect.on(
         'change',
-        filterReformByQuarter
+        filterReformByVerdict
       );
     }
 
-    function filterReformByQuarter() {
-      var selectedOption = $quarterSelect.find(":selected");
+    function filterReformByVerdict() {
+      var selectedOption = $verdictSelect.find(":selected");
 
       if (!selectedOption.attr('value')) {
-        quarter = undefined;
+        verdict = undefined;
       } else {
-        quarter = selectedOption.text().trim();
+        verdict = selectedOption.text().trim();
       }
 
       updateTooltip();
 
       chartsTable.filter({
-        quarter: quarter
+        verdict: verdict
       });
     }
 
@@ -112,8 +112,8 @@ function setupReformSelects(colorfulReformsTimeSeries) {
   }
 
   var reformSelect = initializeReformSelect();
-  var quarterSelect = initializeQuarterSelect();
+  var verdictSelect = initializeVerdictSelect();
 
   reformSelect.setup();
-  quarterSelect.setup();
+  verdictSelect.setup();
 }

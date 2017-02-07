@@ -218,13 +218,13 @@ if ENV['load_test_data'].present?
     ],
     [
       [23.5, 30, 35, 62, 80, 5.6,6,6.8,4.2],
-      [35, 42, 38, 63, 80, 5.36, 5.8, 6, 4.5],
-      [46.9, 53, 41, 65, 82, 6.82, 6.5, 8.3, 5.5],
+      [35, 42, 38, 63, 80, 6.82, 6.5, 8.3, 5.5],
+      [46.9, 53, 41, 65, 82, 5.36, 5.8, 6, 4.5],
     ],
     [
-      [63, 50, 35, 62, 80, 5.6,6,6.8,4.2],
+      [63, 50, 35, 62, 80, 6.82, 6.5, 8.3, 5.5],
       [63, 52, 58, 63, 80, 5.36, 5.8, 6, 4.5],
-      [63, 73, 71, 63, 82, 6.82, 6.5, 8.3, 5.5],
+      [63, 73, 71, 63, 82, 5.6,6,6.8,4.2],
     ],
     [
       [33.5, 30, 35, 62, 80, 5.6,6,6.8,4.2],
@@ -263,13 +263,13 @@ if ENV['load_test_data'].present?
               summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>',
               report_en: report_en, report_ka: report_ka)
 
-      rs4 = ReformSurvey.create(reform_id: id, time_period: "2016-10-01", is_public: true, quarter_id: 1, verdict_id: v2.id,
-              government_overall_score: reform_survey_scores[index][2][0],government_category1_score: reform_survey_scores[index][2][1],
-              government_category2_score: reform_survey_scores[index][2][2],government_category3_score: reform_survey_scores[index][2][3],
-              government_category4_score: reform_survey_scores[index][2][4], stakeholder_overall_score: reform_survey_scores[index][2][5],
-              stakeholder_category1_score: reform_survey_scores[index][2][6],stakeholder_category2_score: reform_survey_scores[index][2][7],
-              stakeholder_category3_score: reform_survey_scores[index][2][8],
-              summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
+      # rs4 = ReformSurvey.create(reform_id: id, time_period: "2016-10-01", is_public: true, quarter_id: 1, verdict_id: v2.id,
+      #         government_overall_score: reform_survey_scores[index][2][0],government_category1_score: reform_survey_scores[index][2][1],
+      #         government_category2_score: reform_survey_scores[index][2][2],government_category3_score: reform_survey_scores[index][2][3],
+      #         government_category4_score: reform_survey_scores[index][2][4], stakeholder_overall_score: reform_survey_scores[index][2][5],
+      #         stakeholder_category1_score: reform_survey_scores[index][2][6],stakeholder_category2_score: reform_survey_scores[index][2][7],
+      #         stakeholder_category3_score: reform_survey_scores[index][2][8],
+      #         summary: 'this is a summary', government_summary: '<p>this is a government summary</p>', stakeholder_summary: '<p>this is a stakeholder summary</p>')
     end
 
   end
