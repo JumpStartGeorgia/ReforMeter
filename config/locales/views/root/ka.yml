@@ -9,7 +9,7 @@ ka:
       title: შესახებ
       no_steering_committee: ჩანაწერში საორგანიზაციო კომტეტის წევრები არ არიან
       no_executive_team: ჩანაწერში განმახორციელებელი გუნდის წევრები არ არიან.
-  download_data_and_reports:
+    download_data_and_reports:
       choose: არჩევა
       download: გადმოწერა
       title: ჩამოტვირთეთ მონაცემები და ანგარიშები
@@ -54,7 +54,7 @@ ka:
         time: დროის მონაკვეთი
       title: რეფორმები
     reform_verdict:
-      no_data: ბოდიში, ამ დროისთვის რეფორმის განაჩენი არ ასრებობს. 
+      no_data: ბოდიში, ამ დროისთვის რეფორმის განაჩენი არ ასრებობს.
       title: რეფორმვერდიქტი
     reform_verdict_show:
       title: "რეფორმვერდიქტი: %{time}"
