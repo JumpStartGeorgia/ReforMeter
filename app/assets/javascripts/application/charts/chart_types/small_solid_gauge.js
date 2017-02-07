@@ -100,7 +100,7 @@ function highchartsSmallSolidGaugeOptions(chartData) {
         enabled: false
       },
     	stops: [
-      	[0, outputHighchartsColorString(chartData.color, '1', '#FFF')]
+      	[0, outputHighchartsColorString(chartData.color, '0.7', '#FFF')]
       ]
     },
 

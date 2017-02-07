@@ -300,6 +300,7 @@ logger.debug "============= #{@reports.length}"
 
       government_institutional_gauge = Chart.new({
         id: 'reform-government-institutional-setup',
+        color: government_color,
         title: I18n.t('shared.categories.initial_setup'),
         score: @reform_survey.government_category1_score.to_f,
         change: @reform_survey.government_category1_change
@@ -307,6 +308,7 @@ logger.debug "============= #{@reports.length}"
 
       government_capacity_gauge = Chart.new({
         id: 'reform-government-capacity-building',
+        color: government_color,
         title: I18n.t('shared.categories.capacity_building'),
         score: @reform_survey.government_category2_score.to_f,
         change: @reform_survey.government_category2_change
@@ -314,6 +316,7 @@ logger.debug "============= #{@reports.length}"
 
       government_infrastructure_gauge = Chart.new({
         id: 'reform-government-infrastructure-budgeting',
+        color: government_color,
         title: I18n.t('shared.categories.infastructure_budgeting'),
         score: @reform_survey.government_category3_score.to_f,
         change: @reform_survey.government_category3_change
@@ -321,6 +324,7 @@ logger.debug "============= #{@reports.length}"
 
       government_legislation_gauge = Chart.new({
         id: 'reform-government-legislation-regulations',
+        color: government_color,
         title: I18n.t('shared.categories.legislation_regulation'),
         score: @reform_survey.government_category4_score.to_f,
         change: @reform_survey.government_category4_change
