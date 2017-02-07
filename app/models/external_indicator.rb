@@ -339,7 +339,6 @@ class ExternalIndicator < AddMissingTranslation
     end
 
     dash_styles = [
-      'Solid',
       'Dot',
       'LongDash',
       'ShortDash',
@@ -361,7 +360,8 @@ class ExternalIndicator < AddMissingTranslation
         item = {
           name: country.name,
           dashStyle: dash_styles[index % dash_styles.length],
-          data: []
+          data: [],
+          isBenchmark: index === 3
         }
 
         # for each time period, get the country data
