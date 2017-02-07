@@ -80,9 +80,7 @@
 
   .contentSection-header {
     @media (min-width: $width-content-overlap-top-image) {
-      padding-top: 0;
-      padding-bottom: 0;
-      height: $height-content-heading;
+      min-height: $height-content-heading;
     }
   }
 }
