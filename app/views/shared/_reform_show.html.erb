@@ -437,6 +437,12 @@ show_admin_links ||= false
 
         <div class='contentSection-body mod-vertical-padding'>
 
+          <% if @outcome %>
+              <div>
+                <%= simple_format_no_tags(@outcome.content) %>
+              </div>
+          <% end %>
+
           <% @external_indicators.each do |external_indicator| %>
 
             <div class='externalIndicatorChartContainer' id='external-indicator-<%= external_indicator.id %>'>
