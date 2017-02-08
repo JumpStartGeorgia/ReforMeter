@@ -71,6 +71,16 @@
 
   .contentSection-body.mod-fill-vertical-space {
     height: 100%;
+
+    // Safari behaves differently in this case from Chrome and Firefox.
+    // If height: 100%; is applied, it calculates the height to be 0px.
+    // We want to keep height: 100% on all non-Safari browsers,
+    // so this is a workaround for Safari.
+    // Note: If you're reading this when CSS Grid has come around to all
+    // browsers, then just replace this hack with the Grid :)
+    &.safari-only {
+      height: initial;
+    }
   }
 
 .contentSection.mod-overlap-top-image {
