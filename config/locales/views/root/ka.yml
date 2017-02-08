@@ -34,9 +34,9 @@ ka:
     reform_show:
       gauge_group:
         government:
-          subtitle: მთავრობა, %{quarter}
+          subtitle: მთავრობა, %{verdict}
         stakeholder:
-          subtitle: დაინტერესებული პირი, %{quarter}
+          subtitle: დაინტერესებული პირი, %{verdict}
         title: 'რეფორმა: %{name}'
       title: 'რეფორმა: %{name}-ის %{time}-სთვის'
     reforms:

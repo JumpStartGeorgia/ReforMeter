@@ -34,9 +34,9 @@ en:
     reform_show:
       gauge_group:
         government:
-          subtitle: Government, %{quarter}
+          subtitle: Government, %{verdict}
         stakeholder:
-          subtitle: Stakeholders, %{quarter}
+          subtitle: Stakeholders, %{verdict}
         title: 'Reform: %{name}'
       title: 'Reform: %{name} for %{time}'
     reforms:

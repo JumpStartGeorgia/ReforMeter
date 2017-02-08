@@ -1,14 +1,14 @@
-function initializeReformQuarterPairs() {
+function initializeReformVerdictPairs() {
   var exports = {};
 
-  var reforms_quarters = gon.linked_reforms_quarters;
+  var reforms_verdicts = gon.linked_reforms_verdicts;
 
-  exports.containsPair = function(reform, quarter) {
-    return reforms_quarters.filter(
-      function(reformQuarterPair) {
-        var reform_matches = reformQuarterPair.reform_slug === reform;
-        var quarter_matches = reformQuarterPair.quarter_slug === quarter;
-        return reform_matches && quarter_matches;
+  exports.containsPair = function(reform, verdict) {
+    return reforms_verdicts.filter(
+      function(reformVerdictPair) {
+        var reform_matches = reformVerdictPair.reform_slug === reform;
+        var verdict_matches = reformVerdictPair.verdict_slug === verdict;
+        return reform_matches && verdict_matches;
       }
     ).length > 0;
   }
@@ -16,15 +16,15 @@ function initializeReformQuarterPairs() {
   return exports;
 }
 
-function initializeLoadNewReformButton(reformSelect, quarterSelect) {
+function initializeLoadNewReformButton(reformSelect, verdictSelect) {
   var loadNewReformButton = {};
   var $loadNewReformButton = $('.js-load-new-reform-page');
 
   loadNewReformButton.setup = function() {
     function loadNewReform() {
-      var newQuarter = quarterSelect.jQueryObject.val();
+      var newVerdict = verdictSelect.jQueryObject.val();
       var newReform = reformSelect.jQueryObject.val();
-      var newURL = $loadNewReformButton.data('newUrlBase') + '/' + newReform + '/' + newQuarter;
+      var newURL = $loadNewReformButton.data('newUrlBase') + '/' + newReform + '/' + newVerdict;
 
       window.location.href = newURL;
     }
@@ -37,7 +37,7 @@ function initializeLoadNewReformButton(reformSelect, quarterSelect) {
 
 function initializeChangeReformPageControls() {
   var exports = {};
-  var reformQuarterPairs = initializeReformQuarterPairs();
+  var reformVerdictPairs = initializeReformVerdictPairs();
 
 
   function selectUpdater($select, allowCondition) {
@@ -74,11 +74,11 @@ function initializeChangeReformPageControls() {
       }
     );
 
-    reformSelect.setup = function($quarterSelect) {
-      var updateQuarters = selectUpdater(
-        $quarterSelect,
+    reformSelect.setup = function($verdictSelect) {
+      var updateVerdicts = selectUpdater(
+        $verdictSelect,
         function() {
-          return reformQuarterPairs.containsPair(
+          return reformVerdictPairs.containsPair(
             $reformSelect.val(),
             this.value
           );
@@ -86,57 +86,57 @@ function initializeChangeReformPageControls() {
       );
 
       $reformSelect.change(function() {
-        updateQuarters();
+        updateVerdicts();
       });
 
-      updateQuarters();
+      updateVerdicts();
     }
 
     return reformSelect;
   }
 
-  function initializeQuarterSelect() {
-    var quarterSelect = {};
-    var $quarterSelect = $('.js-reform-page-quarter-select');
+  function initializeVerdictSelect() {
+    var verdictSelect = {};
+    var $verdictSelect = $('.js-reform-page-verdict-select');
 
     Object.defineProperty(
-      quarterSelect,
+      verdictSelect,
       'jQueryObject',
       {
         get: function() {
-          return $quarterSelect;
+          return $verdictSelect;
         }
       }
     );
 
-    quarterSelect.setup = function($reformSelect) {
+    verdictSelect.setup = function($reformSelect) {
       var updateReforms = selectUpdater(
         $reformSelect,
         function() {
-          return reformQuarterPairs.containsPair(
+          return reformVerdictPairs.containsPair(
             this.value,
-            $quarterSelect.val()
+            $verdictSelect.val()
           );
         }
       );
 
-      $quarterSelect.change(function() {
+      $verdictSelect.change(function() {
         updateReforms();
       });
 
       updateReforms();
     }
 
-    return quarterSelect;
+    return verdictSelect;
   }
 
-  var quarterSelect = initializeQuarterSelect();
+  var verdictSelect = initializeVerdictSelect();
   var reformSelect = initializeReformSelect();
 
   exports.setup = function() {
-    reformSelect.setup(quarterSelect.jQueryObject);
-    quarterSelect.setup(reformSelect.jQueryObject);
-    initializeLoadNewReformButton(reformSelect, quarterSelect).setup();
+    reformSelect.setup(verdictSelect.jQueryObject);
+    verdictSelect.setup(reformSelect.jQueryObject);
+    initializeLoadNewReformButton(reformSelect, verdictSelect).setup();
   }
 
   return exports;

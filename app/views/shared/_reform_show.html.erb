@@ -26,13 +26,13 @@ show_admin_links ||= false
 
           <span class='headerControlsRow-item'>
 
-            <label class='labeledSelect-label' for='change-reform-page-quarter-select'>
+            <label class='labeledSelect-label' for='change-reform-page-verdict-select'>
               <%= t('shared.common.change_reform') %>:
             </label>
 
             <span class='labeledSelect-select'>
 
-              <select id='change-reform-page-quarter-select' class='js-become-select2 js-reform-page-reform-select'>
+              <select id='change-reform-page-verdict-select' class='js-become-select2 js-reform-page-reform-select'>
 
                 <% @active_reforms.each do |active_reform| %>
                   <option value='<%= active_reform[1] %>' <% if @reform.slug == active_reform[1] %>selected<% end %>><%= active_reform[0] %></option>
@@ -52,7 +52,7 @@ show_admin_links ||= false
 
         <span class='headerControlsRow-item'>
 
-          <% if @active_quarters %>
+          <% if @active_verdicts %>
 
             <label class='labeledSelect-label' for='change-reform-page-reform-select'>
               <%= t('shared.common.change_time') %>:
@@ -60,10 +60,10 @@ show_admin_links ||= false
 
             <span class='labeledSelect-select'>
 
-              <select id='change-reform-page-reform-select' class='js-become-select2 js-reform-page-quarter-select'>
+              <select id='change-reform-page-reform-select' class='js-become-select2 js-reform-page-verdict-select'>
 
-                <% @active_quarters.each do |active_quarter| %>
-                  <option value='<%= active_quarter[1] %>' <% if @quarter.slug == active_quarter[1] %>selected<% end %>><%= active_quarter[0] %></option>
+                <% @active_verdicts.each do |active_verdict| %>
+                  <option value='<%= active_verdict[1] %>' <% if @verdict.slug == active_verdict[1] %>selected<% end %>><%= active_verdict[0] %></option>
                 <% end %>
 
               </select>
@@ -76,7 +76,7 @@ show_admin_links ||= false
 
         <span class='headerControlsRow-item mod-left-padding'>
 
-          <% if @active_reforms.present? || @active_quarters.present? %>
+          <% if @active_reforms.present? || @active_verdicts.present? %>
             <button class='loadButton js-load-new-reform-page' data-new-url-base='<%= reforms_path %>'>
               <%= t('shared.actions.load') %>
             </button>
@@ -98,9 +98,9 @@ show_admin_links ||= false
               locals: {
                 hide_object_name: true,
                 object: Quarter.new,
-                index_path: admin_quarters_path(q: @quarter.slug),
-                show_path: admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey),
-                edit_path: edit_admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey),
+                index_path: admin_verdicts_path(q: @verdict.slug),
+                show_path: admin_verdict_reform_survey_path(verdict_id: @verdict.slug, id: @reform_survey),
+                edit_path: edit_admin_verdict_reform_survey_path(verdict_id: @verdict.slug, id: @reform_survey),
                       }
         %>
       </div>
@@ -168,7 +168,7 @@ show_admin_links ||= false
 
     </section>
 
-    <% if @quarter_ids.present? && @quarter_ids.length > 1 %>
+    <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
 
       <div>
 
@@ -301,7 +301,7 @@ show_admin_links ||= false
 
         <section>
 
-          <% if @quarter_ids.present? && @quarter_ids.length > 1 %>
+          <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
 
             <ul class='tabList mod-with-separator js-act-as-tab-list'>
 

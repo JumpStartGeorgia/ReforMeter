@@ -82,6 +82,37 @@ class Verdict < ActiveRecord::Base
     where(id: verdict_ids)
   end
 
+  # get an array of the active verdicts in format: [title, slug]
+  def self.active_verdicts_array
+    published.recent.map{|x| [x.title, x.slug]}
+  end
+
+  # get an array of all verdicts in format: [title, slug]
+  def self.all_verdicts_array
+    recent.map{|x| [x.title, x.slug]}
+  end
+
+  # get all of the verdicts that this reform exists in
+  def self.with_reform(reform_id)
+    includes(:reform_surveys).where(reform_surveys: {reform_id: reform_id})
+  end
+
+  def self.linked_reforms
+    sql = <<-QUERY
+      select vt.slug AS verdict_slug, r.slug AS reform_slug
+      from verdicts as v
+      inner join verdict_translations as vt on vt.verdict_id = v.id
+      inner join reform_surveys as rs on rs.verdict_id = v.id
+      inner join reform_translations as r on r.reform_id = rs.reform_id and r.locale = ?
+      where v.is_public=1 and rs.is_public=1
+      order by vt.slug, r.slug
+    QUERY
+
+    find_by_sql([sql, I18n.locale])
+  end
+
+
+
   # expert columns: quarter, year, time period, overall, cat1, cat2, cat3
   # reform columns: year, time period, govt overall, govt cat1, govt cat2, govt cat3, govt cat4, stakeholder cat1, stakeholder cat2, stakeholder cat3
   def self.to_csv(type='reform', reform_id=nil)
