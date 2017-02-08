@@ -24,7 +24,7 @@ class Verdict < ActiveRecord::Base
   #######################
   ## TRANSLATIONS
 
-  translates :title, :slug, :fallbacks_for_empty_translations => true
+  translates :title, :summary, :slug, :fallbacks_for_empty_translations => true
   globalize_accessors
 
   #######################
@@ -150,6 +150,79 @@ class Verdict < ActiveRecord::Base
     end
   end
 
+  # get the survey data for all verdicts
+  # formatted in hash/json format
+  # format: {title, subtitle, min, max, categories: [x-axis labels], series: [{name: 'name', data: [ {y, change} ] } ] }
+  # options:
+  # - overall_score_only - indicates whether just the overall score should be returned or overall and all category scores (default false)
+  # - is_published - indicates if just the published quarters should be returned (default true)
+  def self.verdict_data_for_charting(options={})
+    default_options = {overall_score_only: false, is_published: true}
+    options = options.reverse_merge(default_options)
+
+    hash = {
+      title: I18n.t('shared.chart_titles.verdict.title'),
+      id: options[:id],
+      png_image_path: options[:png_image_path],
+      subtitle: nil,
+      min: 0,
+      max: 10,
+      categories: [],
+      series: [],
+      translations: {
+        behind: I18n.t('shared.chart_rating_categories.reforms.behind'),
+        on_track: I18n.t('shared.chart_rating_categories.reforms.on_track'),
+        ahead: I18n.t('shared.chart_rating_categories.reforms.ahead')
+      }
+    }
+
+    verdicts = sorted
+    verdicts = verdicts.published if options[:is_published]
+
+    if verdicts.present?
+      # load the x-axis labels (categories)
+      hash[:categories] = verdicts.map{|x| x.title}
+
+      # get the data
+      # overall
+      hash[:series] << {
+        name: I18n.t('shared.categories.overall'),
+        type: 'areaspline',
+        data: verdicts.map{|x| {y: x.overall_score.to_f, change: x.overall_change}}}
+
+      if !options[:overall_score_only]
+        # category 1
+        hash[:series] << {
+          name: I18n.t('shared.categories.performance'),
+          dashStyle: 'longDash',
+          data: verdicts.map{|x| {y: x.category1_score.to_f, change: x.category1_change}}
+        }
+        # category 2
+        # hash[:series] << {
+        #   name: I18n.t('shared.categories.goals'),
+        #   dashStyle: 'shortDash',
+        #   data: verdicts.map{|x| {y: x.category2_score.to_f, change: x.category2_change}}
+        # }
+        hash[:series] << {
+          name: I18n.t('shared.categories.progress'),
+          dashStyle: 'dot',
+          data: verdicts.map{|x| {y: x.category2_score.to_f, change: x.category2_change}}
+        }
+        # category 3
+        hash[:series] << {
+          name: I18n.t('shared.categories.outcome'),
+          dashStyle: 'shortDash',
+          data: verdicts.map{|x| {y: x.category3_score.to_f, change: x.category3_change}}
+        }
+      end
+    end
+
+    return hash
+  end
+
+
+
+
   # get the reform survey data for all verdicts for all reforms
   # formatted in hash/json format
   # format: {type, title, subtitle, min, max, categories: [x-axis labels], series: [{name: 'name', color: rgb(), data: [ {y, change} ] } ] }
@@ -228,6 +301,7 @@ class Verdict < ActiveRecord::Base
       subtitle: nil,
       color: {r: 0, g: 0, b: 0}, min: nil, max: nil, categories: [], series: []
     }
+
     verdicts = sorted
     verdicts = verdicts.with_ids(options[:verdict_ids]) if options[:verdict_ids]
     verdicts = verdicts.published if options[:is_published]

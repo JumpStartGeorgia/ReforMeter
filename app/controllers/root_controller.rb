@@ -262,12 +262,147 @@ class RootController < ApplicationController
     end
   end
 
-  def reform_verdict
+  def reform_verdicts
+    @verdict_text = PageContent.find_by(name: 'verdict')
 
+    @verdicts = Verdict.published.recent
+
+    gon.chart_download = highchart_export_config
+    gon.change_icons = view_context.change_icons
+
+    charts = [
+      Chart.new(
+        Verdict.verdict_data_for_charting(
+          overall_score_only: true,
+          id: 'verdict-history'
+        ),
+        request.path
+      )
+    ]
+
+    gon.charts = charts.map(&:to_hash)
+
+    @share_image_paths = charts.select(&:png_image_exists?).map(&:png_image_path)
+
+    @verdicts.each do |verdict|
+      gon.charts << {
+        id: verdict.slug,
+        title: nil,
+        score: verdict.overall_score.to_f,
+        change: verdict.overall_change
+      }
+    end
   end
 
   def reform_verdict_show
+    begin
+      @verdict = Verdict.published.friendly.find(params[:id])
 
+      if @verdict.nil?
+        redirect_to review_board_path,
+                alert: t('shared.msgs.does_not_exist')
+      end
+
+      @active_verdicts = Verdict.active_verdicts_array
+      @news = @verdict.news
+      @reforms = Reform.with_survey_data.active.with_color.sorted
+      @reform_surveys = ReformSurvey.in_verdict(@verdict.id)
+      @methodology_government = PageContent.find_by(name: 'methodology_government')
+      @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
+
+      gon.chart_download = highchart_export_config
+      gon.change_icons = view_context.change_icons
+
+      verdict_history_chart = Chart.new(
+        Verdict.verdict_data_for_charting(id: 'verdict-history'),
+        request.path
+      )
+
+      verdict_overall_gauge = Chart.new({
+        id: 'overall',
+        title: I18n.t('shared.categories.overall'),
+        score: @verdict.overall_score.to_f,
+        change: @verdict.overall_change
+      })
+
+      verdict_performance_gauge = Chart.new({
+        id: 'performance',
+        title: I18n.t('shared.categories.performance'),
+        score: @verdict.category1_score.to_f,
+        change: @verdict.category1_change
+      })
+
+      verdict_progress_gauge = Chart.new({
+        id: 'progress',
+        title: I18n.t('shared.categories.progress'),
+        score: @verdict.category2_score.to_f,
+        change: @verdict.category2_change
+      })
+
+      verdict_outcome_gauge = Chart.new({
+        id: 'outcome',
+        title: I18n.t('shared.categories.outcome'),
+        score: @verdict.category3_score.to_f,
+        change: @verdict.category3_change
+      })
+
+      verdict_gauge_group = ChartGroup.new(
+        [
+          verdict_overall_gauge,
+          verdict_performance_gauge,
+          verdict_progress_gauge,
+          verdict_outcome_gauge
+        ],
+        id: 'verdict-gauge-group',
+        title: I18n.t(
+          'root.review_board_show.gauge_group.title',
+          quarter: @verdict.title),
+        page_path: request.path
+      )
+
+      gon.charts = [
+        verdict_history_chart.to_hash,
+        verdict_overall_gauge.to_hash,
+        verdict_performance_gauge.to_hash,
+        verdict_progress_gauge.to_hash,
+        verdict_outcome_gauge.to_hash
+      ]
+
+      gon.chartGroups = [
+        verdict_gauge_group.to_hash
+      ]
+
+      @share_image_paths = [
+        verdict_history_chart,
+        verdict_gauge_group
+      ].select(&:png_image_exists?).map(&:png_image_path)
+
+      @reform_surveys.each do |survey|
+        reform = @reforms.select{|x| x.id == survey.reform_id}.first
+
+        next unless reform
+
+        gon.charts << {
+          id: "reform-government-#{@verdict.slug}-#{reform.slug}",
+          color: reform.color.to_hash,
+          title: nil,
+          score: survey.government_overall_score.to_f,
+          change: survey.government_overall_change
+        }
+
+        gon.charts << {
+          id: "reform-stakeholder-#{@verdict.slug}-#{reform.slug}",
+          color: reform.color.to_hash,
+          title: nil,
+          score: survey.stakeholder_overall_score.to_f,
+          change: survey.stakeholder_overall_change
+        }
+      end
+
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to reform_verdicts_path,
+                alert: t('shared.msgs.does_not_exist')
+    end
   end
 
   # def review_board

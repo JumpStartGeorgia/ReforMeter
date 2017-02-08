@@ -133,6 +133,12 @@ PageContent.find_or_create_by(name: 'outcome') do |pc|
     pc.title = 'Outcome'
     pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
 end
+# reformverdict
+PageContent.find_or_create_by(name: 'verdict') do |pc|
+    puts 'creating page content for verdict'
+    pc.title = 'ReformVerdict'
+    pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
+end
 
 
 
@@ -206,9 +212,15 @@ if ENV['load_test_data'].present?
   # create verdicts
   puts 'creating verdicts'
   v1 = Verdict.create(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5,
-                              title_en: '2016 Phase 1', title_ka: '2016 Phase 1', is_public: true, time_period: '2016-06-30')
+                              title_en: '2016 Phase 1', title_ka: '2016 Phase 1', 
+                              summary_en: '<p>this is a verdict summary</p>',
+                              summary_ka: '<p>this is a verdict summary</p>',
+                              is_public: true, time_period: '2016-06-30')
   v2 = Verdict.create(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
-                              title_en: '2016 Phase 2', title_ka: '2016 Phase 2', is_public: true, time_period: '2016-12-31')
+                              title_en: '2016 Phase 2', title_ka: '2016 Phase 2', 
+                              summary_en: '<p>this is a verdict summary</p>',
+                              summary_ka: '<p>this is a verdict summary</p>',
+                              is_public: true, time_period: '2016-12-31')
 
   v1.news.create(title: 'This is verdict news', content: "this is verdict news for #{v1.time_period}", url: 'http://google.ge')
   v1.news.create(title: 'This is more verdict news', content: 'this is additional news for #{v1.time_period} with image!', url: 'http://google.ge', image: File.new(img_path + '1.jpg'))

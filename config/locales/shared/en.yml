@@ -73,6 +73,8 @@ en:
         subtitle_government: Government History
         subtitle_stakeholder: Stakeholder History
         title: 'Reform: %{name}'
+      verdict:
+        title: ReformVerdict History
     common:
       account: Account
       actions: Actions
@@ -156,6 +158,18 @@ en:
       steering_committee: Steering Committee
       stakeholder: Stakeholder
       executive_team: Executive Team
+    verdict_show:
+      header:
+        chart: ReformVerdict History
+        methodology: Reform Methodology
+        table: Reform Results
+      no_data: Sorry, but at this time there is no reform data on record.
+      no_methodology: No methodology is on record.
+      table_header:
+        government: Government
+        reform: Reform
+        stakeholder: Stakeholder
+        summary: Summary
   time:
     formats:
       file: "%Y%m%d%H%M%S"

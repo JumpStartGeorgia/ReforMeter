@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208111559) do
+ActiveRecord::Schema.define(version: 20170208204204) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -469,12 +469,13 @@ ActiveRecord::Schema.define(version: 20170208111559) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   create_table "verdict_translations", force: :cascade do |t|
-    t.integer  "verdict_id", limit: 4,   null: false
-    t.string   "locale",     limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "verdict_id", limit: 4,     null: false
+    t.string   "locale",     limit: 255,   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "title",      limit: 255
     t.string   "slug",       limit: 255
+    t.text     "summary",    limit: 65535
   end
 
   add_index "verdict_translations", ["locale"], name: "index_verdict_translations_on_locale", using: :btree

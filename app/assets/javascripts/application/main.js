@@ -2,7 +2,7 @@
   $(document).ready(function() {
     setup_navigation_menu();
     setupSelect2();
-    setupExpertTimePeriodSelect();
+    setupVerdictTimePeriodSelect();
     initializeChangeReformPageControls().setup();
     initializeScrollToIdSelect().setup();
     var charts = setupCharts();

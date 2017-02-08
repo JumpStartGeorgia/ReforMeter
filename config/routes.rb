@@ -49,8 +49,8 @@ Rails.application.routes.draw do
     get '/reforms/:reform_id/:verdict_id' => 'root#reform_show', as: :reform_show
     # get '/review_board' => 'root#review_board'
     # get '/review_board/:id' => 'root#review_board_show', as: :review_board_show
-    get '/reform_verdict' => 'root#reform_verdict'
-    get '/reform_verdict/:id' => 'root#reform_verdict_show', as: :reform_verdict_show
+    get '/reform_verdicts' => 'root#reform_verdicts'
+    get '/reform_verdicts/:id' => 'root#reform_verdict_show', as: :reform_verdict_show
 
     post '/charts/create_share_image', to: 'charts#create_share_image'
 

@@ -73,6 +73,8 @@ ka:
         subtitle_government: მთავრობის ანგარიშების ქრონიკა
         subtitle_stakeholder: შეფასებების ქრონიკა
         title: 'რეფორმა: %{name}'
+      verdict:
+        title: ReformVerdict History
     common:
       account: ანგარიში
       actions: მოქმედებები
@@ -156,6 +158,18 @@ ka:
       steering_committee: საორგანიზაციო კომიტეტი
       stakeholder: დაინტერესებული პირი
       executive_team: აღმასრულებელი გუნდი
+    verdict_show:
+      header:
+        chart: ReformVerdict History
+        methodology: Reform Methodology
+        table: Reform Results
+      no_data: Sorry, but at this time there is no reform data on record.
+      no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
+      table_header:
+        government: მთავრობა
+        reform: რეფორმა
+        stakeholder: დაინტერესებული პირი
+        summary: შეჯამება
   time:
     formats:
       file: "%Y%m%d%H%M%S"

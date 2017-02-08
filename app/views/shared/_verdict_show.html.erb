@@ -1,0 +1,316 @@
+
+<%
+@do_not_use_default_page_layout = true
+show_admin_links ||= false
+%>
+
+<div class='contentSection mod-overlap-top-image'>
+
+  <%= bootstrap_flash %>
+
+  <header class='contentSection-header'>
+
+    <div class='contentSection-header-title'>
+
+      <h1 class='heading'>
+
+        <div class='heading-iconTextContainer'>
+
+          <%= inline_svg('verdicts.svg', class: 'heading-icon mod-verdicts') %>
+
+          <div class='heading-text'>
+            <%= yield(:page_title) %>
+          </div>
+
+        </div>
+
+      </h1>
+
+    </div>
+
+    <% if @active_verdicts %>
+      <div class='contentSection-header-controls'>
+
+        <div class='headerControlsRow'>
+
+          <%= t('shared.common.change_time') %>:
+          <select class='js-become-select2 js-change-verdict-time-period' data-base-url='<%= reform_verdicts_path %>'>
+
+            <% @active_verdicts.each do |active_verdict| %>
+              <option value='<%= active_verdict[1] %>' <% if @verdict.slug == active_verdict[1] %>selected<% end %>><%= active_verdict[0] %></option>
+            <% end %>
+
+          </select>
+
+        </div>
+
+      </div>
+    <% end %>
+
+  </header>
+
+  <div class='contentSection-body'>
+
+
+    <% if show_admin_links %>
+      <div class='actions-container'>
+        <%= render partial: 'shared/show_actions',
+              locals: {
+                hide_object_name: true,
+                object: Quarter.new,
+                index_path: admin_verdicts_path(@verdict.slug),
+                show_path: admin_verdict_path(@verdict.slug),
+                edit_path: edit_admin_verdict_path(@verdict.slug),
+                      }
+        %>
+      </div>
+    <% end %>
+
+    <div class='summaryGaugesContainer'>
+
+      <% if @verdict.summary %>
+        <div class='summaryGaugesContainer-summary'>
+          <%= simple_format(@verdict.summary) %>
+        </div>
+      <% end %>
+
+      <section class='gaugesContainer mod-meter-gauges'>
+
+        <% exportID = 'verdict-gauge-group' %>
+
+        <div class='gaugesContainer-exportButton'>
+
+          <%= render partial: 'shared/chart_export_button',
+                     locals: {
+                       exportID: exportID
+                     } %>
+
+        </div>
+
+        <div class='js-become-highchart meterGauge mod-big' data-chart-type='big-meter-gauge' data-id='overall'></div>
+
+        <div class='gaugesContainer-small'>
+
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='performance'></div>
+
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='progress'></div>
+
+          <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='outcome'></div>
+
+        </div>
+
+      </section>
+    </div>
+
+    <section>
+      <h2 class='heading'>
+        <%= t('.header.chart') %>
+      </h2>
+
+      <% exportID = random_string %>
+
+      <%= render partial: 'shared/chart_export_button',
+                 locals: {
+                   exportID: exportID
+                 } %>
+
+      <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='verdict-history' data-exportable-by-id='<%= exportID %>'></div>
+
+    </section>
+
+  </div>
+
+</div>
+
+<div class='contentSidebarContainer'>
+
+  <div class='contentSidebarContainer-content'>
+
+    <% if @reforms.present? && @reform_surveys.present? %>
+      <div class='contentSection'>
+
+        <header class='contentSection-header mod-no-padding'>
+
+          <ul class='tabList mod-header js-act-as-tab-list'>
+
+            <li class='tabList-item'>
+
+              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='history'>
+                <%= t('.header.table') %>
+              </button>
+
+            </li>
+
+            <li class='tabList-item'>
+              <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
+                <%= t('.header.methodology') %>
+              </button>
+            </li>
+
+
+          </ul>
+
+        </header>
+
+        <div class='contentSection-body mod-no-top-border mod-no-padding'>
+
+          <div class='tabContent js-act-as-tab-content'>
+
+            <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='history'>
+
+              <table class='chartsTable mod-reforms'>
+
+                <thead>
+
+                  <tr class='chartsTable-row'>
+
+                    <th class='chartsTable-cell mod-head'>
+                      <%= t('.table_header.reform') %>
+                    </th>
+
+                    <th class='chartsTable-cell mod-head'>
+                      <%= t('.table_header.government') %>
+                    </th>
+
+                    <th class='chartsTable-cell mod-head'>
+                      <%= t('.table_header.stakeholder') %>
+                    </th>
+
+                    <th class='chartsTable-cell mod-head mod-summary'>
+                      <%= t('.table_header.summary') %>
+                    </th>
+
+                  </tr>
+
+                </thead>
+
+                <tbody class='chartsTable-body'>
+
+                  <% @reform_surveys.each do |survey| %>
+
+                    <% reform = @reforms.select{|x| x.id == survey.reform_id}.first %>
+
+                    <% if reform %>
+
+                      <tr class='chartsTable-row js-act-as-reform-table-row'>
+
+                        <td class='chartsTable-cell mod-important-text js-act-as-reform-name'>
+                          <%= link_to(reform.name,
+                                      reform_show_path(
+                                        reform_id: reform.slug,
+                                        verdict_id: @verdict.slug),
+                                      class: 'chartsTable-cell-link') %>
+                        </td>
+
+                        <td class='chartsTable-cell'>
+
+                          <p class='chartsTable-cell-text'>
+
+                            <span class='chartsTable-cell-text-score'>
+                              <%= survey.government_overall_score %>
+                            </span>
+
+                            <span class='chartsTable-cell-text-changeIcon'>
+                              <%= generate_change_icon(survey.government_overall_change) %>
+                            </span>
+
+                          </p>
+
+                          <div class='chartsTable-cell-chart'>
+
+                            <%= link_to(reform_show_path(
+                                          reform_id: reform.slug,
+                                          verdict_id: @verdict.slug)) do %>
+
+                              <div class='js-become-highchart solidGauge mod-small mod-white-border' data-chart-type='small-solid-gauge' data-id='reform-government-<%= @verdict.slug %>-<%= reform.slug %>'></div>
+
+                            <% end %>
+
+                          </div>
+
+                        </td>
+
+                        <td class='chartsTable-cell'>
+
+                          <p class='chartsTable-cell-text'>
+
+                            <span class='chartsTable-cell-text-score'>
+                              <%= survey.stakeholder_overall_score %>
+                            </span>
+
+                            <span class='chartsTable-cell-text-changeIcon'>
+                              <%= generate_change_icon(survey.stakeholder_overall_change) %>
+                            </span>
+
+                          </p>
+
+                          <div class='chartsTable-cell-chart'>
+
+                            <%= link_to(reform_show_path(
+                                          reform_id: reform.slug,
+                                          verdict_id: @verdict.slug)) do %>
+
+                              <div class='js-become-highchart meterGauge mod-small' data-chart-type='small-meter-gauge' data-id='reform-stakeholder-<%= @verdict.slug %>-<%= reform.slug %>'></div>
+
+                            <% end %>
+
+                          </div>
+
+                        </td>
+
+                        <td class='chartsTable-cell mod-summary'>
+                          <%= strip_tags_nbsp(survey.summary) %>
+                        </td>
+
+                      </tr>
+
+                    <% end %>
+
+                  <% end %>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+            <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='methodology'>
+              <% if @methodology_government || @methodology_stakeholder %>
+                <% if @methodology_government %>
+                  <div>
+                    <h3><%= @methodology_government.title %></h3>
+                    <%= simple_format_no_tags(@methodology_government.content) %>
+                  </div>
+                <% end %>
+
+                <% if @methodology_stakeholder %>
+                  <div>
+                    <h3><%= @methodology_stakeholder.title %></h3>
+                    <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+                  </div>
+                <% end %>
+
+              <% else %>
+                <p>
+                 <%= t('.no_methodology') %>
+                </p>
+              <% end %>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <% if @news.present? %>
+    <div class='contentSidebarContainer-sidebar mod-limit-width-to-image'>
+      <%= render partial: 'shared/news' %>
+    </div>
+  <% end %>
+
+</div>

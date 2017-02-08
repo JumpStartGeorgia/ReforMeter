@@ -53,11 +53,21 @@ ka:
         summary: შეჯამება
         time: დროის მონაკვეთი
       title: რეფორმები
-    reform_verdict:
+    reform_verdicts:
+      header:
+        chart: Timeline
+        table: Results
       no_data: ბოდიში, ამ დროისთვის რეფორმის განაჩენი არ ასრებობს. 
+      table_header:
+        overall: Overall Score
+        summary: Summary
+        time: Time Period
+      title: ReformVerdicts
       title: რეფორმვერდიქტი
     reform_verdict_show:
-      title: "რეფორმვერდიქტი: %{time}"
+      gauge_group:
+        title: ReformVerdict for %{time}
+      title: "რეფორმვერდიქტი: %{title}"
     # review_board:
     #   header:
     #     chart: ქრონოლოგია

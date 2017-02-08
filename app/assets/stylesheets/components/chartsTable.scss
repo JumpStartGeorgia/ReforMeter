@@ -103,7 +103,7 @@ $charts-table-border: solid 3px $color-grey-background;
     height: 100%;
   }
 
-.chartsTable.mod-review-board {
+.chartsTable.mod-verdict {
 
   .chartsTable-cell.mod-summary {
     display: none;
@@ -185,7 +185,7 @@ $width-homepage-charts-table-show-charts: 410px;
 // page chart table and the review board page chart table so that the
 // first column aligns with the first tablist.
 
-.chartsTable.mod-reforms, .chartsTable.mod-review-board {
+.chartsTable.mod-reforms, .chartsTable.mod-verdict {
   :lang(en) .chartsTable-cell.mod-first-column {
     box-sizing: border-box;
     min-width: 95.16px;

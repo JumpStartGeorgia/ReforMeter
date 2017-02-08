@@ -53,11 +53,20 @@ en:
         summary: Summary
         time: Time Period
       title: Reforms
-    reform_verdict:
-      no_data: Sorry, but at this time there is no reform verdict on record.
-      title: ReformVerdict
+    reform_verdicts:
+      header:
+        chart: Timeline
+        table: Results
+      no_data: Sorry, but at this time there is no data on record.
+      table_header:
+        overall: Overall Score
+        summary: Summary
+        time: Time Period
+      title: ReformVerdicts
     reform_verdict_show:
-      title: "ReformVerdict: %{time}"
+      gauge_group:
+        title: ReformVerdict for %{time}
+      title: "ReformVerdict: %{title}"
     # review_board:
     #   header:
     #     chart: Timeline
