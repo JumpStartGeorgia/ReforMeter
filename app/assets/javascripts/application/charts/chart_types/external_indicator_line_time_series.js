@@ -23,7 +23,8 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
-      spacingLeft: spacingLeft
+      spacingLeft: spacingLeft,
+      height: '300'
     },
     colors: externalIndicatorChart.colors,
     exporting: {

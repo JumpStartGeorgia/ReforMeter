@@ -12,7 +12,8 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
     chart: {
       // Makes room for the yAxis plot band labels
       spacingLeft: spacingLeft,
-      type: 'areaspline'
+      type: 'areaspline',
+      height: '300'
     },
     exporting: {
       chartOptions: {

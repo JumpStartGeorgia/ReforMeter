@@ -18,7 +18,8 @@ function highchartsExternalIndicatorBar(chartData) {
     chart: {
       // Makes room for the yAxis plot band labels
       spacingLeft: spacingLeft,
-      type: 'column'
+      type: 'column',
+      height: '300'
     },
     colors: colors(),
     exporting: {
