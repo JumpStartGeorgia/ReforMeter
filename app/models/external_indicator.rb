@@ -360,8 +360,8 @@ class ExternalIndicator < AddMissingTranslation
         item = {
           name: country.name,
           dashStyle: dash_styles[index % dash_styles.length],
-          data: [],
-          isBenchmark: index === 3
+          data: []
+          # isBenchmark: index === 3
         }
 
         # for each time period, get the country data
