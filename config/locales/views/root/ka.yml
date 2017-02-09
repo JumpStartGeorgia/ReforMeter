@@ -62,7 +62,6 @@ ka:
         overall: Overall Score
         summary: Summary
         time: Time Period
-      title: ReformVerdicts
       title: რეფორმვერდიქტი
     reform_verdict_show:
       gauge_group:

@@ -1,14 +1,35 @@
 <footer class='appFooter'>
 
-  <section class='socialLinks'>
+  <div class='appFooter-socialAndMobileLinks'>
 
-    <% if @addthis_id.present? %>
+    <section class='socialLinks'>
+
+      <% if @addthis_id.present? %>
 
       <div class="addthis_sharing_toolbox"></div>
 
-    <% end %>
+      <% end %>
 
-  </section>
+    </section>
+
+    <section class='mobileAppLinks'>
+
+      <span class='mobileAppLinks-item'>
+        <%= link_to inline_svg('app_store.svg'),
+        'https://itunes.apple.com/us/genre/ios/id36?mt=8',
+        target: '_blank' %>
+      </span>
+
+      <span class='mobileAppLinks-item'>
+        <%= link_to inline_svg('app_store.svg'),
+        'https://itunes.apple.com/us/genre/ios/id36?mt=8',
+        target: '_blank' %>
+      </span>
+
+    </section>
+
+  </div>
+
 
   <p>
     <%= t('.description') %>

@@ -1,0 +1,31 @@
+$mobile-app-link-icon-height: 50px;
+
+.mobileAppLinks {
+  display: flex;
+
+  &-item {
+    display: block;
+    max-height: $mobile-app-link-icon-height;
+    height: $mobile-app-link-icon-height;
+    margin-bottom: 10px;
+
+    @media (min-width: $footer-social-and-mobile-links-become-horizontal) {
+      margin-top: 10px;
+    }
+
+    &:first-child {
+      margin-right: 12.5px;
+    }
+
+    > a {
+      display: block;
+      height: inherit;
+      max-height: inherit;
+
+      > svg {
+        height: inherit;
+        max-height: inherit;
+      }
+    }
+  }
+}

@@ -5,10 +5,26 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
   if (typeof(chartData.displayTitle) === 'undefined') chartData.displayTitle = true;
   if (typeof(chartData.displaySubtitle) === 'undefined') chartData.displaySubtitle = true;
 
+  var benchmarkSeries = chartData.series.filter(function(seriesObject) {
+    return seriesObject.isBenchmark
+  })[0]
+
+  if (benchmarkSeries) {
+    Object.assign(
+      benchmarkSeries,
+      {
+        color: '#3b2f76',
+        lineWidth: 4,
+        dashStyle: 'Solid'
+      }
+    )
+  }
+
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
-      spacingLeft: spacingLeft
+      spacingLeft: spacingLeft,
+      height: '300'
     },
     colors: externalIndicatorChart.colors,
     exporting: {
