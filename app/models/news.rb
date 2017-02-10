@@ -12,6 +12,7 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  reform_survey_id   :integer
+#  verdict_id         :integer
 #
 
 class News < AddMissingTranslation

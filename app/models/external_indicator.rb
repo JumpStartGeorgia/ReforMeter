@@ -14,6 +14,7 @@
 #  updated_at        :datetime         not null
 #  sort_order        :integer
 #  use_decimals      :boolean          default(FALSE)
+#  has_benchmark     :boolean          default(FALSE)
 #
 
 require 'csv'
@@ -23,7 +24,7 @@ class ExternalIndicator < AddMissingTranslation
   #######################
   ## TRANSLATIONS
 
-  translates :title, :subtitle, :description, :data, :fallbacks_for_empty_translations => true
+  translates :title, :subtitle, :description, :benchmark_title, :data, :fallbacks_for_empty_translations => true
   globalize_accessors
 
   #######################

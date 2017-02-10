@@ -10,6 +10,7 @@
 #  change                     :integer
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
+#  is_benchmark               :boolean          default(FALSE)
 #
 
 class ExternalIndicatorDatum < ActiveRecord::Base

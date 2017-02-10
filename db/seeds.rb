@@ -320,7 +320,8 @@ if ENV['load_test_data'].present?
   csv_path = "#{Rails.root}/db/test_external_indicator_files/"
   puts 'creating external indicators'
 
-  ei = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true, description: 'This is the external indicator for the growth of total factor productivity.')
+  ei = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true, description: 'This is the external indicator for the growth of total factor productivity.', 
+                              benchmark_title_en: 'EU Average', benchmark_title_ka: 'EU Average', has_benchmark: true)
   csv_data = CSV.read(csv_path + 'growth.csv')
 
   # countries
@@ -345,7 +346,8 @@ if ENV['load_test_data'].present?
 
       row.each_with_index do |cell, c_index|
         if c_index > 0
-          time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index])
+          is_benchmark = row.length-1 == c_index && ei.has_benchmark?
+          time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index], is_benchmark: is_benchmark)
         end
       end
     end
@@ -475,7 +477,8 @@ if ENV['load_test_data'].present?
   ei.reforms << reform3
 
 
-  ei = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', subtitle: 'This is the very loooooong subtitle of Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true)
+  ei = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', subtitle: 'This is the very loooooong subtitle of Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true, 
+                              benchmark_title_en: 'EU Average', benchmark_title_ka: 'EU Average', has_benchmark: true)
   csv_data = CSV.read(csv_path + 'growth.csv')
 
   # countries
@@ -500,7 +503,8 @@ if ENV['load_test_data'].present?
 
       row.each_with_index do |cell, c_index|
         if c_index > 0
-          time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index])
+          is_benchmark = row.length-1 == c_index && ei.has_benchmark?
+          time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index], is_benchmark: is_benchmark)
         end
       end
     end

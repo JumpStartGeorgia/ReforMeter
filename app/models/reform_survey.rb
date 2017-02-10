@@ -35,6 +35,7 @@
 #  report_ka_updated_at         :datetime
 #  time_period                  :date
 #  is_public                    :boolean          default(FALSE)
+#  verdict_id                   :integer
 #
 
 class ReformSurvey < ActiveRecord::Base

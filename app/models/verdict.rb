@@ -10,8 +10,8 @@
 #  overall_change   :integer
 #  integer          :integer
 #  category1_change :integer
-#  categoey2_change :integer
 #  category2_change :integer
+#  category3_change :integer
 #  is_public        :boolean          default(FALSE)
 #  slug             :string(255)
 #  time_period      :date
