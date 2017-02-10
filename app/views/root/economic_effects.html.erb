@@ -70,7 +70,7 @@ page_title t('.title')
                    external_indicator: ext_ind.format_for_charting
                  }) %>
 
-      <% if ext_ind.reforms.present? && @most_recent_quarter.present? %>
+      <% if ext_ind.reforms.present? && @most_recent_verdict.present? %>
 
         <section class='indicatorsPage-associatedReforms'>
 
@@ -86,8 +86,8 @@ page_title t('.title')
 
                 <%= link_to reform.name,
                             reform_show_path(
-                              reform.id,
-                              @most_recent_quarter
+                              reform,
+                              @most_recent_verdict
                             ),
                             class: 'link' %>
 

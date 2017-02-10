@@ -151,7 +151,7 @@ class RootController < ApplicationController
   end
 
   def economic_effects
-    @most_recent_quarter = Quarter.published.latest
+    @most_recent_verdict = Verdict.published.recent.first
     @external_indicators = ExternalIndicator.published.sorted_for_list_page
 
     gon.change_icons = view_context.change_icons
@@ -355,8 +355,8 @@ class RootController < ApplicationController
         ],
         id: 'verdict-gauge-group',
         title: I18n.t(
-          'root.review_board_show.gauge_group.title',
-          quarter: @verdict.title),
+          'root.reform_verdict_show.gauge_group.title',
+          time: @verdict.title),
         page_path: request.path
       )
 
