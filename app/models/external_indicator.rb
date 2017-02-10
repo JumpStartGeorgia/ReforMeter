@@ -354,6 +354,14 @@ class ExternalIndicator < AddMissingTranslation
     when INDICATOR_TYPES[:basic]
       # hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:values].first[:value], change: x[:values].first[:change]}}}
       hash[:series] << {data: time.map{|x| {y: x.data.first.value.to_f, change: x.data.first.change}  }}
+      # if this indciator has a benchmark, add it
+      if self.has_benchmark?
+        hash[:series] << {
+          name: self.benchmark_title, 
+          data: time.map{|x| {y: x.data.select{|x| x.is_benchmark}.first.value.to_f, change: x.data.select{|x| x.is_benchmark}.first.change} },
+          isBenchmark: true
+        }
+      end
     when INDICATOR_TYPES[:country]
 
       self.countries.sorted.each_with_index do |country, index|
@@ -362,13 +370,42 @@ class ExternalIndicator < AddMissingTranslation
           name: country.name,
           dashStyle: dash_styles[index % dash_styles.length],
           data: []
-          # isBenchmark: index === 3
         }
 
         # for each time period, get the country data
         time.each do |tp|
           # get country data
           d = tp.data.select{|x| x.country_id == country.id}.first
+          if d.present?
+            item[:data] << {
+              y: d.value.to_f,
+              change: d.change
+            }
+          else
+            item[:data] << {
+              y: nil,
+              change: nil
+            }
+          end
+        end
+
+        hash[:series] << item
+      end
+
+      # if this indciator has a benchmark, add it
+      if self.has_benchmark?
+        # start the item for the series
+        item = {
+          name: self.benchmark_title,
+          dashStyle: nil,
+          data: [],
+          isBenchmark: true
+        }
+
+        # for each time period, get the benchmark data
+        time.each do |tp|
+          # get data
+          d = tp.data.select{|x| x.is_benchmark?}.first
           if d.present?
             item[:data] << {
               y: d.value.to_f,
@@ -453,6 +490,36 @@ class ExternalIndicator < AddMissingTranslation
         end
         hash[:indexes] << item
       end
+
+      # if this indciator has a benchmark, add it
+      if self.has_benchmark?
+        # start the item for the series
+        item = {
+          name: self.benchmark_title,
+          data: [],
+          isBenchmark: true
+        }
+
+        # for each time period, get the benchmark data
+        time.each do |tp|
+          # get data
+          d = tp.data.select{|x| x.is_benchmark?}.first
+          if d.present?
+            item[:data] << {
+              y: d.value.to_f,
+              change: d.change
+            }
+          else
+            item[:data] << {
+              y: nil,
+              change: nil
+            }
+          end
+        end
+
+        hash[:series] << item
+      end
+
 
       # # get the overall values for charting
       # hash[:series] << {

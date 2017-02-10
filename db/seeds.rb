@@ -327,7 +327,10 @@ if ENV['load_test_data'].present?
   # countries
   csv_data[0].each_with_index do |header, index|
     if index > 0
-      ei.countries.build(name: header, sort_order: index)
+      # if this is the last header, do not record because it is benchmark
+      if index < csv_data[0].length-1
+        ei.countries.build(name: header, sort_order: index)
+      end
     end
   end
 
@@ -347,7 +350,11 @@ if ENV['load_test_data'].present?
       row.each_with_index do |cell, c_index|
         if c_index > 0
           is_benchmark = row.length-1 == c_index && ei.has_benchmark?
-          time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index], is_benchmark: is_benchmark)
+          time.data.build(
+            country_id: is_benchmark ? nil : ei.countries[c_index-1].id, 
+            value: row[c_index], 
+            is_benchmark: is_benchmark
+          )
         end
       end
     end
@@ -357,7 +364,8 @@ if ENV['load_test_data'].present?
   ei.reforms << reform1
 
 
-  ei = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, sort_order: 2, is_public: true, use_decimals: true)
+  ei = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, sort_order: 2, is_public: true, use_decimals: true, 
+                              benchmark_title_en: 'Benchmark', benchmark_title_ka: 'Benchmark', has_benchmark: true)
   csv_data = CSV.read(csv_path + 'gesi.csv')
 
   # indices
@@ -387,7 +395,12 @@ if ENV['load_test_data'].present?
           if c_index == 1
             time.overall_value = row[c_index]
           else
-            time.data.build(index_id: ei.indices[c_index-2].id, value: row[c_index])
+            is_benchmark = row.length-1 == c_index && ei.has_benchmark?
+            time.data.build(
+              index_id: is_benchmark ? nil : ei.indices[c_index-2].id, 
+              value: row[c_index], 
+              is_benchmark: is_benchmark
+            )
           end
         end
       end
@@ -447,7 +460,8 @@ if ENV['load_test_data'].present?
 
 
 
-  ei = ExternalIndicator.new(title: 'Georgia Growth of Total Factor Productivity', scale_type: 2, indicator_type: 1, chart_type: 1, is_public: true)
+  ei = ExternalIndicator.new(title: 'Georgia Growth of Total Factor Productivity', scale_type: 2, indicator_type: 1, chart_type: 1, is_public: true, 
+                              benchmark_title_en: 'EU Average', benchmark_title_ka: 'EU Average', has_benchmark: true)
   csv_data = CSV.read(csv_path + 'geo_growth.csv')
 
   # times
@@ -465,7 +479,11 @@ if ENV['load_test_data'].present?
 
       row.each_with_index do |cell, c_index|
         if c_index > 0
-          time.data.build(value: row[c_index])
+          is_benchmark = row.length-1 == c_index && ei.has_benchmark?
+          time.data.build(
+            value: row[c_index], 
+            is_benchmark: is_benchmark
+          )
         end
       end
     end
@@ -484,7 +502,10 @@ if ENV['load_test_data'].present?
   # countries
   csv_data[0].each_with_index do |header, index|
     if index > 0
-      ei.countries.build(name: header, sort_order: index)
+      # if this is the last header, do not record because it is benchmark
+      if index < csv_data[0].length-1
+        ei.countries.build(name: header, sort_order: index)
+      end
     end
   end
 
@@ -504,7 +525,11 @@ if ENV['load_test_data'].present?
       row.each_with_index do |cell, c_index|
         if c_index > 0
           is_benchmark = row.length-1 == c_index && ei.has_benchmark?
-          time.data.build(country_id: ei.countries[c_index-1].id, value: row[c_index], is_benchmark: is_benchmark)
+          time.data.build(
+            country_id: is_benchmark ? nil : ei.countries[c_index-1].id, 
+            value: row[c_index], 
+            is_benchmark: is_benchmark
+          )
         end
       end
     end
