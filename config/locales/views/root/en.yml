@@ -26,11 +26,11 @@ en:
         about: Meet the Reformers
       economy_effects: How the Reforms are Affecting the Economy
       external_indicators_link: View All Economic Effects
-      heading: Where Does Georgia Stand?
-      primary_gauge_description: This is a composite score measuring Georgia's reform progress
+      heading: How is Georgia progressing?
+      primary_gauge_description: ReformVerdict
       reform_status: Reform Standings
       reforms_link: View All Reforms
-      subheading: A measure of reform progress.
+      subheading: Assessment of economic reforms.
     reform_show:
       gauge_group:
         government:

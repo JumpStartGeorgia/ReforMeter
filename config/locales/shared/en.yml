@@ -161,7 +161,7 @@ en:
     verdict_show:
       header:
         chart: ReformVerdict History
-        methodology: Reform Methodology
+        methodology: Methodology
         table: Reform Results
       no_data: Sorry, but at this time there is no reform data on record.
       no_methodology: No methodology is on record.
