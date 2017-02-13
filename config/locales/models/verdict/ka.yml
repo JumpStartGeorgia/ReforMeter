@@ -1,0 +1,41 @@
+---
+ka:
+  activerecord:
+    attributes:
+      verdict:
+        is_public: არის თუ არა საჯარო?
+        news: სიახლები
+        reform_surveys: რეფორმების კითხვარი
+        time_period: დროის მონაკვეთი
+        overall_score: ზოგადი შეფასება
+        category1_score: შესრულება
+        category2_score: მიზნები
+        category3_score: პროგრესი
+        details: დეტალები
+        scores: ქულები
+        summary: შეჯამება
+        overview: Overview
+    errors:
+      models:
+        verdict:
+          attributes:
+            category1_change:
+              inclusion: უნდა იყოს -1,0 ან 1
+            category1_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
+            category2_change:
+              inclusion: უნდა იყოს -1,0 ან 1
+            category2_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
+            category3_change:
+              inclusion: უნდა იყოს -1,0 ან 1
+            category3_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
+            overall_change:
+              inclusion: უნდა იყოს -1,0 ან 1
+            overall_score:
+              inclusion: უნდა იყოს 0-დან 10-მდე
+    models:
+      verdict:
+        one: ReformVerdict
+        other: ReformVerdicts

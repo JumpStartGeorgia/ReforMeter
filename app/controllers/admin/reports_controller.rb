@@ -21,7 +21,7 @@ class Admin::ReportsController < ApplicationController
 
   # GET /admin/reports/1/edit
   def edit
-    gon.report_date = @report.report_date.strftime('%m/%d/%Y %H:%M') if !@report.report_date.nil?
+    set_date
   end
 
   # POST /admin/reports
@@ -35,7 +35,7 @@ class Admin::ReportsController < ApplicationController
                             obj: t('activerecord.models.report', count: 1)) }
         format.json { render :show, status: :created, location: @report }
       else
-        gon.report_date = @report.report_date.strftime('%m/%d/%Y %H:%M') if !@report.report_date.nil?
+        set_date
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
@@ -51,7 +51,7 @@ class Admin::ReportsController < ApplicationController
                             obj: t('activerecord.models.report', count: 1)) }
         format.json { render :show, status: :ok, location: @report }
       else
-        gon.report_date = @report.report_date.strftime('%m/%d/%Y %H:%M') if !@report.report_date.nil?
+        set_date
         format.html { render :edit }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
@@ -82,4 +82,9 @@ class Admin::ReportsController < ApplicationController
       ]
       params.require(:report).permit(*permitted)
     end
+
+    # set the date for the datepicker
+    def set_date
+      gon.report_date = @report.report_date.strftime('%m/%d/%Y %H:%M') if !@report.report_date.nil?
+    end    
 end

@@ -5,11 +5,11 @@
   <div class="row admin-link-list">
     <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
       <div class="col-md-3">
-        <h3><%= t('shared.links.quarters') %></h3>
+        <h3><%= t('shared.links.verdicts') %></h3>
         <p>
-          <%= t('.explanations.quarters') %>
+          <%= t('.explanations.verdicts') %>
         </p>
-        <%= link_to t('shared.actions.view'), admin_quarters_path, class: 'btn btn-default' %>
+        <%= link_to t('shared.actions.view'), admin_verdicts_path, class: 'btn btn-default' %>
       </div>
     <% end %>
     <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>

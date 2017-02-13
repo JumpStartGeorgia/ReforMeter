@@ -1,0 +1,46 @@
+<% object = @verdict %>
+<%= semantic_form_for [:admin,object], html: {multipart: true} do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+
+      <%= f.input "title_#{enabled_locale}",
+                  as: :string,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.news.title'),
+                         language: enabled_locale_name) %>
+      <%= f.input "summary_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.verdict.summary'),
+                         language: enabled_locale_name),
+                   :input_html => { :class => 'autogrow', :rows => 2  } %>
+    <% end %>
+
+    <hr />
+
+    <h3><%= t('activerecord.attributes.verdict.scores') %></h3>
+    <p class="form-instructions"><%= t('.score_explanation') %></p>
+
+    <div class="row mod-row-no-margins">
+      <%= f.input :overall_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category1_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category2_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+      <%= f.input :category3_score, as: :string, input_html: {max_length: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
+    </div>
+
+    <hr />
+
+    <h3><%= t('activerecord.attributes.verdict.time_period') %></h3>
+    <p class="form-instructions"><%= t('.time_period_explanation') %></p>
+    <%= f.input :time_period, as: :string, input_html: {max_length: 10, size: 15, style: 'width: 10em;'} %>
+  <% end %>
+
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>
+

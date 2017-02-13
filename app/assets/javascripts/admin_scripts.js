@@ -18,7 +18,7 @@
   $(document).ready(function() {
     setupReformColorSelect();
     setupReformColorSelectChange();
-    setQuarterFormQuarter();
+    setVerdictFormVerdict();
     setupExpertsSelectAll();
     setupExternalIndicatorType();
     setupExternalIndicatorCocoon();
@@ -26,6 +26,8 @@
     setupExternalIndicatorInputs();
     setupExpertReformSelector();
     setupReportDatePicker();
+    setupVerdictDatePicker();
+    setupReformSurveyDatePicker();
   });
 
   $(document).on('page:change', function() {

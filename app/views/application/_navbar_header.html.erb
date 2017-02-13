@@ -88,7 +88,7 @@
             </a>
             <ul class="dropdown-menu" role="menu">
               <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
-                <li><%= link_to t('shared.links.quarters'), admin_quarters_path %></li>
+                <li><%= link_to t('shared.links.verdicts'), admin_verdicts_path %></li>
               <% end %>
               <% if current_user.is?(['super_admin', 'site_admin', 'content_manager']) %>
                 <li><%= link_to t('shared.links.reforms'), admin_reforms_path %></li>

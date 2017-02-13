@@ -1,4 +1,4 @@
-.translated-inputs {
+.verdict-tabs {
   margin-bottom: 2.5em;
 }
 
@@ -14,3 +14,13 @@ form {
   }
 }
 
+/* styling of verdict admin tabs */
+.verdict-tabs {
+  margin-bottom: 2.5em;
+
+  .tab-content{
+    border-left: 1px solid #dddddd;
+    padding-left: 15px;
+    padding-top: 15px;
+  }
+}

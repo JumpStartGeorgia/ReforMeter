@@ -14,6 +14,7 @@
 #  updated_at        :datetime         not null
 #  sort_order        :integer
 #  use_decimals      :boolean          default(FALSE)
+#  has_benchmark     :boolean          default(FALSE)
 #
 
 require 'csv'
@@ -146,7 +147,7 @@ class ExternalIndicator < AddMissingTranslation
 
       when INDICATOR_TYPES[:country]
         countries = ext_ind.countries.sorted
-        header = [I18n.t('activerecord.attributes.quarter.time_period')]
+        header = [I18n.t('activerecord.attributes.verdict.time_period')]
         header << countries.map{|x| x.name}
         header.flatten!
 
@@ -182,7 +183,7 @@ class ExternalIndicator < AddMissingTranslation
 
       when INDICATOR_TYPES[:composite]
         indices = ext_ind.indices.sorted
-        header = [I18n.t('activerecord.attributes.quarter.time_period'), I18n.t('shared.categories.overall')]
+        header = [I18n.t('activerecord.attributes.verdict.time_period'), I18n.t('shared.categories.overall')]
         header << indices.map{|x| x.name}
         header.flatten!
 

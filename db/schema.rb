@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208204204) do
+ActiveRecord::Schema.define(version: 20170213213516) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -100,10 +100,11 @@ ActiveRecord::Schema.define(version: 20170208204204) do
     t.integer  "external_indicator_time_id", limit: 4
     t.integer  "country_id",                 limit: 4
     t.integer  "index_id",                   limit: 4
-    t.decimal  "value",                                precision: 5, scale: 2, null: false
+    t.decimal  "value",                                precision: 5, scale: 2,                 null: false
     t.integer  "change",                     limit: 4
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                                                   null: false
+    t.datetime "updated_at",                                                                   null: false
+    t.boolean  "is_benchmark",                                                 default: false
   end
 
   add_index "external_indicator_data", ["country_id"], name: "index_external_indicator_data_on_country_id", using: :btree
@@ -191,6 +192,7 @@ ActiveRecord::Schema.define(version: 20170208204204) do
     t.string   "subtitle",              limit: 255
     t.text     "description",           limit: 65535
     t.text     "data",                  limit: 65535
+    t.string   "benchmark_title",       limit: 255
   end
 
   add_index "external_indicator_translations", ["external_indicator_id"], name: "index_external_indicator_translations_on_external_indicator_id", using: :btree
@@ -209,6 +211,7 @@ ActiveRecord::Schema.define(version: 20170208204204) do
     t.datetime "updated_at",                                  null: false
     t.integer  "sort_order",        limit: 4
     t.boolean  "use_decimals",                default: false
+    t.boolean  "has_benchmark",               default: false
   end
 
   add_index "external_indicators", ["sort_order"], name: "index_external_indicators_on_sort_order", using: :btree
@@ -337,7 +340,7 @@ ActiveRecord::Schema.define(version: 20170208204204) do
   add_index "reform_survey_translations", ["reform_survey_id"], name: "index_reform_survey_translations_on_reform_survey_id", using: :btree
 
   create_table "reform_surveys", force: :cascade do |t|
-    t.integer  "quarter_id",                   limit: 4,                                           null: false
+    t.integer  "quarter_id",                   limit: 4
     t.integer  "reform_id",                    limit: 4,                                           null: false
     t.decimal  "government_overall_score",                 precision: 5, scale: 2,                 null: false
     t.decimal  "government_category1_score",               precision: 5, scale: 2,                 null: false

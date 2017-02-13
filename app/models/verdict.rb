@@ -10,8 +10,8 @@
 #  overall_change   :integer
 #  integer          :integer
 #  category1_change :integer
-#  categoey2_change :integer
 #  category2_change :integer
+#  category3_change :integer
 #  is_public        :boolean          default(FALSE)
 #  slug             :string(255)
 #  time_period      :date
@@ -29,8 +29,9 @@ class Verdict < ActiveRecord::Base
 
   #######################
   ## RELATIONSHIPS
-  has_many :news, dependent: :destroy
+  has_many :news, -> { where(reform_survey_id: nil) }, dependent: :destroy
   has_many :reform_surveys
+  has_many :reforms, through: :reform_surveys
 
   #######################
   ## VALIDATIONS
@@ -68,6 +69,8 @@ class Verdict < ActiveRecord::Base
   scope :published, -> { where(is_public: true) }
   scope :sorted, -> { order(time_period: :asc) }
   scope :recent, -> { order(time_period: :desc) }
+  scope :with_reform_surveys, -> {includes(reform_surveys: [:translations] )}
+  scope :with_news, -> {includes(news: [:translations] )}
 
   def self.next_survey(time_period)
     where('time_period > ?', time_period).sorted.first
@@ -431,6 +434,10 @@ class Verdict < ActiveRecord::Base
     reform_surveys.pluck(:reform_id)
   end
 
+  # formatted time period (month/year only)
+  def time_period_formatted
+    I18n.l(self.time_period, format: :time_period)
+  end
 
 
   #######################

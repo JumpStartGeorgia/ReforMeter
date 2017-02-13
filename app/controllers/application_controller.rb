@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     @addthis_id = ENV['ADDTHIS_ID']
 
     # indicate which year can be the first year for data
-    @quarter_start_year = 2015
+#    @quarter_start_year = 2015
     
     gon.default_locale = I18n.default_locale.to_s
 
@@ -57,17 +57,32 @@ class ApplicationController < ActionController::Base
   end
 
 
-  # get the quarter that this news items is for
-  def get_quarter
-    begin
-      @quarter = Quarter.friendly.find(params[:quarter_id])
+  # get the quarter
+  # def get_quarter
+  #   begin
+  #     @quarter = Quarter.friendly.find(params[:quarter_id])
 
-      if @quarter.nil?
-        redirect_to admin_quarters_path,
+  #     if @quarter.nil?
+  #       redirect_to admin_quarters_path,
+  #               alert: t('shared.msgs.does_not_exist')
+  #     end
+  #   rescue ActiveRecord::RecordNotFound  => e
+  #     redirect_to admin_quarters_path,
+  #               alert: t('shared.msgs.does_not_exist')
+  #   end
+  # end
+
+  # get the verdict 
+  def get_verdict
+    begin
+      @verdict = Verdict.friendly.find(params[:verdict_id])
+
+      if @verdict.nil?
+        redirect_to admin_verdicts_path,
                 alert: t('shared.msgs.does_not_exist')
       end
     rescue ActiveRecord::RecordNotFound  => e
-      redirect_to admin_quarters_path,
+      redirect_to admin_verdicts_path,
                 alert: t('shared.msgs.does_not_exist')
     end
   end

@@ -9,6 +9,8 @@ ka:
         reform_id: რეფორმა
         title: სათაური
         url: ამბის URL-ი
+        verdict_id: ReformVerdict
+        reform_survey_id: Reform Survey
     models:
       news:
         one: სიუჟეტი

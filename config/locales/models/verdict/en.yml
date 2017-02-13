@@ -1,0 +1,41 @@
+---
+en:
+  activerecord:
+    attributes:
+      verdict:
+        is_public: Is Public?
+        news: News
+        reform_surveys: Reform Surveys
+        time_period: Time Period
+        overall_score: Overall
+        category1_score: Performance
+        category2_score: Goals
+        category3_score: Outcome
+        details: Details
+        scores: Scores
+        summary: Summary
+        overview: Overview
+    errors:
+      models:
+        verdict:
+          attributes:
+            category1_change:
+              inclusion: must be -1, 0, or 1
+            category1_score:
+              inclusion: must be between 0 and 10
+            category2_change:
+              inclusion: must be -1, 0, or 1
+            category2_score:
+              inclusion: must be between 0 and 10
+            category3_change:
+              inclusion: must be -1, 0, or 1
+            category3_score:
+              inclusion: must be between 0 and 10
+            overall_change:
+              inclusion: must be -1, 0, or 1
+            overall_score:
+              inclusion: must be between 0 and 10
+    models:
+      verdict:
+        one: ReformVerdict
+        other: ReformVerdicts
