@@ -353,7 +353,15 @@ class ExternalIndicator < AddMissingTranslation
     case indicator_type
     when INDICATOR_TYPES[:basic]
       # hash[:series] << {data: self.data_hash[:data].map{|x| {y: x[:values].first[:value], change: x[:values].first[:change]}}}
-      hash[:series] << {data: time.map{|x| {y: x.data.first.value.to_f, change: x.data.first.change}  }}
+      data = []
+      time.each do |x|
+        if x.data.present?
+          data << {y: x.data.first.value.to_f, change: x.data.first.change}
+        else
+          data << {y: nil, change: nil}
+        end
+      end
+      hash[:series] << {data: data}
     when INDICATOR_TYPES[:country]
 
       self.countries.sorted.each_with_index do |country, index|
