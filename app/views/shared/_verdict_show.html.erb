@@ -57,7 +57,7 @@ show_admin_links ||= false
         <%= render partial: 'shared/show_actions',
               locals: {
                 hide_object_name: true,
-                object: Quarter.new,
+                object: Verdict.new,
                 index_path: admin_verdicts_path(@verdict.slug),
                 show_path: admin_verdict_path(@verdict.slug),
                 edit_path: edit_admin_verdict_path(@verdict.slug),

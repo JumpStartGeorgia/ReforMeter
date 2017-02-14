@@ -97,8 +97,8 @@ show_admin_links ||= false
         <%= render partial: 'shared/show_actions',
               locals: {
                 hide_object_name: true,
-                object: Quarter.new,
-                index_path: admin_verdicts_path(q: @verdict.slug),
+                object: Verdict.new,
+                index_path: admin_verdicts_path(v: @verdict.slug),
                 show_path: admin_verdict_reform_survey_path(verdict_id: @verdict.slug, id: @reform_survey),
                 edit_path: edit_admin_verdict_reform_survey_path(verdict_id: @verdict.slug, id: @reform_survey),
                       }

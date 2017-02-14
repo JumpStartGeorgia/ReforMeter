@@ -9,6 +9,8 @@ en:
         reform_id: Reform
         title: Title
         url: URL to Story
+        verdict_id: ReformVerdict
+        reform_survey_id: Reform Survey
     models:
       news:
         one: News Item

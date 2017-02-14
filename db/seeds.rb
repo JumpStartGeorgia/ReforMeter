@@ -213,13 +213,13 @@ if ENV['load_test_data'].present?
   puts 'creating verdicts'
   v1 = Verdict.create(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5,
                               title_en: '2016 Phase 1', title_ka: '2016 Phase 1', 
-                              summary_en: '<p>this is a verdict summary</p>',
-                              summary_ka: '<p>this is a verdict summary</p>',
+                              summary_en: 'this is a verdict summary',
+                              summary_ka: 'this is a verdict summary',
                               is_public: true, time_period: '2016-06-30')
   v2 = Verdict.create(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
                               title_en: '2016 Phase 2', title_ka: '2016 Phase 2', 
-                              summary_en: '<p>this is a verdict summary</p>',
-                              summary_ka: '<p>this is a verdict summary</p>',
+                              summary_en: 'this is a verdict summary',
+                              summary_ka: 'this is a verdict summary',
                               is_public: true, time_period: '2016-12-31')
 
   v1.news.create(title: 'This is verdict news', content: "this is verdict news for #{v1.time_period}", url: 'http://google.ge')

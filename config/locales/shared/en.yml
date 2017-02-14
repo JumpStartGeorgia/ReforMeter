@@ -124,6 +124,7 @@ en:
       reform_colors: Reform Colors
       reforms: Reforms
       reports: Reports
+      verdicts: ReformVerdicts
     locale:
       long:
         en: English
@@ -176,3 +177,4 @@ en:
   date:
     formats:
       default: ! '%Y-%m-%d'
+      time_period: '%b %Y'

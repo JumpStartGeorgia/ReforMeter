@@ -376,6 +376,7 @@ task :finished_deploy_message do
   queue %(echo "Your site should be deployed and running at:")
   queue %(echo "")
   queue %(echo "#{web_url}")
+  queue %(echo "#{secondary_web_url}")
   queue %(echo "")
 end
 

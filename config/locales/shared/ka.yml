@@ -124,6 +124,7 @@ ka:
       reform_colors: რეფორმის ფერები
       reforms: რეფორმები
       reports: Reports
+      verdicts: ReformVerdicts
     locale:
       long:
         en: English
@@ -176,3 +177,4 @@ ka:
   date:
     formats:
       default: ! '%Y-%m-%d'
+      time_period: ! '%b %Y'

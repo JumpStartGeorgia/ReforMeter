@@ -1,15 +1,15 @@
 <% object = @reform_survey %>
-<%= semantic_form_for [:admin, @quarter, object], html: {multipart: true} do |f| %>
+<%= semantic_form_for [:admin, @verdict, object], html: {multipart: true} do |f| %>
   <%= f.semantic_errors *f.object.errors.keys %>
   <%= f.inputs do %>
 
-    <%= f.input :quarter_id, as: :hidden, :input_html => { :value => @quarter.id } %>
-    <div class="input required form-group" id="reform_survey_quarter_id_input">
+    <%= f.input :verdict_id, as: :hidden, :input_html => { :value => @verdict.id } %>
+    <div class="input required form-group" id="reform_survey_verdict_id_input">
       <span class="form-label">
-        <label for="news_quarter_id" class=" control-label"><%= t('activerecord.attributes.reform_survey.quarter_id') %></label>
+        <label for="reform_survey_verdict_id" class=" control-label"><%= t('activerecord.attributes.reform_survey.verdict_id') %></label>
       </span>
       <span class="form-wrapper">
-        <%= @quarter.time_period %>
+        <%= @verdict.title %>
       </span>
     </div>
 
@@ -31,6 +31,7 @@
       </span>
     </div>
 
+    <%= f.input :time_period, as: :string, hint: t('.time_period_explanation'), input_html: {max_length: 10, size: 15, style: 'width: 10em;'} %>
 
     <%= render layout: 'shared/form/translated_inputs',
                locals: { object: object, id_suffix: '1' } do |enabled_locale, enabled_locale_name| %>

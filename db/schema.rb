@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210122810) do
+ActiveRecord::Schema.define(version: 20170213213516) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -340,7 +340,7 @@ ActiveRecord::Schema.define(version: 20170210122810) do
   add_index "reform_survey_translations", ["reform_survey_id"], name: "index_reform_survey_translations_on_reform_survey_id", using: :btree
 
   create_table "reform_surveys", force: :cascade do |t|
-    t.integer  "quarter_id",                   limit: 4,                                           null: false
+    t.integer  "quarter_id",                   limit: 4
     t.integer  "reform_id",                    limit: 4,                                           null: false
     t.decimal  "government_overall_score",                 precision: 5, scale: 2,                 null: false
     t.decimal  "government_category1_score",               precision: 5, scale: 2,                 null: false

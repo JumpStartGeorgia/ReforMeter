@@ -26,15 +26,30 @@ Rails.application.routes.draw do
       resources :experts, except: :show, constraints: { format: :html }
       resources :reforms, except: :show, constraints: { format: :html }
       resources :reform_colors, except: :show, constraints: { format: :html }
-      resources :quarters, except: :show, constraints: { format: :html } do
+      # resources :quarters, except: :show, constraints: { format: :html } do
+      #   resources :news, except: :index, constraints: { format: :html }
+      #   resource :expert_survey, except: :index, constraints: { format: :html }
+      #   resources :reform_surveys, except: :index, constraints: { format: :html }
+      #   member do
+      #     post 'publish', constraints: { format: :html }
+      #     post 'unpublish', constraints: { format: :html }
+      #   end
+      # end
+
+      resources :verdicts, except: :show, constraints: { format: :html } do
         resources :news, except: :index, constraints: { format: :html }
-        resource :expert_survey, except: :index, constraints: { format: :html }
-        resources :reform_surveys, except: :index, constraints: { format: :html }
+        resources :reform_surveys, except: :index, constraints: { format: :html } do
+          member do
+            post 'publish', constraints: { format: :html }
+            post 'unpublish', constraints: { format: :html }
+          end
+        end
         member do
           post 'publish', constraints: { format: :html }
           post 'unpublish', constraints: { format: :html }
         end
       end
+      
       resources :page_contents, constraints: { format: :html }
       resources :users, constraints: { format: :html }
     end

@@ -1,7 +1,7 @@
 class Admin::ReformSurveysController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_reform_survey, only: [:new, :create, :show, :edit, :update, :destroy]
-  before_action :get_quarter
+  before_action :set_reform_survey, only: [:new, :create, :show, :edit, :update, :destroy, :publish, :unpublish]
+  before_action :get_verdict
   before_action :load_reforms, only: [:new, :edit, :create, :update]
   authorize_resource
 
@@ -18,35 +18,35 @@ class Admin::ReformSurveysController < ApplicationController
     begin
       @reform = Reform.active.with_color.friendly.find(@reform_survey.reform_id) if @reform_survey
   
-      if @reform.nil? || @quarter.nil? || @reform_survey.nil?
-        redirect_to admin_quarters_path,
+      if @reform.nil? || @verdict.nil? || @reform_survey.nil?
+        redirect_to admin_verdicts_path,
                 alert: t('shared.msgs.does_not_exist')
       end
 
       # this is in app controler
-      set_reform_show_variables
+      set_reform_show_variables(true)
 
     rescue ActiveRecord::RecordNotFound  => e
-      redirect_to admin_quarters_path,
+      redirect_to admin_verdicts_path,
                 alert: t('shared.msgs.does_not_exist')
     end
     # @reform = Reform.active.with_color.friendly.find(@reform_survey.reform_id)
 
     # @methodology_government = PageContent.find_by(name: 'methodology_government')
     # @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
-    # @news = News.by_reform_quarter(@quarter.id, @reform.id)
+    # @news = News.by_reform_verdict(@verdict.id, @reform.id)
 
     # gon.chart_download_icon = highchart_download_icon
     # gon.change_icons = view_context.change_icons
 
-    # quarter_ids = Quarter.with_reform(@reform.id).recent.pluck(:id)
+    # verdict_ids = Quarter.with_reform(@reform.id).recent.pluck(:id)
 
     # government_time_series = Quarter.reform_survey_data_for_charting(
     #   @reform.id,
     #   type: 'government',
     #   id: 'reform-government-history',
     #   is_published: false,
-    #   quarter_ids: quarter_ids
+    #   verdict_ids: verdict_ids
     # )
 
     # stakeholder_time_series = Quarter.reform_survey_data_for_charting(
@@ -54,7 +54,7 @@ class Admin::ReformSurveysController < ApplicationController
     #   type: 'stakeholder',
     #   id: 'reform-stakeholder-history',
     #   is_published: false,
-    #   quarter_ids: quarter_ids
+    #   verdict_ids: verdict_ids
     # )
 
     # gon.charts = [
@@ -142,14 +142,15 @@ class Admin::ReformSurveysController < ApplicationController
         break if !found_all
       end
       if found_all
-        redirect_to admin_quarters_path(q: @quarter.slug),
-                alert: t('shared.msgs.all_reform_surveys_exist', quarter: @quarter.time_period)
+        redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'),
+                alert: t('shared.msgs.all_reform_surveys_exist', verdict: @verdict.time_period)
       end
     end
   end
 
   # GET /admin/reform_surveys/1/edit
   def edit
+    set_date
   end
 
   # POST /admin/reform_surveys
@@ -159,9 +160,10 @@ class Admin::ReformSurveysController < ApplicationController
 
     respond_to do |format|
       if @reform_survey.save
-        format.html { redirect_to admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey.id), notice: t('shared.msgs.success_created',
+        format.html { redirect_to admin_verdict_reform_survey_path(verdict_id: @verdict.slug, id: @reform_survey.id), notice: t('shared.msgs.success_created',
                             obj: t('activerecord.models.reform_survey', count: 1)) }
       else
+        set_date
         format.html { render :new }
       end
     end
@@ -172,9 +174,10 @@ class Admin::ReformSurveysController < ApplicationController
   def update
     respond_to do |format|
       if @reform_survey.update(reform_survey_params)
-        format.html { redirect_to admin_quarter_reform_survey_path(quarter_id: @quarter.slug, id: @reform_survey.id), notice: t('shared.msgs.success_updated',
+        format.html { redirect_to admin_verdict_reform_survey_path(verdict_id: @verdict.slug, id: @reform_survey.id), notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.reform_survey', count: 1)) }
       else
+        set_date
         format.html { render :edit }
       end
     end
@@ -185,10 +188,41 @@ class Admin::ReformSurveysController < ApplicationController
   def destroy
     @reform_survey.destroy
     respond_to do |format|
-      format.html { redirect_to admin_quarters_url(q: @quarter.slug), notice: t('shared.msgs.success_destroyed',
+      format.html { redirect_to admin_verdicts_url(v: @verdict.slug, t: 'reform_survey'), notice: t('shared.msgs.success_destroyed',
                             obj: t('activerecord.models.reform_survey', count: 1)) }
     end
   end
+
+
+  def publish
+    @reform_survey.is_public = true
+    respond_to do |format|
+      if @reform_survey.save
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'), notice: t('shared.msgs.success_published',
+                            obj: t('activerecord.models.reform_survey', count: 1)) }
+      else
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'), alert: t('shared.msgs.fail_published',
+                            obj: t('activerecord.models.reform_survey', count: 1),
+                            msg: @verdict.errors.full_messages.join('; ')) }
+      end
+    end
+  end
+
+  def unpublish
+    @reform_survey.is_public = false
+    respond_to do |format|
+      if @reform_survey.save
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'), notice: t('shared.msgs.success_unpublished',
+                            obj: t('activerecord.models.reform_survey', count: 1)) }
+      else
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'), alert: t('shared.msgs.fail_unpublished',
+                            obj: t('activerecord.models.reform_survey', count: 1),
+                            msg: @verdict.errors.full_messages.join('; ')) }
+      end
+    end
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -199,7 +233,7 @@ class Admin::ReformSurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def reform_survey_params
       permitted = ReformSurvey.globalize_attribute_names + [
-        :quarter_id, :reform_id, :report_en, :report_ka,
+        :verdict_id, :reform_id, :report_en, :report_ka, :time_period, :is_public,
         :government_overall_score, :government_category1_score, :government_category2_score, :government_category3_score, :government_category4_score,
         :stakeholder_overall_score, :stakeholder_category1_score, :stakeholder_category2_score, :stakeholder_category3_score
       ]
@@ -210,8 +244,13 @@ class Admin::ReformSurveysController < ApplicationController
       # ge all reforms
       @reforms = Reform.active.sorted
 
-      # get all reforms that already have a survey for this quarter
-      @survey_reforms = ReformSurvey.in_quarter(@quarter.id)
+      # get all reforms that already have a survey for this verdict
+      @survey_reforms = ReformSurvey.in_verdict(@verdict.id)
       @survey_reforms = @survey_reforms.not_in_reform(@reform_survey.reform_id) if @reform_survey.reform_id
     end
+
+    # set the date for the datepicker
+    def set_date
+      gon.time_period = @reform_survey.time_period.strftime('%m/%d/%Y %H:%M') if !@reform_survey.time_period.nil?
+    end    
 end

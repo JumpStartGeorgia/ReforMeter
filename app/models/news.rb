@@ -55,16 +55,18 @@ class News < AddMissingTranslation
   #######################
   ## SCOPES
   scope :sorted, -> {order(title: :asc)}
+  scope :for_verdict, -> {where(reform_survey_id: nil)}
+  scope :for_reform_survey, -> {where.not(reform_survey_id: nil)}
 
-  # get news for a quarter and reform
-  def self.by_expert_quarter(quarter_id)
-    by_reform_quarter(quarter_id, nil)
-  end
+  # # get news for a quarter and reform
+  # def self.by_expert_quarter(quarter_id)
+  #   by_reform_quarter(quarter_id, nil)
+  # end
 
-  # get news for a quarter and reform
-  def self.by_reform_quarter(quarter_id, reform_id)
-    where(quarter_id: quarter_id, reform_id: reform_id)
-  end
+  # # get news for a quarter and reform
+  # def self.by_reform_quarter(quarter_id, reform_id)
+  #   where(quarter_id: quarter_id, reform_id: reform_id)
+  # end
 
 
   #######################

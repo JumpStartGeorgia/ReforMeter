@@ -34,18 +34,24 @@ en:
         reforms: Manage reform data like name, summary, methodology, color, and show on homepage.
         users: Manage who has access to edit the data on the site.
         reports: Upload reports the summarize what has happened during a time period.
+        verdicts: Manage the data for a time period like overall score, reform surveys, and news.
       title: Admin Section
-    quarters:
+    verdicts:
       index:
         set_time_period: Select Time Period to Edit
         table_header:
           government: Government
           reform: Reform
           stakeholder: Stakeholder
+          is_public: Is Public?
+      form:
+        score_explanation: All scores must be between 0 and 10.
+        time_period_explanation: This date will be used to properly sort the verdicts in order.
     reform_surveys:
       form:
         government_score_explanation: All scores are percents and must be between 0 and 100.
         stakeholder_score_explanation: All scores must be between 0 and 10.
+        time_period_explanation: This date will be used to properly sort the surveys in order.
       show:
         title: 'Reform: %{name} for %{time}'
     reports:

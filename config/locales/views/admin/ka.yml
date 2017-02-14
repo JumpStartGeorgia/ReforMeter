@@ -34,18 +34,24 @@ ka:
         reforms: ისეთი მონაცემების მართვა, როგორიცაა, სახელი, შეჯამება, მეთოდოლოგია, ფერი და მთავარ გვერდზე გამოტანა.
         users: იმის მართვა, თუ ვის აქვს გვერდზე მონაცემთა რედაქტირების უფლება.
         reports: Upload reports the summarize what has happened during a time period.
+        verdicts: Manage the data for a time period like overall score, reform surveys, and news.
       title: ადმინის სექცია
-    quarters:
+    verdicts:
       index:
         set_time_period: აირჩიეთ დროის პერიოდი, რომლის რედაქტირებაც გსურთ
         table_header:
           government: მთავრობა
           reform: რეფორმა
           stakeholder: დაინტერესებული პირი
+          is_public: არის თუ არა საჯარო?
+      form:
+        score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
+        time_period_explanation: This date will be used to properly sort the verdicts in order.
     reform_surveys:
       form:
         government_score_explanation: ყველა ქულა პროცენტია და უდნა იყოს 0-დან 100-მდე.
         stakeholder_score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
+        time_period_explanation: This date will be used to properly sort the surveys in order.
       show:
         title: 'რეფორმა: %{name}-ის %{time}-სთვის'
     reports:
