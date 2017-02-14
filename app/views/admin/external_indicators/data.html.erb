@@ -1,13 +1,16 @@
 <% model_class = ExternalIndicator %>
 <% page_title t('.title', name: @external_indicator.title) %>
 <% object = @external_indicator %>
+<% obj_singular_name = t("activerecord.models.#{object.model_name.singular}", count: 1) %>
 
 <div class='actions-container'>
   <%= render partial: 'shared/edit_actions',
         locals: {
           object: @external_indicator,
           index_path: admin_external_indicators_path,
-          show_path: admin_external_indicator_path(@external_indicator)
+          show_path: admin_external_indicator_path(@external_indicator),
+          extra: {title: t('shared.actions.with_obj.edit', obj: obj_singular_name), 
+                  path: edit_admin_external_indicator_path(@external_indicator)}
                 }
   %>
 </div>

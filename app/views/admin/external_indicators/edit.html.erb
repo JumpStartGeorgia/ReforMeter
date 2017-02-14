@@ -7,7 +7,8 @@
         locals: {
           object: @external_indicator,
           index_path: admin_external_indicators_path,
-          show_path: admin_external_indicator_path(@external_indicator)
+          show_path: admin_external_indicator_path(@external_indicator),
+          extra: {title: t('shared.actions.manage_data'), path: data_admin_external_indicator_path(@external_indicator)}
                 }
   %>
 </div>

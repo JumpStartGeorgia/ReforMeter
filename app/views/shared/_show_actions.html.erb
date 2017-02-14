@@ -1,6 +1,7 @@
 <%
   edit_path ||= nil
   show_path ||= nil
+  extra ||= nil
   hide_object_name ||= false
   object_name_plural = !hide_object_name ? t("activerecord.models.#{object.model_name.singular}", count: 999) : ''
   object_name_singular = !hide_object_name ? t("activerecord.models.#{object.model_name.singular}", count: 1) : ''
@@ -16,6 +17,11 @@
           edit_path,
           class: 'btn btn-default'
 end %>
+<% if extra.present? && extra.class == Hash && extra[:title].present? && extra[:path].present? %>
+  <%= link_to extra[:title],
+              extra[:path],
+              class: 'btn btn-default' %>
+<% end %>
 <%= if can?(:destroy, object) && show_path.present?
   link_to t('shared.actions.with_obj.destroy',
             obj: object_name_singular),
