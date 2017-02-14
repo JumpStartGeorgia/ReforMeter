@@ -117,12 +117,13 @@ class Admin::ExternalIndicatorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def external_indicator_params
       permitted = ExternalIndicator.globalize_attribute_names + [
-        :is_public, :use_decimals, :show_on_home_page, :indicator_type, :scale_type, :chart_type, :min, :max, :sort_order, reform_ids: [],
+        :is_public, :use_decimals, :show_on_home_page, :indicator_type, :scale_type, :chart_type, 
+        :min, :max, :sort_order, :has_benchmark, reform_ids: [],
         indices_attributes: [ExternalIndicatorIndex.globalize_attribute_names + [:id, :_destroy, :change_multiplier, :sort_order, :external_indicator_id]],
         countries_attributes: [ExternalIndicatorCountry.globalize_attribute_names + [:id, :_destroy, :sort_order, :external_indicator_id]],
         plot_bands_attributes: [ExternalIndicatorPlotBand.globalize_attribute_names + [:id, :_destroy, :to, :from, :external_indicator_id]],
         time_periods_attributes: [ExternalIndicatorTime.globalize_attribute_names + [:id, :_destroy, :sort_order, :overall_value, :external_indicator_id],
-        data_attributes: [:id, :_destroy, :value, :country_id, :index_id, :external_indicator_time_id]]
+        data_attributes: [:id, :_destroy, :value, :country_id, :index_id, :external_indicator_time_id, :is_benchmark]]
       ]
       params.require(:external_indicator).permit(*permitted)
     end

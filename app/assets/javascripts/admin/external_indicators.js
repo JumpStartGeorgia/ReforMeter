@@ -66,6 +66,27 @@ function setupExternalIndicatorType() {
   });
 }
 
+function setExternalIndicatorBenchmarkDisplay() {
+  var val = $('input[name="external_indicator[has_benchmark]"]:checked').val();
+  if (val == 'true'){
+    setTabDisplay('benchmark', 'block');
+  } else {
+    setTabDisplay('benchmark', 'none');
+  }
+}
+
+function setupExternalIndicatorBenchmark() {
+
+  $('input[name="external_indicator[has_benchmark]"]').click(function() {
+    setExternalIndicatorBenchmarkDisplay();
+  });
+
+  // when form loads, if benchmark is true, show the field
+  $(document).ready(function() {
+    setExternalIndicatorBenchmarkDisplay();
+  });
+}
+
 function setupExternalIndicatorCocoon(){
   // add country
   $('.js-optional-countries .tab-pane').on('cocoon:after-insert', function(e, insertedItem) {

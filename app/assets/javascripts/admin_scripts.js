@@ -24,6 +24,7 @@
     setupExternalIndicatorCocoon();
     setupExternalIndicatorMove();
     setupExternalIndicatorInputs();
+    setupExternalIndicatorBenchmark();
     setupExpertReformSelector();
     setupReportDatePicker();
     setupVerdictDatePicker();

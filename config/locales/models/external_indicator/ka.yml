@@ -21,6 +21,8 @@ ka:
         title: Title
         sort_order: Home Page Sort Order
         use_decimals: Show Decimals in Value?
+        has_benchmark: Has Benchmark?
+        benchmark_title: Benchmark Name
     models:
       external_indicator:
         one: External Indicator

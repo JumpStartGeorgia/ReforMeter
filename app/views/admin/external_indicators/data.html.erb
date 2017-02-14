@@ -33,10 +33,7 @@
               </th>
               <% if object.is_composite? || object.is_basic? %>
                 <th>
-                  <%= t('shared.labels.translated_field',
-                           field: t('activerecord.attributes.external_indicator_time.overall_value'),
-                           language: enabled_locale_name)
-                  %><abbr title="required">*</abbr>
+                  <%= t('activerecord.attributes.external_indicator_time.overall_value') %><abbr title="required">*</abbr>
                   <% col_count += 1 %>
                 </th>
                 <% object.indices.sorted.each do |index| %>
@@ -48,10 +45,18 @@
               <% elsif object.is_country? %>
                 <% object.countries.sorted.each do |country| %>
                   <th>
+
                     <%= country.name %><abbr title="required">*</abbr>
                     <% col_count += 1 %>
                   </th>
                 <% end %>
+              <% end %>
+
+              <% if object.has_benchmark? %>
+                <th>
+                  <%= object.benchmark_title %><abbr title="required">*</abbr>
+                  <% col_count += 1 %>
+                </th>
               <% end %>
 
               <th>

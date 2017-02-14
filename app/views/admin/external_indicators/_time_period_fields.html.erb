@@ -78,6 +78,24 @@
     </td>
   <% end %>
 
+  <% if indicator.has_benchmark? %>
+    <% data_point = object.data.select{|x| x.is_benchmark?}.first if object.present?  %>
+    <% data_point = ExternalIndicatorDatum.new if data_point.nil? %>
+    <td class="js-to-clear">
+      <% if enabled_locale.to_s == I18n.default_locale.to_s || object.nil? %>
+        <%= f.semantic_fields_for :data, data_point do |d| %>
+          <%= d.input :is_benchmark, as: :hidden, input_html: {value: true} %>
+          <%= d.input :value,
+                      as: :string,
+                      label: false,
+                      input_html: {size: 5, class: 'js-update-value'} %>
+        <% end %>
+      <% else %>
+        <%= data_point.value %>
+      <% end %>
+    </td>
+  <% end %>
+
   <td>
     <%= link_to_remove_association t('shared.actions.destroy'), f,
             data: { confirm: t('shared.prompts.confirm') },

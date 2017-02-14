@@ -175,6 +175,19 @@
     <%= f.input :max, as: :string, input_html: {maxlength: 5, size: 5}, wrapper_html: {class: 'col-md-3'} %>
   </div>
 
+  <hr />
+
+  <%= f.input :has_benchmark, as: :radio %>
+  <div class="js-optional js-optional-benchmark">
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object, id_suffix: '-benchmark' } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "benchmark_title_#{enabled_locale}",
+                  as: :string,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.external_indicator.benchmark_title'),
+                         language: enabled_locale_name) %>
+    <% end %>
+  </div>
 
   <div class="js-optional js-optional-plot-bands">
 
