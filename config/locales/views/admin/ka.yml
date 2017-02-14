@@ -43,6 +43,7 @@ ka:
           government: მთავრობა
           reform: რეფორმა
           stakeholder: დაინტერესებული პირი
+          is_public: არის თუ არა საჯარო?
       form:
         score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
         time_period_explanation: This date will be used to properly sort the verdicts in order.

@@ -1,6 +1,6 @@
 class Admin::ReformSurveysController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_reform_survey, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :set_reform_survey, only: [:new, :create, :show, :edit, :update, :destroy, :publish, :unpublish]
   before_action :get_verdict
   before_action :load_reforms, only: [:new, :edit, :create, :update]
   authorize_resource
@@ -24,7 +24,7 @@ class Admin::ReformSurveysController < ApplicationController
       end
 
       # this is in app controler
-      set_reform_show_variables
+      set_reform_show_variables(true)
 
     rescue ActiveRecord::RecordNotFound  => e
       redirect_to admin_verdicts_path,
@@ -142,7 +142,7 @@ class Admin::ReformSurveysController < ApplicationController
         break if !found_all
       end
       if found_all
-        redirect_to admin_verdicts_path(v: @verdict.slug),
+        redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'),
                 alert: t('shared.msgs.all_reform_surveys_exist', verdict: @verdict.time_period)
       end
     end
@@ -188,10 +188,41 @@ class Admin::ReformSurveysController < ApplicationController
   def destroy
     @reform_survey.destroy
     respond_to do |format|
-      format.html { redirect_to admin_verdicts_url(v: @verdict.slug), notice: t('shared.msgs.success_destroyed',
+      format.html { redirect_to admin_verdicts_url(v: @verdict.slug, t: 'reform_survey'), notice: t('shared.msgs.success_destroyed',
                             obj: t('activerecord.models.reform_survey', count: 1)) }
     end
   end
+
+
+  def publish
+    @reform_survey.is_public = true
+    respond_to do |format|
+      if @reform_survey.save
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'), notice: t('shared.msgs.success_published',
+                            obj: t('activerecord.models.reform_survey', count: 1)) }
+      else
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'), alert: t('shared.msgs.fail_published',
+                            obj: t('activerecord.models.reform_survey', count: 1),
+                            msg: @verdict.errors.full_messages.join('; ')) }
+      end
+    end
+  end
+
+  def unpublish
+    @reform_survey.is_public = false
+    respond_to do |format|
+      if @reform_survey.save
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'), notice: t('shared.msgs.success_unpublished',
+                            obj: t('activerecord.models.reform_survey', count: 1)) }
+      else
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: 'reform_survey'), alert: t('shared.msgs.fail_unpublished',
+                            obj: t('activerecord.models.reform_survey', count: 1),
+                            msg: @verdict.errors.full_messages.join('; ')) }
+      end
+    end
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

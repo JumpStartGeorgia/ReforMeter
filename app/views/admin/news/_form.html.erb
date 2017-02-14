@@ -3,6 +3,7 @@
   <%= f.semantic_errors *f.object.errors.keys %>
   <%= f.inputs do %>
 
+    <%= f.input :t, as: :hidden, :input_html => { :value => params[:t] } %>
     <%= f.input :verdict_id, as: :hidden, :input_html => { :value => @verdict.id } %>
     <div class="input optional form-group" id="news_verdict_id_input">
       <span class="form-label">

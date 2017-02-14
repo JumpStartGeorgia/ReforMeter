@@ -33,7 +33,7 @@ class Admin::NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to admin_verdicts_path(v: @verdict.slug), notice: t('shared.msgs.success_created',
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: params[:news][:t]), notice: t('shared.msgs.success_created',
                             obj: t('activerecord.models.news', count: 1)) }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class Admin::NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to admin_verdicts_path(v: @verdict.slug), notice: t('shared.msgs.success_updated',
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug, t: params[:news][:t]), notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.news', count: 1)) }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class Admin::NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to admin_verdicts_url(v: @verdict.slug), notice: t('shared.msgs.success_destroyed',
+      format.html { redirect_to admin_verdicts_url(v: @verdict.slug, t: params[:news][:t]), notice: t('shared.msgs.success_destroyed',
                             obj: t('activerecord.models.news', count: 1)) }
     end
   end

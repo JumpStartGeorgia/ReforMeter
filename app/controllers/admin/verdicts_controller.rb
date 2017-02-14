@@ -72,10 +72,10 @@ class Admin::VerdictsController < ApplicationController
     @verdict.is_public = true
     respond_to do |format|
       if @verdict.save
-        format.html { redirect_to admin_verdicts_path, notice: t('shared.msgs.success_published',
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug), notice: t('shared.msgs.success_published',
                             obj: t('activerecord.models.verdict', count: 1)) }
       else
-        format.html { redirect_to admin_verdicts_path, alert: t('shared.msgs.fail_published',
+        format.html { redirect_to admin_verdicts_path(v: @verdict.slug), alert: t('shared.msgs.fail_published',
                             obj: t('activerecord.models.verdict', count: 1),
                             msg: @verdict.errors.full_messages.join('; ')) }
       end

@@ -30,15 +30,20 @@
 <% if @verdict.present? %>
 
 <div class='verdict-tabs'>
+  <%
+    reform_survey_active = params[:t].present? && params[:t].downcase == 'reform_survey'
+    overview_active = params[:t].nil? || params[:t].empty? || !reform_survey_active
+
+  %>
 
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#overview" aria-controls="home" role="tab" data-toggle="tab"><%=t 'activerecord.attributes.verdict.overview' %></a></li>
-    <li role="presentation"><a href="#reform-surveys" aria-controls="messages" role="tab" data-toggle="tab"><%=t 'activerecord.attributes.verdict.reform_surveys' %></a></li>
+    <li role="presentation" class="<%= overview_active == true ? 'active' : '' %>"><a href="#overview" aria-controls="home" role="tab" data-toggle="tab"><%=t 'activerecord.attributes.verdict.overview' %></a></li>
+    <li role="presentation" class="<%= reform_survey_active == true ? 'active' : '' %>"><a href="#reform-surveys" aria-controls="messages" role="tab" data-toggle="tab"><%=t 'activerecord.attributes.verdict.reform_surveys' %></a></li>
   </ul>
 
 
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane-verdicts tab-pane active" id="overview">
+    <div role="tabpanel" class="tab-pane-verdicts tab-pane <%= overview_active == true ? 'active' : '' %>" id="overview">
 
       <div class="row">
         <div class="col-md-4">
@@ -151,7 +156,7 @@
 
     </div>
 
-    <div role="tabpanel" class="tab-pane-verdicts tab-pane" id="reform-surveys">
+    <div role="tabpanel" class="tab-pane-verdicts tab-pane <%= reform_survey_active == true ? 'active' : '' %>" id="reform-surveys">
       <div><%= link_to t('shared.actions.add'),
                 new_admin_verdict_reform_survey_path(@verdict),
                 class: 'btn btn-primary btn-sm' %></div>
@@ -159,7 +164,7 @@
       <% if @verdict.reform_surveys.present? %>
         <div class="form-survey-header">
           <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-3">
               <strong><%= t('.table_header.reform') %></strong>
             </div>
             <div class="col-md-2">
@@ -167,6 +172,9 @@
             </div>
             <div class="col-md-2">
               <strong><%= t('.table_header.stakeholder') %></strong>
+            </div>
+            <div class="col-md-2">
+              <strong><%= t('.table_header.is_public') %></strong>
             </div>
             <div class="col-md-3">
               <strong><%=t 'shared.common.actions' %></strong>
@@ -176,7 +184,7 @@
         <% @verdict.reform_surveys.each do |reform_survey| %>
           <div class="form-survey-item">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-3">
                 <%= reform_survey.reform.name %>
               </div>
               <div class="col-md-2">
@@ -194,6 +202,23 @@
                 <span class='form-survey-item-icon'>
                   <%= generate_change_icon(reform_survey.stakeholder_overall_change) %>
                 </span>
+              </div>
+              <div class="col-md-2">
+                <%= format_boolean_flag(reform_survey.is_public) %>
+      
+                <% if reform_survey.is_public %>
+                  <%= link_to t('shared.actions.unpublish'),
+                          unpublish_admin_verdict_reform_survey_path(@verdict, reform_survey),
+                          method: :post,
+                          data: { confirm: t('shared.prompts.confirm') },
+                          class: 'btn btn-danger btn-sm' %>
+                <% else %>
+                  <%= link_to t('shared.actions.publish'),
+                          publish_admin_verdict_reform_survey_path(@verdict, reform_survey),
+                          method: :post,
+                          data: { confirm: t('shared.prompts.confirm') },
+                          class: 'btn btn-success btn-sm' %>
+                <% end %>
               </div>
               <div class="col-md-3">
                 <%= link_to t('shared.actions.view'),
@@ -234,10 +259,10 @@
                               admin_verdict_news_path(@verdict, news_item),
                               class: 'btn btn-default btn-sm' %>
                         <%= link_to t('shared.actions.edit'),
-                              edit_admin_verdict_news_path(@verdict, news_item),
+                              edit_admin_verdict_news_path(@verdict, news_item, t: 'reform_survey'),
                               class: 'btn btn-default btn-sm' %>
                         <%= link_to t('shared.actions.destroy'),
-                              admin_verdict_news_path(@verdict, news_item),
+                              admin_verdict_news_path(@verdict, news_item, t: 'reform_survey'),
                               method: :delete,
                               data: { confirm: t('shared.prompts.confirm') },
                               class: 'btn btn-danger btn-sm' %>

@@ -69,8 +69,8 @@ class Reform < AddMissingTranslation
     end
   end
 
-  def self.with_reform_survey(verdict_id)
-    includes(:reform_surveys).where(reform_surveys: { verdict_id: verdict_id })
+  def self.with_reform_survey (verdict_id, is_public=true)
+    includes(:reform_surveys).where(reform_surveys: { verdict_id: verdict_id, is_public: is_public })
   end
 
   # get all reforms that have survey data

@@ -43,6 +43,7 @@ en:
           government: Government
           reform: Reform
           stakeholder: Stakeholder
+          is_public: Is Public?
       form:
         score_explanation: All scores must be between 0 and 10.
         time_period_explanation: This date will be used to properly sort the verdicts in order.

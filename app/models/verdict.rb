@@ -318,7 +318,7 @@ class Verdict < ActiveRecord::Base
       # make sure survey data is in correct verdict order
       temp = []
       verdicts.each do |v|
-        s = surveys.select{|x| x.verdict_id == v.id}.first
+        s = options[:is_published] == true ? surveys.select{|x| x.verdict_id == v.id && x.is_public?}.first : surveys.select{|x| x.verdict_id == v.id}.first
         if s.present?
           temp << s
         elsif options[:verdict_ids]
@@ -337,7 +337,6 @@ class Verdict < ActiveRecord::Base
       hash[:categories] = verdicts.map{|x| x.title}
 
       # get the reform color
-      reform = Reform.find_by(id: reform_id)
       hash[:color] = reform.color.to_hash if reform
       hash[:id] = options[:id]
 

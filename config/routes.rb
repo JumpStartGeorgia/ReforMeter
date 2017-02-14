@@ -38,7 +38,12 @@ Rails.application.routes.draw do
 
       resources :verdicts, except: :show, constraints: { format: :html } do
         resources :news, except: :index, constraints: { format: :html }
-        resources :reform_surveys, except: :index, constraints: { format: :html }
+        resources :reform_surveys, except: :index, constraints: { format: :html } do
+          member do
+            post 'publish', constraints: { format: :html }
+            post 'unpublish', constraints: { format: :html }
+          end
+        end
         member do
           post 'publish', constraints: { format: :html }
           post 'unpublish', constraints: { format: :html }

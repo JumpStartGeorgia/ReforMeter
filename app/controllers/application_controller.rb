@@ -103,7 +103,7 @@ class ApplicationController < ActionController::Base
     }
   end
 
-  def set_reform_show_variables
+  def set_reform_show_variables(is_admin = false)
     @active_reforms = Reform.active_reforms_array
     @active_verdicts = Verdict.active_verdicts_array
     @methodology_government = PageContent.find_by(name: 'methodology_government')
@@ -123,6 +123,7 @@ class ApplicationController < ActionController::Base
         @reform.id,
         type: 'government',
         id: 'reform-government-history',
+        is_published: !is_admin,
         verdict_ids: @verdict_ids
       ),
       request.path
@@ -133,6 +134,7 @@ class ApplicationController < ActionController::Base
         @reform.id,
         type: 'stakeholder',
         id: 'reform-stakeholder-history',
+        is_published: !is_admin,
         verdict_ids: @verdict_ids
       ),
       request.path

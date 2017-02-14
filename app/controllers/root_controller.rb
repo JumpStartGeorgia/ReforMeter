@@ -183,7 +183,7 @@ class RootController < ApplicationController
     # @quarters = Quarter.published.recent
     @verdicts = Verdict.published.recent
     @reforms = Reform.with_survey_data.active.with_color.sorted
-    @reform_surveys = ReformSurvey.in_verdicts(@verdicts.map{|x| x.id}) if @verdicts.present?
+    @reform_surveys = ReformSurvey.in_verdicts(@verdicts.map{|x| x.id}).published if @verdicts.present?
 
     gon.chart_download = highchart_export_config
     gon.change_icons = view_context.change_icons
@@ -246,7 +246,7 @@ class RootController < ApplicationController
       @verdict = Verdict.published.friendly.find(params[:verdict_id])
       # @quarter = Quarter.published.with_expert_survey.friendly.find(params[:quarter_id])
       @reform = Reform.with_survey_data.active.with_color.friendly.find(params[:reform_id])
-      @reform_survey = ReformSurvey.for_reform(@reform.id).in_verdict(@verdict.id).first if @verdict && @reform
+      @reform_survey = ReformSurvey.for_reform(@reform.id).in_verdict(@verdict.id).published.first if @verdict && @reform
 
       if @reform.nil? || @verdict.nil? || @reform_survey.nil?
         redirect_to reforms_path,
@@ -306,7 +306,7 @@ class RootController < ApplicationController
       @active_verdicts = Verdict.active_verdicts_array
       @news = @verdict.news
       @reforms = Reform.with_survey_data.active.with_color.sorted
-      @reform_surveys = ReformSurvey.in_verdict(@verdict.id)
+      @reform_surveys = ReformSurvey.in_verdict(@verdict.id).published
       @methodology_government = PageContent.find_by(name: 'methodology_government')
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
 
