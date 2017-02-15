@@ -29,9 +29,6 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
         )
       }
     },
-    legend: {
-      enabled: false
-    },
     plotOptions: {
       areaspline: {
         color: '#f7d95c',
