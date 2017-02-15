@@ -32,7 +32,7 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
 
   function getChangeIconInSpan() {
     if (point.change) {
-      var icon = change_icon(point.change);
+      var icon = getChangeIcon(point.change);
 
       return '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
     } else {

@@ -117,7 +117,7 @@ function externalIndicatorChartHelpers(chartData) {
 
     function getChangeIconInSpan() {
       if ([-1, 0, 1].includes(pointData.point.change)) {
-        var icon = change_icon(
+        var icon = getChangeIcon(
           pointData.point.change
         );
 

@@ -19,7 +19,7 @@ function highchartsGaugeLabel(chartData, point, fontSize, args) {
   if (args.changeIcon === false) changeIcon = false;
 
   if (changeIcon && [-1, 0, 1].includes(chartData.change)) {
-    var icon = change_icon(chartData.change);
+    var icon = getChangeIcon(chartData.change);
 
     var changeIconStyles = [
       'vertical-align: middle;',

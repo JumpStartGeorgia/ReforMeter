@@ -40,7 +40,7 @@ function initializeIndexBox(chartDataIndexes, $index, use_decimals) {
     var value = indexNewDataPoint.y;
     var newValue = value ? use_decimals ? Number(Math.round(value+'e2')+'e-2') : Math.round(value) : 'N/A';
 
-    var newChangeIcon = change_icon(
+    var newChangeIcon = getChangeIcon(
       indexNewDataPoint.change
     );
 
