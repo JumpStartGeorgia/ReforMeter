@@ -73,7 +73,12 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       formatter: function() {
         indexBoxes.update(this);
 
-        return externalIndicatorChart.tooltipFormatter(this.points[0]);
+        return externalIndicatorChart.tooltipFormatter(
+          this.points[0],
+          {
+            showSeriesName: chartData.series.length > 1
+          }
+        );
       },
       style: {
         fontSize: '2em',

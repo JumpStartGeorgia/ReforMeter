@@ -71,7 +71,7 @@ function highchartsExternalIndicatorBar(chartData) {
         return externalIndicatorChart.tooltipFormatter(
           this,
           {
-            seriesName: chartData.series.length > 1
+            showSeriesName: chartData.series.length > 1
           }
         );
       },
