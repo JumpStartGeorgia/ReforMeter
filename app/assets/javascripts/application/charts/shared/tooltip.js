@@ -50,14 +50,19 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
 }
 
 function highchartTimeSeriesTooltipFormatter(chartData, options) {
-  var text = '';
-  var category = chartData.categories[this.x];
-  var header = '<b>' + category + '</b><br/>';
-  text += header;
+  var that = this;
 
-  for (var i = 0; i < this.points.length; i++) {
-    text += highchartTimeSeriesTooltipPointFormatter(this.points[i].point, options);
+  function getHeader() {
+    var category = chartData.categories[that.x];
+
+    return '<b>' + category + '</b><br/>';
   }
 
-  return text;
+  function getPoints() {
+    return that.points.map(function(point) {
+      return highchartTimeSeriesTooltipPointFormatter(point, options)
+    }).join('')
+  }
+
+  return getHeader() + getPoints();
 }
