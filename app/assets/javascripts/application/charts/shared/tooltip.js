@@ -1,12 +1,13 @@
 function highchartTimeSeriesTooltipPointFormatter(point, options) {
   if (!options) options = {};
 
-  // Use unit if specified, otherwise use empty string
-  var unit;
-  if (point.unit) {
-    unit = point.unit;
-  } else {
-    unit = '';
+  // Example of unit might be '%'
+  function getUnit() {
+    if (point.unit) {
+      return point.unit
+    } else {
+      return ''
+    }
   }
 
   var legendItem = '';
@@ -19,7 +20,7 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
     legendItem = '<svg width="50px" height="15px">' + legendItem[0].outerHTML + '</svg>';
   }
 
-  var pointScore = '<b>' + point.y + unit + '</b> ';
+  var pointScore = '<b>' + point.y + getUnit() + '</b> ';
 
   var name = '<span style="color: #66666d;">' + point.series.name + '</span>';
 
