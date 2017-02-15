@@ -27,14 +27,14 @@ ka:
     index:
       explanations:
         experts: წევრთა მონაცემების მართვა, მაგალითდ, სახელი, ბიოგრაფია და ფოტო.
-        external_indicators: Manage the external indciator settings and data.
+        external_indicators: მართე შენი გარე ინდიკატორების პარამენტრები და მონაცემები.
         page_contents: ისეთი კონტენტის მართვა, რომელიც ჩნდება შესახებ, მეთოდოლოგიისა და სხვა გვერდებზე.
         quarters: ისეთი მონაცემების მართვა, როგორიცაა, კვარტალური ანგარიში, საბჭოს წევრთა კვლევა, რეფორმის კითხვარები და ახალი ამბები.
         reform_colors: რეფორმების შესაძლო ფერების მართვა.
         reforms: ისეთი მონაცემების მართვა, როგორიცაა, სახელი, შეჯამება, მეთოდოლოგია, ფერი და მთავარ გვერდზე გამოტანა.
         users: იმის მართვა, თუ ვის აქვს გვერდზე მონაცემთა რედაქტირების უფლება.
-        reports: Upload reports the summarize what has happened during a time period.
-        verdicts: Manage the data for a time period like overall score, reform surveys, and news.
+        reports: ატვირთე რეპორტი რომ შეაჯამო რა მოხდა დროის ამ პერიოდში. 
+        verdicts: მართე ისეთი მონაცემები, დროის ამ პერიოდისთვის, როგროიცაა საერთო ქულა, რეფორმის კვლევა და სიახლეები.  
       title: ადმინის სექცია
     verdicts:
       index:
@@ -46,15 +46,15 @@ ka:
           is_public: არის თუ არა საჯარო?
       form:
         score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
-        time_period_explanation: This date will be used to properly sort the verdicts in order.
+        time_period_explanation: თარიღი გამოიყენება ვერდიქტების სწორად დალაგებისთვის. 
     reform_surveys:
       form:
         government_score_explanation: ყველა ქულა პროცენტია და უდნა იყოს 0-დან 100-მდე.
         stakeholder_score_explanation: ყველა ქულა უნდა იყოს 0-დან 10-მდე.
-        time_period_explanation: This date will be used to properly sort the surveys in order.
+        time_period_explanation: თარიღი გამოიყენება კვლევების სწორად დალაგებისთვის.
       show:
         title: 'რეფორმა: %{name}-ის %{time}-სთვის'
     reports:
       index:
-        view_en: "View English"
-        view_ka: "View Georgian"
+        view_en: "იხილეთ ინგლისური"
+        view_ka: "იხილეთ ქართული"

@@ -14,7 +14,7 @@ ka:
         details: დეტალები
         scores: ქულები
         summary: შეჯამება
-        overview: Overview
+        overview: მიმოხილვა
     errors:
       models:
         verdict:
@@ -37,5 +37,5 @@ ka:
               inclusion: უნდა იყოს 0-დან 10-მდე
     models:
       verdict:
-        one: ReformVerdict
-        other: ReformVerdicts
+        one: რეფორმვერდიქტი
+        other: რეფორმვერდიქტი

@@ -3,27 +3,28 @@ ka:
   activerecord:
     attributes:
       external_indicator:
-        chart_type: Chart Type
-        countries: Countries
-        description: Description
-        indicator_type: Indicator Type
-        indices: Indices
-        is_public: Is Public?
-        max: Max
-        min: Min
+        chart_type: გრაფიკის ტიპი
+        countries: ქვეყნები
+        description: აღწერა
+        indicator_type: ინდიკატორის ტიპი
+        indices: ინდექსები
+        is_public: საჯაროა?
+        max: მაქსიმუმი
+        min: მინიმუმი
         plot_bands: Plot Bands
-        range: Range
-        reforms: Reforms
-        scale_type: Scale Type
-        show_on_home_page: Show on Home Page?
-        subtitle: Subtitle
-        time_periods: Time Periods
-        title: Title
-        sort_order: Home Page Sort Order
-        use_decimals: Show Decimals in Value?
-        has_benchmark: Has Benchmark?
-        benchmark_title: Benchmark Name
+        range: არე
+        reforms: რეფორმები
+        scale_type: შკალის ტიპი
+        show_on_home_page: ვაჩვენოთ მთავარ გვერდზე?
+        subtitle: ტიტრები
+        time_periods: დროის პერიოდი
+        title: სათაური
+        sort_order: მთავარი გვერდის დალაგება 
+        use_decimals: ვაჩვენოთ ათწილადები? 
+        has_benchmark: აქვს ორიენტირები?
+        benchmark_title: ორიენტირის სახელები
     models:
       external_indicator:
-        one: External Indicator
-        other: External Indicators
+        one: გარე ინდიკატორი
+        other: გარე ინდიკატორები
+

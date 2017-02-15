@@ -3,11 +3,11 @@ ka:
   activerecord:
     attributes:
       external_indicator_datum:
-        change: Change
-        country_id: Country
-        index_id: Composite Index
-        value: Value
+        change: შეცვლა
+        country_id: ქვეყანა 
+        index_id: შედგენილი ინდექსი
+        value: ღირებულება
     models:
       external_indicator_datum:
-        one: Datum
-        other: Data
+        one: მოცემული სიდიდე
+        other: მონაცემი
