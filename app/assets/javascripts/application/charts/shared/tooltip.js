@@ -1,4 +1,4 @@
-function highchartTimeSeriesTooltipPointFormatter(pointData, chartData, options) {
+function getTooltipPointFormatter(pointData, chartData, options) {
   if (!options) options = {};
 
   function getLegendItem() {
@@ -59,7 +59,7 @@ function highchartTimeSeriesTooltipPointFormatter(pointData, chartData, options)
   );
 }
 
-function highchartTimeSeriesTooltipFormatter(tooltipData, chartData, options) {
+function getTooltipFormatter(tooltipData, chartData, options) {
   function getHeader() {
     var category = chartData.categories[tooltipData.x];
 
@@ -68,7 +68,7 @@ function highchartTimeSeriesTooltipFormatter(tooltipData, chartData, options) {
 
   function getPoints() {
     return tooltipData.points.map(function(pointData) {
-      return highchartTimeSeriesTooltipPointFormatter(pointData, chartData, options)
+      return getTooltipPointFormatter(pointData, chartData, options)
     }).join('')
   }
 
@@ -84,7 +84,7 @@ function getHighchartsTooltip(chartData, args) {
     formatter: function() {
       if (preFormatterCallback) preFormatterCallback(this)
 
-      return highchartTimeSeriesTooltipFormatter(this, chartData);
+      return getTooltipFormatter(this, chartData);
     },
     shared: true,
     useHTML: true
