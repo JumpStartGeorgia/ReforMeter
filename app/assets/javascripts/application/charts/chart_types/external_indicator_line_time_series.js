@@ -5,20 +5,7 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
   if (typeof(chartData.displayTitle) === 'undefined') chartData.displayTitle = true;
   if (typeof(chartData.displaySubtitle) === 'undefined') chartData.displaySubtitle = true;
 
-  var benchmarkSeries = chartData.series.filter(function(seriesObject) {
-    return seriesObject.isBenchmark
-  })[0]
-
-  if (benchmarkSeries) {
-    Object.assign(
-      benchmarkSeries,
-      {
-        color: '#3b2f76',
-        lineWidth: 4,
-        dashStyle: 'Solid'
-      }
-    )
-  }
+  styleBenchmarkLineIfExists(chartData)
 
   var options = {
     chart: {
@@ -54,14 +41,6 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
         }
       }
     ),
-    tooltip: {
-      formatter: function() {
-        return highchartTimeSeriesTooltipFormatter.call(
-          this,
-          chartData
-        );
-      }
-    },
     yAxis: {
       plotBands: externalIndicatorChart.plotBands(chartData.plot_bands, false),
       title: {

@@ -1,4 +1,4 @@
-function change_icon(change_number) {
+function getChangeIcon(change_number) {
   if (!gon.change_icons) {
     throw new Error('Change icons not available');
   }

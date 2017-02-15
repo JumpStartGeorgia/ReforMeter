@@ -14,6 +14,8 @@ function highchartsExternalIndicatorBar(chartData) {
     }
   }
 
+  styleBenchmarkLineIfExists(chartData)
+
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
@@ -42,10 +44,7 @@ function highchartsExternalIndicatorBar(chartData) {
       sourceWidth: 1410,
       sourceHeight: 600
     },
-    legend: {
-      align: 'right',
-      enabled: chartData.series.length > 1
-    },
+    legend: getHighchartsLegend(chartData),
     series: chartData.series,
     subtitle: externalIndicatorChart.subtitle(
       chartData.displaySubtitle ? chartData.subtitle : null,
@@ -62,25 +61,18 @@ function highchartsExternalIndicatorBar(chartData) {
         }
       }
     ),
-    tooltip: {
-      formatter: function() {
-        indexBoxes.update(this);
-
-        return externalIndicatorChart.tooltipFormatter(
-          this,
-          {
-            seriesName: chartData.series.length > 1
-          }
-        );
-      },
-      style: {
-        fontSize: '2em',
-        fontWeight: '600'
-      },
-      useHTML: true
-    },
+    tooltip: getHighchartsTooltip(chartData, {
+      preFormatterCallback: function(tooltipData) {
+        indexBoxes.update(tooltipData);
+      }
+    }),
     xAxis: {
-      categories: chartData.categories,
+      labels: {
+        enabled: true,
+        formatter: function () {
+          return chartData.categories[this.value];
+        }
+      },
       tickmarkPlacement: 'on'
     },
     yAxis: {
