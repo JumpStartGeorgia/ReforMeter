@@ -1,15 +1,6 @@
 function highchartTimeSeriesTooltipPointFormatter(point, options) {
   if (!options) options = {};
 
-  // Example of unit might be '%'
-  function getUnit() {
-    if (point.unit) {
-      return point.unit
-    } else {
-      return ''
-    }
-  }
-
   function getLegendItem() {
     if (point.series.legendItem) {
       legendItem = $(point.series.legendItem.parentGroup.element).clone();
@@ -22,7 +13,16 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
     }
   }
 
-  function getPointScore() {
+  // Example of unit might be '%'
+  function getUnit() {
+    if (point.unit) {
+      return point.unit
+    } else {
+      return ''
+    }
+  }
+
+  function getStyledValue() {
     return '<b>' + point.y + getUnit() + '</b> ';
   }
 
@@ -45,7 +45,7 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
   }
 
   return surroundInParagraph(
-    getLegendItem() + getPointScore() + getChangeIconInSpan() + getName()
+    getLegendItem() + getStyledValue() + getChangeIconInSpan() + getName()
   );
 }
 
