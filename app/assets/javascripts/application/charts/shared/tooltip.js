@@ -74,3 +74,19 @@ function highchartTimeSeriesTooltipFormatter(tooltipData, chartData, options) {
 
   return getHeader() + getPoints();
 }
+
+function getHighchartsTooltip(chartData, args) {
+  args = args || {}
+
+  var preFormatterCallback = args.preFormatterCallback
+
+  return {
+    formatter: function() {
+      if (preFormatterCallback) preFormatterCallback(this)
+
+      return highchartTimeSeriesTooltipFormatter(this, chartData);
+    },
+    shared: true,
+    useHTML: true
+  }
+}

@@ -114,12 +114,6 @@ function historyTimeSeriesOptions(chartData) {
       }
     },
     series: chartData.series,
-    tooltip: {
-      formatter: function() {
-        return highchartTimeSeriesTooltipFormatter(this, chartData);
-      },
-      shared: true,
-      useHTML: true
-    }
+    tooltip: getHighchartsTooltip(chartData)
   };
 }

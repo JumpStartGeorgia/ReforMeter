@@ -64,15 +64,11 @@ function highchartsExternalIndicatorBar(chartData) {
         }
       }
     ),
-    tooltip: {
-      formatter: function() {
-        indexBoxes.update(this);
-
-        return highchartTimeSeriesTooltipFormatter(this, chartData);
-      },
-      shared: true,
-      useHTML: true
-    },
+    tooltip: getHighchartsTooltip(chartData, {
+      preFormatterCallback: function(tooltipData) {
+        indexBoxes.update(tooltipData);
+      }
+    }),
     xAxis: {
       labels: {
         enabled: true,
