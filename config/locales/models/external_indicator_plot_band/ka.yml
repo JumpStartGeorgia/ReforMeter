@@ -3,9 +3,9 @@ ka:
   activerecord:
     attributes:
       external_indicator_plot_band:
-        from: From
-        name: Name
-        to: To
+        from: დან
+        name: სახელი
+        to: მდე
     models:
       external_indicator_plot_band:
         one: Plot Band

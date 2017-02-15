@@ -3,11 +3,11 @@ ka:
   activerecord:
     attributes:
       external_indicator_time:
-        name: Name
-        overall_change: Overall Change
-        overall_value: Overall Value
-        sort_order: Sort Order
+        name: სახელი
+        overall_change: საერთო ცვლილება
+        overall_value: საერთო ღირებულება
+        sort_order: დალაგების მიმდევრობა
     models:
       external_indicator_time:
-        one: Time Period
-        other: Time Periods
+        one: დროის პერიოდი
+        other: დროის პერიოდები

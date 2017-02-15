@@ -2,13 +2,13 @@
 ka:
   activerecord:
     attributes:
-      external_indicator_index:
-        change_multiplier: Change Multiplier
-        description: Description
-        name: Name
-        short_name: Short Name
-        sort_order: Sort Order
+     external_indicator_index:
+        change_multiplier: შეცვალე კოეფიციენტი
+        description: აღწერა
+        name: სახელი
+        short_name: შემოკლებული სახელი
+        sort_order: დალაგების მიმდევრობა
     models:
       external_indicator_index:
-        one: Composite Index
-        other: Composite Indices
+        one: შედგენილი ინდექსი
+        other: შედგენილი ინდექსები

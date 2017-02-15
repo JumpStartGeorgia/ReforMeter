@@ -44,7 +44,7 @@ ka:
         chart: ქრონოლოგია
         methodology: მეთოდოლოგია
         table: შედეგები
-      no_data: Sorry, but at this time there is no reform data on record.
+      no_data: ბოდიში, მაგრამ ამ დროისთვის რეფორმის შესახებ მონაცემები არ არის.
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
       table_header:
         government: მთავრობა
@@ -55,17 +55,17 @@ ka:
       title: რეფორმები
     reform_verdicts:
       header:
-        chart: Timeline
-        table: Results
+        chart: თაიმლაინი
+        table: შედეგები
       no_data: ბოდიში, ამ დროისთვის რეფორმის განაჩენი არ ასრებობს. 
       table_header:
-        overall: Overall Score
-        summary: Summary
-        time: Time Period
+        overall: საერთო ქულა
+        summary: შეჯამება
+        time: დროის პერიოდი
       title: რეფორმვერდიქტი
     reform_verdict_show:
       gauge_group:
-        title: ReformVerdict for %{time}
+        title: რეფორმვერდიქტის %{time}
       title: "რეფორმვერდიქტი: %{title}"
     # review_board:
     #   header:

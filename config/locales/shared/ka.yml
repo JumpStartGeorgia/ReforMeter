@@ -14,7 +14,7 @@ ka:
       edit: რედაქტირება
       load: ჩატვირთვა
       log_in: შესვლა
-      manage_data: Manage Data
+      manage_data: მონაცემების მართვა
       publish: გამოქვეყნება
       unpublish: გამოქვეყნების გაუქმება
       view: ნახვა
@@ -74,7 +74,7 @@ ka:
         subtitle_stakeholder: შეფასებების ქრონიკა
         title: 'რეფორმა: %{name}'
       verdict:
-        title: ReformVerdict History
+        title: რეფორმვერდიქტის ისტორია
     common:
       account: ანგარიში
       actions: მოქმედებები
@@ -123,8 +123,8 @@ ka:
       quarters: მეოთხედები
       reform_colors: რეფორმის ფერები
       reforms: რეფორმები
-      reports: Reports
-      verdicts: ReformVerdicts
+      reports: რეპორტები
+      verdicts:  რეფორმვერდიქტები
     locale:
       long:
         en: English
@@ -149,7 +149,7 @@ ka:
         government_history: მთავრობის ანგარიშების ქრონიკა
         government_summary: მთავრობის მიხედვით
         methodology: მეთოდოლოგია
-        stakeholders: Stakeholders
+        stakeholders: დაინტერესებული მხარეები
         stakeholder_history: შეფასებების ქრონიკა
         stakeholder_summary: დაინტერესებულ მხარეთა მიხედვით
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
@@ -161,10 +161,10 @@ ka:
       executive_team: აღმასრულებელი გუნდი
     verdict_show:
       header:
-        chart: ReformVerdict History
+        chart: რეფორმვერდიქტის ისტორია
         methodology: მეთოდოლოგია
-        table: Reform Results
-      no_data: Sorry, but at this time there is no reform data on record.
+        table: რეფორმის შედეგები
+      no_data: ბოდიში, ამ დროისთვის რეფორმის შესახებ მონაცემები არ არის. 
       no_methodology: არ არსებობს მეთოდოლოგიის ჩანაწერი.
       table_header:
         government: მთავრობა

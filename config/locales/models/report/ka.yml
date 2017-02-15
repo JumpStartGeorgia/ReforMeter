@@ -3,11 +3,11 @@ ka:
   activerecord:
     attributes:
       report:
-        title: Title
-        report: Report
-        is_active: Is Active?
-        report_date: Date Published
+        title: სათაური
+        report: რეპორტი
+        is_active: აქტიურია?
+        report_date: გამოქვეყნების თარიღი
     models:
       report:
-        one: Report
-        other: Reports
+        one: რეპორტი
+        other: რეპორტები
