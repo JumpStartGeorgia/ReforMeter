@@ -1,9 +1,9 @@
-function highchartTimeSeriesTooltipPointFormatter(point, chartData, options) {
+function highchartTimeSeriesTooltipPointFormatter(pointData, chartData, options) {
   if (!options) options = {};
 
   function getLegendItem() {
-    if (chartData.series.length > 1 && point.series.legendItem) {
-      legendItem = $(point.series.legendItem.parentGroup.element).clone();
+    if (chartData.series.length > 1 && pointData.series.legendItem) {
+      legendItem = $(pointData.series.legendItem.parentGroup.element).clone();
       legendItem.children().remove('text');
       legendItem.attr('transform', '');
 
@@ -15,8 +15,8 @@ function highchartTimeSeriesTooltipPointFormatter(point, chartData, options) {
 
   // Example of unit might be '%'
   function getUnit() {
-    if (point.unit) {
-      return point.unit
+    if (pointData.unit) {
+      return pointData.unit
     } else {
       return ''
     }
@@ -24,9 +24,9 @@ function highchartTimeSeriesTooltipPointFormatter(point, chartData, options) {
 
   function getValue() {
     if (chartData.use_decimals) {
-      return Number(Math.round(point.y + 'e2') + 'e-2')
+      return Number(Math.round(pointData.y + 'e2') + 'e-2')
     } else {
-      return Math.round(point.y)
+      return Math.round(pointData.y)
     }
   }
 
@@ -35,12 +35,14 @@ function highchartTimeSeriesTooltipPointFormatter(point, chartData, options) {
   }
 
   function getName() {
-    return '<span style="color: #66666d;">' + point.series.name + '</span>';
+    return '<span style="color: #66666d;">' + pointData.series.name + '</span>';
   }
 
   function getChangeIconInSpan() {
-    if (point.change) {
-      var icon = getChangeIcon(point.change);
+    var changeNum = pointData.point.change
+
+    if (changeNum) {
+      var icon = getChangeIcon(changeNum);
 
       return '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
     } else {
@@ -57,16 +59,16 @@ function highchartTimeSeriesTooltipPointFormatter(point, chartData, options) {
   );
 }
 
-function highchartTimeSeriesTooltipFormatter(selectedPoints, chartData, options) {
+function highchartTimeSeriesTooltipFormatter(tooltipData, chartData, options) {
   function getHeader() {
-    var category = chartData.categories[selectedPoints.x];
+    var category = chartData.categories[tooltipData.x];
 
     return '<b>' + category + '</b><br/>';
   }
 
   function getPoints() {
-    return selectedPoints.points.map(function(point) {
-      return highchartTimeSeriesTooltipPointFormatter(point, chartData, options)
+    return tooltipData.points.map(function(pointData) {
+      return highchartTimeSeriesTooltipPointFormatter(pointData, chartData, options)
     }).join('')
   }
 
