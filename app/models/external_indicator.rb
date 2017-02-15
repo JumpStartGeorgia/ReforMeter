@@ -361,12 +361,15 @@ class ExternalIndicator < AddMissingTranslation
           data << {y: nil, change: nil}
         end
       end
-      hash[:series] << {data: data}
+      hash[:series] << {
+        name: I18n.t('shared.categories.overall'),
+        data: data
+      }
 
       # if this indciator has a benchmark, add it
       if self.has_benchmark?
         hash[:series] << {
-          name: self.benchmark_title, 
+          name: self.benchmark_title,
           data: time.map{|x| {y: x.data.select{|x| x.is_benchmark}.first.value.to_f, change: x.data.select{|x| x.is_benchmark}.first.change} },
           isBenchmark: true
         }
