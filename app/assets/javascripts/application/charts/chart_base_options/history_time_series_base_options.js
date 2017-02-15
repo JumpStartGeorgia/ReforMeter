@@ -116,7 +116,7 @@ function historyTimeSeriesOptions(chartData) {
     series: chartData.series,
     tooltip: {
       formatter: function() {
-        return highchartTimeSeriesTooltipFormatter.call(this, chartData);
+        return highchartTimeSeriesTooltipFormatter(this, chartData);
       },
       shared: true,
       useHTML: true
