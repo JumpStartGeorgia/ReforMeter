@@ -30,7 +30,7 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
     return '<span style="color: #66666d;">' + point.series.name + '</span>';
   }
 
-  function getIconInSpan() {
+  function getChangeIcon() {
     if (point.change) {
       var icon = change_icon(point.change);
 
@@ -45,7 +45,7 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
   }
 
   return surroundInParagraph(
-    getLegendItem() + getPointScore() + getIconInSpan() + getName()
+    getLegendItem() + getPointScore() + getChangeIcon() + getName()
   );
 }
 

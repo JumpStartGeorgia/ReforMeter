@@ -115,7 +115,7 @@ function externalIndicatorChartHelpers(chartData) {
       return '<span style="vertical-align: middle;">' + getValue() + '</span>';
     }
 
-    function getIconInSpan() {
+    function getChangeIconInSpan() {
       if ([-1, 0, 1].includes(pointData.point.change)) {
         var icon = change_icon(
           pointData.point.change
@@ -127,7 +127,7 @@ function externalIndicatorChartHelpers(chartData) {
       }
     }
 
-    return getSeriesName() + getStyledValue() + getIconInSpan();
+    return getSeriesName() + getStyledValue() + getChangeIconInSpan();
   }
 
   externalIndicatorChart.subtitle = function(text, customOptions) {
