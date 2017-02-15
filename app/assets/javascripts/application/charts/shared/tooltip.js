@@ -10,36 +10,43 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
     }
   }
 
-  var legendItem = '';
+  function getLegendItem() {
+    if (point.series.legendItem) {
+      legendItem = $(point.series.legendItem.parentGroup.element).clone();
+      legendItem.children().remove('text');
+      legendItem.attr('transform', '');
 
-  if (point.series.legendItem) {
-    legendItem = $(point.series.legendItem.parentGroup.element).clone();
-    legendItem.children().remove('text');
-    legendItem.attr('transform', '');
-
-    legendItem = '<svg width="50px" height="15px">' + legendItem[0].outerHTML + '</svg>';
+      return '<svg width="50px" height="15px">' + legendItem[0].outerHTML + '</svg>';
+    } else {
+      return ''
+    }
   }
 
-  var pointScore = '<b>' + point.y + getUnit() + '</b> ';
-
-  var name = '<span style="color: #66666d;">' + point.series.name + '</span>';
-
-  var iconInSpan = '';
-
-  if (point.change) {
-    var icon = change_icon(point.change);
-
-    iconInSpan = '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
+  function getPointScore() {
+    return '<b>' + point.y + getUnit() + '</b> ';
   }
 
-  function in_paragraph(content) {
+  function getName() {
+    return '<span style="color: #66666d;">' + point.series.name + '</span>';
+  }
+
+  function getIconInSpan() {
+    if (point.change) {
+      var icon = change_icon(point.change);
+
+      return '<span style="width: 14px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
+    } else {
+      return ''
+    }
+  }
+
+  function surroundInParagraph(content) {
     return '<p style="margin: 5px 0;">' + content + '</p>';
   }
 
-
-  var fullLine = in_paragraph(legendItem + pointScore + iconInSpan + name);
-
-  return fullLine;
+  return surroundInParagraph(
+    getLegendItem() + getPointScore() + getIconInSpan() + getName()
+  );
 }
 
 function highchartTimeSeriesTooltipFormatter(chartData, options) {
