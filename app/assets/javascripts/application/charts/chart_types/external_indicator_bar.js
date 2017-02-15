@@ -14,6 +14,8 @@ function highchartsExternalIndicatorBar(chartData) {
     }
   }
 
+  styleBenchmarkLineIfExists(chartData)
+
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
