@@ -1,7 +1,10 @@
+$bg_image_header_width: 1413px;
+
 .topImageContainer {
   background-image: image-url('bg_img_header.jpg');
   background-color: $color-grey-background;
   background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
   color: white;
 
@@ -13,6 +16,7 @@
 .topImageContainer.mod-homepage {
   background-image: image-url('bg_img_home.jpg');
   background-position: left top;
+  background-size: initial;
   height: initial;
   display: flex;
   flex-direction: column;
@@ -23,5 +27,9 @@
 
   @media (min-width: $widthHomepageLinksHorizontal) {
     padding-bottom: 30px + $outerHeightHomepageBigLinks/2;
+  }
+
+  @media (min-width: $bg_image_header_width) {
+    background-size: cover;
   }
 }
