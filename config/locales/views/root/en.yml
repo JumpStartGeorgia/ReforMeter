@@ -9,6 +9,8 @@ en:
       title: About
       no_steering_committee: There are no steering committee members on record.
       no_executive_team: There are no executive team members on record.
+      steering_committee: Steering Committee
+      executive_team: Executive Team
     download_data_and_reports:
       choose: Choose
       download: Download
