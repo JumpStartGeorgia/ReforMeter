@@ -41,14 +41,6 @@ function highchartsExternalIndicatorLineTimeSeries(chartData) {
         }
       }
     ),
-    tooltip: {
-      formatter: function() {
-        return highchartTimeSeriesTooltipFormatter.call(
-          this,
-          chartData
-        );
-      }
-    },
     yAxis: {
       plotBands: externalIndicatorChart.plotBands(chartData.plot_bands, false),
       title: {

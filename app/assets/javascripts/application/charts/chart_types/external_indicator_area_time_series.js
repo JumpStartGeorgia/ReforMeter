@@ -29,9 +29,6 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
         )
       }
     },
-    legend: {
-      enabled: false
-    },
     plotOptions: {
       areaspline: {
         color: '#f7d95c',
@@ -69,18 +66,11 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
         }
       }
     ),
-    tooltip: {
-      formatter: function() {
-        indexBoxes.update(this);
-
-        return externalIndicatorChart.tooltipFormatter(this.points[0]);
-      },
-      style: {
-        fontSize: '2em',
-        fontWeight: '600'
-      },
-      useHTML: true
-    },
+    tooltip: getHighchartsTooltip(chartData, {
+      preFormatterCallback: function(tooltipData) {
+        indexBoxes.update(tooltipData);
+      }
+    }),
     yAxis: {
       min: chartData.min,
       max: chartData.max,

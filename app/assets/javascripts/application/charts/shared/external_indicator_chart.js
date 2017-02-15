@@ -92,31 +92,6 @@ function externalIndicatorChartHelpers(chartData) {
     return options;
   }
 
-  externalIndicatorChart.tooltipFormatter = function(pointData, args) {
-    if (!args) args = {};
-
-    var seriesName = '';
-
-    if (args.seriesName) {
-      seriesName = pointData.series.name + '</br>';
-    }
-
-    var y = chartData.use_decimals ? Number(Math.round(pointData.y+'e2')+'e-2') : Math.round(pointData.y)
-    var value = '<span style="vertical-align: middle;">' + y + '</span>';
-
-    var iconInSpan = '';
-
-    if ([-1, 0, 1].includes(pointData.point.change)) {
-      var icon = change_icon(
-        pointData.point.change
-      );
-
-      iconInSpan = '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
-    }
-
-    return seriesName + value + iconInSpan;
-  }
-
   externalIndicatorChart.subtitle = function(text, customOptions) {
     var options = {
       align: 'left',

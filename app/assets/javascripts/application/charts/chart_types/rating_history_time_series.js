@@ -16,9 +16,6 @@ function ratingHistoryTimeSeriesOptions(chartData) {
         }
       }
     },
-    legend: {
-      enabled: chartData.series.length > 1
-    },
     yAxis: {
       min: 0,
       max: 10,
