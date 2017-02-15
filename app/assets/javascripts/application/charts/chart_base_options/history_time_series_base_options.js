@@ -75,13 +75,7 @@ function historyTimeSeriesOptions(chartData) {
       tickmarkPlacement: 'on',
       type: 'datetime'
     },
-    legend: {
-      align: 'right',
-      symbolWidth: 40,
-      itemStyle: {
-        fontWeight: '400'
-      }
-    },
+    legend: getHighchartsLegend(chartData),
     yAxis: {
       minorGridLineDashStyle: 'dot',
       gridLineDashStyle: 'dot',

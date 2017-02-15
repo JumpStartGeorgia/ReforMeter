@@ -44,10 +44,7 @@ function highchartsExternalIndicatorBar(chartData) {
       sourceWidth: 1410,
       sourceHeight: 600
     },
-    legend: {
-      align: 'right',
-      enabled: chartData.series.length > 1
-    },
+    legend: getHighchartsLegend(chartData),
     series: chartData.series,
     subtitle: externalIndicatorChart.subtitle(
       chartData.displaySubtitle ? chartData.subtitle : null,
