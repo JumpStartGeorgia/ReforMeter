@@ -8,6 +8,8 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
   if (typeof(chartData.displayTitle) === 'undefined') chartData.displayTitle = true;
   if (typeof(chartData.displaySubtitle) === 'undefined') chartData.displaySubtitle = true;
 
+  styleBenchmarkLineIfExists(chartData)
+
   var options = {
     chart: {
       // Makes room for the yAxis plot band labels
