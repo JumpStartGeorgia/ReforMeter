@@ -31,7 +31,7 @@ page_title t('.title')
 
     <section class='contentSection'>
 
-      <header class='contentSection-header'>
+      <header class='contentSection-header mod-no-padding'>
 
         <ul class='tabList mod-header js-act-as-tab-list'>
 
@@ -61,11 +61,11 @@ page_title t('.title')
 
         <div class='tabContent js-act-as-tab-content'>
 
-          <div class='tabContent-panel is-selected mod-content-padding js-act-as-tab-content-panel' id='methodology'>
+          <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='methodology'>
             <%= simple_format_no_tags(@methodology_general.content) %>
           </div>
 
-          <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='steering-committee'>
+          <div class='tabContent-panel js-act-as-tab-content-panel' id='steering-committee'>
             <ul class='expertList'>
 
               <% if @steering_committee.each do |expert| %>
@@ -110,7 +110,7 @@ page_title t('.title')
             </ul>
           </div>
 
-          <div class='tabContent-panel mod-content-padding js-act-as-tab-content-panel' id='executive-team'>
+          <div class='tabContent-panel js-act-as-tab-content-panel' id='executive-team'>
             <ul class='expertList'>
 
               <% if @executive_team.each do |expert| %>
