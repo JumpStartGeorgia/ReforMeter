@@ -92,44 +92,6 @@ function externalIndicatorChartHelpers(chartData) {
     return options;
   }
 
-  externalIndicatorChart.tooltipFormatter = function(pointData, args) {
-    if (!args) args = {};
-
-    function getSeriesName() {
-      if (args.showSeriesName) {
-        return pointData.series.name + '</br>';
-      } else {
-        return ''
-      }
-    }
-
-    function getValue() {
-      if (chartData.use_decimals) {
-        return Number(Math.round(pointData.y+'e2')+'e-2')
-      } else {
-        return Math.round(pointData.y)
-      }
-    }
-
-    function getStyledValue() {
-      return '<span style="vertical-align: middle;">' + getValue() + '</span>';
-    }
-
-    function getChangeIconInSpan() {
-      if ([-1, 0, 1].includes(pointData.point.change)) {
-        var icon = getChangeIcon(
-          pointData.point.change
-        );
-
-        return '<span style="width: 20px; display: inline-block; vertical-align: middle;">' + icon + '</span>';
-      } else {
-        return ''
-      }
-    }
-
-    return getSeriesName() + getStyledValue() + getChangeIconInSpan();
-  }
-
   externalIndicatorChart.subtitle = function(text, customOptions) {
     var options = {
       align: 'left',
