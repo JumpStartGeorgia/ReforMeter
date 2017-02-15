@@ -70,17 +70,9 @@ function highchartsExternalIndicatorAreaTimeSeries(chartData) {
       formatter: function() {
         indexBoxes.update(this);
 
-        return externalIndicatorChart.tooltipFormatter(
-          this.points[0],
-          {
-            showSeriesName: chartData.series.length > 1
-          }
-        );
+        return highchartTimeSeriesTooltipFormatter(this, chartData);
       },
-      style: {
-        fontSize: '2em',
-        fontWeight: '600'
-      },
+      shared: true,
       useHTML: true
     },
     yAxis: {

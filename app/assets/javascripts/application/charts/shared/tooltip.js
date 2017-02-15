@@ -1,8 +1,8 @@
-function highchartTimeSeriesTooltipPointFormatter(point, options) {
+function highchartTimeSeriesTooltipPointFormatter(point, chartData, options) {
   if (!options) options = {};
 
   function getLegendItem() {
-    if (point.series.legendItem) {
+    if (chartData.series.length > 1 && point.series.legendItem) {
       legendItem = $(point.series.legendItem.parentGroup.element).clone();
       legendItem.children().remove('text');
       legendItem.attr('transform', '');
@@ -22,8 +22,16 @@ function highchartTimeSeriesTooltipPointFormatter(point, options) {
     }
   }
 
+  function getValue() {
+    if (chartData.use_decimals) {
+      return Number(Math.round(point.y + 'e2') + 'e-2')
+    } else {
+      return Math.round(point.y)
+    }
+  }
+
   function getStyledValue() {
-    return '<b>' + point.y + getUnit() + '</b> ';
+    return '<b>' + getValue() + getUnit() + '</b> ';
   }
 
   function getName() {
@@ -58,7 +66,7 @@ function highchartTimeSeriesTooltipFormatter(selectedPoints, chartData, options)
 
   function getPoints() {
     return selectedPoints.points.map(function(point) {
-      return highchartTimeSeriesTooltipPointFormatter(point, options)
+      return highchartTimeSeriesTooltipPointFormatter(point, chartData, options)
     }).join('')
   }
 
