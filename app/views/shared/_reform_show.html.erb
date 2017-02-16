@@ -174,9 +174,9 @@ show_admin_links ||= false
 
 <div class='contentSection mod-remove-above-margin'>
 
-  <header class='contentSection-header mod-no-padding'>
+  <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
 
-    <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
+    <header class='contentSection-header mod-no-padding'>
 
       <ul class='tabList mod-header js-act-as-tab-list'>
 
@@ -194,19 +194,23 @@ show_admin_links ||= false
 
       </ul>
 
-    <% else %>
+    </header>
+
+  <% else %>
+
+    <header class='contentSection-header'>
 
       <h2 class='heading'>
         <%= t('.header.methodology') %>
       </h2>
 
-    <% end %>
+    </header>
 
-  </header>
+  <% end %>
 
-  <div class='contentSection-body'>
+  <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
 
-    <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
+    <div class='contentSection-body mod-no-top-border'>
 
       <div class="tabContent js-act-as-tab-content">
 
@@ -237,7 +241,11 @@ show_admin_links ||= false
 
       </div>
 
-    <% else %>
+    </div>
+
+  <% else %>
+
+    <div class='contentSection-body'>
 
       <% if @methodology_government.present? %>
         <div>
@@ -249,9 +257,9 @@ show_admin_links ||= false
         </p>
       <% end %>
 
-    <% end %>
+    </div>
 
-  </div>
+  <% end %>
 
 </div>
 
@@ -314,21 +322,6 @@ show_admin_links ||= false
           </div>
         <% end %>
 
-        <section>
-
-          <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
-
-
-          <% else %>
-
-            <h2 class='heading'>
-              <%= t('.header.methodology') %>
-            </h2>
-
-          <% end %>
-
-        </section>
-
       </div>
 
     </div>
@@ -337,45 +330,41 @@ show_admin_links ||= false
 
       <header class='contentSection-header mod-no-padding'>
 
-        <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
+        <ul class='tabList mod-header js-act-as-tab-list'>
 
-          <ul class='tabList mod-header js-act-as-tab-list'>
+          <% @has_verdicts = @verdict_ids.present? && @verdict_ids.length > 1 %>
+
+          <% if @has_verdicts %>
 
             <li class='tabList-item'>
-              <button class='tabList-item-button mod-primary is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
+              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
                 <%= t('.header.stakeholder_history') %>
               </button>
             </li>
 
-            <li class='tabList-item'>
-              <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_methodology'>
-                <%= t('.header.methodology') %>
-              </button>
-            </li>
+          <% end %>
 
-            <li class='tabList-item'>
-              <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholders'>
-                <%= t('.header.stakeholders') %>
-              </button>
-            </li>
+          <li class='tabList-item'>
+            <button class='tabList-item-button <%= 'is-selected' unless @has_verdicts %> js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_methodology'>
+              <%= t('.header.methodology') %>
+            </button>
+          </li>
 
-          </ul>
+          <li class='tabList-item'>
+            <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholders'>
+              <%= t('.header.stakeholders') %>
+            </button>
+          </li>
 
-        <% else %>
-
-          <h2 class='heading'>
-            <%= t('.header.methodology') %>
-          </h2>
-
-        <% end %>
+        </ul>
 
       </header>
 
-      <% if @verdict_ids.present? && @verdict_ids.length > 1 %>
+      <div class='contentSection-body mod-no-top-border'>
 
-        <div class='contentSection-body mod-no-top-border'>
+        <div class="tabContent js-act-as-tab-content">
 
-          <div class="tabContent js-act-as-tab-content">
+          <% if @has_verdicts %>
 
             <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='stakeholder_history_chart'>
 
@@ -390,77 +379,61 @@ show_admin_links ||= false
 
             </div>
 
-            <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholder_methodology'>
-              <% if @methodology_stakeholder %>
-                <div>
-                  <%= simple_format_no_tags(@methodology_stakeholder.content) %>
-                </div>
-              <% else %>
+          <% end %>
+
+          <div class='tabContent-panel <%= 'is-selected' unless @has_verdicts %> js-act-as-tab-content-panel' id='stakeholder_methodology'>
+            <% if @methodology_stakeholder %>
+              <div>
+                <%= simple_format_no_tags(@methodology_stakeholder.content) %>
+              </div>
+            <% else %>
+              <p>
+               <%= t('.no_methodology') %>
+              </p>
+            <% end %>
+          </div>
+
+          <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholders'>
+            <ul class='expertList'>
+
+              <% if @stakeholders.each do |expert| %>
+
+                <li class='expertList-item js-act-as-expert-item'>
+
+                  <div>
+
+                    <h4 class='expertList-item-heading'>
+                      <%= expert.name %>
+                    </h4>
+
+                    <% if expert.bio %>
+
+                      <div class='expertList-item-description'>
+
+                        <%= simple_format(expert.bio) %>
+
+                      </div>
+
+                    <% end %>
+
+                  </div>
+
+                </li>
+
+              <% end.empty? %>
+
                 <p>
-                 <%= t('.no_methodology') %>
+                 <%= t('.no_stakeholders') %>
                 </p>
+
               <% end %>
-            </div>
 
-            <div class='tabContent-panel js-act-as-tab-content-panel' id='stakeholders'>
-              <ul class='expertList'>
-
-                <% if @stakeholders.each do |expert| %>
-
-                  <li class='expertList-item js-act-as-expert-item'>
-
-                    <div>
-
-                      <h4 class='expertList-item-heading'>
-                        <%= expert.name %>
-                      </h4>
-
-                      <% if expert.bio %>
-
-                        <div class='expertList-item-description'>
-
-                          <%= simple_format(expert.bio) %>
-
-                        </div>
-
-                      <% end %>
-
-                    </div>
-
-                  </li>
-
-                <% end.empty? %>
-
-                  <p>
-                   <%= t('.no_stakeholders') %>
-                  </p>
-
-                <% end %>
-
-              </ul>
-            </div>
-
+            </ul>
           </div>
 
         </div>
 
-      <% else %>
-
-        <div class='contentSection-body'>
-
-          <% if @methodology_stakeholder %>
-            <div>
-              <%= simple_format_no_tags(@methodology_stakeholder.content) %>
-            </div>
-          <% else %>
-            <p>
-             <%= t('.no_methodology') %>
-            </p>
-          <% end %>
-
-        </div>
-
-      <% end %>
+      </div>
 
     </div>
 
