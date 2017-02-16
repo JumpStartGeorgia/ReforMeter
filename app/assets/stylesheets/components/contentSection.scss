@@ -110,6 +110,7 @@ $triangle-horizontal-text-offset: $triangle-primary-dimension * 2;
     > .heading {
       padding-left: $triangle-horizontal-text-offset;
       position: relative;
+      text-align: left;
 
       // Triangle icon pointing down
       &:before {
