@@ -11,6 +11,7 @@
     padding: 22px $padding-main-content;
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     @media (min-width: $widthHeaderControlsBecomeHorizontal) {
       flex-direction: row;
@@ -19,16 +20,17 @@
     }
   }
 
-    .contentSection-header-button {
+  button.contentSection-header {
+    @extend .contentSection-header;
 
-      &:hover {
-        color: $color-brand;
+    &:hover {
+      color: $color-brand;
 
-        & > .heading {
-          color: inherit;
-        }
+      & > .heading {
+        color: inherit;
       }
     }
+  }
 
     .contentSection-header-title {
     }
