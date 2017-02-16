@@ -29,135 +29,137 @@ page_title t('.title')
 
   <div class='aboutPage-contentSidebarContainer-content'>
 
-    <section class='contentSection'>
+    <section class='contentSection mod-accordion js-accordion'>
 
-      <header class='contentSection-header mod-no-padding'>
+      <button class='contentSection-header js-accordion-toggle-button'>
 
-        <ul class='tabList mod-header js-act-as-tab-list'>
+        <h2 class='heading'>
+          <%= t('.methodology') %>
+        </h2>
 
-          <li class='tabList-item'>
-            <button class='tabList-item-button js-act-as-tab-list-button is-selected' data-selects-tab-content-panel-id='methodology'>
-              <%= t('.methodology') %>
-            </button>
-          </li>
+      </button>
 
-          <li class='tabList-item'>
-            <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='steering-committee'>
-              <%= t('.steering_committee') %>
-            </button>
-          </li>
+      <div class='contentSection-body js-accordion-togglable-content'>
 
-          <li class='tabList-item'>
-            <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='executive-team'>
-              <%= t('.executive_team') %>
-            </button>
-          </li>
+        <%= simple_format_no_tags(@methodology_general.content) %>
+
+      </div>
+
+    </section>
+
+    <section class='contentSection mod-accordion js-accordion'>
+
+      <button class='contentSection-header js-accordion-toggle-button'>
+
+        <h2 class='heading'>
+          <%= t('.steering_committee') %>
+        </h2>
+
+      </button>
+
+      <div class='contentSection-body js-accordion-togglable-content'>
+
+        <ul class='expertList'>
+
+          <% if @steering_committee.each do |expert| %>
+
+            <li class='expertList-item js-act-as-expert-item'>
+
+              <div class='expertList-item-imageLink'>
+
+                <%= image_tag(expert.avatar.url('100x100'),
+                              class: 'expertList-item-imageLink-image') %>
+
+              </div>
+
+              <div>
+
+                <h4 class='expertList-item-heading'>
+                  <%= expert.name %>
+                </h4>
+
+                <% if expert.bio %>
+
+                  <div class='expertList-item-description'>
+
+                    <%= simple_format(expert.bio) %>
+
+                  </div>
+
+                <% end %>
+
+              </div>
+
+            </li>
+
+          <% end.empty? %>
+
+            <li>
+             <%= t('.no_steering_committee') %>
+            </li>
+
+          <% end %>
 
         </ul>
 
-      </header>
+      </div>
 
-      <div class='contentSection-body'>
+    </section>
 
-        <div class='tabContent js-act-as-tab-content'>
+    <section class='contentSection mod-accordion js-accordion'>
 
-          <div class='tabContent-panel is-selected js-act-as-tab-content-panel' id='methodology'>
-            <%= simple_format_no_tags(@methodology_general.content) %>
-          </div>
+      <button class='contentSection-header js-accordion-toggle-button'>
 
-          <div class='tabContent-panel js-act-as-tab-content-panel' id='steering-committee'>
-            <ul class='expertList'>
+        <h2 class='heading'>
+          <%= t('.executive_team') %>
+        </h2>
 
-              <% if @steering_committee.each do |expert| %>
+      </button>
 
-                <li class='expertList-item js-act-as-expert-item'>
+      <div class='contentSection-body js-accordion-togglable-content'>
 
-                  <div class='expertList-item-imageLink'>
+        <ul class='expertList'>
 
-                    <%= image_tag(expert.avatar.url('100x100'),
-                                  class: 'expertList-item-imageLink-image') %>
+          <% if @executive_team.each do |expert| %>
 
-                  </div>
+            <li class='expertList-item js-act-as-expert-item'>
 
-                  <div>
+              <div class='expertList-item-imageLink'>
 
-                    <h4 class='expertList-item-heading'>
-                      <%= expert.name %>
-                    </h4>
+                <%= image_tag(expert.avatar.url('100x100'),
+                              class: 'expertList-item-imageLink-image') %>
 
-                    <% if expert.bio %>
+              </div>
 
-                      <div class='expertList-item-description'>
+              <div>
 
-                        <%= simple_format(expert.bio) %>
+                <h4 class='expertList-item-heading'>
+                  <%= expert.name %>
+                </h4>
 
-                      </div>
+                <% if expert.bio %>
 
-                    <% end %>
+                  <div class='expertList-item-description'>
 
-                  </div>
-
-                </li>
-
-              <% end.empty? %>
-
-                <li>
-                 <%= t('.no_steering_committee') %>
-                </li>
-
-              <% end %>
-
-            </ul>
-          </div>
-
-          <div class='tabContent-panel js-act-as-tab-content-panel' id='executive-team'>
-            <ul class='expertList'>
-
-              <% if @executive_team.each do |expert| %>
-
-                <li class='expertList-item js-act-as-expert-item'>
-
-                  <div class='expertList-item-imageLink'>
-
-                    <%= image_tag(expert.avatar.url('100x100'),
-                                  class: 'expertList-item-imageLink-image') %>
+                    <%= simple_format(expert.bio) %>
 
                   </div>
 
-                  <div>
+                <% end %>
 
-                    <h4 class='expertList-item-heading'>
-                      <%= expert.name %>
-                    </h4>
+              </div>
 
-                    <% if expert.bio %>
+            </li>
 
-                      <div class='expertList-item-description'>
+          <% end.empty? %>
 
-                        <%= simple_format(expert.bio) %>
+            <li>
+             <%= t('.no_executive_team') %>
+            </li>
 
-                      </div>
+          <% end %>
 
-                    <% end %>
-
-                  </div>
-
-                </li>
-
-              <% end.empty? %>
-
-                <li>
-                 <%= t('.no_executive_team') %>
-                </li>
-
-              <% end %>
-
-            </ul>
-
-          </div>
-
-        </div>
-
+        </ul>
 
       </div>
 

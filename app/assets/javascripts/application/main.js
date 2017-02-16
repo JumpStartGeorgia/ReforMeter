@@ -27,6 +27,7 @@
   $(document).on('page:change', function() {
     $('html').attr('lang', gon.locale);
     setupTabs();
+    setupAccordions();
 
     if ($('body.root.review_board').length > 0) openExpertsTab();
   });
