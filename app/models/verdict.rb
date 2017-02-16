@@ -451,16 +451,16 @@ class Verdict < ActiveRecord::Base
   def check_publish_fields
     if self.is_public?
       if self.overall_score.nil?
-        errors.add :overall_score, t('shared.msgs.scores_required')
+        errors.add :overall_score, I18n.t('shared.msgs.scores_required')
       end
       if self.category1_score.nil?
-        errors.add :category1_score, t('shared.msgs.scores_required')
+        errors.add :category1_score, I18n.t('shared.msgs.scores_required')
       end
       if self.category2_score.nil?
-        errors.add :category2_score, t('shared.msgs.scores_required')
+        errors.add :category2_score, I18n.t('shared.msgs.scores_required')
       end
       if self.category3_score.nil?
-        errors.add :category3_score, t('shared.msgs.scores_required')
+        errors.add :category3_score, I18n.t('shared.msgs.scores_required')
       end
     end
 
