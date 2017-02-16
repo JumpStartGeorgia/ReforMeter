@@ -531,16 +531,18 @@ class Verdict < ActiveRecord::Base
 
   # stakeholder is 0-10 and difference of at least 0,2 must be had to be record as changed
   def compute_change(current_value, previous_value)
-    diff = current_value - previous_value
     change = nil
-    if diff < -0.2
-      change = -1
-    elsif diff > 0.2
-      change = 1
-    else
-      change = 0
+    if current_value.present? && previous_value.present?
+      diff = current_value - previous_value
+      if diff < -0.2
+        change = -1
+      elsif diff > 0.2
+        change = 1
+      else
+        change = 0
+      end
     end
-
+    
     return change
   end
 
