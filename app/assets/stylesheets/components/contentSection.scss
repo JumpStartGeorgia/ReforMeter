@@ -108,14 +108,10 @@
   .contentSection-body {
     display: none;
   }
+}
 
-  &.is-expanded {
-    .contentSection-header {
-      background-color: white;
-    }
-
-    .contentSection-body {
-      display: initial;
-    }
+.contentSection.mod-accordion.is-expanded {
+  .contentSection-header {
+    background-color: white;
   }
 }
