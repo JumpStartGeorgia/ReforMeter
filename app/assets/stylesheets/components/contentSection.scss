@@ -20,16 +20,6 @@
     }
   }
 
-  button.contentSection-header {
-    &:hover {
-      color: $color-brand;
-
-      & > .heading {
-        color: inherit;
-      }
-    }
-  }
-
     .contentSection-header-title {
     }
 
@@ -111,8 +101,44 @@
   flex-direction: column;
 }
 
-.contentSection.mod-accordion:not(.is-expanded) {
-  .contentSection-header {
-    background-color: #EDEDED;
+$triangle-primary-dimension: .7em;
+$triangle-secondary-dimension: $triangle-primary-dimension * 2/3;
+
+.contentSection.mod-accordion {
+  button.contentSection-header {
+    > .heading {
+      // Triangle icon pointing down
+      &:before {
+        content:"\A";
+        display: inline-block;
+        border-style: solid;
+        color: inherit;
+        border-width: $triangle-primary-dimension $triangle-secondary-dimension 0 $triangle-secondary-dimension;
+        border-color: currentColor transparent transparent transparent;
+      }
+    }
+
+    &:hover {
+      color: $color-brand;
+
+      & > .heading {
+        color: inherit;
+      }
+    }
+  }
+
+  &:not(.is-expanded) {
+    button.contentSection-header {
+      background-color: #EDEDED;
+
+      > .heading {
+        // Triangle icon pointing to the right
+        &:before {
+          border-width: $triangle-secondary-dimension 0 $triangle-secondary-dimension $triangle-primary-dimension;
+          border-color: transparent transparent transparent currentColor;
+          vertical-align: text-top;
+        }
+      }
+    }
   }
 }
