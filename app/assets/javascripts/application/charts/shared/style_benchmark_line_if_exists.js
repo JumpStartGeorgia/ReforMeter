@@ -2,7 +2,7 @@ function styleBenchmarkLineIfExists(chartData) {
   var benchmarkSeriesProperties = {
     type: 'spline',
     color: '#3b2f76',
-    lineWidth: 4,
+    lineWidth: 3,
     dashStyle: 'Solid'
   }
 
