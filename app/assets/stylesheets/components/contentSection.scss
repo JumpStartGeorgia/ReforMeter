@@ -19,6 +19,17 @@
     }
   }
 
+    .contentSection-header-button {
+
+      &:hover {
+        color: $color-brand;
+
+        & > .heading {
+          color: inherit;
+        }
+      }
+    }
+
     .contentSection-header-title {
     }
 
