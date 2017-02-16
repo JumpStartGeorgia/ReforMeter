@@ -101,12 +101,16 @@
   flex-direction: column;
 }
 
-$triangle-primary-dimension: .7em;
+$triangle-primary-dimension: .45em;
 $triangle-secondary-dimension: $triangle-primary-dimension * 2/3;
+$triangle-horizontal-text-offset: $triangle-primary-dimension * 2;
 
 .contentSection.mod-accordion {
   button.contentSection-header {
     > .heading {
+      padding-left: $triangle-horizontal-text-offset;
+      position: relative;
+
       // Triangle icon pointing down
       &:before {
         content:"\A";
@@ -115,6 +119,9 @@ $triangle-secondary-dimension: $triangle-primary-dimension * 2/3;
         color: inherit;
         border-width: $triangle-primary-dimension $triangle-secondary-dimension 0 $triangle-secondary-dimension;
         border-color: currentColor transparent transparent transparent;
+        position: absolute;
+        top: $triangle-primary-dimension * 8/10;
+        left: 0px;
       }
     }
 
