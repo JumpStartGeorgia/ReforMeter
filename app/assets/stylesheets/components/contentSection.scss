@@ -99,3 +99,23 @@
   display: flex;
   flex-direction: column;
 }
+
+.contentSection.mod-accordion {
+  .contentSection-header {
+    background-color: #EDEDED;
+  }
+
+  .contentSection-body {
+    display: none;
+  }
+
+  &.is-expanded {
+    .contentSection-header {
+      background-color: white;
+    }
+
+    .contentSection-body {
+      display: initial;
+    }
+  }
+}
