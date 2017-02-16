@@ -21,8 +21,6 @@
   }
 
   button.contentSection-header {
-    @extend .contentSection-header;
-
     &:hover {
       color: $color-brand;
 
