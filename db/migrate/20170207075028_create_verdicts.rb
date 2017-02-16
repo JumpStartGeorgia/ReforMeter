@@ -1,14 +1,14 @@
 class CreateVerdicts < ActiveRecord::Migration
   def up
     create_table :verdicts do |t|
-      t.decimal :overall_score, null: false, :precision => 5, :scale => 2
-      t.decimal :category1_score, null: false, :precision => 5, :scale => 2
-      t.decimal :category2_score, null: false, :precision => 5, :scale => 1
-      t.decimal :category3_score, null: false, :precision => 5, :scale => 2
-      t.integer :overall_change, :integer, length: 1
-      t.integer :category1_change, :integer, length: 1
-      t.integer :category2_change, :integer, length: 1
-      t.integer :category3_change, :integer, length: 1
+      t.decimal :overall_score, null: false, :precision => 5, :scale => 2, null: true
+      t.decimal :category1_score, null: false, :precision => 5, :scale => 2, null: true
+      t.decimal :category2_score, null: false, :precision => 5, :scale => 1, null: true
+      t.decimal :category3_score, null: false, :precision => 5, :scale => 2, null: true
+      t.integer :overall_change, :integer, length: 1, null: true
+      t.integer :category1_change, :integer, length: 1, null: true
+      t.integer :category2_change, :integer, length: 1, null: true
+      t.integer :category3_change, :integer, length: 1, null: true
       t.boolean :is_public, default: false
       t.string :slug#, null: false
       t.date :time_period

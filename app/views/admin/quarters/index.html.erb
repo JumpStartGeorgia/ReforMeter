@@ -62,7 +62,7 @@
         </div>
         <div class="col-md-4">
           <strong><%=t 'activerecord.attributes.quarter.report' %>:</strong>
-          <% if @quarter.report.exists? %>
+          <% if false && @quarter.report.exists? %>
             <%= link_to t('shared.actions.view'), @quarter.report.url,
                           class: 'btn btn-default btn-sm',
                           target: :blank %>

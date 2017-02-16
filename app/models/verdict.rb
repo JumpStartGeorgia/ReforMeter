@@ -36,9 +36,12 @@ class Verdict < ActiveRecord::Base
   #######################
   ## VALIDATIONS
 
-  validates :title, :overall_score, :category1_score, :category2_score, :category3_score, presence: :true
+  validates :title, :time_period, presence: :true
   validates_uniqueness_of :title
-  validates :overall_score, :category1_score, :category2_score, :category3_score, inclusion: {in: 0.0..10.0}
+  validates :overall_score, inclusion: {in: 0.0..10.0}, if: "!overall_score.nil?"
+  validates :category1_score, inclusion: {in: 0.0..10.0}, if: "!category1_score.nil?"
+  validates :category2_score, inclusion: {in: 0.0..10.0}, if: "!category2_score.nil?"
+  validates :category3_score, inclusion: {in: 0.0..10.0}, if: "!category3_score.nil?"
 
   #######################
   ## SLUG DEFINITION (friendly_id)
@@ -60,6 +63,7 @@ class Verdict < ActiveRecord::Base
   #######################
   ## CALLBACKS
 
+  before_save :check_publish_fields
   before_save :set_change_values
   after_save :update_future_survey
   after_destroy :reset_future_survey
@@ -442,6 +446,26 @@ class Verdict < ActiveRecord::Base
   #######################
   #######################
   private
+
+  # if this verdict is published, make sure the scores are present
+  def check_publish_fields
+    if self.is_public?
+      if self.overall_score.nil?
+        errors.add :overall_score, t('shared.msgs.scores_required')
+      end
+      if self.category1_score.nil?
+        errors.add :category1_score, t('shared.msgs.scores_required')
+      end
+      if self.category2_score.nil?
+        errors.add :category2_score, t('shared.msgs.scores_required')
+      end
+      if self.category3_score.nil?
+        errors.add :category3_score, t('shared.msgs.scores_required')
+      end
+    end
+
+    return true
+  end
 
   # set the change value when compared to the last survey
   def set_change_values
