@@ -111,18 +111,8 @@
   flex-direction: column;
 }
 
-.contentSection.mod-accordion {
+.contentSection.mod-accordion:not(.is-expanded) {
   .contentSection-header {
     background-color: #EDEDED;
-  }
-
-  .contentSection-body {
-    display: none;
-  }
-}
-
-.contentSection.mod-accordion.is-expanded {
-  .contentSection-header {
-    background-color: white;
   }
 }
