@@ -55,6 +55,8 @@ function setupTabs() {
 }
 
 function setupTabListSelectContainers() {
+  var bigEnoughForTabsWidth = 750;
+
   function enableTabs($container) {
     $container.addClass('is-big-enough-for-tabs');
     $container.find('.js-act-as-tab-list-button').prop('disabled', false);
@@ -70,7 +72,7 @@ function setupTabListSelectContainers() {
     $containers.each(function() {
       $container = $(this);
 
-      if ($container.width() > 600) {
+      if ($container.width() > bigEnoughForTabsWidth) {
         enableTabs($container);
       } else {
         enableSelect($container);

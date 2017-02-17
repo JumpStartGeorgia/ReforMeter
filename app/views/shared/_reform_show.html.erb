@@ -378,33 +378,77 @@ show_admin_links ||= false
 
       <header class='contentSection-header mod-no-padding'>
 
-        <ul class='tabList js-act-as-tab-list'>
+        <% @has_verdicts = @verdict_ids.present? && @verdict_ids.length > 1 %>
 
-          <% @has_verdicts = @verdict_ids.present? && @verdict_ids.length > 1 %>
+        <% @tab_options = [
+            {
+              id: 'stakeholder_history_chart',
+              text: t('.header.stakeholder_history'),
+              is_selected: true,
+              show_conditional: @has_verdicts
+            },
+            {
+              id: 'stakeholder_methodology',
+              text: t('.header.methodology'),
+              is_selected: !@has_verdicts
+            },
+            {
+              id: 'stakeholders',
+              text: t('.header.stakeholders')
+            }
+          ]
+        %>
 
-          <% if @has_verdicts %>
+        <div class='tabListSelectContainer js-act-as-tab-list-select-container'>
 
-            <li class='tabList-item'>
-              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_history_chart'>
-                <%= t('.header.stakeholder_history') %>
-              </button>
-            </li>
+          <ul class='tabList mod-header js-act-as-tab-list'>
 
-          <% end %>
+            <% @tab_options.each do |tab_option| %>
 
-          <li class='tabList-item'>
-            <button class='tabList-item-button <%= 'is-selected' unless @has_verdicts %> js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholder_methodology'>
-              <%= t('.header.methodology') %>
-            </button>
-          </li>
+              <% if tab_option[:show_conditional].nil? || tab_option[:show_conditional] %>
 
-          <li class='tabList-item'>
-            <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='stakeholders'>
-              <%= t('.header.stakeholders') %>
-            </button>
-          </li>
+                <li class='tabList-item'>
 
-        </ul>
+                  <button class='tabList-item-button <%= 'is-selected' if tab_option[:is_selected] %> js-act-as-tab-list-button' data-selects-tab-content-panel-id='<%= tab_option[:id] %>'>
+                    <%= tab_option[:text] %>
+                  </button>
+
+                </li>
+
+              <% end %>
+
+            <% end %>
+
+          </ul>
+
+          <div class='headerControlsRow'>
+
+            <span class='headerControlsRow-item'>
+
+              <label for='reforms-tab-list-select'>
+                <%= t('shared.actions.view') %>:
+              </label>
+
+              <select class='reform js-become-select2 js-act-as-tab-list-select' id='reforms-tab-list-select'>
+
+                <% @tab_options.each do |tab_option| %>
+
+                  <option
+                    <%= 'selected' if tab_option[:is_selected] %>
+                    value="<%= tab_option[:id] %>"
+                  >
+                    <%= tab_option[:text] %>
+                  </option>
+
+                <% end %>
+
+              </select>
+
+            </span>
+
+          </div>
+
+        </div>
 
       </header>
 
