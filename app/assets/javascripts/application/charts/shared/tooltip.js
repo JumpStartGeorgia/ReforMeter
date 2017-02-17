@@ -1,6 +1,10 @@
 function getTooltipPointFormatter(pointData, chartData, options) {
   if (!options) options = {};
 
+  function useDecimals() {
+    return !chartData.hasOwnProperty('use_decimals') || chartData.use_decimals
+  }
+
   function getLegendItem() {
     if (chartData.series.length > 1 && pointData.series.legendItem) {
       legendItem = $(pointData.series.legendItem.parentGroup.element).clone();
@@ -23,7 +27,7 @@ function getTooltipPointFormatter(pointData, chartData, options) {
   }
 
   function getValue() {
-    if (chartData.use_decimals) {
+    if (useDecimals()) {
       return Number(Math.round(pointData.y + 'e2') + 'e-2')
     } else {
       return Math.round(pointData.y)
