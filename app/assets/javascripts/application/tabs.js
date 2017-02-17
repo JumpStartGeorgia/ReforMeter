@@ -55,7 +55,13 @@ function setupTabs() {
 }
 
 function setupTabListSelectContainers() {
-  var bigEnoughForTabsWidth = 750;
+  function getWidthBigEnoughForTabs() {
+    if (localeIs('ka')) {
+      return 850;
+    } else {
+      return 750;
+    }
+  }
 
   function enableTabs($container) {
     $container.addClass('is-big-enough-for-tabs');
@@ -72,7 +78,7 @@ function setupTabListSelectContainers() {
     $containers.each(function() {
       $container = $(this);
 
-      if ($container.width() > bigEnoughForTabsWidth) {
+      if ($container.width() > getWidthBigEnoughForTabs()) {
         enableTabs($container);
       } else {
         enableSelect($container);
