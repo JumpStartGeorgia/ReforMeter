@@ -43,3 +43,15 @@
       background-color: #FFF;
       vertical-align: middle;
     }
+
+.tabList.mod-dropdown-in-little-space {
+  @media (max-width: 600px) {
+    .tabList {
+      background-color: inherit;
+    }
+
+      .tabList-item-button:not(.is-selected) {
+        display: none;
+      }
+  }
+}

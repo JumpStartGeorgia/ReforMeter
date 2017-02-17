@@ -13,14 +13,41 @@ function setupTabs() {
     $tabContentPanels.removeClass('is-selected');
   }
 
-  $('.js-act-as-tab-list-button').click(function() {
-    var $selectedTabListButton = $(this);
-    var $selectedTabContentPanel = $('#' + $selectedTabListButton.data('selectsTabContentPanelId'));
-
+  function selectTabListButton(tabId) {
+    var $selectedTabListButton = $('*[data-selects-tab-content-panel-id="' + tabId + '"]')
     unselectSiblingTabListButtons($selectedTabListButton);
-    unselectSiblingTabContentPanels($selectedTabContentPanel);
-
     $selectedTabListButton.addClass('is-selected');
+  }
+
+  function selectTabContentPanel(tabId) {
+    var $selectedTabContentPanel = $('#' + tabId);
+    unselectSiblingTabContentPanels($selectedTabContentPanel);
     $selectedTabContentPanel.addClass('is-selected');
+  }
+
+  function selectTabListSelectOption(tabId) {
+    var tabListSelect =
+    $('.js-act-as-tab-list-select option[value="' + tabId + '"]')
+    .parents('.js-act-as-tab-list-select')
+
+    tabListSelect.val(tabId).trigger('change.select2');
+  }
+
+  function selectNewTabId(tabId) {
+    selectTabListButton(tabId);
+    selectTabContentPanel(tabId);
+    selectTabListSelectOption(tabId);
+  }
+
+  $('.js-act-as-tab-list-button').click(function() {
+    selectNewTabId(
+      $(this).data('selectsTabContentPanelId')
+    );
   });
+
+  $('.js-act-as-tab-list-select').on('change', function() {
+    selectNewTabId(
+      $(this).val()
+    );
+  })
 }

@@ -107,34 +107,70 @@ page_title t('.title')
 
     <header class='contentSection-header mod-no-padding'>
 
-      <ul class='tabList js-act-as-tab-list'>
+      <div class='tabListAndSelect'>
 
-        <li class='tabList-item'>
+        <% @tab_options = [
+            {
+              id: 'history',
+              text: t('.header.table'),
+              is_selected: true
+            },
+            {
+              id: 'chart',
+              text: t('.header.chart'),
+              show_conditional: @verdicts.length > 1
+            },
+            {
+              id: 'methodology',
+              text: t('.header.methodology')
+            }
+          ]
+        %>
 
-          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='history'>
-            <%= t('.header.table') %>
-          </button>
+        <ul class='tabList mod-header js-act-as-tab-list'>
 
-        </li>
+          <% @tab_options.each do |tab_option| %>
 
-        <% if @verdicts.length > 1 %>
+            <% if tab_option[:show_conditional].nil? || tab_option[:show_conditional] %>
 
-          <li class='tabList-item'>
-            <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
-              <%= t('.header.chart') %>
-            </button>
-          </li>
+              <li class='tabList-item'>
 
-        <% end %>
+                <button class='tabList-item-button <%= 'is-selected' if tab_option[:is_selected] %> js-act-as-tab-list-button' data-selects-tab-content-panel-id='<%= tab_option[:id] %>'>
+                  <%= tab_option[:text] %>
+                </button>
 
-        <li class='tabList-item'>
-          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
-            <%= t('.header.methodology') %>
-          </button>
-        </li>
+              </li>
 
+            <% end %>
 
-      </ul>
+          <% end %>
+
+        </ul>
+
+        <div>
+
+          <label for='reforms-tab-list-select'>
+            <%= '???' %>:
+          </label>
+
+          <select class='reform js-become-select2 js-act-as-tab-list-select' id='reforms-tab-list-select'>
+
+            <% @tab_options.each do |tab_option| %>
+
+              <option
+                <%= 'selected' if tab_option[:is_selected] %>
+                value="<%= tab_option[:id] %>"
+              >
+                <%= tab_option[:text] %>
+              </option>
+
+            <% end %>
+
+          </select>
+
+        </div>
+
+      </div>
 
     </header>
 
