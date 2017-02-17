@@ -50,4 +50,34 @@ function setupTabs() {
       $(this).val()
     );
   })
+
+  setupTabListSelectContainers();
+}
+
+function setupTabListSelectContainers() {
+  function enableTabs($container) {
+    $container.addClass('is-big-enough-for-tabs');
+    $container.find('.js-act-as-tab-list-button').prop('disabled', false);
+  }
+
+  function enableSelect($container) {
+    $container.removeClass('is-big-enough-for-tabs');
+    $container.find('.js-act-as-tab-list-button').prop('disabled', true);
+  }
+
+  function toggleTabsAndSelectBasedOnWidth() {
+    var $containers = $('.js-act-as-tab-list-select-container')
+    $containers.each(function() {
+      $container = $(this);
+
+      if ($container.width() > 600) {
+        enableTabs($container);
+      } else {
+        enableSelect($container);
+      }
+    })
+  }
+
+  toggleTabsAndSelectBasedOnWidth();
+  $(window).resize(toggleTabsAndSelectBasedOnWidth);
 }

@@ -11,7 +11,7 @@
     list-style-type: none;
   }
 
-    .tabList-item-button {
+    button.tabList-item-button {
       box-sizing: border-box;
       border: 0;
       background: none;
@@ -22,20 +22,20 @@
       font-size: 1.5rem;
       width: 100%;
       height: 100%;
-      padding: 1em 1.1em;
+      padding: 1.1em $padding-main-content;
 
       &:hover, & .heading:hover {
-        color: $color-brand;
+        &:not([disabled]) {
+          color: $color-brand;
+        }
       }
 
       @media (min-width: $widthForTablistFontIncrease1) {
         font-size: 1.7rem;
-        padding: 1em 1.2em;
       }
 
       @media (min-width: $widthForTablistFontIncrease2) {
         font-size: 2rem;
-        padding: 1.1em $padding-main-content;
       }
     }
 

@@ -1,19 +1,25 @@
 .tabListSelectContainer {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 
-  @media (max-width: 599px) {
-    & .tabList {
-      background-color: #FFF;
+  & .headerControlsRow {
+    padding-right: $padding-main-content;
 
-      .tabList-item-button:not(.is-selected) {
-        display: none;
-      }
-    }
   }
+}
 
-  @media (min-width: 600px) {
-    & .headerControlsRow {
+.tabListSelectContainer.is-big-enough-for-tabs {
+  & .headerControlsRow {
+    display: none;
+  }
+}
+
+.tabListSelectContainer:not(.is-big-enough-for-tabs) {
+  & .tabList {
+    background-color: #FFF;
+
+    .tabList-item-button:not(.is-selected) {
       display: none;
     }
   }
