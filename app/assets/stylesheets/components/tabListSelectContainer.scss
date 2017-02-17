@@ -1,0 +1,20 @@
+.tabListSelectContainer {
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 599px) {
+    & .tabList {
+      background-color: #FFF;
+
+      .tabList-item-button:not(.is-selected) {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: 600px) {
+    & .headerControlsRow {
+      display: none;
+    }
+  }
+}
