@@ -1,0 +1,26 @@
+.tabListSelectContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  & .headerControlsRow {
+    padding-right: $padding-main-content;
+
+  }
+}
+
+.tabListSelectContainer.is-big-enough-for-tabs {
+  & .headerControlsRow {
+    display: none;
+  }
+}
+
+.tabListSelectContainer:not(.is-big-enough-for-tabs) {
+  & .tabList {
+    background-color: #FFF;
+
+    .tabList-item-button:not(.is-selected) {
+      display: none;
+    }
+  }
+}

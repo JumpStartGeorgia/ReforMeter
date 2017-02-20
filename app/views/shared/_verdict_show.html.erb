@@ -33,14 +33,21 @@ show_admin_links ||= false
 
         <div class='headerControlsRow'>
 
-          <%= t('shared.common.change_time') %>:
-          <select class='js-become-select2 js-change-verdict-time-period' data-base-url='<%= reform_verdicts_path %>'>
+          <span class='headerControlsRow-item'>
 
-            <% @active_verdicts.each do |active_verdict| %>
-              <option value='<%= active_verdict[1] %>' <% if @verdict.slug == active_verdict[1] %>selected<% end %>><%= active_verdict[0] %></option>
-            <% end %>
+            <label>
+              <%= t('shared.common.change_time') %>:
+            </label>
 
-          </select>
+            <select class='js-become-select2 js-change-verdict-time-period' data-base-url='<%= reform_verdicts_path %>'>
+
+              <% @active_verdicts.each do |active_verdict| %>
+                <option value='<%= active_verdict[1] %>' <% if @verdict.slug == active_verdict[1] %>selected<% end %>><%= active_verdict[0] %></option>
+              <% end %>
+
+            </select>
+
+          </span>
 
         </div>
 
@@ -131,24 +138,69 @@ show_admin_links ||= false
 
         <header class='contentSection-header mod-no-padding'>
 
-          <ul class='tabList mod-header js-act-as-tab-list'>
+          <% @tab_options = [
+              {
+                id: 'history',
+                text: t('.header.table'),
+                is_selected: true
+              },
+              {
+                id: 'methodology',
+                text: t('.header.methodology')
+              }
+            ]
+          %>
 
-            <li class='tabList-item'>
+          <div class='tabListSelectContainer js-act-as-tab-list-select-container'>
 
-              <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='history'>
-                <%= t('.header.table') %>
-              </button>
+            <ul class='tabList mod-header js-act-as-tab-list'>
 
-            </li>
+              <% @tab_options.each do |tab_option| %>
 
-            <li class='tabList-item'>
-              <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='methodology'>
-                <%= t('.header.methodology') %>
-              </button>
-            </li>
+                <% if tab_option[:show_conditional].nil? || tab_option[:show_conditional] %>
 
+                  <li class='tabList-item'>
 
-          </ul>
+                    <button class='tabList-item-button <%= 'is-selected' if tab_option[:is_selected] %> js-act-as-tab-list-button' data-selects-tab-content-panel-id='<%= tab_option[:id] %>'>
+                      <%= tab_option[:text] %>
+                    </button>
+
+                  </li>
+
+                <% end %>
+
+              <% end %>
+
+            </ul>
+
+            <div class='headerControlsRow'>
+
+              <span class='headerControlsRow-item'>
+
+                <label for='reforms-tab-list-select'>
+                  <%= t('shared.actions.view') %>:
+                </label>
+
+                <select class='reform js-become-select2 js-act-as-tab-list-select' id='reforms-tab-list-select'>
+
+                  <% @tab_options.each do |tab_option| %>
+
+                    <option
+                      <%= 'selected' if tab_option[:is_selected] %>
+                      value="<%= tab_option[:id] %>"
+                    >
+                      <%= tab_option[:text] %>
+                    </option>
+
+                  <% end %>
+
+                </select>
+
+              </span>
+
+            </div>
+
+          </div>
 
         </header>
 

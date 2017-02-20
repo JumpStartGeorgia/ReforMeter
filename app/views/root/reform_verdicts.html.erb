@@ -49,28 +49,73 @@
 
 <% if @verdicts.present? %>
 
-
   <div class='contentSection'>
 
     <header class='contentSection-header mod-no-padding'>
 
-      <ul class='tabList mod-header js-act-as-tab-list'>
+      <% @tab_options = [
+          {
+            id: 'history',
+            text: t('.header.table'),
+            is_selected: true
+          },
+          {
+            id: 'chart',
+            text: t('.header.chart')
+          }
+        ]
+      %>
 
-        <li class='tabList-item'>
+      <div class='tabListSelectContainer js-act-as-tab-list-select-container'>
 
-          <button class='tabList-item-button is-selected js-act-as-tab-list-button' data-selects-tab-content-panel-id='history'>
-            <%= t('.header.table') %>
-          </button>
+        <ul class='tabList mod-header js-act-as-tab-list'>
 
-        </li>
+          <% @tab_options.each do |tab_option| %>
 
-        <li class='tabList-item'>
-          <button class='tabList-item-button js-act-as-tab-list-button' data-selects-tab-content-panel-id='chart'>
-            <%= t('.header.chart') %>
-          </button>
-        </li>
+            <% if tab_option[:show_conditional].nil? || tab_option[:show_conditional] %>
 
-      </ul>
+              <li class='tabList-item'>
+
+                <button class='tabList-item-button <%= 'is-selected' if tab_option[:is_selected] %> js-act-as-tab-list-button' data-selects-tab-content-panel-id='<%= tab_option[:id] %>'>
+                  <%= tab_option[:text] %>
+                </button>
+
+              </li>
+
+            <% end %>
+
+          <% end %>
+
+        </ul>
+
+        <div class='headerControlsRow'>
+
+          <span class='headerControlsRow-item'>
+
+            <label for='reforms-tab-list-select'>
+              <%= t('shared.actions.view') %>:
+            </label>
+
+            <select class='reform js-become-select2 js-act-as-tab-list-select' id='reforms-tab-list-select'>
+
+              <% @tab_options.each do |tab_option| %>
+
+                <option
+                  <%= 'selected' if tab_option[:is_selected] %>
+                  value="<%= tab_option[:id] %>"
+                >
+                  <%= tab_option[:text] %>
+                </option>
+
+              <% end %>
+
+            </select>
+
+          </span>
+
+        </div>
+
+      </div>
 
     </header>
 

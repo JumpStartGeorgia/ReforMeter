@@ -1,4 +1,6 @@
 .headerControlsRow {
+  display: flex;
+  
   @media (min-width: $widthHeaderControlsBecomeHorizontal) {
     white-space: nowrap;
   }
@@ -7,8 +9,13 @@
   .headerControlsRow-item {
     margin-bottom: 3px;
     margin-top: 3px;
-    display: inline-block;
+    display: inline-flex;
     vertical-align: middle;
+    align-items: center;
+
+    & > label {
+      margin-right: 10px;
+    }
   }
 
   .headerControlsRow-item.mod-left-padding {
