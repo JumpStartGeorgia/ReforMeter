@@ -32,7 +32,7 @@ ka:
       primary_gauge_description: რეფორმვერდიქტი
       reform_status: რეფორმების მდგომარეობა
       reforms_link: ყველა რეფორმის ნახვა
-      subheading: ეკონომიკური რეფორმების შეფასება.
+      subheading: ეკონომიკური რეფორმების შეფასება
     reform_show:
       gauge_group:
         government:

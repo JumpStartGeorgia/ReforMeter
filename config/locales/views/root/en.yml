@@ -32,7 +32,7 @@ en:
       primary_gauge_description: ReformVerdict
       reform_status: Reform Standings
       reforms_link: View All Reforms
-      subheading: Assessment of economic reforms.
+      subheading: Assessment of economic reforms
     reform_show:
       gauge_group:
         government:
