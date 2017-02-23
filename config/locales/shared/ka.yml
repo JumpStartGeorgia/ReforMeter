@@ -156,7 +156,7 @@ ka:
       no_stakeholders: დაინტერესე ბული მხარეებსი შესახებ ჩანაწერი არ არის.
       download: ანგარიშის ჩამოტვირთვა
     expert_types:
-      steering_committee: საორგანიზაციო კომიტეტი
+      steering_committee: მმართველი საბჭო
       stakeholder: დაინტერესებული პირი
       executive_team: აღმასრულებელი გუნდი
     verdict_show:
