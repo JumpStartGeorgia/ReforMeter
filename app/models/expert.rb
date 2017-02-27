@@ -12,6 +12,7 @@
 #  avatar_updated_at   :datetime
 #  expert_type         :integer
 #  reform_id           :integer
+#  sort_order          :integer          default(1)
 #
 
 class Expert < AddMissingTranslation
@@ -60,6 +61,9 @@ class Expert < AddMissingTranslation
     self.expert_type == EXPERT_TYPES[:stakeholder]
   end
 
+  #######################
+  ## SORTING
+  acts_as_list column: :sort_order, scope: [:expert_type]
 
   #######################
   ## CALLBACKS
@@ -74,7 +78,7 @@ class Expert < AddMissingTranslation
   #######################
   ## SCOPES
   scope :active, -> { where(is_active: true) }
-  scope :sorted, -> {with_translations(I18n.locale).order(name: :asc)}
+  scope :sorted, -> { with_translations(I18n.locale).order(sort_order: :asc, name: :asc) }
   scope :with_reforms, -> {includes(:reform => :translations)}
 
   def self.by_type(type)

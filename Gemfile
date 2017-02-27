@@ -211,3 +211,7 @@ gem 'tipsy-rails', '~> 1.0', '>= 1.0.5'
 
 # Needed to apply callbacks to multiple models
 gem 'rails-observers', '~> 0.1.2'
+
+# move items up and down in list
+gem 'acts_as_list', '~> 0.9.1'
+

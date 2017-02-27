@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216061447) do
+ActiveRecord::Schema.define(version: 20170227061454) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -68,11 +68,13 @@ ActiveRecord::Schema.define(version: 20170216061447) do
     t.datetime "avatar_updated_at"
     t.integer  "expert_type",         limit: 4
     t.integer  "reform_id",           limit: 4
+    t.integer  "sort_order",          limit: 2,   default: 1
   end
 
   add_index "experts", ["expert_type"], name: "index_experts_on_expert_type", using: :btree
   add_index "experts", ["is_active"], name: "index_experts_on_is_active", using: :btree
   add_index "experts", ["reform_id"], name: "index_experts_on_reform_id", using: :btree
+  add_index "experts", ["sort_order"], name: "index_experts_on_sort_order", using: :btree
 
   create_table "external_indicator_countries", force: :cascade do |t|
     t.integer  "external_indicator_id", limit: 4

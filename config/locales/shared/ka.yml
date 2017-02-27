@@ -171,6 +171,9 @@ ka:
         reform: რეფორმა
         stakeholder: დაინტერესებული პირი
         summary: შეჯამება
+    move_row:
+      up: ველის ზემოთ აწევა
+      down: ველის ქვემოთ ჩამოწევა
   time:
     formats:
       file: "%Y%m%d%H%M%S"

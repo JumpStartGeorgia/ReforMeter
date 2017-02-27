@@ -3,10 +3,10 @@
 # Table name: verdicts
 #
 #  id               :integer          not null, primary key
-#  overall_score    :decimal(5, 2)    not null
-#  category1_score  :decimal(5, 2)    not null
-#  category2_score  :decimal(5, 1)    not null
-#  category3_score  :decimal(5, 2)    not null
+#  overall_score    :decimal(5, 2)
+#  category1_score  :decimal(5, 2)
+#  category2_score  :decimal(5, 1)
+#  category3_score  :decimal(5, 2)
 #  overall_change   :integer
 #  integer          :integer
 #  category1_change :integer

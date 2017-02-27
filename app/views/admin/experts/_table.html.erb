@@ -4,9 +4,10 @@
 
 <% if experts.present? %>
 
-  <table class='table table-striped table-hover table-nonfluid datatable-admin'>
+  <table class='table table-striped table-hover table-nonfluid datatable-admin table-experts'>
     <thead>
       <tr>
+        <th></th>
         <th></th>
         <th><%=t 'activerecord.attributes.expert.name' %></th>
         <th><%=t 'activerecord.attributes.expert.bio' %></th>
@@ -22,6 +23,12 @@
     <tbody>
       <% experts.each do |expert| %>
         <tr>
+          <td>
+            <a class="move-up" href="#" data-url="<%= up_admin_expert_path(expert) %>"
+                title="<%= t('shared.move_row.up')%>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
+            <a class="move-down" href="#" data-url="<%= down_admin_expert_path(expert) %>" 
+                title="<%= t('shared.move_row.down')%>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
+          </td>
           <td>
             <%= image_tag(expert.avatar.url('50x50')) %>
           </td>

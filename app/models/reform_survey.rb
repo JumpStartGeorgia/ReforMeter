@@ -3,7 +3,7 @@
 # Table name: reform_surveys
 #
 #  id                           :integer          not null, primary key
-#  quarter_id                   :integer          not null
+#  quarter_id                   :integer
 #  reform_id                    :integer          not null
 #  government_overall_score     :decimal(5, 2)    not null
 #  government_category1_score   :decimal(5, 2)    not null

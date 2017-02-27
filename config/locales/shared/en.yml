@@ -171,6 +171,9 @@ en:
         reform: Reform
         stakeholder: Stakeholder
         summary: Summary
+    move_row:
+      up: Move the row up
+      down: Move the row down
   time:
     formats:
       file: "%Y%m%d%H%M%S"

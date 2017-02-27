@@ -1,6 +1,6 @@
 class Admin::ExpertsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_expert, only: [:show, :edit, :update, :destroy]
+  before_action :set_expert, only: [:show, :edit, :update, :destroy, :up, :down]
   before_action :load_types, only: [:new, :edit, :create, :update]
   authorize_resource
 
@@ -61,6 +61,19 @@ class Admin::ExpertsController < ApplicationController
                               obj: t('activerecord.models.expert', count: 1))}
     end
   end
+
+  # move the expert up
+  def up
+    @expert.move_higher
+    render json: nil , status: :created
+  end
+
+  # move the expert down
+  def down
+    @expert.move_lower
+    render json: nil , status: :created
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

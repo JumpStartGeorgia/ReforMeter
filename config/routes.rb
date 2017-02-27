@@ -23,7 +23,12 @@ Rails.application.routes.draw do
         end
       end
       resources :reports, except: :show, constraints: { format: :html }
-      resources :experts, except: :show, constraints: { format: :html }
+      resources :experts, except: :show, constraints: { format: :html } do
+        member do
+          post 'up', to: 'experts#up'
+          post 'down', to: 'experts#down'
+        end
+      end
       resources :reforms, except: :show, constraints: { format: :html }
       resources :reform_colors, except: :show, constraints: { format: :html }
       # resources :quarters, except: :show, constraints: { format: :html } do

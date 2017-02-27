@@ -20,6 +20,7 @@
     setupReformColorSelectChange();
     setVerdictFormVerdict();
     setupExpertsSelectAll();
+    setupExpertMove();
     setupExternalIndicatorType();
     setupExternalIndicatorCocoon();
     setupExternalIndicatorMove();
