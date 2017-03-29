@@ -130,7 +130,7 @@ en:
         en: English
         ka: ქართული
     msgs:
-      all_reform_surveys_exist: A survey for each reform in %{quarter} already exists, so no more surveys need to be added.
+      all_reform_surveys_exist: A survey for each reform in %{verdict} already exists, so no more surveys need to be added.
       does_not_exist: You tried to access a page that does not exist.
       fail_published: "%{obj} was not successfully published due to the following: %{msg}"
       fail_unpublished: "%{obj} was not successfully unpublished due to the following: %{msg}"
