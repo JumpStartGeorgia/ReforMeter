@@ -2,7 +2,7 @@
 class RootController < ApplicationController
   def index
     @verdict = Verdict.published.recent.first
-    @external_indicators = ExternalIndicator.published.for_home_page
+    @external_indicators = ExternalIndicator.published.for_home_page.with_time_periods
     @reforms = Reform.with_reform_survey(@verdict.id).in_verdict(@verdict.id).active.highlight.sorted if @verdict
 
     # @quarter = Quarter.published.with_expert_survey.latest
@@ -103,7 +103,7 @@ class RootController < ApplicationController
     @reforms = Reform.active.sorted
     # @verdict = Verdict.published.recent
 #    @quarters = Quarter.published.recent
-    @external_indicators = ExternalIndicator.published.sorted
+    @external_indicators = ExternalIndicator.published.sorted.with_time_periods
     @reports = Report.active.sorted
 
     # if there is a download request, process it
@@ -152,7 +152,7 @@ class RootController < ApplicationController
 
   def economic_effects
     @most_recent_verdict = Verdict.published.recent.first
-    @external_indicators = ExternalIndicator.published.sorted_for_list_page
+    @external_indicators = ExternalIndicator.published.sorted_for_list_page.with_time_periods
 
     gon.change_icons = view_context.change_icons
 

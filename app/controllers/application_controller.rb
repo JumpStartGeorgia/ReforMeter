@@ -294,7 +294,7 @@ class ApplicationController < ActionController::Base
       reform_stakeholder_gauge_group
     ].select(&:png_image_exists?).map(&:png_image_path)
 
-    @external_indicators = @reform.external_indicators.published.sorted
+    @external_indicators = @reform.external_indicators.published.sorted.with_time_periods
 
     gon.charts += @external_indicators.map(&:format_for_charting)
   end

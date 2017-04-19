@@ -31,7 +31,10 @@ class ExternalIndicatorTime < AddMissingTranslation
   #######################
   ## SCOPES
   scope :sorted, -> { order(sort_order: :asc) }
-
+  # get unique array of external indicator ids with records
+  def self.external_indicator_ids
+    pluck(:external_indicator_id).uniq
+  end
 
   #######################
   #######################

@@ -75,7 +75,7 @@ class ExternalIndicator < AddMissingTranslation
   scope :sorted_for_list_page, -> { with_translations(I18n.locale).order(show_on_home_page: :desc).order(:sort_order).order(title: :asc) }
   scope :reverse_sorted, -> { with_translations(I18n.locale).order(title: :desc) }
   scope :for_home_page, -> { where(show_on_home_page: true).order(:sort_order) }
-
+  scope :with_time_periods, -> { where(id: ExternalIndicatorTime.external_indicator_ids) }
 
   # columns:
   # - basic: time, value
@@ -108,7 +108,7 @@ class ExternalIndicator < AddMissingTranslation
   end
 
   def gauge_chart_data(index, responsiveToSelector)
-    most_recent_data_point = format_for_charting[:series][0][:data].last
+    most_recent_data_point = format_for_charting[:series][0][:data].select{|x| x[:y].present?}.last
     {
       id: "external-indicator-#{id}",
       title: nil,
@@ -368,9 +368,19 @@ class ExternalIndicator < AddMissingTranslation
 
       # if this indciator has a benchmark, add it
       if self.has_benchmark?
+        benchmark_data = []
+        time.each do |x|
+          benchmark = x.data.select{|x| x.is_benchmark}.first
+          if benchmark.present?
+            benchmark_data << {y: benchmark.value.to_f, change: benchmark.change}
+          else
+            benchmark_data << {y: nil, change: nil}
+          end
+        end
+
         hash[:series] << {
           name: self.benchmark_title,
-          data: time.map{|x| {y: x.data.select{|x| x.is_benchmark}.first.value.to_f, change: x.data.select{|x| x.is_benchmark}.first.change} },
+          data: benchmark_data,
           isBenchmark: true
         }
       end
