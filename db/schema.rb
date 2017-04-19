@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227061454) do
+ActiveRecord::Schema.define(version: 20170419105454) do
 
   create_table "expert_survey_translations", force: :cascade do |t|
     t.integer  "expert_survey_id", limit: 4,     null: false
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20170227061454) do
     t.integer  "external_indicator_time_id", limit: 4
     t.integer  "country_id",                 limit: 4
     t.integer  "index_id",                   limit: 4
-    t.decimal  "value",                                precision: 5, scale: 2,                 null: false
+    t.decimal  "value",                                precision: 9, scale: 2,                 null: false
     t.integer  "change",                     limit: 4
     t.datetime "created_at",                                                                   null: false
     t.datetime "updated_at",                                                                   null: false
