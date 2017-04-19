@@ -17,29 +17,32 @@
 
         <%
           most_recent_data_point = index[:data].last
-          value = most_recent_data_point[:y]
+          if most_recent_data_point.present?
+            value = most_recent_data_point[:y] 
         %>
 
-        <li class='chartIndexes-item js-act-as-index-box' original-title='<h4 class="chartIndexes-item-tooltip-heading"><%= index[:name] %></h4><div class="chartIndexes-item-tooltip-description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>'>
-          <span class='js-act-as-index-name'>
-            <%= index[:short_name] %>
-          </span>
-
-          <p class='chartIndexes-item-values'>
-
-            <span class='chartIndexes-item-values-score js-act-as-index-value'>
-              <%= value.present? ? external_indicator[:use_decimals] ? value.round(2) : value.round : "N/A" %>
+          <li class='chartIndexes-item js-act-as-index-box' original-title='<h4 class="chartIndexes-item-tooltip-heading"><%= index[:name] %></h4><div class="chartIndexes-item-tooltip-description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </div>'>
+            <span class='js-act-as-index-name'>
+              <%= index[:short_name] %>
             </span>
 
-            <span class='chartIndexes-item-values-change js-act-as-change-icon'>
-              <%= generate_change_icon(most_recent_data_point[:change]) %>
-            </span>
-          </p>
+            <p class='chartIndexes-item-values'>
 
-        </li>
+              <span class='chartIndexes-item-values-score js-act-as-index-value'>
+                <%= value.present? ? external_indicator[:use_decimals] ? value.round(2) : value.round : "N/A" %>
+              </span>
 
+              <span class='chartIndexes-item-values-change js-act-as-change-icon'>
+                <%= generate_change_icon(most_recent_data_point[:change]) %>
+              </span>
+            </p>
+
+          </li>
+      
+        <% end %>
+      
       <% end %>
 
     </ul>
