@@ -37,10 +37,12 @@ function externalIndicatorChartHelpers(chartData) {
     if (use_opacity === undefined){
       use_opacity = true;
     }
-    $(plotBands).each(function() {
+    $(plotBands).each(function(index) {
       bands.push({
         from: this.from,
         to: this.to,
+        color: index%2==0 ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0)',
+        zIndex: 4,
         label: {
           text: this.text,
           style: {
