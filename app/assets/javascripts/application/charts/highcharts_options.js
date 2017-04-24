@@ -42,6 +42,9 @@ function setupDefaultOptions() {
           fontSize: '1.2em'
         }
       }
+    },
+    lang: {
+        numericSymbols: null //otherwise by default ['k', 'M', 'G', 'T', 'P', 'E']
     }
   });
 }
