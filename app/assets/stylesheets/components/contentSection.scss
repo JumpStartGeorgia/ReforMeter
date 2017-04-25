@@ -71,6 +71,7 @@
   }
 
   .contentSection-body.mod-fill-vertical-space {
+    height: 100%;
 
     // Safari behaves differently in this case from Chrome and Firefox.
     // If height: 100%; is applied, it calculates the height to be 0px.
@@ -81,12 +82,6 @@
     &.safari-only {
       height: initial;
     }
-
-    @media (min-width: 800px) {
-      height: 100%;
-    }
-
-
   }
 
 .contentSection.mod-overlap-top-image {

@@ -5,6 +5,8 @@
     setupVerdictTimePeriodSelect();
     initializeChangeReformPageControls().setup();
     initializeScrollToIdSelect().setup();
+    initializeChangeEconomicEffectsControls().setup();
+
     var charts = setupCharts();
 
     initializeInfoCircles().setup();

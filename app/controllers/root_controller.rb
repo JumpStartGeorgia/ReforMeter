@@ -154,6 +154,11 @@ class RootController < ApplicationController
     @most_recent_verdict = Verdict.published.recent.first
     @external_indicators = ExternalIndicator.published.sorted_for_list_page.with_time_periods
 
+    @reforms = @external_indicators.map{|external_indicator| external_indicator.reforms}.flatten.compact
+                              .select{|reform| reform.name.present?}
+                              .uniq.sort {|x,y| x.name <=> y.name }
+
+
     gon.change_icons = view_context.change_icons
 
     charts = @external_indicators.map do |external_indicator|
