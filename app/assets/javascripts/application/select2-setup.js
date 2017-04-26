@@ -5,6 +5,7 @@ function setupSelect2() {
     var options = {
       width: 'auto',
       minimumResultsForSearch: -1, // removes search bar
+      dropdownAutoWidth : true
     };
 
     var $select2 = $('.js-become-select2').select2(options);
@@ -13,7 +14,6 @@ function setupSelect2() {
       $select2.each(function() {
         var dropdownClass = $(this).data('dropdown-class');
         $(this).data('select2').$dropdown.addClass(dropdownClass);
-        console.log($(this).data('select2'))
       });
     }
 

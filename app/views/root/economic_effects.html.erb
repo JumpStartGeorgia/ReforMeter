@@ -28,7 +28,7 @@ page_title t('.title')
             </label>
 
             <select id='filter-reform' class='js-become-select2 js-filter-reform'>
-                <option value='default'>All</option>
+                <option value='default' class='default'><%= t('shared.common.all') %></option>
 
             <% @reforms.each do |reform| %>
               <option value="<%= reform.slug %>"><%= reform.name %></option>
@@ -41,14 +41,16 @@ page_title t('.title')
 
          <div class='headerControlsRow'>
             <span class='headerControlsRow-item'>
-
+              <label class='labeledSelect-label' for='filter-reform'>
+                <%= t('.select_indicator') %>:
+              </label>
               <select class='js-become-select2 js-scroll-to-id economic-effects-select'>
 
-                <option><%= t('.select_indicator') %></option>
+                <option value='default' class='default'> <%= t('.choose') %> </option>
 
                 <% @external_indicators.each do |external_indicator| %>
 
-                  <option class='options' data-id='<%= external_indicator.id %>' value="external-indicator-<%= external_indicator.id %>"><%= external_indicator.title %></option>
+                  <option class='options' id='dropdown-external-indicator-<%= external_indicator.id %>' value="external-indicator-<%= external_indicator.id %>"><%= external_indicator.title %></option>
 
                 <% end %>
 

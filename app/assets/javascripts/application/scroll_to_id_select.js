@@ -4,8 +4,10 @@ function initializeScrollToIdSelect() {
 
   function scrollToId() {
     var selectedId = $selector.val();
+    if(selectedId == 'default') 
+      return;
     var $selectedIndicator = $('#' + selectedId);
-
+    $selector.val('default').trigger('change');  
     window.location.hash = selectedId;
 
     $('html, body').animate(
