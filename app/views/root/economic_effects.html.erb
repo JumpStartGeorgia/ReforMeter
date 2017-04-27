@@ -17,19 +17,48 @@ page_title t('.title')
 
     </div>
 
-    <div class='contentSection-header-controls'>
+    <div class='selections'>
 
-      <select class='js-become-select2 js-scroll-to-id'>
+      <div class='contentSection-header-controls'>
+        <div class='headerControlsRow'>
+          <span class='headerControlsRow-item'>
 
-        <option><%= t('.select_indicator') %></option>
+            <label class='labeledSelect-label' for='filter-reform'>
+              <%= t('.filter_reform') %>:
+            </label>
 
-        <% @external_indicators.each do |external_indicator| %>
+            <select id='filter-reform' class='js-become-select2 js-filter-reform'>
+                <option value='default' class='default'><%= t('shared.common.all') %></option>
 
-          <option value="external-indicator-<%= external_indicator.id %>"><%= external_indicator.title %></option>
+            <% @reforms.each do |reform| %>
+              <option value="<%= reform.slug %>"><%= reform.name %></option>
+            <% end %>
 
-        <% end %>
+            </select>
 
-      </select>
+          </span>
+        </div>
+
+         <div class='headerControlsRow'>
+            <span class='headerControlsRow-item'>
+              <label class='labeledSelect-label' for='filter-reform'>
+                <%= t('.select_indicator') %>:
+              </label>
+              <select class='js-become-select2 js-scroll-to-id economic-effects-select'>
+
+                <option value='default' class='default'> <%= t('.choose') %> </option>
+
+                <% @external_indicators.each do |external_indicator| %>
+
+                  <option class='options' id='dropdown-external-indicator-<%= external_indicator.id %>' value="external-indicator-<%= external_indicator.id %>"><%= external_indicator.title %></option>
+
+                <% end %>
+
+              </select>
+              
+            </span>
+          </div>
+      </div>
 
     </div>
 
@@ -39,7 +68,17 @@ page_title t('.title')
 
 <% @external_indicators.each do |ext_ind| %>
 
-  <div id='external-indicator-<%= ext_ind.id %>' class='contentSection'>
+  <% class_name = '' %>
+
+  <% if ext_ind.reforms.present? && @most_recent_verdict.present? %>
+
+        <% ext_ind.reforms.each do |reform| %>
+          <% class_name += ' ' + reform.slug %>
+        <% end %>
+
+  <% end %>
+
+  <div id='external-indicator-<%= ext_ind.id %>' class='contentSection external-indicator <%= class_name %>'>
 
     <header class='contentSection-header'>
 
@@ -78,12 +117,10 @@ page_title t('.title')
             <%= t '.associated_reforms' %>
           </h3>
 
+
           <ul>
-
             <% ext_ind.reforms.each do |reform| %>
-
               <li>
-
                 <%= link_to reform.name,
                             reform_show_path(
                               reform,

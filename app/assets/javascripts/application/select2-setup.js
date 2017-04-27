@@ -4,7 +4,8 @@ function setupSelect2() {
 
     var options = {
       width: 'auto',
-      minimumResultsForSearch: -1 // removes search bar
+      minimumResultsForSearch: -1, // removes search bar
+      dropdownAutoWidth : true
     };
 
     var $select2 = $('.js-become-select2').select2(options);
