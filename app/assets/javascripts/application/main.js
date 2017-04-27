@@ -16,9 +16,9 @@
     if ($('body.root.reforms').length > 0) {
       var colorfulReformsTimeSeries = charts.filter(function() {
         return $(this.highchartsObject.renderTo).data('id') === 'reforms-government-history-series';
-      })[0];
-
-      setupReformSelects(colorfulReformsTimeSeries);
+      });
+      if(colorfulReformsTimeSeries.length)
+        setupReformSelects(colorfulReformsTimeSeries[0]);
     }
 
     if ($("body").hasClass("root download_data_and_reports")) {

@@ -16,6 +16,7 @@ function initializeChangeEconomicEffectsControls() {
 			$('.contentSection.external-indicator').show();
 			$('.economic-effects-select option').show();
 			$econ_ef_select.find('option').prop('disabled', false);
+			remove_hash();
 		} else {
 			$('.contentSection.external-indicator').hide();
 			$econ_ef_select.find('option').not('.default').prop('disabled', true);
@@ -26,6 +27,8 @@ function initializeChangeEconomicEffectsControls() {
 		}
 		$econ_ef_select.select2(options);
 	}
+
+
 
 	exports.setup = function() {
 	  $selector.change(filter_economic_effects);

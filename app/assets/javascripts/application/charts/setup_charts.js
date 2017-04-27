@@ -31,7 +31,6 @@ function setupCharts() {
   setupDefaultOptions();
 
   var charts = initializeCharts($charts);
-
   $(charts).each(function() {
     this.create();
   });

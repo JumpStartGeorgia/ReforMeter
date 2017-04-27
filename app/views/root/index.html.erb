@@ -263,8 +263,8 @@
             <% @external_indicators.each do |external_indicator| %>
 
               <section class='homePage-externalIndicator'>
-
-                <%= link_to economic_effects_path, class: 'link mod-no-decoration' do %>
+                <% link_with_hash = 'external-indicator-' + external_indicator.id.to_s %>
+                <%= link_to economic_effects_path(:anchor => link_with_hash), class: 'link mod-no-decoration' do %>
 
                   <h3 class='heading mod-no-transform'>
 

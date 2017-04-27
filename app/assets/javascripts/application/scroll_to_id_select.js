@@ -9,7 +9,6 @@ function initializeScrollToIdSelect() {
     var $selectedIndicator = $('#' + selectedId);
     $selector.val('default').trigger('change');  
     window.location.hash = selectedId;
-
     $('html, body').animate(
       {
         scrollTop: $selectedIndicator.offset().top
