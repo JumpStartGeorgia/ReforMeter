@@ -6,7 +6,6 @@
     initializeChangeReformPageControls().setup();
     initializeScrollToIdSelect().setup();
     initializeChangeEconomicEffectsControls().setup();
-    alert();
 
     var charts = setupCharts();
 

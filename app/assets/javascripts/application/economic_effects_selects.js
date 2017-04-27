@@ -29,6 +29,7 @@ function initializeChangeEconomicEffectsControls() {
 
 	exports.setup = function() {
 	  $selector.change(filter_economic_effects);
+	  alert();
 	}
 
 	return exports;
