@@ -18,7 +18,7 @@ en:
     economic_effects:
       associated_reforms: Reforms that Affect this Indicator
       select_indicator: Jump To Indicator
-      filter_reform: Filter Reform
+      filter_reform: Filter By Reform
       choose: Please Choose...
       title: Economic Effects
     index:

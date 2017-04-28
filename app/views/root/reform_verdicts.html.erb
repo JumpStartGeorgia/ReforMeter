@@ -61,7 +61,8 @@
           },
           {
             id: 'chart',
-            text: t('.header.chart')
+            text: t('.header.chart'),
+            show_conditional: @verdicts.length > 1
           }
         ]
       %>
@@ -175,18 +176,22 @@
 
         </div>
 
-        <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
 
-          <% exportID = random_string %>
+        <% if @verdicts.length > 1 %>
 
-          <%= render partial: 'shared/chart_export_button',
-                     locals: {
-                       exportID: exportID
-                     } %>
+          <div class='tabContent-panel js-act-as-tab-content-panel' id='chart'>
 
-          <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='verdict-history' data-exportable-by-id='<%= exportID %>'></div>
+            <% exportID = random_string %>
 
-        </div>
+            <%= render partial: 'shared/chart_export_button',
+                       locals: {
+                         exportID: exportID
+                       } %>
+
+            <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='verdict-history' data-exportable-by-id='<%= exportID %>'></div>
+
+          </div>
+        <% end %>
 
       </div>
     </div>

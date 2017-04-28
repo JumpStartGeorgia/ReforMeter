@@ -109,22 +109,25 @@ show_admin_links ||= false
       </section>
     </div>
 
-    <section>
-      <h2 class='heading'>
-        <%= t('.header.chart') %>
-      </h2>
+    <% if @active_verdicts.present? && @active_verdicts.length > 1 %>
 
-      <% exportID = random_string %>
+      <section>
+        <h2 class='heading'>
+          <%= t('.header.chart') %>
+        </h2>
 
-      <%= render partial: 'shared/chart_export_button',
-                 locals: {
-                   exportID: exportID
-                 } %>
+        <% exportID = random_string %>
 
-      <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='verdict-history' data-exportable-by-id='<%= exportID %>'></div>
+        <%= render partial: 'shared/chart_export_button',
+                   locals: {
+                     exportID: exportID
+                   } %>
 
-    </section>
+        <div class='js-become-highchart' data-chart-type='rating-history-time-series' data-id='verdict-history' data-exportable-by-id='<%= exportID %>'></div>
 
+      </section>
+
+    <% end %>
   </div>
 
 </div>
