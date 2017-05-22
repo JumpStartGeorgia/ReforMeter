@@ -87,12 +87,17 @@ class Reform < AddMissingTranslation
   #######################
   private
 
-  def has_required_translations?(trans)
-    trans.name.present? && trans.summary.present?
+  # def has_required_translations?(trans)
+  #   trans.name.present? && trans.summary.present?
+  # end
+
+  # def add_missing_translations(default_trans)
+  #   self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+  #   self.summary = default_trans.summary if self["summary_#{Globalize.locale}"].blank?
+  # end
+
+  def required_translation_fields
+    return ['name', 'summary']
   end
 
-  def add_missing_translations(default_trans)
-    self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
-    self.summary = default_trans.summary if self["summary_#{Globalize.locale}"].blank?
-  end
 end

@@ -32,11 +32,20 @@ class ExternalIndicatorCountry < AddMissingTranslation
   #######################
   private
 
-  def has_required_translations?(trans)
-    trans.name.present?
+  # def has_required_translations?(trans)
+  #   puts "!!!!!!!! country has required name #{trans.name.present?}"
+  #   trans.name.present?
+  # end
+
+  # def add_missing_translations(default_trans)
+  #   puts "!!!!!!!! country #{Globalize.locale} has no name #{self["name_#{Globalize.locale}"].blank?}"
+  #   puts "!!!!!!!! default name = #{default_trans.name}"
+  #   self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+  #   puts "####### self attributes #{self.attributes.inspect}"
+  # end
+
+  def required_translation_fields
+    return ['name']
   end
 
-  def add_missing_translations(default_trans)
-    self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
-  end
 end

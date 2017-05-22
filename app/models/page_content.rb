@@ -29,11 +29,16 @@ class PageContent < AddMissingTranslation
   #######################
   private
 
-  def has_required_translations?(trans)
-    trans.title.present?
+  # def has_required_translations?(trans)
+  #   trans.title.present?
+  # end
+
+  # def add_missing_translations(default_trans)
+  #   self.title = default_trans.title if self["title_#{Globalize.locale}"].blank?
+  # end
+
+  def required_translation_fields
+    return ['title']
   end
 
-  def add_missing_translations(default_trans)
-    self.title = default_trans.title if self["title_#{Globalize.locale}"].blank?
-  end
 end

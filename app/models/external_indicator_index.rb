@@ -34,12 +34,17 @@ class ExternalIndicatorIndex < AddMissingTranslation
   #######################
   private
 
-  def has_required_translations?(trans)
-    trans.name.present? && trans.short_name.present?
+  # def has_required_translations?(trans)
+  #   trans.name.present? && trans.short_name.present?
+  # end
+
+  # def add_missing_translations(default_trans)
+  #   self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+  #   self.short_name = default_trans.short_name if self["short_name_#{Globalize.locale}"].blank?
+  # end
+
+  def required_translation_fields
+    return ['name', 'short_name']
   end
 
-  def add_missing_translations(default_trans)
-    self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
-    self.short_name = default_trans.short_name if self["short_name_#{Globalize.locale}"].blank?
-  end
 end

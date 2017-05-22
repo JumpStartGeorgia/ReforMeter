@@ -40,11 +40,15 @@ class ExternalIndicatorTime < AddMissingTranslation
   #######################
   private
 
-  def has_required_translations?(trans)
-    trans.name.present?
-  end
+  # def has_required_translations?(trans)
+  #   trans.name.present?
+  # end
 
-  def add_missing_translations(default_trans)
-    self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+  # def add_missing_translations(default_trans)
+  #   self.name = default_trans.name if self["name_#{Globalize.locale}"].blank?
+  # end
+
+  def required_translation_fields
+    return ['name']
   end
 end

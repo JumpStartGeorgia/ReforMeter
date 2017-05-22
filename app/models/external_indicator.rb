@@ -831,12 +831,38 @@ class ExternalIndicator < AddMissingTranslation
   #######################
   #######################
 
-  def has_required_translations?(trans)
-    trans.title.present?
-  end
+  # def has_required_translations?(locale)
+  #   fields = ['title']
+  #   exists = []
+  #   fields.each do |field|
+  #     exists << self.send("#{field}_#{locale}").present?
+  #   end
 
-  def add_missing_translations(default_trans)
-    self.title = default_trans.title if self["title_#{Globalize.locale}"].blank?
-  end
+  #   return !exists.include? false
 
+  #   # puts "1111 ext ind has required for #{Globalize.locale} = #{trans.title.present?}"
+  #   # trans.title.present?
+  # end
+
+  # def add_missing_translations(default_locale)
+  #   fields = ['title']
+  #   locales = I18n.available_locales.clone
+  #   locales.delete(I18n.default_locale)
+
+  #   fields.each do |field|
+  #     locales.each do |locale|
+  #       self.send("#{field}_#{locale}") = self.send("#{field}_#{default_locale}").present? if self.send("#{field}_#{locale}").blank?
+  #     end
+  #   end
+
+
+  #   # puts "!!!!!!!! ext ind #{Globalize.locale} has no title #{self["title_#{Globalize.locale}"].blank?}"
+  #   # puts "!!!!!!!! default title = #{default_trans.title}"
+  #   # self.title = default_trans.title if self["title_#{Globalize.locale}"].blank?
+  #   # puts "####### self attributes #{self.attributes.inspect}"
+  # end
+
+  def required_translation_fields
+    return ['title']
+  end
 end
