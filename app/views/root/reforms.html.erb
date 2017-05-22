@@ -194,7 +194,7 @@ page_title t('.title')
                   <%= t('.table_header.time') %>
                 </th>
 
-                <th class='chartsTable-cell mod-head'>
+                <th class='chartsTable-cell mod-head mod-reform-name'>
                   <%= t('.table_header.reform') %>
                 </th>
 
@@ -251,7 +251,7 @@ page_title t('.title')
                           <p class='chartsTable-cell-text'>
 
                             <span class='chartsTable-cell-text-score'>
-                              <%= survey.government_overall_score %>
+                              <%= "#{survey.government_overall_score}%" %>
                             </span>
 
                             <span class='chartsTable-cell-text-changeIcon'>

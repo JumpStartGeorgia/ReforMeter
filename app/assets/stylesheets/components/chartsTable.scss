@@ -69,6 +69,12 @@ $charts-table-border: solid 3px $color-grey-background;
     }
   }
 
+  .chartsTable-cell.mod-reform-name {
+    min-width: 200px;
+  }
+
+
+
   .chartsTable-cell.mod-summary {
     width: 100%;
   }
@@ -128,13 +134,13 @@ $charts-table-border: solid 3px $color-grey-background;
     .chartsTable-cell-chart {
       display: none;
 
-      @media (min-width: 520px) {
+      @media (min-width: 680px) {
         display: block;
       }
     }
 
     .chartsTable-cell-text {
-      @media (min-width: 520px) {
+      @media (min-width: 680px) {
         display: none;
       }
     }
