@@ -20,6 +20,8 @@ en:
         stakeholder_summary: Stakeholder Summary
         summary: Summary
         report: Report
+        delete_report_en: Delete Existing Report
+        delete_report_ka: Delete Existing Report
     errors:
       models:
         reform_survey:

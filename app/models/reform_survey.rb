@@ -63,6 +63,8 @@ class ReformSurvey < ActiveRecord::Base
                     :url => "/system/reform_survey_reports/:id/ka/:basename.:extension",
                     :use_timestamp => false
 
+  attr_accessor :delete_report_en, :delete_report_ka
+
   #######################
   ## VALIDATIONS
 
@@ -85,6 +87,7 @@ class ReformSurvey < ActiveRecord::Base
   before_save :set_change_values
   after_save :update_future_survey
   after_destroy :reset_future_survey
+  before_validation :delete_existing_report
 
   #######################
   ## SCOPES
@@ -178,7 +181,7 @@ class ReformSurvey < ActiveRecord::Base
     return true
   end
 
-  # if there is a time period after this one, 
+  # if there is a time period after this one,
   # calculate its change values
   def update_future_survey
     # get the next survey
@@ -191,7 +194,7 @@ class ReformSurvey < ActiveRecord::Base
     return true
   end
 
-  # if there is a time period after this one, 
+  # if there is a time period after this one,
   # reset its change values
   def reset_future_survey
     # get the next survey
@@ -203,6 +206,15 @@ class ReformSurvey < ActiveRecord::Base
 
     return true
   end
+
+  # remove the existing report if desired (delete_report_en/ka = 1)
+  # - it is possible that the user is also loading a new image,
+  #   so in that case (dirty) do not delete for it will delete the new file
+  def delete_existing_report
+    self.report_en.clear if delete_report_en == "1" and !self.report_en.dirty?
+    self.report_ka.clear if delete_report_ka == "1" and !self.report_ka.dirty?
+  end
+
 
   def compute_change_values(current_survey, previous_survey)
     if current_survey.present? && previous_survey.present?

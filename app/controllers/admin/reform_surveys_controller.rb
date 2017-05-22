@@ -17,7 +17,7 @@ class Admin::ReformSurveysController < ApplicationController
 
     begin
       @reform = Reform.active.with_color.friendly.find(@reform_survey.reform_id) if @reform_survey
-  
+
       if @reform.nil? || @verdict.nil? || @reform_survey.nil?
         redirect_to admin_verdicts_path,
                 alert: t('shared.msgs.does_not_exist')
@@ -234,6 +234,7 @@ class Admin::ReformSurveysController < ApplicationController
     def reform_survey_params
       permitted = ReformSurvey.globalize_attribute_names + [
         :verdict_id, :reform_id, :report_en, :report_ka, :time_period, :is_public,
+        :delete_report_en, :delete_report_ka,
         :government_overall_score, :government_category1_score, :government_category2_score, :government_category3_score, :government_category4_score,
         :stakeholder_overall_score, :stakeholder_category1_score, :stakeholder_category2_score, :stakeholder_category3_score
       ]
@@ -252,5 +253,5 @@ class Admin::ReformSurveysController < ApplicationController
     # set the date for the datepicker
     def set_date
       gon.time_period = @reform_survey.time_period.strftime('%m/%d/%Y %H:%M') if !@reform_survey.time_period.nil?
-    end    
+    end
 end

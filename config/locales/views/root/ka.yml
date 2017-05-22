@@ -11,12 +11,16 @@ ka:
       no_executive_team: ჩანაწერში განმახორციელებელი გუნდის წევრები არ არიან.
       steering_committee: მმართველი საბჭო
       executive_team: აღმასრულებელი გუნდი
+      address: მისამართი
+      email: ელ-ფოსტა
+      phone: ტელეფონის ნომერი
+      fax: ფაქსი
     download_data_and_reports:
       choose: არჩევა
       download: გადმოწერა
       title: ჩამოტვირთეთ მონაცემები და ანგარიშები
     economic_effects:
-      associated_reforms: რეფორმები, რომლებიც გავლენას ახდენენ ამ იდიკატორზე
+      associated_reforms: რეფორმები, რომლებიც გავლენას ახდენენ ამ ინდიკატორზე
       select_indicator: გადადი ინდიკატორზე
       filter_reform: გაფილტრე რეფორმა
       choose: აირჩიეთ...
@@ -61,7 +65,7 @@ ka:
       header:
         chart: თაიმლაინი
         table: შედეგები
-      no_data: ბოდიში, ამ დროისთვის რეფორმის განაჩენი არ ასრებობს. 
+      no_data: ბოდიში, ამ დროისთვის რეფორმის განაჩენი არ ასრებობს.
       table_header:
         overall: საერთო ქულა
         summary: შეჯამება

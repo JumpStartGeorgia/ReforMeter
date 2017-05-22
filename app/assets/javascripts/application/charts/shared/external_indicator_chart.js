@@ -50,7 +50,7 @@ function externalIndicatorChartHelpers(chartData) {
             fontSize: localeIs('ka') ? '14px' : '16px',
             fontWeight: '600'
           },
-          x: localeIs('ka') ? -140 : -100,
+          x: localeIs('ka') ? -120 : -100,
           verticalAlign: 'middle'
         }
       });

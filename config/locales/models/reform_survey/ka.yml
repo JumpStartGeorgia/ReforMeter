@@ -20,6 +20,8 @@ ka:
         stakeholder_summary: დაინტერესებულ მხარეთა შეჯამება
         summary: შეჯამება
         report: რეპორტი
+        delete_report_en: Delete Existing Report
+        delete_report_ka: Delete Existing Report
     errors:
       models:
         reform_survey:

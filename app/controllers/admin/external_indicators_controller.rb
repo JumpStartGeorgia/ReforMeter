@@ -53,7 +53,6 @@ class Admin::ExternalIndicatorsController < ApplicationController
   # PATCH/PUT /admin/external_indicators/1.json
   def update
     respond_to do |format|
-
       if @external_indicator.update(external_indicator_params)
         format.html { redirect_to [:admin, @external_indicator], notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.external_indicator', count: 1)) }
@@ -117,7 +116,7 @@ class Admin::ExternalIndicatorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def external_indicator_params
       permitted = ExternalIndicator.globalize_attribute_names + [
-        :is_public, :use_decimals, :show_on_home_page, :indicator_type, :scale_type, :chart_type, 
+        :is_public, :use_decimals, :show_on_home_page, :indicator_type, :scale_type, :chart_type,
         :min, :max, :sort_order, :has_benchmark, reform_ids: [],
         indices_attributes: [ExternalIndicatorIndex.globalize_attribute_names + [:id, :_destroy, :change_multiplier, :sort_order, :external_indicator_id]],
         countries_attributes: [ExternalIndicatorCountry.globalize_attribute_names + [:id, :_destroy, :sort_order, :external_indicator_id]],

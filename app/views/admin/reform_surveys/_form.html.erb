@@ -51,6 +51,8 @@
         <%= link_to t('shared.actions.view'), @reform_survey.report(enabled_locale).url,
                         class: 'btn btn-default',
                         target: :blank if @reform_survey.report(enabled_locale).exists? %>
+        <%= f.input "delete_report_#{enabled_locale}", as: :boolean if @reform_survey.report(enabled_locale).exists? %>
+
         <span class="form-wrapper">
           <input accept=".pdf" id="reform_survey_report_<%= enabled_locale %>" name="reform_survey[report_<%= enabled_locale %>]" type="file">
         </span>

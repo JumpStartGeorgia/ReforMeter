@@ -11,6 +11,10 @@ en:
       no_executive_team: There are no executive team members on record.
       steering_committee: Steering Committee
       executive_team: Executive Team
+      address: Address
+      email: Email
+      phone: Phone
+      fax: Fax
     download_data_and_reports:
       choose: Choose
       download: Download
