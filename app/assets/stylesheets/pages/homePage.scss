@@ -50,7 +50,7 @@ $widthHomepageIntroHorizontal: 600px;
   .homepage-introText-divider {
     margin-left: inherit;
     margin-right: inherit;
-    
+
     &:first-child:before {
       display: none;
     }
@@ -112,7 +112,7 @@ $widthHorizontalContentSections: 800px;
 
   .homePage-reformsIndicatorsContainer-reforms {
     @media (min-width: $widthHorizontalContentSections) {
-      max-width: 450px;
+      max-width: 500px;
       margin-right: 20px;
     }
   }
