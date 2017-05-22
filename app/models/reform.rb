@@ -28,8 +28,9 @@ class Reform < AddMissingTranslation
   #######################
   ## VALIDATIONS
 
-  validates :name, :summary, :reform_color_id, presence: :true
-  validates_uniqueness_of :name
+  validates :name, :reform_color_id, presence: :true
+  # validates :name, :summary, :reform_color_id, presence: :true
+  # validates_uniqueness_of :name
 
   #######################
   ## SLUG DEFINITION (friendly_id)

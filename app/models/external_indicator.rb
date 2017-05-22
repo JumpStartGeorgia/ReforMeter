@@ -493,7 +493,7 @@ class ExternalIndicator < AddMissingTranslation
       # get the index values
       hash[:indexes] = []
       self.indices.sorted.each_with_index do |ind, index|
-        item = {name: ind.name, short_name: ind.short_name, data: []}
+        item = {name: ind.name, short_name: ind.short_name, description: ind.description, data: []}
 
         # for each time period, get the index data
         time.each do |tp|
