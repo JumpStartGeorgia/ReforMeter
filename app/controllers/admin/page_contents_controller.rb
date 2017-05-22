@@ -6,7 +6,7 @@ class Admin::PageContentsController < ApplicationController
   # GET /page_contents
   # GET /page_contents.json
   def index
-    @page_contents = PageContent.all
+    @page_contents = PageContent.sorted
   end
 
   # GET /page_contents/1

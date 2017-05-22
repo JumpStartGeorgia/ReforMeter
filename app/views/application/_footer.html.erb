@@ -27,9 +27,9 @@
 
   </div>
 
-  <p>
-    <%= t('.description') %>
-  </p>
+  <% if @disclaimer.present? %>
+    <%= simple_format @disclaimer.content %>
+  <% end %>
 
   <div class='appFooter-logos'>
 

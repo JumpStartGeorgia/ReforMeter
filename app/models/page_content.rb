@@ -21,6 +21,11 @@ class PageContent < AddMissingTranslation
   validates :name, presence: :true, uniqueness: :true
 
   #######################
+  ## SCOPE
+
+  scope :sorted, -> { with_translations(I18n.locale).order(name: :asc) }
+
+  #######################
   #######################
   private
 

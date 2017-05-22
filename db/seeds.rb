@@ -140,6 +140,14 @@ PageContent.find_or_create_by(name: 'verdict') do |pc|
     pc.content = '<p>Lorem ipsum dolor sit amet, te duo probo timeam salutandi, iriure nostrud periculis et sit. Cu nostro alienum per, et usu porro inermis civibus, ad mei porro ceteros voluptatibus.</p> <p>Ferri commune voluptatibus ne sed. Id sea labitur liberavisse voluptatibus. Populo consetetur repudiandae ad nam. Regione complectitur mel ea, in veri eripuit vix. Ius idque impedit periculis at. Ex sea tota vidit prima, adhuc accusamus cu eam. Iuvaret fabellas ea vel, ne eum mundi incorrupte dissentiunt. Congue ridens temporibus at eam.</p>'
 end
 
+# disclaimer
+PageContent.find_or_create_by(name: 'disclaimer') do |pc|
+    puts 'creating page content for disclaimer'
+    pc.title = 'Disclaimer'
+    pc.content_en = '<p>This application is made possible by the support of the American People through the United States Agency for International Development (USAID). The contents of this application are the responsibility of International School of Economics at Tbilisi State University (ISET) Policy Institute and do not necessarily reflect the views of USAID or the United States Government.</p>'
+    pc.content_ka = '<p>ამ კომპიუტერული პროგრამის შექმნა შესაძლებელი გახდა ამერიკელი ხალხის მიერ ამერიკის შეერთებული შტატების საერთაშორისო განვითარების სააგენტოს (USAID)  მეშვეობით გაწეული დახმარების შედეგად. მის შინაარსზე  პასუხისმგებელია თბილისის სახელმწიფო უნივერსიტეტის ეკონომიკის საერთაშორისო სკოლის კვლევითი ინსტიტუტი (ISET Policy Institute) და შეიძლება არ ემთხვეოდეს USAID-ის ან ამერიკის შეერთებული შტატების მთავრობის პოზიციას.</p>'
+end
+
 
 
 
@@ -212,12 +220,12 @@ if ENV['load_test_data'].present?
   # create verdicts
   puts 'creating verdicts'
   v1 = Verdict.create(overall_score: 6.4, category1_score: 6, category2_score: 8, category3_score: 5,
-                              title_en: '2016 Phase 1', title_ka: '2016 Phase 1', 
+                              title_en: '2016 Phase 1', title_ka: '2016 Phase 1',
                               summary_en: 'this is a verdict summary',
                               summary_ka: 'this is a verdict summary',
                               is_public: true, time_period: '2016-06-30')
   v2 = Verdict.create(overall_score: 5.36, category1_score: 5.8, category2_score: 6, category3_score: 4.5,
-                              title_en: '2016 Phase 2', title_ka: '2016 Phase 2', 
+                              title_en: '2016 Phase 2', title_ka: '2016 Phase 2',
                               summary_en: 'this is a verdict summary',
                               summary_ka: 'this is a verdict summary',
                               is_public: true, time_period: '2016-12-31')
@@ -320,7 +328,7 @@ if ENV['load_test_data'].present?
   csv_path = "#{Rails.root}/db/test_external_indicator_files/"
   puts 'creating external indicators'
 
-  ei = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true, description: 'This is the external indicator for the growth of total factor productivity.', 
+  ei = ExternalIndicator.new(title: 'Growth of Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 2, is_public: true, description: 'This is the external indicator for the growth of total factor productivity.',
                               benchmark_title_en: 'EU Average', benchmark_title_ka: 'EU Average', has_benchmark: true)
   csv_data = CSV.read(csv_path + 'growth.csv')
 
@@ -351,8 +359,8 @@ if ENV['load_test_data'].present?
         if c_index > 0
           is_benchmark = row.length-1 == c_index && ei.has_benchmark?
           time.data.build(
-            country_id: is_benchmark ? nil : ei.countries[c_index-1].id, 
-            value: row[c_index], 
+            country_id: is_benchmark ? nil : ei.countries[c_index-1].id,
+            value: row[c_index],
             is_benchmark: is_benchmark
           )
         end
@@ -364,7 +372,7 @@ if ENV['load_test_data'].present?
   ei.reforms << reform1
 
 
-  ei = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, sort_order: 2, is_public: true, use_decimals: true, 
+  ei = ExternalIndicator.new(title: 'How do people feel about the economy?', subtitle: 'Georgian Economic Sentiment Index (G-ESI)', description: 'A confidence index of +100 would indicate that economic agents (consumers and businesses) were much more confident about future prospects, while -100 would indicate that all survey respondents were much less confident about future prospects.', scale_type: 2, indicator_type: 3, chart_type: 2, min: -100, max: 100, show_on_home_page: true, sort_order: 2, is_public: true, use_decimals: true,
                               benchmark_title_en: 'Benchmark', benchmark_title_ka: 'Benchmark', has_benchmark: true)
   csv_data = CSV.read(csv_path + 'gesi.csv')
 
@@ -397,8 +405,8 @@ if ENV['load_test_data'].present?
           else
             is_benchmark = row.length-1 == c_index && ei.has_benchmark?
             time.data.build(
-              index_id: is_benchmark ? nil : ei.indices[c_index-2].id, 
-              value: row[c_index], 
+              index_id: is_benchmark ? nil : ei.indices[c_index-2].id,
+              value: row[c_index],
               is_benchmark: is_benchmark
             )
           end
@@ -460,7 +468,7 @@ if ENV['load_test_data'].present?
 
 
 
-  ei = ExternalIndicator.new(title: 'Georgia Growth of Total Factor Productivity', scale_type: 2, indicator_type: 1, chart_type: 1, is_public: true, 
+  ei = ExternalIndicator.new(title: 'Georgia Growth of Total Factor Productivity', scale_type: 2, indicator_type: 1, chart_type: 1, is_public: true,
                               benchmark_title_en: 'EU Average', benchmark_title_ka: 'EU Average', has_benchmark: true)
   csv_data = CSV.read(csv_path + 'geo_growth.csv')
 
@@ -481,7 +489,7 @@ if ENV['load_test_data'].present?
         if c_index > 0
           is_benchmark = row.length-1 == c_index && ei.has_benchmark?
           time.data.build(
-            value: row[c_index], 
+            value: row[c_index],
             is_benchmark: is_benchmark
           )
         end
@@ -495,7 +503,7 @@ if ENV['load_test_data'].present?
   ei.reforms << reform3
 
 
-  ei = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', subtitle: 'This is the very loooooong subtitle of Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true, 
+  ei = ExternalIndicator.new(title: 'Line Chart Total Factor Productivity', subtitle: 'This is the very loooooong subtitle of Line Chart Total Factor Productivity', scale_type: 2, indicator_type: 2, chart_type: 1, is_public: true,
                               benchmark_title_en: 'EU Average', benchmark_title_ka: 'EU Average', has_benchmark: true)
   csv_data = CSV.read(csv_path + 'growth.csv')
 
@@ -526,8 +534,8 @@ if ENV['load_test_data'].present?
         if c_index > 0
           is_benchmark = row.length-1 == c_index && ei.has_benchmark?
           time.data.build(
-            country_id: is_benchmark ? nil : ei.countries[c_index-1].id, 
-            value: row[c_index], 
+            country_id: is_benchmark ? nil : ei.countries[c_index-1].id,
+            value: row[c_index],
             is_benchmark: is_benchmark
           )
         end

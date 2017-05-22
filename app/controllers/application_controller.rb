@@ -27,7 +27,10 @@ class ApplicationController < ActionController::Base
 
     # indicate which year can be the first year for data
 #    @quarter_start_year = 2015
-    
+
+    # get the disclaimer text
+    @disclaimer = PageContent.find_by(name: 'disclaimer')
+
     gon.default_locale = I18n.default_locale.to_s
 
     gon.create_chart_share_image_url = charts_create_share_image_url
@@ -72,7 +75,7 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
-  # get the verdict 
+  # get the verdict
   def get_verdict
     begin
       @verdict = Verdict.friendly.find(params[:verdict_id])
@@ -111,7 +114,7 @@ class ApplicationController < ActionController::Base
       @methodology_government = PageContent.find_by(name: 'methodology_government')
       @methodology_stakeholder = PageContent.find_by(name: 'methodology_stakeholder')
       @outcome = PageContent.find_by(name: 'outcome')
-      @news = @reform_survey.news 
+      @news = @reform_survey.news
       @stakeholders = Expert.stakeholders.by_reform(@reform.id).active.sorted
 
       gon.linked_reforms_verdicts = Verdict.linked_reforms
